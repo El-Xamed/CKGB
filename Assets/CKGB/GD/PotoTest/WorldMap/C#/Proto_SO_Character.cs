@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Personne", menuName = "Personne")]
-public class Personne : ScriptableObject
+public class Proto_SO_Character : ScriptableObject
 {
     public new string name;
     public int age;
