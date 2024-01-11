@@ -6,7 +6,7 @@ public class MapPoint : MonoBehaviour
 {
     #region variables
     [Header("WayPoints")]
-    [SerializeField] MapPoint up, left, right, down;
+    public MapPoint up, left, right, down;
 
     [Header("Options")]
     [SerializeField] int levelID = 0;
@@ -17,7 +17,7 @@ public class MapPoint : MonoBehaviour
 
     [Header("type")]
     [SerializeField] bool IsLevel;
-    [SerializeField] bool IsCorner;
+    public bool IsCorner;
 
     [Header("Level UI")]
     [SerializeField] Text UiLevelName;
