@@ -153,9 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac75afacaeafa54b971213c6f0c2650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor:
-  - {fileID: 1747524952}
-  - {fileID: 1438231422}
+  listActor: []
   startBegin: 1
   spriteRightDialogue: {fileID: 107527491398376636, guid: a20e572f3ea37be43b0f5e590691b0b0, type: 3}
   spriteLeftDialogue: {fileID: 6558928515935278962, guid: a2814862cb18e7e4c8f7b59fd9f8875c, type: 3}
@@ -163,7 +161,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b919e523228f5f343abf5748c5085989, type: 2}
   - {fileID: 11400000, guid: be9faf977a7a8ef4f848ec8267e8192f, type: 2}
   currentDialogue: 0
-  listCharacter: []
 --- !u!4 &26585781
 Transform:
   m_ObjectHideFlags: 0
@@ -263,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: ba99d99cfef6a1a47819213e7723cb4a, type: 2}
+  m_PanelSettings: {fileID: 11400000, guid: d19d07a8538395a459173266c98570ad, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: d0e8107815fcabe45a00256ec425c291, type: 3}
   m_SortingOrder: 0
