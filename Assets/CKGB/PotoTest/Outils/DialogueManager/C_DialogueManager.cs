@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Composites;
@@ -9,7 +11,7 @@ public class C_DialogueManager : MonoBehaviour
     #region Variables
     [Header("Les acteurs présent dans la scene.")]
     [Tooltip ("Insérer les acteurs de type (GameObject) pour que les bulles de dialogue apparaissent au bon endroit, cela permet au SO_Dialogue de reconnaitre ses {cibles}")]
-    [SerializeField] List<GameObject> actor;
+    [SerializeField] List<GameObject> listActor;
 
     [Header("Commencer les dialogue dès le début ?")]
     [SerializeField] bool startBegin = false;
@@ -32,23 +34,21 @@ public class C_DialogueManager : MonoBehaviour
     [Tooltip("Permet de voir à quelle étape de la discution nous somme. C'est une info pour le dev.")]
     [SerializeField] int currentDialogue = 0;
 
-    List<Proto_SO_Character> listCharacter;
-
     public static C_DialogueManager instance;
     #endregion
 
     private void Awake()
     {
+        #region Singleton
         if (instance == null)
             instance = this;
+        #endregion
 
         //Récupération automatique des personnages dans le tableau.
-
-        //Pour tous les SO_personnage qui possède les noms qui sont dans une liste.
-        foreach (var character in listCharacter)
+        //Pour tous les acteurs qui possède le componnent "Actor".
+        foreach (Proto_Actor actor in Resources.FindObjectsOfTypeAll(typeof(Proto_Actor)) as Proto_Actor[])
         {
-            //
-            //actor.Add(character.);
+            listActor.Add(actor.gameObject);
         }
     }
 
@@ -64,7 +64,8 @@ public class C_DialogueManager : MonoBehaviour
     //Avancer dans le dialogue.
     public void UpdateDialogue(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() == 0)
+        //1ere itération du code.
+        /*if (context.ReadValue<float>() == 0)
         {
             return;
         }
@@ -83,11 +84,22 @@ public class C_DialogueManager : MonoBehaviour
             LetsTalk(currentDialogue);
 
             return;
+        }*/
+
+        //2eme itération du code.
+        if (context.ReadValue<float>() != 0 && context.performed)
+        {
+            if (currentDialogue == 0 && context.ReadValue<float>() == -1)
+                return;
+            if (currentDialogue == dialogue.Count - 1 && context.ReadValue<float>() == 1)
+                return;
+
+            LetsTalk(currentDialogue += (int)context.ReadValue<float>());
         }
     }
     #endregion
 
-    #region Mes Fonctions
+    #region Mes fonctions
     //Fonction pour afficher les dialogue.
     void LetsTalk(int currentTalk)
     {
@@ -115,12 +127,12 @@ public class C_DialogueManager : MonoBehaviour
     //Pour que les SO_Dialogue puissent récupérer l'acteur pour faire spawn le text au bon endroit.
     public GameObject GetActor(int currentActor)
     {
-        return actor[currentActor];
+        return listActor[currentActor];
     }
 
     public List<GameObject> GetListActor()
     {
-        return actor;
+        return listActor;
     }
 
     public List<SO_Dialogue> GetListDialogue()

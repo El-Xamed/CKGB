@@ -17,6 +17,7 @@ public class SO_Dialogue : ScriptableObject
         KoolKid, Grandma, Clown
     }
 
+    #region Variables
     //Récupération en variable qui apparait dans l'inspector.
     public ECibleClass myTarget;
 
@@ -32,7 +33,9 @@ public class SO_Dialogue : ScriptableObject
     //Création de la var si elle existe pas sinon elle se réactive juste, désactivant au passage les autres bulles.
     [HideInInspector]
     public GameObject myDialogue = null;
+    #endregion
 
+    #region Mes fonctions
     //Fonction pour faire fonctionner le dialogue.
     public void Speak(GameObject sprite)
     {
@@ -79,10 +82,21 @@ public class SO_Dialogue : ScriptableObject
         }
         #endregion
 
-        //Applique le changement de text.
-        sprite.GetComponentInChildren<TextMeshPro>().text = text;
+        #region Update test
+        //Vérification de si le Gameobject possède un component "text".
+        if (sprite.GetComponentInChildren<TextMeshPro>())
+        {
+            //Applique le changement de text.
+            sprite.GetComponentInChildren<TextMeshPro>().text = text;
+        }
+        else
+        {
+            Debug.Log("Warning ! Aucun Component<TextMeshPro> détecté !");
+        }
+        #endregion
 
         //Debug.
         Debug.Log("La cible N°" + cible + "(" + C_DialogueManager.instance.GetActor(cible).name + ")" + " à parlé");
     }
+    #endregion
 }
