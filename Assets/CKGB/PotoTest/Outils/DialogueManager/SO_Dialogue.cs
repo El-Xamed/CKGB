@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 
 
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "ScriptableObjects/Dialogue", order = 1)]
+[CreateAssetMenu(fileName = "New Dialogue", menuName = "ScriptableObjects/Dialogue", order = 2)]
 public class SO_Dialogue : ScriptableObject
 {
     //Cération d'un enum

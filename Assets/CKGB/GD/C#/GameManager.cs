@@ -7,8 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField]
     int[] niveauTerminé;
-    Proto_Actor[] team;
+
+    [SerializeField]
+    List<Proto_Actor> team;
 
     private void Awake()
     {
@@ -18,6 +21,15 @@ public class GameManager : MonoBehaviour
         #endregion
 
         DontDestroyOnLoad(gameObject);
+
+        //Récupération automatique des personnages dans le tableau.
+        //Pour tous les SO_personnage qui possède les noms qui sont dans une liste.
+        foreach (var character in team)
+            //Pour tous les acteurs qui possède le componnent "Actor".
+            foreach (Proto_Actor actor in Resources.FindObjectsOfTypeAll(typeof(Proto_Actor)) as Proto_Actor[])
+            {
+                team.Add(character);
+            }
     }
 
     public void ChangeActionMap(string actionMap)

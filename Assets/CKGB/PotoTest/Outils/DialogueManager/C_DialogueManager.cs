@@ -101,7 +101,7 @@ public class C_DialogueManager : MonoBehaviour
 
     #region Mes fonctions
     //Fonction pour afficher les dialogue.
-    void LetsTalk(int currentTalk)
+    public void LetsTalk(int currentTalk)
     {
         //Désactive les autres dialogues.
         foreach (var otherDialogue in dialogue)
