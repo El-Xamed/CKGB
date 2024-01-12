@@ -482,7 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4790af45b8f5552499175a066e3389d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbCase: 4
+  pions: []
+  nbCase: 8
   prefabCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
 --- !u!4 &599995158
 Transform:
@@ -778,7 +779,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 5
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
