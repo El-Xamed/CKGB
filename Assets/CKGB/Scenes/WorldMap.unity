@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 922055411}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -386,9 +386,13 @@ PrefabInstance:
       propertyPath: down
       value: 
       objectReference: {fileID: 1731221398}
+    - target: {fileID: 1551430381186807538, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: left
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -396,7 +400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32666367
+      value: 0.32666373
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalPosition.z
@@ -408,15 +412,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -458,6 +462,8 @@ GameObject:
   - component: {fileID: 1172759642}
   - component: {fileID: 1172759641}
   - component: {fileID: 1172759640}
+  - component: {fileID: 1172759643}
+  - component: {fileID: 1172759644}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -551,13 +557,150 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172759639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.81, y: -0.69, z: 0}
+  m_LocalPosition: {x: -7.22, y: 2.16, z: 0}
   m_LocalScale: {x: 0.8128, y: 0.8128, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172759643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172759639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc379c92a32eb8e43a648c2ee88e6e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPoint: {fileID: 8633583613693813721}
+  moveSpeed: 3
+  allMapPoints: []
+  Left: {fileID: 0}
+  Right: {fileID: 0}
+  Up: {fileID: 0}
+  Down: {fileID: 0}
+--- !u!114 &1172759644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172759639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1172759643}
+        m_TargetAssemblyTypeName: Proto_MapController, Assembly-CSharp
+        m_MethodName: SelectLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: afeca8c8-71a7-416c-bd69-e8240f5acf1e
+    m_ActionName: WorldMap/PlayLevel[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2568446-36e9-4720-8cb0-c41c45fa077b
+    m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7984d3dd-5daf-48b1-93b5-a2ebb24ab83d
+    m_ActionName: Challenge/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1172759643}
+        m_TargetAssemblyTypeName: Proto_MapController, Assembly-CSharp
+        m_MethodName: moveUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 36a42cc7-7ce6-4992-b642-48bf9aec373d
+    m_ActionName: WorldMap/Up[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1172759643}
+        m_TargetAssemblyTypeName: Proto_MapController, Assembly-CSharp
+        m_MethodName: moveDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2616de63-5eda-4dce-b374-00d49655662c
+    m_ActionName: WorldMap/Down[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1172759643}
+        m_TargetAssemblyTypeName: Proto_MapController, Assembly-CSharp
+        m_MethodName: moveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: da23a3e5-c1f4-48da-8f5d-2a3529a07600
+    m_ActionName: WorldMap/Left[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1172759643}
+        m_TargetAssemblyTypeName: Proto_MapController, Assembly-CSharp
+        m_MethodName: moveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
+    m_ActionName: WorldMap/Right[/Keyboard/d]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: WorldMap
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &1731221397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -575,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 922055411}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -647,7 +790,7 @@ PrefabInstance:
       objectReference: {fileID: 461906664}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2000879284839596052, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_LocalPosition.x

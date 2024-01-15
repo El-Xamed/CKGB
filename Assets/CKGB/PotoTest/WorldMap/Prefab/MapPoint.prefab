@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2000879284839596052}
   - component: {fileID: 6623429575098774954}
-  - component: {fileID: 1551430381186807538}
   - component: {fileID: 4520018203753582467}
+  - component: {fileID: 7245227357856813141}
   m_Layer: 0
   m_Name: MapPoint
   m_TagString: Untagged
@@ -86,28 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1551430381186807538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7187586841891620570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61cc7e8a45487c4886f6a155bbf14c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  up: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  down: {fileID: 0}
-  levelID: 0
-  SceneToLoad: 
-  levelName: 
-  IsLevel: 0
-  IsCorner: 0
-  UiLevelName: {fileID: 0}
 --- !u!61 &4520018203753582467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +112,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7245227357856813141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187586841891620570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a13f552152868144ac53ba15437e67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  up: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  down: {fileID: 0}
+  levelID: 0
+  IsLevel: 0
+  IsCorner: 0
+  Islocked: 0
+  IsDone: 0
+  UiLevelName: {fileID: 0}
+  actor: {fileID: 0}
+  destination: {fileID: 0}

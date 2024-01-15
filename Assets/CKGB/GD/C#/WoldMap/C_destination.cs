@@ -6,36 +6,38 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class C_destination : MonoBehaviour
 {
+    #region variables
+    [Header("WayPoints")]
+    public C_destination up, left, right, down;
+
+    [Header("Options")]
+    public int levelID = 0;
+
+
+    [TextArea(1, 2)]
+
+    [Header("type")]
+    public bool IsLevel;
+    public bool IsCorner;
+    public bool Islocked;
+    public bool IsDone;
+
+    [Header("Level UI")]
+    [SerializeField] Text UiLevelName;
+
+    
     [SerializeField]
     GameObject actor;
 
     [SerializeField]
-    SceneAsset destination;
-
-    bool finished;
-    bool isBusyByTeam;
+    public SceneAsset destination;
     //Variable de scene
+    #endregion
 
-    public void GoToLevel()
-    {
-        //Rajoute dans l'équipe l'acteur en question.
-        AddActorInTeam();
-
-        //Change l'actionMap dans le GameManager.
-        GameManager.instance.ChangeActionMap("TempsMort");
-
-        //Lance la scene selectionné.
-        SceneManager.LoadScene(destination.name);
-
-        Debug.Log("Load Scene...");
-    }
-
-    //Pour ajouter l'acteur dans l'équipe
-    void AddActorInTeam()
-    {
-
-    }
+  
+    
 }
