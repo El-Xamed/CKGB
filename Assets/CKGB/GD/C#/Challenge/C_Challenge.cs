@@ -9,9 +9,6 @@ public class C_Challenge : MonoBehaviour
     #region Mes variables
     C_destination destination;
 
-    [SerializeField]
-    List<pionclass> pions;
-
     GameObject canva;
     GameObject uiCases;
 
@@ -34,8 +31,6 @@ public class C_Challenge : MonoBehaviour
         canva = transform.GetChild(0).gameObject;
 
         uiCases = canva.transform.GetChild(1).gameObject;
-
-        GetActorInChallenge();
     }
 
     private void Start()
@@ -49,77 +44,41 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Place les acteurs sir les cases.
-        UpdateAllPosition(pions);
+        UpdateAllPosition();
     }
 
     #region Mes fonctions
-    //Récupération des acteurs dans le gameManager.
-    void GetActorInChallenge()
-    {
-        foreach (var actor in GameManager.instance.GetTeam())
-        {
-            //Creation d'une nouvel class
-            pionclass test = new pionclass();
-
-            //Set l'actor.
-            test.SetActor(actor.gameObject);
-
-            //Set la position de facon aléatoire (!!! EN CONSRTUCTION !!!)
-            test.SetPosition(4);
-
-            pions.Add(test);
-        }
-
-    }
-
     //Set la position de tous les acteurs sur les cases.
-    private void UpdateAllPosition(List<pionclass> pions)
+    public void UpdateAllPosition()
     {
-        foreach (var actorPosition in pions)
+        foreach (var actorPosition in GameManager.instance.GetTeam())
         {
-            //actorPosition.GetActor().transform = listCase[actorPosition.GetPosition()].transform;
+            //Check si le GameObject en question exist.
+            if (GameObject.Find(actorPosition.GetDataActor().name))
+            {
+                Debug.Log("Exists");
 
-            //actorPosition.GetActor().transform.SetParent(listCase[actorPosition.GetPosition()].transform);
+                GameObject.Find(actorPosition.GetDataActor().name).transform.SetParent(listCase[5].transform);
+            }
+            else
+            {
+                Debug.Log("Doesn't exist");
+
+                Instantiate(actorPosition, listCase[actorPosition.GetPosition()].transform);
+            }
         }
-    }
-
-    //Set la position d'un acteur.
-    private void UpdatePosition(pionclass pions)
-    {
-
     }
     #endregion
-}
 
-//Création d'une class qui va rassembler les info d'un pion.
-[Serializable]
-public class pionclass
-{
-    //Acteur.
-    [SerializeField]
-    GameObject myActor;
-
-    //Position dans le jeu.
-    [SerializeField]
-    int myPosition;
-
-    public void SetActor(GameObject actor)
+    #region Fonctions pour l'éditor
+    public List<C_Case> GetCasesList()
     {
-        myActor = actor;
+        return listCase;
     }
 
-    public GameObject GetActor()
+    public int GetNbCases()
     {
-        return myActor;
+        return nbCase;
     }
-
-    public void SetPosition(int position)
-    {
-        myPosition = position;
-    }
-
-    public int GetPosition()
-    {
-        return myPosition;
-    }
+    #endregion
 }
