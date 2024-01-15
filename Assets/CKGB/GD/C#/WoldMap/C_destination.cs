@@ -35,9 +35,10 @@ public class C_destination : MonoBehaviour
 
     [SerializeField]
     public SceneAsset destination;
+
+    [SerializeField]
+    [Tooltip("Permet de setup dans la Worldmap la position initial des acteurs dans la scene.")]
+    int[] initialPlayerPosition;
     //Variable de scene
     #endregion
-
-  
-    
 }

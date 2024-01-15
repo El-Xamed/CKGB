@@ -65,8 +65,6 @@ public class SO_Dialogue : ScriptableObject
             case ECibleClass.Clown:
                 cible = 2;
                 break;
-            default:
-                break;
         }
 
         if (myDialogue == null)

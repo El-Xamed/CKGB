@@ -154,22 +154,6 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1376610902}
-        m_TargetAssemblyTypeName: C_Worldmap, Assembly-CSharp
-        m_MethodName: UpdateDestination
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0f70751d-b242-493e-8a63-bfd5b59b8dd9
-    m_ActionName: WorldMap/New action
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c2568446-36e9-4720-8cb0-c41c45fa077b
     m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
@@ -193,6 +177,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: afeca8c8-71a7-416c-bd69-e8240f5acf1e
     m_ActionName: WorldMap/PlayLevel[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36a42cc7-7ce6-4992-b642-48bf9aec373d
+    m_ActionName: WorldMap/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2616de63-5eda-4dce-b374-00d49655662c
+    m_ActionName: WorldMap/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da23a3e5-c1f4-48da-8f5d-2a3529a07600
+    m_ActionName: WorldMap/Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
+    m_ActionName: WorldMap/Right[/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: WorldMap
@@ -890,6 +890,7 @@ MonoBehaviour:
   UiLevelName: {fileID: 0}
   actor: {fileID: 5598699505697139378, guid: 6d5e9ebab6a13be4d89767d805631ec3, type: 3}
   destination: {fileID: 102900000, guid: c8526764c277e9149bd9e272ec4ceb56, type: 3}
+  initialPlayerPosition: 
 --- !u!4 &1273966843
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,11 +1326,35 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: myActor.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: team.Array.data[0]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: team.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: myActor.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: myActor.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: ressourceActor.Array.data[0]
+      value: 
+      objectReference: {fileID: 5598699505697139378, guid: 6d5e9ebab6a13be4d89767d805631ec3, type: 3}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: ressourceActor.Array.data[1]
+      value: 
+      objectReference: {fileID: 3312149462793705758, guid: 48cc0700aa167854c9d406bc9e7b3caf, type: 3}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: ressourceActor.Array.data[2]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}

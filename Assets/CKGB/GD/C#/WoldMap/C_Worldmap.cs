@@ -30,7 +30,7 @@ public class C_Worldmap : MonoBehaviour
     {
         allMapPoints = FindObjectsOfType<C_destination>();
     }
-    void Start()
+    /*void Start()
     {
         //sets the initial position
         transform.position = startPoint.transform.position;
@@ -41,16 +41,8 @@ public class C_Worldmap : MonoBehaviour
         Right = currentPoint.right;
         Up = currentPoint.up;
         Down = currentPoint.down;
-    }
-    // Update is called once per frame
-    void Update()
-    {
+    }*/
 
-    }
-    private void FixedUpdate()
-    {
-
-    }
     //Fonction qui lance le niveau en question.
     public void SelectLevel(InputAction.CallbackContext context)
     {

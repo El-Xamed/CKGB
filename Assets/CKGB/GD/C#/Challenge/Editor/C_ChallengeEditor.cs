@@ -7,17 +7,18 @@ using UnityEngine.UIElements;
 [CustomEditor(typeof(C_Challenge))]
 public class C_ChallengeEditor : Editor
 {
-    [SerializeField]
+    /*[SerializeField]
     int newPosition;
     public override void OnInspectorGUI()
     {
         C_Challenge challengeScript = (C_Challenge)target;
 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty(challengeScript.ToString()));
         EditorGUILayout.IntField("New position", newPosition);
 
         if(GUILayout.Button("Update position for all"))
         {
             challengeScript.UpdateAllPosition();
         }
-    }
+    }*/
 }

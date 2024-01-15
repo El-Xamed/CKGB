@@ -21,8 +21,9 @@ public class C_Challenge : MonoBehaviour
 
     int etape;
     int nbEtape;
-    
-    int[] playerPosition;
+
+    [SerializeField]
+    int[] initialplayerPosition;
 
     #endregion
 
@@ -31,6 +32,13 @@ public class C_Challenge : MonoBehaviour
         canva = transform.GetChild(0).gameObject;
 
         uiCases = canva.transform.GetChild(1).gameObject;
+
+        //Pour récupérer les positions enregistrer dans la worldmap.
+        if (GameManager.instance.GetInitialPlayerPosition() != null)
+        {
+            initialplayerPosition = GameManager.instance.GetInitialPlayerPosition();
+        }
+        else { Debug.LogWarning("Get initial players position on this scene and not by the GameManager."); }
     }
 
     private void Start()
@@ -79,6 +87,11 @@ public class C_Challenge : MonoBehaviour
     public int GetNbCases()
     {
         return nbCase;
+    }
+
+    public int[] GetInitialPlayersPosition()
+    {
+        return initialplayerPosition;
     }
     #endregion
 }
