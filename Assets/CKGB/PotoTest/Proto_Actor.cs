@@ -24,4 +24,9 @@ public class Proto_Actor : MonoBehaviour
     {
         return position;     
     }
+
+    public void SetPosition(int newPosition)
+    {
+        position = newPosition;
+    }
 }

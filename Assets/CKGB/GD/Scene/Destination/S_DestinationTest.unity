@@ -469,7 +469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &599995157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,9 +483,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbCase: 8
-  listCase: []
   prefabCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
   initialplayerPosition: 
+  etape: 0
+  nbEtape: 0
+  listCase: []
 --- !u!4 &599995158
 Transform:
   m_ObjectHideFlags: 0
@@ -695,7 +697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1230891243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +710,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b52789fae4da1d4fa45e49571906411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listPositions:
+  - actor: 0
+    InitialPosition: {fileID: 0}
+  - actor: 0
+    InitialPosition: {fileID: 0}
+  - actor: 0
+    InitialPosition: {fileID: 0}
 --- !u!4 &1230891244
 Transform:
   m_ObjectHideFlags: 0

@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class C_TempsMort : MonoBehaviour
 {
     #region Variables
-    //Voir commment récupérer les info stocké dans le scipt "C_destination".
-    C_destination destination;
+    [SerializeField]
+    List<StartPosition> listPositions;
 
     #region Animation
     Animation[] papoter;
@@ -17,10 +19,23 @@ public class C_TempsMort : MonoBehaviour
     Proto_Actor actorActif;
     #endregion
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
+        //Pour setup les perso
+        InitialisationTempsMort();
+
         //Lance le dialogue.
-        StartIntroduction();
+        //StartIntroduction();
+    }
+
+    private void InitialisationTempsMort()
+    {
+        
     }
 
     #region Mes fonctions
@@ -53,6 +68,27 @@ public class C_TempsMort : MonoBehaviour
     {
         
     }
-
     #endregion
+}
+
+[Serializable]
+public class StartPosition
+{
+    public enum EActorClass
+    {
+        Koolkid, Grandma, Clown
+    }
+
+    [SerializeField]
+    //EActorClass actor = new EActorClass(GameManager.instance.GetEnum());
+
+    
+
+    [SerializeField]
+    GameObject InitialPosition;
+    
+    public GameObject GetPosition()
+    {
+        return InitialPosition;
+    }
 }
