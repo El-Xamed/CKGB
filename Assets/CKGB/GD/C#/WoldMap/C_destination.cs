@@ -13,6 +13,7 @@ public class C_destination : MonoBehaviour
     #region variables
     [Header("WayPoints")]
     public C_destination up, left, right, down;
+    public Transform[] upPath, leftPath, rightPath, downPath;
 
     [Header("Options")]
     public int levelID = 0;
@@ -36,9 +37,7 @@ public class C_destination : MonoBehaviour
     [SerializeField]
     public SceneAsset destination;
 
-    [SerializeField]
-    [Tooltip("Permet de setup dans la Worldmap la position initial des acteurs dans la scene.")]
-    int[] initialPlayerPosition;
+   
     //Variable de scene
     #endregion
 }

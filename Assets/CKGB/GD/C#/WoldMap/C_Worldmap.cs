@@ -16,6 +16,7 @@ public class C_Worldmap : MonoBehaviour
     [SerializeField] C_destination[] allMapPoints;
     C_destination currentPoint;
     [SerializeField] C_destination Left, Right, Up, Down;
+    [SerializeField] Transform[] leftpath, rightpath, uppath, downpath;
 
     bool canMove = true;
 
@@ -31,18 +32,28 @@ public class C_Worldmap : MonoBehaviour
     {
         allMapPoints = FindObjectsOfType<C_destination>();
     }
-    /*void Start()
+    void Start()
     {
         //sets the initial position
+          currentPoint = startPoint;
         transform.position = startPoint.transform.position;
-        currentPoint = startPoint;
+      
 
         //sets up the destinations
         Left = currentPoint.left;
         Right = currentPoint.right;
         Up = currentPoint.up;
         Down = currentPoint.down;
-    }*/
+
+        leftpath = currentPoint.leftPath;
+        rightpath = currentPoint.rightPath;
+        uppath = currentPoint.upPath;
+        downpath = currentPoint.downPath;
+    }
+    private void FixedUpdate()
+    {
+
+    }
 
     //Fonction qui lance le niveau en question.
     public void SelectLevel(InputAction.CallbackContext context)
@@ -62,100 +73,55 @@ public class C_Worldmap : MonoBehaviour
 
     public void moveUp(InputAction.CallbackContext context)
     {
-        Debug.Log("Up");
-        if (context.performed && Up != null && Up.Islocked == false)
+        if (context.started && Up != null && Up.Islocked == false)
         {
-            Debug.Log("Up");
-            transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
-            if (transform.position == Up.transform.position)
-            {
+            moveTroughPoints(uppath);
+            //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
+           
                 currentPoint = Up;
-                if (currentPoint.left != null)
-                    Left = currentPoint.left;
-                else Left = null;
-                if (currentPoint.right != null)
-                    Right = currentPoint.right;
-                else Right = null;
-                if (currentPoint.up != null)
-                    Up = currentPoint.up;
-                else Up = null;
-                if (currentPoint.down != null)
-                    Down = currentPoint.down;
-                else Down = null;
-            }
+                updateDestinations();
+            
+            Debug.Log("Up");
 
         }
     }
     public void moveLeft(InputAction.CallbackContext context)
     {
-        if (context.performed && Left != null && Left.Islocked == false)
+        if (context.started && Left != null && Left.Islocked == false)
         {
-            transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
-            if (transform.position == Left.transform.position)
-            {
+            moveTroughPoints(leftpath);
+            //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
+          
                 currentPoint = Left;
-                if (currentPoint.left != null)
-                    Left = currentPoint.left;
-                else Left = null;
-                if (currentPoint.right != null)
-                    Right = currentPoint.right;
-                else Right = null;
-                if (currentPoint.up != null)
-                    Up = currentPoint.up;
-                else Up = null;
-                if (currentPoint.down != null)
-                    Down = currentPoint.down;
-                else Down = null;
-            }
+                updateDestinations();
+            
             Debug.Log("Left");
         }
     }
     public void moveRight(InputAction.CallbackContext context)
     {
-        if (context.performed && Right != null && Right.Islocked == false)
+        if (context.started && Right != null && Right.Islocked == false)
         {
-            transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
-            if (transform.position == Right.transform.position)
-            {
+            moveTroughPoints(rightpath);
+            //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
+            
                 currentPoint = Right;
-                if (currentPoint.left != null)
-                    Left = currentPoint.left;
-                else Left = null;
-                if (currentPoint.right != null)
-                    Right = currentPoint.right;
-                else Right = null;
-                if (currentPoint.up != null)
-                    Up = currentPoint.up;
-                else Up = null;
-                if (currentPoint.down != null)
-                    Down = currentPoint.down;
-                else Down = null;
-            }
+                updateDestinations();
+            
 
             Debug.Log("Right");
         }
     }
     public void moveDown(InputAction.CallbackContext context)
     {
-        if (context.performed && Down != null && Down.Islocked == false)
+        if (context.started && Down != null && Down.Islocked == false)
         {
-            transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);
-            if (transform.position == Down.transform.position)
-            {
+            moveTroughPoints(downpath);
+            //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);
+            
                 currentPoint = Down;
-                if (currentPoint.left != null)
-                    Left = currentPoint.left;
-                else Left = null;
-                if (currentPoint.right != null)
-                    Right = currentPoint.right;
-                else Right = null;
-                if (currentPoint.up != null)
-                    Up = currentPoint.up;
-                else Up = null;
-                if (currentPoint.down != null)
-                    Down = currentPoint.down;
-                else Down = null;
-            }
+                updateDestinations();
+            
             Debug.Log("Down");
         }
     }
@@ -163,5 +129,65 @@ public class C_Worldmap : MonoBehaviour
     {
 
     }
+    void updateDestinations()
+    {
+        if (currentPoint.left != null)
+            Left = currentPoint.left;
+        else Left = null;
+        if (currentPoint.right != null)
+            Right = currentPoint.right;
+        else Right = null;
+        if (currentPoint.up != null)
+            Up = currentPoint.up;
+        else Up = null;
+        if (currentPoint.down != null)
+            Down = currentPoint.down;
+        else Down = null;
+
+        if (currentPoint.leftPath != null)
+            leftpath = currentPoint.leftPath;
+        else leftpath = null;
+        if (currentPoint.rightPath != null)
+            rightpath = currentPoint.rightPath;
+        else rightpath = null;
+        if (currentPoint.upPath != null)
+            uppath = currentPoint.upPath;
+        else uppath = null;
+        if (currentPoint.downPath != null)
+            downpath = currentPoint.downPath;
+        else downpath = null;
+    }
+    void moveTroughPoints(Transform[] pointlist)
+    {
+        int i = 0;
+        StartCoroutine(UpdatepointPosition(pointlist,i));
+             
+    }
+    IEnumerator UpdatepointPosition(Transform[]point,int i)
+    {
+       
+            Debug.Log(i);
+            transform.position = Vector2.MoveTowards(transform.position, point[i].transform.position, moveSpeed);
+            yield return new WaitForSeconds(1f);
+
+            i++;
+        if(i<point.Length)
+        {
+            StartCoroutine(UpdatepointPosition(point, i));
+        }
+
+            Debug.Log(i);
+            
+        // suspend execution for 5 seconds
+       
+       /* if(i<point.Length-1)
+        {
+            i++;
+            Debug.Log(i);
+            UpdatepointPosition(point,i);           
+        }*/
+       
+    }
+
     #endregion
 }
