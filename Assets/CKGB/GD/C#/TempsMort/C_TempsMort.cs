@@ -35,7 +35,48 @@ public class C_TempsMort : MonoBehaviour
 
     private void InitialisationTempsMort()
     {
-        
+        foreach (var myPosition in listPositions)
+        {
+            switch (myPosition.GetEnum())
+            {
+                //Récupération automatique dans le dossier Resources.
+                case EActorClass.Koolkid:
+                    test(myPosition.GetPosition().transform);
+                    break;
+                case EActorClass.Grandma:
+                    test(myPosition.GetPosition().transform);
+                    break;
+                case EActorClass.Clown:
+                    test(myPosition.GetPosition().transform);
+                    break;
+            }
+        }
+
+        void test(Transform position)
+        {
+            foreach (var myActor in GameManager.instance.GetTeam())
+            {
+                for (int i = 0; i < GameManager.instance.GetRessournce().Length -1; i++)
+                {
+                    if (myActor.GetComponent<Proto_Actor>().GetDataActor().name == GameManager.instance.GetRessournce()[i].GetComponent<Proto_Actor>().GetDataActor().name)
+                    {
+                        if (GameObject.Find(myActor.GetDataActor().name))
+                        {
+                            Debug.Log("Exists");
+
+                            GameObject.Find(myActor.GetDataActor().name).transform.SetParent(position);
+                        }
+                        else
+                        {
+                            Debug.Log("Doesn't exist");
+
+                            Instantiate(myActor, position);
+                        }
+                    }
+                }
+                
+            }
+        }
     }
 
     #region Mes fonctions
@@ -74,19 +115,17 @@ public class C_TempsMort : MonoBehaviour
 [Serializable]
 public class StartPosition
 {
-    public enum EActorClass
-    {
-        Koolkid, Grandma, Clown
-    }
-
     [SerializeField]
-    //EActorClass actor = new EActorClass(GameManager.instance.GetEnum());
-
-    
+    EActorClass actor;
 
     [SerializeField]
     GameObject InitialPosition;
     
+    public EActorClass GetEnum()
+    {
+        return actor;
+    }
+
     public GameObject GetPosition()
     {
         return InitialPosition;

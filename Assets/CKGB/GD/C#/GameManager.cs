@@ -93,6 +93,11 @@ public class GameManager : MonoBehaviour
         return team;
     }
 
+    public GameObject[] GetRessournce()
+    {
+        return ressourceActor;
+    }
+
     public int[] GetInitialPlayerPosition()
     {
         return initialPlayerPositionOnThisDestination;
@@ -105,12 +110,6 @@ public class GameManager : MonoBehaviour
         {
             team[i].SetPosition(initialPlayerPositionOnThisDestination[i]);
         }
-    }
-
-    EActorClass eActor;
-    public EActorClass GetEnum()
-    {
-        return eActor;
     }
     #endregion
 }
