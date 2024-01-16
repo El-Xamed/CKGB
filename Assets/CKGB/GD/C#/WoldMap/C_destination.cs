@@ -19,9 +19,9 @@ public class C_destination : MonoBehaviour
     public int levelID = 0;
 
 
-    [TextArea(1, 2)]
 
     [Header("type")]
+
     public bool IsLevel;
     public bool IsCorner;
     public bool Islocked;
