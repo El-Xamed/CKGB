@@ -42,12 +42,15 @@ public class C_TempsMort : MonoBehaviour
                 //Récupération automatique dans le dossier Resources.
                 case EActorClass.Koolkid:
                     test(myPosition.GetPosition().transform);
+                    Debug.Log("Koolkid");
                     break;
                 case EActorClass.Grandma:
                     test(myPosition.GetPosition().transform);
+                    Debug.Log("Grandma");
                     break;
                 case EActorClass.Clown:
                     test(myPosition.GetPosition().transform);
+                    Debug.Log("Clown");
                     break;
             }
         }
