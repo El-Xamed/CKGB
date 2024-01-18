@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.UI;
+using System;
 
 public class C_Worldmap : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class C_Worldmap : MonoBehaviour
 
     [SerializeField]
     SceneAsset destination;
+
+    [SerializeField] Text UIlevel;
     #endregion
 
     #region methodes
@@ -37,7 +40,8 @@ public class C_Worldmap : MonoBehaviour
         //sets the initial position
           currentPoint = startPoint;
         transform.position = startPoint.transform.position;
-      
+
+     
 
         //sets up the destinations
         Left = currentPoint.left;
@@ -73,8 +77,9 @@ public class C_Worldmap : MonoBehaviour
 
     public void moveUp(InputAction.CallbackContext context)
     {
-        if (context.started && Up != null && Up.Islocked == false)
+        if (context.started && Up != null && Up.Islocked == false&&canMove==true)
         {
+            canMove = false;
             moveTroughPoints(uppath);
             //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
            
@@ -82,13 +87,14 @@ public class C_Worldmap : MonoBehaviour
                 updateDestinations();
             
             Debug.Log("Up");
-
+            canMove = true;
         }
     }
     public void moveLeft(InputAction.CallbackContext context)
     {
-        if (context.started && Left != null && Left.Islocked == false)
+        if (context.started && Left != null && Left.Islocked == false&&canMove==true)
         {
+            canMove = false;
             moveTroughPoints(leftpath);
             //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
           
@@ -96,12 +102,14 @@ public class C_Worldmap : MonoBehaviour
                 updateDestinations();
             
             Debug.Log("Left");
+            canMove = true;
         }
     }
     public void moveRight(InputAction.CallbackContext context)
     {
-        if (context.started && Right != null && Right.Islocked == false)
+        if (context.started && Right != null && Right.Islocked == false&&canMove==true)
         {
+            canMove = false;
             moveTroughPoints(rightpath);
             //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
             
@@ -110,12 +118,14 @@ public class C_Worldmap : MonoBehaviour
             
 
             Debug.Log("Right");
+            canMove = true;
         }
     }
     public void moveDown(InputAction.CallbackContext context)
     {
-        if (context.started && Down != null && Down.Islocked == false)
+        if (context.started && Down != null && Down.Islocked == false&&canMove==true)
         {
+            canMove = false;
             moveTroughPoints(downpath);
             //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);
             
@@ -123,6 +133,7 @@ public class C_Worldmap : MonoBehaviour
                 updateDestinations();
             
             Debug.Log("Down");
+            canMove = true;
         }
     }
     void AddActorInTeam()
@@ -156,27 +167,37 @@ public class C_Worldmap : MonoBehaviour
         if (currentPoint.downPath != null)
             downpath = currentPoint.downPath;
         else downpath = null;
+        UIlevel.text = currentPoint.leveltext;
     }
     void moveTroughPoints(Transform[] pointlist)
     {
-        int i = 0;
-        StartCoroutine(UpdatepointPosition(pointlist,i));
+       
+        StartCoroutine(UpdatepointPosition(pointlist));
              
     }
-    IEnumerator UpdatepointPosition(Transform[]point,int i)
+    IEnumerator UpdatepointPosition(Transform[]point)
     {
        
-            Debug.Log(i);
-            transform.position = Vector2.MoveTowards(transform.position, point[i].transform.position, moveSpeed);
-            yield return new WaitForSeconds(1f);
+       
+          /*  transform.position = Vector2.Lerp(transform.position, point[i].transform.position, moveSpeed);
+            yield return new WaitForSeconds(0.3f);
 
-            i++;
-        if(i<point.Length)
+            i++;*/
+        /*if(i<point.Length)
         {
             StartCoroutine(UpdatepointPosition(point, i));
+        }*/
+        for(int i = -1; i<point.Length-1;i++)
+        {
+            if(i==-1)
+            {
+                yield return MoveToNextPoint(transform, point[i + 1]);
+            }
+            else
+                yield return MoveToNextPoint(point[i],point[i+1]);
         }
 
-            Debug.Log(i);
+       
             
         // suspend execution for 5 seconds
        
@@ -187,6 +208,23 @@ public class C_Worldmap : MonoBehaviour
             UpdatepointPosition(point,i);           
         }*/
        
+    }
+
+    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2)
+    {
+        float ellapsed = 0;
+        float distance = (transform2.position - transform1.position).magnitude;
+        float maxTime = distance / moveSpeed;
+        Vector3 a=transform1.position;
+        Vector3 b=transform2.position;
+        while(ellapsed<maxTime)
+        {
+            ellapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
+            yield return null;
+        }
+
+        transform.position = transform2.position;
     }
 
     #endregion

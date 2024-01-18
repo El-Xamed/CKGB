@@ -15,8 +15,10 @@ public class C_destination : MonoBehaviour
     public C_destination up, left, right, down;
     public Transform[] upPath, leftPath, rightPath, downPath;
 
-    [Header("Options")]
-    public int levelID = 0;
+    [TextAreaAttribute]
+    public string leveltext;
+    
+    
 
 
 
