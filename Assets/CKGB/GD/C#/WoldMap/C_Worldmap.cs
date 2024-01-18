@@ -25,6 +25,9 @@ public class C_Worldmap : MonoBehaviour
     GameObject actor;
 
     [SerializeField]
+    GameObject Follower;
+
+    [SerializeField]
     SceneAsset destination;
 
     [SerializeField] Text UIlevel;
@@ -37,6 +40,7 @@ public class C_Worldmap : MonoBehaviour
     }
     void Start()
     {
+        initiateTheMapCharacterProtocol();
         //sets the initial position
           currentPoint = startPoint;
         transform.position = startPoint.transform.position;
@@ -88,6 +92,7 @@ public class C_Worldmap : MonoBehaviour
             
             Debug.Log("Up");
             canMove = true;
+           
         }
     }
     public void moveLeft(InputAction.CallbackContext context)
@@ -103,6 +108,7 @@ public class C_Worldmap : MonoBehaviour
             
             Debug.Log("Left");
             canMove = true;
+           
         }
     }
     public void moveRight(InputAction.CallbackContext context)
@@ -119,6 +125,7 @@ public class C_Worldmap : MonoBehaviour
 
             Debug.Log("Right");
             canMove = true;
+      
         }
     }
     public void moveDown(InputAction.CallbackContext context)
@@ -134,6 +141,7 @@ public class C_Worldmap : MonoBehaviour
             
             Debug.Log("Down");
             canMove = true;
+         
         }
     }
     void AddActorInTeam()
@@ -191,10 +199,12 @@ public class C_Worldmap : MonoBehaviour
         {
             if(i==-1)
             {
-                yield return MoveToNextPoint(transform, point[i + 1]);
+                yield return MoveToNextPoint(transform, point[i + 1],point);
+                yield return FollowerMoveToNextPoint(Follower.transform, point[i + 1], point);
             }
             else
-                yield return MoveToNextPoint(point[i],point[i+1]);
+                yield return MoveToNextPoint(point[i],point[i+1],point);
+                yield return FollowerMoveToNextPoint(point[i], point[i + 1], point);
         }
 
        
@@ -210,11 +220,11 @@ public class C_Worldmap : MonoBehaviour
        
     }
 
-    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2)
+    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2,Transform[]list)
     {
         float ellapsed = 0;
         float distance = (transform2.position - transform1.position).magnitude;
-        float maxTime = distance / moveSpeed;
+        float maxTime = distance / (moveSpeed*list.Length);
         Vector3 a=transform1.position;
         Vector3 b=transform2.position;
         while(ellapsed<maxTime)
@@ -225,6 +235,27 @@ public class C_Worldmap : MonoBehaviour
         }
 
         transform.position = transform2.position;
+        
+    }
+    private IEnumerator FollowerMoveToNextPoint(Transform transform1, Transform transform2,Transform[]list)
+    {
+        float ellapsed = 0;
+        float distance = (transform2.position - transform1.position).magnitude;
+        float maxTime = distance / (moveSpeed * list.Length);
+        Vector3 a = transform1.position;
+        Vector3 b = transform2.position;
+        while (ellapsed < maxTime)
+        {
+            ellapsed += Time.deltaTime;
+            Follower.transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
+            yield return null;
+        }
+
+        Follower.transform.position = transform2.position;
+    }
+    private void initiateTheMapCharacterProtocol()
+    {
+        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<Proto_Actor>().MapTmSprite;
     }
 
     #endregion
