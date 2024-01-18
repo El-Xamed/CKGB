@@ -35,49 +35,57 @@ public class C_TempsMort : MonoBehaviour
 
     private void InitialisationTempsMort()
     {
-        foreach (var myPosition in listPositions)
+        if (GameObject.Find("GameManager"))
         {
-            switch (myPosition.GetEnum())
+            //Place les personnage selon la liste des positions.
+            foreach (var myPosition in listPositions)
             {
-                //Récupération automatique dans le dossier Resources.
-                case EActorClass.Koolkid:
-                    test(myPosition.GetPosition().transform);
-                    Debug.Log("Koolkid");
-                    break;
-                case EActorClass.Grandma:
-                    test(myPosition.GetPosition().transform);
-                    Debug.Log("Grandma");
-                    break;
-                case EActorClass.Clown:
-                    test(myPosition.GetPosition().transform);
-                    Debug.Log("Clown");
-                    break;
+                //Regarde l'enum de l'objet.
+                switch (myPosition.GetEnum())
+                {
+                    case EActorClass.Koolkid:
+                        //Place le personnage sur cette position avec .
+                        SetTransform(myPosition.GetPosition().transform, GameManager.instance.GetRessournce()[0]);
+                        Debug.Log("Koolkid");
+                        break;
+                    case EActorClass.Grandma:
+                        SetTransform(myPosition.GetPosition().transform, GameManager.instance.GetRessournce()[1]);
+                        Debug.Log("Grandma");
+                        break;
+                    case EActorClass.Clown:
+                        SetTransform(myPosition.GetPosition().transform, GameManager.instance.GetRessournce()[3]);
+                        Debug.Log("Clown");
+                        break;
+                }
             }
         }
-
-        void test(Transform position)
+        else
         {
+            Debug.Log("Pas de GameManager de détecté.");
+        }
+       
+        void SetTransform(Transform position, GameObject actor)
+        {
+            //Pour chaque perso dans l'équipe.
             foreach (var myActor in GameManager.instance.GetTeam())
             {
-                for (int i = 0; i < GameManager.instance.GetRessournce().Length -1; i++)
+                //Regarde si dans la liste d'acteur du GameManager est égale au GameObject des ressources, et que la resource n'est pas null. 
+                if (myActor.GetComponent<Proto_Actor>().GetDataActor().name == actor.GetComponent<Proto_Actor>().GetDataActor().name && actor != null)
                 {
-                    if (myActor.GetComponent<Proto_Actor>().GetDataActor().name == GameManager.instance.GetRessournce()[i].GetComponent<Proto_Actor>().GetDataActor().name)
+                    //check si il existe dans la scene pour le placer ou alors il le fait spawn à la bonne position.
+                    if (GameObject.Find(myActor.GetDataActor().name))
                     {
-                        if (GameObject.Find(myActor.GetDataActor().name))
-                        {
-                            Debug.Log("Exists");
+                        Debug.Log("Deja spawn");
 
-                            GameObject.Find(myActor.GetDataActor().name).transform.SetParent(position);
-                        }
-                        else
-                        {
-                            Debug.Log("Doesn't exist");
+                        GameObject.Find(myActor.GetDataActor().name).transform.SetParent(position);
+                    }
+                    else
+                    {
+                        Debug.Log("Spawn");
 
-                            Instantiate(myActor, position);
-                        }
+                        Instantiate(myActor, position);
                     }
                 }
-                
             }
         }
     }

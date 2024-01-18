@@ -55,7 +55,10 @@ public class C_Challenge : MonoBehaviour
     {
         //Apparition des cases
         SpawnCases();
+    }
 
+    private void OnEnable()
+    {
         //Place les acteurs sur les cases.
         InitialiseAllActorPosition();
     }
