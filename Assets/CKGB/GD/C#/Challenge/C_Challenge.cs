@@ -25,10 +25,6 @@ public class C_Challenge : MonoBehaviour
 
     [Header("Info dev")]
     [SerializeField]
-    int etape;
-    [SerializeField]
-    int nbEtape;
-    [SerializeField]
     List<C_Case> listCase;
 
     #endregion
