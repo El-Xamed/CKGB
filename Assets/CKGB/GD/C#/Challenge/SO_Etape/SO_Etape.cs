@@ -9,7 +9,7 @@ public class SO_Etape : ScriptableObject
     public string titre;
     public string énoncé;
 
-    public SO_Choix choix;
+    public SO_ActionClass action;
     #endregion
 
     #region Mes fonctions
