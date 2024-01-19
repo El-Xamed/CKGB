@@ -44,6 +44,7 @@ public class C_Worldmap : MonoBehaviour
         //sets the initial position
           currentPoint = startPoint;
         transform.position = startPoint.transform.position;
+        Follower.transform.position = startPoint.transform.position;
 
      
 
@@ -84,15 +85,12 @@ public class C_Worldmap : MonoBehaviour
         if (context.started && Up != null && Up.Islocked == false&&canMove==true)
         {
             canMove = false;
-            moveTroughPoints(uppath);
+            StartCoroutine(UpdatepointPosition(uppath));
             //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
-           
-                currentPoint = Up;
-                updateDestinations();
-            
+            currentPoint = Up;
+                updateDestinations();            
             Debug.Log("Up");
-            canMove = true;
-           
+            canMove = true;          
         }
     }
     public void moveLeft(InputAction.CallbackContext context)
@@ -100,15 +98,12 @@ public class C_Worldmap : MonoBehaviour
         if (context.started && Left != null && Left.Islocked == false&&canMove==true)
         {
             canMove = false;
-            moveTroughPoints(leftpath);
+            StartCoroutine(UpdatepointPosition(leftpath));
             //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
-          
-                currentPoint = Left;
-                updateDestinations();
-            
+            currentPoint = Left;
+                updateDestinations();           
             Debug.Log("Left");
-            canMove = true;
-           
+            canMove = true;          
         }
     }
     public void moveRight(InputAction.CallbackContext context)
@@ -116,16 +111,12 @@ public class C_Worldmap : MonoBehaviour
         if (context.started && Right != null && Right.Islocked == false&&canMove==true)
         {
             canMove = false;
-            moveTroughPoints(rightpath);
+            StartCoroutine(UpdatepointPosition(rightpath));
             //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
-            
-                currentPoint = Right;
+            currentPoint = Right;
                 updateDestinations();
-            
-
             Debug.Log("Right");
-            canMove = true;
-      
+            canMove = true;      
         }
     }
     public void moveDown(InputAction.CallbackContext context)
@@ -133,15 +124,12 @@ public class C_Worldmap : MonoBehaviour
         if (context.started && Down != null && Down.Islocked == false&&canMove==true)
         {
             canMove = false;
-            moveTroughPoints(downpath);
-            //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);
-            
+            StartCoroutine(UpdatepointPosition(downpath));
+            //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);           
                 currentPoint = Down;
-                updateDestinations();
-            
+                updateDestinations();            
             Debug.Log("Down");
-            canMove = true;
-         
+            canMove = true;         
         }
     }
     void AddActorInTeam()
@@ -177,81 +165,45 @@ public class C_Worldmap : MonoBehaviour
         else downpath = null;
         UIlevel.text = currentPoint.leveltext;
     }
-    void moveTroughPoints(Transform[] pointlist)
-    {
-       
-        StartCoroutine(UpdatepointPosition(pointlist));
-             
-    }
     IEnumerator UpdatepointPosition(Transform[]point)
     {
-       
-       
-          /*  transform.position = Vector2.Lerp(transform.position, point[i].transform.position, moveSpeed);
-            yield return new WaitForSeconds(0.3f);
-
-            i++;*/
-        /*if(i<point.Length)
-        {
-            StartCoroutine(UpdatepointPosition(point, i));
-        }*/
         for(int i = -1; i<point.Length-1;i++)
         {
             if(i==-1)
             {
-                yield return MoveToNextPoint(transform, point[i + 1],point);
-                yield return FollowerMoveToNextPoint(Follower.transform, point[i + 1], point);
+                yield return MoveToNextPoint(transform, point[i + 1],Follower.transform,point);
+                //yield return FollowerMoveToNextPoint(Follower.transform, point[i + 1], point);
             }
             else
-                yield return MoveToNextPoint(point[i],point[i+1],point);
-                yield return FollowerMoveToNextPoint(point[i], point[i + 1], point);
-        }
-
-       
-            
-        // suspend execution for 5 seconds
-       
-       /* if(i<point.Length-1)
-        {
-            i++;
-            Debug.Log(i);
-            UpdatepointPosition(point,i);           
-        }*/
-       
+                yield return MoveToNextPoint(point[i],point[i+1], Follower.transform, point);
+                //yield return FollowerMoveToNextPoint(point[i], point[i + 1], point);
+        } 
     }
-
-    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2,Transform[]list)
+    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2,Transform transform3, Transform[]list)
     {
         float ellapsed = 0;
         float distance = (transform2.position - transform1.position).magnitude;
+        float distance2 = (transform2.position - transform3.position).magnitude;
         float maxTime = distance / (moveSpeed*list.Length);
+        float maxTime2 = distance2 / (moveSpeed * list.Length);
         Vector3 a=transform1.position;
         Vector3 b=transform2.position;
+        Vector3 c = transform3.position;
         while(ellapsed<maxTime)
         {
             ellapsed += Time.deltaTime;
             transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
+            StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
             yield return null;
         }
-
         transform.position = transform2.position;
-        
+       // Follower.transform.position = transform2.position;  
     }
-    private IEnumerator FollowerMoveToNextPoint(Transform transform1, Transform transform2,Transform[]list)
+    IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
     {
-        float ellapsed = 0;
-        float distance = (transform2.position - transform1.position).magnitude;
-        float maxTime = distance / (moveSpeed * list.Length);
-        Vector3 a = transform1.position;
-        Vector3 b = transform2.position;
-        while (ellapsed < maxTime)
-        {
-            ellapsed += Time.deltaTime;
-            Follower.transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
-            yield return null;
-        }
-
-        Follower.transform.position = transform2.position;
+        yield return new WaitForSeconds(0.3f);
+        Follower.transform.position = Vector3.Lerp(a, b,c);
+        Follower.transform.position = nextpos.position;
     }
     private void initiateTheMapCharacterProtocol()
     {
