@@ -6,15 +6,7 @@ public class Proto_Actor : MonoBehaviour
 {
     #region
     int position;
-    public new string name;
-    public Sprite challengeSprite;
-    public Sprite MapTmSprite;
-    public int stressMax;
-    int currentStress;
-    public int energyMax;
-    int currentEnergy;
-    public int nbtraitpointMax;
-    int nbtraitpoint;
+   
     [SerializeField]
     Proto_SO_Character dataActor;
     #endregion

@@ -19,5 +19,13 @@ public class C_Case : MonoBehaviour
     {
         isInDanger = danger;
     }
+    public void ShowDangerZone()
+    {
+
+    }
+    public void ApplyNewStats()
+    {
+
+    }
     #endregion
 }
