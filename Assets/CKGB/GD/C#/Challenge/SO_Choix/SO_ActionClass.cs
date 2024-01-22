@@ -27,7 +27,7 @@ public class SO_ActionClass : ScriptableObject
 
     private void Awake()
     {
-        actionButton.GetComponentInChildren<Text>().text = buttonText;
+        //actionButton.GetComponentInChildren<Text>().text = buttonText;
     }
     //vérifie la condition si l'action fonctionne
     void FunctioningOrNot()
