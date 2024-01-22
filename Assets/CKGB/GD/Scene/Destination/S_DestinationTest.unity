@@ -469,7 +469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &599995157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,8 +485,6 @@ MonoBehaviour:
   nbCase: 8
   prefabCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
   initialplayerPosition: 
-  etape: 0
-  nbEtape: 0
   listCase: []
 --- !u!4 &599995158
 Transform:
@@ -728,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1230891243
 MonoBehaviour:
   m_ObjectHideFlags: 0

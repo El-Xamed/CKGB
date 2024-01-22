@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Etape", menuName = "ScriptableObjects/Etape", order = 3)]
+[CreateAssetMenu(fileName = "New Etape", menuName = "ScriptableObjects/Challenge/Etape", order = 3)]
 public class SO_Etape : ScriptableObject
 {
     #region Mes variables

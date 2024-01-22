@@ -20,7 +20,7 @@ public class C_Challenge : MonoBehaviour
     [Tooltip("Prefab de case")]
     C_Case prefabCase;
     [SerializeField]
-    [Tooltip("Information SECONDAIRE pour faire spawn les personnages sur la scene")]
+    [Tooltip("Information SECONDAIRE pour faire spawn les personnages et Acc sur la scene")]
     int[] initialplayerPosition;
 
     [Header("Info dev")]
@@ -157,6 +157,18 @@ public class C_Challenge : MonoBehaviour
                 Instantiate(actorPosition, listCase[position].transform);
             }
         }
+    }
+
+    //Fait spawn les acc.
+    public void SpawnAcc(int position)
+    {
+       
+    }
+
+    //Pour faire déplacer les accessoires.
+    void MoveAccessories()
+    {
+
     }
     #endregion
 
