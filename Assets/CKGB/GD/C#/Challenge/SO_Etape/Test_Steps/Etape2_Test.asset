@@ -10,8 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e693c9ad26591724d90d6f851b799902, type: 3}
-  m_Name: Etape_Test
+  m_Name: Etape2_Test
   m_EditorClassIdentifier: 
-  titre: Titre Test
-  "\xE9nonc\xE9": "Titre Enonc\xE9"
-  choix: {fileID: 0}
+  titre: 
+  "\xE9nonc\xE9": 
+  actions:
+  - {fileID: 11400000, guid: 34ca02b9b78540c43944c4c8641b492a, type: 2}
+  - {fileID: 11400000, guid: 7c6dc9ed9c30bb5449da890e2ae4ae7b, type: 2}
+  actionsPlacement:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

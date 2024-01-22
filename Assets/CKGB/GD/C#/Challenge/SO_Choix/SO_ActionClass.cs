@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SO_ActionClass : ScriptableObject
 {
 
-    public Proto_SO_Character actor;
+    
     public int coutEnergy;
     public int coutCalm;
 
@@ -20,7 +20,7 @@ public class SO_ActionClass : ScriptableObject
     C_Case[] caseTarget;
 
     public SO_ActionClass nextMiniStep;
-    [SerializeField] Button actionButton;
+    [SerializeField] public Button actionButton;
     [SerializeField] string buttonText;
 
     
@@ -42,6 +42,10 @@ public class SO_ActionClass : ScriptableObject
     }
     //pour changer de mini étape
     void UpdateActionClass()
+    {
+
+    }
+    public void IsPossible()
     {
 
     }

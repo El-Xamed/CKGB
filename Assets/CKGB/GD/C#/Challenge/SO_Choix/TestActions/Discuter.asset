@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
+  m_Name: Discuter
+  m_EditorClassIdentifier: 
+  coutEnergy: 1
+  coutCalm: 1
+  moveRight: 0
+  moveLeft: 0
+  caseToGo: 0
+  leftRange: 0
+  rightRange: 0
+  nextMiniStep: {fileID: 0}
+  actionButton: {fileID: 4645717401074721224, guid: ffb467525770c7d418973dca4bf35faf, type: 3}
+  buttonText: 

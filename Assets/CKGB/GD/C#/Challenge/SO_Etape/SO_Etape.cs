@@ -8,10 +8,17 @@ public class SO_Etape : ScriptableObject
     #region Mes variables
     public string titre;
     public string énoncé;
+    bool[] conditions;
 
-    public SO_ActionClass action;
+    Test_challenge TC;
+    public SO_ActionClass[] actions;
+    
     #endregion
-
+    private void Awake()
+    {
+        
+     
+    }
     #region Mes fonctions
     public void CheckAction()
     {
@@ -23,9 +30,6 @@ public class SO_Etape : ScriptableObject
 
     }
 
-    public void GiveNewAction()
-    {
-
-    }
+   
     #endregion
 }
