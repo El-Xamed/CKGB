@@ -69,7 +69,7 @@ public class SO_Accessories : ScriptableObject
 
     void Move(C_Case targetCase)
     {
-        gameObject.transform.SetParent(targetCase.transform);
+        //gameObject.transform.SetParent(targetCase.transform);
     }
     #endregion
 }

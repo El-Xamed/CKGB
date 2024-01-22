@@ -27,10 +27,10 @@ public class GameManager : MonoBehaviour
     int[] niveauTerminé;
 
     [SerializeField]
-    List<Proto_Actor> team;
+    List<GameObject> team;
 
     //Variable pour les challenge. DOIT RESTER CACHE C'EST UNE INFORMATION QUI RECUPERE SUR LA WORLDMAP AVANT DE LANCER LE NIVEAU.
-    int[] initialPlayerPositionOnThisDestination;
+    List<int> initialPlayerPositionOnThisDestination;
     #endregion
 
     private void Awake()
@@ -56,17 +56,17 @@ public class GameManager : MonoBehaviour
                 //Récupération automatique dans le dossier Resources.
                 case EActorClass.Koolkid:
                     if (ressourceActor[0])
-                        team.Add(Resources.Load<Proto_Actor>("Actor/" + ressourceActor[0].name));
+                        team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[0].name));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
                 case EActorClass.Grandma:
                     if (ressourceActor[1])
-                        team.Add(Resources.Load<Proto_Actor>("Actor/" + ressourceActor[1].name));
+                        team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[1].name));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
                 case EActorClass.Clown:
                     if (ressourceActor[2])
-                        team.Add(Resources.Load<Proto_Actor>("Actor/" + ressourceActor[2].name));
+                        team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[2].name));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
             }
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pour la WorldMap
-    public void SetInitialPlayerPosition(int[] newPosition)
+    public void SetInitialPlayerPosition(List<int> newPosition)
     {
         initialPlayerPositionOnThisDestination = newPosition;
     }
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     #region Pour le temps mort/Challenge
 
-    public List<Proto_Actor> GetTeam()
+    public List<GameObject> GetTeam()
     {
         return team;
     }
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         return ressourceActor;
     }
 
-    public int[] GetInitialPlayerPosition()
+    public List<int> GetInitialPlayerPosition()
     {
         return initialPlayerPositionOnThisDestination;
     }
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < team.Count -1; i++)
         {
-            team[i].SetPosition(initialPlayerPositionOnThisDestination[i]);
+            team[i].GetComponent<Proto_Actor>().SetPosition(initialPlayerPositionOnThisDestination[i]);
         }
     }
     #endregion

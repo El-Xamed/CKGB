@@ -72,6 +72,7 @@ public class C_TempsMort : MonoBehaviour
                 //Regarde si dans la liste d'acteur du GameManager est égale au GameObject des ressources, et que la resource n'est pas null. 
                 if (myActor.GetComponent<Proto_Actor>().GetDataActor().name == actor.GetComponent<Proto_Actor>().GetDataActor().name && actor != null)
                 {
+                    /*
                     //check si il existe dans la scene pour le placer ou alors il le fait spawn à la bonne position.
                     if (GameObject.Find(myActor.GetDataActor().name))
                     {
@@ -85,6 +86,7 @@ public class C_TempsMort : MonoBehaviour
 
                         Instantiate(myActor, position);
                     }
+                    */
                 }
             }
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UIElements;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -19,9 +20,15 @@ public class C_Challenge : MonoBehaviour
     [SerializeField]
     [Tooltip("Prefab de case")]
     C_Case prefabCase;
+    [Space]
+    [Header("Acc")]
+    [SerializeField]
+    List<GameObject> listAcc;
+    [SerializeField]
+    List<int> initialAccPosition;
     [SerializeField]
     [Tooltip("Information SECONDAIRE pour faire spawn les personnages et Acc sur la scene")]
-    int[] initialplayerPosition;
+    List<int> initialplayerPosition;
 
     [Header("Info dev")]
     [SerializeField]
@@ -39,7 +46,7 @@ public class C_Challenge : MonoBehaviour
 
         #region Data GameManager
         //Pour récupérer les positions enregistrer dans la worldmap.
-        if (GameManager.instance.GetInitialPlayerPosition() != null)
+        if (GameObject.Find("GameManager") && GameManager.instance.GetInitialPlayerPosition() != null)
         {
             initialplayerPosition = GameManager.instance.GetInitialPlayerPosition();
         }
@@ -51,12 +58,9 @@ public class C_Challenge : MonoBehaviour
     {
         //Apparition des cases
         SpawnCases();
-    }
 
-    private void OnEnable()
-    {
         //Place les acteurs sur les cases.
-        InitialiseAllActorPosition();
+        InitialiseAllPosition();
     }
 
     #region Mes fonctions
@@ -72,45 +76,69 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Set la position de tous les acteurs sur les cases.
-    void InitialiseAllActorPosition()
+    void InitialiseAllPosition()
     {
-        //Check si le GameManager possède les informations pour placer les personnages.
-        //Ne possède pas l'info.
-        if (GameManager.instance.GetInitialPlayerPosition() == null || GameManager.instance.GetInitialPlayerPosition().Length < GameManager.instance.GetTeam().Count -1)
+        //ActorPosition();
+
+        //Check si une liste d'Acc existe.
+        if (listAcc != null)
         {
-            Debug.LogWarning("La liste des positions des personnages sur le GameManager ne possède pas assez d'informations ou ne possède pas du tout d'informations pour placer les personnages.");
+            AccPosition();
+        }
 
-            //Check si la scene possède les informations pour placer les personnages.
+        //Fonction de spawn "actor".
+        void ActorPosition()
+        {
+            //Check si le GameManager possède les informations pour placer les personnages.
             //Ne possède pas l'info.
-            if (initialplayerPosition == null || initialplayerPosition.Length < GameManager.instance.GetTeam().Count - 1)
+            if (GameManager.instance.GetInitialPlayerPosition() == null || GameManager.instance.GetInitialPlayerPosition().Count < GameManager.instance.GetTeam().Count)
             {
-                Debug.LogError("ERROR : Aucune informations de trouvé dans la scene. Impossible de spawn correctement les personnages");
+                Debug.LogWarning("La liste des positions des personnages sur le GameManager ne possède pas assez d'informations ou ne possède pas du tout d'informations pour placer les personnages.");
 
-                //Fait spawn avec des info random.
-                SpawnPlayerRandom();
+                //Check si la scene possède les informations pour placer les personnages.
+                //Ne possède pas l'info.
+                if (initialplayerPosition == null || initialplayerPosition.Count < GameManager.instance.GetTeam().Count)
+                {
+                    Debug.LogError("ERROR : Aucune informations de trouvé dans la scene. Impossible de spawn correctement les personnages");
+
+                    //Fait spawn avec des info random.
+                    SpawnPlayerRandom(GameManager.instance.GetTeam());
+                }
+                else //Possède l'info.
+                {
+                    //Update la position de tout les joueurs via les info de la scene.
+                    for (int i = 0; i < GameManager.instance.GetTeam().Count - 1; i++)
+                    {
+                        SpawnOrUpdatePosition(initialplayerPosition, GameManager.instance.GetTeam());
+                    }
+                }
             }
             else //Possède l'info.
             {
-                //Update la position de tout les joueurs via les info de la scene.
-                for (int i = 0; i < GameManager.instance.GetTeam().Count - 1; i++)
+                //Update la position de tout les joueurs via les info du GameManager.
+                for (int i = 0; i < GameManager.instance.GetTeam().Count; i++)
                 {
-                    SpawnOrUpdatePosition(initialplayerPosition[i]);
+                    //SpawnOrUpdatePosition(GameManager.instance.GetTeam()[i].GetComponent<Proto_Actor>().GetPosition(), GameManager.instance.GetTeam());
                 }
             }
         }
-        else //Possède l'info.
-        {
-            //Update la position de tout les joueurs via les info du GameManager.
-            for (int i = 0; i < GameManager.instance.GetTeam().Count - 1; i++)
-            {
-                SpawnOrUpdatePosition(GameManager.instance.GetTeam()[i].GetPosition());
-            }
-        }
 
-        //Change la position des acteurs de facon aléatoire.
-        void SpawnPlayerRandom()
+        //Fonction de spawn "Accessories".
+        void AccPosition()
         {
-            SpawnOrUpdatePosition(RandomNumberGenerator.GetInt32(0, nbCase));
+            //
+            if (initialAccPosition != null && initialAccPosition.Count == listAcc.Count)
+            {
+                //Update la position de tout les joueurs via les info de la scene.
+                SpawnOrUpdatePosition(initialAccPosition, listAcc);
+                Debug.Log("Lancement du spawn Acc");
+            }
+            else //
+            {
+                //Fait spawn avec des info random.
+                SpawnPlayerRandom(listAcc);
+                Debug.LogWarning("ERROR : Aucune informations de trouvé dans la scene. Impossible de spawn correctement les Acc");
+            }
         }
     }
 
@@ -129,40 +157,47 @@ public class C_Challenge : MonoBehaviour
         return nbCase;
     }
 
-    public int[] GetInitialPlayersPosition()
+    public List<int> GetInitialPlayersPosition()
     {
         return initialplayerPosition;
     }
     #endregion
 
-    #region Fonction
+    #region Fonctions
     //Déplace ou fait spawn les acteurs.
-    public void SpawnOrUpdatePosition(int position)
+    public void SpawnOrUpdatePosition(List<int> listPosition, List<GameObject> listActor)
     {
-        foreach (var actorPosition in GameManager.instance.GetTeam())
+        //Instantiate(listActor[1], listCase[listPosition[1]].transform);
+        for (int i = 0; i < listPosition.Count; i++)
         {
-            //Donne toutes les position initial au acteurs.
-
-            //Check si le GameObject en question exist.
-            if (GameObject.Find(actorPosition.GetDataActor().name))
+            if (GameObject.Find(listActor[i].name)) //Regarde si il existe deja dans la scene.
             {
-                Debug.Log("Exists");
-
-                GameObject.Find(actorPosition.GetDataActor().name).transform.SetParent(listCase[position].transform);
+                //Déplace l'objet.
+                GameObject.Find(listActor[i].name).transform.SetParent(listCase[listPosition[i]].transform);
             }
-            else
+            else //Fait spawn un nouvel objet.
             {
-                Debug.Log("Doesn't exist");
-
-                Instantiate(actorPosition, listCase[position].transform);
+                //Apparition de l'objet.
+                Instantiate(listActor[i], listCase[listPosition[i]].transform);
+                Debug.Log("Spawn Acc");
             }
         }
     }
 
-    //Fait spawn les acc.
-    public void SpawnAcc(int position)
+    //Change la position des acteurs de facon aléatoire.
+    void SpawnPlayerRandom(List<GameObject> listActor)
     {
-       
+        //Génération d'une liste int vide
+        List<int> newListPosition = new List<int>();
+        //Créer et ajoute un nombre dans la liste.
+        for (int i = 0; i < listActor.Count; i++)
+        {
+            int newPosition = RandomNumberGenerator.GetInt32(0, nbCase -1);
+            newListPosition.Add(newPosition);
+        }
+        
+
+        SpawnOrUpdatePosition(newListPosition, listActor);
     }
 
     //Pour faire déplacer les accessoires.
