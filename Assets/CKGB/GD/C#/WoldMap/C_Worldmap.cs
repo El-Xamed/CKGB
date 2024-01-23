@@ -186,7 +186,7 @@ public class C_Worldmap : MonoBehaviour
         float distance = (transform2.position - transform1.position).magnitude;
         float distance2 = (transform2.position - transform3.position).magnitude;
         float maxTime = distance / (moveSpeed*list.Length);
-        float maxTime2 = distance2 / (moveSpeed*0.2f * list.Length);
+        float maxTime2 = distance2 / (moveSpeed * list.Length);
         Vector3 a=transform1.position;
         Vector3 b=transform2.position;
         Vector3 c = transform3.position;
@@ -195,7 +195,7 @@ public class C_Worldmap : MonoBehaviour
             ellapsed += Time.deltaTime; 
             transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
 
-            Follower.transform.position = Vector3.Lerp(c, b, ellapsed / maxTime2);
+            Follower.transform.position = Vector3.Lerp(a, b, ellapsed  / maxTime2);
             //StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
             yield return null;
         }
