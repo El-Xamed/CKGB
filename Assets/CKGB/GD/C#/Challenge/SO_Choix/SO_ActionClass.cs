@@ -41,7 +41,7 @@ public class SO_ActionClass : ScriptableObject
 
     }
     //pour changer de mini étape
-    void UpdateActionClass()
+    void UpdateMiniActionClass()
     {
 
     }

@@ -155,7 +155,7 @@ public class Test_challenge : MonoBehaviour
 
     #region Fonction
     //Déplace ou fait spawn les acteurs.
-    public void SpawnOrUpdatePosition(int position)
+    /*public void SpawnOrUpdatePosition(int position)
     {
         foreach (var actorPosition in GameManager.instance.GetTeam())
         {
@@ -175,7 +175,7 @@ public class Test_challenge : MonoBehaviour
                 Instantiate(actorPosition, listCase[position].transform);
             }
         }
-    }
+    }*/
 
     //Fait spawn les acc.
     public void SpawnAcc(int position)
