@@ -29,7 +29,9 @@ public class Test_challenge : MonoBehaviour
 
     [SerializeField] SO_Etape[] allSteps;
     [SerializeField] public Transform[] buttonPlacements;
-    [SerializeField] SO_Etape currentStep;
+    [SerializeField] public SO_Etape currentStep;
+    [SerializeField] int currentStepID;
+   
 
     #endregion
 
@@ -75,7 +77,7 @@ public class Test_challenge : MonoBehaviour
         for (int i = 0; i < currentStep.actions.Length; i++)
         {
             Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation,FindObjectOfType<Canvas>().transform);
-           
+            currentStepID = i;
         }
     }
     void SpawnCases()
@@ -181,6 +183,25 @@ public class Test_challenge : MonoBehaviour
     public void SpawnAcc(int position)
     {
 
+    }
+    public void NextStep()
+    {
+        Destroy(currentStep.actions[currentStep.actions.Length].actionButton);
+        if (allSteps[currentStepID + 1] != null)
+        {
+            currentStep = allSteps[currentStepID + 1];
+            Debug.Log("next step yay");
+            for (int i = 0; i < currentStep.actions.Length; i++)
+            {
+                Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation, FindObjectOfType<Canvas>().transform);
+                currentStepID = i;
+            }
+        }   
+        else
+        {
+            Debug.Log("win");
+        }
+        
     }
 
     //Pour faire déplacer les accessoires.

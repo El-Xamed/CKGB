@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Choix", menuName = "ScriptableObjects/Choix", order = 1)]
-public class SO_ActionClass : ScriptableObject
+public class SO_ActionClass : MonoBehaviour
 {
 
     
@@ -22,19 +20,20 @@ public class SO_ActionClass : ScriptableObject
     public SO_ActionClass nextMiniStep;
     [SerializeField] public Button actionButton;
     [SerializeField] string buttonText;
+    [SerializeField]Test_challenge TC;
 
     
 
     private void Awake()
     {
         //actionButton.GetComponentInChildren<Text>().text = buttonText;
+        TC = FindObjectOfType<Test_challenge>();
     }
     //vérifie la condition si l'action fonctionne
     void FunctioningOrNot()
     {
 
     }
-
     //vérifie la présence d'un accessoire
     void IsOnAccessory()
     {
@@ -47,6 +46,10 @@ public class SO_ActionClass : ScriptableObject
     }
     public void IsPossible()
     {
-
+        if(actionButton==TC.currentStep.rightAnswer.actionButton)
+        {
+            TC.NextStep();
+        }
+     
     }
 }

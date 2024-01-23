@@ -12,7 +12,8 @@ public class SO_Etape : ScriptableObject
 
     Test_challenge TC;
     public SO_ActionClass[] actions;
-    
+    [SerializeField] public SO_ActionClass rightAnswer;
+
     #endregion
     private void Awake()
     {
