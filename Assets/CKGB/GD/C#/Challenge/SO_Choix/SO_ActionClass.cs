@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Choix", menuName = "ScriptableObjects/Choix", order = 1)]
+[CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action", order = 1)]
 public class SO_ActionClass : ScriptableObject
 {
 

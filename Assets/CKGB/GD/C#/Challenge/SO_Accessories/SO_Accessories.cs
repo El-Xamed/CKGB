@@ -7,6 +7,9 @@ public class SO_Accessories : ScriptableObject
 {
     #region Mes variables
     //Pour check si la case est occupé par un acteur
+    public GameObject gameObject;
+    public new string name;
+    public Sprite spriteAcc;
     bool isBusyByCharacter;
 
     [Header("Position de l'objet")]
@@ -35,41 +38,34 @@ public class SO_Accessories : ScriptableObject
 
     #region Mes fonctions
     //Pour lancer les fonction de l'acc qui sera appelé par le C_Challenge.
-    private void UpdateAcc()
+    public void UpdateAcc(List<C_Case> listCase)
     {
+        Transform newPosition = listCase[currentPosition].transform;
+
         switch (moveType)
         {
             case ETypeMovetype.notMove:
-                break;
+                return;
             case ETypeMovetype.normal:
+                currentPosition++;
                 break;
             case ETypeMovetype.inverse:
+                currentPosition--;
                 break;
             case ETypeMovetype.random:
-                break;
-            default:
+                //Augmente ou réduit le nombre.
+                int newInt = Random.Range(0, 1);
+                if (newInt == 0) { currentPosition++; }
+                else { currentPosition--; }
                 break;
         }
+
+        NewPosition(newPosition);
     }
 
-    private void NormalMove()
+    private void NewPosition(Transform newPosition)
     {
-
-    }
-
-    private void InverseMove()
-    {
-
-    }
-
-    private void RandomMove()
-    {
-
-    }
-
-    void Move(C_Case targetCase)
-    {
-        //gameObject.transform.SetParent(targetCase.transform);
+        gameObject.transform.SetParent(newPosition);
     }
     #endregion
 }

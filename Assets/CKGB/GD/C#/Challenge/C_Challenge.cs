@@ -182,7 +182,11 @@ public class C_Challenge : MonoBehaviour
             else //Fait spawn un nouvel objet.
             {
                 //Apparition de l'objet.
-                Instantiate(listActor[i], listCase[listPosition[i]].transform);
+                GameObject newGameObject = Instantiate(listActor[i], listCase[listPosition[i]].transform);
+                //Modifie le nom.
+                newGameObject.name = listActor[i].GetComponent<SO_Accessories>().name;
+                //Renseigne le GameObject.
+                newGameObject.GetComponent<SO_Accessories>().gameObject = newGameObject;
                 Debug.Log("Spawn Acc");
             }
         }
@@ -205,9 +209,14 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Pour faire déplacer les accessoires.
-    void MoveAccessories()
+    void UpdateAccessories()
     {
-
+        //Pour tous les acc.
+        foreach (var myAcc in listAcc)
+        {
+            //Update le déplacement des Acc. 
+            myAcc.GetComponent<SO_Accessories>().UpdateAcc(listCase);
+        }
     }
 
     //Applique la cata.
