@@ -182,32 +182,36 @@ public class C_Worldmap : MonoBehaviour
     private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2,Transform transform3, Transform[]list)
     {
         float ellapsed = 0;
+
         float distance = (transform2.position - transform1.position).magnitude;
         float distance2 = (transform2.position - transform3.position).magnitude;
         float maxTime = distance / (moveSpeed*list.Length);
-        float maxTime2 = distance2 / (moveSpeed * list.Length);
+        float maxTime2 = distance2 / (moveSpeed*0.2f * list.Length);
         Vector3 a=transform1.position;
         Vector3 b=transform2.position;
         Vector3 c = transform3.position;
         while(ellapsed<maxTime)
         {
-            ellapsed += Time.deltaTime;
+            ellapsed += Time.deltaTime; 
             transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
-            StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
+
+            Follower.transform.position = Vector3.Lerp(c, b, ellapsed / maxTime2);
+            //StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
             yield return null;
         }
+
         transform.position = transform2.position;
-       // Follower.transform.position = transform2.position;  
+        Follower.transform.position = transform2.position;
+        // Follower.transform.position = transform2.position;  
     }
-    IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
+   /* IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
     {
         yield return new WaitForSeconds(0.3f);
-        Follower.transform.position = Vector3.Lerp(a, b,c);
-        Follower.transform.position = nextpos.position;
-    }
+       
+    }*/
     private void initiateTheMapCharacterProtocol()
     {
-        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<Proto_SO_Character>().MapTmSprite;
+        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<Proto_Actor>().dataActor.MapTmSprite;
     }
 
     #endregion

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Choix", menuName = "ScriptableObjects/Choix", order = 1)]
-public class SO_ActionClass : MonoBehaviour
+public class SO_ActionClass : ScriptableObject
 {
 
     

@@ -8,7 +8,7 @@ public class Proto_Actor : MonoBehaviour
     int position;
    
     [SerializeField]
-    Proto_SO_Character dataActor;
+    public Proto_SO_Character dataActor;
     #endregion
 
 
