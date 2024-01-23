@@ -26,9 +26,13 @@ public class C_Challenge : MonoBehaviour
     List<GameObject> listAcc;
     [SerializeField]
     List<int> initialAccPosition;
+    [Header("Actor")]
     [SerializeField]
     [Tooltip("Information SECONDAIRE pour faire spawn les personnages et Acc sur la scene")]
     List<int> initialplayerPosition;
+    [Header("Cata")]
+    [SerializeField]
+    List<SO_Catastrophy> listCatastrophy;
 
     [Header("Info dev")]
     [SerializeField]
@@ -78,7 +82,7 @@ public class C_Challenge : MonoBehaviour
     //Set la position de tous les acteurs sur les cases.
     void InitialiseAllPosition()
     {
-        //ActorPosition();
+        ActorPosition();
 
         //Check si une liste d'Acc existe.
         if (listAcc != null)
@@ -202,6 +206,12 @@ public class C_Challenge : MonoBehaviour
 
     //Pour faire déplacer les accessoires.
     void MoveAccessories()
+    {
+
+    }
+
+    //Applique la cata.
+    void ApplyCata()
     {
 
     }
