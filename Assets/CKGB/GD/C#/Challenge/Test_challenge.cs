@@ -32,7 +32,7 @@ public class Test_challenge : MonoBehaviour
     [SerializeField] public Transform[] buttonPlacements;
     //Définis l'étape actuel.
     [SerializeField] public SO_Etape currentStep;
-    [SerializeField] int currentStepID;
+    [SerializeField] int currentStepID=0;
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
     [SerializeField] List<Action> listActions;
@@ -74,10 +74,25 @@ public class Test_challenge : MonoBehaviour
             listActions[i].SetAction(currentStep.actions[i]);
             listActions[i].SetTestChallenge(this);
 
-            currentStepID = i;
+          
         }
     }
+    public void stepUpdate()
+    {
+        Debug.Log("next step");
+       // Destroy();
+        if(currentStepID<allSteps.Length)
+        {
 
+            currentStepID++;
+            Debug.Log(currentStepID);
+            currentStep = allSteps[currentStepID];
+             listActions = new List<Action>();
+            SpawnActions();
+ 
+        }
+        
+    }
     void SpawnCases()
     {
         //Spawn toutes les cases.
@@ -179,7 +194,7 @@ public class Action
         if(testChallenge.currentStep.rightAnswer == actionClass)
         {
             Debug.Log("Bonne action");
-
+            testChallenge.stepUpdate();
             //Check si il possède une sous action.
         }
         else
