@@ -15,20 +15,23 @@ public class SO_ActionClass : ScriptableObject
 
     public int leftRange;
     public int rightRange;
-    C_Case[] caseTarget;
+    public C_Case[] caseTarget;
 
     public SO_ActionClass nextMiniStep;
+    //Stocker le prefab ailleur. DANS LE C_CHALLENGE.
     [SerializeField] public Button actionButton;
     [SerializeField] string buttonText;
+    //INUTILE.
     [SerializeField]Test_challenge TC;
 
-    
-
+    //INUTILE.
+    /*
     private void Awake()
     {
         //actionButton.GetComponentInChildren<Text>().text = buttonText;
         TC = FindObjectOfType<Test_challenge>();
-    }
+    }*/
+
     //vérifie la condition si l'action fonctionne
     void FunctioningOrNot()
     {
@@ -44,6 +47,9 @@ public class SO_ActionClass : ScriptableObject
     {
 
     }
+
+    //INUTILE.
+    /*
     public void IsPossible()
     {
         if(actionButton==TC.currentStep.rightAnswer.actionButton)
@@ -51,5 +57,5 @@ public class SO_ActionClass : ScriptableObject
             TC.NextStep();
         }
      
-    }
+    }*/
 }
