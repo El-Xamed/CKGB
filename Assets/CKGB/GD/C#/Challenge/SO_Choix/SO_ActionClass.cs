@@ -9,6 +9,9 @@ public class SO_ActionClass : ScriptableObject
     public int coutEnergy;
     public int coutCalm;
 
+    public int gainEnergy;
+    public int gainCalm;
+
     public bool moveRight;
     public bool moveLeft;
     public int caseToGo;
