@@ -15,11 +15,9 @@ public class C_Challenge : MonoBehaviour
 
     [SerializeField] SO_Challenge myChallenge;
 
-
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
-    [SerializeField]
-    List<C_Case> listCase;
+    [SerializeField] List<C_Case> listCase;
 
     #endregion
 

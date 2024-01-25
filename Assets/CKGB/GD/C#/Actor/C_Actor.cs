@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proto_Actor : MonoBehaviour
+public class C_Actor : MonoBehaviour
 {
     #region
     int position;
    
     [SerializeField]
-    public Proto_SO_Character dataActor;
+    public SO_Character dataActor;
     #endregion
 
 
@@ -17,7 +17,7 @@ public class Proto_Actor : MonoBehaviour
         gameObject.name = dataActor.name;
     }
 
-    public Proto_SO_Character GetDataActor()
+    public SO_Character GetDataActor()
     {
         return dataActor;
     }
