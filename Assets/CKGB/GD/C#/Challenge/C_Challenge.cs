@@ -76,7 +76,7 @@ public class C_Challenge : MonoBehaviour
         //Fonction de spawn "Accessories".
         void AccPosition()
         {
-            if (myChallenge.listStartPosTeam != null)
+            if (myChallenge.listStartPosAcc != null)
             {
                 //Fait spawn avec des info random.
                 SpawnAcc(myChallenge.GetInitialAccPosition());

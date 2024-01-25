@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: SO_Tuto
   m_EditorClassIdentifier: 
   nbCase: 3
-  listAcc: []
-  initialAccPosition: 
-  initialplayerPosition: 00000000
+  listStartPosTeam:
+  - position: 0
+    perso: {fileID: 0}
   listCatastrophy: []
   listEtape:
   - {fileID: 11400000, guid: c17188791fc58cc47bf2f9d663339036, type: 2}
   - {fileID: 11400000, guid: 3e3ffae5b5d892345aaa7e97273b9c40, type: 2}
   - {fileID: 11400000, guid: 33281ea7be6617b468e812e034417ced, type: 2}
-  startPosTeam: []
