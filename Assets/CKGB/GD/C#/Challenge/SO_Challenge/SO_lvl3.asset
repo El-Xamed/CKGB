@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4790af45b8f5552499175a066e3389d5, type: 3}
-  m_Name: SO_Tuto
+  m_Name: SO_lvl3
   m_EditorClassIdentifier: 
-  nbCase: 3
+  nbCase: 8
   listAcc: []
   initialAccPosition: 
-  initialplayerPosition: 00000000
+  initialplayerPosition: 000000000000000000000000
   listCatastrophy: []
   listEtape:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
