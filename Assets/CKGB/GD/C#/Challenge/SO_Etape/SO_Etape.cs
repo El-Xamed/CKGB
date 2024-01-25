@@ -8,7 +8,7 @@ public class SO_Etape : ScriptableObject
     #region Mes variables
     public string titre;
     public string énoncé;
-    bool[] conditions;
+    SO_turnContext condition;
 
     Test_challenge TC;
     public SO_ActionClass[] actions;
