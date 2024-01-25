@@ -16,40 +16,40 @@ public class SO_Challenge : ScriptableObject
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
     public int nbCase;
     [Space]
-    [Header("Acc")]
-    public List<GameObject> listAcc;
-    public List<int> initialAccPosition;
-    [Header("Actor")]
+    public List<InitialAccPosition> listStartPosAcc;
     [Tooltip("Information SECONDAIRE pour faire spawn les personnages et Acc sur la scene")]
-    public List<int> initialplayerPosition;
+    public List<InitialActorPosition> listStartPosTeam;
     [Header("Cata")]
     public List<SO_Catastrophy> listCatastrophy;
     public List<SO_Etape> listEtape;
 
-    public List<InitialPosition> startPosTeam;
+    
 
     #endregion
 
     //Création d'une class pour positionner les perso
     [System.Serializable]
-    public class InitialPosition
+    public class InitialActorPosition
     {
         public int position;
         public C_Actor perso;
     }
 
-    
-
-    #region Data
-
-    public int GetNbCases()
+    public class InitialAccPosition
     {
-        return nbCase;
+        public int position;
+        public SO_Accessories acc;
     }
 
-    public List<int> GetInitialPlayersPosition()
+    #region Data
+    public List<InitialActorPosition> GetInitialPlayersPosition()
     {
-        return initialplayerPosition;
+        return listStartPosTeam;
+    }
+
+    public List<InitialAccPosition> GetInitialAccPosition()
+    {
+        return listStartPosAcc;
     }
     #endregion
 }

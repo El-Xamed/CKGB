@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
+using static SO_Challenge;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -56,64 +57,33 @@ public class C_Challenge : MonoBehaviour
     {
         ActorPosition();
 
-        //Check si une liste d'Acc existe.
-        if (myChallenge.listAcc != null)
-        {
-            AccPosition();
-        }
+        AccPosition();
 
         //Fonction de spawn "actor".
         void ActorPosition()
         {
-            //Check si le GameManager possède les informations pour placer les personnages.
-            //Ne possède pas l'info.
-            if (GameManager.instance.GetInitialPlayerPosition() == null || GameManager.instance.GetInitialPlayerPosition().Count < GameManager.instance.GetTeam().Count)
+            if (myChallenge.listStartPosTeam != null)
             {
-                Debug.LogWarning("La liste des positions des personnages sur le GameManager ne possède pas assez d'informations ou ne possède pas du tout d'informations pour placer les personnages.");
-
-                //Check si la scene possède les informations pour placer les personnages.
-                //Ne possède pas l'info.
-                if (myChallenge.initialplayerPosition == null || myChallenge.initialplayerPosition.Count < GameManager.instance.GetTeam().Count)
-                {
-                    Debug.LogError("ERROR : Aucune informations de trouvé dans la scene. Impossible de spawn correctement les personnages");
-
-                    //Fait spawn avec des info random.
-                    SpawnPlayerRandom(GameManager.instance.GetTeam());
-                }
-                else //Possède l'info.
-                {
-                    //Update la position de tout les joueurs via les info de la scene.
-                    for (int i = 0; i < GameManager.instance.GetTeam().Count - 1; i++)
-                    {
-                        SpawnOrUpdatePosition(myChallenge.initialplayerPosition, GameManager.instance.GetTeam());
-                    }
-                }
+                //Fait spawn avec des info random.
+                SpawnActor(myChallenge.GetInitialPlayersPosition());
             }
             else //Possède l'info.
             {
-                //Update la position de tout les joueurs via les info du GameManager.
-                for (int i = 0; i < GameManager.instance.GetTeam().Count; i++)
-                {
-                    //SpawnOrUpdatePosition(GameManager.instance.GetTeam()[i].GetComponent<Proto_Actor>().GetPosition(), GameManager.instance.GetTeam());
-                }
+                Debug.LogError("ERROR : Aucune informations de trouvé la liste, aucun acteur n'a pu spawn.");
             }
         }
 
         //Fonction de spawn "Accessories".
         void AccPosition()
         {
-            //
-            if (myChallenge.initialAccPosition != null && myChallenge.initialAccPosition.Count == myChallenge.listAcc.Count)
-            {
-                //Update la position de tout les joueurs via les info de la scene.
-                SpawnOrUpdatePosition(myChallenge.initialAccPosition, myChallenge.listAcc);
-                Debug.Log("Lancement du spawn Acc");
-            }
-            else //
+            if (myChallenge.listStartPosTeam != null)
             {
                 //Fait spawn avec des info random.
-                SpawnPlayerRandom(myChallenge.listAcc);
-                Debug.LogWarning("ERROR : Aucune informations de trouvé dans la scene. Impossible de spawn correctement les Acc");
+                SpawnAcc(myChallenge.GetInitialAccPosition());
+            }
+            else 
+            {
+                Debug.Log("Aucune informations de trouvé la liste des acc.");
             }
         }
     }
@@ -122,6 +92,23 @@ public class C_Challenge : MonoBehaviour
 
     #region Fonctions
     //Déplace ou fait spawn les acteurs.
+    public void SpawnActor(List<InitialActorPosition> listPosition)
+    {
+        foreach (InitialActorPosition position in listPosition)
+        {
+            Instantiate(position.perso, listCase[position.position].transform);
+        }
+    }
+
+    public void SpawnAcc(List<InitialAccPosition> listPosition)
+    {
+        foreach (InitialAccPosition position in listPosition)
+        {
+            Instantiate(position.acc, listCase[position.position].transform);
+        }
+    }
+
+    //A SUPP DANS LE FUTUT !!!
     public void SpawnOrUpdatePosition(List<int> listPosition, List<GameObject> listActor)
     {
         //Instantiate(listActor[1], listCase[listPosition[1]].transform);
@@ -145,31 +132,10 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //Change la position des acteurs de facon aléatoire.
-    void SpawnPlayerRandom(List<GameObject> listActor)
-    {
-        //Génération d'une liste int vide
-        List<int> newListPosition = new List<int>();
-        //Créer et ajoute un nombre dans la liste.
-        for (int i = 0; i < listActor.Count; i++)
-        {
-            int newPosition = RandomNumberGenerator.GetInt32(0, myChallenge.nbCase -1);
-            newListPosition.Add(newPosition);
-        }
-        
-
-        SpawnOrUpdatePosition(newListPosition, listActor);
-    }
-
     //Pour faire déplacer les accessoires.
     void UpdateAccessories()
     {
-        //Pour tous les acc.
-        foreach (var myAcc in myChallenge.listAcc)
-        {
-            //Update le déplacement des Acc. 
-            myAcc.GetComponent<SO_Accessories>().UpdateAcc(listCase);
-        }
+
     }
 
     //Applique la cata.
