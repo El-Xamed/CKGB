@@ -16,7 +16,7 @@ public class C_TempsMort : MonoBehaviour
     Animation[] revasser;
     #endregion
 
-    Proto_Actor actorActif;
+    C_Actor actorActif;
     #endregion
 
     private void Awake()
@@ -70,7 +70,7 @@ public class C_TempsMort : MonoBehaviour
             foreach (var myActor in GameManager.instance.GetTeam())
             {
                 //Regarde si dans la liste d'acteur du GameManager est égale au GameObject des ressources, et que la resource n'est pas null. 
-                if (myActor.GetComponent<Proto_Actor>().GetDataActor().name == actor.GetComponent<Proto_Actor>().GetDataActor().name && actor != null)
+                if (myActor.GetComponent<C_Actor>().GetDataActor().name == actor.GetComponent<C_Actor>().GetDataActor().name && actor != null)
                 {
                     /*
                     //check si il existe dans la scene pour le placer ou alors il le fait spawn à la bonne position.

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ListDeParsonne : MonoBehaviour
 {
-    [SerializeField] List<Proto_SO_Character> maListe1;
+    [SerializeField] List<SO_Character> maListe1;
     [SerializeField] List<PhysicsScene> maListe2;
 
     // Start is called before the first frame update

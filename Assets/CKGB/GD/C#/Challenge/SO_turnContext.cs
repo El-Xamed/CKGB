@@ -5,7 +5,7 @@ using UnityEngine;
 public class SO_turnContext : ScriptableObject
 {
     SO_ActionClass playedAction;
-    Proto_SO_Character actor;
+    //Proto_SO_Character actor;
     int position;
     SO_Accessories currentAccessoire;
     // Start is called before the first frame update

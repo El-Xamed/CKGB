@@ -46,7 +46,7 @@ public class C_DialogueManager : MonoBehaviour
 
         //Récupération automatique des personnages dans le tableau.
         //Pour tous les acteurs qui possède le componnent "Actor".
-        foreach (Proto_Actor actor in Resources.FindObjectsOfTypeAll(typeof(Proto_Actor)) as Proto_Actor[])
+        foreach (C_Actor actor in Resources.FindObjectsOfTypeAll(typeof(C_Actor)) as C_Actor[])
         {
             listActor.Add(actor.gameObject);
         }
