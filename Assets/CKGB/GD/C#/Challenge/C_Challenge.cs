@@ -12,9 +12,12 @@ public class C_Challenge : MonoBehaviour
 
     GameObject canva;
     GameObject uiCases;
-    SO_Challenge myChallenge;
+
+    [SerializeField] SO_Challenge myChallenge;
 
 
+    [Tooltip("Case")]
+    [SerializeField] C_Case myCase;
     [SerializeField]
     List<C_Case> listCase;
 
@@ -44,9 +47,9 @@ public class C_Challenge : MonoBehaviour
         //Spawn toutes les cases.
         for (int i = 0; i < myChallenge.nbCase; i++)
         {
-            C_Case myCase = Instantiate(myChallenge.myCase, uiCases.transform);
+            C_Case newCase = Instantiate(myCase, uiCases.transform);
 
-            listCase.Add(myCase);
+            listCase.Add(newCase);
         }
     }
 

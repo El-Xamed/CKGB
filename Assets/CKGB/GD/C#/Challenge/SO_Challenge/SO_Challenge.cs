@@ -15,8 +15,6 @@ public class SO_Challenge : ScriptableObject
     [Header("Paramètre du challenge")]
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
     public int nbCase;
-    [Tooltip("Case")]
-    public C_Case myCase;
     [Space]
     [Header("Acc")]
     public List<GameObject> listAcc;
@@ -26,6 +24,7 @@ public class SO_Challenge : ScriptableObject
     public List<int> initialplayerPosition;
     [Header("Cata")]
     public List<SO_Catastrophy> listCatastrophy;
+    public List<SO_Etape> listEtape;
 
     public List<InitialPosition> startPosTeam;
 
