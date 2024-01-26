@@ -17,7 +17,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] SO_Challenge myChallenge;
 
     [Tooltip("Team")]
-    [SerializeField] List<SO_Character> myTeam;
+    [SerializeField] List<C_Actor> myTeam;
 
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
@@ -41,9 +41,14 @@ public class C_Challenge : MonoBehaviour
 
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
+
+        //Lance directement le tour du joueur
+        PlayerTrun();
     }
 
     #region Mes fonctions
+
+    #region Début de partie
     void SpawnCases()
     {
         //Spawn toutes les cases.
@@ -91,15 +96,12 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Fonctions
     //Déplace ou fait spawn les acteurs.
     public void SpawnActor(List<InitialActorPosition> listPosition)
     {
         foreach (InitialActorPosition position in listPosition)
         {
-            SO_Character myActor = Instantiate(position.perso, listCase[position.position].transform);
+            C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
             myTeam.Add(myActor);
         }
     }
@@ -111,30 +113,14 @@ public class C_Challenge : MonoBehaviour
             Instantiate(position.acc, listCase[position.position].transform);
         }
     }
+    #endregion
 
-    //A SUPP DANS LE FUTUT !!!
-    public void SpawnOrUpdatePosition(List<int> listPosition, List<GameObject> listActor)
+    #region Tour du joueur
+    void PlayerTrun()
     {
-        //Instantiate(listActor[1], listCase[listPosition[1]].transform);
-        for (int i = 0; i < listPosition.Count; i++)
-        {
-            if (GameObject.Find(listActor[i].name)) //Regarde si il existe deja dans la scene.
-            {
-                //Déplace l'objet.
-                GameObject.Find(listActor[i].name).transform.SetParent(listCase[listPosition[i]].transform);
-            }
-            else //Fait spawn un nouvel objet.
-            {
-                //Apparition de l'objet.
-                GameObject newGameObject = Instantiate(listActor[i], listCase[listPosition[i]].transform);
-                //Modifie le nom.
-                newGameObject.name = listActor[i].GetComponent<SO_Accessories>().name;
-                //Renseigne le GameObject.
-                newGameObject.GetComponent<SO_Accessories>().gameObject = newGameObject;
-                Debug.Log("Spawn Acc");
-            }
-        }
+
     }
+    #endregion
 
     //Pour faire déplacer les accessoires.
     void UpdateAccessories()

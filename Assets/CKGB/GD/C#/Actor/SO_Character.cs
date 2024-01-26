@@ -11,11 +11,8 @@ public class SO_Character : ScriptableObject
     public Sprite challengeSprite;
     public Sprite MapTmSprite;
     public int stressMax;
-    int currentStress;
     public int energyMax;
-    int currentEnergy;
     public int nbtraitpointMax;
-    int nbtraitpoint;
     SO_ActionClass[] listTrait;
     #endregion
     #region
