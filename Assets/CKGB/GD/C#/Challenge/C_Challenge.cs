@@ -10,7 +10,6 @@ using static SO_Challenge;
 public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
-
     GameObject canva;
     GameObject uiCases;
 
@@ -24,6 +23,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] List<C_Case> listCase;
 
     #region Challenge
+    [Space(50)]
     //Tableau de toutes les étapes.
     [SerializeField] SO_Etape[] allSteps;
     //Position des boutons.  A FAIRE SPAWN CORRECTEMENT DANS L'UI.
@@ -56,8 +56,13 @@ public class C_Challenge : MonoBehaviour
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
+        #region Initialisation
+        //Set l'étape en question.
+        currentStep = allSteps[0];
+
         //Lance directement le tour du joueur
         PlayerTrun();
+        #endregion
     }
 
     #region Mes fonctions
@@ -141,7 +146,7 @@ public class C_Challenge : MonoBehaviour
     {
         C_Challenge challenge;
         [SerializeField] SO_ActionClass actionClass;
-        [SerializeField] Button button;
+        Button button;
 
         public void SetButton(Button myButton)
         {
@@ -153,7 +158,7 @@ public class C_Challenge : MonoBehaviour
             actionClass = myAction;
         }
 
-        public void SetTestChallenge(C_Challenge myChallenge)
+        public void SetChallenge(C_Challenge myChallenge)
         {
             challenge = myChallenge;
         }
@@ -181,21 +186,28 @@ public class C_Challenge : MonoBehaviour
     //Fait spawn les bouton d'actions
     void SpawnActions()
     {
-        for (int i = 0; i < currentStep.actions.Length; i++)
+        if (currentStep.actions != null)
         {
-            //Création d'une nouvelle class qui sera ajouté dans une liste.
-            Action myAction = new Action();
-            listActions.Add(myAction);
+            Debug.Log("Spawn actions");
+            for (int i = 0; i < currentStep.actions.Length; i++)
+            {
+                //Création d'une nouvelle class qui sera ajouté dans une liste.
+                Action myAction = new Action();
+                listActions.Add(myAction);
 
-            //Création d'un boutton qui sera en ref dans la class action.
-            Button myButton = Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation, FindObjectOfType<Canvas>().transform);
-            //myButton.onClick.AddListener(listActions[i].GetAction().IsPossible); //MARCHE PAS QUE 1 FOIS.
-            //myButton.onClick.AddListener(currentStep.actions[i].IsPossible);
-            myButton.onClick.AddListener(listActions[i].UseAction);
-            //Change les info de la class.
-            listActions[i].SetButton(myButton);
-            listActions[i].SetAction(currentStep.actions[i]);
-            listActions[i].SetTestChallenge(this);
+                //Création d'un boutton qui sera en ref dans la class action.
+                Button myButton = Instantiate(currentStep.actions[0].actionButton, GameObject.Find("UI_Action_Background").transform);
+                myButton.onClick.AddListener(listActions[i].UseAction);
+
+                //Change les info de la class.
+                listActions[i].SetButton(myButton);
+                listActions[i].SetAction(currentStep.actions[i]);
+                listActions[i].SetChallenge(this);
+            }
+        }
+        else
+        {
+            Debug.LogError("Erreur spawn actions");
         }
     }
 
