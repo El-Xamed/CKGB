@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titre: 
   "\xE9nonc\xE9": 
-  actions: []
-  rightAnswer: {fileID: 0}
+  actions:
+  - {fileID: 11400000, guid: dd651adfd55d0cb47bfe30033e3184a7, type: 2}
+  - {fileID: 11400000, guid: 38c38132d678faf42a5239de10aec9d3, type: 2}
+  - {fileID: 11400000, guid: e38ed5331a26a8046b6021169dab0154, type: 2}
+  - {fileID: 11400000, guid: 7f5adc0f98a8ee24fa16f595124fc518, type: 2}
+  rightAnswer: {fileID: 11400000, guid: 38c38132d678faf42a5239de10aec9d3, type: 2}
