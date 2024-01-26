@@ -32,7 +32,7 @@ public class SO_Challenge : ScriptableObject
     public class InitialActorPosition
     {
         public int position;
-        public C_Actor perso;
+        public SO_Character perso;
     }
 
     public class InitialAccPosition

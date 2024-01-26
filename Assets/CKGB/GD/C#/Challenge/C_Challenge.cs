@@ -16,6 +16,9 @@ public class C_Challenge : MonoBehaviour
 
     [SerializeField] SO_Challenge myChallenge;
 
+    [Tooltip("Team")]
+    [SerializeField] List<SO_Character> myTeam;
+
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
     [SerializeField] List<C_Case> listCase;
@@ -96,7 +99,8 @@ public class C_Challenge : MonoBehaviour
     {
         foreach (InitialActorPosition position in listPosition)
         {
-            Instantiate(position.perso, listCase[position.position].transform);
+            SO_Character myActor = Instantiate(position.perso, listCase[position.position].transform);
+            myTeam.Add(myActor);
         }
     }
 
