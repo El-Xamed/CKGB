@@ -65,12 +65,12 @@ public class Test_challenge : MonoBehaviour
             listActions.Add(myAction);
 
             //Création d'un boutton qui sera en ref dans la class action.
-            Button myButton =  Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation,FindObjectOfType<Canvas>().transform);
+            //Button myButton =  Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation,FindObjectOfType<Canvas>().transform);
             //myButton.onClick.AddListener(listActions[i].GetAction().IsPossible); //MARCHE PAS QUE 1 FOIS.
             //myButton.onClick.AddListener(currentStep.actions[i].IsPossible);
-            myButton.onClick.AddListener(listActions[i].UseAction);
+            //myButton.onClick.AddListener(listActions[i].UseAction);
             //Change les info de la class.
-            listActions[i].SetButton(myButton);
+            //listActions[i].SetButton(myButton);
             listActions[i].SetAction(currentStep.actions[i]);
             listActions[i].SetTestChallenge(this);
 
@@ -134,14 +134,14 @@ public class Test_challenge : MonoBehaviour
     }
     public void NextStep()
     {
-        Destroy(currentStep.actions[currentStep.actions.Length].actionButton);
+        //Destroy(currentStep.actions[currentStep.actions.Length].actionButton);
         if (allSteps[currentStepID + 1] != null)
         {
             currentStep = allSteps[currentStepID + 1];
             Debug.Log("next step yay");
             for (int i = 0; i < currentStep.actions.Length; i++)
             {
-                Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation, FindObjectOfType<Canvas>().transform);
+                //Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation, FindObjectOfType<Canvas>().transform);
                 currentStepID = i;
             }
         }   

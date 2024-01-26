@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -26,12 +27,10 @@ public class C_Challenge : MonoBehaviour
     [Space(50)]
     //Tableau de toutes les étapes.
     [SerializeField] SO_Etape[] allSteps;
-    //Position des boutons.  A FAIRE SPAWN CORRECTEMENT DANS L'UI.
-    [SerializeField] public Transform[] buttonPlacements;
 
     //Définis l'étape actuel.
-    [SerializeField] public SO_Etape currentStep;
-    [SerializeField] int currentStepID = 0;
+    public SO_Etape currentStep;
+    int currentStepID = 0;
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
     [SerializeField] List<Action> listActions;
@@ -196,7 +195,9 @@ public class C_Challenge : MonoBehaviour
                 listActions.Add(myAction);
 
                 //Création d'un boutton qui sera en ref dans la class action.
-                Button myButton = Instantiate(currentStep.actions[0].actionButton, GameObject.Find("UI_Action_Background").transform);
+                Button myButton = Instantiate(Resources.Load<Button>("ActionButton"), GameObject.Find("UI_Action_Background").transform);
+                //Update le text + la ref de l'action.
+                myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
                 myButton.onClick.AddListener(listActions[i].UseAction);
 
                 //Change les info de la class.
@@ -215,10 +216,8 @@ public class C_Challenge : MonoBehaviour
     public void stepUpdate()
     {
         Debug.Log("next step");
-        // Destroy();
         if (currentStepID < allSteps.Length)
         {
-
             currentStepID++;
             Debug.Log(currentStepID);
             currentStep = allSteps[currentStepID];
