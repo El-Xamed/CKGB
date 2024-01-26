@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using static SO_Challenge;
 
 public class C_Challenge : MonoBehaviour
@@ -22,6 +22,20 @@ public class C_Challenge : MonoBehaviour
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
     [SerializeField] List<C_Case> listCase;
+
+    #region Challenge
+    //Tableau de toutes les étapes.
+    [SerializeField] SO_Etape[] allSteps;
+    //Position des boutons.  A FAIRE SPAWN CORRECTEMENT DANS L'UI.
+    [SerializeField] public Transform[] buttonPlacements;
+
+    //Définis l'étape actuel.
+    [SerializeField] public SO_Etape currentStep;
+    [SerializeField] int currentStepID = 0;
+
+    //Utilisation d'une class qui regroupe 1 bouton et 1 action.
+    [SerializeField] List<Action> listActions;
+    #endregion
 
     #endregion
 
@@ -118,7 +132,87 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     void PlayerTrun()
     {
+        //Fait apparaitre les actions.
+        SpawnActions();
+    }
 
+    //Création d'une class qui permet de lier les boutons avec l'action.
+    [Serializable] public class Action
+    {
+        C_Challenge challenge;
+        [SerializeField] SO_ActionClass actionClass;
+        [SerializeField] Button button;
+
+        public void SetButton(Button myButton)
+        {
+            button = myButton;
+        }
+
+        public void SetAction(SO_ActionClass myAction)
+        {
+            actionClass = myAction;
+        }
+
+        public void SetTestChallenge(C_Challenge myChallenge)
+        {
+            challenge = myChallenge;
+        }
+
+        public SO_ActionClass GetAction()
+        {
+            return actionClass;
+        }
+
+        public void UseAction()
+        {
+            if (challenge.currentStep.rightAnswer == actionClass)
+            {
+                Debug.Log("Bonne action");
+                challenge.stepUpdate();
+                //Check si il possède une sous action.
+            }
+            else
+            {
+                Debug.Log("Mauvaise action");
+            }
+        }
+    }
+
+    //Fait spawn les bouton d'actions
+    void SpawnActions()
+    {
+        for (int i = 0; i < currentStep.actions.Length; i++)
+        {
+            //Création d'une nouvelle class qui sera ajouté dans une liste.
+            Action myAction = new Action();
+            listActions.Add(myAction);
+
+            //Création d'un boutton qui sera en ref dans la class action.
+            Button myButton = Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation, FindObjectOfType<Canvas>().transform);
+            //myButton.onClick.AddListener(listActions[i].GetAction().IsPossible); //MARCHE PAS QUE 1 FOIS.
+            //myButton.onClick.AddListener(currentStep.actions[i].IsPossible);
+            myButton.onClick.AddListener(listActions[i].UseAction);
+            //Change les info de la class.
+            listActions[i].SetButton(myButton);
+            listActions[i].SetAction(currentStep.actions[i]);
+            listActions[i].SetTestChallenge(this);
+        }
+    }
+
+    //Passe à l'étape suivant.
+    public void stepUpdate()
+    {
+        Debug.Log("next step");
+        // Destroy();
+        if (currentStepID < allSteps.Length)
+        {
+
+            currentStepID++;
+            Debug.Log(currentStepID);
+            currentStep = allSteps[currentStepID];
+            listActions = new List<Action>();
+            SpawnActions();
+        }
     }
     #endregion
 
