@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class C_Actor : MonoBehaviour
 {
     #region
@@ -20,7 +21,7 @@ public class C_Actor : MonoBehaviour
     private void Awake()
     {
         gameObject.name = dataActor.name;
-        GetComponent<Image>().sprite = dataActor.challengeSprite;
+       GetComponent<Image>().sprite = dataActor.challengeSprite;
 
         //Activer cette fonction DANS le CHALLENGE.
         IniStatsChallenge();

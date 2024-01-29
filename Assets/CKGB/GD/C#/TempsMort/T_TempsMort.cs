@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class C_TempsMort : MonoBehaviour
+public class T_TempsMort : MonoBehaviour
 {
     #region Variables
     [SerializeField]
-    List<StartPosition> listPositions;
+    List<StartPosition> listCharactersPositions;
+
+    [SerializeField]
+    GameObject[] characters;
 
     #region Animation
     Animation[] papoter;
@@ -26,8 +29,9 @@ public class C_TempsMort : MonoBehaviour
 
     private void Start()
     {
+        initiatePosition();
         //Pour setup les perso
-        InitialisationTempsMort();
+        //InitialisationTempsMort();
 
         //Lance le dialogue.
         //StartIntroduction();
@@ -38,7 +42,7 @@ public class C_TempsMort : MonoBehaviour
         if (GameObject.Find("GameManager"))
         {
             //Place les personnage selon la liste des positions.
-            foreach (var myPosition in listPositions)
+            foreach (var myPosition in listCharactersPositions)
             {
                 //Regarde l'enum de l'objet.
                 switch (myPosition.GetEnum())
@@ -93,6 +97,14 @@ public class C_TempsMort : MonoBehaviour
     }
 
     #region Mes fonctions
+
+    void initiatePosition()
+    {
+     for(int i=0;i<characters.Length;i++)
+        {
+            Instantiate(characters[i], listCharactersPositions[i].InitialPosition.gameObject.transform);
+        }
+    }
     void NextActor()
     {
 
@@ -132,7 +144,7 @@ public class StartPosition
     EActorClass actor;
 
     [SerializeField]
-    GameObject InitialPosition;
+    public GameObject InitialPosition;
     
     public EActorClass GetEnum()
     {
