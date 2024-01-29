@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Actor", menuName = "ScriptableObjects/Personne")]
 public class SO_Character : ScriptableObject
 {
-
-    #region
+    #region Data
     public new string name;
     public Sprite challengeSprite;
     public Sprite MapTmSprite;
@@ -14,18 +13,6 @@ public class SO_Character : ScriptableObject
     public int energyMax;
     public int nbtraitpointMax;
     SO_ActionClass[] listTrait;
-    #endregion
-    #region
-
-
-    public void TakeDamage()
-    {
-
-    }
-    public void Heal()
-    {
-
-    }
     #endregion
 }
 

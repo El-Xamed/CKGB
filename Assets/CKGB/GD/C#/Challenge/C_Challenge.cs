@@ -16,6 +16,7 @@ public class C_Challenge : MonoBehaviour
     #region De base
     GameObject canva;
     GameObject uiCases;
+    [SerializeField] GameObject uiAction;
 
     [SerializeField] SO_Challenge myChallenge;
 
@@ -101,8 +102,6 @@ public class C_Challenge : MonoBehaviour
                 //Passe à l'acteur suivant.
                 NextActor();
             }
-
-            
 
             if (currentStep.rightAnswer == listActions[currentAction])
             {
@@ -214,11 +213,18 @@ public class C_Challenge : MonoBehaviour
             Instantiate(position.acc, listCase[position.position].transform);
         }
     }
+
     #endregion
 
     #region Tour du joueur
     void PlayerTrun()
     {
+        //Débloque les commande.
+        GetComponent<PlayerInput>().enabled = false;
+
+        //Change l'UI.
+        uiAction.SetActive(false);
+
         //Fait apparaitre les actions.
         SpawnActions();
     }
@@ -290,15 +296,21 @@ public class C_Challenge : MonoBehaviour
     {
         public SO_ActionClass action;
         public C_Actor actor;
+        public int position;
     }
 
     private void ResolutionTurn()
     {
         //Bloque les commande.
-
+        GetComponent<PlayerInput>().enabled = false;
         //Change l'UI.
+        uiAction.SetActive(false);
 
         //Applique toutes les actions.
+        foreach (var myRes in listRes)
+        {
+            myRes.action.UseAction(myRes.actor, listCase);
+        }
     }
 
     //Bool pour check si le vhallenge est fini.

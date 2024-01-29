@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class C_Actor : MonoBehaviour
 {
-    #region
+    #region data
     int position;
 
     [SerializeField] public SO_Character dataActor;
@@ -28,13 +28,28 @@ public class C_Actor : MonoBehaviour
     }
 
     #region Mes fonctions
-
     void IniStatsChallenge()
     {
         currentStress = dataActor.stressMax;
         currentEnergy = dataActor.energyMax;
     }
 
+    public void TakeDamage(int calm, int energy)
+    {
+        currentStress -= calm;
+        currentEnergy -= energy;
+    }
+
+    public void TakeHeal(int calm, int energy)
+    {
+        currentStress += calm;
+        currentEnergy += energy;
+    }
+
+    public void MoveActor(Transform newPosition)
+    {
+        transform.parent = newPosition;
+    }
     #endregion
 
 
