@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using static SO_Challenge;
@@ -11,6 +13,7 @@ using static SO_Challenge;
 public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
+    #region De base
     GameObject canva;
     GameObject uiCases;
 
@@ -22,20 +25,98 @@ public class C_Challenge : MonoBehaviour
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
     [SerializeField] List<C_Case> listCase;
+    #endregion
 
     #region Challenge
     [Space(50)]
-    //Tableau de toutes les étapes.
-    [SerializeField] SO_Etape[] allSteps;
+    C_Actor currentActor;
+    int currentActorID = 0;
 
-    //Définis l'étape actuel.
+
+    //Sï¿½lection d'actions
+    [SerializeField] int currentAction;
+
+    //Dï¿½finis l'ï¿½tape actuel.
     public SO_Etape currentStep;
     int currentStepID = 0;
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
-    [SerializeField] List<Action> listActions;
+    [SerializeField] List<SO_ActionClass> listActions;
+    #endregion
     #endregion
 
+    #region RÃ©solution
+    List<ActorResolution> listRes;
+    #endregion
+
+    //------------------------------------------------------------------------------------------------------------------------
+
+    #region Input
+    public void SelectRight(InputAction.CallbackContext context)
+    {
+        if(!context.performed) { return; }
+
+        if (context.performed)
+        {
+            currentAction++;
+        }
+    }
+
+    public void SelectLeft(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+            currentAction--;
+        }
+    }
+
+    public void SelectAction(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+            UseAction();
+        }
+
+        //Utilise l'action
+        void UseAction()
+        {
+            //CrÃ©ation d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisÃ© dans la phase de rÃ©solution.
+            ActorResolution actorResolution = new ActorResolution();
+            actorResolution.action = listActions[currentAction];
+            actorResolution.actor = currentActor;
+            listRes.Add(actorResolution);
+
+            //Check si c'Ã©tais le dernier acteur jouÃ©
+            if (currentActorID == myTeam.Count)
+            {
+                //Lance la "Phase de rÃ©solution".
+                ResolutionTurn();
+            }
+            else
+            {
+                //Passe Ã  l'acteur suivant.
+                NextActor();
+            }
+
+            
+
+            if (currentStep.rightAnswer == listActions[currentAction])
+            {
+                Debug.Log("Bonne action");
+                stepUpdate();
+
+                //Check si il possï¿½de une sous action.
+            }
+            else
+            {
+                Debug.Log("Mauvaise action");
+            }
+        }
+    }
     #endregion
 
     private void Awake()
@@ -44,6 +125,7 @@ public class C_Challenge : MonoBehaviour
         canva = transform.GetChild(0).gameObject;
 
         uiCases = canva.transform.GetChild(1).gameObject;
+
         #endregion
     }
 
@@ -56,8 +138,9 @@ public class C_Challenge : MonoBehaviour
         InitialiseAllPosition();
 
         #region Initialisation
-        //Set l'étape en question.
-        currentStep = allSteps[0];
+        //Set l'ï¿½tape en question.
+        currentStep = myChallenge.listEtape[0];
+        currentActor = myTeam[0];
 
         //Lance directement le tour du joueur
         PlayerTrun();
@@ -66,7 +149,7 @@ public class C_Challenge : MonoBehaviour
 
     #region Mes fonctions
 
-    #region Début de partie
+    #region Dï¿½but de partie
     void SpawnCases()
     {
         //Spawn toutes les cases.
@@ -93,9 +176,9 @@ public class C_Challenge : MonoBehaviour
                 //Fait spawn avec des info random.
                 SpawnActor(myChallenge.GetInitialPlayersPosition());
             }
-            else //Possède l'info.
+            else //Possï¿½de l'info.
             {
-                Debug.LogError("ERROR : Aucune informations de trouvé la liste, aucun acteur n'a pu spawn.");
+                Debug.LogError("ERROR : Aucune informations de trouvï¿½ la liste, aucun acteur n'a pu spawn.");
             }
         }
 
@@ -109,12 +192,12 @@ public class C_Challenge : MonoBehaviour
             }
             else 
             {
-                Debug.Log("Aucune informations de trouvé la liste des acc.");
+                Debug.Log("Aucune informations de trouvï¿½ la liste des acc.");
             }
         }
     }
 
-    //Déplace ou fait spawn les acteurs.
+    //Dï¿½place ou fait spawn les acteurs.
     public void SpawnActor(List<InitialActorPosition> listPosition)
     {
         foreach (InitialActorPosition position in listPosition)
@@ -140,48 +223,6 @@ public class C_Challenge : MonoBehaviour
         SpawnActions();
     }
 
-    //Création d'une class qui permet de lier les boutons avec l'action.
-    [Serializable] public class Action
-    {
-        C_Challenge challenge;
-        [SerializeField] SO_ActionClass actionClass;
-        Button button;
-
-        public void SetButton(Button myButton)
-        {
-            button = myButton;
-        }
-
-        public void SetAction(SO_ActionClass myAction)
-        {
-            actionClass = myAction;
-        }
-
-        public void SetChallenge(C_Challenge myChallenge)
-        {
-            challenge = myChallenge;
-        }
-
-        public SO_ActionClass GetAction()
-        {
-            return actionClass;
-        }
-
-        public void UseAction()
-        {
-            if (challenge.currentStep.rightAnswer == actionClass)
-            {
-                Debug.Log("Bonne action");
-                challenge.stepUpdate();
-                //Check si il possède une sous action.
-            }
-            else
-            {
-                Debug.Log("Mauvaise action");
-            }
-        }
-    }
-
     //Fait spawn les bouton d'actions
     void SpawnActions()
     {
@@ -190,20 +231,13 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Spawn actions");
             for (int i = 0; i < currentStep.actions.Length; i++)
             {
-                //Création d'une nouvelle class qui sera ajouté dans une liste.
-                Action myAction = new Action();
-                listActions.Add(myAction);
+                //CrÃ©ation d'une nouvelle class qui sera ajoutï¿½ dans une liste.
+                listActions.Add(currentStep.actions[i]);
 
-                //Création d'un boutton qui sera en ref dans la class action.
+                //CrÃ©ation d'un boutton qui sera en ref dans la class action.
                 Button myButton = Instantiate(Resources.Load<Button>("ActionButton"), GameObject.Find("UI_Action_Background").transform);
                 //Update le text + la ref de l'action.
                 myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
-                myButton.onClick.AddListener(listActions[i].UseAction);
-
-                //Change les info de la class.
-                listActions[i].SetButton(myButton);
-                listActions[i].SetAction(currentStep.actions[i]);
-                listActions[i].SetChallenge(this);
             }
         }
         else
@@ -212,22 +246,82 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //Passe à l'étape suivant.
+    void NextActor()
+    {
+        currentActorID++;
+        currentActor = myTeam[currentActorID];
+    }
+
+    //Passe Ã  l'Ã©tape suivant.
     public void stepUpdate()
     {
-        Debug.Log("next step");
-        if (currentStepID < allSteps.Length)
+        //Check si il reste des Ã©tapes.
+        if (CheckEtape())
         {
+            Debug.Log("next step");
+
+            //Nouvelle Ã©tape.
             currentStepID++;
-            Debug.Log(currentStepID);
-            currentStep = allSteps[currentStepID];
-            listActions = new List<Action>();
+            currentStep = myChallenge.listEtape[currentStepID];
+
+            //Supprime tous les boutons.
+            for (int i = 0; i < GameObject.Find("UI_Action_Background").transform.childCount; i++)
+            {
+                Destroy(GameObject.Find("UI_Action_Background").transform.GetChild(i).gameObject);
+            }
+
+            //Nouvelle liste.
+            listActions = new List<SO_ActionClass>();
+
+            //Apparition des boutons.
             SpawnActions();
+        }
+        else
+        {
+            //Fin du challenge.
+            EndChallenge();
         }
     }
     #endregion
 
-    //Pour faire déplacer les accessoires.
+    #region  Phase de rÃ©solution
+    //CrÃ©ation d'une class pour rassembler l'acteur et l'action.
+    public class ActorResolution
+    {
+        public SO_ActionClass action;
+        public C_Actor actor;
+    }
+
+    private void ResolutionTurn()
+    {
+        //Bloque les commande.
+
+        //Change l'UI.
+
+        //Applique toutes les actions.
+    }
+
+    //Bool pour check si le vhallenge est fini.
+    bool CheckEtape()
+    {
+        if (currentStepID != myChallenge.listEtape.Count -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //Fin du challenge.
+    void EndChallenge()
+    {
+        Debug.Log("Fin du challenge");
+    }
+    #endregion
+
+    //Pour faire dï¿½placer les accessoires.
     void UpdateAccessories()
     {
 

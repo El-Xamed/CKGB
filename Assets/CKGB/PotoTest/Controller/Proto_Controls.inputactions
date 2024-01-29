@@ -164,9 +164,27 @@
             "id": "2adb954c-4c62-47eb-b813-c429f34d78fc",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "SelectRightAction",
                     "type": "Button",
-                    "id": "7984d3dd-5daf-48b1-93b5-a2ebb24ab83d",
+                    "id": "63e650a2-ea94-41ce-8932-e20ae95ecaa7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectLeftAction",
+                    "type": "Button",
+                    "id": "35d47fcb-b192-45c2-b71e-9fd976781e94",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectAction",
+                    "type": "Button",
+                    "id": "1ef01faa-82be-401b-a6ab-f98d4a7dcdc6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -176,12 +194,34 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "4ad2cb63-e8ea-4d3d-83a8-c289adaa4978",
-                    "path": "",
+                    "id": "06a04ffb-d6c6-48aa-b537-f7ae8cb743c2",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "SelectRightAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aca1ae54-eeac-44b9-8d79-fca2cf8b8cd5",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectLeftAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae95bc2e-d0fd-44ec-9d17-b958ba6d26ca",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
