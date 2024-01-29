@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class D_Diorma : MonoBehaviour
+public class D_Diorama : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,5 +16,12 @@ public class D_Diorma : MonoBehaviour
     {
         
     }
-
+    public void GoToTempsMort()
+    {
+        SceneManager.LoadScene("Diorama_TempsMort");
+    }
+    public void GoToChallenge()
+    {
+        SceneManager.LoadScene("Diorama_Challenge");
+    }
 }
