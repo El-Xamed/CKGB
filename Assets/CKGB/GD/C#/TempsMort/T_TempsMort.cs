@@ -2,16 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class T_TempsMort : MonoBehaviour
 {
     #region Variables
+
+    [SerializeField]
+    Image[] charactersLittleResume;
+    [SerializeField]
+    Image[] charactersCompleteResume;
+    [SerializeField]
+    Button[] charactersButton;
+    [SerializeField]
+    Button[] actions;
+
     [SerializeField]
     List<StartPosition> listCharactersPositions;
 
     [SerializeField]
     GameObject[] characters;
+
+    
 
     #region Animation
     Animation[] papoter;
@@ -19,12 +31,12 @@ public class T_TempsMort : MonoBehaviour
     Animation[] revasser;
     #endregion
 
-    C_Actor actorActif;
+    GameObject actorActif;
     #endregion
 
     private void Awake()
     {
-        
+       
     }
 
     private void Start()
@@ -105,7 +117,13 @@ public class T_TempsMort : MonoBehaviour
             Instantiate(characters[i], listCharactersPositions[i].InitialPosition.gameObject.transform);
         }
     }
+    //retour au choix de personnage et disparition des boutons de choix
     void NextActor()
+    {
+
+    }
+    //fait apparaitre les boutons de choix
+    void CharacterTurn(GameObject actualCharacter)
     {
 
     }
@@ -134,6 +152,11 @@ public class T_TempsMort : MonoBehaviour
     {
         
     }
+    #endregion
+    #region buttons
+
+  
+
     #endregion
 }
 
