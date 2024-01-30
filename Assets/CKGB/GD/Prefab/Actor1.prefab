@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 332.5}
+  m_SizeDelta: {x: 248, y: 665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5199208835674813160
 MonoBehaviour:
@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataActor: {fileID: 11400000, guid: f815fa2680ca4bc4ea731ad99aab2325, type: 2}
+  currentStress: 0
+  currentEnergy: 0
+  currentPointTrait: 0
 --- !u!222 &1725192862864641470
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -82,11 +85,11 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1

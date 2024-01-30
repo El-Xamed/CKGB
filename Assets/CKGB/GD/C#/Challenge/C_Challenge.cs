@@ -99,19 +99,6 @@ public class C_Challenge : MonoBehaviour
                 //Lance la "Phase de résolution".
                 ResolutionTurn();
             }
-
-            //DEPLACER CETTE PARTIE DU SCRIPT AILLEUR.  DANS LA PARTIE "RESOLUTION"
-            if (currentStep.rightAnswer == listActions[currentAction])
-            {
-                Debug.Log("Bonne action");
-                stepUpdate();
-
-                //Check si il poss�de une sous action.
-            }
-            else
-            {
-                Debug.Log("Mauvaise action");
-            }
         }
     }
     #endregion
@@ -200,6 +187,7 @@ public class C_Challenge : MonoBehaviour
         foreach (InitialActorPosition position in listPosition)
         {
             C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
+            myActor.IniChallenge();
             myTeam.Add(myActor);
         }
     }
@@ -250,7 +238,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //AJOUTER UNE FONCTION QUI CHECK SI C'ETAIT LE DERNIER ACTOR.
+    //Passe à l'acteur suivant.
     void NextActor()
     {
         currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
@@ -283,6 +271,8 @@ public class C_Challenge : MonoBehaviour
         {
             //Fin du challenge.
             EndChallenge();
+
+            Debug.Log("Fin du niveau");
         }
     }
     #endregion
@@ -307,6 +297,17 @@ public class C_Challenge : MonoBehaviour
         foreach (var myRes in listRes)
         {
             myRes.action.UseAction(myRes.actor, listCase);
+
+            //Si c'est la bonne réponse.
+            if (myRes.action == currentStep.rightAnswer)
+            {
+                Debug.Log("Bonne action");
+                stepUpdate();
+            }
+            else
+            {
+                Debug.Log("Mauvaise action");
+            }
         }
     }
 

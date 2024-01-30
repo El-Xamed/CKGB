@@ -13,9 +13,8 @@ public class SO_Accessories : ScriptableObject
     bool isBusyByCharacter;
 
     [Header("Position de l'objet")]
-    [SerializeField]
-    int initialPosition;
-    int currentPosition;
+    public int initialPosition;
+    [HideInInspector] public int currentPosition;
 
     [Header("Damage")]
     //Pour aplliquer les degat si le joueur se place dessus

@@ -21,17 +21,20 @@ public class C_Actor : MonoBehaviour
     private void Awake()
     {
         gameObject.name = dataActor.name;
-       GetComponent<Image>().sprite = dataActor.challengeSprite;
-
-        //Activer cette fonction DANS le CHALLENGE.
-        IniStatsChallenge();
     }
 
     #region Mes fonctions
-    void IniStatsChallenge()
+    #region Challenge
+    public void IniChallenge()
     {
+        //Stats
         currentStress = dataActor.stressMax;
         currentEnergy = dataActor.energyMax;
+
+        //Sprite
+        GetComponent<Image>().sprite = dataActor.challengeSprite;
+        GetComponent<Image>().preserveAspect = true;
+        GetComponent<Image>().useSpriteMesh = true;
     }
 
     public void TakeDamage(int calm, int energy)
@@ -50,6 +53,19 @@ public class C_Actor : MonoBehaviour
     {
         transform.parent = newPosition;
     }
+    #endregion
+
+    #region WorldMap
+    void IniWorldMap()
+    {
+        //Sprite
+        GetComponent<Image>().sprite = dataActor.challengeSprite;
+        GetComponent<Image>().preserveAspect = true;
+        GetComponent<Image>().useSpriteMesh = true;
+    }
+
+    #endregion
+
     #endregion
 
 
