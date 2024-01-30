@@ -56,7 +56,7 @@ public class C_Actor : MonoBehaviour
     #endregion
 
     #region WorldMap
-    void IniWorldMap()
+    public void IniWorldMap()
     {
         //Sprite
         GetComponent<Image>().sprite = dataActor.challengeSprite;

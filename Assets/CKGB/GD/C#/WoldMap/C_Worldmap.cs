@@ -211,7 +211,7 @@ public class C_Worldmap : MonoBehaviour
     }*/
     private void initiateTheMapCharacterProtocol()
     {
-        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<C_Actor>().dataActor.MapTmSprite;
+        actor.GetComponent<C_Actor>().IniWorldMap();
     }
 
     #endregion
