@@ -31,15 +31,12 @@ public class C_Challenge : MonoBehaviour
     #region Challenge
     [Space(50)]
     C_Actor currentActor;
-    int currentActorID = 0;
-
 
     //S�lection d'actions
     [SerializeField] int currentAction;
 
     //D�finis l'�tape actuel.
     public SO_Etape currentStep;
-    int currentStepID = 0;
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
     [SerializeField] List<SO_ActionClass> listActions;
@@ -47,7 +44,7 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Résolution
-    List<ActorResolution> listRes;
+    [SerializeField] List<ActorResolution> listRes;
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -91,18 +88,19 @@ public class C_Challenge : MonoBehaviour
             actorResolution.actor = currentActor;
             listRes.Add(actorResolution);
 
-            //Check si c'étais le dernier acteur joué
-            if (currentActorID == myTeam.Count)
-            {
-                //Lance la "Phase de résolution".
-                ResolutionTurn();
-            }
-            else
+            //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
+            if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
             {
                 //Passe à l'acteur suivant.
                 NextActor();
             }
+            else
+            {
+                //Lance la "Phase de résolution".
+                ResolutionTurn();
+            }
 
+            //DEPLACER CETTE PARTIE DU SCRIPT AILLEUR.  DANS LA PARTIE "RESOLUTION"
             if (currentStep.rightAnswer == listActions[currentAction])
             {
                 Debug.Log("Bonne action");
@@ -220,7 +218,7 @@ public class C_Challenge : MonoBehaviour
     void PlayerTrun()
     {
         //Débloque les commande.
-        GetComponent<PlayerInput>().enabled = false;
+        GetComponent<PlayerInput>().enabled = true;
 
         //Change l'UI.
         uiAction.SetActive(true);
@@ -252,10 +250,10 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    //AJOUTER UNE FONCTION QUI CHECK SI C'ETAIT LE DERNIER ACTOR.
     void NextActor()
     {
-        currentActorID++;
-        currentActor = myTeam[currentActorID];
+        currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
     }
 
     //Passe à l'étape suivant.
@@ -267,13 +265,12 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("next step");
 
             //Nouvelle étape.
-            currentStepID++;
-            currentStep = myChallenge.listEtape[currentStepID];
+            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) +1];
 
             //Supprime tous les boutons.
-            for (int i = 0; i < GameObject.Find("UI_Action_Background").transform.childCount; i++)
+            for (int i = 0; i < uiAction.transform.childCount; i++)
             {
-                Destroy(GameObject.Find("UI_Action_Background").transform.GetChild(i).gameObject);
+                Destroy(uiAction.transform.GetChild(i).gameObject);
             }
 
             //Nouvelle liste.
@@ -292,7 +289,7 @@ public class C_Challenge : MonoBehaviour
 
     #region  Phase de résolution
     //Création d'une class pour rassembler l'acteur et l'action.
-    public class ActorResolution
+    [Serializable] public class ActorResolution
     {
         public SO_ActionClass action;
         public C_Actor actor;
@@ -316,7 +313,7 @@ public class C_Challenge : MonoBehaviour
     //Bool pour check si le vhallenge est fini.
     bool CheckEtape()
     {
-        if (currentStepID != myChallenge.listEtape.Count -1)
+        if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count -1)
         {
             return true;
         }
