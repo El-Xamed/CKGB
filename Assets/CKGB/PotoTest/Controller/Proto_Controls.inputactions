@@ -123,18 +123,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "NaviguationDown",
+                    "name": "Naviguate",
                     "type": "Button",
                     "id": "cf304615-fe2a-4d32-a165-c92c4ee6ed8b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "NaviguationUp",
-                    "type": "Button",
-                    "id": "cb7c6787-5fbf-41cb-a76f-2370ac4ab9d0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -150,7 +141,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChooseButton",
+                    "name": "Submit",
                     "type": "Button",
                     "id": "2df5d24f-27f7-4b12-a9da-06728aa1057b",
                     "expectedControlType": "Button",
@@ -195,28 +186,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9d380166-2ad1-4cfd-9fa0-48fa389d6d76",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "NaviguationDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b1219af2-a173-4d48-a0bb-90d771f6842b",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "NaviguationUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d5476264-c900-465d-88e4-04205ede3a42",
                     "path": "<Keyboard>/y",
                     "interactions": "",
@@ -233,9 +202,64 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChooseButton",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Keybord",
+                    "id": "194cab04-4043-40f9-bdcb-b63d78e442b7",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Naviguate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "binding",
+                    "id": "09bed513-2c92-4f41-95e1-6a3f44433373",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Naviguate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "6f9ae724-cb31-49cb-9a29-154d98c30a23",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Naviguate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "b03806ec-b0d4-4aa2-8173-8525eb81f432",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Naviguate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "408b5ace-b56a-4d66-bcb5-8fc76936ed3c",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Naviguate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
