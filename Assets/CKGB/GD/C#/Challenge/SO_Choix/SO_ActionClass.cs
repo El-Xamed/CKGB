@@ -9,6 +9,7 @@ public class SO_ActionClass : ScriptableObject
     #region Texte
     [Header("Text")]
     public string buttonText;
+    public string LogsChallenge;
     #endregion
 
     #region Stats "PRIX"

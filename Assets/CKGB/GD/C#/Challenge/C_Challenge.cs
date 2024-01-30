@@ -13,9 +13,15 @@ using static SO_Challenge;
 public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
+    #region Input
+    bool canSelectAction = true;
+    bool canUpdateRes = false;
+    #endregion
+
     #region De base
     GameObject canva;
     GameObject uiCases;
+    [SerializeField] GameObject uiEtape;
     [SerializeField] GameObject uiAction;
 
     [SerializeField] SO_Challenge myChallenge;
@@ -41,20 +47,23 @@ public class C_Challenge : MonoBehaviour
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
     [SerializeField] List<SO_ActionClass> listActions;
     #endregion
-    #endregion
-
+    
     #region Résolution
     [SerializeField] List<ActorResolution> listRes;
+    ActorResolution currentResolution;
+    [SerializeField] TMP_Text uiLogs;
+    #endregion
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
 
     #region Input
+    //RCOURSCIR CETTE PARTIE DU CODE
     public void SelectRight(InputAction.CallbackContext context)
     {
         if(!context.performed) { return; }
 
-        if (context.performed)
+        if (context.performed && canSelectAction)
         {
             currentAction++;
         }
@@ -64,7 +73,7 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed)
+        if (context.performed && canSelectAction)
         {
             currentAction--;
         }
@@ -74,7 +83,13 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed)
+        if (context.performed && canUpdateRes)
+        {
+            ResolutionTurn();
+        }
+
+        //Pour la partie slection des action.
+        if (context.performed && canSelectAction)
         {
             UseAction();
         }
@@ -122,9 +137,10 @@ public class C_Challenge : MonoBehaviour
         InitialiseAllPosition();
 
         #region Initialisation
-        //Set l'�tape en question.
+        //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
+        UpdateUi(currentStep);
 
         //Lance directement le tour du joueur
         PlayerTrun();
@@ -133,13 +149,21 @@ public class C_Challenge : MonoBehaviour
 
     #region Mes fonctions
 
-    #region D�but de partie
+    #region Début de partie
     void SpawnCases()
     {
         //Spawn toutes les cases.
         for (int i = 0; i < myChallenge.nbCase; i++)
         {
+            //Création d'une case
             C_Case newCase = Instantiate(myCase, uiCases.transform);
+            newCase.GetComponentInChildren<TMP_Text>().text = i.ToString();
+
+            //Change la dernière case par un autre sprite.
+            if (i == myChallenge.nbCase -1)
+            {
+                newCase.GetComponent<Image>().sprite = Resources.Load<Sprite>("Barre_Segment_Bout");
+            }
 
             listCase.Add(newCase);
         }
@@ -205,6 +229,25 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     void PlayerTrun()
     {
+        //Check si dans la liste de "Resolution" créer dans le dernier round, une bonne action se trouve deans. POSSIBLE QUE CETTE PARTIE CHANGE DANS LE FUTUR.
+        //Applique toutes les actions.
+        if (listRes == null)
+        {
+            foreach (var myRes in listRes)
+            {
+                //Si c'est la bonne réponse.
+                if (myRes.action == currentStep.rightAnswer)
+                {
+                    Debug.Log("Bonne action");
+                    stepUpdate();
+                }
+                else
+                {
+                    Debug.Log("Mauvaise action");
+                }
+            }
+        }
+
         //Débloque les commande.
         GetComponent<PlayerInput>().enabled = true;
 
@@ -227,7 +270,7 @@ public class C_Challenge : MonoBehaviour
                 listActions.Add(currentStep.actions[i]);
 
                 //Création d'un boutton qui sera en ref dans la class action.
-                Button myButton = Instantiate(Resources.Load<Button>("ActionButton"), uiAction.transform);
+                GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform);
                 //Update le text + la ref de l'action.
                 myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
             }
@@ -255,6 +298,9 @@ public class C_Challenge : MonoBehaviour
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) +1];
 
+            //Update l'UI.
+            UpdateUi(currentStep);
+
             //Supprime tous les boutons.
             for (int i = 0; i < uiAction.transform.childCount; i++)
             {
@@ -275,6 +321,12 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Fin du niveau");
         }
     }
+
+    //Pour Update l'UI.
+    void UpdateUi(SO_Etape myEtape)
+    {
+        uiEtape.GetComponentInChildren<TMP_Text>().text = myEtape.énoncé;
+    }
     #endregion
 
     #region  Phase de résolution
@@ -283,31 +335,34 @@ public class C_Challenge : MonoBehaviour
     {
         public SO_ActionClass action;
         public C_Actor actor;
-        public int position;
     }
 
     private void ResolutionTurn()
     {
-        //Bloque les commande.
-        GetComponent<PlayerInput>().enabled = false;
+        //Bloque les commande. CHANGER CA POUR QU IL PUISSE UPDATE LUI MEME LA PHASE DE RESO.
+        //GetComponent<PlayerInput>().enabled = false;
+
         //Change l'UI.
         uiAction.SetActive(false);
 
-        //Applique toutes les actions.
+        currentResolution = listRes[listRes.IndexOf(currentResolution)];
+
+        //Applique toutes les actions. 1 par 1.
+        if (listRes.IndexOf(currentResolution) < listRes.Count -1)
+        {
+
+        }
+
+
+
+
         foreach (var myRes in listRes)
         {
-            myRes.action.UseAction(myRes.actor, listCase);
+            //Ecrit dans les logs l'action
+            uiLogs.text = myRes.action.LogsChallenge;
 
-            //Si c'est la bonne réponse.
-            if (myRes.action == currentStep.rightAnswer)
-            {
-                Debug.Log("Bonne action");
-                stepUpdate();
-            }
-            else
-            {
-                Debug.Log("Mauvaise action");
-            }
+            //Utilise l'action.
+            myRes.action.UseAction(myRes.actor, listCase);
         }
     }
 
