@@ -59,7 +59,7 @@ public class C_Actor : MonoBehaviour
     public void IniWorldMap()
     {
         //Sprite
-        GetComponent<Image>().sprite = dataActor.challengeSprite;
+        GetComponent<Image>().sprite = dataActor.MapTmSprite;
         GetComponent<Image>().preserveAspect = true;
         GetComponent<Image>().useSpriteMesh = true;
     }

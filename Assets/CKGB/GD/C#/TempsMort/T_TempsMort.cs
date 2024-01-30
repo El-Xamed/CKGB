@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class T_TempsMort : MonoBehaviour
 {
     #region Variables
+    [SerializeField]EventSystem Es;
 
     [SerializeField]
     Image[] charactersLittleResume;
+
     [SerializeField]
     Image[] charactersCompleteResume;
+
     [SerializeField]
     Button[] charactersButton;
+
     [SerializeField]
-    Button[] actions;
+    GameObject[] actions;
 
     [SerializeField]
     List<StartPosition> listCharactersPositions;
@@ -24,7 +29,9 @@ public class T_TempsMort : MonoBehaviour
     [SerializeField]
     GameObject[] characters;
 
-    
+    PlayerInput pi;
+
+    [SerializeField]GameObject currentButton;
 
     #region Animation
     Animation[] papoter;
@@ -42,6 +49,13 @@ public class T_TempsMort : MonoBehaviour
 
     private void Start()
     {
+        foreach(GameObject button in actions)
+        {
+            button.SetActive(false);
+        }
+        
+        Es = FindObjectOfType<EventSystem>();
+        GameManager.instance.ChangeActionMap("TempsMort");
         initiatePosition();
         //Pour setup les perso
         //InitialisationTempsMort();
@@ -50,22 +64,22 @@ public class T_TempsMort : MonoBehaviour
         //StartIntroduction();
     }
     #region input
-    public void SelectDown(InputAction.CallbackContext context)
+   
+    public void updateButton()
     {
-        if (!context.performed) { return; }
-
-        if (context.performed)
-        {
-            
-        }
+        currentButton = Es.currentSelectedGameObject;
     }
-    public void SelectUp(InputAction.CallbackContext context)
+    public void updateSmallCharacterCard()
+    {
+
+    }
+    public void Naviguate(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
 
         if (context.performed)
         {
-           
+            updateButton();
         }
     }
     public void SwitchCharacterCard(InputAction.CallbackContext context)

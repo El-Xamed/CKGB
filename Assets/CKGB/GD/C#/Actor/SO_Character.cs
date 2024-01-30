@@ -9,6 +9,10 @@ public class SO_Character : ScriptableObject
     public new string name;
     public Sprite challengeSprite;
     public Sprite MapTmSprite;
+    public Sprite smallResume;
+    public Sprite BigResume1;
+    public Sprite BigResume2;
+
     public int stressMax;
     public int energyMax;
     public int nbtraitpointMax;
