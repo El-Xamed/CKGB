@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class T_TempsMort : MonoBehaviour
 {
@@ -48,7 +49,46 @@ public class T_TempsMort : MonoBehaviour
         //Lance le dialogue.
         //StartIntroduction();
     }
+    #region input
+    public void SelectDown(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
 
+        if (context.performed)
+        {
+            
+        }
+    }
+    public void SelectUp(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+           
+        }
+    }
+    public void SwitchCharacterCard(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if(context.performed)
+        {
+
+        }
+    }
+    public void Validate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+
+        }
+    }
+
+
+    #endregion
     private void InitialisationTempsMort()
     {
         if (GameObject.Find("GameManager"))

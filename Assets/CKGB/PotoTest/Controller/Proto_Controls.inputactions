@@ -121,6 +121,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NaviguationDown",
+                    "type": "Button",
+                    "id": "cf304615-fe2a-4d32-a165-c92c4ee6ed8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NaviguationUp",
+                    "type": "Button",
+                    "id": "cb7c6787-5fbf-41cb-a76f-2370ac4ab9d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FlipCard",
+                    "type": "Button",
+                    "id": "792e24f3-d1a2-4a6a-80cd-6c6939953e23",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChooseButton",
+                    "type": "Button",
+                    "id": "2df5d24f-27f7-4b12-a9da-06728aa1057b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -156,6 +192,50 @@
                     "action": "Dialogue",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9d380166-2ad1-4cfd-9fa0-48fa389d6d76",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NaviguationDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1219af2-a173-4d48-a0bb-90d771f6842b",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NaviguationUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5476264-c900-465d-88e4-04205ede3a42",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlipCard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9088529b-23fb-4ae6-b163-18b6c6f4d2e8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChooseButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
