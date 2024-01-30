@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0512023a1e54dd24895740d3ce6a3a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAction: {fileID: 1766273373}
   myChallenge: {fileID: 11400000, guid: ec5173695574d434c8ab78cd7a121e5e, type: 2}
   myTeam: []
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
@@ -883,13 +884,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b52789fae4da1d4fa45e49571906411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listPositions:
-  - actor: 0
-    InitialPosition: {fileID: 1992384476}
-  - actor: 1
-    InitialPosition: {fileID: 2106934724}
-  - actor: 0
-    InitialPosition: {fileID: 1209713798}
+  charactersLittleResume: []
+  charactersCompleteResume: []
+  charactersButton: []
+  actions: []
+  listCharactersPositions: []
+  characters: []
 --- !u!4 &1230891244
 Transform:
   m_ObjectHideFlags: 0
