@@ -223,7 +223,7 @@ public class C_Challenge : MonoBehaviour
         GetComponent<PlayerInput>().enabled = false;
 
         //Change l'UI.
-        uiAction.SetActive(false);
+        uiAction.SetActive(true);
 
         //Fait apparaitre les actions.
         SpawnActions();
@@ -241,7 +241,7 @@ public class C_Challenge : MonoBehaviour
                 listActions.Add(currentStep.actions[i]);
 
                 //Création d'un boutton qui sera en ref dans la class action.
-                Button myButton = Instantiate(Resources.Load<Button>("ActionButton"), GameObject.Find("UI_Action_Background").transform);
+                Button myButton = Instantiate(Resources.Load<Button>("ActionButton"), uiAction.transform);
                 //Update le text + la ref de l'action.
                 myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
             }
