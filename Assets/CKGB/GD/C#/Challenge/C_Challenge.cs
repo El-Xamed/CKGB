@@ -347,7 +347,7 @@ public class C_Challenge : MonoBehaviour
 
         currentResolution = listRes[listRes.IndexOf(currentResolution)];
 
-        //Applique toutes les actions. 1 par 1.
+        //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
         if (listRes.IndexOf(currentResolution) < listRes.Count -1)
         {
 
