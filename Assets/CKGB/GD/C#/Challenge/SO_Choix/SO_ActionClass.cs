@@ -28,7 +28,7 @@ public class SO_ActionClass : ScriptableObject
     [Header("Mouvement")]
     [SerializeField] bool moveRight;
     [SerializeField] bool moveLeft;
-    [SerializeField] int caseToGo;
+    [SerializeField] int caseToGo = -1;
     #endregion
 
     #region Range

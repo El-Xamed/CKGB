@@ -16,8 +16,8 @@ public class SO_Challenge : ScriptableObject
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
     public int nbCase;
     [Space]
-    public List<InitialAccPosition> listStartPosAcc;
     [Tooltip("Information SECONDAIRE pour faire spawn les personnages et Acc sur la scene")]
+    public List<InitialAccPosition> listStartPosAcc;
     public List<InitialActorPosition> listStartPosTeam;
     [Header("Cata")]
     public List<SO_Catastrophy> listCatastrophy;
@@ -35,6 +35,7 @@ public class SO_Challenge : ScriptableObject
         public C_Actor perso;
     }
 
+    [System.Serializable]
     public class InitialAccPosition
     {
         public int position;

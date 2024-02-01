@@ -83,4 +83,14 @@ public class C_Actor : MonoBehaviour
     {
         position = newPosition;
     }
+
+    public int GetCurrentStress()
+    {
+        return currentStress;
+    }
+
+    public int GetcurrentEnergy()
+    {
+        return currentEnergy;
+    }
 }

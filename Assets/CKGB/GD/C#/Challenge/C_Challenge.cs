@@ -21,12 +21,13 @@ public class C_Challenge : MonoBehaviour
     #region De base
     GameObject canva;
     GameObject uiCases;
+    [SerializeField] GameObject uiStatsPrefab;
+    [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
     [SerializeField] GameObject uiAction;
 
     [SerializeField] SO_Challenge myChallenge;
 
-    [Tooltip("Team")]
     [SerializeField] List<C_Actor> myTeam;
 
     [Tooltip("Case")]
@@ -142,6 +143,9 @@ public class C_Challenge : MonoBehaviour
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
+        //Fait spawn les stats des acteurs.
+        InitialiseUiActor();
+
         #region Initialisation
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
@@ -211,6 +215,19 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    //
+    void InitialiseUiActor()
+    {
+        foreach (var myActor in myTeam)
+        {
+            //Fait Spawn l'Ui
+            GameObject newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+
+            //Init.
+            newStats.GetComponent<C_Stats>().Initstats(myActor);
+        }
+    }
+
     //D�place ou fait spawn les acteurs.
     public void SpawnActor(List<InitialActorPosition> listPosition)
     {
@@ -226,7 +243,8 @@ public class C_Challenge : MonoBehaviour
     {
         foreach (InitialAccPosition position in listPosition)
         {
-            Instantiate(position.acc, listCase[position.position].transform);
+            SO_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
+            myAcc.name = position.acc.name;
         }
     }
 
@@ -343,7 +361,7 @@ public class C_Challenge : MonoBehaviour
         public C_Actor actor;
     }
 
-    private void ResolutionTurn()
+    void ResolutionTurn()
     {
         Debug.Log("Resolution trun !");
         //Bloque les commande. CHANGER CA POUR QU IL PUISSE UPDATE LUI MEME LA PHASE DE RESO.
@@ -352,55 +370,40 @@ public class C_Challenge : MonoBehaviour
         //Change l'UI.
         uiAction.SetActive(false);
 
-        #region Utilisation des actions 1 par 1
-        /*Première Itération
-        //Reféfinis "currentResolution" avec 'index de base + 1.
-        currentResolution = listRes[listRes.IndexOf(currentResolution) +1];
-
         //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
-        if (listRes.IndexOf(currentResolution) < listRes.Count -1)
-        {
-            //Utilise l'action.
-            currentResolution.action.UseAction(currentResolution.actor, listCase);
-
-            //Ecrit dans les logs l'action
-            uiLogs.text = currentResolution.action.LogsChallenge;
-        }*/
-
-        currentActionResolution++;
-
-        //Reféfinis "currentResolution" avec 'index de base + 1.
-        currentResolution = listRes[currentActionResolution];
-
-        //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
-        if (listRes.IndexOf(currentResolution) < listRes.Count)
+        //
+        if (currentActionResolution < listRes.Count -1 || currentActionResolution == -1)
         {
             Debug.Log("Update Action ! : " + currentActionResolution);
+
+            //Augmente la valeur.
+            currentActionResolution++;
+
+            //Reféfinis "currentResolution" avec 'index de base + 1.
+            currentResolution = listRes[currentActionResolution];
+
             //Utilise l'action.
             currentResolution.action.UseAction(currentResolution.actor, listCase);
 
             //Ecrit dans les logs l'action
             uiLogs.text = currentResolution.action.LogsChallenge;
-
-
-            /*Deuxième Itération
-            foreach (var myRes in listRes)
-            {
-                //Ecrit dans les logs l'action
-                uiLogs.text = myRes.action.LogsChallenge;
-
-                //Utilise l'action.
-                myRes.action.UseAction(myRes.actor, listCase);
-            }*/
-            #endregion
         }
         else
         {
             //Lance la phase "Cata".
-
+            CataTrun();
             Debug.Log("Toutes les actions on été fait");
         }
     }
+    #endregion
+
+    #region Tour de la Cata
+    //Pour lancer la cata.
+    void CataTrun()
+    {
+
+    }
+    #endregion
 
     //Bool pour check si le vhallenge est fini.
     bool CheckEtape()
@@ -420,16 +423,9 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("Fin du challenge");
     }
-    #endregion
 
     //Pour faire d�placer les accessoires.
     void UpdateAccessories()
-    {
-
-    }
-
-    //Applique la cata.
-    void ApplyCata()
     {
 
     }
