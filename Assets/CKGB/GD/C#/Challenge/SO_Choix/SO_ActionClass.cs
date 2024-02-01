@@ -55,7 +55,7 @@ public class SO_ActionClass : ScriptableObject
         //Check si cette action peut etre utilisé.
         if (CanUse(thisActor))
         {
-            Debug.Log("Use this action.");
+            Debug.Log("Use this actionClass.");
 
             //Stats
             thisActor.TakeDamage(coutCalm, coutEnergy);

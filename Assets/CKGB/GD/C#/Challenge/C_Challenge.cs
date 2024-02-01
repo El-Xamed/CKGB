@@ -51,6 +51,7 @@ public class C_Challenge : MonoBehaviour
     #region Résolution
     [SerializeField] List<ActorResolution> listRes;
     ActorResolution currentResolution;
+    int currentActionResolution;
     [SerializeField] TMP_Text uiLogs;
     #endregion
     #endregion
@@ -112,6 +113,11 @@ public class C_Challenge : MonoBehaviour
             else
             {
                 //Lance la "Phase de résolution".
+                canSelectAction = false;
+                canUpdateRes = true;
+
+                //Définis la valeur à "-1" pour naviguer sans problème dans la listRes.
+                currentActionResolution = -1;
                 ResolutionTurn();
             }
         }
@@ -231,7 +237,7 @@ public class C_Challenge : MonoBehaviour
     {
         //Check si dans la liste de "Resolution" créer dans le dernier round, une bonne action se trouve deans. POSSIBLE QUE CETTE PARTIE CHANGE DANS LE FUTUR.
         //Applique toutes les actions.
-        if (listRes == null)
+        if (listRes != null)
         {
             foreach (var myRes in listRes)
             {
@@ -339,30 +345,60 @@ public class C_Challenge : MonoBehaviour
 
     private void ResolutionTurn()
     {
+        Debug.Log("Resolution trun !");
         //Bloque les commande. CHANGER CA POUR QU IL PUISSE UPDATE LUI MEME LA PHASE DE RESO.
         //GetComponent<PlayerInput>().enabled = false;
 
         //Change l'UI.
         uiAction.SetActive(false);
 
-        currentResolution = listRes[listRes.IndexOf(currentResolution)];
+        #region Utilisation des actions 1 par 1
+        /*Première Itération
+        //Reféfinis "currentResolution" avec 'index de base + 1.
+        currentResolution = listRes[listRes.IndexOf(currentResolution) +1];
 
         //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
         if (listRes.IndexOf(currentResolution) < listRes.Count -1)
         {
-
-        }
-
-
-
-
-        foreach (var myRes in listRes)
-        {
-            //Ecrit dans les logs l'action
-            uiLogs.text = myRes.action.LogsChallenge;
-
             //Utilise l'action.
-            myRes.action.UseAction(myRes.actor, listCase);
+            currentResolution.action.UseAction(currentResolution.actor, listCase);
+
+            //Ecrit dans les logs l'action
+            uiLogs.text = currentResolution.action.LogsChallenge;
+        }*/
+
+        currentActionResolution++;
+
+        //Reféfinis "currentResolution" avec 'index de base + 1.
+        currentResolution = listRes[currentActionResolution];
+
+        //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
+        if (listRes.IndexOf(currentResolution) < listRes.Count)
+        {
+            Debug.Log("Update Action ! : " + currentActionResolution);
+            //Utilise l'action.
+            currentResolution.action.UseAction(currentResolution.actor, listCase);
+
+            //Ecrit dans les logs l'action
+            uiLogs.text = currentResolution.action.LogsChallenge;
+
+
+            /*Deuxième Itération
+            foreach (var myRes in listRes)
+            {
+                //Ecrit dans les logs l'action
+                uiLogs.text = myRes.action.LogsChallenge;
+
+                //Utilise l'action.
+                myRes.action.UseAction(myRes.actor, listCase);
+            }*/
+            #endregion
+        }
+        else
+        {
+            //Lance la phase "Cata".
+
+            Debug.Log("Toutes les actions on été fait");
         }
     }
 
