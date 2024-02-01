@@ -39,7 +39,7 @@ public class SO_Challenge : ScriptableObject
     public class InitialAccPosition
     {
         public int position;
-        public SO_Accessories acc;
+        public C_Accessories acc;
     }
 
     #region Data

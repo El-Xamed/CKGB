@@ -12,6 +12,7 @@ public class C_Actor : MonoBehaviour
     [SerializeField] public SO_Character dataActor;
 
     [Header("Stats")]
+    bool isOut = false;
     [SerializeField] int currentStress;
     [SerializeField] int currentEnergy;
     [SerializeField] int currentPointTrait;
@@ -68,7 +69,7 @@ public class C_Actor : MonoBehaviour
 
     #endregion
 
-
+    #region Partage de donné
     public SO_Character GetDataActor()
     {
         return dataActor;
@@ -93,4 +94,29 @@ public class C_Actor : MonoBehaviour
     {
         return currentEnergy;
     }
+
+    public bool GetIsOut()
+    {
+        return isOut;
+    }
+
+    //Check si le joueur est encore jouable.
+    public void CheckIsOut()
+    {
+        if (currentStress <= 0)
+        {
+            isOut = true;
+
+            GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
+        }
+        else
+        {
+            //Check si le sprite est déjà possé.
+            if (GetComponent<Image>().sprite != dataActor.challengeSprite)
+            {
+                GetComponent<Image>().sprite = dataActor.challengeSprite;
+            }
+        }
+    }
+    #endregion
 }

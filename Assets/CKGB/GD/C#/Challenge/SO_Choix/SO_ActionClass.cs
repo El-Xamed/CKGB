@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,13 @@ public class SO_ActionClass : ScriptableObject
 {
     #region Data
     #region Texte
-    [Header("Text")]
+    [Header("Text (Button)")]
     public string buttonText;
-    public string LogsChallenge;
+
+    [Header("Text (Logs)")]
+    public string LogsCanMakeAction;
+    public string LogsCantMakeAction;
+    string currentLogs;
     #endregion
 
     #region Stats "PRIX"
@@ -64,9 +69,16 @@ public class SO_ActionClass : ScriptableObject
             //Movement
             MovePlayer(thisActor, listCase);
 
+            //Update les logs
+            currentLogs = LogsCantMakeAction;
+
+            //Check si le joueur est encore en vie.
+            thisActor.CheckIsOut();
         }
         else
         {
+            //Update les logs
+            currentLogs = LogsCantMakeAction;
             Debug.Log("Can't use this action.");
         }
     }
@@ -94,24 +106,19 @@ public class SO_ActionClass : ScriptableObject
     //vérifie la condition si l'action fonctionne
     bool CanUse(C_Actor thisActor)
     {
-        //VOIR SI IL PEUT LANCER L'ACTION MEME SI L'ACTEUR NE POSSEDE PAS LES STATS EN QUESTIONS OU SI SEUL L'ENERGIE PEUT LANCER L'ACTION.
-
-        //Si il a besoin d'etre sur l'acc.
-        if (needAcc)
-        {
-            if (IsOnAccessory(thisActor))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
+        //Si il possède assez d'énergie.
+        if (thisActor.GetcurrentEnergy() >= coutEnergy)
         {
             return true;
         }
+
+        //Si il a besoin d'etre sur l'acc.
+        if (needAcc && IsOnAccessory(thisActor))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     //vérifie la présence d'un accessoire
@@ -134,4 +141,9 @@ public class SO_ActionClass : ScriptableObject
 
     }
     #endregion
+
+    public string GetLogsChallenge()
+    {
+        return currentLogs;
+    }
 }

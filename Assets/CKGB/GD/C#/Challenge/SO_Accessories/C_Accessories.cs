@@ -10,6 +10,8 @@ public class C_Accessories : MonoBehaviour
     private void Awake()
     {
         gameObject.name = dataAcc.name;
+
+        IniChallenge();
     }
 
     public void IniChallenge()
@@ -18,5 +20,10 @@ public class C_Accessories : MonoBehaviour
         GetComponent<Image>().sprite = dataAcc.spriteAcc;
         GetComponent<Image>().preserveAspect = true;
         GetComponent<Image>().useSpriteMesh = true;
+    }
+
+    private void NewPosition(Transform newPosition)
+    {
+
     }
 }

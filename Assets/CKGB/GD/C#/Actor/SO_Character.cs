@@ -11,6 +11,7 @@ public class SO_Character : ScriptableObject
 
     [Header("Challenge (Sprite)")]
     public Sprite challengeSprite;
+    public Sprite challengeSpriteIsOut;
     public Sprite challengeSpriteUi;
     [Header("Challenge (Stats)")]
     public int stressMax;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,27 +6,35 @@ using UnityEngine;
 public class C_Case : MonoBehaviour
 {
     #region Mes variables
-    bool isBusyByActor;
-    bool isInDanger;
+    C_Actor myActor;
+
+    GameObject vfxCata;
     #endregion
 
     #region Mes fonctions
-    public void UpdateIsBusyByActor(bool isBusy)
+    public void ShowDangerZone(GameObject vfxCata)
     {
-        isBusyByActor = isBusy;
+        vfxCata = Instantiate(vfxCata, transform);
     }
 
-    public void UpdateIsInDanger(bool danger)
-    {
-        isInDanger = danger;
-    }
-    public void ShowDangerZone()
-    {
-
-    }
     public void ApplyNewStats()
     {
 
+    }
+    #endregion
+
+    #region Data partagé
+    public C_Actor GetIsBusy()
+    {
+        return myActor;
+    }
+
+    public void DestroyVfxCata()
+    {
+        if (vfxCata != null)
+        {
+            Destroy(vfxCata);
+        }
     }
     #endregion
 }

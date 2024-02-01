@@ -215,7 +215,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //
+    //Init l'UI des stats.
     void InitialiseUiActor()
     {
         foreach (var myActor in myTeam)
@@ -243,8 +243,7 @@ public class C_Challenge : MonoBehaviour
     {
         foreach (InitialAccPosition position in listPosition)
         {
-            SO_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
-            myAcc.name = position.acc.name;
+            C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
         }
     }
 
@@ -253,6 +252,9 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     void PlayerTrun()
     {
+        //Initialise la prochaine cata.
+        InitialiseCata();
+
         //Check si dans la liste de "Resolution" créer dans le dernier round, une bonne action se trouve deans. POSSIBLE QUE CETTE PARTIE CHANGE DANS LE FUTUR.
         //Applique toutes les actions.
         if (listRes != null)
@@ -280,6 +282,22 @@ public class C_Challenge : MonoBehaviour
 
         //Fait apparaitre les actions.
         SpawnActions();
+    }
+
+    //VFX des cases visées.
+    void InitialiseCata()
+    {
+        //Supprime toutes les cata
+        foreach (var thisCase in listCase)
+        {
+            thisCase.DestroyVfxCata();
+        }
+
+        //Affiche la prochaine cata.
+        foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
+        {
+            listCase[thisCase].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
+        }
     }
 
     //Fait spawn les bouton d'actions
@@ -371,22 +389,30 @@ public class C_Challenge : MonoBehaviour
         uiAction.SetActive(false);
 
         //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
-        //
+        //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
         if (currentActionResolution < listRes.Count -1 || currentActionResolution == -1)
         {
-            Debug.Log("Update Action ! : " + currentActionResolution);
-
             //Augmente la valeur.
             currentActionResolution++;
 
             //Reféfinis "currentResolution" avec 'index de base + 1.
             currentResolution = listRes[currentActionResolution];
 
-            //Utilise l'action.
-            currentResolution.action.UseAction(currentResolution.actor, listCase);
+            //Check si le perso est jouable
+            if (!currentResolution.actor.GetIsOut())
+            {
+                Debug.Log("Update Action ! : " + currentActionResolution);
 
-            //Ecrit dans les logs l'action
-            uiLogs.text = currentResolution.action.LogsChallenge;
+                //Utilise l'action.
+                currentResolution.action.UseAction(currentResolution.actor, listCase);
+
+                //Ecrit dans les logs le résultat de l'action.
+                uiLogs.text = currentResolution.action.GetLogsChallenge();
+            }
+            else
+            {
+                ResolutionTurn();
+            }
         }
         else
         {
@@ -401,7 +427,33 @@ public class C_Challenge : MonoBehaviour
     //Pour lancer la cata.
     void CataTrun()
     {
+        //Desactive tout input
+        GetComponent<PlayerInput>().enabled = false;
 
+        //Check au début si tous les perso sont "out".
+        CheckGameOver();
+
+        //Applique la catastrophe. FONCTIONNE AVEC 1 CATA, A MODIFIER POUR QU'IL UTILISE LES CATA
+        ApplyCatastrophy(myChallenge.listCatastrophy[0]);
+    }
+
+    void ApplyCatastrophy(SO_Catastrophy thisCata)
+    {
+        //Applique la cata
+        foreach (var thisCase in thisCata.targetCase)
+        {
+            //Check si sur cette case il y a un actor.
+            if (listCase[thisCase].GetIsBusy() != null)
+            {
+                listCase[thisCase].GetIsBusy().TakeDamage(thisCata.reducStress, thisCata.reducEnergie);
+            }
+        }
+
+        //Ecrit dans les logs le résultat de l'action.
+        uiLogs.text = thisCata.catastrophyLog;
+
+        //Reviens au round du joueur.
+        PlayerTrun();
     }
     #endregion
 
@@ -416,6 +468,26 @@ public class C_Challenge : MonoBehaviour
         {
             return false;
         }
+    }
+
+    void CheckGameOver()
+    {
+        int nbActorOut = 0;
+
+        foreach (var thisActor in myTeam)
+        {
+            if (thisActor.GetIsOut()) { nbActorOut++; }
+        }
+
+        if (nbActorOut == myTeam.Count -1)
+        {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        Debug.Log("GameOver");
     }
 
     //Fin du challenge.

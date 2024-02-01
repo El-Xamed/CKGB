@@ -6,8 +6,6 @@ using UnityEngine;
 public class SO_Accessories : ScriptableObject
 {
     #region Mes variables
-    //Pour check si la case est occupé par un acteur
-    public GameObject gameObject;
     public new string name;
     public Sprite spriteAcc;
     bool isBusyByCharacter;
@@ -58,14 +56,9 @@ public class SO_Accessories : ScriptableObject
                 else { currentPosition--; }
                 break;
         }
-
-        NewPosition(newPosition);
     }
 
-    private void NewPosition(Transform newPosition)
-    {
-        gameObject.transform.SetParent(newPosition);
-    }
+    
     #endregion
 }
 
