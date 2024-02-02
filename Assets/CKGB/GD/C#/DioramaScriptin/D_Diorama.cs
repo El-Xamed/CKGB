@@ -50,7 +50,7 @@ public class D_Diorama : MonoBehaviour
     }
     public IEnumerator hideSpriteMask()
     {
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(2f);
         spEnergy.GetComponent<SpriteMask>().enabled = false;
     }
     public IEnumerator hideSpritetetanise()
