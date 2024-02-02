@@ -68,51 +68,43 @@ public class SO_ActionClass : ScriptableObject
 
         //Check si le joueur est encore en vie.
         thisActor.CheckIsOut();
-
-
-
-        //Check si cette action peut etre utilisé.
-        /*
-        if (CanUse(thisActor))
-        {
-            Debug.Log("Use this actionClass.");
-
-            //Stats
-            thisActor.TakeDamage(coutCalm, coutEnergy);
-            thisActor.TakeHeal(gainCalm, gainEnergy);
-
-            //Movement
-            MovePlayer(thisActor, listCase);
-
-            //Update les logs
-            currentLogs = LogsCantMakeAction;
-
-            //Check si le joueur est encore en vie.
-            thisActor.CheckIsOut();
-        }
-        else
-        {
-            //Update les logs
-            currentLogs = LogsCantMakeAction;
-            Debug.Log("Can't use this action.");
-        }
-        */
     }
 
     //Déplace le personnage
     void MovePlayer(C_Actor myActor, List<C_Case> listCase)
     {
+        Debug.Log("Move player");
+
         if (moveRight)
         {
-            myActor.transform.parent = listCase[myActor.GetPosition() + 1].transform;
-            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-            myActor.SetPosition(myActor.GetPosition() + 1);
+            if (myActor.GetPosition() == 0)
+            {
+                myActor.transform.parent = listCase[0].transform;
+                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+                myActor.SetPosition(0);
+            }
+            else
+            {
+                myActor.transform.parent = listCase[myActor.GetPosition() + 1].transform;
+                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+                myActor.SetPosition(myActor.GetPosition() + 1);
+            }
         }
         if (moveLeft)
         {
-            myActor.transform.parent = listCase[myActor.GetPosition() - 1].transform;
-            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-            myActor.SetPosition(myActor.GetPosition() - 1);
+            if (myActor.GetPosition() == listCase.Count -1)
+            {
+                myActor.transform.parent = listCase[listCase.Count - 1].transform;
+                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+                myActor.SetPosition(listCase.Count - 1);
+            }
+            else
+            {
+                myActor.transform.parent = listCase[myActor.GetPosition() - 1].transform;
+                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+                myActor.SetPosition(myActor.GetPosition() - 1);
+            }
+            
         }
         if (caseToGo > -1)
         {
@@ -148,13 +140,21 @@ public class SO_ActionClass : ScriptableObject
     //vérifie la présence d'un accessoire
     bool IsOnAccessory(C_Actor thisActor)
     {
-        //Si a besoin de l'acc + si l'acteur se trouve sur la meme case que l'acc.
-        if (thisActor.GetPosition() == acc.currentPosition)
+        if (acc != null)
         {
-            return true;
+            //Si a besoin de l'acc + si l'acteur se trouve sur la meme case que l'acc.
+            if (thisActor.GetPosition() == acc.currentPosition)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
+            Debug.Log("Pas d'Acc !");
             return false;
         }
     }

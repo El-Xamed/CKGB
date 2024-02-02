@@ -14,14 +14,16 @@ public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
     #region Input
-    bool canSelectAction = true;
-    bool canUpdateRes = false;
+    [Header("Input")]
+    [SerializeField] bool canSelectAction = true;
+    [SerializeField] bool canUpdateRes = false;
     #endregion
 
     #region De base
-    [Header("UI")]
+    
     GameObject canva;
     GameObject uiCases;
+    [Header("UI")]
     [SerializeField] C_Stats uiStatsPrefab;
     [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
@@ -41,7 +43,7 @@ public class C_Challenge : MonoBehaviour
     [Space(50)]
     bool canUpdateEtape = false;
 
-    C_Actor currentActor;
+    [SerializeField] C_Actor currentActor;
 
     //S�lection d'actions
     [SerializeField] int currentAction;
@@ -54,9 +56,9 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Résolution
+    [Header("Resolution")]
     [SerializeField] List<ActorResolution> listRes;
-    ActorResolution currentResolution;
-    int currentActionResolution;
+    [SerializeField] ActorResolution currentResolution;
     [SerializeField] TMP_Text uiLogs;
     #endregion
     #endregion
@@ -72,6 +74,8 @@ public class C_Challenge : MonoBehaviour
         if (context.performed && canSelectAction && currentAction < listButton.Count -1)
         {
             currentAction++;
+
+            UpdateActionSelected();
         }
     }
 
@@ -82,6 +86,8 @@ public class C_Challenge : MonoBehaviour
         if (context.performed && canSelectAction && currentAction > 0)
         {
             currentAction--;
+
+            UpdateActionSelected();
         }
     }
 
@@ -91,6 +97,9 @@ public class C_Challenge : MonoBehaviour
 
         if (context.performed && canUpdateRes)
         {
+            //Reféfinis "currentResolution" avec 'index de base + 1.
+            currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+
             ResolutionTurn();
         }
 
@@ -117,12 +126,9 @@ public class C_Challenge : MonoBehaviour
             }
             else
             {
-                //Lance la "Phase de résolution".
-                canSelectAction = false;
-                canUpdateRes = true;
-
-                //Définis la valeur à "-1" pour naviguer sans problème dans la listRes.
-                currentActionResolution = -1;
+                currentActor = null;
+                UpdateActorSelected();
+                currentResolution = listRes[0];
                 ResolutionTurn();
             }
         }
@@ -154,6 +160,9 @@ public class C_Challenge : MonoBehaviour
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
         UpdateUi(currentStep);
+
+        //
+        UpdateActorSelected();
 
         //Lance directement le tour du joueur
         PlayerTrun();
@@ -253,29 +262,43 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     void PlayerTrun()
     {
-        //Initialise la prochaine cata.
-        InitialiseCata();
+        Debug.Log("Player turn !");
 
-        //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
-        if (canUpdateEtape)
+        //Check si le perso est jouable
+        if (!currentActor.GetIsOut())
         {
-            stepUpdate();
+            //Initialise la prochaine cata.
+            InitialiseCata();
 
-            canUpdateEtape = false;
+            //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
+            if (canUpdateEtape)
+            {
+                stepUpdate();
+
+                canUpdateEtape = false;
+            }
+
+            //Débloque les commande.
+            GetComponent<PlayerInput>().enabled = true;
+
+            //redonne la possibilité de choisir ses action.
+            canSelectAction = true;
+            canUpdateRes = false;
+
+            //Change l'UI.
+            uiAction.SetActive(true);
+
+            //Fait apparaitre les actions.
+            SpawnActions();
+
+            //Met a jour le curseur des actions.
+            UpdateActionSelected();
         }
-
-        //Débloque les commande.
-        GetComponent<PlayerInput>().enabled = true;
-
-        //redonne la possibilité de choisir ses action.
-        canSelectAction = true;
-        canUpdateRes = false;
-
-        //Change l'UI.
-        uiAction.SetActive(true);
-
-        //Fait apparaitre les actions.
-        SpawnActions();
+        else
+        {
+            NextActor();
+            PlayerTrun();
+        }
     }
 
     //VFX des cases visées.
@@ -345,6 +368,12 @@ public class C_Challenge : MonoBehaviour
         currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
 
         UpdateActorSelected();
+
+        //Check si l'actor en question est ko.
+        if (currentActor.GetIsOut())
+        {
+            NextActor();
+        }
     }
 
     //Passe à l'étape suivant.
@@ -376,14 +405,16 @@ public class C_Challenge : MonoBehaviour
         uiEtape.GetComponentInChildren<TMP_Text>().text = myEtape.énoncé;
     }
 
-    void UpdateActionSelected(int thisActor)
+    void UpdateActionSelected()
     {
         foreach (var myButton in listButton)
         {
             //Feedback du bouton non-selecioné.
+            myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         //Feedback du bouton non-selecioné.
+        listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
     }
     #endregion
 
@@ -399,47 +430,41 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("Resolution trun !");
 
+        //Update les bool.
+        canSelectAction = false;
+        canUpdateRes = true;
+
         //Change l'UI.
         uiAction.SetActive(false);
 
         //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
         //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
-        if (currentActionResolution < listRes.Count -1 || currentActionResolution == -1)
+        if (listRes.IndexOf(currentResolution) < listRes.Count)
         {
-            //Augmente la valeur.
-            currentActionResolution++;
-
-            //Reféfinis "currentResolution" avec 'index de base + 1.
-            currentResolution = listRes[currentActionResolution];
-
-            //Check si le perso est jouable
-            if (!currentResolution.actor.GetIsOut())
+            if (currentResolution.action.CanUse(currentResolution.actor))
             {
-                //CHECK SI L'ACTION PEUT ETRE UTILISE, SI OUI IL ECRIT QUE C'EST BON SINON IL ECRIT L'AUTRE REPONSE + SI C'EST LA BONNE REPONSE ALORS IL LE SIGNALE.
-                if (currentResolution.action.CanUse(currentResolution.actor))
+                //Utilise l'action.
+                currentResolution.action.UseAction(currentResolution.actor, listCase);
+
+                //Check si il est sur une case "Dangereuse".
+                currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
+
+                
+
+                //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
+                if (currentResolution.action == currentStep.rightAnswer)
                 {
-                    //Utilise l'action.
-                    currentResolution.action.UseAction(currentResolution.actor, listCase);
-
-                    //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
-                    if (currentResolution.action == currentStep.rightAnswer)
-                    {
-                        Debug.Log("Bonne action");
-                        canUpdateEtape = true;
-                    }
-                    else
-                    {
-                        Debug.Log("Mauvaise action");
-                    }
+                    Debug.Log("Bonne action");
+                    canUpdateEtape = true;
                 }
+                else
+                {
+                    Debug.Log("Mauvaise action");
+                }
+            }
 
-                //Ecrit dans les logs le résultat de l'action.
-                uiLogs.text = currentResolution.action.GetLogsChallenge();
-            }
-            else
-            {
-                ResolutionTurn();
-            }
+            //Ecrit dans les logs le résultat de l'action.
+            uiLogs.text = currentResolution.action.GetLogsChallenge();
         }
         else
         {
@@ -447,6 +472,7 @@ public class C_Challenge : MonoBehaviour
             CataTrun();
             Debug.Log("Toutes les actions on été fait");
         }
+
     }
     #endregion
 
@@ -454,6 +480,8 @@ public class C_Challenge : MonoBehaviour
     //Pour lancer la cata.
     void CataTrun()
     {
+        Debug.Log("CataTrun");
+
         //Desactive tout input
         GetComponent<PlayerInput>().enabled = false;
 
@@ -462,6 +490,15 @@ public class C_Challenge : MonoBehaviour
 
         //Applique la catastrophe. FONCTIONNE AVEC 1 CATA, A MODIFIER POUR QU'IL UTILISE LES CATA
         ApplyCatastrophy(myChallenge.listCatastrophy[0]);
+
+        //Re-Check si tous les perso sont "out".
+        CheckGameOver();
+
+        //Redéfini le début de la liste.
+        currentActor = myTeam[0];
+
+        //Reviens au round du joueur.
+        PlayerTrun();
     }
 
     //Applique la cata
@@ -488,15 +525,7 @@ public class C_Challenge : MonoBehaviour
         uiLogs.text = thisCata.catastrophyLog;
 
         //Check si le jeu est fini "GameOver".
-        if (CheckGameOver())
-        {
-            GameOver();
-        }
-        else
-        {
-            //Reviens au round du joueur.
-            PlayerTrun();
-        }
+        CheckGameOver();
     }
     #endregion
 
@@ -508,8 +537,11 @@ public class C_Challenge : MonoBehaviour
             myActor.IsSelected(false);
         }
 
-        //Fait apparaitre le contour blanc de l'actor selectionne.
-        currentActor.IsSelected(true);
+        if (currentActor != null)
+        {
+            //Fait apparaitre le contour blanc de l'actor selectionne.
+            currentActor.IsSelected(true);
+        }
     }
 
     //Bool pour check si le vhallenge est fini.
@@ -536,6 +568,7 @@ public class C_Challenge : MonoBehaviour
 
         if (nbActorOut == myTeam.Count)
         {
+            GameOver();
             return true;
         }
 

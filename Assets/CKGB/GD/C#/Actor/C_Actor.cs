@@ -13,7 +13,7 @@ public class C_Actor : MonoBehaviour
     C_Stats UiStats;
 
     [Header("Stats")]
-    bool isOut = false;
+    [SerializeField] bool isOut = false;
     [SerializeField] int currentStress;
     [SerializeField] int currentEnergy;
     [SerializeField] int currentPointTrait;
@@ -23,7 +23,12 @@ public class C_Actor : MonoBehaviour
     private void Awake()
     {
         gameObject.name = dataActor.name;
+
+        //Desactive et renseigne le sprite en question.
         transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(0).GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
+
+        //Désactive le sprite KO.
         transform.GetChild(1).gameObject.SetActive(false);
     }
 
@@ -43,6 +48,7 @@ public class C_Actor : MonoBehaviour
 
     public void TakeDamage(int calm, int energy)
     {
+        Debug.Log("Damage : " + calm + " : " + energy);
         currentStress -= calm;
         currentEnergy -= energy;
 
@@ -131,13 +137,28 @@ public class C_Actor : MonoBehaviour
         else
         {
             //Check si le sprite est déjà possé.
-            if (GetComponent<Image>().sprite != dataActor.challengeSprite)
+            if (GetComponent<Image>().sprite != dataActor.challengeSprite && GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
             {
                 isOut = false;
 
                 GetComponent<Image>().sprite = dataActor.challengeSprite;
 
                 transform.GetChild(1).gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void CheckIsInDanger(SO_Catastrophy listDangerCases)
+    {
+        foreach (var thisCase in listDangerCases.targetCase)
+        {
+            if (thisCase == position)
+            {
+                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+            }
+            else if (isOut)
+            {
+                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
             }
         }
     }
