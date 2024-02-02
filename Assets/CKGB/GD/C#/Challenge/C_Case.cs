@@ -12,9 +12,9 @@ public class C_Case : MonoBehaviour
     #endregion
 
     #region Mes fonctions
-    public void ShowDangerZone(GameObject vfxCata)
+    public void ShowDangerZone(GameObject newVfxCata)
     {
-        vfxCata = Instantiate(vfxCata, transform);
+        vfxCata = Instantiate(newVfxCata, transform);
     }
 
     public void ApplyNewStats()

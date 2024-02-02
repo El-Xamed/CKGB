@@ -19,6 +19,7 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region De base
+    [Header("UI")]
     GameObject canva;
     GameObject uiCases;
     [SerializeField] GameObject uiStatsPrefab;
@@ -26,6 +27,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiEtape;
     [SerializeField] GameObject uiAction;
 
+    [Header("Data")]
     [SerializeField] SO_Challenge myChallenge;
 
     [SerializeField] List<C_Actor> myTeam;
@@ -46,9 +48,9 @@ public class C_Challenge : MonoBehaviour
     public SO_Etape currentStep;
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
-    [SerializeField] List<SO_ActionClass> listActions;
+    [SerializeField] List<ActionButton> listButton;
     #endregion
-    
+
     #region Résolution
     [SerializeField] List<ActorResolution> listRes;
     ActorResolution currentResolution;
@@ -65,7 +67,7 @@ public class C_Challenge : MonoBehaviour
     {
         if(!context.performed) { return; }
 
-        if (context.performed && canSelectAction)
+        if (context.performed && canSelectAction && currentAction < listButton.Count -1)
         {
             currentAction++;
         }
@@ -75,7 +77,7 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed && canSelectAction)
+        if (context.performed && canSelectAction && currentAction > 0)
         {
             currentAction--;
         }
@@ -101,7 +103,7 @@ public class C_Challenge : MonoBehaviour
         {
             //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
             ActorResolution actorResolution = new ActorResolution();
-            actorResolution.action = listActions[currentAction];
+            actorResolution.action = listButton[currentAction].myActionClass;
             actorResolution.actor = currentActor;
             listRes.Add(actorResolution);
 
@@ -300,21 +302,43 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    [Serializable]
+    public class ActionButton
+    {
+        public GameObject myButton;
+        public SO_ActionClass myActionClass;
+    }
+    
     //Fait spawn les bouton d'actions
     void SpawnActions()
     {
         if (currentStep.actions != null)
         {
-            Debug.Log("Spawn actions");
+            //Supprime les boutons précédent
+            if (listButton != null)
+            {
+                foreach (var myAction in listButton)
+                {
+                    Destroy(myAction.myButton);
+                }
+            }
+
+            //Créer une nouvelle liste.
+            listButton = new List<ActionButton>();
+
+            //Créer de nouveau boutons
             for (int i = 0; i < currentStep.actions.Length; i++)
             {
-                //Création d'une nouvelle class qui sera ajout� dans une liste.
-                listActions.Add(currentStep.actions[i]);
+                //Nouvelle class.
+                ActionButton newActionButton = new ActionButton();
 
-                //Création d'un boutton qui sera en ref dans la class action.
-                GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform);
-                //Update le text + la ref de l'action.
-                myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
+                //Reférence button.
+                newActionButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform);
+                newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
+
+                //Reférence Action.
+                newActionButton.myActionClass = currentStep.actions[i];
+                listButton.Add(newActionButton);
             }
         }
         else
@@ -339,18 +363,6 @@ public class C_Challenge : MonoBehaviour
 
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) +1];
-
-            //Update l'UI.
-            UpdateUi(currentStep);
-
-            //Supprime tous les boutons.
-            for (int i = 0; i < uiAction.transform.childCount; i++)
-            {
-                Destroy(uiAction.transform.GetChild(i).gameObject);
-            }
-
-            //Nouvelle liste.
-            listActions = new List<SO_ActionClass>();
 
             //Apparition des boutons.
             SpawnActions();
