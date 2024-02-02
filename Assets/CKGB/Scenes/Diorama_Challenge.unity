@@ -507,6 +507,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130372227}
   m_CullTransparentMesh: 1
+--- !u!1 &150556829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1312686571601431232, guid: 0170ddf8e54a4e244ab2a037789da407, type: 3}
+  m_PrefabInstance: {fileID: 1312686571388606637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &155259996
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +744,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 221937796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 793037203}
+        m_TargetAssemblyTypeName: D_Diorama, Assembly-CSharp
+        m_MethodName: KillReviveEsthela
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &221937796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1195,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8076813159170973826, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8076813159474553475, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1194,6 +1215,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8076813159474553477, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8076813159843455666, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -1209,6 +1234,14 @@ PrefabInstance:
     - target: {fileID: 8076813159860985582, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076813159860985583, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076813159860985583, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8076813159860985583, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: EmissionModule.enabled
@@ -1238,13 +1271,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8076813160621025049, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8076813161165142433, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: m_Name
       value: Effet_Energie_UP
       objectReference: {fileID: 0}
     - target: {fileID: 8076813161165142433, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8076813161165142434, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
       propertyPath: m_RootOrder
@@ -1311,6 +1348,11 @@ PrefabInstance:
 --- !u!4 &306305049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8076813161165142434, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+  m_PrefabInstance: {fileID: 306305048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &306305050 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8076813159843455665, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
   m_PrefabInstance: {fileID: 306305048}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &307476760
@@ -1729,7 +1771,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 454535452}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 793037203}
+        m_TargetAssemblyTypeName: D_Diorama, Assembly-CSharp
+        m_MethodName: enterExitActionMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &454535452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2975,6 +3029,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609399662}
   m_CullTransparentMesh: 1
+--- !u!1 &610733736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8076813159884105576, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+  m_PrefabInstance: {fileID: 306305048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &615086308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,6 +4067,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871320394c2cd04c839d440b1aac02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyUp: {fileID: 306305050}
+  PSenergy: {fileID: 968418939}
+  spEnergy: {fileID: 610733736}
+  Tetanisation: {fileID: 1287506179}
+  action: 0
+  actionsUI:
+  - {fileID: 849047985}
+  - {fileID: 976971361}
+  - {fileID: 150556829}
+  - {fileID: 1638233950}
+  - {fileID: 1333971327}
+  - {fileID: 63848181}
 --- !u!1 &809583884
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,6 +4664,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &968418939 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8076813159860985583, guid: beb3956caf7280c4ba159cc186c28af2, type: 3}
+  m_PrefabInstance: {fileID: 306305048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &976971361
 GameObject:
   m_ObjectHideFlags: 0
@@ -7756,6 +7832,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630172043}
   m_CullTransparentMesh: 1
+--- !u!1 &1638233950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4741485014922121400, guid: cbf81f962d6f770439b9e065e07805da, type: 3}
+  m_PrefabInstance: {fileID: 4741485014936253082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1667428628
 GameObject:
   m_ObjectHideFlags: 0
@@ -8369,7 +8450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1845238290
 Transform:
   m_ObjectHideFlags: 0
@@ -8520,7 +8601,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1876779181}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 793037203}
+        m_TargetAssemblyTypeName: D_Diorama, Assembly-CSharp
+        m_MethodName: ENERGYUP
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1876779181
 MonoBehaviour:
   m_ObjectHideFlags: 0
