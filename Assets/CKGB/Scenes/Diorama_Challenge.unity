@@ -4070,8 +4070,8 @@ MonoBehaviour:
   energyUp: {fileID: 306305050}
   PSenergy: {fileID: 968418939}
   spEnergy: {fileID: 610733736}
-  DedEsthela: {fileID: 0}
-  esthela: {fileID: 0}
+  DedEsthela: {fileID: 1287506177}
+  esthela: {fileID: 1601157181}
   Tetanisation: {fileID: 1287506179}
   action: 0
   actionsUI:
@@ -5729,7 +5729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1287506178
 Transform:
   m_ObjectHideFlags: 0
@@ -7589,7 +7589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601157181}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.77, y: -2.85, z: 0}
+  m_LocalPosition: {x: 3.77, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8448,7 +8448,7 @@ GameObject:
   - component: {fileID: 1839931544}
   - component: {fileID: 1839931545}
   m_Layer: 0
-  m_Name: SP_Morgan_Chara_Challenge (1)
+  m_Name: OutLineMorgan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

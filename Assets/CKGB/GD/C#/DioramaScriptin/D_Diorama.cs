@@ -11,6 +11,11 @@ public class D_Diorama : MonoBehaviour
     [SerializeField] GameObject DedEsthela;
     [SerializeField] GameObject esthela;
     [SerializeField] Animator Tetanisation;
+    [SerializeField] GameObject JaugeKO;
+    [SerializeField] GameObject jaugenormal;
+    [SerializeField] GameObject[] choiceButton;
+
+
     [SerializeField] bool action;
     [SerializeField] GameObject[] actionsUI;
     // Start is called before the first frame update
@@ -18,6 +23,7 @@ public class D_Diorama : MonoBehaviour
     {
         spEnergy.GetComponent<SpriteMask>().enabled=false;
         DedEsthela.SetActive(false);
+        JaugeKO.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,7 +60,7 @@ public class D_Diorama : MonoBehaviour
     }
     public IEnumerator hideSpriteesthela()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         esthela.SetActive(false);
     }
 
@@ -64,12 +70,19 @@ public class D_Diorama : MonoBehaviour
         {
             DedEsthela.SetActive(true);
             Tetanisation.SetBool("ded",true);
-            hideSpriteesthela();
+            StartCoroutine(hideSpriteesthela());
+            JaugeKO.SetActive(true);
+            jaugenormal.SetActive(false);
+            actionsUI[6] = JaugeKO;
         }
         else
         {
-            Tetanisation.SetBool("ded", false);
-            hideSpritetetanise();
+            Tetanisation.SetBool("ded",false);
+            StartCoroutine(hideSpritetetanise());
+            esthela.SetActive(true);
+            JaugeKO.SetActive(false);
+            jaugenormal.SetActive(true);
+            actionsUI[6] = jaugenormal;
         }
     }
     public void enterExitActionMenu()
@@ -86,5 +99,20 @@ public class D_Diorama : MonoBehaviour
             foreach (GameObject ui in actionsUI)
                 ui.SetActive(false);
         }
+    }
+    public void switchButtonChoice()
+    {
+        if (choiceButton[0] == actionsUI[4])
+        {
+            actionsUI[4] = choiceButton[1];
+            choiceButton[0].SetActive(false);
+            choiceButton[1].SetActive(true);
+        }
+        else
+        {
+            actionsUI[4] = choiceButton[0];
+            choiceButton[1].SetActive(false);
+            choiceButton[0].SetActive(true);
+        }           
     }
 }
