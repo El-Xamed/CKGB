@@ -48,7 +48,6 @@ public class C_Actor : MonoBehaviour
 
     public void TakeDamage(int calm, int energy)
     {
-        Debug.Log("Damage : " + calm + " : " + energy);
         currentStress -= calm;
         currentEnergy -= energy;
 

@@ -73,8 +73,6 @@ public class SO_ActionClass : ScriptableObject
     //Déplace le personnage
     void MovePlayer(C_Actor myActor, List<C_Case> listCase)
     {
-        Debug.Log("Move player");
-
         if (moveRight)
         {
             if (myActor.GetPosition() == 0)
