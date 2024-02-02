@@ -10,6 +10,7 @@ public class C_Actor : MonoBehaviour
     int position;
 
     [SerializeField] public SO_Character dataActor;
+    C_Stats UiStats;
 
     [Header("Stats")]
     bool isOut = false;
@@ -42,12 +43,21 @@ public class C_Actor : MonoBehaviour
     {
         currentStress -= calm;
         currentEnergy -= energy;
+
+        UpdateUiStats();
     }
 
     public void TakeHeal(int calm, int energy)
     {
         currentStress += calm;
         currentEnergy += energy;
+
+        UpdateUiStats();
+    }
+
+    public void UpdateUiStats()
+    {
+        UiStats.UpdateUi(this);
     }
 
     public void MoveActor(Transform newPosition)
@@ -85,6 +95,11 @@ public class C_Actor : MonoBehaviour
         position = newPosition;
     }
 
+    public void SetUiStats(C_Stats myUiStats)
+    {
+        UiStats = myUiStats;
+    }
+
     public int GetCurrentStress()
     {
         return currentStress;
@@ -114,6 +129,8 @@ public class C_Actor : MonoBehaviour
             //Check si le sprite est déjà possé.
             if (GetComponent<Image>().sprite != dataActor.challengeSprite)
             {
+                isOut = false;
+
                 GetComponent<Image>().sprite = dataActor.challengeSprite;
             }
         }

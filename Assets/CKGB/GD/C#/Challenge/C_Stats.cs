@@ -17,7 +17,7 @@ public class C_Stats : MonoBehaviour
     [SerializeField] GameObject uiCalm;
     [SerializeField] GameObject uiEnergie;
 
-    public void Initstats(C_Actor myActor)
+    public void UpdateUi(C_Actor myActor)
     {
         //Setup le PDP.
         PDP.sprite = myActor.dataActor.challengeSpriteUi;

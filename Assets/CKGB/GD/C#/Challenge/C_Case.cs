@@ -6,8 +6,6 @@ using UnityEngine;
 public class C_Case : MonoBehaviour
 {
     #region Mes variables
-    C_Actor myActor;
-
     GameObject vfxCata;
     #endregion
 
@@ -24,10 +22,6 @@ public class C_Case : MonoBehaviour
     #endregion
 
     #region Data partagé
-    public C_Actor GetIsBusy()
-    {
-        return myActor;
-    }
 
     public void DestroyVfxCata()
     {

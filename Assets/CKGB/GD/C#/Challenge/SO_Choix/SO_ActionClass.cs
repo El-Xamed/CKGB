@@ -57,7 +57,22 @@ public class SO_ActionClass : ScriptableObject
     #region Fonctions
     public void UseAction(C_Actor thisActor, List<C_Case> listCase)
     {
+        Debug.Log("Use this actionClass.");
+
+        //Stats
+        thisActor.TakeDamage(coutCalm, coutEnergy);
+        thisActor.TakeHeal(gainCalm, gainEnergy);
+
+        //Movement
+        MovePlayer(thisActor, listCase);
+
+        //Check si le joueur est encore en vie.
+        thisActor.CheckIsOut();
+
+
+
         //Check si cette action peut etre utilisé.
+        /*
         if (CanUse(thisActor))
         {
             Debug.Log("Use this actionClass.");
@@ -81,6 +96,7 @@ public class SO_ActionClass : ScriptableObject
             currentLogs = LogsCantMakeAction;
             Debug.Log("Can't use this action.");
         }
+        */
     }
 
     //Déplace le personnage
@@ -89,35 +105,43 @@ public class SO_ActionClass : ScriptableObject
         if (moveRight)
         {
             myActor.transform.parent = listCase[myActor.GetPosition() + 1].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
             myActor.SetPosition(myActor.GetPosition() + 1);
         }
         if (moveLeft)
         {
             myActor.transform.parent = listCase[myActor.GetPosition() - 1].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
             myActor.SetPosition(myActor.GetPosition() - 1);
         }
         if (caseToGo > -1)
         {
             myActor.transform.parent = listCase[caseToGo].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
             myActor.SetPosition(caseToGo);
         }
     }
 
     //vérifie la condition si l'action fonctionne
-    bool CanUse(C_Actor thisActor)
+    public bool CanUse(C_Actor thisActor)
     {
         //Si il possède assez d'énergie.
         if (thisActor.GetcurrentEnergy() >= coutEnergy)
         {
+            //Update les logs
+            currentLogs = LogsCanMakeAction;
             return true;
         }
 
         //Si il a besoin d'etre sur l'acc.
         if (needAcc && IsOnAccessory(thisActor))
         {
+            //Update les logs
+            currentLogs = LogsCanMakeAction;
             return true;
         }
 
+        currentLogs = LogsCantMakeAction;
         return false;
     }
 
