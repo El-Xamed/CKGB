@@ -52,7 +52,7 @@ public class T_TempsMort : MonoBehaviour
     Animation[] revasser;
     #endregion
 
-    GameObject actorActif;
+   [SerializeField] GameObject actorActif;
     #endregion
 
     private void Awake()
@@ -76,7 +76,6 @@ public class T_TempsMort : MonoBehaviour
         }
         ChallengeButton.SetActive(false);
         
-        Es = FindObjectOfType<EventSystem>();
         GameManager.instance.ChangeActionMap("TempsMort");
         initiatePosition();
         //Pour setup les perso
@@ -105,6 +104,7 @@ public class T_TempsMort : MonoBehaviour
         {
             if (actorActif == characters[i]&&isAnActionButton==true)
             {
+                Debug.Log("oui");
                 charactersCompleteResume[i].SetActive(true);
             }
             else
@@ -113,6 +113,13 @@ public class T_TempsMort : MonoBehaviour
     }
     public void updateButton()
     {
+     for(int i=0;i<charactersButton.Length;i++)
+        {
+            if(currentButton==charactersButton[i])
+            {
+                actorActif = characters[i];
+            }
+        }
         currentButton = Es.currentSelectedGameObject;
         AffichageMiniCartePerso();
         AffichageCarteCompletePerso();     
