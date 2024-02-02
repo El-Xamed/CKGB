@@ -129,6 +129,8 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
 
+    //------------------------------------------------------------------------------------------------------------------------
+
     private void Awake()
     {
         #region Racourcis
