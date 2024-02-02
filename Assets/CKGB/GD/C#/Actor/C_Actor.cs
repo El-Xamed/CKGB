@@ -23,6 +23,8 @@ public class C_Actor : MonoBehaviour
     private void Awake()
     {
         gameObject.name = dataActor.name;
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 
     #region Mes fonctions
@@ -123,6 +125,8 @@ public class C_Actor : MonoBehaviour
             isOut = true;
 
             GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
+
+            transform.GetChild(1).gameObject.SetActive(true);
         }
         else
         {
@@ -132,7 +136,21 @@ public class C_Actor : MonoBehaviour
                 isOut = false;
 
                 GetComponent<Image>().sprite = dataActor.challengeSprite;
+
+                transform.GetChild(1).gameObject.SetActive(false);
             }
+        }
+    }
+
+    public void IsSelected(bool isSelected)
+    {
+        if (isSelected)
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
     #endregion

@@ -341,6 +341,8 @@ public class C_Challenge : MonoBehaviour
     void NextActor()
     {
         currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
+
+        UpdateActorSelected();
     }
 
     //Passe à l'étape suivant.
@@ -370,6 +372,16 @@ public class C_Challenge : MonoBehaviour
     void UpdateUi(SO_Etape myEtape)
     {
         uiEtape.GetComponentInChildren<TMP_Text>().text = myEtape.énoncé;
+    }
+
+    void UpdateActionSelected(int thisActor)
+    {
+        foreach (var myButton in listButton)
+        {
+            //Feedback du bouton non-selecioné.
+        }
+
+        //Feedback du bouton non-selecioné.
     }
     #endregion
 
@@ -485,6 +497,18 @@ public class C_Challenge : MonoBehaviour
         }
     }
     #endregion
+
+    void UpdateActorSelected()
+    {
+        //Retire sur tout les actor le contours blanc
+        foreach (var myActor in myTeam)
+        {
+            myActor.IsSelected(false);
+        }
+
+        //Fait apparaitre le contour blanc de l'actor selectionne.
+        currentActor.IsSelected(true);
+    }
 
     //Bool pour check si le vhallenge est fini.
     bool CheckEtape()
