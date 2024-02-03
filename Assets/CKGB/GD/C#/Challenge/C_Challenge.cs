@@ -30,12 +30,15 @@ public class C_Challenge : MonoBehaviour
     GameObject canva;
     GameObject uiCases;
     [Header("UI")]
-    
     [SerializeField] C_Stats uiStatsPrefab;
     [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
     [SerializeField] GameObject uiAction;
+    [SerializeField] GameObject uiTrait;
+    [SerializeField] GameObject uiGoodAction;
     [SerializeField] GameObject uiGameOver;
+
+
 
     [Header("Data")]
     [SerializeField] SO_Challenge myChallenge;
@@ -50,7 +53,6 @@ public class C_Challenge : MonoBehaviour
     #region Interface
     [Header ("UI (Interface)")]
     [SerializeField] GameObject uiInterface;
-    [SerializeField] GameObject currentButton;
 
     public enum Interface { Neutre, Logs, Actions, Traits, Back }
 
@@ -113,7 +115,7 @@ public class C_Challenge : MonoBehaviour
                 }
                 if (input.x < 0)
                 {
-                    GoLogs();
+                    GoTraits();
                     return;
                 }
 
@@ -124,7 +126,7 @@ public class C_Challenge : MonoBehaviour
                 }
                 if (input.y > 0)
                 {
-                    GoTraits();
+                    GoLogs();
                     return;
                 }
             }
@@ -143,6 +145,25 @@ public class C_Challenge : MonoBehaviour
                     if (canSelectAction)
                     {
                         UseAction();
+                        return;
+                    }
+                }
+            }
+
+            //Pour selectionner ses traits.
+            if (currentInterface == Interface.Traits)
+            {
+                if (input.x > 0)
+                {
+                    GoBack();
+                    return;
+                }
+                if (input.y < 0)
+                {
+                    //Pour la partie slection des action.
+                    if (canSelectAction)
+                    {
+                        Debug.Log("Ajout une action");
                         return;
                     }
                 }
@@ -202,16 +223,15 @@ public class C_Challenge : MonoBehaviour
         #endregion
     }
 
-    [Obsolete]
     private void Start()
     {
+        #region Initialisation
         //Apparition des cases
         SpawnCases();
 
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
-        #region Initialisation
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
@@ -352,6 +372,8 @@ public class C_Challenge : MonoBehaviour
     //Pour accéder au actions.
     public void GoAction()
     {
+        currentAction = 0;
+
         uiInterface.GetComponent<Animator>().SetTrigger("OpenActions");
 
         uiAction.SetActive(true);
@@ -370,39 +392,62 @@ public class C_Challenge : MonoBehaviour
     //Pour accéder au traits.
     public void GoTraits()
     {
+        currentAction = 0;
 
+        uiInterface.GetComponent<Animator>().SetTrigger("OpenTraits");
+
+        uiTrait.SetActive(true);
+
+        currentInterface = Interface.Traits;
+
+        canSelectAction = true;
     }
 
     //Pour revenir au temps mort. (Et aussi au autres boutons ?)
     public void GoBack()
     {
-        if (currentInterface == Interface.Actions)
+        switch (currentInterface)
         {
-            currentInterface = Interface.Neutre;
+            case Interface.Actions:
+                uiInterface.GetComponent<Animator>().SetTrigger("CloseActions");
+                uiAction.SetActive(false);
+                canSelectAction = false;
+                break;
+            case Interface.Traits:
+                uiInterface.GetComponent<Animator>().SetTrigger("CloseTraits");
+                uiTrait.SetActive(false);
+                canSelectAction = false;
+                break;
+            case Interface.Logs:
 
-            uiAction.SetActive(false);
-
-            uiInterface.GetComponent<Animator>().SetTrigger("CloseActions");
+                break;
         }
+
+        currentInterface = Interface.Neutre;
     }
     #endregion
 
     void PlayerTrun()
     {
+        //Affiche l'interface.
+        uiInterface.SetActive(true);
+
+        uiAction.SetActive(false);
+        uiTrait.SetActive(false);
+
+        //Défini la phase de jeu.
+        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
+        currentInterface = Interface.Neutre;
+
+
+
         //Check si le perso est jouable
         if (!currentActor.GetIsOut())
         {
             Debug.Log("Player turn !");
 
             uiLogs.text = "";
-
-            //Affiche l'interface.
-            uiInterface.SetActive(true);
-
-            //Défini la phase de jeu.
-            myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
-
-            currentInterface = Interface.Neutre;
 
             //Update le contour blanc
             UpdateActorSelected();
@@ -595,11 +640,12 @@ public class C_Challenge : MonoBehaviour
             if (currentResolution.action == currentStep.rightAnswer)
             {
                 Debug.Log("Bonne action");
+
+                uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.dataActor.challengeSpriteUiGoodAction;
+
+                uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
+
                 canUpdateEtape = true;
-            }
-            else
-            {
-                Debug.Log("Mauvaise action");
             }
         }
     }
