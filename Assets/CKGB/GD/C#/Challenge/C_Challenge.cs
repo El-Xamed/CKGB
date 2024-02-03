@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
 using TMPro;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
@@ -21,12 +22,15 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region De base
-    
+    //Pour connaitre la phasse de jeu.
+    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn}
+    [Header("Phase de jeu")]
+    [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
     GameObject canva;
     GameObject uiCases;
     [Header("UI")]
-    [SerializeField] GameObject uiInterface;
-    [SerializeField] List<GameObject> listUiInterfaceButton;
+    
     [SerializeField] C_Stats uiStatsPrefab;
     [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
@@ -43,8 +47,19 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] List<C_Case> listCase;
     #endregion
 
+    #region Interface
+    [Header ("UI (Interface)")]
+    [SerializeField] GameObject uiInterface;
+    [SerializeField] GameObject currentButton;
+
+    public enum Interface { Neutre, Logs, Actions, Traits, Back }
+
+    [SerializeField] Interface currentInterface = Interface.Neutre;
+    #endregion
+
     #region Challenge
     [Space(50)]
+    [Header("Challenge")]
     bool canUpdateEtape = false;
 
     [SerializeField] C_Actor currentActor;
@@ -86,55 +101,70 @@ public class C_Challenge : MonoBehaviour
 
         if (context.performed)
         {
-            int input = (int)context.ReadValue<float>();
-            Debug.Log(input);
+            Vector2 input = context.ReadValue<Vector2>();
 
-            if (input > 0 && currentAction < listUiInterfaceButton.Count -1)
+            //Pour la navigation dans l'interface "Neutre"
+            if (currentInterface == Interface.Neutre)
             {
-                currentAction++;
+                if (input.x > 0)
+                {
+                    GoBack();
+                    return;
+                }
+                if (input.x < 0)
+                {
+                    GoLogs();
+                    return;
+                }
+
+                if (input.y < 0)
+                {
+                    GoAction();
+                    return;
+                }
+                if (input.y > 0)
+                {
+                    GoTraits();
+                    return;
+                }
             }
 
-            if (input < 0 && currentAction > 0)
+            //Pour selectionner ses actions.
+            if (currentInterface == Interface.Actions)
             {
-                currentAction--;
+                if (input.x > 0)
+                {
+                    GoBack();
+                    return;
+                }
+                if (input.y < 0)
+                {
+                    //Pour la partie slection des action.
+                    if (canSelectAction)
+                    {
+                        UseAction();
+                        return;
+                    }
+                }
             }
 
-            UpdateInterface();
-        }
-    }
+            //Pour Update ResoTrun
+            if (input.y < 0 && myPhaseDeJeu == PhaseDeJeu.ResoTurn)
+            {
+                if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
+                {
+                    //Reféfinis "currentResolution" avec 'index de base + 1.
+                    currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
 
-    public void ConfirmButton(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        if (context.performed)
-        {
-           
-        }
-    }
-
-    //RCOURSCIR CETTE PARTIE DU CODE
-    public void SelectRight(InputAction.CallbackContext context)
-    {
-        if(!context.performed) { return; }
-
-        if (context.performed && canSelectAction && currentAction < listButton.Count -1)
-        {
-            currentAction++;
-
-            UpdateActionSelected();
-        }
-    }
-
-    public void SelectLeft(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        if (context.performed && canSelectAction && currentAction > 0)
-        {
-            currentAction--;
-
-            UpdateActionSelected();
+                    ResolutionTurn();
+                }
+                else
+                {
+                    //Lance la phase "Cata".
+                    CataTrun();
+                    Debug.Log("Toutes les actions on été fait");
+                }
+            }
         }
     }
 
@@ -142,53 +172,19 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed && canUpdateRes)
+        if (context.performed && currentInterface == Interface.Actions)
         {
-            if (listRes.IndexOf(currentResolution) < listRes.Count -1)
-            {
-                //Reféfinis "currentResolution" avec 'index de base + 1.
-                currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+            int input = (int)context.ReadValue<float>();
 
-                ResolutionTurn();
+            if (input > 0 && currentAction < listButton.Count - 1)
+            {
+                currentAction++;
+                UpdateActionSelected();
             }
-            else
+            if (input < 0 && currentAction > 0)
             {
-                //Lance la phase "Cata".
-                CataTrun();
-                Debug.Log("Toutes les actions on été fait");
-            }
-        }
-
-        //Pour la partie slection des action.
-        if (context.performed && canSelectAction)
-        {
-            UseAction();
-        }
-
-        //Utilise l'action
-        void UseAction()
-        {
-            //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
-            ActorResolution actorResolution = new ActorResolution();
-            actorResolution.action = listButton[currentAction].myActionClass;
-            actorResolution.actor = currentActor;
-            listRes.Add(actorResolution);
-
-            //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
-            if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
-            {
-                //Passe à l'acteur suivant.
-                NextActor();
-            }
-            else
-            {
-                currentActor = null;
-                UpdateActorSelected();
-                currentResolution = listRes[0];
-                //Update les bool.
-                canSelectAction = false;
-                canUpdateRes = true;
-                ResolutionTurn();
+                currentAction--;
+                UpdateActionSelected();
             }
         }
     }
@@ -224,12 +220,6 @@ public class C_Challenge : MonoBehaviour
         //Lance directement le tour du joueur
         PlayerTrun();
         uiGameOver.SetActive(false);
-
-
-        InitialiseInterface();
-        UpdateInterface();
-
-        
 
         #endregion
     }
@@ -292,15 +282,6 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    void InitialiseInterface()
-    {
-        //Récupère tous les boutons de "l'interface"
-        for (int i = 0; i < uiInterface.transform.childCount; i++)
-        {
-            listUiInterfaceButton.Add(uiInterface.transform.GetChild(i).gameObject);
-        }
-    }
-
     //D�place ou fait spawn les acteurs.
     public void SpawnActor(List<InitialActorPosition> listPosition)
     {
@@ -334,6 +315,78 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Tour du joueur
+
+    //Utilise l'action
+    void UseAction()
+    {
+        //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
+        ActorResolution actorResolution = new ActorResolution();
+        actorResolution.action = listButton[currentAction].myActionClass;
+        actorResolution.actor = currentActor;
+        listRes.Add(actorResolution);
+
+        //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
+        if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
+        {
+            //Passe à l'acteur suivant.
+            NextActor();
+        }
+        else
+        {
+            currentActor = null;
+            UpdateActorSelected();
+            currentResolution = listRes[0];
+            //Update les bool.
+            canSelectAction = false;
+            canUpdateRes = true;
+            ResolutionTurn();
+        }
+    }
+
+
+
+
+    #region Interface
+    //Création d'une interface pour naviguer dans l'ui est les actions qu'on souhaite sélectionner
+
+    //Pour accéder au actions.
+    public void GoAction()
+    {
+        uiInterface.GetComponent<Animator>().SetTrigger("OpenActions");
+
+        uiAction.SetActive(true);
+
+        currentInterface = Interface.Actions;
+
+        canSelectAction = true;
+    }
+
+    //Pour accéder au logs.
+    public void GoLogs()
+    {
+        Debug.Log("Pas disponible");
+    }
+
+    //Pour accéder au traits.
+    public void GoTraits()
+    {
+
+    }
+
+    //Pour revenir au temps mort. (Et aussi au autres boutons ?)
+    public void GoBack()
+    {
+        if (currentInterface == Interface.Actions)
+        {
+            currentInterface = Interface.Neutre;
+
+            uiAction.SetActive(false);
+
+            uiInterface.GetComponent<Animator>().SetTrigger("CloseActions");
+        }
+    }
+    #endregion
+
     void PlayerTrun()
     {
         //Check si le perso est jouable
@@ -342,6 +395,14 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Player turn !");
 
             uiLogs.text = "";
+
+            //Affiche l'interface.
+            uiInterface.SetActive(true);
+
+            //Défini la phase de jeu.
+            myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
+            currentInterface = Interface.Neutre;
 
             //Update le contour blanc
             UpdateActorSelected();
@@ -360,10 +421,6 @@ public class C_Challenge : MonoBehaviour
                 canUpdateEtape = false;
             }
 
-            //Redonne la capacité de jouer dans la phase "Player round".
-            canSelectAction = true;
-            canUpdateRes = false;
-
             //Change l'UI.
             uiAction.SetActive(true);
 
@@ -380,19 +437,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    void UpdateInterface()
-    {
-        foreach (var thisButton in listUiInterfaceButton)
-        {
-            thisButton.transform.GetChild(1).gameObject.SetActive(false);
-
-            thisButton.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(75, 75);
-        }
-
-        listUiInterfaceButton[currentAction].transform.GetChild(1).gameObject.SetActive(true);
-
-        listUiInterfaceButton[currentAction].transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
-    }
+    
 
     //VFX des cases visées.
     void InitialiseCata()
@@ -448,6 +493,8 @@ public class C_Challenge : MonoBehaviour
                 newActionButton.myActionClass = currentStep.actions[i];
                 listButton.Add(newActionButton);
             }
+
+            uiAction.SetActive(false);
         }
         else
         {
@@ -506,7 +553,6 @@ public class C_Challenge : MonoBehaviour
             myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
         }
 
-        //Feedback du bouton non-selecioné.
         listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
     }
     #endregion
@@ -522,6 +568,12 @@ public class C_Challenge : MonoBehaviour
     void ResolutionTurn()
     {
         Debug.Log("Resolution trun !");
+
+        //Défini la phase de jeu.
+        myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+
+        //Cache l'interface.
+        uiInterface.SetActive(false);
 
         //Change l'UI.
         uiAction.SetActive(false);
@@ -558,7 +610,10 @@ public class C_Challenge : MonoBehaviour
     void CataTrun()
     {
         Debug.Log("CataTrun");
-        canSelectAction = false;
+
+        //Défini la phase de jeu.
+        myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+
         canUpdateRes = false;
 
         //Check au début si tous les perso sont "out".
