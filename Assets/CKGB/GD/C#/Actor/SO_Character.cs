@@ -25,11 +25,16 @@ public class SO_Character : ScriptableObject
     public int nbtraitpointMax;
     SO_ActionClass[] listTrait;
 
-    [Header("Tempsmort")]
+    [Header("Tempsmort (Sprite)")]
     public Sprite MapTmSprite;
     public Sprite smallResume;
     public Sprite BigResume1;
     public Sprite BigResume2;
+
+    [Header("Tempsmort (Stats)")]
+    public SO_ActionClass[] traitsAdebloquer;
+    public int currentPointTrait;
     #endregion
 }
+
 
