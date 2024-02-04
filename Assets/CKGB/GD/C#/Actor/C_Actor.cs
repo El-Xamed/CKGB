@@ -17,6 +17,8 @@ public class C_Actor : MonoBehaviour
     [SerializeField] int currentStress;
     [SerializeField] int currentEnergy;
     [SerializeField] int currentPointTrait;
+
+    
     #endregion
 
 

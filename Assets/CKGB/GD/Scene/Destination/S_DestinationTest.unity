@@ -1546,27 +1546,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSelectAction: 1
-  canUpdateRes: 0
   myPhaseDeJeu: 0
   uiStatsPrefab: {fileID: 3723161877667537748, guid: 08f6793440b983348bc516311958ccad, type: 3}
   uiStats: {fileID: 503554410}
   uiEtape: {fileID: 1468433190}
   uiAction: {fileID: 1766273373}
-  uiTrait: {fileID: 1942095956}
+  uiTrait: {fileID: 935824950}
   uiGoodAction: {fileID: 430303196}
   uiGameOver: {fileID: 1599342985}
   myChallenge: {fileID: 11400000, guid: ec5173695574d434c8ab78cd7a121e5e, type: 2}
-  myTeam: []
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
-  listCase: []
   uiInterface: {fileID: 1867104795}
-  currentButton: {fileID: 0}
   currentInterface: 0
   currentActor: {fileID: 0}
   currentAction: 0
+  currentTrait: 0
   currentStep: {fileID: 0}
-  listButton: []
-  listRes: []
   currentResolution:
     action: {fileID: 0}
     actor: {fileID: 0}

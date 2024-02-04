@@ -9,6 +9,9 @@ public class SO_Character : ScriptableObject
     [Header("Nom")]
     public new string name;
 
+    [Header("Traits")]
+    public List<SO_ActionClass> listTraits = new List<SO_ActionClass>();
+
     [Header("Challenge (Sprite)")]
     public Sprite challengeSprite;
     public Sprite challengeSpritePreviewCata;

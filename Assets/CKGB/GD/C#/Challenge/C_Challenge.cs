@@ -17,8 +17,7 @@ public class C_Challenge : MonoBehaviour
     #region Mes variables
     #region Input
     [Header("Input")]
-    [SerializeField] bool canSelectAction = true;
-    [SerializeField] bool canUpdateRes = false;
+    [SerializeField] bool canSelectAction = false;
     #endregion
 
     #region De base
@@ -43,11 +42,11 @@ public class C_Challenge : MonoBehaviour
     [Header("Data")]
     [SerializeField] SO_Challenge myChallenge;
 
-    [SerializeField] List<C_Actor> myTeam;
+    List<C_Actor> myTeam = new List<C_Actor>();
 
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
-    [SerializeField] List<C_Case> listCase;
+    List<C_Case> listCase = new List<C_Case>();
     #endregion
 
     #region Interface
@@ -68,17 +67,21 @@ public class C_Challenge : MonoBehaviour
 
     //S�lection d'actions
     [SerializeField] int currentAction;
+    [SerializeField] int currentTrait;
 
     //D�finis l'�tape actuel.
     public SO_Etape currentStep;
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
-    [SerializeField] List<ActionButton> listButton;
+    List<ActionButton> listButton = new List<ActionButton>();
+
+    //Utilisation d'une class qui regroupe 1 bouton et 1 action.
+    List<ActionButton> listButtonTraits = new List<ActionButton>();
     #endregion
 
     #region Résolution
     [Header("Resolution")]
-    [SerializeField] List<ActorResolution> listRes;
+    List<ActorResolution> listRes = new List<ActorResolution>();
     [SerializeField] ActorResolution currentResolution;
     [SerializeField] TMP_Text uiLogs;
     #endregion
@@ -132,7 +135,7 @@ public class C_Challenge : MonoBehaviour
             }
 
             //Pour selectionner ses actions.
-            if (currentInterface == Interface.Actions)
+            if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
             {
                 if (input.x > 0)
                 {
@@ -145,25 +148,7 @@ public class C_Challenge : MonoBehaviour
                     if (canSelectAction)
                     {
                         UseAction();
-                        return;
-                    }
-                }
-            }
-
-            //Pour selectionner ses traits.
-            if (currentInterface == Interface.Traits)
-            {
-                if (input.x > 0)
-                {
-                    GoBack();
-                    return;
-                }
-                if (input.y < 0)
-                {
-                    //Pour la partie slection des action.
-                    if (canSelectAction)
-                    {
-                        Debug.Log("Ajout une action");
+                        SpawnTraits();
                         return;
                     }
                 }
@@ -193,6 +178,8 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
+        //FAIRE EN SORT QU'ON EST BESOIN DE UNE VARIABLE QUI GERE CA + QUE TOUTES LES ACTION ET TRAIT SPAWN AU MEME ENDROIT (1 VARIABLE EST NESSESSAIRE POUR NAVIGURE DANS LES 2 TABLEAU (TRAITS / ACTIONS) SEUL LA CONDITION D'AUGMENTER OU NON CETTE VALEUR CHANGERA CAR LA TAILLE DU TABLEAU EN QUESTION NE SERA PAS LE MEME.)
+        //pour selectionner les action du challenge
         if (context.performed && currentInterface == Interface.Actions)
         {
             int input = (int)context.ReadValue<float>();
@@ -205,6 +192,23 @@ public class C_Challenge : MonoBehaviour
             if (input < 0 && currentAction > 0)
             {
                 currentAction--;
+                UpdateActionSelected();
+            }
+        }
+
+        //Pour selectionner les traits de l'actor.
+        if (context.performed && currentInterface == Interface.Traits)
+        {
+            int input = (int)context.ReadValue<float>();
+
+            if (input > 0 && currentTrait < listButtonTraits.Count - 1)
+            {
+                currentTrait++;
+                UpdateActionSelected();
+            }
+            if (input < 0 && currentTrait > 0)
+            {
+                currentTrait--;
                 UpdateActionSelected();
             }
         }
@@ -341,7 +345,18 @@ public class C_Challenge : MonoBehaviour
     {
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
-        actorResolution.action = listButton[currentAction].myActionClass;
+
+        //Check si c'est une action du challenge ou alors le trait d'un actor.
+        switch (currentInterface)
+        {
+            case Interface.Actions:
+                actorResolution.action = listButton[currentAction].myActionClass;
+                break;
+            case Interface.Traits:
+                actorResolution.action = listButtonTraits[currentTrait].myActionClass;
+                break;
+        }
+
         actorResolution.actor = currentActor;
         listRes.Add(actorResolution);
 
@@ -358,17 +373,12 @@ public class C_Challenge : MonoBehaviour
             currentResolution = listRes[0];
             //Update les bool.
             canSelectAction = false;
-            canUpdateRes = true;
             ResolutionTurn();
         }
     }
 
-
-
-
     #region Interface
     //Création d'une interface pour naviguer dans l'ui est les actions qu'on souhaite sélectionner
-
     //Pour accéder au actions.
     public void GoAction()
     {
@@ -392,18 +402,26 @@ public class C_Challenge : MonoBehaviour
     //Pour accéder au traits.
     public void GoTraits()
     {
-        currentAction = 0;
+        //Replace le curseur à l'emplacement 0.
+        currentTrait = 0;
 
+        //Animation.
         uiInterface.GetComponent<Animator>().SetTrigger("OpenTraits");
 
+        //Fait apparaitre la liste de trait.
         uiTrait.SetActive(true);
 
+        //Fait apparaitre les traits du l'actor.
+        SpawnTraits();
+
+        //Modifie l'état de navigation.
         currentInterface = Interface.Traits;
 
+        //Peut mmtn selectionner une action.
         canSelectAction = true;
     }
 
-    //Pour revenir au temps mort. (Et aussi au autres boutons ?)
+    //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
         switch (currentInterface)
@@ -439,8 +457,6 @@ public class C_Challenge : MonoBehaviour
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
         currentInterface = Interface.Neutre;
-
-
 
         //Check si le perso est jouable
         if (!currentActor.GetIsOut())
@@ -547,6 +563,46 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    void SpawnTraits()
+    {
+        //Check si la list stocké dans le SO_Character est vide
+        if (currentActor.dataActor.listTraits != null)
+        {
+            //Supprime les boutons précédent
+            if (listButtonTraits != null)
+            {
+                foreach (var myTraits in listButtonTraits)
+                {
+                    Destroy(myTraits.myButton);
+                }
+            }
+
+            //Créer une nouvelle liste.
+            listButtonTraits = new List<ActionButton>();
+
+            //Créer de nouveau boutons (Traits)
+            for (int i = 0; i < currentStep.actions.Length; i++)
+            {
+                //Nouvelle class.
+                ActionButton newTraitsButton = new ActionButton();
+
+                //Reférence button.
+                newTraitsButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiTrait.transform);
+                newTraitsButton.myButton.GetComponentInChildren<TMP_Text>().text = currentActor.dataActor.listTraits[i].buttonText;
+
+                //Reférence Action.
+                newTraitsButton.myActionClass = currentActor.dataActor.listTraits[i];
+                listButtonTraits.Add(newTraitsButton);
+            }
+
+            uiAction.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Erreur spawn traits. La liste de trait du perso est vide.");
+        }
+    }
+
     //Passe à l'acteur suivant.
     void NextActor()
     {
@@ -592,13 +648,27 @@ public class C_Challenge : MonoBehaviour
 
     void UpdateActionSelected()
     {
+        #region Action Challenge
+        //Cache tous les boutons du challenge.
         foreach (var myButton in listButton)
         {
             //Feedback du bouton non-selecioné.
             myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
         }
-
+        //Affiche le bouton que le joueur souhaite selectionner dans le challenge.
         listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
+        #endregion
+
+        #region Trait Actor
+        //Cache tous les boutons de traits de l'actor.
+        foreach (var myTrait in listButtonTraits)
+        {
+            //Feedback du bouton non-selecioné.
+            myTrait.myButton.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        //Affiche le bouton que le joueur souhaite selectionner dans les traits de l'actor.
+        listButtonTraits[currentTrait].myButton.transform.GetChild(0).gameObject.SetActive(true);
+        #endregion
     }
     #endregion
 
@@ -659,8 +729,6 @@ public class C_Challenge : MonoBehaviour
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
-
-        canUpdateRes = false;
 
         //Check au début si tous les perso sont "out".
         if (!CheckGameOver())
@@ -724,6 +792,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    #region GameOver
     //Bool pour check si le vhallenge est fini.
     bool CheckEtape()
     {
@@ -761,6 +830,7 @@ public class C_Challenge : MonoBehaviour
         uiGameOver.SetActive(true);
         return;
     }
+    #endregion
 
     //Fin du challenge.
     void EndChallenge()
