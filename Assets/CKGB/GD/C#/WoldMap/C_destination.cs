@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Build.Content;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -37,7 +35,7 @@ public class C_destination : MonoBehaviour
     GameObject actor;
 
     [SerializeField]
-    public SceneAsset destination;
+    SceneAsset destination;
 
    
     //Variable de scene

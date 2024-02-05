@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
