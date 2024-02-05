@@ -27,8 +27,7 @@ public class C_Worldmap : MonoBehaviour
     [SerializeField]
     GameObject Follower;
 
-    [SerializeField]
-    SceneAsset destination;
+
 
     [SerializeField] Text UIlevel;
     #endregion

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor.SceneTemplate;
 using UnityEngine.UI;
 
 public class C_destination : MonoBehaviour
