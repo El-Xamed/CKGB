@@ -35,12 +35,12 @@ public class C_destination : MonoBehaviour
     GameObject actor;
 
     [SerializeField]
-    SceneAsset destination;
+    string scenename;
    
     //Variable de scene
     #endregion
-   public SceneAsset sceneGet()
+   public string sceneGet()
     {
-        return destination;
+        return scenename;
     }
 }

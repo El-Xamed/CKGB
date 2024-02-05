@@ -195,20 +195,19 @@ public class C_Worldmap : MonoBehaviour
             ellapsed += Time.deltaTime; 
             transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
 
-            Follower.transform.position = Vector3.Lerp(a, b, ellapsed  / maxTime2);
-            //StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
+            //Follower.transform.position = Vector3.Lerp(a, b, ellapsed  / maxTime2);
+            StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
             yield return null;
         }
 
         transform.position = transform2.position;
         Follower.transform.position = transform2.position;
-        // Follower.transform.position = transform2.position;  
     }
-   /* IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
+     IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.7f);
        
-    }*/
+    }
     private void initiateTheMapCharacterProtocol()
     {
         GetComponent<SpriteRenderer>().sprite=actor.GetComponent<C_Actor>().dataActor.MapTmSprite;
