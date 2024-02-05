@@ -807,6 +807,10 @@ PrefabInstance:
 '
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: scenename
+      value: S_TempsMort
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
       value: 
       objectReference: {fileID: 102900000, guid: 4b651468002d0974f8d0989e9f4c11ef, type: 3}
@@ -1016,6 +1020,10 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: leveltext
       value: Level 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: scenename
+      value: S_TempsMort
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
@@ -1393,7 +1401,6 @@ MonoBehaviour:
   downpath: []
   actor: {fileID: 8428329977619197852, guid: 8e8d713129855a94a9392dfb6ecfc86b, type: 3}
   Follower: {fileID: 562423703}
-  destination: {fileID: 0}
   UIlevel: {fileID: 1081640529}
 --- !u!212 &993408252
 SpriteRenderer:
@@ -1740,6 +1747,10 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: leveltext
       value: Level 2B
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: scenename
+      value: S_TempsMort
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
@@ -2480,6 +2491,10 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: leveltext
       value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: scenename
+      value: S_TempsMort
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: UiLevelName
