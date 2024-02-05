@@ -71,6 +71,10 @@ public class SO_ActionClass : ScriptableObject
     [Header("Acc")]
     [SerializeField] bool needAcc;
     [SerializeField] C_Accessories acc;
+
+    [Header("Acc")]
+    [SerializeField] bool needActor;
+    [SerializeField] C_Actor actor;
     #endregion
     #endregion
 
@@ -201,6 +205,14 @@ public class SO_ActionClass : ScriptableObject
 
         //Si il a besoin d'etre sur l'acc.
         if (needAcc && IsOnAccessory(thisActor))
+        {
+            //Update les logs
+            currentLogs = LogsCanMakeAction;
+            return true;
+        }
+
+        //Si il a besoin d'etre sur l'acc.
+        if (needActor && IsOnAccessory(thisActor))
         {
             //Update les logs
             currentLogs = LogsCanMakeAction;

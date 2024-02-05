@@ -12,7 +12,6 @@ public class C_Accessories : MonoBehaviour
     private void Awake()
     {
         gameObject.name = dataAcc.name;
-        currentPosition = dataAcc.initialPosition;
 
         IniChallenge();
     }
@@ -28,5 +27,10 @@ public class C_Accessories : MonoBehaviour
     private void NewPosition(Transform newPosition)
     {
 
+    }
+
+    public void SetPosition(int newPosition)
+    {
+        currentPosition = newPosition;
     }
 }

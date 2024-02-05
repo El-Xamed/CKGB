@@ -239,6 +239,11 @@ public class C_Challenge : MonoBehaviour
         {
             GameManager.instance.ChangeActionMap("Challenge");
         }
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.musicChallenge);
+        }
     }
 
     private void Start()
@@ -347,6 +352,7 @@ public class C_Challenge : MonoBehaviour
         foreach (InitialAccPosition position in listPosition)
         {
             C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
+            myAcc.SetPosition(position.position);
 
             listAcc.Add(myAcc);
         }
@@ -526,6 +532,7 @@ public class C_Challenge : MonoBehaviour
             thisCase.DestroyVfxCata();
         }
 
+        //Initialise la cata (Random)
         if (myChallenge.listCatastrophy[0].modeAttack == SO_Catastrophy.EModeAttack.Random)
         {
             //Augmente ou réduit le nombre.
