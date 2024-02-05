@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class C_TempsMort : MonoBehaviour
 {
@@ -34,12 +35,14 @@ public class C_TempsMort : MonoBehaviour
 
     [Header("Characters and TM")]
     [SerializeField]
-    List<StartPosition> listCharactersPositions;
+    List<Transform> listCharactersPositions;
 
     [SerializeField]
     GameObject[] characters;
     [SerializeField]
     SO_TempsMort TM;
+    [SerializeField]
+    public GameObject background;
 
     [Header("Eventsystem and Selected Gameobjects")]
     [SerializeField] EventSystem Es;
@@ -49,12 +52,15 @@ public class C_TempsMort : MonoBehaviour
 
     [SerializeField]
     bool[] characterHasPlayed;
+    [SerializeField] 
+    bool isAnActionButton = false;
 
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         #region HideUI
+        Es = FindObjectOfType<EventSystem>();
         foreach (GameObject button in actions)
         {
             if (button != null)
@@ -74,11 +80,160 @@ public class C_TempsMort : MonoBehaviour
         #endregion
 
         GameManager.instance.ChangeActionMap("TempsMort");
+        initiateTMvariables();
+        updateButton();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+  
+    public void updateButton()
+    {
+        for (int i = 0; i < charactersButton.Length; i++)
+        {
+            if (currentButton == charactersButton[i])
+            {
+                actorActif = characters[i];
+            }
+        }
+        currentButton = Es.currentSelectedGameObject;
+        AffichageMiniCartePerso();
+        AffichageCarteCompletePerso();
+    }
+    public void AffichageMiniCartePerso()
+    {
+        for (int i = 0; i < charactersLittleResume.Length; i++)
+        {
+            if (currentButton == charactersButton[i])
+            {
+                charactersLittleResume[i].SetActive(true);
+            }
+            else
+                charactersLittleResume[i].SetActive(false);
+        }
+    }
+    public void AffichageCarteCompletePerso()
+    {
+        for (int i = 0; i < charactersCompleteResume1.Length; i++)
+        {
+            if (actorActif == characters[i] && isAnActionButton == true)
+            {   
+                charactersCompleteResume1[i].SetActive(true);               
+            }
+            else
+                charactersCompleteResume1[i].SetActive(false);
+        }
+    }
+    public void ActivateActionsButtons()
+    {
+        isAnActionButton = true;
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if(currentButton==charactersButton[i])
+            {
+                characterHasPlayed[i] = true;
+            }
+                
+        }
+        for(int i=0;i<actions.Length;i++)
+        {
+            actions[i].SetActive(true);
+            charactersButton[i].GetComponent<Button>().enabled=false;
+        }
+        Es.SetSelectedGameObject(actions[0]);
+        updateButton();
+    }
+    public void ActivateCharactersButton()
+    {
+        isAnActionButton = false;
+        for (int i = 0; i < actions.Length; i++)
+        {
+            actions[i].SetActive(false);
+            if (characterHasPlayed[i] == false)
+            {
+                charactersButton[i].GetComponent<Button>().enabled = true;
+                Es.SetSelectedGameObject(charactersButton[i]);
+            }
+            else if(characterHasPlayed[0]==true&&characterHasPlayed[1]==true&&characterHasPlayed[2]==true)
+            {
+                ChallengeButton.SetActive(true);
+                Es.SetSelectedGameObject(ChallengeButton);
+                for(int y=0;y<charactersButton.Length;y++)
+                {
+                    charactersButton[y].SetActive(false);
+                    actions[y].SetActive(false);
+                }
+                updateButton();
+            }
+        }
+        updateButton();
+    }
+    public void initiateTMvariables()
+    {
+        characters = TM.Team;
+        background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
+        for(int i=0;i<characters.Length;i++)
+        {        
+            Instantiate(characters[i], listCharactersPositions[i]);
+            characters[i].GetComponent<SpriteRenderer>().sprite = characters[i].GetComponent<C_Actor>().dataActor.MapTmSprite;
+            characters[i].GetComponent<C_Actor>().maxEnergy = characters[i].GetComponent<C_Actor>().dataActor.energyMax;
+            characters[i].GetComponent<C_Actor>().maxStress = characters[i].GetComponent<C_Actor>().dataActor.stressMax;
+            characters[i].GetComponent<C_Actor>().maxtraitPoint = characters[i].GetComponent<C_Actor>().dataActor.nbtraitpointMax;
+            characters[i].GetComponent<C_Actor>().currentPointTrait = characters[i].GetComponent<C_Actor>().dataActor.currentPointTrait;
+            characters[i].GetComponent<C_Actor>().traitaDebloquer = characters[i].GetComponent<C_Actor>().dataActor.traitsAdebloquer;
+            characters[i].GetComponent<C_Actor>().listTraits = characters[i].GetComponent<C_Actor>().dataActor.listTraits;
+            characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i];
+            characters[i].GetComponent<C_Actor>().smallResume.GetComponent<Image>().sprite= characters[i].GetComponent<C_Actor>().dataActor.smallResume;
+            characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i];
+            characters[i].GetComponent<C_Actor>().BigResume1.GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().dataActor.BigResume1;
+            characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i];
+            characters[i].GetComponent<C_Actor>().BigResume2.GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().dataActor.BigResume2;
+        }
+
+    }
+    public void Naviguate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+            updateButton();
+        }
+    }
+    public void SwitchCharacterCard(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+           if(actorActif!=null)
+            {
+                if(actorActif.GetComponent<C_Actor>().BigResume1.activeSelf==true)
+                {
+                    actorActif.GetComponent<C_Actor>().BigResume2.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.SetActive(false);
+                }
+                else if(actorActif.GetComponent<C_Actor>().BigResume2.activeSelf == true)
+                {
+                    actorActif.GetComponent<C_Actor>().BigResume2.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume1.SetActive(true);
+                }
+            }
+        }
+    }
+    public void Papoter()
+    {
+
+    }
+    public void Observer()
+    {
+
+    }
+    public void Revasser()
+    {
+
     }
 }

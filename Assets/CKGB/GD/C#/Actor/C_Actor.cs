@@ -13,13 +13,20 @@ public class C_Actor : MonoBehaviour
     C_Stats UiStats;
 
     [Header("Stats")]
-    [SerializeField] bool isOut = false;
-    [SerializeField] int currentStress;
-    [SerializeField] int currentEnergy;
-    [SerializeField] int currentPointTrait;
-    [SerializeField] int maxtraitPoint;
+    [SerializeField] public bool isOut = false;
+    [SerializeField] public int currentStress;
+    [SerializeField] public int maxStress;
+    [SerializeField] public int currentEnergy;
+    [SerializeField] public int maxEnergy;
+    [SerializeField] public int currentPointTrait;
+    [SerializeField] public int maxtraitPoint;
+    public List<SO_ActionClass> listTraits = new List<SO_ActionClass>();
+    public SO_ActionClass[] traitaDebloquer;
+    public GameObject smallResume;
+    public GameObject BigResume1;
+    public GameObject BigResume2;
 
-    
+
     #endregion
 
 
@@ -28,11 +35,17 @@ public class C_Actor : MonoBehaviour
         gameObject.name = dataActor.name;
 
         //Desactive et renseigne le sprite en question.
-        transform.GetChild(0).gameObject.SetActive(false);
-        transform.GetChild(0).GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
+        if(gameObject.GetComponent<SpriteRenderer>()==null)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(0).GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
 
-        //Désactive le sprite KO.
-        transform.GetChild(1).gameObject.SetActive(false);
+            //Désactive le sprite KO.
+            transform.GetChild(1).gameObject.SetActive(false);
+        }
+
+
+  
     }
 
     #region Mes fonctions

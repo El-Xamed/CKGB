@@ -23,10 +23,11 @@ MonoBehaviour:
   challengeSpriteUiGoodAction: {fileID: 0}
   stressMax: 6
   energyMax: 4
-  nbtraitpointMax: 0
+  nbtraitpointMax: 2
   MapTmSprite: {fileID: 21300000, guid: 35c531cdc9dfe1d43b03011b9725a915, type: 3}
-  smallResume: {fileID: 0}
-  BigResume1: {fileID: 0}
-  BigResume2: {fileID: 0}
+  smallResume: {fileID: 21300000, guid: c9ad24aabb0c0224ca3da0df0b88ea5b, type: 3}
+  BigResume1: {fileID: 21300000, guid: c9ad24aabb0c0224ca3da0df0b88ea5b, type: 3}
+  BigResume2: {fileID: 21300000, guid: c9ad24aabb0c0224ca3da0df0b88ea5b, type: 3}
   traitsAdebloquer:
   - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
+  currentPointTrait: 1
