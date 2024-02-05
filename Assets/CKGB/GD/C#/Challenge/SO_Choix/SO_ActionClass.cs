@@ -50,7 +50,7 @@ public class SO_ActionClass : ScriptableObject
     #region Acc
     [Header("Acc")]
     [SerializeField] bool needAcc;
-    [SerializeField] SO_Accessories acc;
+    [SerializeField] C_Accessories acc;
     #endregion
     #endregion
 

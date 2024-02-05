@@ -43,6 +43,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] SO_Challenge myChallenge;
 
     List<C_Actor> myTeam = new List<C_Actor>();
+    List<C_Accessories> listAcc = new List<C_Accessories>();
 
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
@@ -166,9 +167,9 @@ public class C_Challenge : MonoBehaviour
                 }
                 else
                 {
+                    UpdateAccessories();
                     //Lance la phase "Cata".
-                    CataTrun();
-                    Debug.Log("Toutes les actions on été fait");
+                    Invoke("CataTrun", 0.5f);
                 }
             }
         }
@@ -333,6 +334,8 @@ public class C_Challenge : MonoBehaviour
         foreach (InitialAccPosition position in listPosition)
         {
             C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
+
+            listAcc.Add(myAcc);
         }
     }
 
@@ -615,6 +618,17 @@ public class C_Challenge : MonoBehaviour
         {
             NextActor();
         }
+
+        if (currentInterface == Interface.Actions)
+        {
+            uiAction.SetActive(true);
+            UpdateActionSelected();
+        }
+        if (currentInterface == Interface.Traits)
+        {
+            uiTrait.SetActive(true);
+            UpdateActionSelected();
+        }
     }
 
     //Passe à l'étape suivant.
@@ -728,7 +742,7 @@ public class C_Challenge : MonoBehaviour
         Debug.Log("CataTrun");
 
         //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+        myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
         //Check au début si tous les perso sont "out".
         if (!CheckGameOver())
@@ -775,6 +789,8 @@ public class C_Challenge : MonoBehaviour
         //Check si le jeu est fini "GameOver".
         CheckGameOver();
     }
+
+    
     #endregion
 
     void UpdateActorSelected()
@@ -841,7 +857,46 @@ public class C_Challenge : MonoBehaviour
     //Pour faire d�placer les accessoires.
     void UpdateAccessories()
     {
+        ApplyAccDamage(listAcc[0]);
+        listAcc[0].GetComponent<C_Accessories>().MoveAcc(listCase);
+    }
 
+    void ApplyAccDamage(C_Accessories thisAcc)
+    {
+        //Check si il attaque.
+        if (!thisAcc.dataAcc.canMakeDamage) { return; }
+
+        //Check comment il attaque.
+        if (thisAcc.dataAcc.rightRange > 0) //Si il y a un actor à droite.
+        {
+            foreach (var thisActor in myTeam)
+            {
+                if (thisActor.GetPosition() == thisAcc.currentPosition + 1)
+                {
+                    thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+
+                    thisActor.CheckIsOut();
+                }
+            }
+        }
+        if (thisAcc.dataAcc.leftRange > 0) //Si il y a un actor à gauche.
+        {
+            foreach (var thisActor in myTeam)
+            {
+                if (thisActor.GetPosition() == thisAcc.currentPosition - 1)
+                {
+                    thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+
+                    thisActor.CheckIsOut();
+                }
+            }
+        }
+
+        //Ecrit dans les logs le résultat de l'action.
+        uiLogs.text = thisAcc.dataAcc.damageLogs;
+
+        //Check si le jeu est fini "GameOver".
+        CheckGameOver();
     }
     #endregion
 }
