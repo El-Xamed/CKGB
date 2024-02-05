@@ -34,11 +34,15 @@ MonoBehaviour:
   rightRangeStatsOther: 0
   leftRangeOtherMovement: 0
   rightRangeOtherMovement: 0
+  swithWithAcc: 0
   moveRightSelf: 0
   moveLeftSelf: 0
   caseToGo: -1
+  moveOther: 0
   moveRightOther: 0
   moveLeftOther: 0
   nextMiniStep: {fileID: 11400000, guid: a9b673b4a8cfb394bbd28e1206a2fdff, type: 2}
   needAcc: 0
   acc: {fileID: 0}
+  needActor: 0
+  actor: {fileID: 0}

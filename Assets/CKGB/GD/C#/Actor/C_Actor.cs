@@ -9,7 +9,7 @@ using TMPro;
 public class C_Actor : MonoBehaviour
 {
     #region data
-    int position;
+    [SerializeField] int position;
 
     [SerializeField] public SO_Character dataActor;
     C_Stats UiStats;

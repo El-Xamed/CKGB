@@ -51,6 +51,10 @@ public class SO_ActionClass : ScriptableObject
     [SerializeField] int rightRangeOtherMovement;
     #endregion
 
+    [Header("Movement switch")]
+    [SerializeField] bool swithWithAcc;
+
+
     #region Movement
     [Header("Mouvement (Self)")]
     [SerializeField] int moveRightSelf;
@@ -58,6 +62,7 @@ public class SO_ActionClass : ScriptableObject
     [SerializeField] int caseToGo = -1;
 
     [Header("Mouvement (Other)")]
+    [SerializeField] bool moveOther = false;
     [SerializeField] int moveRightOther;
     [SerializeField] int moveLeftOther;
     #endregion
@@ -72,7 +77,7 @@ public class SO_ActionClass : ScriptableObject
     [SerializeField] bool needAcc;
     [SerializeField] C_Accessories acc;
 
-    [Header("Acc")]
+    [Header("Actor")]
     [SerializeField] bool needActor;
     [SerializeField] C_Actor actor;
     #endregion
@@ -88,9 +93,16 @@ public class SO_ActionClass : ScriptableObject
         //Apllique les stats sur les autres actor.
         StatsSelfActor(thisActor, coutCalm, coutEnergy, gainCalm, gainEnergy);
 
-        //Movement
-        MoveOtherActor(thisActor, listCase, myTeam);
-        MoveSelfActor(thisActor, moveRightSelf, moveLeftSelf, caseToGo, listCase);
+        if (!swithWithAcc)
+        {
+            //Movement
+            if (moveOther)
+            {
+                MoveOtherActor(thisActor, listCase, myTeam);
+            }
+            
+            MoveSelfActor(thisActor, moveRightSelf, moveLeftSelf, caseToGo, listCase);
+        }
     }
 
     #region Stats
@@ -133,27 +145,28 @@ public class SO_ActionClass : ScriptableObject
     {
         //Déplacement sur la droite.
         //Si il est au bord et que le déplacement va plus loin que la liste.
-        if (myActor.GetPosition() + moveRight > listCase.Count - 1)
+        if (myActor.GetPosition() + moveRight > listCase.Count - 1 && moveRight != 0)
         {
             myActor.transform.parent = listCase[myActor.GetPosition() - (listCase.Count -1) - moveRight].transform;
             myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
             myActor.SetPosition(myActor.GetPosition() - (listCase.Count - 1) - moveRight);
         }
-        else
+        else if (moveRight != 0)
         {
+            Debug.Log(myActor.name);
             myActor.transform.parent = listCase[myActor.GetPosition() + moveRight].transform;
             myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
             myActor.SetPosition(myActor.GetPosition() + moveRight);
         }
         //Déplacement sur la gauche.
         //Si il est au bord et que le déplacement va moins loin que la liste.
-        if (myActor.GetPosition() - moveRightSelf > 0)
+        if (myActor.GetPosition() - moveLeftSelf < 0 && moveLeft != 0)
         {
             myActor.transform.parent = listCase[(myActor.GetPosition() - moveLeft) - listCase.Count -1].transform;
             myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
             myActor.SetPosition((myActor.GetPosition() - moveLeft) - listCase.Count - 1);
         }
-        else
+        else if (moveLeft != 0)
         {
             myActor.transform.parent = listCase[myActor.GetPosition() - moveLeft].transform;
             myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
@@ -245,6 +258,28 @@ public class SO_ActionClass : ScriptableObject
         }
     }
 
+    //vérifie si il a besoin d'etre executé par un actor en particulier.
+    bool MakeByThisActor(C_Actor thisActor)
+    {
+        if (actor != null)
+        {
+            //Si l'action est bien executé par le bon actor.
+            if (actor == thisActor)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            Debug.Log("Pas d'Acc !");
+            return false;
+        }
+    }
+
     //pour changer de mini étape
     void UpdateMiniActionClass()
     {
@@ -255,5 +290,10 @@ public class SO_ActionClass : ScriptableObject
     public string GetLogsChallenge()
     {
         return currentLogs;
+    }
+
+    public bool GetSwitchWithAcc()
+    {
+        return swithWithAcc;
     }
 }

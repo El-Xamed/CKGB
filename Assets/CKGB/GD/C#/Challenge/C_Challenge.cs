@@ -34,6 +34,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiAction;
     [SerializeField] GameObject uiTrait;
     [SerializeField] GameObject uiGoodAction;
+    [SerializeField] GameObject uiVictoire;
     [SerializeField] GameObject uiGameOver;
 
     [Header("UI (VFX)")]
@@ -176,6 +177,14 @@ public class C_Challenge : MonoBehaviour
                 }
                 else
                 {
+                    //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
+                    if (canUpdateEtape)
+                    {
+                        stepUpdate();
+
+                        canUpdateEtape = false;
+                    }
+
                     UpdateAccessories();
                     //Lance la phase "Cata".
                     Invoke("CataTrun", 0.5f);
@@ -333,6 +342,7 @@ public class C_Challenge : MonoBehaviour
             //New actor
             C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
             myActor.IniChallenge();
+            myActor.SetPosition(position.position);
 
             //New Ui stats
             C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
@@ -498,14 +508,6 @@ public class C_Challenge : MonoBehaviour
 
             //Initialise la prochaine cata.
             InitialiseCata();
-
-            //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
-            if (canUpdateEtape)
-            {
-                stepUpdate();
-
-                canUpdateEtape = false;
-            }
 
             //Change l'UI.
             uiAction.SetActive(true);
@@ -684,6 +686,7 @@ public class C_Challenge : MonoBehaviour
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) +1];
 
+
             //Apparition des boutons.
             SpawnActions();
         }
@@ -772,6 +775,23 @@ public class C_Challenge : MonoBehaviour
 
             //Check si il est sur une case "Dangereuse".
             currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
+
+            //Pour switch avec l'acc FONCTION QUE AVEC L'ACC 0 DE LA LISTE.
+            if (currentResolution.action.GetSwitchWithAcc())
+            {
+                //Deplace l'actor
+                currentResolution.actor.transform.parent = listCase[listAcc[0].currentPosition].transform;
+                currentResolution.actor.GetComponent<RectTransform>().localPosition = new Vector3(0, currentResolution.actor.GetComponent<RectTransform>().localPosition.y, 0);
+
+                //Deplace l'acc
+                listAcc[0].transform.parent = listCase[currentResolution.actor.GetPosition()].transform;
+                listAcc[0].GetComponent<RectTransform>().localPosition = new Vector3(0, currentResolution.actor.GetComponent<RectTransform>().localPosition.y, 0);
+
+                //Defini dans le code leut nouvelle position
+                int newPositionAcc = currentResolution.actor.GetPosition();
+                currentResolution.actor.SetPosition(listAcc[0].currentPosition);
+                listAcc[0].currentPosition = newPositionAcc;
+            }
 
             //Ecrit dans les logs le résultat de l'action.
             uiLogs.text = currentResolution.action.GetLogsChallenge();
@@ -910,6 +930,7 @@ public class C_Challenge : MonoBehaviour
     //Fin du challenge.
     void EndChallenge()
     {
+        uiVictoire.SetActive(true);
         Debug.Log("Fin du challenge");
     }
 
@@ -924,16 +945,26 @@ public class C_Challenge : MonoBehaviour
         //Check si il attaque.
         if (!thisAcc.dataAcc.canMakeDamage) { return; }
 
-        if (thisAcc.dataAcc.typeAttack == SO_Accessories.ETypeAttack.All)
+        foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
         {
-            //Check si la position des actor est sur la meme case que l'acc.
-            foreach (var thisActor in myTeam)
+            if (thisCase == thisAcc.currentPosition)
             {
-                thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+                if (thisAcc.dataAcc.typeAttack == SO_Accessories.ETypeAttack.All)
+                {
+                    //Check si la position des actor est sur la meme case que l'acc.
+                    foreach (var thisActor in myTeam)
+                    {
+                        thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
-                thisActor.CheckIsOut();
+                        thisActor.CheckIsOut();
+                    }
+
+                    //Ecrit dans les logs le résultat de l'action.
+                    uiLogs.text = "La cata à frappé le lézard ! Tous le monde perd -2 de calm !";
+                }
             }
         }
+        
 
         //Check si la position des actor est sur la meme case que l'acc.
         foreach (var thisActor in myTeam)
@@ -943,11 +974,13 @@ public class C_Challenge : MonoBehaviour
                 thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
                 thisActor.CheckIsOut();
+
+                //Ecrit dans les logs le résultat de l'action.
+                uiLogs.text = thisAcc.dataAcc.damageLogs;
             }
         }
 
-        //Ecrit dans les logs le résultat de l'action.
-        uiLogs.text = thisAcc.dataAcc.damageLogs;
+        
 
         //Check si le jeu est fini "GameOver".
         CheckGameOver();

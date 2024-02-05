@@ -19,23 +19,27 @@ MonoBehaviour:
     t\u2019offrir la bonne fortune, mais une l\xE9g\xE8re erreur de calcul la d\xE9vie
     sur les deux cases derri\xE8res toi."
   LogsCantMakeAction: Impossible
-  coutEnergy: 2
-  coutCalm: 0
+  coutEnergy: 0
+  coutCalm: 1
   gainCalm: 0
-  gainEnergy: 4
+  gainEnergy: 0
   coutEnergyOther: 0
   coutCalmOther: 0
   gainCalmOther: 0
-  gainEnergyOther: 0
+  gainEnergyOther: 4
   leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
+  rightRangeStatsOther: 2
   leftRangeOtherMovement: 0
   rightRangeOtherMovement: 0
+  swithWithAcc: 0
   moveRightSelf: 0
   moveLeftSelf: 0
-  caseToGo: 0
+  caseToGo: -1
+  moveOther: 0
   moveRightOther: 0
   moveLeftOther: 0
   nextMiniStep: {fileID: 0}
   needAcc: 0
   acc: {fileID: 0}
+  needActor: 1
+  actor: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}

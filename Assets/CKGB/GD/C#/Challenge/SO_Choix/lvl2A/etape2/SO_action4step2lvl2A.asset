@@ -15,8 +15,8 @@ MonoBehaviour:
   buttonText: "Regarder derri\xE8re le caba-oui"
   LogsCanMakeAction: 
   LogsCantMakeAction: 
-  coutEnergy: 0
-  coutCalm: 4
+  coutEnergy: 2
+  coutCalm: 1
   gainCalm: 0
   gainEnergy: 0
   coutEnergyOther: 0
@@ -27,11 +27,15 @@ MonoBehaviour:
   rightRangeStatsOther: 0
   leftRangeOtherMovement: 0
   rightRangeOtherMovement: 0
+  swithWithAcc: 0
   moveRightSelf: 0
   moveLeftSelf: 0
-  caseToGo: 0
+  caseToGo: -1
+  moveOther: 0
   moveRightOther: 0
   moveLeftOther: 0
   nextMiniStep: {fileID: 0}
   needAcc: 0
   acc: {fileID: 0}
+  needActor: 0
+  actor: {fileID: 0}

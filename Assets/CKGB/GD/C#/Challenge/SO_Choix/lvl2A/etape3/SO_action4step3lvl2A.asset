@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: SO_action4step3lvl2A
   m_EditorClassIdentifier: 
   buttonText: La pyramide humaine !
-  LogsCanMakeAction: 
+  LogsCanMakeAction: "Tes doigts caressent l\u2019\xE9corce \xE0 la recherche d\u2019une
+    prise. Tes ongles s\u2019enfoncent doucement entre les plaque, mais rien n\u2019y
+    fait. Aucune prise ne s\u2019offre \xE0 toi. Tu ne pense pas pouvoir escalader
+    l\u2019arbre. Pour faire comme si tout \xE9tais calcul\xE9, tu fais un grand
+    thumb up aux deux cases \xE0 ta droite."
   LogsCantMakeAction: 
   coutEnergy: 0
-  coutCalm: 3
+  coutCalm: 1
   gainCalm: 0
   gainEnergy: 0
   coutEnergyOther: 0
@@ -27,11 +31,15 @@ MonoBehaviour:
   rightRangeStatsOther: 0
   leftRangeOtherMovement: 0
   rightRangeOtherMovement: 0
+  swithWithAcc: 0
   moveRightSelf: 0
   moveLeftSelf: 0
-  caseToGo: 0
+  caseToGo: -1
+  moveOther: 0
   moveRightOther: 0
   moveLeftOther: 0
   nextMiniStep: {fileID: 0}
   needAcc: 0
   acc: {fileID: 0}
+  needActor: 0
+  actor: {fileID: 0}

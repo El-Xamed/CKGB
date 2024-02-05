@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: SO_action2step2lvl2A
   m_EditorClassIdentifier: 
   buttonText: Aller cueillir des tomates
-  LogsCanMakeAction: 
-  LogsCantMakeAction: 
+  LogsCanMakeAction: " Quoi ? T\u2019as le droit de prendre une pause. Tu navigue
+    entre les plants \xE0 la recherche de quoi te sustenter, malheureusement il semblerait
+    que toutes les tomates mures aient \xE9t\xE9 r\xE9colt\xE9es ce matin."
+  LogsCantMakeAction: Impossible
   coutEnergy: 0
-  coutCalm: 1
+  coutCalm: 0
   gainCalm: 0
-  gainEnergy: 3
+  gainEnergy: 0
   coutEnergyOther: 0
   coutCalmOther: 0
   gainCalmOther: 0
@@ -27,11 +29,15 @@ MonoBehaviour:
   rightRangeStatsOther: 0
   leftRangeOtherMovement: 0
   rightRangeOtherMovement: 0
+  swithWithAcc: 0
   moveRightSelf: 0
-  moveLeftSelf: 0
-  caseToGo: 0
+  moveLeftSelf: 2
+  caseToGo: -1
+  moveOther: 0
   moveRightOther: 0
   moveLeftOther: 0
   nextMiniStep: {fileID: 0}
   needAcc: 0
   acc: {fileID: 0}
+  needActor: 0
+  actor: {fileID: 0}
