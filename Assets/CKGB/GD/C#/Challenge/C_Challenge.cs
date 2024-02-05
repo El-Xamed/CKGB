@@ -225,8 +225,10 @@ public class C_Challenge : MonoBehaviour
         uiCases = canva.transform.GetChild(1).gameObject;
 
         #endregion
-
-        GameManager.instance.ChangeActionMap("Challenge");
+        if (GameManager.instance)
+        {
+            GameManager.instance.ChangeActionMap("Challenge");
+        }
     }
 
     private void Start()
@@ -682,29 +684,38 @@ public class C_Challenge : MonoBehaviour
 
     void UpdateActionSelected()
     {
-        #region Action Challenge
-        //Cache tous les boutons du challenge.
-        foreach (var myButton in listButton)
+        switch (currentInterface)
         {
-            //Feedback du bouton non-selecioné.
-            myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
+            case Interface.Actions:
+                #region Action Challenge
+                //Cache tous les boutons du challenge.
+                foreach (var myButton in listButton)
+                {
+                    //Feedback du bouton non-selecioné.
+                    myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
+                }
+
+                //Affiche le bouton que le joueur souhaite selectionner dans le challenge.
+                listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
+                #endregion
+                break;
+            case Interface.Traits:
+                #region Trait Actor
+                if (currentInterface == Interface.Traits)
+                {
+                    //Cache tous les boutons de traits de l'actor.
+                    foreach (var myTrait in listButtonTraits)
+                    {
+                        //Feedback du bouton non-selecioné.
+                        myTrait.myButton.transform.GetChild(0).gameObject.SetActive(false);
+                    }
+
+                    //Affiche le bouton que le joueur souhaite selectionner dans les traits de l'actor.
+                    listButtonTraits[currentTrait].myButton.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                #endregion
+                break;
         }
-
-        //Affiche le bouton que le joueur souhaite selectionner dans le challenge.
-        listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
-        #endregion
-
-        #region Trait Actor
-        //Cache tous les boutons de traits de l'actor.
-        foreach (var myTrait in listButtonTraits)
-        {
-            //Feedback du bouton non-selecioné.
-            myTrait.myButton.transform.GetChild(0).gameObject.SetActive(false);
-        }
-
-        //Affiche le bouton que le joueur souhaite selectionner dans les traits de l'actor.
-        listButtonTraits[currentTrait].myButton.transform.GetChild(0).gameObject.SetActive(true);
-        #endregion
     }
     #endregion
 
