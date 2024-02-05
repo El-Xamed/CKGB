@@ -36,6 +36,11 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiGoodAction;
     [SerializeField] GameObject uiGameOver;
 
+    [Header("UI (VFX)")]
+    [SerializeField] GameObject vfxPlayerTurn;
+    [SerializeField] GameObject vfxResoTurn;
+    [SerializeField] GameObject vfxCataTurn;
+
 
 
     [Header("Data")]
@@ -148,7 +153,12 @@ public class C_Challenge : MonoBehaviour
                     if (canSelectAction)
                     {
                         UseAction();
-                        SpawnTraits();
+
+                        //Si le joueur et dans l'interface des choix de traits, alors il update les actions disponible.
+                        if (currentInterface == Interface.Traits)
+                        {
+                            SpawnTraits();
+                        }
                         return;
                     }
                 }
@@ -246,7 +256,7 @@ public class C_Challenge : MonoBehaviour
         UpdateUi(currentStep);
 
         //Lance directement le tour du joueur
-        PlayerTrun();
+        Invoke("PlayerTrun", 2f);
         uiGameOver.SetActive(false);
 
         #endregion
@@ -463,6 +473,9 @@ public class C_Challenge : MonoBehaviour
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
         currentInterface = Interface.Neutre;
+
+        //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
+        vfxPlayerTurn.GetComponent<Animator>().enabled = true;
 
         //Check si le perso est jouable
         if (!currentActor.GetIsOut())
@@ -740,6 +753,9 @@ public class C_Challenge : MonoBehaviour
         //Change l'UI.
         uiAction.SetActive(false);
 
+        //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
+        vfxResoTurn.GetComponent<Animator>().enabled = true;
+
         //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
         //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
         if (currentResolution.action.CanUse(currentResolution.actor))
@@ -894,7 +910,6 @@ public class C_Challenge : MonoBehaviour
     void UpdateAccessories()
     {
         ApplyAccDamage(listAcc[0]);
-        //listAcc[0].GetComponent<C_Accessories>().MoveAcc(listCase);
     }
 
     void ApplyAccDamage(C_Accessories thisAcc)
