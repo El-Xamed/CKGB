@@ -40,4 +40,8 @@ public class C_destination : MonoBehaviour
    
     //Variable de scene
     #endregion
+   public SceneAsset sceneGet()
+    {
+        return destination;
+    }
 }

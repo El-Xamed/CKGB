@@ -72,7 +72,7 @@ public class C_Worldmap : MonoBehaviour
             GameManager.instance.ChangeActionMap("TempsMort");
 
             //Lance la scene selectionné.
-            SceneManager.LoadScene(currentPoint.destination.name);
+            SceneManager.LoadScene(currentPoint.sceneGet().name);
             AddActorInTeam();
             Debug.Log("Load Scene...");
         }
