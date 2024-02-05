@@ -32,7 +32,7 @@ public class C_Actor : MonoBehaviour
     public TMP_Text BigStats2;
     public TMP_Text description;
 
-
+    bool newTrait;
     #endregion
 
 
@@ -40,8 +40,26 @@ public class C_Actor : MonoBehaviour
     {
         gameObject.name = dataActor.name;
 
+        Debug.Log("1");
+        if (GameManager.instance)
+        {
+            Debug.Log("2");
+            foreach (var myActor in GameManager.instance.GetComponent<C_TempsMort>().characters)
+            {
+                Debug.Log("3");
+                if (myActor.GetComponent<C_Actor>().dataActor == dataActor)
+                {
+                    Debug.Log("4");
+                    //Bidouille
+                    dataActor.stressMax = myActor.GetComponent<C_Actor>().maxStress;
+                    dataActor.energyMax = myActor.GetComponent<C_Actor>().maxEnergy;
+                    listTraits = myActor.GetComponent<C_Actor>().listTraits;
+                }
+            }
+        }
+
         //Desactive et renseigne le sprite en question.
-        if(gameObject.GetComponent<SpriteRenderer>()==null)
+        if (gameObject.GetComponent<SpriteRenderer>()==null)
         {
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(0).GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
@@ -58,6 +76,8 @@ public class C_Actor : MonoBehaviour
     #region Challenge
     public void IniChallenge()
     {
+        //dataActor.energyMax;
+
         //Stats
         currentStress = dataActor.stressMax;
         currentEnergy = dataActor.energyMax;

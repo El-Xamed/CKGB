@@ -23,7 +23,7 @@ public class SO_Character : ScriptableObject
     [Header("Challenge (Stats)")]
     public int stressMax;
     public int energyMax;
-    public int nbtraitpointMax;
+    public int nbTraits;
     SO_ActionClass[] listTrait;
 
     [Header("Tempsmort (Sprite)")]

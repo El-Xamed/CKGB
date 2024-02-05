@@ -41,7 +41,7 @@ public class C_TempsMort : MonoBehaviour
     List<Transform> listCharactersPositions;
 
     [SerializeField]
-    GameObject[] characters;
+    public GameObject[] characters;
     [SerializeField]
     SO_TempsMort TM;
     [SerializeField]
@@ -194,7 +194,7 @@ public class C_TempsMort : MonoBehaviour
             characters[i].GetComponent<SpriteRenderer>().sprite = characters[i].GetComponent<C_Actor>().dataActor.MapTmSprite;
             characters[i].GetComponent<C_Actor>().maxEnergy = characters[i].GetComponent<C_Actor>().dataActor.energyMax;
             characters[i].GetComponent<C_Actor>().maxStress = characters[i].GetComponent<C_Actor>().dataActor.stressMax;
-            characters[i].GetComponent<C_Actor>().maxtraitPoint = characters[i].GetComponent<C_Actor>().dataActor.nbtraitpointMax;
+            characters[i].GetComponent<C_Actor>().maxtraitPoint = characters[i].GetComponent<C_Actor>().dataActor.nbTraits;
             characters[i].GetComponent<C_Actor>().currentPointTrait = characters[i].GetComponent<C_Actor>().dataActor.currentPointTrait;
             characters[i].GetComponent<C_Actor>().traitaDebloquer = characters[i].GetComponent<C_Actor>().dataActor.traitsAdebloquer;
             characters[i].GetComponent<C_Actor>().listTraits = characters[i].GetComponent<C_Actor>().dataActor.listTraits;
@@ -265,21 +265,22 @@ public class C_TempsMort : MonoBehaviour
     //papotage + stats
     public void PapotageFin()
     {
-        for(int i=0;i<PapotageChoiceButtons.Length;i++)
+        for (int i=0;i<PapotageChoiceButtons.Length;i++)
         {
             if(currentButton==PapotageChoiceButtons[i])
             {
                 actorActif.GetComponent<C_Actor>().currentPointTrait++;
                 characters[i].GetComponent<C_Actor>().currentPointTrait++;
-                if(actorActif.GetComponent<C_Actor>().currentPointTrait== actorActif.GetComponent<C_Actor>().maxtraitPoint)
+                if(actorActif.GetComponent<C_Actor>().currentPointTrait== 2)
                 {
                     actorActif.GetComponent<C_Actor>().currentPointTrait = 0;
-                    actorActif.GetComponent<C_Actor>().listTraits.Add(actorActif.GetComponent<C_Actor>().dataActor.traitsAdebloquer[0]);
+                    actorActif.GetComponent<C_Actor>().listTraits.Add(actorActif.GetComponent<C_Actor>().traitaDebloquer[0]);
+
                 }
-                if (characters[i].GetComponent<C_Actor>().currentPointTrait == characters[i].GetComponent<C_Actor>().maxtraitPoint)
+                if (characters[i].GetComponent<C_Actor>().currentPointTrait == 2)
                 {
                     characters[i].GetComponent<C_Actor>().currentPointTrait = 0;
-                    characters[i].GetComponent<C_Actor>().listTraits.Add(characters[i].GetComponent<C_Actor>().dataActor.traitsAdebloquer[0]);
+                    characters[i].GetComponent<C_Actor>().listTraits.Add(characters[i].GetComponent<C_Actor>().traitaDebloquer[0]);
                 }
             }
         }
