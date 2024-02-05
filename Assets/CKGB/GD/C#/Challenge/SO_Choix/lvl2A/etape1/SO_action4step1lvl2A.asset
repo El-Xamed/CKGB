@@ -12,17 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step1lvl2A
   m_EditorClassIdentifier: 
+  buttonText: Devenir le pont
+  LogsCanMakeAction: "Tu cours vers la rivi\xE8re. Certains ressentent une affinit\xE9
+    particuli\xE8re envers les animaux. Quand ils laissent parler leur instinct,
+    ils sentent leur loup spirituel les accompagner, ou leur pygargue \xE0 t\xEAte
+    blanche int\xE9rieur leur murmurer \xE0 l\u2019oreille. Toi, tu as longtemps
+    eut honte de ton animal totem. Plus jamais. Au dessus de toi, la constellation
+    m\xE9connue du pont scintille et transperce le ciel d\u2019\xE9t\xE9. Un torrent
+    de lumi\xE8re illumine ton \xE2me alors que tu t\u2019allonge en travers de la
+    lumi\xE8re. Allez-y, glorieux reptile ! Exaucez votre destin\xE9e ! L\u2019eau
+    mouille ton t-shirt. La terre est froide contre ton front. Plusieurs minutes
+    passent. Il semblerait que \xE7a n\u2019est pas march\xE9\u2026"
+  LogsCantMakeAction: Impossible
   coutEnergy: 0
   coutCalm: 0
+  gainCalm: 2
   gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
+  coutEnergyOther: 0
+  coutCalmOther: 0
+  gainCalmOther: 0
+  gainEnergyOther: 0
+  leftRangeStatsOther: 0
+  rightRangeStatsOther: 0
+  leftRangeOtherMovement: 0
+  rightRangeOtherMovement: 0
+  moveRightSelf: 0
+  moveLeftSelf: 1
+  caseToGo: -1
+  moveRightOther: 0
+  moveLeftOther: 0
   nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: Devenir le pont
-  TC: {fileID: 0}
+  needAcc: 0
+  acc: {fileID: 0}

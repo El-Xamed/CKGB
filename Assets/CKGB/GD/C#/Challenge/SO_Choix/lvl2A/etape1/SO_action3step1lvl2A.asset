@@ -12,17 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action3step1lvl2A
   m_EditorClassIdentifier: 
+  buttonText: "Apprendre aux l\xE9zards \xE0 nager"
+  LogsCanMakeAction: "Donne \xE0 quelqu\u2019un un poisson, et il pourra manger pendant
+    un jour. Mais apprend lui \xE0 p\xE9cher, et alors il mangera des p\xEAches.
+    Bon, tu es presque s\xFBr que c\u2019est pas \xE7a le dicton de base, mais ce
+    qui est important, c\u2019est que tu sera pas toujours l\xE0 pour faire des ponts
+    \xE0 ces l\xE9zards. Il faut que tu les aide de mani\xE8re p\xE9rennes. Tu gesticule
+    devant eux jusqu\u2019\xE0 \xEAtre s\xFBr d\u2019avoir leur attention. Leur petites
+    s\u2019alignent peu \xE0 peu dans ta vague direction. Avec toute la p\xE9dagogie
+    du monde, tu commence \xE0 leur montrer le mouvement de la brasse, en \xE9quilibre
+    sur un pied. L\u2019un d\u2019eux l\xE8che son \u0153il vitreux. Tu n\u2019es
+    pas s\xFBr qu\u2019il aient tout compris. C\u2019\xE9tait un peu technique et
+    tu es presque s\xFBr d\u2019avoir \xE9chou\xE9."
+  LogsCantMakeAction: 
   coutEnergy: 0
   coutCalm: 0
-  gainEnergy: 0
   gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
+  gainEnergy: 0
+  coutEnergyOther: 0
+  coutCalmOther: 0
+  gainCalmOther: 0
+  gainEnergyOther: 0
+  leftRangeStatsOther: 0
+  rightRangeStatsOther: 0
+  leftRangeOtherMovement: 0
+  rightRangeOtherMovement: 0
+  moveRightSelf: 0
+  moveLeftSelf: 0
+  caseToGo: -1
+  moveRightOther: 0
+  moveLeftOther: 0
   nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: "Apprendre aux l\xE9zards \xE0 nager"
-  TC: {fileID: 0}
+  needAcc: 0
+  acc: {fileID: 0}

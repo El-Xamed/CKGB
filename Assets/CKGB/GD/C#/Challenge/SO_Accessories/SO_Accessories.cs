@@ -13,8 +13,10 @@ public class SO_Accessories : ScriptableObject
     [Header("Position de l'objet")]
     public int initialPosition;
 
+    
+    public enum ETypeAttack { None, All}
     [Header("Damage")]
-    //Pour aplliquer les degat si le joueur se place dessus
+    public ETypeAttack typeAttack;
 
     public string damageLogs;
     public bool canMakeDamage;

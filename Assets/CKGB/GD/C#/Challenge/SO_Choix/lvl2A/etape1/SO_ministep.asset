@@ -12,17 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_ministep
   m_EditorClassIdentifier: 
+  buttonText: Poser une planche
+  LogsCanMakeAction: 
+  LogsCantMakeAction: 
   coutEnergy: 0
   coutCalm: 0
-  gainEnergy: 0
   gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
+  gainEnergy: 0
+  coutEnergyOther: 0
+  coutCalmOther: 0
+  gainCalmOther: 0
+  gainEnergyOther: 0
+  leftRangeStatsOther: 0
+  rightRangeStatsOther: 0
+  leftRangeOtherMovement: 0
+  rightRangeOtherMovement: 0
+  moveRightSelf: 0
+  moveLeftSelf: 0
   caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
+  moveRightOther: 0
+  moveLeftOther: 0
   nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: Poser une planche
-  TC: {fileID: 0}
+  needAcc: 0
+  acc: {fileID: 0}

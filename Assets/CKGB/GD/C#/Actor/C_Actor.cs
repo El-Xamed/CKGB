@@ -49,8 +49,6 @@ public class C_Actor : MonoBehaviour
             //Désactive le sprite KO.
             transform.GetChild(1).gameObject.SetActive(false);
         }
-
-
   
     }
 

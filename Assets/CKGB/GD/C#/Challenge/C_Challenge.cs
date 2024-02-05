@@ -67,8 +67,8 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] C_Actor currentActor;
 
     //S�lection d'actions
-    [SerializeField] int currentAction;
-    [SerializeField] int currentTrait;
+    [SerializeField] int currentAction = 0;
+    [SerializeField] int currentTrait = 0;
 
     //D�finis l'�tape actuel.
     public SO_Etape currentStep;
@@ -77,7 +77,7 @@ public class C_Challenge : MonoBehaviour
     List<ActionButton> listButton = new List<ActionButton>();
 
     //Utilisation d'une class qui regroupe 1 bouton et 1 action.
-    List<ActionButton> listButtonTraits = new List<ActionButton>();
+    [SerializeField] List<ActionButton> listButtonTraits = new List<ActionButton>();
     #endregion
 
     #region Résolution
@@ -492,7 +492,7 @@ public class C_Challenge : MonoBehaviour
             SpawnActions();
 
             //Met a jour le curseur des actions.
-            UpdateActionSelected();
+            //UpdateActionSelected();
         }
         else
         {
@@ -500,8 +500,6 @@ public class C_Challenge : MonoBehaviour
             PlayerTrun();
         }
     }
-
-    
 
     //VFX des cases visées.
     void InitialiseCata()
@@ -512,10 +510,31 @@ public class C_Challenge : MonoBehaviour
             thisCase.DestroyVfxCata();
         }
 
+        if (myChallenge.listCatastrophy[0].modeAttack == SO_Catastrophy.EModeAttack.Random)
+        {
+            //Augmente ou réduit le nombre.
+            int newInt = UnityEngine.Random.Range(0, listCase.Count -1);
+
+            //Vide la liste.
+            myChallenge.listCatastrophy[0].targetCase.Clear();
+
+            //Ajoute la valeur aléatoire.
+            myChallenge.listCatastrophy[0].targetCase.Add(newInt);
+        }
+
         //Affiche la prochaine cata.
         foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
         {
             listCase[thisCase].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
+        }
+
+        //Ajout des zones de danger des acc
+        foreach (var thisAcc in listAcc)
+        {
+            if (thisAcc.dataAcc.canMakeDamage)
+            {
+                listCase[thisAcc.currentPosition].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
+            }
         }
     }
 
@@ -584,7 +603,7 @@ public class C_Challenge : MonoBehaviour
             listButtonTraits = new List<ActionButton>();
 
             //Créer de nouveau boutons (Traits)
-            for (int i = 0; i < currentStep.actions.Length; i++)
+            for (int i = 0; i < currentActor.dataActor.listTraits.Count; i++)
             {
                 //Nouvelle class.
                 ActionButton newTraitsButton = new ActionButton();
@@ -669,6 +688,7 @@ public class C_Challenge : MonoBehaviour
             //Feedback du bouton non-selecioné.
             myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
         }
+
         //Affiche le bouton que le joueur souhaite selectionner dans le challenge.
         listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
         #endregion
@@ -680,6 +700,7 @@ public class C_Challenge : MonoBehaviour
             //Feedback du bouton non-selecioné.
             myTrait.myButton.transform.GetChild(0).gameObject.SetActive(false);
         }
+
         //Affiche le bouton que le joueur souhaite selectionner dans les traits de l'actor.
         listButtonTraits[currentTrait].myButton.transform.GetChild(0).gameObject.SetActive(true);
         #endregion
@@ -712,7 +733,7 @@ public class C_Challenge : MonoBehaviour
         if (currentResolution.action.CanUse(currentResolution.actor))
         {
             //Utilise l'action.
-            currentResolution.action.UseAction(currentResolution.actor, listCase);
+            currentResolution.action.UseAction(currentResolution.actor, listCase, myTeam);
 
             //Check si il est sur une case "Dangereuse".
             currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
@@ -755,6 +776,9 @@ public class C_Challenge : MonoBehaviour
 
             if (!CheckGameOver())
             {
+                //Update les acc
+                UpdateAccessories();
+
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
 
@@ -866,29 +890,25 @@ public class C_Challenge : MonoBehaviour
         //Check si il attaque.
         if (!thisAcc.dataAcc.canMakeDamage) { return; }
 
-        //Check comment il attaque.
-        if (thisAcc.dataAcc.rightRange > 0) //Si il y a un actor à droite.
+        if (thisAcc.dataAcc.typeAttack == SO_Accessories.ETypeAttack.All)
         {
+            //Check si la position des actor est sur la meme case que l'acc.
             foreach (var thisActor in myTeam)
             {
-                if (thisActor.GetPosition() == thisAcc.currentPosition + 1)
-                {
-                    thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+                thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
-                    thisActor.CheckIsOut();
-                }
+                thisActor.CheckIsOut();
             }
         }
-        if (thisAcc.dataAcc.leftRange > 0) //Si il y a un actor à gauche.
-        {
-            foreach (var thisActor in myTeam)
-            {
-                if (thisActor.GetPosition() == thisAcc.currentPosition - 1)
-                {
-                    thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
-                    thisActor.CheckIsOut();
-                }
+        //Check si la position des actor est sur la meme case que l'acc.
+        foreach (var thisActor in myTeam)
+        {
+            if (thisActor.GetPosition() == thisAcc.currentPosition)
+            {
+                thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+
+                thisActor.CheckIsOut();
             }
         }
 

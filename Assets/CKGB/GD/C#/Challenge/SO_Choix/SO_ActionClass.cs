@@ -17,29 +17,49 @@ public class SO_ActionClass : ScriptableObject
     string currentLogs;
     #endregion
 
-    #region Stats "PRIX"
-    [Header("Stats Prix")]
+    #region Stats "PRIX" Self
+    [Header("Stats Prix (Self)")]
     public int coutEnergy;
     public int coutCalm;
     #endregion
 
-    #region Stats "GAIN"
-    [Header("Stats Gain")]
-    public int gainEnergy;
+    #region Stats "GAIN" Self
+    [Header("Stats Gain (Self)")]
     public int gainCalm;
+    public int gainEnergy;
     #endregion
 
-    #region Movement
-    [Header("Mouvement")]
-    [SerializeField] bool moveRight;
-    [SerializeField] bool moveLeft;
-    [SerializeField] int caseToGo = -1;
+    #region Stats "PRIX" Other
+    [Header("Stats Prix (Self)")]
+    public int coutEnergyOther;
+    public int coutCalmOther;
+    #endregion
+
+    #region Stats "GAIN" Other
+    [Header("Stats Gain (Self)")]
+    public int gainCalmOther;
+    public int gainEnergyOther;
     #endregion
 
     #region Range
-    [Header("Range")]
-    [SerializeField] int leftRange;
-    [SerializeField] int rightRange;
+    [Header("Range (Prix/Gain)")]
+    [SerializeField] int leftRangeStatsOther;
+    [SerializeField] int rightRangeStatsOther;
+
+    [Header("Range (Other Movement)")]
+    [SerializeField] int leftRangeOtherMovement;
+    [SerializeField] int rightRangeOtherMovement;
+    #endregion
+
+    #region Movement
+    [Header("Mouvement (Self)")]
+    [SerializeField] int moveRightSelf;
+    [SerializeField] int moveLeftSelf;
+    [SerializeField] int caseToGo = -1;
+
+    [Header("Mouvement (Other)")]
+    [SerializeField] int moveRightOther;
+    [SerializeField] int moveLeftOther;
     #endregion
 
     #region Sous action
@@ -55,62 +75,118 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Fonctions
-    public void UseAction(C_Actor thisActor, List<C_Case> listCase)
+    public void UseAction(C_Actor thisActor, List<C_Case> listCase, List<C_Actor> myTeam)
     {
         Debug.Log("Use this actionClass.");
 
         //Stats
-        thisActor.TakeDamage(coutCalm, coutEnergy);
-        thisActor.TakeHeal(gainCalm, gainEnergy);
+        StatsOtherActor(thisActor, coutCalmOther, coutEnergyOther, gainCalmOther, gainEnergyOther, myTeam);
+        //Apllique les stats sur les autres actor.
+        StatsSelfActor(thisActor, coutCalm, coutEnergy, gainCalm, gainEnergy);
 
         //Movement
-        MovePlayer(thisActor, listCase);
+        MoveOtherActor(thisActor, listCase, myTeam);
+        MoveSelfActor(thisActor, moveRightSelf, moveLeftSelf, caseToGo, listCase);
+    }
+
+    #region Stats
+    void StatsSelfActor(C_Actor thisActor, int coutCalm, int coutEnergy, int gainCalm, int gainEnergy)
+    {
+        thisActor.TakeDamage(coutCalm, coutEnergy);
+        thisActor.TakeHeal(gainCalm, gainEnergy);
 
         //Check si le joueur est encore en vie.
         thisActor.CheckIsOut();
     }
 
-    //Déplace le personnage
-    void MovePlayer(C_Actor myActor, List<C_Case> listCase)
+    void StatsOtherActor(C_Actor myActor, int coutCalm, int coutEnergy, int gainCalm, int gainEnergy, List<C_Actor> myTeam)
     {
-        if (moveRight)
+        //Check si sur la droite de l'actor, dans la range il peut déplacer les autres actor.
+        foreach (var thisActor in myTeam)
         {
-            if (myActor.GetPosition() == 0)
+            for (var i = 0; i < rightRangeStatsOther; i++)
             {
-                myActor.transform.parent = listCase[0].transform;
-                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-                myActor.SetPosition(0);
+                if (thisActor.GetPosition() == myActor.GetPosition() + i)
+                {
+                    StatsSelfActor(thisActor, coutCalm, coutEnergy , gainCalm, gainEnergy);
+                }
             }
-            else
+
+            for (var i = 0; i < leftRangeStatsOther; i++)
             {
-                myActor.transform.parent = listCase[myActor.GetPosition() + 1].transform;
-                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-                myActor.SetPosition(myActor.GetPosition() + 1);
+                if (thisActor.GetPosition() == myActor.GetPosition() - i)
+                {
+                    StatsSelfActor(thisActor, coutCalm, coutEnergy, gainCalm, gainEnergy);
+                }
             }
         }
-        if (moveLeft)
+    }
+    #endregion
+
+    #region Movement
+    //Déplace l'actor
+    void MoveSelfActor(C_Actor myActor, int moveRight ,int moveLeft, int moveToGo,List<C_Case> listCase)
+    {
+        //Déplacement sur la droite.
+        //Si il est au bord et que le déplacement va plus loin que la liste.
+        if (myActor.GetPosition() + moveRight > listCase.Count - 1)
         {
-            if (myActor.GetPosition() == listCase.Count -1)
-            {
-                myActor.transform.parent = listCase[listCase.Count - 1].transform;
-                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-                myActor.SetPosition(listCase.Count - 1);
-            }
-            else
-            {
-                myActor.transform.parent = listCase[myActor.GetPosition() - 1].transform;
-                myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-                myActor.SetPosition(myActor.GetPosition() - 1);
-            }
-            
+            myActor.transform.parent = listCase[myActor.GetPosition() - (listCase.Count -1) - moveRight].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+            myActor.SetPosition(myActor.GetPosition() - (listCase.Count - 1) - moveRight);
         }
-        if (caseToGo > -1)
+        else
+        {
+            myActor.transform.parent = listCase[myActor.GetPosition() + moveRight].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+            myActor.SetPosition(myActor.GetPosition() + moveRight);
+        }
+        //Déplacement sur la gauche.
+        //Si il est au bord et que le déplacement va moins loin que la liste.
+        if (myActor.GetPosition() - moveRightSelf > 0)
+        {
+            myActor.transform.parent = listCase[(myActor.GetPosition() - moveLeft) - listCase.Count -1].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+            myActor.SetPosition((myActor.GetPosition() - moveLeft) - listCase.Count - 1);
+        }
+        else
+        {
+            myActor.transform.parent = listCase[myActor.GetPosition() - moveLeft].transform;
+            myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
+            myActor.SetPosition(myActor.GetPosition() - moveLeft);
+        }
+        if (moveToGo > -1)
         {
             myActor.transform.parent = listCase[caseToGo].transform;
             myActor.GetComponent<RectTransform>().localPosition = new Vector3(0, myActor.GetComponent<RectTransform>().localPosition.y, 0);
-            myActor.SetPosition(caseToGo);
+            myActor.SetPosition(moveToGo);
         }
     }
+
+    //Déplace les autres actor.
+    void MoveOtherActor(C_Actor myActor, List<C_Case> listCase, List<C_Actor> myTeam)
+    {
+        //Check si sur la droite de l'actor, dans la range il peut déplacer les autres actor.
+        foreach (var thisActor in myTeam)
+        {
+            for (var i = 0; i < rightRangeOtherMovement; i++)
+            {
+                if (thisActor.GetPosition() == myActor.GetPosition() + i)
+                {
+                    MoveSelfActor(thisActor, moveRightOther, 0, -1, listCase);
+                }
+            }
+
+            for (var i = 0; i < leftRangeOtherMovement; i++)
+            {
+                if (thisActor.GetPosition() == myActor.GetPosition() - i)
+                {
+                    MoveSelfActor(thisActor, 0, moveLeftOther, -1, listCase);
+                }
+            }
+        }
+    }
+    #endregion
 
     //vérifie la condition si l'action fonctionne
     public bool CanUse(C_Actor thisActor)
