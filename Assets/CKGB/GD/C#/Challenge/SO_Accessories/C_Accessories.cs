@@ -30,6 +30,7 @@ public class C_Accessories : MonoBehaviour
 
     }
 
+    /*
     public void MoveAcc(List<C_Case> listCase)
     {
         switch (dataAcc.moveType)
@@ -71,5 +72,5 @@ public class C_Accessories : MonoBehaviour
                 GetComponent<RectTransform>().localPosition = new Vector3(0, GetComponent<RectTransform>().localPosition.y, 0);
                 break;
         }
-    }
+    }*/
 }

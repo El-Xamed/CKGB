@@ -225,6 +225,8 @@ public class C_Challenge : MonoBehaviour
         uiCases = canva.transform.GetChild(1).gameObject;
 
         #endregion
+
+        GameManager.instance.ChangeActionMap("Challenge");
     }
 
     private void Start()
@@ -881,7 +883,7 @@ public class C_Challenge : MonoBehaviour
     void UpdateAccessories()
     {
         ApplyAccDamage(listAcc[0]);
-        listAcc[0].GetComponent<C_Accessories>().MoveAcc(listCase);
+        //listAcc[0].GetComponent<C_Accessories>().MoveAcc(listCase);
     }
 
     void ApplyAccDamage(C_Accessories thisAcc)

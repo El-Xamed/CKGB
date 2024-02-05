@@ -24,16 +24,5 @@ public class SO_Accessories : ScriptableObject
     public int reducStress;
     public int leftRange;
     public int rightRange;
-
-    [Header("Movement")]
-    //Déplacements
-    public ETypeMovetype moveType;
-
-
     #endregion
-}
-
-public enum ETypeMovetype
-{
-    notMove, normal, inverse, random
 }
