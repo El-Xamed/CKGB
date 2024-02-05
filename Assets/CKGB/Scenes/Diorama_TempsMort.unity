@@ -1015,6 +1015,9 @@ MonoBehaviour:
   DedEsthela: {fileID: 0}
   esthela: {fileID: 0}
   Tetanisation: {fileID: 0}
+  JaugeKO: {fileID: 0}
+  jaugenormal: {fileID: 0}
+  choiceButton: []
   action: 0
   actionsUI: []
 --- !u!1 &198767925
@@ -2265,7 +2268,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 33113bdb445b4304bb69882f438d60fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
