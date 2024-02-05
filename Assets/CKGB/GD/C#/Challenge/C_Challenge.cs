@@ -247,11 +247,15 @@ public class C_Challenge : MonoBehaviour
         if (GameManager.instance)
         {
             GameManager.instance.ChangeActionMap("Challenge");
+
+            
         }
 
         if (AudioManager.instance)
         {
             AudioManager.instance.PlaySFX(AudioManager.instance.musicChallenge);
+            
+
         }
     }
 
