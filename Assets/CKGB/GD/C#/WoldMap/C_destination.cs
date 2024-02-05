@@ -36,7 +36,6 @@ public class C_destination : MonoBehaviour
 
     [SerializeField]
     SceneAsset destination;
-
    
     //Variable de scene
     #endregion
