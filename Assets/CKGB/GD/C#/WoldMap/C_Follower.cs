@@ -32,6 +32,6 @@ public class C_Follower : MonoBehaviour
     
     private void initiateTheMapCharacterProtocol()
     {
-        actor.GetComponent<C_Actor>().IniWorldMap();
+        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<C_Actor>().dataActor.MapTmSprite;
     }
 }

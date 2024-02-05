@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -272,7 +272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,10 +356,6 @@ MonoBehaviour:
     m_ActionId: c2568446-36e9-4720-8cb0-c41c45fa077b
     m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7984d3dd-5daf-48b1-93b5-a2ebb24ab83d
-    m_ActionName: Challenge/New action
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_Worldmap, Assembly-CSharp
@@ -391,6 +387,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
     m_ActionName: WorldMap/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 792e24f3-d1a2-4a6a-80cd-6c6939953e23
+    m_ActionName: TempsMort/FlipCard[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2df5d24f-27f7-4b12-a9da-06728aa1057b
+    m_ActionName: TempsMort/Submit[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4518165f-b12e-43b7-aa38-07d9c8ccb776
+    m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ef01faa-82be-401b-a6ab-f98d4a7dcdc6
+    m_ActionName: Challenge/SelectAction[/Keyboard/q,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
+    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
+    m_ActionName: Challenge/ResetChallenge
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: WorldMap
@@ -516,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -592,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -789,7 +809,7 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
       value: 
-      objectReference: {fileID: 102900000, guid: c8526764c277e9149bd9e272ec4ceb56, type: 3}
+      objectReference: {fileID: 102900000, guid: 4b651468002d0974f8d0989e9f4c11ef, type: 3}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: downPath.Array.size
       value: 4
@@ -873,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1000,7 +1020,7 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
       value: 
-      objectReference: {fileID: 102900000, guid: c8526764c277e9149bd9e272ec4ceb56, type: 3}
+      objectReference: {fileID: 102900000, guid: 4b651468002d0974f8d0989e9f4c11ef, type: 3}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: downPath.Array.size
       value: 4
@@ -1079,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1280,7 +1300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1371,7 +1391,7 @@ MonoBehaviour:
   rightpath: []
   uppath: []
   downpath: []
-  actor: {fileID: 5598699505697139378, guid: 6d5e9ebab6a13be4d89767d805631ec3, type: 3}
+  actor: {fileID: 8428329977619197852, guid: 8e8d713129855a94a9392dfb6ecfc86b, type: 3}
   Follower: {fileID: 562423703}
   destination: {fileID: 0}
   UIlevel: {fileID: 1081640529}
@@ -1553,8 +1573,28 @@ MonoBehaviour:
     m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 7984d3dd-5daf-48b1-93b5-a2ebb24ab83d
-    m_ActionName: Challenge/New action
+    m_ActionId: 792e24f3-d1a2-4a6a-80cd-6c6939953e23
+    m_ActionName: TempsMort/FlipCard[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2df5d24f-27f7-4b12-a9da-06728aa1057b
+    m_ActionName: TempsMort/Submit[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4518165f-b12e-43b7-aa38-07d9c8ccb776
+    m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ef01faa-82be-401b-a6ab-f98d4a7dcdc6
+    m_ActionName: Challenge/SelectAction[/Keyboard/q,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
+    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
+    m_ActionName: Challenge/ResetChallenge
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: WorldMap
@@ -1577,7 +1617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1704,7 +1744,7 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
       value: 
-      objectReference: {fileID: 102900000, guid: c8526764c277e9149bd9e272ec4ceb56, type: 3}
+      objectReference: {fileID: 102900000, guid: 4b651468002d0974f8d0989e9f4c11ef, type: 3}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: upPath.Array.size
       value: 4
@@ -1779,7 +1819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1925,7 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1991,7 +2031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2074,6 +2114,7 @@ Transform:
   - {fileID: 1783852789}
   - {fileID: 1965967512}
   - {fileID: 993408253}
+  - {fileID: 562423704}
   - {fileID: 1499519252}
   - {fileID: 976546400}
   - {fileID: 1475584205}
@@ -2092,7 +2133,6 @@ Transform:
   - {fileID: 734760579}
   - {fileID: 563678111}
   - {fileID: 37752682}
-  - {fileID: 562423704}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2123,7 +2163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2189,7 +2229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2255,7 +2295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2321,7 +2361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2448,7 +2488,7 @@ PrefabInstance:
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: destination
       value: 
-      objectReference: {fileID: 102900000, guid: c8526764c277e9149bd9e272ec4ceb56, type: 3}
+      objectReference: {fileID: 102900000, guid: 4b651468002d0974f8d0989e9f4c11ef, type: 3}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: rightPath.Array.size
       value: 4
@@ -2825,7 +2865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2891,7 +2931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2949,7 +2989,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1865628500209099170, guid: 19ba483517985134ba91f72e5517790b, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1865628500209099170, guid: 19ba483517985134ba91f72e5517790b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3014,7 +3054,7 @@ PrefabInstance:
     - target: {fileID: 8021851021429074105, guid: 19ba483517985134ba91f72e5517790b, type: 3}
       propertyPath: actor
       value: 
-      objectReference: {fileID: 3312149462793705758, guid: 48cc0700aa167854c9d406bc9e7b3caf, type: 3}
+      objectReference: {fileID: 8428329977619197852, guid: 22cdc69116fa9064597c9da46eac1a03, type: 3}
     - target: {fileID: 8021851021429074105, guid: 19ba483517985134ba91f72e5517790b, type: 3}
       propertyPath: moveSpeed
       value: 3
@@ -3063,15 +3103,15 @@ PrefabInstance:
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: ressourceActor.Array.data[0]
       value: 
-      objectReference: {fileID: 5598699505697139378, guid: 6d5e9ebab6a13be4d89767d805631ec3, type: 3}
+      objectReference: {fileID: 8428329977619197852, guid: 8e8d713129855a94a9392dfb6ecfc86b, type: 3}
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: ressourceActor.Array.data[1]
       value: 
-      objectReference: {fileID: 3312149462793705758, guid: 48cc0700aa167854c9d406bc9e7b3caf, type: 3}
+      objectReference: {fileID: 8428329977619197852, guid: 22cdc69116fa9064597c9da46eac1a03, type: 3}
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: ressourceActor.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8428329977619197852, guid: 328581e8a42ec874b8b090e2f35ea36f, type: 3}
     - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_RootOrder
       value: 0

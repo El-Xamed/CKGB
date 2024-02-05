@@ -207,11 +207,10 @@ public class C_TempsMort : MonoBehaviour
             characters[i].GetComponent<C_Actor>().smallStats = littleCharactersSpecs[i];
             littleCharactersSpecs[i].text = "Calme Max : " + characters[i].GetComponent<C_Actor>().maxStress + "\n Energie Max : " + characters[i].GetComponent<C_Actor>().maxEnergy + "\n Points de trait : " + characters[i].GetComponent<C_Actor>().currentPointTrait + "/" + characters[i].GetComponent<C_Actor>().maxtraitPoint;
             characters[i].GetComponent<C_Actor>().BigStats1 = CompleteCharactersSpecs1[i];
-            CompleteCharactersSpecs1[i].text = "Calme Max : " + characters[i].GetComponent<C_Actor>().maxStress + "\n Energie Max : " + characters[i].GetComponent<C_Actor>().maxEnergy + "\n" + characters[i].GetComponent<C_Actor>().description;
+            CompleteCharactersSpecs1[i].text = "Calme Max : " + characters[i].GetComponent<C_Actor>().maxStress + "\n Energie Max : " + characters[i].GetComponent<C_Actor>().maxEnergy + "\n" + characters[i].GetComponent<C_Actor>().dataActor.Description;
             characters[i].GetComponent<C_Actor>().BigStats2 = CompleteCharactersSpecs2[i];
             CompleteCharactersSpecs2[i].text = "Points de trait " + characters[i].GetComponent<C_Actor>().currentPointTrait + "/" + characters[i].GetComponent<C_Actor>().maxtraitPoint + "\n" + characters[i].GetComponent<C_Actor>().listTraits[0].buttonText;
         }
-
     }
     //chaque deplacement de curseur dans l'ui
     public void Naviguate(InputAction.CallbackContext context)
@@ -298,8 +297,8 @@ public class C_TempsMort : MonoBehaviour
     public void Revasser()
     {
         //calm
-        actorActif.GetComponent<C_Actor>().dataActor.stressMax+=1;
-        actorActif.GetComponent<C_Actor>().maxStress+=1;
+        actorActif.GetComponent<C_Actor>().dataActor.stressMax++;
+        actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
     }
     public void Challenge()

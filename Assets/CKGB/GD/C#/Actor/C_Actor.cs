@@ -49,6 +49,8 @@ public class C_Actor : MonoBehaviour
             //Désactive le sprite KO.
             transform.GetChild(1).gameObject.SetActive(false);
         }
+        dataActor = ScriptableObject.Instantiate(dataActor);
+
   
     }
 
@@ -97,9 +99,8 @@ public class C_Actor : MonoBehaviour
     public void IniWorldMap()
     {
         //Sprite
-        GetComponent<Image>().sprite = dataActor.MapTmSprite;
-        GetComponent<Image>().preserveAspect = true;
-        GetComponent<Image>().useSpriteMesh = true;
+        GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
+
     }
 
     #endregion

@@ -35,7 +35,8 @@ public class SO_Character : ScriptableObject
     [Header("Tempsmort (Stats)")]
     public SO_ActionClass[] traitsAdebloquer;
     public int currentPointTrait;
-    public TMP_Text description;
+    [TextAreaAttribute]
+    public string Description;
     #endregion
 }
 
