@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 
 public class C_Actor : MonoBehaviour
@@ -25,6 +27,10 @@ public class C_Actor : MonoBehaviour
     public GameObject smallResume;
     public GameObject BigResume1;
     public GameObject BigResume2;
+    public TMP_Text smallStats;
+    public TMP_Text BigStats1;
+    public TMP_Text BigStats2;
+    public TMP_Text description;
 
 
     #endregion

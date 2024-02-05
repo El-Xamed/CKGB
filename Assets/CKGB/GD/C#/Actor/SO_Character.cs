@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu(fileName = "New Actor", menuName = "ScriptableObjects/Personne")]
 public class SO_Character : ScriptableObject
@@ -34,6 +35,7 @@ public class SO_Character : ScriptableObject
     [Header("Tempsmort (Stats)")]
     public SO_ActionClass[] traitsAdebloquer;
     public int currentPointTrait;
+    public TMP_Text description;
     #endregion
 }
 
