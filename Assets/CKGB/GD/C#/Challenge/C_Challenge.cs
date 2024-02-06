@@ -379,6 +379,7 @@ public class C_Challenge : MonoBehaviour
     //Utilise l'action
     void UseAction()
     {
+        AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
@@ -418,6 +419,7 @@ public class C_Challenge : MonoBehaviour
     //Pour accéder au actions.
     public void GoAction()
     {
+
         currentAction = 0;
 
         uiInterface.GetComponent<Animator>().SetTrigger("OpenActions");
@@ -433,6 +435,8 @@ public class C_Challenge : MonoBehaviour
     public void GoLogs()
     {
         Debug.Log("Pas disponible");
+        AudioManager.instance.PlaySFX(AudioManager.instance.logs);
+
     }
 
     //Pour accéder au traits.
@@ -460,6 +464,8 @@ public class C_Challenge : MonoBehaviour
     //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
+
+        AudioManager.instance.PlaySFX(AudioManager.instance.retourEnArriere);
         switch (currentInterface)
         {
             case Interface.Actions:

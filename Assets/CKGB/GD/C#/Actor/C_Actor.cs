@@ -166,8 +166,10 @@ public class C_Actor : MonoBehaviour
     //Check si le joueur est encore jouable.
     public void CheckIsOut()
     {
+
         if (currentStress <= 0)
         {
+            AudioManager.instance.PlaySFX(AudioManager.instance.tetaniser);
             isOut = true;
 
             GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;

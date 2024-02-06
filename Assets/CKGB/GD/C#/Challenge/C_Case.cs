@@ -13,6 +13,7 @@ public class C_Case : MonoBehaviour
     public void ShowDangerZone(GameObject newVfxCata)
     {
         vfxCata = Instantiate(newVfxCata, transform);
+        AudioManager.instance.PlaySFX(AudioManager.instance.danger);
     }
 
     public void ApplyNewStats()
