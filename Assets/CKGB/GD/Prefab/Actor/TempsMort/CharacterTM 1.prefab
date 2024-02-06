@@ -97,16 +97,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2108cbfe7ef4824e8526c1d59303022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: 0
   dataActor: {fileID: 11400000, guid: 2fa747360d26cdf4db117b7efd1a38cf, type: 2}
   isOut: 0
   currentStress: 0
-  maxStress: 4
+  maxStress: 5
   currentEnergy: 0
-  maxEnergy: 5
+  maxEnergy: 6
   currentPointTrait: 1
-  maxtraitPoint: 2
+  maxtraitPoint: 0
   listTraits:
   - {fileID: 11400000, guid: 0dc6819f65cb9034ba7f58091d434d72, type: 2}
-  - {fileID: 11400000, guid: 87d0ab7069f5d634c92b42ca328eece4, type: 2}
   traitaDebloquer:
   - {fileID: 11400000, guid: ce1dd03f577d5ac4584e8a98981fe3c4, type: 2}
+  smallResume: {fileID: 0}
+  BigResume1: {fileID: 0}
+  BigResume2: {fileID: 0}
+  smallStats: {fileID: 0}
+  BigStats1: {fileID: 0}
+  BigStats2: {fileID: 0}
+  description: {fileID: 0}

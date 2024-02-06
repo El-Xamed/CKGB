@@ -191,6 +191,8 @@ public class C_TempsMort : MonoBehaviour
         for(int i=0;i<characters.Length;i++)
         {        
             Instantiate(characters[i], listCharactersPositions[i]);
+            //Instantiate un nouv data actor pour pas modifier les data dans le projet.
+
             characters[i].GetComponent<SpriteRenderer>().sprite = characters[i].GetComponent<C_Actor>().dataActor.MapTmSprite;
             characters[i].GetComponent<C_Actor>().maxEnergy = characters[i].GetComponent<C_Actor>().dataActor.energyMax;
             characters[i].GetComponent<C_Actor>().maxStress = characters[i].GetComponent<C_Actor>().dataActor.stressMax;

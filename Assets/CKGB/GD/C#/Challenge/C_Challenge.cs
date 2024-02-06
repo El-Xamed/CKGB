@@ -647,12 +647,22 @@ public class C_Challenge : MonoBehaviour
                 newTraitsButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiTrait.transform);
                 newTraitsButton.myButton.GetComponentInChildren<TMP_Text>().text = currentActor.dataActor.listTraits[i].buttonText;
 
+                
+
                 //Reférence Action.
                 newTraitsButton.myActionClass = currentActor.dataActor.listTraits[i];
 
                 
 
                 listButtonTraits.Add(newTraitsButton);
+
+                foreach (var thisNewTraits in currentActor.dataActor.traitsAdebloquer)
+                {
+                    if (newTraitsButton.myActionClass == thisNewTraits)
+                    {
+                        newTraitsButton.myButton.transform.GetChild(2).gameObject.SetActive(true);
+                    }
+                }
             }
 
             uiAction.SetActive(false);

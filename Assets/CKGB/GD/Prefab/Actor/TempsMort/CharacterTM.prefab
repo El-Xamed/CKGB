@@ -79,7 +79,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.5925925, y: 3.2407408}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,11 +101,11 @@ MonoBehaviour:
   dataActor: {fileID: 11400000, guid: f815fa2680ca4bc4ea731ad99aab2325, type: 2}
   isOut: 0
   currentStress: 0
-  maxStress: 4
+  maxStress: 5
   currentEnergy: 0
-  maxEnergy: 6
+  maxEnergy: 5
   currentPointTrait: 1
-  maxtraitPoint: 0
+  maxtraitPoint: 1
   listTraits:
   - {fileID: 11400000, guid: 3d87574e9c9599b48987129841c5dc8e, type: 2}
   traitaDebloquer:
