@@ -54,6 +54,13 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField] GameObject actorActif;
 
     [SerializeField]
+    GameObject aquiletour;
+    [SerializeField]
+    GameObject faitesunchoix;
+    [SerializeField]
+    GameObject papoteravec;
+
+    [SerializeField]
     bool[] characterHasPlayed;
     [SerializeField] 
     bool isAnActionButton = false;
@@ -62,6 +69,9 @@ public class C_TempsMort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        faitesunchoix.SetActive(false);
+        papoteravec.SetActive(false);
         #region HideUI
         Es = FindObjectOfType<EventSystem>();
         foreach (GameObject button in actions)
@@ -138,6 +148,8 @@ public class C_TempsMort : MonoBehaviour
     //active les boutons de choix d'actions
     public void ActivateActionsButtons()
     {
+        faitesunchoix.SetActive(true);
+        aquiletour.SetActive(false);
         isAnActionButton = true;
         for (int i = 0; i < characters.Length; i++)
         {
@@ -159,6 +171,8 @@ public class C_TempsMort : MonoBehaviour
     //active les boutons de choix de persos
     public void ActivateCharactersButton()
     {
+        aquiletour.SetActive(true);
+        faitesunchoix.SetActive(false);
         isAnActionButton = false;
         for (int i = 0; i < actions.Length; i++)
         {
@@ -250,6 +264,8 @@ public class C_TempsMort : MonoBehaviour
     //provoque le choix du personnage avec qui papoter
     public void Papoter()
     {
+        papoteravec.SetActive(true);
+        faitesunchoix.SetActive(false);
         AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         for (int i = 0; i < PapotageChoiceButtons.Length; i++)
         {
@@ -267,6 +283,7 @@ public class C_TempsMort : MonoBehaviour
     //papotage + stats
     public void PapotageFin()
     {
+        papoteravec.SetActive(false);
         for (int i=0;i<PapotageChoiceButtons.Length;i++)
         {
             if(currentButton==PapotageChoiceButtons[i])
