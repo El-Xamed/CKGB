@@ -649,6 +649,9 @@ public class C_Challenge : MonoBehaviour
 
                 //Reférence Action.
                 newTraitsButton.myActionClass = currentActor.dataActor.listTraits[i];
+
+                
+
                 listButtonTraits.Add(newTraitsButton);
             }
 

@@ -40,16 +40,12 @@ public class C_Actor : MonoBehaviour
     {
         gameObject.name = dataActor.name;
 
-        Debug.Log("1");
         if (GameManager.instance)
         {
-            Debug.Log("2");
             foreach (var myActor in GameManager.instance.GetComponent<C_TempsMort>().characters)
             {
-                Debug.Log("3");
                 if (myActor.GetComponent<C_Actor>().dataActor == dataActor)
                 {
-                    Debug.Log("4");
                     //Bidouille
                     dataActor.stressMax = myActor.GetComponent<C_Actor>().maxStress;
                     dataActor.energyMax = myActor.GetComponent<C_Actor>().maxEnergy;
