@@ -12,6 +12,7 @@ public class SO_Character : ScriptableObject
 
     [Header("Traits")]
     public List<SO_ActionClass> listTraits = new List<SO_ActionClass>();
+    public List<SO_ActionClass> listNewTraits = new List<SO_ActionClass>();
 
     [Header("Challenge (Sprite)")]
     public Sprite challengeSprite;
@@ -20,11 +21,12 @@ public class SO_Character : ScriptableObject
     public Sprite challengeSpriteIsOut;
     public Sprite challengeSpriteUi;
     public Sprite challengeSpriteUiGoodAction;
+
     [Header("Challenge (Stats)")]
     public int stressMax;
     public int energyMax;
     public int nbTraits;
-    SO_ActionClass[] listTrait;
+    List<SO_ActionClass> listNewTrait;
 
     [Header("Tempsmort (Sprite)")]
     public Sprite MapTmSprite;
@@ -32,8 +34,8 @@ public class SO_Character : ScriptableObject
     public Sprite BigResume1;
     public Sprite BigResume2;
 
+    //A VOIR AVEC MAX
     [Header("Tempsmort (Stats)")]
-    public SO_ActionClass[] traitsAdebloquer;
     public int currentPointTrait;
     [TextAreaAttribute]
     public string Description;

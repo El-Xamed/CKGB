@@ -9,21 +9,20 @@ using TMPro;
 public class C_Actor : MonoBehaviour
 {
     #region data
-    [SerializeField] int position;
+    int position;
 
-    [SerializeField] public SO_Character dataActor;
-    C_Stats UiStats;
+    [SerializeField] SO_Character dataActor;
 
     [Header("Stats")]
+    //Si l'actor peut encore jouer.
     [SerializeField] public bool isOut = false;
-    [SerializeField] public int currentStress;
-    [SerializeField] public int maxStress;
-    [SerializeField] public int currentEnergy;
-    [SerializeField] public int maxEnergy;
-    [SerializeField] public int currentPointTrait;
-    [SerializeField] public int maxtraitPoint;
-    public List<SO_ActionClass> listTraits = new List<SO_ActionClass>();
-    public SO_ActionClass[] traitaDebloquer;
+
+    //Stats
+    [SerializeField] int currentStress;
+    [SerializeField] int currentEnergy;
+    [SerializeField] int currentPointTrait;
+
+    //A voir avec MAX.
     public GameObject smallResume;
     public GameObject BigResume1;
     public GameObject BigResume2;
@@ -31,41 +30,14 @@ public class C_Actor : MonoBehaviour
     public TMP_Text BigStats1;
     public TMP_Text BigStats2;
     public TMP_Text description;
-
-    bool newTrait;
     #endregion
 
 
     private void Awake()
     {
-        gameObject.name = dataActor.name;
+        gameObject.name = dataActor.name; 
 
-        if (GameManager.instance)
-        {
-            foreach (var myActor in GameManager.instance.GetComponent<C_TempsMort>().characters)
-            {
-                if (myActor.GetComponent<C_Actor>().dataActor == dataActor)
-                {
-                    //Bidouille
-                    dataActor.stressMax = myActor.GetComponent<C_Actor>().maxStress;
-                    dataActor.energyMax = myActor.GetComponent<C_Actor>().maxEnergy;
-                    listTraits = myActor.GetComponent<C_Actor>().listTraits;
-                }
-            }
-        }
-
-        //Desactive et renseigne le sprite en question.
-        if (gameObject.GetComponent<SpriteRenderer>()==null)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(0).GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
-
-            //Désactive le sprite KO.
-            transform.GetChild(1).gameObject.SetActive(false);
-        }
-        dataActor = ScriptableObject.Instantiate(dataActor);
-
-  
+        //dataActor = ScriptableObject.Instantiate(dataActor);
     }
 
     #region Mes fonctions
@@ -137,11 +109,6 @@ public class C_Actor : MonoBehaviour
     public void SetPosition(int newPosition)
     {
         position = newPosition;
-    }
-
-    public void SetUiStats(C_Stats myUiStats)
-    {
-        UiStats = myUiStats;
     }
 
     public int GetCurrentStress()

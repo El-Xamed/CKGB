@@ -15,7 +15,7 @@ public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
     #region Input
-    [Header("Input")]
+    [Header("Input")] // A VOIR POUR SUP
     [SerializeField] bool canSelectAction = false;
     #endregion
 
@@ -56,8 +56,8 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Interface
-    [Header ("UI (Interface)")]
-    [SerializeField] GameObject uiInterface;
+    [Header ("UI (Interface)")] // A VOIR POUR FAIRE UN SCRIPT A PART
+    [SerializeField] C_Interface myInterface;
 
     public enum Interface { Neutre, Logs, Actions, Traits, Back }
 
@@ -67,28 +67,24 @@ public class C_Challenge : MonoBehaviour
     #region Challenge
     [Space(50)]
     [Header("Challenge")]
-    bool canUpdateEtape = false;
+    bool canUpdateEtape = false; // A VOIR POUR SUP ET LE FAIRE AVEC UN ENUM
 
-    [SerializeField] C_Actor currentActor;
+    C_Actor currentActor;
 
-    //S�lection d'actions
+    //S�lection d'actions GARDER UNE SEUL LISTE
     [SerializeField] int currentAction = 0;
     [SerializeField] int currentTrait = 0;
 
-    //D�finis l'�tape actuel.
-    public SO_Etape currentStep;
-
-    //Utilisation d'une class qui regroupe 1 bouton et 1 action.
-    List<ActionButton> listButton = new List<ActionButton>();
-
-    //Utilisation d'une class qui regroupe 1 bouton et 1 action.
-    [SerializeField] List<ActionButton> listButtonTraits = new List<ActionButton>();
+    //D�finis l'�tape actuel. RETIRER LE PUBLIC
+    SO_Etape currentStep;
     #endregion
 
     #region Résolution
     [Header("Resolution")]
     List<ActorResolution> listRes = new List<ActorResolution>();
     [SerializeField] ActorResolution currentResolution;
+
+    //RANGER CETTE VARIABLE
     [SerializeField] TMP_Text uiLogs;
     #endregion
     #endregion
@@ -336,41 +332,43 @@ public class C_Challenge : MonoBehaviour
                 Debug.Log("Aucune informations de trouv� la liste des acc.");
             }
         }
-    }
 
-    //D�place ou fait spawn les acteurs.
-    public void SpawnActor(List<InitialActorPosition> listPosition)
-    {
-        foreach (InitialActorPosition position in listPosition)
+        //Fait spawn les acteurs/Acc.
+        void SpawnActor(List<InitialActorPosition> listPosition)
         {
-            //New actor
-            C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
-            myActor.IniChallenge();
-            myActor.SetPosition(position.position);
+            foreach (InitialActorPosition position in listPosition)
+            {
+                //New actor
+                C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
+                myActor.IniChallenge();
+                myActor.SetPosition(position.position);
 
-            //New Ui stats
-            C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+                //New Ui stats
+                C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
 
-            //Add Ui Stats
-            myActor.SetUiStats(newStats);
+                //Add Ui Stats
+                myActor.SetUiStats(newStats);
 
-            //Update UI
-            myActor.UpdateUiStats();
+                //Update UI
+                myActor.UpdateUiStats();
 
-            myTeam.Add(myActor);
+                myTeam.Add(myActor);
+            }
+        }
+
+        void SpawnAcc(List<InitialAccPosition> listPosition)
+        {
+            foreach (InitialAccPosition position in listPosition)
+            {
+                C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
+                myAcc.SetPosition(position.position);
+
+                listAcc.Add(myAcc);
+            }
         }
     }
 
-    public void SpawnAcc(List<InitialAccPosition> listPosition)
-    {
-        foreach (InitialAccPosition position in listPosition)
-        {
-            C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
-            myAcc.SetPosition(position.position);
-
-            listAcc.Add(myAcc);
-        }
-    }
+    
 
     #endregion
 
@@ -380,6 +378,7 @@ public class C_Challenge : MonoBehaviour
     void UseAction()
     {
         AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
+
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
@@ -522,9 +521,6 @@ public class C_Challenge : MonoBehaviour
             //Change l'UI.
             uiAction.SetActive(true);
 
-            //Fait apparaitre les actions.
-            SpawnActions();
-
             //Met a jour le curseur des actions.
             //UpdateActionSelected();
         }
@@ -573,106 +569,6 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    [Serializable]
-    public class ActionButton
-    {
-        public GameObject myButton;
-        public SO_ActionClass myActionClass;
-    }
-    
-    //Fait spawn les bouton d'actions
-    void SpawnActions()
-    {
-        if (currentStep.actions != null)
-        {
-            //Supprime les boutons précédent
-            if (listButton != null)
-            {
-                foreach (var myAction in listButton)
-                {
-                    Destroy(myAction.myButton);
-                }
-            }
-
-            //Créer une nouvelle liste.
-            listButton = new List<ActionButton>();
-
-            //Créer de nouveau boutons
-            for (int i = 0; i < currentStep.actions.Length; i++)
-            {
-                //Nouvelle class.
-                ActionButton newActionButton = new ActionButton();
-
-                //Reférence button.
-                newActionButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform);
-                newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = currentStep.actions[i].buttonText;
-
-                //Reférence Action.
-                newActionButton.myActionClass = currentStep.actions[i];
-                listButton.Add(newActionButton);
-            }
-
-            uiAction.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("Erreur spawn actions");
-        }
-    }
-
-    void SpawnTraits()
-    {
-        //Check si la list stocké dans le SO_Character est vide
-        if (currentActor.dataActor.listTraits != null)
-        {
-            //Supprime les boutons précédent
-            if (listButtonTraits != null)
-            {
-                foreach (var myTraits in listButtonTraits)
-                {
-                    Destroy(myTraits.myButton);
-                }
-            }
-
-            //Créer une nouvelle liste.
-            listButtonTraits = new List<ActionButton>();
-
-            //Créer de nouveau boutons (Traits)
-            for (int i = 0; i < currentActor.dataActor.listTraits.Count; i++)
-            {
-                //Nouvelle class.
-                ActionButton newTraitsButton = new ActionButton();
-
-                //Reférence button.
-                newTraitsButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiTrait.transform);
-                newTraitsButton.myButton.GetComponentInChildren<TMP_Text>().text = currentActor.dataActor.listTraits[i].buttonText;
-
-                
-
-                //Reférence Action.
-                newTraitsButton.myActionClass = currentActor.dataActor.listTraits[i];
-
-                
-
-                listButtonTraits.Add(newTraitsButton);
-
-                foreach (var thisNewTraits in currentActor.dataActor.traitsAdebloquer)
-                {
-                    if (newTraitsButton.myActionClass == thisNewTraits)
-                    {
-                        newTraitsButton.myButton.transform.GetChild(2).gameObject.SetActive(true);
-                    }
-                }
-            }
-
-            uiAction.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("Erreur spawn traits. La liste de trait du perso est vide.");
-        }
-    }
-
     //Passe à l'acteur suivant.
     void NextActor()
     {
@@ -689,12 +585,10 @@ public class C_Challenge : MonoBehaviour
         if (currentInterface == Interface.Actions)
         {
             uiAction.SetActive(true);
-            UpdateActionSelected();
         }
         if (currentInterface == Interface.Traits)
         {
             uiTrait.SetActive(true);
-            UpdateActionSelected();
         }
     }
 
@@ -708,10 +602,6 @@ public class C_Challenge : MonoBehaviour
 
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) +1];
-
-
-            //Apparition des boutons.
-            SpawnActions();
         }
         else
         {
@@ -728,41 +618,7 @@ public class C_Challenge : MonoBehaviour
         uiEtape.GetComponentInChildren<TMP_Text>().text = myEtape.énoncé;
     }
 
-    void UpdateActionSelected()
-    {
-        switch (currentInterface)
-        {
-            case Interface.Actions:
-                #region Action Challenge
-                //Cache tous les boutons du challenge.
-                foreach (var myButton in listButton)
-                {
-                    //Feedback du bouton non-selecioné.
-                    myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
-                }
-
-                //Affiche le bouton que le joueur souhaite selectionner dans le challenge.
-                listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
-                #endregion
-                break;
-            case Interface.Traits:
-                #region Trait Actor
-                if (currentInterface == Interface.Traits)
-                {
-                    //Cache tous les boutons de traits de l'actor.
-                    foreach (var myTrait in listButtonTraits)
-                    {
-                        //Feedback du bouton non-selecioné.
-                        myTrait.myButton.transform.GetChild(0).gameObject.SetActive(false);
-                    }
-
-                    //Affiche le bouton que le joueur souhaite selectionner dans les traits de l'actor.
-                    listButtonTraits[currentTrait].myButton.transform.GetChild(0).gameObject.SetActive(true);
-                }
-                #endregion
-                break;
-        }
-    }
+    
     #endregion
 
     #region  Phase de résolution
@@ -1007,6 +863,28 @@ public class C_Challenge : MonoBehaviour
 
         //Check si le jeu est fini "GameOver".
         CheckGameOver();
+    }
+    #endregion
+
+    #region Data Interface
+    public ActorResolution GetActorResolution()
+    {
+        return currentResolution;
+    }
+
+    public C_Actor GetCurrentActor()
+    {
+        return currentActor;
+    }
+
+    public SO_ActionClass[] GetListActionOfCurrentStep()
+    {
+        return currentStep.actions;
+    }
+
+    public SO_Etape GetCurrentEtape()
+    {
+        return currentStep;
     }
     #endregion
 }
