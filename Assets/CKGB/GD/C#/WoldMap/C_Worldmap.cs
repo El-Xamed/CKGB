@@ -13,6 +13,7 @@ public class C_Worldmap : MonoBehaviour
     #region variables
     [SerializeField]C_destination startPoint;
     [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float moveSpeed2 = 0.9f;
 
     [SerializeField] C_destination[] allMapPoints;
     C_destination currentPoint;
@@ -181,32 +182,30 @@ public class C_Worldmap : MonoBehaviour
     private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2,Transform transform3, Transform[]list)
     {
         float ellapsed = 0;
-
         float distance = (transform2.position - transform1.position).magnitude;
         float distance2 = (transform2.position - transform3.position).magnitude;
         float maxTime = distance / (moveSpeed*list.Length);
-        float maxTime2 = distance2 / (moveSpeed * list.Length);
+        float maxTime2 = distance2 / (moveSpeed2 * list.Length);
         Vector3 a=transform1.position;
         Vector3 b=transform2.position;
-        Vector3 c = transform3.position;
+        Vector3 c=transform3.position;
         while(ellapsed<maxTime)
         {
             ellapsed += Time.deltaTime; 
             transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
 
-            //Follower.transform.position = Vector3.Lerp(a, b, ellapsed  / maxTime2);
-            StartCoroutine(FollowTheBoss(c, b, ellapsed / maxTime2,transform2));
+            Follower.transform.position = Vector3.Lerp(c, b, ellapsed / maxTime2);
+           
             yield return null;
         }
 
         transform.position = transform2.position;
-        Follower.transform.position = transform2.position;
+        //Follower.transform.position = transform2.position;
     }
-     IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
+     /*IEnumerator FollowTheBoss(Vector3 a,Vector3 b,float c,Transform nextpos)
     {
         yield return new WaitForSeconds(0.7f);
-       
-    }
+    }*/
     private void initiateTheMapCharacterProtocol()
     {
         GetComponent<SpriteRenderer>().sprite=actor.GetComponent<C_Actor>().dataActor.MapTmSprite;
