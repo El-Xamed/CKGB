@@ -289,7 +289,7 @@ public class T_TempsMort : MonoBehaviour
     {
       for(int i=0;i<characters.Length;i++)
         {
-            littleCharactersSpecs[i].text = "PV " + characters[i].GetComponent<C_Actor>().dataActor.stressMax + "\nEnergy "+ characters[i].GetComponent<C_Actor>().dataActor.energyMax;
+            littleCharactersSpecs[i].text = "PV " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax + "\nEnergy "+ characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
         }
     }
     //retour au choix de personnage et disparition des boutons de choix

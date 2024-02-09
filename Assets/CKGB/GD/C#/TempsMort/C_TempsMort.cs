@@ -206,9 +206,9 @@ public class C_TempsMort : MonoBehaviour
         {        
             Instantiate(characters[i], listCharactersPositions[i]);
             //Instantiate un nouv data actor pour pas modifier les data dans le projet.
-
-            characters[i].GetComponent<SpriteRenderer>().sprite = characters[i].GetComponent<C_Actor>().dataActor.MapTmSprite;
-            characters[i].GetComponent<C_Actor>().maxEnergy = characters[i].GetComponent<C_Actor>().dataActor.energyMax;
+            /*
+            characters[i].GetComponent<SpriteRenderer>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+            characters[i].GetComponent<C_Actor>().maxEnergy = characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
             characters[i].GetComponent<C_Actor>().maxStress = characters[i].GetComponent<C_Actor>().dataActor.stressMax;
             characters[i].GetComponent<C_Actor>().maxtraitPoint = characters[i].GetComponent<C_Actor>().dataActor.nbTraits;
             characters[i].GetComponent<C_Actor>().currentPointTrait = characters[i].GetComponent<C_Actor>().dataActor.currentPointTrait;
@@ -226,6 +226,7 @@ public class C_TempsMort : MonoBehaviour
             CompleteCharactersSpecs1[i].text = "Calme Max : " + characters[i].GetComponent<C_Actor>().maxStress + "\n Energie Max : " + characters[i].GetComponent<C_Actor>().maxEnergy + "\n" + characters[i].GetComponent<C_Actor>().dataActor.Description;
             characters[i].GetComponent<C_Actor>().BigStats2 = CompleteCharactersSpecs2[i];
             CompleteCharactersSpecs2[i].text = "Points de trait " + characters[i].GetComponent<C_Actor>().currentPointTrait + "/" + characters[i].GetComponent<C_Actor>().maxtraitPoint + "\n" + characters[i].GetComponent<C_Actor>().listTraits[0].buttonText;
+            */
         }
     }
     //chaque deplacement de curseur dans l'ui
@@ -288,6 +289,7 @@ public class C_TempsMort : MonoBehaviour
         {
             if(currentButton==PapotageChoiceButtons[i])
             {
+                /*
                 actorActif.GetComponent<C_Actor>().currentPointTrait++;
                 characters[i].GetComponent<C_Actor>().currentPointTrait++;
                 if(actorActif.GetComponent<C_Actor>().currentPointTrait== 2)
@@ -301,6 +303,7 @@ public class C_TempsMort : MonoBehaviour
                     characters[i].GetComponent<C_Actor>().currentPointTrait = 0;
                     characters[i].GetComponent<C_Actor>().listTraits.Add(characters[i].GetComponent<C_Actor>().traitaDebloquer[0]);
                 }
+                */
             }
         }
         foreach(GameObject papot in PapotageChoiceButtons)
@@ -313,16 +316,16 @@ public class C_TempsMort : MonoBehaviour
     {
         AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         //energy
-        actorActif.GetComponent<C_Actor>().dataActor.energyMax+=1;
-        actorActif.GetComponent<C_Actor>().maxEnergy+=1;
+        actorActif.GetComponent<C_Actor>().GetDataActor().energyMax+=1;
+        //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
     }
     public void Revasser()
     {
         AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         //calm
-        actorActif.GetComponent<C_Actor>().dataActor.stressMax++;
-        actorActif.GetComponent<C_Actor>().maxStress++;
+        actorActif.GetComponent<C_Actor>().GetDataActor().stressMax++;
+        //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
     }
     public void Challenge()

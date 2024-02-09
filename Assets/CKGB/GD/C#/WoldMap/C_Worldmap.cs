@@ -208,7 +208,7 @@ public class C_Worldmap : MonoBehaviour
     }*/
     private void initiateTheMapCharacterProtocol()
     {
-        GetComponent<SpriteRenderer>().sprite=actor.GetComponent<C_Actor>().dataActor.MapTmSprite;
+        GetComponent<SpriteRenderer>().sprite=actor.GetComponent<C_Actor>().GetDataActor().MapTmSprite;
     }
 
     #endregion

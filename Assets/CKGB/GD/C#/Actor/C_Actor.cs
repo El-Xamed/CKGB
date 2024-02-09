@@ -22,6 +22,9 @@ public class C_Actor : MonoBehaviour
     [SerializeField] int currentEnergy;
     [SerializeField] int currentPointTrait;
 
+    //Ui Challenge
+    C_Stats uiStats;
+
     //A voir avec MAX.
     public GameObject smallResume;
     public GameObject BigResume1;
@@ -72,9 +75,14 @@ public class C_Actor : MonoBehaviour
         UpdateUiStats();
     }
 
+    public void SetUiStats(C_Stats myStats)
+    {
+        uiStats = myStats;
+    }
+
     public void UpdateUiStats()
     {
-        UiStats.UpdateUi(this);
+        uiStats.UpdateUi(this);
     }
 
     public void MoveActor(Transform newPosition)

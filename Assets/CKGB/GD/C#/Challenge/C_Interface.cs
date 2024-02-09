@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static C_Challenge;
 
 public class C_Interface : MonoBehaviour
@@ -51,6 +53,99 @@ public class C_Interface : MonoBehaviour
         return listCurrentAction;
     }
 
+    PhaseDeJeu GetPhaseDeJeu()
+    {
+        return myChallenge.GetPhaseDeJeu();
+    }
+
+    C_Actor GetCurrentActor()
+    {
+        return myChallenge.GetCurrentActor();
+    }
+
+    List<C_Case> GetListCases()
+    { 
+        return myChallenge.GetListCases(); 
+    }
+    #endregion
+
+    #region Input
+    public void SelectButton(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+            Vector2 input = context.ReadValue<Vector2>();
+
+            //Pour la navigation dans l'interface "Neutre"
+            if (currentInterface == Interface.Neutre)
+            {
+                if (input.x > 0)
+                {
+                    GoBack();
+                    return;
+                }
+                if (input.x < 0)
+                {
+                    GoTraits();
+                    return;
+                }
+
+                if (input.y < 0)
+                {
+                    GoAction();
+                    return;
+                }
+                if (input.y > 0)
+                {
+                    GoLogs();
+                    return;
+                }
+            }
+
+            //Pour selectionner ses actions.
+            if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
+            {
+                if (input.x > 0)
+                {
+                    GoBack();
+                    return;
+                }
+                if (input.y < 0)
+                {
+                    //SUP ?
+                }
+            }
+
+            //Pour Update ResoTrun
+            /*
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
+            {
+                if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
+                {
+                    //Reféfinis "currentResolution" avec 'index de base + 1.
+                    currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+
+                    ResolutionTurn();
+                }
+                else
+                {
+                    //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
+                    if (canUpdateEtape)
+                    {
+                        stepUpdate();
+
+                        canUpdateEtape = false;
+                    }
+
+                    UpdateAccessories();
+                    //Lance la phase "Cata".
+                    Invoke("CataTrun", 0.5f);
+                }
+            }*/
+        }
+    }
     #endregion
 
     #region Mes boutons
@@ -164,10 +259,16 @@ public class C_Interface : MonoBehaviour
 
                 //Reférence button.
                 newActionButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform);
+
+                //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
                 newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
 
                 //Reférence Action.
                 newActionButton.myActionClass = GetListAction()[i];
+
+                //Renseigne le "onClick" du nouveau buton.
+                newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => newActionButton.myActionClass.UseAction(GetCurrentActor(), GetListCases()));
+
                 listButtonActions.Add(newActionButton);
             }
 

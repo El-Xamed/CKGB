@@ -101,133 +101,6 @@ public class C_Challenge : MonoBehaviour
             SceneManager.LoadScene("Destination_Test");
         }
     }
-
-    public void SelectButton(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        if (context.performed)
-        {
-            Vector2 input = context.ReadValue<Vector2>();
-
-            //Pour la navigation dans l'interface "Neutre"
-            if (currentInterface == Interface.Neutre)
-            {
-                if (input.x > 0)
-                {
-                    GoBack();
-                    return;
-                }
-                if (input.x < 0)
-                {
-                    GoTraits();
-                    return;
-                }
-
-                if (input.y < 0)
-                {
-                    GoAction();
-                    return;
-                }
-                if (input.y > 0)
-                {
-                    GoLogs();
-                    return;
-                }
-            }
-
-            //Pour selectionner ses actions.
-            if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
-            {
-                if (input.x > 0)
-                {
-                    GoBack();
-                    return;
-                }
-                if (input.y < 0)
-                {
-                    //Pour la partie slection des action.
-                    if (canSelectAction)
-                    {
-                        UseAction();
-
-                        //Si le joueur et dans l'interface des choix de traits, alors il update les actions disponible.
-                        if (currentInterface == Interface.Traits)
-                        {
-                            SpawnTraits();
-                        }
-                        return;
-                    }
-                }
-            }
-
-            //Pour Update ResoTrun
-            if (input.y < 0 && myPhaseDeJeu == PhaseDeJeu.ResoTurn)
-            {
-                if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
-                {
-                    //Reféfinis "currentResolution" avec 'index de base + 1.
-                    currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
-
-                    ResolutionTurn();
-                }
-                else
-                {
-                    //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
-                    if (canUpdateEtape)
-                    {
-                        stepUpdate();
-
-                        canUpdateEtape = false;
-                    }
-
-                    UpdateAccessories();
-                    //Lance la phase "Cata".
-                    Invoke("CataTrun", 0.5f);
-                }
-            }
-        }
-    }
-
-    public void SelectAction(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        //FAIRE EN SORT QU'ON EST BESOIN DE UNE VARIABLE QUI GERE CA + QUE TOUTES LES ACTION ET TRAIT SPAWN AU MEME ENDROIT (1 VARIABLE EST NESSESSAIRE POUR NAVIGURE DANS LES 2 TABLEAU (TRAITS / ACTIONS) SEUL LA CONDITION D'AUGMENTER OU NON CETTE VALEUR CHANGERA CAR LA TAILLE DU TABLEAU EN QUESTION NE SERA PAS LE MEME.)
-        //pour selectionner les action du challenge
-        if (context.performed && currentInterface == Interface.Actions)
-        {
-            int input = (int)context.ReadValue<float>();
-
-            if (input > 0 && currentAction < listButton.Count - 1)
-            {
-                currentAction++;
-                UpdateActionSelected();
-            }
-            if (input < 0 && currentAction > 0)
-            {
-                currentAction--;
-                UpdateActionSelected();
-            }
-        }
-
-        //Pour selectionner les traits de l'actor.
-        if (context.performed && currentInterface == Interface.Traits)
-        {
-            int input = (int)context.ReadValue<float>();
-
-            if (input > 0 && currentTrait < listButtonTraits.Count - 1)
-            {
-                currentTrait++;
-                UpdateActionSelected();
-            }
-            if (input < 0 && currentTrait > 0)
-            {
-                currentTrait--;
-                UpdateActionSelected();
-            }
-        }
-    }
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -373,7 +246,8 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Tour du joueur
-
+    //A SUPP ?
+    /*
     //Utilise l'action
     void UseAction()
     {
@@ -411,86 +285,10 @@ public class C_Challenge : MonoBehaviour
             canSelectAction = false;
             ResolutionTurn();
         }
-    }
-
-    #region Interface
-    //Création d'une interface pour naviguer dans l'ui est les actions qu'on souhaite sélectionner
-    //Pour accéder au actions.
-    public void GoAction()
-    {
-
-        currentAction = 0;
-
-        uiInterface.GetComponent<Animator>().SetTrigger("OpenActions");
-
-        uiAction.SetActive(true);
-
-        currentInterface = Interface.Actions;
-
-        canSelectAction = true;
-    }
-
-    //Pour accéder au logs.
-    public void GoLogs()
-    {
-        Debug.Log("Pas disponible");
-        AudioManager.instance.PlaySFX(AudioManager.instance.logs);
-
-    }
-
-    //Pour accéder au traits.
-    public void GoTraits()
-    {
-        //Replace le curseur à l'emplacement 0.
-        currentTrait = 0;
-
-        //Animation.
-        uiInterface.GetComponent<Animator>().SetTrigger("OpenTraits");
-
-        //Fait apparaitre la liste de trait.
-        uiTrait.SetActive(true);
-
-        //Fait apparaitre les traits du l'actor.
-        SpawnTraits();
-
-        //Modifie l'état de navigation.
-        currentInterface = Interface.Traits;
-
-        //Peut mmtn selectionner une action.
-        canSelectAction = true;
-    }
-
-    //Pour revenir au temps mort. Et aussi au autres boutons
-    public void GoBack()
-    {
-
-        AudioManager.instance.PlaySFX(AudioManager.instance.retourEnArriere);
-        switch (currentInterface)
-        {
-            case Interface.Actions:
-                uiInterface.GetComponent<Animator>().SetTrigger("CloseActions");
-                uiAction.SetActive(false);
-                canSelectAction = false;
-                break;
-            case Interface.Traits:
-                uiInterface.GetComponent<Animator>().SetTrigger("CloseTraits");
-                uiTrait.SetActive(false);
-                canSelectAction = false;
-                break;
-            case Interface.Logs:
-
-                break;
-        }
-
-        currentInterface = Interface.Neutre;
-    }
-    #endregion
+    }*/
 
     void PlayerTrun()
     {
-        //Affiche l'interface.
-        uiInterface.SetActive(true);
-
         uiAction.SetActive(false);
         uiTrait.SetActive(false);
 
@@ -636,9 +434,6 @@ public class C_Challenge : MonoBehaviour
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
 
-        //Cache l'interface.
-        uiInterface.SetActive(false);
-
         //Change l'UI.
         uiAction.SetActive(false);
 
@@ -680,7 +475,7 @@ public class C_Challenge : MonoBehaviour
             {
                 Debug.Log("Bonne action");
 
-                uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.dataActor.challengeSpriteUiGoodAction;
+                uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
 
                 uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
 
@@ -886,5 +681,12 @@ public class C_Challenge : MonoBehaviour
     {
         return currentStep;
     }
+
+    public PhaseDeJeu GetPhaseDeJeu()
+    {
+        return myPhaseDeJeu;
+    }
+
+    public List<C_Case> GetListCases() { return listCase; }
     #endregion
 }

@@ -84,6 +84,11 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Fonctions
+    public void UseAction(C_Actor thisActor, List<C_Case> listCase)
+    {
+        Debug.Log("Use this actionClass.");
+    }
+
     public void UseAction(C_Actor thisActor, List<C_Case> listCase, List<C_Actor> myTeam)
     {
         Debug.Log("Use this actionClass.");
