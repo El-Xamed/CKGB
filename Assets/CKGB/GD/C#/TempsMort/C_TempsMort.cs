@@ -41,7 +41,7 @@ public class C_TempsMort : MonoBehaviour
     List<Transform> listCharactersPositions;
 
     [SerializeField]
-    public GameObject[] characters;
+    List<GameObject> characters = new List<GameObject>();
     [SerializeField]
     SO_TempsMort TM;
     [SerializeField]
@@ -62,14 +62,14 @@ public class C_TempsMort : MonoBehaviour
 
     [SerializeField]
     bool[] characterHasPlayed;
-    [SerializeField] 
+    [SerializeField]
     bool isAnActionButton = false;
 
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-
+   
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         #region HideUI
@@ -79,7 +79,7 @@ public class C_TempsMort : MonoBehaviour
             if (button != null)
                 button.SetActive(false);
         }
-        foreach(GameObject papot in PapotageChoiceButtons)
+        foreach (GameObject papot in PapotageChoiceButtons)
         {
             papot.SetActive(false);
         }
@@ -99,16 +99,18 @@ public class C_TempsMort : MonoBehaviour
         GameManager.instance.ChangeActionMap("TempsMort");
         initiateTMvariables();
         updateButton();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-  
+
     public void updateButton()
     {
+        currentButton = Es.currentSelectedGameObject;
         for (int i = 0; i < charactersButton.Length; i++)
         {
             if (currentButton == charactersButton[i])
@@ -116,13 +118,13 @@ public class C_TempsMort : MonoBehaviour
                 actorActif = characters[i];
             }
         }
-        currentButton = Es.currentSelectedGameObject;
+       
         AffichageMiniCartePerso();
         AffichageCarteCompletePerso();
     }
     public void AffichageMiniCartePerso()
     {
-        for (int i = 0; i < charactersLittleResume.Length; i++)
+        for (int i = 0; i < charactersLittleResume.Length-1; i++)
         {
             if (currentButton == charactersButton[i])
             {
@@ -134,11 +136,11 @@ public class C_TempsMort : MonoBehaviour
     }
     public void AffichageCarteCompletePerso()
     {
-        for (int i = 0; i < charactersCompleteResume1.Length; i++)
+        for (int i = 0; i < charactersCompleteResume1.Length-1; i++)
         {
             if (actorActif == characters[i] && isAnActionButton == true)
-            {   
-                charactersCompleteResume1[i].SetActive(true);               
+            {
+                charactersCompleteResume1[i].SetActive(true);
             }
             else
                 charactersCompleteResume1[i].SetActive(false);
@@ -151,18 +153,18 @@ public class C_TempsMort : MonoBehaviour
         faitesunchoix.SetActive(true);
         aquiletour.SetActive(false);
         isAnActionButton = true;
-        for (int i = 0; i < characters.Length; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
-            if(currentButton==charactersButton[i])
+            if (currentButton == charactersButton[i])
             {
                 characterHasPlayed[i] = true;
             }
-                
+
         }
-        for(int i=0;i<actions.Length;i++)
+        for (int i = 0; i < actions.Length; i++)
         {
             actions[i].SetActive(true);
-            charactersButton[i].GetComponent<Button>().enabled=false;
+            charactersButton[i].GetComponent<Button>().enabled = false;
         }
         Es.SetSelectedGameObject(actions[0]);
         updateButton();
@@ -182,11 +184,11 @@ public class C_TempsMort : MonoBehaviour
                 charactersButton[i].GetComponent<Button>().enabled = true;
                 Es.SetSelectedGameObject(charactersButton[i]);
             }
-            if(characterHasPlayed[0]==true && characterHasPlayed[1]==true && characterHasPlayed[2]==true)
+            if (characterHasPlayed[0] == true && characterHasPlayed[1] == true && characterHasPlayed[2] == true)
             {
                 ChallengeButton.SetActive(true);
                 Es.SetSelectedGameObject(ChallengeButton);
-                for(int y=0;y<charactersButton.Length;y++)
+                for (int y = 0; y < charactersButton.Length; y++)
                 {
                     charactersButton[y].SetActive(false);
                     actions[y].SetActive(false);
@@ -200,35 +202,22 @@ public class C_TempsMort : MonoBehaviour
     //recupere les stats des actors et du so_tempsmort
     public void initiateTMvariables()
     {
-        characters = TM.Team;
-        background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
-        for(int i=0;i<characters.Length;i++)
-        {        
-            Instantiate(characters[i], listCharactersPositions[i]);
-            //Instantiate un nouv data actor pour pas modifier les data dans le projet.
-            /*
-            characters[i].GetComponent<SpriteRenderer>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
-            characters[i].GetComponent<C_Actor>().maxEnergy = characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
-            characters[i].GetComponent<C_Actor>().maxStress = characters[i].GetComponent<C_Actor>().dataActor.stressMax;
-            characters[i].GetComponent<C_Actor>().maxtraitPoint = characters[i].GetComponent<C_Actor>().dataActor.nbTraits;
-            characters[i].GetComponent<C_Actor>().currentPointTrait = characters[i].GetComponent<C_Actor>().dataActor.currentPointTrait;
-            characters[i].GetComponent<C_Actor>().traitaDebloquer = characters[i].GetComponent<C_Actor>().dataActor.traitsAdebloquer;
-            characters[i].GetComponent<C_Actor>().listTraits = characters[i].GetComponent<C_Actor>().dataActor.listTraits;
-            characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i];
-            characters[i].GetComponent<C_Actor>().smallResume.GetComponent<Image>().sprite= characters[i].GetComponent<C_Actor>().dataActor.smallResume;
-            characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i];
-            characters[i].GetComponent<C_Actor>().BigResume1.GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().dataActor.BigResume1;
-            characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i];
-            characters[i].GetComponent<C_Actor>().BigResume2.GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().dataActor.BigResume2;
-            characters[i].GetComponent<C_Actor>().smallStats = littleCharactersSpecs[i];
-            littleCharactersSpecs[i].text = "Calme Max : " + characters[i].GetComponent<C_Actor>().maxStress + "\n Energie Max : " + characters[i].GetComponent<C_Actor>().maxEnergy + "\n Points de trait : " + characters[i].GetComponent<C_Actor>().currentPointTrait + "/" + characters[i].GetComponent<C_Actor>().maxtraitPoint;
-            characters[i].GetComponent<C_Actor>().BigStats1 = CompleteCharactersSpecs1[i];
-            CompleteCharactersSpecs1[i].text = "Calme Max : " + characters[i].GetComponent<C_Actor>().maxStress + "\n Energie Max : " + characters[i].GetComponent<C_Actor>().maxEnergy + "\n" + characters[i].GetComponent<C_Actor>().dataActor.Description;
-            characters[i].GetComponent<C_Actor>().BigStats2 = CompleteCharactersSpecs2[i];
-            CompleteCharactersSpecs2[i].text = "Points de trait " + characters[i].GetComponent<C_Actor>().currentPointTrait + "/" + characters[i].GetComponent<C_Actor>().maxtraitPoint + "\n" + characters[i].GetComponent<C_Actor>().listTraits[0].buttonText;
-            */
+       
+       foreach(var c in GameManager.instance.GetTeam())
+        {
+            Debug.Log(c);
+            characters.Add(c);
         }
+        background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
+        for(int i=0;i<characters.Count-1;i++)
+        {
+            Instantiate(characters[i], listCharactersPositions[i],listCharactersPositions[i]);
+            actorActif = characters[0];
+        }
+       
+
     }
+
     //chaque deplacement de curseur dans l'ui
     public void Naviguate(InputAction.CallbackContext context)
     {

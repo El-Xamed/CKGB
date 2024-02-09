@@ -220,10 +220,6 @@ MonoBehaviour:
     m_ActionName: TempsMort/New action[/Keyboard/q,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 7984d3dd-5daf-48b1-93b5-a2ebb24ab83d
-    m_ActionName: Challenge/New action
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: afeca8c8-71a7-416c-bd69-e8240f5acf1e
     m_ActionName: WorldMap/PlayLevel[/Keyboard/space]
   - m_PersistentCalls:
@@ -242,6 +238,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
     m_ActionName: WorldMap/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 792e24f3-d1a2-4a6a-80cd-6c6939953e23
+    m_ActionName: TempsMort/FlipCard[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2df5d24f-27f7-4b12-a9da-06728aa1057b
+    m_ActionName: TempsMort/Submit[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4518165f-b12e-43b7-aa38-07d9c8ccb776
+    m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ef01faa-82be-401b-a6ab-f98d4a7dcdc6
+    m_ActionName: Challenge/SelectAction[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
+    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
+    m_ActionName: Challenge/ResetChallenge
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: TempsMort
@@ -445,9 +465,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataActor: {fileID: 0}
+  isOut: 0
   currentStress: 0
   currentEnergy: 0
   currentPointTrait: 0
+  smallResume: {fileID: 0}
+  BigResume1: {fileID: 0}
+  BigResume2: {fileID: 0}
+  smallStats: {fileID: 0}
+  BigStats1: {fileID: 0}
+  BigStats2: {fileID: 0}
+  description: {fileID: 0}
 --- !u!4 &594680757
 Transform:
   m_ObjectHideFlags: 0
@@ -687,9 +715,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataActor: {fileID: 0}
+  isOut: 0
   currentStress: 0
   currentEnergy: 0
   currentPointTrait: 0
+  smallResume: {fileID: 0}
+  BigResume1: {fileID: 0}
+  BigResume2: {fileID: 0}
+  smallStats: {fileID: 0}
+  BigStats1: {fileID: 0}
+  BigStats2: {fileID: 0}
+  description: {fileID: 0}
 --- !u!1 &1747524952
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +771,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataActor: {fileID: 0}
+  isOut: 0
   currentStress: 0
   currentEnergy: 0
   currentPointTrait: 0
+  smallResume: {fileID: 0}
+  BigResume1: {fileID: 0}
+  BigResume2: {fileID: 0}
+  smallStats: {fileID: 0}
+  BigStats1: {fileID: 0}
+  BigStats2: {fileID: 0}
+  description: {fileID: 0}

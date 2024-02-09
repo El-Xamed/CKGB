@@ -10,6 +10,7 @@ public class SO_TempsMort : ScriptableObject
 
     [SerializeField] public Sprite TMbackground;
     [SerializeField] public GameObject[] Team;
+    [SerializeField] public Transform[] startPos;
 
     #endregion
     // Start is called before the first frame update
