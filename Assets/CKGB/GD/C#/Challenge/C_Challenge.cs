@@ -154,6 +154,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    //CHECK SI ÇA RECPUPE BIEN LES INFO DU GAMEMANAGER EST QUE LE LIEN ENTRE SES DEUX LISTE FONCTIONNE.
     //Set la position de tous les acteurs sur les cases.
     void InitialiseAllPosition()
     {
@@ -194,21 +195,50 @@ public class C_Challenge : MonoBehaviour
         {
             foreach (InitialActorPosition position in listPosition)
             {
-                //New actor
-                C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
-                myActor.IniChallenge();
-                myActor.SetPosition(position.position);
+                if (GameManager.instance)
+                {
+                    //Récupère les info du GameManager
+                    foreach (var thisActor in GameManager.instance.GetTeam())
+                    {
+                        //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
+                        if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                        {
+                            //New actor
+                            GameObject myActor = Instantiate(thisActor, listCase[position.position].transform);
+                            myActor.GetComponent<C_Actor>().IniChallenge();
+                            myActor.GetComponent<C_Actor>().SetPosition(position.position);
 
-                //New Ui stats
-                C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+                            //New Ui stats
+                            C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
 
-                //Add Ui Stats
-                myActor.SetUiStats(newStats);
+                            //Add Ui Stats
+                            myActor.GetComponent<C_Actor>().SetUiStats(newStats);
 
-                //Update UI
-                myActor.UpdateUiStats();
+                            //Update UI
+                            myActor.GetComponent<C_Actor>().UpdateUiStats();
 
-                myTeam.Add(myActor);
+                            myTeam.Add(myActor.GetComponent<C_Actor>());
+                        }
+                    }
+                }
+                else
+                {
+                    //New actor
+                    C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
+                    myActor.IniChallenge();
+                    myActor.SetPosition(position.position);
+
+                    //New Ui stats
+                    C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+
+                    //Add Ui Stats
+                    myActor.SetUiStats(newStats);
+
+                    //Update UI
+                    myActor.UpdateUiStats();
+
+                    myTeam.Add(myActor);
+                }
             }
         }
 

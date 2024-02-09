@@ -132,9 +132,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataActor: {fileID: 11400000, guid: f815fa2680ca4bc4ea731ad99aab2325, type: 2}
+  isOut: 0
   currentStress: 0
   currentEnergy: 0
   currentPointTrait: 0
+  smallResume: {fileID: 0}
+  BigResume1: {fileID: 0}
+  BigResume2: {fileID: 0}
+  smallStats: {fileID: 0}
+  BigStats1: {fileID: 0}
+  BigStats2: {fileID: 0}
+  description: {fileID: 0}
 --- !u!222 &1725192862864641470
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -57,6 +57,8 @@ public class C_Actor : MonoBehaviour
         GetComponent<Image>().sprite = dataActor.challengeSprite;
         GetComponent<Image>().preserveAspect = true;
         GetComponent<Image>().useSpriteMesh = true;
+
+        CheckIsOut();
     }
 
     public void TakeDamage(int calm, int energy)
@@ -149,15 +151,15 @@ public class C_Actor : MonoBehaviour
         }
         else
         {
+            isOut = false;
+
             //Check si le sprite est déjà possé.
             if (GetComponent<Image>().sprite != dataActor.challengeSprite && GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
             {
-                isOut = false;
-
                 GetComponent<Image>().sprite = dataActor.challengeSprite;
-
-                transform.GetChild(1).gameObject.SetActive(false);
             }
+
+            transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 
