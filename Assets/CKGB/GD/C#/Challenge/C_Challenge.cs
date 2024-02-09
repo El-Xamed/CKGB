@@ -14,14 +14,10 @@ using static SO_Challenge;
 public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
-    #region Input
-    [Header("Input")] // A VOIR POUR SUP
-    [SerializeField] bool canSelectAction = false;
-    #endregion
 
     #region De base
     //Pour connaitre la phasse de jeu.
-    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn}
+    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn }
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
@@ -31,8 +27,6 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] C_Stats uiStatsPrefab;
     [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
-    [SerializeField] GameObject uiAction;
-    [SerializeField] GameObject uiTrait;
     [SerializeField] GameObject uiGoodAction;
     [SerializeField] GameObject uiVictoire;
     [SerializeField] GameObject uiGameOver;
@@ -58,22 +52,11 @@ public class C_Challenge : MonoBehaviour
     #region Interface
     [Header ("UI (Interface)")] // A VOIR POUR FAIRE UN SCRIPT A PART
     [SerializeField] C_Interface myInterface;
-
-    public enum Interface { Neutre, Logs, Actions, Traits, Back }
-
-    [SerializeField] Interface currentInterface = Interface.Neutre;
     #endregion
 
     #region Challenge
     [Space(50)]
-    [Header("Challenge")]
-    bool canUpdateEtape = false; // A VOIR POUR SUP ET LE FAIRE AVEC UN ENUM
-
     C_Actor currentActor;
-
-    //S�lection d'actions GARDER UNE SEUL LISTE
-    [SerializeField] int currentAction = 0;
-    [SerializeField] int currentTrait = 0;
 
     //D�finis l'�tape actuel. RETIRER LE PUBLIC
     SO_Etape currentStep;
@@ -289,13 +272,8 @@ public class C_Challenge : MonoBehaviour
 
     void PlayerTrun()
     {
-        uiAction.SetActive(false);
-        uiTrait.SetActive(false);
-
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
-
-        currentInterface = Interface.Neutre;
 
         //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
         vfxPlayerTurn.GetComponent<Animator>().enabled = true;
@@ -314,10 +292,7 @@ public class C_Challenge : MonoBehaviour
             listRes = new List<ActorResolution>();
 
             //Initialise la prochaine cata.
-            InitialiseCata();
-
-            //Change l'UI.
-            uiAction.SetActive(true);
+            //InitialiseCata();
 
             //Met a jour le curseur des actions.
             //UpdateActionSelected();
@@ -379,15 +354,6 @@ public class C_Challenge : MonoBehaviour
         {
             NextActor();
         }
-
-        if (currentInterface == Interface.Actions)
-        {
-            uiAction.SetActive(true);
-        }
-        if (currentInterface == Interface.Traits)
-        {
-            uiTrait.SetActive(true);
-        }
     }
 
     //Passe à l'étape suivant.
@@ -434,9 +400,6 @@ public class C_Challenge : MonoBehaviour
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
 
-        //Change l'UI.
-        uiAction.SetActive(false);
-
         //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
         vfxResoTurn.GetComponent<Animator>().enabled = true;
 
@@ -478,8 +441,6 @@ public class C_Challenge : MonoBehaviour
                 uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
 
                 uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
-
-                canUpdateEtape = true;
             }
         }
     }

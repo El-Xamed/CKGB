@@ -23,6 +23,17 @@ public class C_Interface : MonoBehaviour
 
     List<ActionButton> listButtonTraits = new List<ActionButton>();
 
+    //Pour afficher l'ui
+    GameObject uiButton;
+
+    private void Awake()
+    {
+        myChallenge = GetComponentInParent<C_Challenge>();
+
+        uiTrait.SetActive(false);
+        uiAction.SetActive(false);
+    }
+
     #region Racourcis
     //Racourcis pour récupérer la liste des action d'une etape ciblé par le challenge.
     SO_ActionClass[] GetListAction()
@@ -70,7 +81,7 @@ public class C_Interface : MonoBehaviour
     #endregion
 
     #region Input
-    public void SelectButton(InputAction.CallbackContext context)
+    public void SelectInterface(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
 
@@ -89,12 +100,14 @@ public class C_Interface : MonoBehaviour
                 if (input.x < 0)
                 {
                     GoTraits();
+                    SetShowButton(uiTrait);
                     return;
                 }
 
                 if (input.y < 0)
                 {
                     GoAction();
+                    SetShowButton(uiAction);
                     return;
                 }
                 if (input.y > 0)
@@ -154,12 +167,9 @@ public class C_Interface : MonoBehaviour
     public void GoAction()
     {
         //Animation.
-        GetComponent<Animator>().SetTrigger("OpenActions");
+        GetComponent<Animator>().SetTrigger("OpenInterface");
 
-        //Fait apparaitre la liste d'action.
-        uiAction.SetActive(true);
-
-        //Fait apparaitre les Action du Challenge.
+        //Spawn actions
         SpawnActions();
 
         //Modifie l'état de navigation.
@@ -178,12 +188,9 @@ public class C_Interface : MonoBehaviour
     public void GoTraits()
     {
         //Animation.
-        GetComponent<Animator>().SetTrigger("OpenTraits");
+        GetComponent<Animator>().SetTrigger("OpenInterface");
 
-        //Fait apparaitre la liste de trait.
-        uiTrait.SetActive(true);
-
-        //Fait apparaitre les traits du l'actor.
+        //Spawn actions
         SpawnTraits();
 
         //Modifie l'état de navigation.
@@ -193,17 +200,19 @@ public class C_Interface : MonoBehaviour
     //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
-
-        AudioManager.instance.PlaySFX(AudioManager.instance.retourEnArriere);
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.retourEnArriere);
+        }
 
         switch (currentInterface)
         {
             case Interface.Actions:
-                GetComponent<Animator>().SetTrigger("CloseActions");
+                GetComponent<Animator>().SetTrigger("CloseInterface");
                 uiAction.SetActive(false);
                 break;
             case Interface.Traits:
-                GetComponent<Animator>().SetTrigger("CloseTraits");
+                GetComponent<Animator>().SetTrigger("CloseInterface");
                 uiTrait.SetActive(false);
                 break;
             case Interface.Logs:
@@ -212,6 +221,8 @@ public class C_Interface : MonoBehaviour
         }
 
         currentInterface = Interface.Neutre;
+
+        SetShowButton(null);
     }
     #endregion
 
@@ -224,6 +235,16 @@ public class C_Interface : MonoBehaviour
     }
 
     #region Spawn button
+    void SetShowButton(GameObject thisUiButton)
+    {
+        uiButton = thisUiButton;
+    }
+
+    public void ShowButton()
+    {
+        uiButton.SetActive(true);
+    }
+
     //Fait spawn les bouton d'actions
     void SpawnActions()
     {
@@ -339,8 +360,6 @@ public class C_Interface : MonoBehaviour
                 }
                 */
             }
-
-            uiAction.SetActive(false);
         }
         else
         {
@@ -387,5 +406,12 @@ public class C_Interface : MonoBehaviour
         }
     }
     */
+    #endregion
+
+    #region Animation Event
+    public void SetPositionInHiearchie(GameObject thisButton)
+    {
+        thisButton.transform.parent = transform;
+    }
     #endregion
 }
