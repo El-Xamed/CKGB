@@ -69,7 +69,7 @@ public class C_TempsMort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   
+        CharactersDataGet();
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         #region HideUI
@@ -206,18 +206,22 @@ public class C_TempsMort : MonoBehaviour
        foreach(var c in GameManager.instance.GetTeam())
         {
             Debug.Log(c);
-            //characters.Add(c);
+            characters.Add(c.gameObject);
         }
         background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
-        for(int i=0;i<characters.Count-1;i++)
+        for(int i=0;i<characters.Count;i++)
         {
             Instantiate(characters[i], listCharactersPositions[i],listCharactersPositions[i]);
             actorActif = characters[0];
-        }
-       
-
+        }       
     }
-
+    public void CharactersDataGet()
+    {
+        for(int i=0;i<characters.Count;i++)
+        {
+            characters[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+        }
+    }
     //chaque deplacement de curseur dans l'ui
     public void Naviguate(InputAction.CallbackContext context)
     {
