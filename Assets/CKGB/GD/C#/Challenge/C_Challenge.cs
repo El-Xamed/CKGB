@@ -212,7 +212,9 @@ public class C_Challenge : MonoBehaviour
                         //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
                         if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
                         {
-                            //New actor
+                            #region Spawn Actor ?
+                            /*
+                            //New actor ?
                             GameObject myActor = Instantiate(thisActor.gameObject, listCase[position.position].transform);
                             myActor.GetComponent<C_Actor>().IniChallenge();
                             myActor.GetComponent<C_Actor>().SetPosition(position.position);
@@ -227,6 +229,28 @@ public class C_Challenge : MonoBehaviour
                             myActor.GetComponent<C_Actor>().UpdateUiStats();
 
                             myTeam.Add(myActor.GetComponent<C_Actor>());
+                            */
+                            #endregion
+
+                            #region Placement des perso depuis le GameManager ?
+                            //Placement des perso depuis le GameManager ?
+                            thisActor.transform.parent = listCase[position.position].transform;
+                            thisActor.transform.localScale = Vector3.one;
+                            thisActor.transform.localPosition = Vector3.zero;
+                            thisActor.GetComponent<C_Actor>().IniChallenge();
+                            thisActor.GetComponent<C_Actor>().SetPosition(position.position);
+
+                            //New Ui stats
+                            C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+
+                            //Add Ui Stats
+                            thisActor.GetComponent<C_Actor>().SetUiStats(newStats);
+
+                            //Update UI
+                            thisActor.GetComponent<C_Actor>().UpdateUiStats();
+
+                            myTeam.Add(thisActor.GetComponent<C_Actor>());
+                            #endregion
                         }
                     }
                 }

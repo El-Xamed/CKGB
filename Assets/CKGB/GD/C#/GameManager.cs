@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     int[] niveauTerminé;
 
     [SerializeField]
-    List<C_Actor> team;
+    List<GameObject> team;
 
     //Variable pour les challenge. DOIT RESTER CACHE C'EST UNE INFORMATION QUI RECUPERE SUR LA WORLDMAP AVANT DE LANCER LE NIVEAU.
     List<int> initialPlayerPositionOnThisDestination;
@@ -53,23 +53,6 @@ public class GameManager : MonoBehaviour
     #region Mes Fonctions
     void SetUpTeam()
     {
-        //Création d'un liste qui va remplacer la list "Ressource".
-        List<GameObject> newList = new List<GameObject>();
-
-        for (int i = 0; i < ressourceActor.Count; i++)
-        {
-            //Création d'une nouvelle class actor.
-            C_Actor newActor = Instantiate(ressourceActor[i].GetComponent<C_Actor>());
-            //Instantiate du SO pour ne pas touche au data en generale.
-            newActor.SetDataActor(ScriptableObject.Instantiate(ressourceActor[i].GetComponent<C_Actor>().GetDataActor()));
-            //Ajoute dans la nouvelle liste.
-            newList.Add(newActor.gameObject);
-            Debug.Log(newActor.GetDataActor());
-        }
-
-        //Remplace la liste.
-        ressourceActor = newList;
-
         foreach (EActorClass thisActor in myActor)
         {
             //Définition des acteurs dans une nouvelle list par l'enum.
@@ -78,17 +61,32 @@ public class GameManager : MonoBehaviour
                 //Récupération automatique dans le dossier Resources.
                 case EActorClass.Koolkid:
                     if (ressourceActor[0])
-                        team.Add(Instantiate(ressourceActor[0].GetComponent<C_Actor>()));
+                    {
+                        GameObject newActor = Instantiate(ressourceActor[0], transform);
+                        //newActor.GetComponent<C_Actor>().SetDataActor(ScriptableObject.Instantiate(ressourceActor[0].GetComponent<C_Actor>().GetDataActor()));
+                        team.Add(newActor);
+                        Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
+                    }
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
                 case EActorClass.Clown:
                     if (ressourceActor[1])
-                        team.Add(Instantiate(ressourceActor[1].GetComponent<C_Actor>()));
+                    {
+                        GameObject newActor = Instantiate(ressourceActor[1], transform);
+                        //newActor.GetComponent<C_Actor>().SetDataActor(ScriptableObject.Instantiate(ressourceActor[1].GetComponent<C_Actor>().GetDataActor()));
+                        team.Add(newActor);
+                        Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
+                    }
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
                 case EActorClass.Grandma:
                     if (ressourceActor[2])
-                        team.Add(Instantiate(ressourceActor[2].GetComponent<C_Actor>()));
+                    {
+                        GameObject newActor = Instantiate(ressourceActor[2], transform);
+                        //newActor.GetComponent<C_Actor>().SetDataActor(ScriptableObject.Instantiate(ressourceActor[2].GetComponent<C_Actor>().GetDataActor()));
+                        team.Add(newActor);
+                        Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
+                    }
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
             }
@@ -129,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     #region Pour le temps mort/Challenge
 
-    public List<C_Actor> GetTeam()
+    public List<GameObject> GetTeam()
     {
         return team;
     }

@@ -59,6 +59,8 @@ public class C_Actor : MonoBehaviour
         GetComponent<Image>().useSpriteMesh = true;
 
         CheckIsOut();
+
+        Debug.Log("Init challenge : " + name);
     }
 
     public void TakeDamage(int calm, int energy)

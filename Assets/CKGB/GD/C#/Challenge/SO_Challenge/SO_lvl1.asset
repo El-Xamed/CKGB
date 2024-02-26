@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4790af45b8f5552499175a066e3389d5, type: 3}
   m_Name: SO_lvl1
   m_EditorClassIdentifier: 
+  background: {fileID: 21300000, guid: 8863c16b60e8e454383d4a3bd0fac4c3, type: 3}
   nbCase: 5
-  listAcc: []
-  initialAccPosition: 
-  initialplayerPosition: 0000000000000000
+  listStartPosAcc: []
+  listStartPosTeam: []
   listCatastrophy: []
   listEtape:
   - {fileID: 11400000, guid: f584ab6555db78c4ea5ab9b379e196a2, type: 2}
   - {fileID: 11400000, guid: 5db4d6d6452159f449508f6b9277f7e9, type: 2}
   - {fileID: 11400000, guid: e4682dd48d536f748a9548bfbc504887, type: 2}
   - {fileID: 11400000, guid: 38b96d61bf19b0644a4df24d2f72e941, type: 2}
-  startPosTeam: []
