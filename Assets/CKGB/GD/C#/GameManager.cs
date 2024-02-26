@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     int[] niveauTerminé;
 
     [SerializeField]
-    List<GameObject> team;
+    List<C_Actor> team;
 
     //Variable pour les challenge. DOIT RESTER CACHE C'EST UNE INFORMATION QUI RECUPERE SUR LA WORLDMAP AVANT DE LANCER LE NIVEAU.
     List<int> initialPlayerPositionOnThisDestination;
@@ -64,17 +64,20 @@ public class GameManager : MonoBehaviour
                 //Récupération automatique dans le dossier Resources.
                 case EActorClass.Koolkid:
                     if (ressourceActor[0])
-                        team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[0].name));
+                        //team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[0].name));
+                        team.Add(Instantiate(ressourceActor[0].GetComponent<C_Actor>()));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
                 case EActorClass.Grandma:
                     if (ressourceActor[1])
-                        team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[1].name));
+                        //team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[1].name));
+                        team.Add(Instantiate(ressourceActor[1].GetComponent<C_Actor>()));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
                 case EActorClass.Clown:
                     if (ressourceActor[2])
-                        team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[2].name));
+                        //team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[2].name));
+                        team.Add(Instantiate(ressourceActor[2].GetComponent<C_Actor>()));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
             }
@@ -96,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     #region Pour le temps mort/Challenge
 
-    public List<GameObject> GetTeam()
+    public List<C_Actor> GetTeam()
     {
         return team;
     }

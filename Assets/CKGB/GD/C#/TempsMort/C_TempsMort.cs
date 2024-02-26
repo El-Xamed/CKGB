@@ -206,7 +206,7 @@ public class C_TempsMort : MonoBehaviour
        foreach(var c in GameManager.instance.GetTeam())
         {
             Debug.Log(c);
-            characters.Add(c);
+            //characters.Add(c);
         }
         background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
         for(int i=0;i<characters.Count-1;i++)

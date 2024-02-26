@@ -197,7 +197,7 @@ public class C_Challenge : MonoBehaviour
                         if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
                         {
                             //New actor
-                            GameObject myActor = Instantiate(thisActor, listCase[position.position].transform);
+                            GameObject myActor = Instantiate(thisActor.gameObject, listCase[position.position].transform);
                             myActor.GetComponent<C_Actor>().IniChallenge();
                             myActor.GetComponent<C_Actor>().SetPosition(position.position);
 
