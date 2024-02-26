@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
                     if (ressourceActor[0])
                     {
                         GameObject newActor = Instantiate(ressourceActor[0], transform);
-                        //newActor.GetComponent<C_Actor>().SetDataActor(ScriptableObject.Instantiate(ressourceActor[0].GetComponent<C_Actor>().GetDataActor()));
                         team.Add(newActor);
                         Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
                     }
@@ -73,7 +72,6 @@ public class GameManager : MonoBehaviour
                     if (ressourceActor[1])
                     {
                         GameObject newActor = Instantiate(ressourceActor[1], transform);
-                        //newActor.GetComponent<C_Actor>().SetDataActor(ScriptableObject.Instantiate(ressourceActor[1].GetComponent<C_Actor>().GetDataActor()));
                         team.Add(newActor);
                         Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
                     }
@@ -83,7 +81,6 @@ public class GameManager : MonoBehaviour
                     if (ressourceActor[2])
                     {
                         GameObject newActor = Instantiate(ressourceActor[2], transform);
-                        //newActor.GetComponent<C_Actor>().SetDataActor(ScriptableObject.Instantiate(ressourceActor[2].GetComponent<C_Actor>().GetDataActor()));
                         team.Add(newActor);
                         Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
                     }

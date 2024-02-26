@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,9 +20,9 @@ public class C_Interface : MonoBehaviour
     [SerializeField] GameObject uiAction;
 
     //Mes listes d'actions / traits
-    List<ActionButton> listButtonActions = new List<ActionButton>();
+    [SerializeField] List<ActionButton> listButtonActions = new List<ActionButton>();
 
-    List<ActionButton> listButtonTraits = new List<ActionButton>();
+    [SerializeField] List<ActionButton> listButtonTraits = new List<ActionButton>();
 
     //Pour afficher l'ui
     GameObject uiButton;
@@ -221,6 +222,7 @@ public class C_Interface : MonoBehaviour
 
     #region Actions / Traits
 
+    [Serializable]
     public class ActionButton
     {
         public GameObject myButton;

@@ -41,6 +41,10 @@ public class C_Actor : MonoBehaviour
         gameObject.name = dataActor.name; 
 
         dataActor = ScriptableObject.Instantiate(dataActor);
+
+        //Setup le contoure blanc.
+        transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
+        IsSelected(false);
     }
 
     #region Mes fonctions

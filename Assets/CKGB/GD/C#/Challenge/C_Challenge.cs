@@ -60,7 +60,7 @@ public class C_Challenge : MonoBehaviour
     C_Actor currentActor;
 
     //D�finis l'�tape actuel. RETIRER LE PUBLIC
-    SO_Etape currentStep;
+    [SerializeField] SO_Etape currentStep;
     #endregion
 
     #region Résolution
@@ -212,28 +212,7 @@ public class C_Challenge : MonoBehaviour
                         //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
                         if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
                         {
-                            #region Spawn Actor ?
-                            /*
-                            //New actor ?
-                            GameObject myActor = Instantiate(thisActor.gameObject, listCase[position.position].transform);
-                            myActor.GetComponent<C_Actor>().IniChallenge();
-                            myActor.GetComponent<C_Actor>().SetPosition(position.position);
-
-                            //New Ui stats
-                            C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
-
-                            //Add Ui Stats
-                            myActor.GetComponent<C_Actor>().SetUiStats(newStats);
-
-                            //Update UI
-                            myActor.GetComponent<C_Actor>().UpdateUiStats();
-
-                            myTeam.Add(myActor.GetComponent<C_Actor>());
-                            */
-                            #endregion
-
-                            #region Placement des perso depuis le GameManager ?
-                            //Placement des perso depuis le GameManager ?
+                            //Placement des perso depuis le GameManager
                             thisActor.transform.parent = listCase[position.position].transform;
                             thisActor.transform.localScale = Vector3.one;
                             thisActor.transform.localPosition = Vector3.zero;
@@ -250,7 +229,6 @@ public class C_Challenge : MonoBehaviour
                             thisActor.GetComponent<C_Actor>().UpdateUiStats();
 
                             myTeam.Add(thisActor.GetComponent<C_Actor>());
-                            #endregion
                         }
                     }
                 }
@@ -338,6 +316,9 @@ public class C_Challenge : MonoBehaviour
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
+        //Initialise la prochaine cata.
+        InitialiseCata();
+
         //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
         vfxPlayerTurn.GetComponent<Animator>().enabled = true;
 
@@ -353,9 +334,6 @@ public class C_Challenge : MonoBehaviour
 
             //Vide la listeReso
             listRes = new List<ActorResolution>();
-
-            //Initialise la prochaine cata.
-            //InitialiseCata();
 
             //Met a jour le curseur des actions.
             //UpdateActionSelected();
