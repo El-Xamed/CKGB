@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Paramètre de dev")]
     [Tooltip("Ceci est un paramètre de dev (Paul) ce dernier à pour objectif de rediriger correctement les object en question pour la création de l'équipe.")]
     [SerializeField]
-    GameObject[] ressourceActor = new GameObject[3];
+    List<GameObject> ressourceActor = new List<GameObject>();
 
     #region Variables
     public static GameManager instance;
@@ -42,20 +42,29 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        //Instantiate les SO pour que les data des perso ne soit pas touché dans le projet. A TESTER ET A VOIR SI C4EST PAS POSSIBLE DE FAIRE CA AILLEUR.
-        /*
-        foreach (var thisRessourceActor in ressourceActor)
-        {
-            thisRessourceActor.GetComponent<C_Actor>().GetDataActor() = ScriptableObject.Instantiate(thisRessourceActor.GetComponent<C_Actor>().GetDataActor());
-        }
-        */
-
         SetUpTeam();
     }
 
     #region Mes Fonctions
     void SetUpTeam()
     {
+        //Création d'un liste qui va remplacer la list "Ressource".
+        List<GameObject> newList = new List<GameObject>();
+
+        for (int i = 0; i < ressourceActor.Count; i++)
+        {
+            //Création d'une nouvelle class actor.
+            C_Actor newActor = Instantiate(ressourceActor[i].GetComponent<C_Actor>());
+            //Instantiate du SO pour ne pas touche au data en generale.
+            newActor.SetDataActor(ScriptableObject.Instantiate(ressourceActor[i].GetComponent<C_Actor>().GetDataActor()));
+            //Ajoute dans la nouvelle liste.
+            newList.Add(newActor.gameObject);
+            Debug.Log(newActor.GetDataActor());
+        }
+
+        //Remplace la liste.
+        ressourceActor = newList;
+
         foreach (EActorClass thisActor in myActor)
         {
             //Définition des acteurs dans une nouvelle list par l'enum.
@@ -64,19 +73,16 @@ public class GameManager : MonoBehaviour
                 //Récupération automatique dans le dossier Resources.
                 case EActorClass.Koolkid:
                     if (ressourceActor[0])
-                        //team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[0].name));
                         team.Add(Instantiate(ressourceActor[0].GetComponent<C_Actor>()));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
-                case EActorClass.Grandma:
+                case EActorClass.Clown:
                     if (ressourceActor[1])
-                        //team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[1].name));
                         team.Add(Instantiate(ressourceActor[1].GetComponent<C_Actor>()));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
-                case EActorClass.Clown:
+                case EActorClass.Grandma:
                     if (ressourceActor[2])
-                        //team.Add(Resources.Load<GameObject>("Actor/" + ressourceActor[2].name));
                         team.Add(Instantiate(ressourceActor[2].GetComponent<C_Actor>()));
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour
         return team;
     }
 
-    public GameObject[] GetRessournce()
+    public List<GameObject> GetRessournce()
     {
         return ressourceActor;
     }

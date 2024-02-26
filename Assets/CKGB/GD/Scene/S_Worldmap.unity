@@ -401,10 +401,6 @@ MonoBehaviour:
     m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 1ef01faa-82be-401b-a6ab-f98d4a7dcdc6
-    m_ActionName: Challenge/SelectAction[/Keyboard/q,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
     m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -3177,18 +3173,6 @@ PrefabInstance:
       propertyPath: myActor.Array.data[2]
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: ressourceActor.Array.data[0]
-      value: 
-      objectReference: {fileID: 8428329977619197852, guid: 8e8d713129855a94a9392dfb6ecfc86b, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: ressourceActor.Array.data[1]
-      value: 
-      objectReference: {fileID: 8428329977619197852, guid: 22cdc69116fa9064597c9da46eac1a03, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: ressourceActor.Array.data[2]
-      value: 
-      objectReference: {fileID: 8428329977619197852, guid: 328581e8a42ec874b8b090e2f35ea36f, type: 3}
     - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_RootOrder
       value: 0

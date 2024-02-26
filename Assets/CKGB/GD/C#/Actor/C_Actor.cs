@@ -111,6 +111,11 @@ public class C_Actor : MonoBehaviour
         return dataActor;
     }
 
+    public void SetDataActor(SO_Character thisSO_Character)
+    {
+        dataActor = thisSO_Character;
+    }
+
     public int GetPosition()
     {
         return position;     
