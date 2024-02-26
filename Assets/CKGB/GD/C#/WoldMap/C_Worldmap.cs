@@ -71,8 +71,13 @@ public class C_Worldmap : MonoBehaviour
         {
             GameManager.instance.ChangeActionMap("TempsMort");
 
-            //Lance la scene selectionné.
-            SceneManager.LoadScene(currentPoint.sceneGet());
+            //Lance la scene selectionné. A DISCUTER DE SA SUPPRESSION CAR LA MEME SCENE VA S'OUVRIR MAIS SERA RENSEIGNER AVEC LES DATA DU TM ET DU C STOCKE DANS LE GAMEMANAGER.
+            //SceneManager.LoadScene(currentPoint.sceneGet());
+            SceneManager.LoadScene("S_Destination");
+
+            //Set Les data du TM et C dans le GameManager.
+            GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
+
             AddActorInTeam();
             Debug.Log("Load Scene...");
         }

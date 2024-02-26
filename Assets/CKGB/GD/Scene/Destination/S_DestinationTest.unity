@@ -433,10 +433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1291,7 +1291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -707.49994, y: 400}
+  m_AnchoredPosition: {x: -707.5, y: 400}
   m_SizeDelta: {x: -1455.0002, y: -800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503554412
@@ -1621,6 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPhaseDeJeu: 0
+  background: {fileID: 0}
   uiStatsPrefab: {fileID: 3723161877667537748, guid: 08f6793440b983348bc516311958ccad, type: 3}
   uiStats: {fileID: 503554410}
   uiEtape: {fileID: 1468433190}
@@ -1846,7 +1847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 373, y: -439.5}
+  m_AnchoredPosition: {x: 373, y: -439.49997}
   m_SizeDelta: {x: -746, y: -879}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &633895206
@@ -3447,7 +3448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1230891244}
-  - component: {fileID: 1230891243}
+  - component: {fileID: 1230891245}
   m_Layer: 0
   m_Name: TempsMort
   m_TagString: Untagged
@@ -3455,33 +3456,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1230891243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1230891242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b52789fae4da1d4fa45e49571906411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Es: {fileID: 0}
-  charactersLittleResume: []
-  charactersCompleteResume: []
-  littleCharactersSpecs: []
-  CompleteCharactersSpecs1: []
-  CompleteCharactersSpecs2: []
-  charactersButton: []
-  characterHasPlayed: 
-  actions: []
-  ChallengeButton: {fileID: 0}
-  listCharactersPositions: []
-  characters: []
-  currentButton: {fileID: 0}
-  isAnActionButton: 0
-  actorActif: {fileID: 0}
 --- !u!4 &1230891244
 Transform:
   m_ObjectHideFlags: 0
@@ -3501,6 +3475,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1230891245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230891242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87861308bbcb2e74088297fcbd3b8f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersLittleResume: []
+  charactersCompleteResume1: []
+  charactersCompleteResume2: []
+  littleCharactersSpecs: []
+  CompleteCharactersSpecs1: []
+  CompleteCharactersSpecs2: []
+  charactersButton: []
+  actions: []
+  ChallengeButton: {fileID: 0}
+  PapotageChoiceButtons: []
+  listCharactersPositions: []
+  characters: []
+  TM: {fileID: 0}
+  background: {fileID: 0}
+  Es: {fileID: 0}
+  currentButton: {fileID: 0}
+  actorActif: {fileID: 0}
+  aquiletour: {fileID: 0}
+  faitesunchoix: {fileID: 0}
+  papoteravec: {fileID: 0}
+  characterHasPlayed: 
+  isAnActionButton: 0
 --- !u!1001 &1245365848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4424,7 +4432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -305.5}
+  m_AnchoredPosition: {x: 0, y: -305.49997}
   m_SizeDelta: {x: 0, y: -1020.99994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665274492

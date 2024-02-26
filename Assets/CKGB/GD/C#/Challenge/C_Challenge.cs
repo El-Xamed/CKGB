@@ -24,6 +24,7 @@ public class C_Challenge : MonoBehaviour
     GameObject canva;
     GameObject uiCases;
     [Header("UI")]
+    [SerializeField] Sprite background;
     [SerializeField] C_Stats uiStatsPrefab;
     [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
@@ -100,13 +101,28 @@ public class C_Challenge : MonoBehaviour
         {
             GameManager.instance.ChangeActionMap("Challenge");
 
-            
+            //Check si le GameManager possède bien l'info de la Worldmap.
+            if (GameManager.instance.GetDataChallenge() != null)
+            {
+                myChallenge = GameManager.instance.GetDataChallenge();
+            }
+            else
+            {
+                Debug.LogWarning("AUCUNE DONNE DU CHALLENGE DETECTE");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("AUCUN GAMEMANAGER DETECTE");
         }
     }
 
     private void Start()
     {
         #region Initialisation
+        //Set le background
+        background = myChallenge.background;
+
         //Apparition des cases
         SpawnCases();
 

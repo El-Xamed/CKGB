@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour
 
     //Variable pour les challenge. DOIT RESTER CACHE C'EST UNE INFORMATION QUI RECUPERE SUR LA WORLDMAP AVANT DE LANCER LE NIVEAU.
     List<int> initialPlayerPositionOnThisDestination;
+
+    //Information qu'il récupère pour le Temps mort / Challenge.
+    SO_TempsMort currentTM = null;
+    SO_Challenge currentC = null;
     #endregion
 
     private void Awake()
@@ -100,6 +105,25 @@ public class GameManager : MonoBehaviour
     public void SetInitialPlayerPosition(List<int> newPosition)
     {
         initialPlayerPositionOnThisDestination = newPosition;
+    }
+
+    public void SetDataLevel(SO_TempsMort dataTM,SO_Challenge dataC)
+    {
+        currentTM = dataTM;
+        currentC = dataC;
+
+        Debug.Log(currentTM);
+        Debug.Log(currentC);
+    }
+
+    public SO_TempsMort GetDataTempsMort()
+    {
+        return currentTM;
+    }
+
+    public SO_Challenge GetDataChallenge()
+    {
+        return currentC;
     }
     #endregion
 

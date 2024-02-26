@@ -13,6 +13,7 @@ public class SO_Challenge : ScriptableObject
     #region Mes variables
 
     [Header("Paramètre du challenge")]
+    public Sprite background;
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
     public int nbCase;
     [Space]

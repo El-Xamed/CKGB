@@ -15,10 +15,6 @@ public class C_destination : MonoBehaviour
     [TextAreaAttribute]
     public string leveltext;
     
-    
-
-
-
     [Header("type")]
 
     public bool IsLevel;
@@ -29,17 +25,31 @@ public class C_destination : MonoBehaviour
     [Header("Level UI")]
     [SerializeField] Text UiLevelName;
 
-    
-    [SerializeField]
-    GameObject actor;
-
     [SerializeField]
     string scenename;
-   
+
+    [Header("Data")]
+    [SerializeField] SO_TempsMort dataTM;
+    [SerializeField] SO_Challenge dataC;
+    //PAS SUR D'EN AVOIR BESOIN.
+    [SerializeField] GameObject actor;
+
     //Variable de scene
     #endregion
-   public string sceneGet()
+    public string sceneGet()
     {
         return scenename;
     }
+
+    #region Partage de donné
+    public SO_TempsMort GetDataTempsMort()
+    {
+        return dataTM;
+    }
+
+    public SO_Challenge GetDataChallenge()
+    {
+        return dataC;
+    }
+    #endregion
 }
