@@ -26,7 +26,7 @@ public class SO_Character : ScriptableObject
     public int stressMax;
     public int energyMax;
     public int nbTraits;
-    List<SO_ActionClass> listNewTrait;
+
 
     [Header("Tempsmort (Sprite)")]
     public Sprite MapTmSprite;

@@ -135,6 +135,14 @@ public class C_Actor : MonoBehaviour
     {
         return currentEnergy;
     }
+    public int GetCurrentPointTrait()
+    {
+        return currentPointTrait;
+    }
+    public void SetCurrentPointTrait()
+    {
+         currentPointTrait++;
+    }
 
     public bool GetIsOut()
     {

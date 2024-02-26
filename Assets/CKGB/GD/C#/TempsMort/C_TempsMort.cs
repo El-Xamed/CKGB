@@ -66,6 +66,10 @@ public class C_TempsMort : MonoBehaviour
     bool isAnActionButton = false;
 
     #endregion
+    private void Awake()
+    {
+        SetDataTM();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -220,6 +224,7 @@ public class C_TempsMort : MonoBehaviour
         for(int i=0;i<characters.Count;i++)
         {
             characters[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+            characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(characters[i].GetComponent<C_Actor>().GetDataActor().currentPointTrait);
         }
     }
     //chaque deplacement de curseur dans l'ui
@@ -280,21 +285,22 @@ public class C_TempsMort : MonoBehaviour
         {
             if(currentButton==PapotageChoiceButtons[i])
             {
-                /*
-                actorActif.GetComponent<C_Actor>().currentPointTrait++;
-                characters[i].GetComponent<C_Actor>().currentPointTrait++;
-                if(actorActif.GetComponent<C_Actor>().currentPointTrait== 2)
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.GetComponent<C_Actor>().GetCurrentPointTrait());
+                characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(characters[i].GetComponent<C_Actor>().GetCurrentPointTrait());
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()==2)
                 {
-                    actorActif.GetComponent<C_Actor>().currentPointTrait = 0;
-                    actorActif.GetComponent<C_Actor>().listTraits.Add(actorActif.GetComponent<C_Actor>().traitaDebloquer[0]);
+                    actorActif.GetComponent<C_Actor>().GetCurrentPointTrait().Equals(0);
+                    actorActif.GetComponent<C_Actor>().GetDataActor().listTraits.Add(actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[0]);
 
                 }
-                if (characters[i].GetComponent<C_Actor>().currentPointTrait == 2)
+                if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    characters[i].GetComponent<C_Actor>().currentPointTrait = 0;
-                    characters[i].GetComponent<C_Actor>().listTraits.Add(characters[i].GetComponent<C_Actor>().traitaDebloquer[0]);
+                    characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(0);
+                    characters[i].GetComponent<C_Actor>().GetDataActor().listTraits.Add(actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[0]); 
                 }
-                */
+                
             }
         }
         foreach(GameObject papot in PapotageChoiceButtons)
@@ -320,5 +326,9 @@ public class C_TempsMort : MonoBehaviour
     public void Challenge()
     {
         SceneManager.LoadScene("S_DestinationTest");
+    }
+    public void SetDataTM()
+    {
+        return;
     }
 }
