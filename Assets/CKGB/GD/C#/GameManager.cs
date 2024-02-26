@@ -42,6 +42,14 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        //Instantiate les SO pour que les data des perso ne soit pas touché dans le projet. A TESTER ET A VOIR SI C4EST PAS POSSIBLE DE FAIRE CA AILLEUR.
+        /*
+        foreach (var thisRessourceActor in ressourceActor)
+        {
+            thisRessourceActor.GetComponent<C_Actor>().GetDataActor() = ScriptableObject.Instantiate(thisRessourceActor.GetComponent<C_Actor>().GetDataActor());
+        }
+        */
+
         SetUpTeam();
     }
 

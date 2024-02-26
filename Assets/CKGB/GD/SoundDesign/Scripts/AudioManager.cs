@@ -5,7 +5,21 @@ using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
-   public static void Main()
+    #region Variable
+    public static AudioManager instance;
+    #endregion
+
+    private void Awake()
+    {
+        #region Singleton
+        if (instance == null)
+            instance = this;
+        #endregion
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public static void Main()
    {
 
         IDictionary<string, string> openWith =
@@ -16,15 +30,5 @@ public class AudioManager : MonoBehaviour
         openWith.Add("water", "water2");
         openWith.Add("birds", "birds2");
         openWith.Add("fire", "fire2");
-
-
-
-
-
-
    }
-
-
-
-
 }

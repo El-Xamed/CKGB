@@ -40,7 +40,7 @@ public class C_Actor : MonoBehaviour
     {
         gameObject.name = dataActor.name; 
 
-        //dataActor = ScriptableObject.Instantiate(dataActor);
+        dataActor = ScriptableObject.Instantiate(dataActor);
     }
 
     #region Mes fonctions
@@ -142,7 +142,6 @@ public class C_Actor : MonoBehaviour
 
         if (currentStress <= 0)
         {
-            AudioManager.instance.PlaySFX(AudioManager.instance.tetaniser);
             isOut = true;
 
             GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;

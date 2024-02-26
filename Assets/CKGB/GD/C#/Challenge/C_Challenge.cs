@@ -102,13 +102,6 @@ public class C_Challenge : MonoBehaviour
 
             
         }
-
-        if (AudioManager.instance)
-        {
-            AudioManager.instance.PlaySFX(AudioManager.instance.musicChallenge);
-            
-
-        }
     }
 
     private void Start()

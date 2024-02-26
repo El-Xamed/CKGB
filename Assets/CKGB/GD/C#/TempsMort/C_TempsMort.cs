@@ -226,7 +226,6 @@ public class C_TempsMort : MonoBehaviour
         if (context.performed)
         {
             updateButton();
-            AudioManager.instance.PlaySFX(AudioManager.instance.hover);
         }
     }
     public void SwitchCharacterCard(InputAction.CallbackContext context)
@@ -256,7 +255,6 @@ public class C_TempsMort : MonoBehaviour
     {
         papoteravec.SetActive(true);
         faitesunchoix.SetActive(false);
-        AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         for (int i = 0; i < PapotageChoiceButtons.Length; i++)
         {
             if (characters[i] != actorActif)
@@ -303,7 +301,6 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Respirer()
     {
-        AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         //energy
         actorActif.GetComponent<C_Actor>().GetDataActor().energyMax+=1;
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
@@ -311,7 +308,6 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Revasser()
     {
-        AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
         //calm
         actorActif.GetComponent<C_Actor>().GetDataActor().stressMax++;
         //actorActif.GetComponent<C_Actor>().maxStress++;
