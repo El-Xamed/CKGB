@@ -158,7 +158,6 @@ public class C_Actor : MonoBehaviour
     {
         //Sprite
         GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
-
     }
 
     #endregion

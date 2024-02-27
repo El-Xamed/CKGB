@@ -274,27 +274,17 @@ public class C_Challenge : MonoBehaviour
 
     #region Tour du joueur
     //A SUPP ?
-    /*
-    //Utilise l'action
-    void UseAction()
+    //Fonction qui est stocké dans les button action donné par l'interface.
+    public void UseAction(SO_ActionClass thisAction)
     {
-        AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
-
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
-        //Check si c'est une action du challenge ou alors le trait d'un actor.
-        switch (currentInterface)
-        {
-            case Interface.Actions:
-                actorResolution.action = listButton[currentAction].myActionClass;
-                break;
-            case Interface.Traits:
-                actorResolution.action = listButtonTraits[currentTrait].myActionClass;
-                break;
-        }
-
+        //Renseigne l'actor actuel + l'action.
         actorResolution.actor = currentActor;
+        actorResolution.action = thisAction;
+
+        //Ajoute à la liste.
         listRes.Add(actorResolution);
 
         //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
@@ -308,11 +298,9 @@ public class C_Challenge : MonoBehaviour
             currentActor = null;
             UpdateActorSelected();
             currentResolution = listRes[0];
-            //Update les bool.
-            canSelectAction = false;
             ResolutionTurn();
         }
-    }*/
+    }
 
     void PlayerTrun()
     {

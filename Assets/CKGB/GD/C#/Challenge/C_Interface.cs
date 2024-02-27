@@ -126,10 +126,6 @@ public class C_Interface : MonoBehaviour
                     GoBack();
                     return;
                 }
-                if (input.y < 0)
-                {
-                    //SUP ?
-                }
             }
 
             //Pour Update ResoTrun
@@ -283,7 +279,7 @@ public class C_Interface : MonoBehaviour
                 newActionButton.myActionClass = GetListAction()[i];
 
                 //Renseigne le "onClick" du nouveau buton.
-                newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => newActionButton.myActionClass.UseAction(GetCurrentActor(), GetListCases()));
+                newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newActionButton.myActionClass));
 
                 listButtonActions.Add(newActionButton);
             }
@@ -332,29 +328,23 @@ public class C_Interface : MonoBehaviour
                 ActionButton newTraitsButton = new ActionButton();
 
                 //Reférence button.
-                newTraitsButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiTrait.transform);
+                newTraitsButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiTrait.transform.GetChild(0).transform);
+
+                //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
                 newTraitsButton.myButton.GetComponentInChildren<TMP_Text>().text = GetListTrait()[i].buttonText;
-
-
 
                 //Reférence Action.
                 newTraitsButton.myActionClass = GetListTrait()[i];
 
-
+                //Renseigne le "onClick" du nouveau buton.
+                newTraitsButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newTraitsButton.myActionClass));
 
                 listButtonTraits.Add(newTraitsButton);
 
                 //BESOIN D'UNE FONCTION POUR DETECTER SI UN NOUVEAU TRAIT A ETE DETECTE.
-                /*
-                foreach (var thisNewTraits in GetListNewTrait())
-                {
-                    if (newTraitsButton.myActionClass == thisNewTraits)
-                    {
-                        newTraitsButton.myButton.transform.GetChild(2).gameObject.SetActive(true);
-                    }
-                }
-                */
             }
+
+            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonTraits[0].myButton);
         }
         else
         {
@@ -363,44 +353,6 @@ public class C_Interface : MonoBehaviour
     }
     #endregion
 
-    //PASSER PAR L UI NEW INPUT SYSTEME
-    /*
-    void UpdateActionSelected()
-    {
-        switch (currentInterface)
-        {
-            case Interface.Actions:
-                #region Action Challenge
-                //Cache tous les boutons du challenge.
-                foreach (var myButton in GetListAction())
-                {
-                    //Feedback du bouton non-selecioné.
-                    myButton.myButton.transform.GetChild(0).gameObject.SetActive(false);
-                }
-
-                //Affiche le bouton que le joueur souhaite selectionner dans le challenge.
-                listButton[currentAction].myButton.transform.GetChild(0).gameObject.SetActive(true);
-                #endregion
-                break;
-            case Interface.Traits:
-                #region Trait Actor
-                if (currentInterface == Interface.Traits)
-                {
-                    //Cache tous les boutons de traits de l'actor.
-                    foreach (var myTrait in listButtonTraits)
-                    {
-                        //Feedback du bouton non-selecioné.
-                        myTrait.myButton.transform.GetChild(0).gameObject.SetActive(false);
-                    }
-
-                    //Affiche le bouton que le joueur souhaite selectionner dans les traits de l'actor.
-                    listButtonTraits[currentTrait].myButton.transform.GetChild(0).gameObject.SetActive(true);
-                }
-                #endregion
-                break;
-        }
-    }
-    */
     #endregion
 
     #region Animation Event

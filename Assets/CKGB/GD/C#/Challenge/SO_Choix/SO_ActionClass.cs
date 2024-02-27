@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action", order = 1)]
 public class SO_ActionClass : ScriptableObject
@@ -84,13 +82,15 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Fonctions
-    public void UseAction(C_Actor thisActor, List<C_Case> listCase)
+    //A voir pour sup car c'est pas la bonne fonction a renseigner dans les bouton. A TESTER CAR C'EST USELESS.
+    /*public void UseAction(C_Actor thisActor, List<C_Case> listCase, C_Challenge thisChallenge)
     {
         Debug.Log("Use this actionClass.");
 
         //Stocker le perso dans le challenge + la case pour la phase de reso.
-        Debug.Log(thisActor.name);
-    }
+
+        Debug.Log(thisActor.name + " : " + buttonText);
+    }*/
 
     public void UseAction(C_Actor thisActor, List<C_Case> listCase, List<C_Actor> myTeam)
     {
