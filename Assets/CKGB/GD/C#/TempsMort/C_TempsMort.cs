@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static SO_TempsMort;
 
 public class C_TempsMort : MonoBehaviour
 {
@@ -66,18 +67,22 @@ public class C_TempsMort : MonoBehaviour
     bool isAnActionButton = false;
 
     #endregion
+  
     private void Awake()
     {
         SetDataTM();
+        
     }
     // Start is called before the first frame update
     void Start()
     {
-        CharactersDataGet();
+        Es = FindObjectOfType<EventSystem>();
+        Es.SetSelectedGameObject(Es.firstSelectedGameObject);
+        currentButton = Es.currentSelectedGameObject;
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         #region HideUI
-        Es = FindObjectOfType<EventSystem>();
+       
         foreach (GameObject button in actions)
         {
             if (button != null)
@@ -102,6 +107,7 @@ public class C_TempsMort : MonoBehaviour
 
         GameManager.instance.ChangeActionMap("TempsMort");
         initiateTMvariables();
+        CharactersDataGet();
         updateButton();
 
     }
@@ -128,7 +134,7 @@ public class C_TempsMort : MonoBehaviour
     }
     public void AffichageMiniCartePerso()
     {
-        for (int i = 0; i < charactersLittleResume.Length-1; i++)
+        for (int i = 0; i < charactersLittleResume.Length; i++)
         {
             if (currentButton == charactersButton[i])
             {
@@ -140,11 +146,12 @@ public class C_TempsMort : MonoBehaviour
     }
     public void AffichageCarteCompletePerso()
     {
-        for (int i = 0; i < charactersCompleteResume1.Length-1; i++)
+        for (int i = 0; i < charactersCompleteResume1.Length; i++)
         {
             if (actorActif == characters[i] && isAnActionButton == true)
             {
                 charactersCompleteResume1[i].SetActive(true);
+                charactersLittleResume[i].SetActive(false);
             }
             else
                 charactersCompleteResume1[i].SetActive(false);
@@ -206,25 +213,59 @@ public class C_TempsMort : MonoBehaviour
     //recupere les stats des actors et du so_tempsmort
     public void initiateTMvariables()
     {
-       
-       foreach(var c in GameManager.instance.GetTeam())
+        if (GameManager.instance)
         {
-            Debug.Log(c);
-            characters.Add(c.gameObject);
+            foreach (InitialActorPosition position in TM.startPos)
+            {
+                //Récupère les info du GameManager
+                foreach (var thisActor in GameManager.instance.GetTeam())
+                {
+                    //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
+                    if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                    {
+                        //Ini data actor.
+                        thisActor.GetComponent<C_Actor>().IniTempsMort();
+
+                        //Placement des perso depuis le GameManager
+                        //Changement de parent
+                        thisActor.transform.parent = listCharactersPositions[position.position].transform;
+                        thisActor.transform.localScale = Vector3.one;
+
+                       // Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
+                        thisActor.GetComponent<C_Actor>().SetPosition(position.position);
+
+                        characters.Add(thisActor);
+                        Debug.Log(thisActor);
+                    }
+                }
+            }
         }
-        background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
-        for(int i=0;i<characters.Count;i++)
+        else
         {
-            Instantiate(characters[i], listCharactersPositions[i],listCharactersPositions[i]);
-            actorActif = characters[0];
-        }       
+            foreach (var c in GameManager.instance.GetTeam())
+            {
+                Debug.Log(c);
+                characters.Add(c.gameObject);
+            }
+            /*for(int i=0;i<characters.Count;i++)
+       {
+           Instantiate(characters[i], listCharactersPositions[i],listCharactersPositions[i]);
+           actorActif = characters[0];
+       }*/
+        }
+
+        background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
+       
     }
     public void CharactersDataGet()
     {
         for(int i=0;i<characters.Count;i++)
         {
             characters[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
-            characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(characters[i].GetComponent<C_Actor>().GetDataActor().currentPointTrait);
+            characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i]; charactersLittleResume[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().smallResume;
+            characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
+            characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
+            //characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(characters[i].GetComponent<C_Actor>().GetDataActor().currentPointTrait);
         }
     }
     //chaque deplacement de curseur dans l'ui
@@ -314,14 +355,16 @@ public class C_TempsMort : MonoBehaviour
     public void Respirer()
     {
         //energy
-        actorActif.GetComponent<C_Actor>().GetDataActor().energyMax+=1;
+        actorActif.GetComponent<C_Actor>().SetMaxEnergy();
+        Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
     }
     public void Revasser()
     {
         //calm
-        actorActif.GetComponent<C_Actor>().GetDataActor().stressMax++;
+        actorActif.GetComponent<C_Actor>().SetMaxStress();
+        Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
     }

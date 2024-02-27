@@ -10,9 +10,15 @@ public class SO_TempsMort : ScriptableObject
 
     [SerializeField] public Sprite TMbackground;
     [SerializeField] public GameObject[] Team;
-    [SerializeField] public Transform[] startPos;
+    [SerializeField] public InitialActorPosition[] startPos;
 
     #endregion
+    [System.Serializable]
+    public class InitialActorPosition
+    {
+        public int position;
+        public C_Actor perso;
+    }
     // Start is called before the first frame update
     void Start()
     {

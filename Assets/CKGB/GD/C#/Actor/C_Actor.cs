@@ -29,10 +29,7 @@ public class C_Actor : MonoBehaviour
     public GameObject smallResume;
     public GameObject BigResume1;
     public GameObject BigResume2;
-    public TMP_Text smallStats;
-    public TMP_Text BigStats1;
-    public TMP_Text BigStats2;
-    public TMP_Text description;
+
     #endregion
 
 
@@ -159,6 +156,10 @@ public class C_Actor : MonoBehaviour
         //Sprite
         GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
     }
+    public void IniTempsMort()
+    {
+        GetComponent<Image>().sprite = dataActor.MapTmSprite;
+    }
 
     #endregion
 
@@ -199,6 +200,10 @@ public class C_Actor : MonoBehaviour
     {
         currentStress++;
     }
+    public int getMaxStress()
+    {
+        return dataActor.stressMax;
+    }
     public void SetMaxStress()
     {
         dataActor.stressMax++;
@@ -212,6 +217,10 @@ public class C_Actor : MonoBehaviour
     {
         currentEnergy++;
     }
+    public int getMaxEnergy()
+    {
+        return dataActor.energyMax;
+    }
     public void SetMaxEnergy()
     {
         dataActor.energyMax++;
@@ -224,7 +233,7 @@ public class C_Actor : MonoBehaviour
     {
          currentPointTrait++;
     }
-
+ 
     public bool GetIsOut()
     {
         return isOut;
