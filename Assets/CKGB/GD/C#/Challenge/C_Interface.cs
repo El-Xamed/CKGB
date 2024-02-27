@@ -274,7 +274,7 @@ public class C_Interface : MonoBehaviour
                 ActionButton newActionButton = new ActionButton();
 
                 //Reférence button.
-                newActionButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform);
+                newActionButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
 
                 //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
                 newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
@@ -288,7 +288,7 @@ public class C_Interface : MonoBehaviour
                 listButtonActions.Add(newActionButton);
             }
 
-            uiAction.SetActive(false);
+            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonActions[0].myButton);
         }
         else
         {

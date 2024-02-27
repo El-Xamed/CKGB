@@ -5,6 +5,7 @@ using System.Net;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,9 @@ public class C_Challenge : MonoBehaviour
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
+    [SerializeField] EventSystem eventSystem;
+
+    #region UI
     GameObject canva;
     GameObject uiCases;
     [Header("UI")]
@@ -36,8 +40,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject vfxPlayerTurn;
     [SerializeField] GameObject vfxResoTurn;
     [SerializeField] GameObject vfxCataTurn;
-
-
+    #endregion
 
     [Header("Data")]
     [SerializeField] SO_Challenge myChallenge;
@@ -220,7 +223,6 @@ public class C_Challenge : MonoBehaviour
                             thisActor.transform.localScale = Vector3.one;
                             //Centrage sur la case et position sur Y.
                             thisActor.transform.localPosition = Vector3.up * 300;
-                            Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
                             thisActor.GetComponent<C_Actor>().SetPosition(position.position);
 
                             //New Ui stats
@@ -268,9 +270,6 @@ public class C_Challenge : MonoBehaviour
             }
         }
     }
-
-    
-
     #endregion
 
     #region Tour du joueur
@@ -708,5 +707,7 @@ public class C_Challenge : MonoBehaviour
     }
 
     public List<C_Case> GetListCases() { return listCase; }
+
+    public EventSystem GetEventSystem() { return eventSystem; }
     #endregion
 }

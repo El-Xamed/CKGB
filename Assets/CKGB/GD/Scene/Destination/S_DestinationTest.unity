@@ -178,7 +178,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83058665}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -189,8 +189,8 @@ MonoBehaviour:
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
   m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: 8175986155795505117, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
-  m_SubmitAction: {fileID: -5055369411417120904, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
+  m_MoveAction: {fileID: -8630583137234859908, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
+  m_SubmitAction: {fileID: 6271608067710034227, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}
@@ -826,6 +826,7 @@ GameObject:
   - component: {fileID: 406577453}
   - component: {fileID: 406577452}
   - component: {fileID: 406577451}
+  - component: {fileID: 406577454}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -899,6 +900,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &406577454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406577450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &430303196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506870811245875833, guid: 263ef7cd880996e4888c3b01e55bb972, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 263ef7cd880996e4888c3b01e55bb972, type: 3}
@@ -1291,7 +1325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -707.5, y: 400}
+  m_AnchoredPosition: {x: -707.49994, y: 400}
   m_SizeDelta: {x: -1455.0002, y: -800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503554412
@@ -1621,6 +1655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPhaseDeJeu: 0
+  eventSystem: {fileID: 83058667}
   background: {fileID: 0}
   uiStatsPrefab: {fileID: 3723161877667537748, guid: 08f6793440b983348bc516311958ccad, type: 3}
   uiStats: {fileID: 503554410}
@@ -1634,6 +1669,7 @@ MonoBehaviour:
   myChallenge: {fileID: 11400000, guid: 989607bf5692fcc4f9e0bd4d180bd91a, type: 2}
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
   myInterface: {fileID: 0}
+  currentStep: {fileID: 0}
   currentResolution:
     action: {fileID: 0}
     actor: {fileID: 0}
@@ -1731,6 +1767,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
     m_ActionName: Challenge/ResetChallenge
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b99505ec-be92-4fb8-abf0-6b66ebf09852
+    m_ActionName: Challenge/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8658b0c6-8ba6-4752-98e8-dbe8ce58fdb9
+    m_ActionName: Challenge/Submit[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge
@@ -1847,7 +1891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 373, y: -439.49997}
+  m_AnchoredPosition: {x: 373, y: -439.5}
   m_SizeDelta: {x: -746, y: -879}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &633895206
@@ -4432,7 +4476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -305.49997}
+  m_AnchoredPosition: {x: 0, y: -305.5}
   m_SizeDelta: {x: 0, y: -1020.99994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665274492
@@ -4649,6 +4693,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiTrait: {fileID: 1942095956}
   uiAction: {fileID: 898878780}
+  listButtonActions: []
+  listButtonTraits: []
 --- !u!1 &1908347726
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,6 +87,9 @@ public class SO_ActionClass : ScriptableObject
     public void UseAction(C_Actor thisActor, List<C_Case> listCase)
     {
         Debug.Log("Use this actionClass.");
+
+        //Stocker le perso dans le challenge + la case pour la phase de reso.
+        Debug.Log(thisActor.name);
     }
 
     public void UseAction(C_Actor thisActor, List<C_Case> listCase, List<C_Actor> myTeam)
