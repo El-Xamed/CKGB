@@ -41,6 +41,7 @@ public class C_Actor : MonoBehaviour
         gameObject.name = dataActor.name; 
 
         dataActor = ScriptableObject.Instantiate(dataActor);
+        dataActor.nextTrait = dataActor.listTraits[0];
 
         //Setup le contoure blanc.
         transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
@@ -169,6 +170,12 @@ public class C_Actor : MonoBehaviour
     {
         return dataActor;
     }
+    public void GiveNewTrait()
+    {
+        dataActor.listNewTraits.Add(dataActor.nextTrait);
+        dataActor.idTraitEnCours++;
+        dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
+    }
 
     public void SetDataActor(SO_Character thisSO_Character)
     {
@@ -189,10 +196,26 @@ public class C_Actor : MonoBehaviour
     {
         return currentStress;
     }
+    public void SetCurrentStress()
+    {
+        currentStress++;
+    }
+    public void SetMaxStress()
+    {
+        dataActor.stressMax++;
+    }
 
     public int GetcurrentEnergy()
     {
         return currentEnergy;
+    }
+    public void SetCurrentEnergy()
+    {
+        currentEnergy++;
+    }
+    public void SetMaxEnergy()
+    {
+        dataActor.energyMax++;
     }
     public int GetCurrentPointTrait()
     {

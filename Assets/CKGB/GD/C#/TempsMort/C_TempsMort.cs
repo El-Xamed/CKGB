@@ -292,13 +292,15 @@ public class C_TempsMort : MonoBehaviour
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()==2)
                 {
                     actorActif.GetComponent<C_Actor>().GetCurrentPointTrait().Equals(0);
-                    actorActif.GetComponent<C_Actor>().GetDataActor().listTraits.Add(actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[0]);
+                    actorActif.GetComponent<C_Actor>().GiveNewTrait();
+                    Debug.Log(actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
 
                 }
                 if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
                     characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(0);
-                    characters[i].GetComponent<C_Actor>().GetDataActor().listTraits.Add(actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[0]); 
+                    characters[i].GetComponent<C_Actor>().GiveNewTrait();
+                    Debug.Log(actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
                 
             }

@@ -13,6 +13,8 @@ public class SO_Character : ScriptableObject
     [Header("Traits")]
     public List<SO_ActionClass> listTraits = new List<SO_ActionClass>();
     public List<SO_ActionClass> listNewTraits = new List<SO_ActionClass>();
+    public SO_ActionClass nextTrait;
+    public int idTraitEnCours=0;
 
     [Header("Challenge (Sprite)")]
     public Sprite challengeSprite;
