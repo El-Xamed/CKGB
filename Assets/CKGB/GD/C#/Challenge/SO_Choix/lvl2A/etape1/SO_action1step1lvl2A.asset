@@ -20,27 +20,10 @@ MonoBehaviour:
     pour toi, il semblerait qu\u2019il n\u2019y a aucun arbre mort au bord de la
     rivi\xE8re.  C\u2019\xE9tait un peu technique et tu as \xE9chou\xE9."
   LogsCantMakeAction: Pas possible
-  coutEnergy: 2
-  coutCalm: 0
-  gainCalm: 0
-  gainEnergy: 0
-  coutEnergyOther: 2
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 0
-  moveRightSelf: 1
-  moveLeftSelf: 0
-  caseToGo: -1
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    test: 
+  - whatTarget: 1
+    test: 
+  - whatTarget: 0
+    test: 

@@ -453,23 +453,6 @@ public class C_Challenge : MonoBehaviour
             //Check si il est sur une case "Dangereuse".
             currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
 
-            //Pour switch avec l'acc FONCTION QUE AVEC L'ACC 0 DE LA LISTE.
-            if (currentResolution.action.GetSwitchWithAcc())
-            {
-                //Deplace l'actor
-                currentResolution.actor.transform.parent = listCase[listAcc[0].currentPosition].transform;
-                currentResolution.actor.GetComponent<RectTransform>().localPosition = new Vector3(0, currentResolution.actor.GetComponent<RectTransform>().localPosition.y, 0);
-
-                //Deplace l'acc
-                listAcc[0].transform.parent = listCase[currentResolution.actor.GetPosition()].transform;
-                listAcc[0].GetComponent<RectTransform>().localPosition = new Vector3(0, currentResolution.actor.GetComponent<RectTransform>().localPosition.y, 0);
-
-                //Defini dans le code leut nouvelle position
-                int newPositionAcc = currentResolution.actor.GetPosition();
-                currentResolution.actor.SetPosition(listAcc[0].currentPosition);
-                listAcc[0].currentPosition = newPositionAcc;
-            }
-
             //Ecrit dans les logs le résultat de l'action.
             uiLogs.text = currentResolution.action.GetLogsChallenge();
 
