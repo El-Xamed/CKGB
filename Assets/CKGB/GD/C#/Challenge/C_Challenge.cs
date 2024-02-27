@@ -426,6 +426,8 @@ public class C_Challenge : MonoBehaviour
     
     #endregion
 
+
+
     #region  Phase de résolution
     //Création d'une class pour rassembler l'acteur et l'action.
     [Serializable] public class ActorResolution
@@ -487,6 +489,8 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
 
+
+
     #region Tour de la Cata
     //Pour lancer la cata.
     void CataTrun()
@@ -531,7 +535,7 @@ public class C_Challenge : MonoBehaviour
                 {
                     myActor.TakeDamage(thisCata.reducStress, thisCata.reducEnergie);
 
-
+                    
 
                     myActor.CheckIsOut();
                 }
@@ -562,6 +566,8 @@ public class C_Challenge : MonoBehaviour
             currentActor.IsSelected(true);
         }
     }
+
+
 
     #region GameOver
     //Bool pour check si le vhallenge est fini.
@@ -662,6 +668,8 @@ public class C_Challenge : MonoBehaviour
         CheckGameOver();
     }
     #endregion
+
+
 
     #region Data Interface
     public ActorResolution GetActorResolution()

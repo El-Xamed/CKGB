@@ -97,6 +97,59 @@ public class C_Actor : MonoBehaviour
     {
         transform.parent = newPosition;
     }
+
+    public void CheckIsInDanger(SO_Catastrophy listDangerCases)
+    {
+        foreach (var thisCase in listDangerCases.targetCase)
+        {
+            if (thisCase == position)
+            {
+                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+            }
+            else if (isOut)
+            {
+                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+            }
+        }
+    }
+
+    public void IsSelected(bool isSelected)
+    {
+        if (isSelected)
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    //Check si le joueur est encore jouable.
+    public void CheckIsOut()
+    {
+
+        if (currentStress <= 0)
+        {
+            isOut = true;
+
+            GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
+
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            isOut = false;
+
+            //Check si le sprite est déjà possé.
+            if (GetComponent<Image>().sprite != dataActor.challengeSprite && GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
+            {
+                GetComponent<Image>().sprite = dataActor.challengeSprite;
+            }
+
+            transform.GetChild(1).gameObject.SetActive(false);
+        }
+    }
     #endregion
 
     #region WorldMap
@@ -155,57 +208,5 @@ public class C_Actor : MonoBehaviour
         return isOut;
     }
 
-    //Check si le joueur est encore jouable.
-    public void CheckIsOut()
-    {
-
-        if (currentStress <= 0)
-        {
-            isOut = true;
-
-            GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
-
-            transform.GetChild(1).gameObject.SetActive(true);
-        }
-        else
-        {
-            isOut = false;
-
-            //Check si le sprite est déjà possé.
-            if (GetComponent<Image>().sprite != dataActor.challengeSprite && GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
-            {
-                GetComponent<Image>().sprite = dataActor.challengeSprite;
-            }
-
-            transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
-
-    public void CheckIsInDanger(SO_Catastrophy listDangerCases)
-    {
-        foreach (var thisCase in listDangerCases.targetCase)
-        {
-            if (thisCase == position)
-            {
-                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
-            }
-            else if (isOut)
-            {
-                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
-            }
-        }
-    }
-
-    public void IsSelected(bool isSelected)
-    {
-        if (isSelected)
-        {
-            transform.GetChild(0).gameObject.SetActive(true);
-        }
-        else
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
     #endregion
 }
