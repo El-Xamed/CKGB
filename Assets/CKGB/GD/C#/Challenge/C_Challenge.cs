@@ -163,7 +163,6 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //CHECK SI ÇA RECPUPE BIEN LES INFO DU GAMEMANAGER EST QUE LE LIEN ENTRE SES DEUX LISTE FONCTIONNE.
     //Set la position de tous les acteurs sur les cases.
     void InitialiseAllPosition()
     {
@@ -212,11 +211,16 @@ public class C_Challenge : MonoBehaviour
                         //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
                         if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
                         {
+                            //Ini data actor.
+                            thisActor.GetComponent<C_Actor>().IniChallenge();
+
                             //Placement des perso depuis le GameManager
+                            //Changement de parent
                             thisActor.transform.parent = listCase[position.position].transform;
                             thisActor.transform.localScale = Vector3.one;
-                            thisActor.transform.localPosition = Vector3.zero;
-                            thisActor.GetComponent<C_Actor>().IniChallenge();
+                            //Centrage sur la case et position sur Y.
+                            thisActor.transform.localPosition = Vector3.up * 300;
+                            Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
                             thisActor.GetComponent<C_Actor>().SetPosition(position.position);
 
                             //New Ui stats
@@ -380,6 +384,12 @@ public class C_Challenge : MonoBehaviour
             {
                 listCase[thisAcc.currentPosition].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
             }
+        }
+
+        //Check si les actor sont en danger
+        foreach (var thisActor in myTeam)
+        {
+            thisActor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
         }
     }
 
