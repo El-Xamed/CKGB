@@ -19,6 +19,7 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("List d'action")]
     public List<Interaction> listInteraction;
+    int nbInteraction;
     #endregion
 
     #region Fonctions
@@ -39,6 +40,17 @@ public class SO_ActionClass : ScriptableObject
     {
 
     }
+
+    public void SetNbInteraction(int newInt)
+    {
+        if (newInt == 0)
+        {
+            nbInteraction = 0;
+            return;
+        }
+
+        nbInteraction += newInt;
+    }
     #endregion
 
     public string GetLogsChallenge()
@@ -46,64 +58,68 @@ public class SO_ActionClass : ScriptableObject
         return currentLogs;
     }
 
+    public int GetNbInteraction()
+    {
+        return nbInteraction;
+    }
+
     public List<Interaction> GetInteraction() { return listInteraction; }
+}
 
+[Serializable]
+public class Interaction
+{
+    #region Cible
+    //Cible qu'on souhaite viser.
+    //[Header("Target")]
+    public ETypeTarget whatTarget;
+    public enum ETypeTarget { Self, Other };
+    #endregion
 
+    #region Stats
+    //Pour impacter les stats de la cible.
+    [Header("Stats")]
+    public List<Price> listPrice;
+    public List<Gain> listGain;
+    #endregion
 
+    #region Movement
+    //Pour déplacer la cible.
+    [Header("Movement")]
+    public List<Move> listMove;
+    #endregion
 
+    public int range;
 
     [Serializable]
-    public class Interaction
+    public class Price
     {
-        #region Cible
-        //Cible qu'on souhaite viser.
-        [Header("Target")]
-        public ETypeTarget whatTarget;
-        public enum ETypeTarget { Self, Other };
-        #endregion
+        [SerializeField] ETypePrice whatPrice;
+        [Serializable] enum ETypePrice { None, Energy, Calm };
 
-        #region Stats
-        //Pour impacter les stats de la cible.
-        [Header("Stats")]
-        public List<Price> listPrice;
-        public List<Gain> listGain;
-        #endregion
+        [SerializeField] int price;
+    }
 
-        #region Movement
-        //Pour déplacer la cible.
-        [Header("Movement")]
-        public List<Move> listMove;
-        #endregion
+    [Serializable]
+    public class Gain
+    {
+        [SerializeField] ETypePrice whatGain;
+        [Serializable] enum ETypePrice { None, Energy, Calm };
 
-        public string test;
+        [SerializeField] int gain;
+    }
 
-        public class Price
-        {
-            [SerializeField] ETypePrice whatPrice;
-            [Serializable] enum ETypePrice { None, Energy, Calm };
+    [Serializable]
+    public class Move
+    {
+        public ETypeInteraction whatMove;
+        public enum ETypeInteraction { None, Right, Left, Switch };
 
-            [SerializeField] int price;
-        }
+        public int move;
 
-        public class Gain
-        {
-            [SerializeField] ETypePrice whatGain;
-            [Serializable] enum ETypePrice { None, Energy, Calm };
-
-            [SerializeField] int gain;
-        }
-
-        public class Move
-        {
-            public ETypeInteraction whatMove;
-            public enum ETypeInteraction { None, Right, Left, Switch };
-
-            public int move;
-
-            //Pour echanger de place.
-            C_Actor actor;
-            C_Accessories accessories;
-        }
+        //Pour echanger de place.
+        C_Actor actor;
+        C_Accessories accessories;
     }
 }
 
