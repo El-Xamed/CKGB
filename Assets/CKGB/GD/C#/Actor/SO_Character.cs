@@ -31,14 +31,14 @@ public class SO_Character : ScriptableObject
 
 
     [Header("Tempsmort (Sprite)")]
+    public Sprite ProfilPhoto;
     public Sprite MapTmSprite;
     public Sprite smallResume;
     public Sprite BigResume1;
     public Sprite BigResume2;
 
     //A VOIR AVEC MAX
-    [Header("Tempsmort (Stats)")]
-    public int currentPointTrait;
+    [Header("Tempsmort (Stats)")]   
     [TextAreaAttribute]
     public string Description;
     #endregion
