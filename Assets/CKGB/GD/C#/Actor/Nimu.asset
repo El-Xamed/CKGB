@@ -18,20 +18,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
   - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
   - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
+  listNewTraits: []
+  nextTrait: {fileID: 0}
+  idTraitEnCours: 0
   challengeSprite: {fileID: 21300000, guid: 35c531cdc9dfe1d43b03011b9725a915, type: 3}
   challengeSpritePreviewCata: {fileID: 0}
   challengeSpriteSlected: {fileID: 0}
   challengeSpriteIsOut: {fileID: 0}
   challengeSpriteUi: {fileID: 0}
   challengeSpriteUiGoodAction: {fileID: 0}
-  stressMax: 10
-  energyMax: 5
+  stressMax: 6
+  energyMax: 4
   nbTraits: 2
+  ProfilPhoto: {fileID: 21300000, guid: 506760acc42f62c48a283f0e87d9dfe5, type: 3}
   MapTmSprite: {fileID: 21300000, guid: 35c531cdc9dfe1d43b03011b9725a915, type: 3}
   smallResume: {fileID: 21300000, guid: c9ad24aabb0c0224ca3da0df0b88ea5b, type: 3}
   BigResume1: {fileID: 21300000, guid: c9ad24aabb0c0224ca3da0df0b88ea5b, type: 3}
   BigResume2: {fileID: 21300000, guid: c9ad24aabb0c0224ca3da0df0b88ea5b, type: 3}
-  traitsAdebloquer:
-  - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
-  currentPointTrait: 1
   Description: juste intense

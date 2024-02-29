@@ -53,6 +53,7 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField] GameObject currentButton;
 
     [SerializeField] GameObject actorActif;
+    [SerializeField] GameObject Papoteur;
 
     [SerializeField]
     GameObject aquiletour;
@@ -161,24 +162,33 @@ public class C_TempsMort : MonoBehaviour
     //active les boutons de choix d'actions
     public void ActivateActionsButtons()
     {
-        faitesunchoix.SetActive(true);
-        aquiletour.SetActive(false);
-        isAnActionButton = true;
         for (int i = 0; i < characters.Count; i++)
         {
-            if (currentButton == charactersButton[i])
+            if (currentButton == charactersButton[i]&& characterHasPlayed[i] == false)
             {
                 characterHasPlayed[i] = true;
+                faitesunchoix.SetActive(true);
+                aquiletour.SetActive(false);
+                isAnActionButton = true;
+                for (int y = 0; y < characters.Count; y++)
+                {
+                    if (currentButton == charactersButton[y])
+                    {
+                        characterHasPlayed[y] = true;
+                    }
+
+                }
+                for (int x = 0; x < actions.Length; x++)
+                {
+                    actions[x].SetActive(true);
+                    charactersButton[x].GetComponent<Button>().enabled = false;
+                }
+                Es.SetSelectedGameObject(actions[0]);
+                updateButton();
             }
 
         }
-        for (int i = 0; i < actions.Length; i++)
-        {
-            actions[i].SetActive(true);
-            charactersButton[i].GetComponent<Button>().enabled = false;
-        }
-        Es.SetSelectedGameObject(actions[0]);
-        updateButton();
+        
     }
 
     //active les boutons de choix de persos
@@ -190,11 +200,8 @@ public class C_TempsMort : MonoBehaviour
         for (int i = 0; i < actions.Length; i++)
         {
             actions[i].SetActive(false);
-            if (characterHasPlayed[i] == false)
-            {
-                charactersButton[i].GetComponent<Button>().enabled = true;
-                Es.SetSelectedGameObject(charactersButton[i]);
-            }
+            charactersButton[i].GetComponent<Button>().enabled = true;
+            Es.SetSelectedGameObject(charactersButton[i]);       
             if (characterHasPlayed[0] == true && characterHasPlayed[1] == true && characterHasPlayed[2] == true)
             {
                 ChallengeButton.SetActive(true);
@@ -258,6 +265,24 @@ public class C_TempsMort : MonoBehaviour
         background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
        
     }
+    public void UpdateCharacterStat()
+    {
+        actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
+        actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
+        actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
+        actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
+        actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<TMP_Text>().text = "Points de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+        Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<TMP_Text>().text = "Points de trait : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait();
+
+        for (int y = 0; y < actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits.Count; y++)
+        {
+            actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text + "\n" + actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+        }
+        for (int y = 0; y < Papoteur.GetComponent<C_Actor>().GetDataActor().listNewTraits.Count; y++)
+        {
+            Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text + "\n" + Papoteur.GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+        }
+    }
     public void CharactersDataGet()
     {
         for(int i=0;i<characters.Count;i++)
@@ -267,6 +292,23 @@ public class C_TempsMort : MonoBehaviour
             characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
             characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
             //characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(characters[i].GetComponent<C_Actor>().GetDataActor().currentPointTrait);
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(0).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(0).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(0).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
+            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(4).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().Description;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax;
+            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<TMP_Text>().text = "Points de trait : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait();
+
+            for(int y = 0;y < characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits.Count;y++)
+            {
+                characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text + "\n" + characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+            }
         }
     }
     //chaque deplacement de curseur dans l'ui
@@ -327,20 +369,21 @@ public class C_TempsMort : MonoBehaviour
         {
             if(currentButton==PapotageChoiceButtons[i])
             {
+                Papoteur = characters[i];
                 actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(actorActif.GetComponent<C_Actor>().GetCurrentPointTrait());
                 characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(characters[i].GetComponent<C_Actor>().GetCurrentPointTrait());
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()==2)
                 {
-                    actorActif.GetComponent<C_Actor>().GetCurrentPointTrait().Equals(0);
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().GiveNewTrait();
                     Debug.Log(actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
 
                 }
                 if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(0);
+                    characters[i].GetComponent<C_Actor>().ResetPointTrait();
                     characters[i].GetComponent<C_Actor>().GiveNewTrait();
                     Debug.Log(actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
@@ -352,6 +395,7 @@ public class C_TempsMort : MonoBehaviour
             papot.SetActive(false);
         }
         ActivateCharactersButton();
+        UpdateCharacterStat();
     }
     public void Respirer()
     {
@@ -360,6 +404,7 @@ public class C_TempsMort : MonoBehaviour
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
+        UpdateCharacterStat();
     }
     public void Revasser()
     {
@@ -368,6 +413,7 @@ public class C_TempsMort : MonoBehaviour
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
+        UpdateCharacterStat();
     }
     public void Challenge()
     {

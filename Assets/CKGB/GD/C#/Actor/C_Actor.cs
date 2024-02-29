@@ -233,6 +233,10 @@ public class C_Actor : MonoBehaviour
     {
          currentPointTrait++;
     }
+    public void ResetPointTrait()
+    {
+        currentPointTrait = 0;
+    }
  
     public bool GetIsOut()
     {
