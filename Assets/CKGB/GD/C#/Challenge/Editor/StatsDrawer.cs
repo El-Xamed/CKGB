@@ -23,30 +23,32 @@ public class StatsDrawer : PropertyDrawer
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
-        Rect TargetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        Rect statsRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect rangeRect = new Rect(position.x, position.y + fieldHeight + priceheight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect blaRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+
+        Rect gainRect = new Rect(position.x, position.y + fieldHeight + priceheight, position.width, EditorGUIUtility.singleLineHeight);
 
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
 
         //Dessin
-        EditorGUI.PropertyField(TargetRect, stats, new GUIContent("Stats Target"));
+        EditorGUI.PropertyField(statsRect, stats, new GUIContent("Stats Target"));
 
         ETypeStatsTarget statsTarget = (ETypeStatsTarget)stats.enumValueIndex;
 
         if (statsTarget == ETypeStatsTarget.Price)
         {
-            EditorGUI.PropertyField(rangeRect, price, new GUIContent("Price"));
+            EditorGUI.PropertyField(gainRect, price, new GUIContent("Price"));
         }
         else if (statsTarget == ETypeStatsTarget.Gain)
         {
-            EditorGUI.PropertyField(rangeRect, gain, new GUIContent("Gain"));
+            EditorGUI.PropertyField(gainRect, gain, new GUIContent("Gain"));
         }
         else if (statsTarget == ETypeStatsTarget.Movement)
         {
-            EditorGUI.PropertyField(rangeRect, move, new GUIContent("Movement"));
+            EditorGUI.PropertyField(gainRect, move, new GUIContent("Movement"));
         }
 
         EditorGUI.EndProperty();

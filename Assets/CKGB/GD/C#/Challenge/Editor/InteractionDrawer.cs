@@ -21,7 +21,7 @@ public class InteractionDrawer : PropertyDrawer
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
-        Rect TargetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        Rect targetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
         Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, priceheight);
 
@@ -31,7 +31,7 @@ public class InteractionDrawer : PropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
 
         //Dessin
-        EditorGUI.PropertyField(TargetRect, what, new GUIContent("Target"));
+        EditorGUI.PropertyField(targetRect, what, new GUIContent("Target"));
         EditorGUI.PropertyField(statsRect, stats);
 
         ETypeTarget target = (ETypeTarget)what.enumValueIndex;

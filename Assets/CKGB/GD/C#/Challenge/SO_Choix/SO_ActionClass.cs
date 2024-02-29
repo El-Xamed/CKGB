@@ -89,17 +89,17 @@ public class Stats
     public enum ETypeStatsTarget { Price, Gain, Movement };
     #endregion
 
-    public List<Price> listPrice;
-    public List<Gain> listGain;
-    public List<Move> listMovement;
+    public Price listPrice;
+    public Gain listGain;
+    public Move listMovement;
 
     [Serializable]
     public class Price
     {
-        [SerializeField] ETypePrice whatPrice;
-        [Serializable] enum ETypePrice { None, Energy, Calm };
+        public ETypePrice whatPrice;
+        public enum ETypePrice { None, Energy, Calm };
 
-        [SerializeField] int price;
+        public int price;
     }
 
     [Serializable]
