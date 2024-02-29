@@ -198,6 +198,7 @@ public class C_TempsMort : MonoBehaviour
             if (characterHasPlayed[0] == true && characterHasPlayed[1] == true && characterHasPlayed[2] == true)
             {
                 ChallengeButton.SetActive(true);
+                aquiletour.SetActive(false);
                 Es.SetSelectedGameObject(ChallengeButton);
                 for (int y = 0; y < charactersButton.Length; y++)
                 {
