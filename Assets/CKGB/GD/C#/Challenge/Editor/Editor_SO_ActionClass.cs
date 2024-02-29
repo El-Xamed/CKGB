@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-//[CustomEditor(typeof(SO_ActionClass))]
 public class Editor_SO_ActionClass : Editor
 {
     /*
@@ -31,8 +30,8 @@ public class Editor_SO_ActionClass : Editor
 
     public override void OnInspectorGUI()
     {
-        //Pour afficher la liste.
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("listInteraction"), new GUIContent("Interaction"));
+        //Pour afficher la liste. Utile ?
+        //EditorGUILayout.PropertyField(serializedObject.FindProperty("listInteraction"), new GUIContent("Interaction"));
 
         serializedObject.ApplyModifiedProperties();
     }

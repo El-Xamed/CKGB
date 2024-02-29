@@ -76,20 +76,22 @@ public class Interaction
     public enum ETypeTarget { Self, Other };
     #endregion
 
+    public List<Stats> listStats;
+}
+
+[Serializable]
+public class Stats
+{
     #region Stats
-    //Pour impacter les stats de la cible.
-    [Header("Stats")]
+    //Cible qu'on souhaite viser.
+    //[Header("Target")]
+    public ETypeStatsTarget whatStatsTarget;
+    public enum ETypeStatsTarget { Price, Gain, Movement };
+    #endregion
+
     public List<Price> listPrice;
     public List<Gain> listGain;
-    #endregion
-
-    #region Movement
-    //Pour déplacer la cible.
-    [Header("Movement")]
-    public List<Move> listMove;
-    #endregion
-
-    public int range;
+    public List<Move> listMovement;
 
     [Serializable]
     public class Price
@@ -122,5 +124,3 @@ public class Interaction
         C_Accessories accessories;
     }
 }
-
-
