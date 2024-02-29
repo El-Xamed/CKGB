@@ -33,32 +33,47 @@ public class Editor_SO_ActionClass : Editor
     {
         SO_ActionClass script = (SO_ActionClass)target;
 
-        /*
-        script.type = (MyTestScript.ParametersType)EditorGUILayout.EnumPopup("My type", script.type);
+        serializedObject.Update();
 
-        if (script.type == MyTestScript.ParametersType.WithParameters)
+        //Pour afficher la liste.
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("listInteraction"), new GUIContent("Interaction"));
+
+        //Pour tous les object dans cette liste, vérifier l'enum pour afficher les parametre avec.
+        foreach (SO_ActionClass actionClass in serializedObject.FindProperty("listInteraction"))
         {
-            script.testString = EditorGUILayout.TextField("Test string", script.testString);
-            script.testInt = EditorGUILayout.IntField("Test int", script.testInt);
+
         }
-        */
+
+        //Pour créer un bouton
+        /*if (GUILayout.Button(new GUIContent("+", "duplicate")))
+        {
+            
+        }
+        if (GUILayout.Button(new GUIContent("-", "delete")))
+        {
+            
+        }*/
+
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+
+//[CustomEditor(typeof(SO_ActionClass.Interaction))]
+public class Editor_Interaction : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        //SO_ActionClass.Interaction script = (SO_ActionClass.Interaction)target;
 
         serializedObject.Update();
 
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("listInteraction"));
-
-        /*foreach (var thisInteraction in script.GetInteraction())
+        if (/*script.whatTarget == SO_ActionClass.Interaction.ETypeTarget.Self*/ true)
         {
-            thisInteraction.whatTarget = (Interaction.ETypeTarget)EditorGUILayout.EnumPopup("My type", thisInteraction.whatTarget);
 
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                //script.testString = EditorGUILayout.TextField("Test string", script.testString);
-                //script.testInt = EditorGUILayout.IntField("Test int", script.testInt);
+        }
 
-                EditorGUILayout.TextField("Test string", thisInteraction.test);
-            }
-        }*/
+        //Pour afficher la liste.
+        EditorGUILayout.TextField("Test string");
 
         serializedObject.ApplyModifiedProperties();
     }
