@@ -113,7 +113,7 @@ TextureImporter:
         width: 227
         height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -130,11 +130,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 227
-        y: 291
-        width: 227
-        height: 145
+        y: 350
+        width: 87
+        height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,11 +151,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 454
-        y: 291
-        width: 227
-        height: 145
+        y: 332
+        width: 72
+        height: 104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: Emotions_3
       rect:
         serializedVersion: 2
-        x: 681
-        y: 291
-        width: 227
-        height: 145
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 684
+        y: 408
+        width: 26
+        height: 28
+      alignment: 9
+      pivot: {x: 0.51883405, y: 0.49417004}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: Emotions_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 146
-        width: 227
-        height: 145
+        x: 1
+        y: 224
+        width: 67
+        height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -214,11 +214,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 227
-        y: 146
-        width: 227
-        height: 145
+        y: 205
+        width: 57
+        height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -235,11 +235,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 454
-        y: 146
-        width: 227
-        height: 145
+        y: 222
+        width: 67
+        height: 69
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -256,11 +256,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 227
-        height: 145
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 65
+        width: 61
+        height: 81
+      alignment: 9
+      pivot: {x: 0.4480186, y: 0.9593165}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -277,11 +277,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 227
-        y: 1
-        width: 227
-        height: 145
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 63
+        width: 30
+        height: 83
+      alignment: 9
+      pivot: {x: 0.49999797, y: 0.019264037}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -298,11 +298,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 454
-        y: 1
-        width: 227
-        height: 145
+        y: 69
+        width: 77
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,6 +310,27 @@ TextureImporter:
       bones: []
       spriteID: 6ac8dc5a30ab24f489ebef7bc05ce439
       internalID: -1804470319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Emotions_10
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 185
+        width: 68
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b677c75732545404d8183cce057d9765
+      internalID: -921741491
       vertices: []
       indices: 
       edges: []
@@ -327,6 +348,7 @@ TextureImporter:
     nameFileIdTable:
       Emotions_0: -534994102
       Emotions_1: -899068659
+      Emotions_10: -921741491
       Emotions_2: -403587356
       Emotions_3: 365176587
       Emotions_4: -187942879
