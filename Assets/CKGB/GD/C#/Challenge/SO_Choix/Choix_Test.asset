@@ -17,6 +17,34 @@ MonoBehaviour:
   LogsCantMakeAction: 
   listInteraction:
   - whatTarget: 0
-    listStats: []
-  - whatTarget: 0
-    listStats: []
+    listStats:
+    - whatStatsTarget: 0
+      listPrice:
+      - whatPrice: 1
+        price: 0
+      - whatPrice: 2
+        price: 0
+      listGain: []
+      listMove: []
+    - whatStatsTarget: 1
+      listPrice:
+      - whatPrice: 1
+        price: 0
+      listGain:
+      - whatGain: 1
+        gain: 0
+      - whatGain: 2
+        gain: 0
+      listMove: []
+    - whatStatsTarget: 2
+      listPrice:
+      - whatPrice: 0
+        price: 0
+      listGain:
+      - whatGain: 1
+        gain: 0
+      - whatGain: 2
+        gain: 0
+      listMove:
+      - whatMove: 1
+        range: 0

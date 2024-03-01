@@ -19,7 +19,6 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("List d'action")]
     public List<Interaction> listInteraction;
-    int nbInteraction;
     #endregion
 
     #region Fonctions
@@ -41,26 +40,11 @@ public class SO_ActionClass : ScriptableObject
 
     }
 
-    public void SetNbInteraction(int newInt)
-    {
-        if (newInt == 0)
-        {
-            nbInteraction = 0;
-            return;
-        }
-
-        nbInteraction += newInt;
-    }
     #endregion
 
     public string GetLogsChallenge()
     {
         return currentLogs;
-    }
-
-    public int GetNbInteraction()
-    {
-        return nbInteraction;
     }
 
     public List<Interaction> GetInteraction() { return listInteraction; }
@@ -89,38 +73,38 @@ public class Stats
     public enum ETypeStatsTarget { Price, Gain, Movement };
     #endregion
 
-    public Price listPrice;
-    public Gain listGain;
-    public Move listMovement;
+    public List<Price> listPrice;
+    public List<Gain> listGain;
+    public List<Move> listMove;
+}
 
-    [Serializable]
-    public class Price
-    {
-        public ETypePrice whatPrice;
-        public enum ETypePrice { None, Energy, Calm };
+[Serializable]
+public class Price
+{
+    public ETypePrice whatPrice;
+    public enum ETypePrice { None, Energy, Calm };
 
-        public int price;
-    }
+    public int price;
+}
 
-    [Serializable]
-    public class Gain
-    {
-        [SerializeField] ETypePrice whatGain;
-        [Serializable] enum ETypePrice { None, Energy, Calm };
+[Serializable]
+public class Gain
+{
+    public ETypeGain whatGain;
+    public enum ETypeGain { None, Energy, Calm };
 
-        [SerializeField] int gain;
-    }
+    public int gain;
+}
 
-    [Serializable]
-    public class Move
-    {
-        public ETypeInteraction whatMove;
-        public enum ETypeInteraction { None, Right, Left, Switch };
+[Serializable]
+public class Move
+{
+    public ETypeMove whatMove;
+    public enum ETypeMove { None, Right, Left, SwitchWithActor, SwitchWithAcc };
 
-        public int move;
+    public int nbMove;
 
-        //Pour echanger de place.
-        C_Actor actor;
-        C_Accessories accessories;
-    }
+    //Pour echanger de place.
+    public C_Actor actor;
+    public C_Accessories accessories;
 }

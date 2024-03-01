@@ -14,18 +14,17 @@ public class InteractionDrawer : PropertyDrawer
         SerializedProperty stats = property.FindPropertyRelative("listStats");
         SerializedProperty gain = property.FindPropertyRelative("listGain");
         SerializedProperty move = property.FindPropertyRelative("listMove");
-        SerializedProperty range = property.FindPropertyRelative("range");
 
 
-        float priceheight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect targetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, priceheight);
+        Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
 
-        Rect rangeRect = new Rect(position.x, position.y + fieldHeight + priceheight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect testRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -43,7 +42,6 @@ public class InteractionDrawer : PropertyDrawer
         else if (target == ETypeTarget.Other)
         {
             //EditorGUI.PropertyField(rangeRect, range, new GUIContent("Range"));
-
         }
 
 
