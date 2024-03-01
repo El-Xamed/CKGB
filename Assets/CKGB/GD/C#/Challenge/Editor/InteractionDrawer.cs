@@ -17,7 +17,7 @@ public class InteractionDrawer : PropertyDrawer
         SerializedProperty stats = property.FindPropertyRelative("listStats");
         //List d'information pour "Other"
         SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
-        SerializedProperty rangenOther = property.FindPropertyRelative("range");
+        SerializedProperty rangeOther = property.FindPropertyRelative("range");
         #endregion
 
         #region Rect
@@ -31,10 +31,19 @@ public class InteractionDrawer : PropertyDrawer
         Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
 
         //
-        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
 
+        /*
         Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
         Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2 + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        */
+
+        float targetHeight = EditorGUI.GetPropertyHeight(what, what.isExpanded);
+        float rangeHeight = EditorGUI.GetPropertyHeight(rangeOther);
+
+        Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight, position.width, targetHeight);
+        Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2, position.width, targetHeight);
+
+        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight + targetHeight, position.width, EditorGUIUtility.singleLineHeight);
         #endregion
 
         //Début du dessin.
@@ -53,15 +62,18 @@ public class InteractionDrawer : PropertyDrawer
         }
         else if (target == ETypeTarget.Other)
         {
-            EditorGUI.PropertyField(statsRect, stats);
             EditorGUI.PropertyField(directionTargetRect, directionOther);
 
             ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
 
             if (dirTarget != ETypeDirectionTarget.None)
             {
-                EditorGUI.PropertyField(rangeTargetRect, rangenOther);
+                statsOtherRect = new Rect(position.x, position.y + fieldHeight *2 + targetHeight + rangeHeight, position.width, EditorGUIUtility.singleLineHeight);
+
+                EditorGUI.PropertyField(rangeTargetRect, rangeOther);
             }
+
+            EditorGUI.PropertyField(statsOtherRect, stats);
         }
 
 
@@ -83,7 +95,7 @@ public class InteractionDrawer : PropertyDrawer
 
         if (target == ETypeTarget.Self)
         {
-            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight;
+            return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight;
         }
         else if (target == ETypeTarget.Other)
         {
@@ -91,12 +103,12 @@ public class InteractionDrawer : PropertyDrawer
 
             if (dirTarget != ETypeDirectionTarget.None)
             {
-                return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight + rangeHeight;
+                return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight + rangeHeight;
             }
 
-            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight;
+            return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight;
         }
 
-        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight + rangeHeight;
+        return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + rangeHeight;
     }
 }
