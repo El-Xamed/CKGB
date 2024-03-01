@@ -43,7 +43,7 @@ public class InteractionDrawer : PropertyDrawer
         Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight, position.width, targetHeight);
         Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2, position.width, targetHeight);
 
-        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight + targetHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight + 10 + targetHeight, position.width, EditorGUIUtility.singleLineHeight);
         #endregion
 
         //Début du dessin.
@@ -68,7 +68,7 @@ public class InteractionDrawer : PropertyDrawer
 
             if (dirTarget != ETypeDirectionTarget.None)
             {
-                statsOtherRect = new Rect(position.x, position.y + fieldHeight *2 + targetHeight + rangeHeight, position.width, EditorGUIUtility.singleLineHeight);
+                statsOtherRect = new Rect(position.x, position.y + fieldHeight +10 + targetHeight + rangeHeight, position.width, EditorGUIUtility.singleLineHeight);
 
                 EditorGUI.PropertyField(rangeTargetRect, rangeOther);
             }
