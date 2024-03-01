@@ -170,11 +170,22 @@ public class C_Actor : MonoBehaviour
     {
         return dataActor;
     }
+    public void UpdateNextTrait()
+    {
+        if(dataActor.nextTrait==dataActor.listNewTraits[dataActor.idTraitEnCours])
+        {
+            dataActor.idTraitEnCours++;
+            dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
+        }
+        GiveNewTrait();
+        dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
+        dataActor.idTraitEnCours++;
+        dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
+        
+    }
     public void GiveNewTrait()
     {
         dataActor.listNewTraits.Add(dataActor.nextTrait);
-        dataActor.idTraitEnCours++;
-        dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
     }
 
     public void SetDataActor(SO_Character thisSO_Character)
