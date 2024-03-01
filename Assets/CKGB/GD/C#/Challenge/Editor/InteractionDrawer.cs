@@ -9,39 +9,58 @@ public class InteractionDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        //
+        #region Variables
+        //Var
         SerializedProperty what = property.FindPropertyRelative("whatTarget");
+        //List d'information pour "Self"
         SerializedProperty stats = property.FindPropertyRelative("listStats");
-        SerializedProperty gain = property.FindPropertyRelative("listGain");
-        SerializedProperty move = property.FindPropertyRelative("listMove");
+        //List d'information pour "Other"
+        SerializedProperty statsOther = property.FindPropertyRelative("listStatsOther");
+        SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
+        SerializedProperty rangenOther = property.FindPropertyRelative("range");
+        #endregion
 
-
+        #region Rect
+        //Rect
         float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        float statsOtherHeight = EditorGUI.GetPropertyHeight(statsOther, statsOther.isExpanded);
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect targetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
         Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
+        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight, position.width, statsOtherHeight);
 
-        Rect testRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight + statsOtherHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight *2 + statsOtherHeight, position.width, EditorGUIUtility.singleLineHeight);
+        #endregion
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
 
         //Dessin
+        //Pour placer l'enum "Target".
         EditorGUI.PropertyField(targetRect, what, new GUIContent("Target"));
-        EditorGUI.PropertyField(statsRect, stats);
+        
 
         ETypeTarget target = (ETypeTarget)what.enumValueIndex;
 
         if (target == ETypeTarget.Self)
         {
-
+            EditorGUI.PropertyField(statsRect, stats);
         }
         else if (target == ETypeTarget.Other)
         {
-            //EditorGUI.PropertyField(rangeRect, range, new GUIContent("Range"));
+            EditorGUI.PropertyField(statsOtherRect, statsOther);
+            EditorGUI.PropertyField(directionTargetRect, directionOther);
+
+            ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
+
+            if (dirTarget != ETypeDirectionTarget.None)
+            {
+                EditorGUI.PropertyField(rangeTargetRect, rangenOther);
+            }
         }
 
 
@@ -53,9 +72,11 @@ public class InteractionDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         SerializedProperty stats = property.FindPropertyRelative("listStats");
+        SerializedProperty statsOther = property.FindPropertyRelative("listStatsOther");
 
-        float priceheight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        float statsOtherHeight = EditorGUI.GetPropertyHeight(statsOther, statsOther.isExpanded);
 
-        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + priceheight;
+        return statsHeight + statsOtherHeight;
     }
 }

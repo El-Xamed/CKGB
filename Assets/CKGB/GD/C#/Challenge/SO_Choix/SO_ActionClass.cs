@@ -55,12 +55,16 @@ public class Interaction
 {
     #region Cible
     //Cible qu'on souhaite viser.
-    //[Header("Target")]
     public ETypeTarget whatTarget;
     public enum ETypeTarget { Self, Other };
     #endregion
 
+    public ETypeDirectionTarget whatDirectionTarget;
+    public enum ETypeDirectionTarget {None, Right, Left, RightAndLeft };
+    public int range;
+
     public List<Stats> listStats;
+    public List<StatsOther> listStatsOther;
 }
 
 [Serializable]
@@ -69,6 +73,20 @@ public class Stats
     #region Stats
     //Cible qu'on souhaite viser.
     //[Header("Target")]
+    public ETypeStatsTarget whatStatsTarget;
+    public enum ETypeStatsTarget { Price, Gain, Movement };
+    #endregion
+
+    public List<Price> listPrice;
+    public List<Gain> listGain;
+    public Move listMove;
+}
+
+[Serializable]
+public class StatsOther
+{
+    #region Stats
+    //Cible qu'on souhaite viser.
     public ETypeStatsTarget whatStatsTarget;
     public enum ETypeStatsTarget { Price, Gain, Movement };
     #endregion
