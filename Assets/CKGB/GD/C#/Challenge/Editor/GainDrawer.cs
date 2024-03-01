@@ -15,13 +15,11 @@ public class GainDrawer : PropertyDrawer
         SerializedProperty gain = property.FindPropertyRelative("gain");
 
         //Rect
-        float statsHeight = EditorGUI.GetPropertyHeight(whatGain, whatGain.isExpanded);
-
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect whatGainRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect gainRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect gainRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -45,10 +43,17 @@ public class GainDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        SerializedProperty gain = property.FindPropertyRelative("gain");
+        SerializedProperty whatGain = property.FindPropertyRelative("whatGain");
 
-        float priceheight = EditorGUI.GetPropertyHeight(gain, gain.isExpanded);
+        float gainHeight = EditorGUI.GetPropertyHeight(whatGain);
 
-        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + priceheight;
+        ETypeGain gainTarget = (ETypeGain)whatGain.enumValueIndex;
+
+        if (gainTarget == ETypeGain.Calm || gainTarget == ETypeGain.Energy)
+        {
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + gainHeight;
+        }
+
+        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
     }
 }

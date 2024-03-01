@@ -64,7 +64,6 @@ public class Interaction
     public int range;
 
     public List<Stats> listStats;
-    public List<StatsOther> listStatsOther;
 }
 
 [Serializable]
@@ -79,21 +78,7 @@ public class Stats
 
     public List<Price> listPrice;
     public List<Gain> listGain;
-    public Move listMove;
-}
-
-[Serializable]
-public class StatsOther
-{
-    #region Stats
-    //Cible qu'on souhaite viser.
-    public ETypeStatsTarget whatStatsTarget;
-    public enum ETypeStatsTarget { Price, Gain, Movement };
-    #endregion
-
-    public List<Price> listPrice;
-    public List<Gain> listGain;
-    public List<Move> listMove;
+    public Move move;
 }
 
 [Serializable]

@@ -12,10 +12,10 @@ public class InteractionDrawer : PropertyDrawer
         #region Variables
         //Var
         SerializedProperty what = property.FindPropertyRelative("whatTarget");
+
         //List d'information pour "Self"
         SerializedProperty stats = property.FindPropertyRelative("listStats");
         //List d'information pour "Other"
-        SerializedProperty statsOther = property.FindPropertyRelative("listStatsOther");
         SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
         SerializedProperty rangenOther = property.FindPropertyRelative("range");
         #endregion
@@ -23,17 +23,18 @@ public class InteractionDrawer : PropertyDrawer
         #region Rect
         //Rect
         float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
-        float statsOtherHeight = EditorGUI.GetPropertyHeight(statsOther, statsOther.isExpanded);
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect targetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
         Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
-        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight, position.width, statsOtherHeight);
 
-        Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight + statsOtherHeight, position.width, EditorGUIUtility.singleLineHeight);
-        Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight *2 + statsOtherHeight, position.width, EditorGUIUtility.singleLineHeight);
+        //
+        Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
+
+        Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2 + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
         #endregion
 
         //Début du dessin.
@@ -52,7 +53,7 @@ public class InteractionDrawer : PropertyDrawer
         }
         else if (target == ETypeTarget.Other)
         {
-            EditorGUI.PropertyField(statsOtherRect, statsOther);
+            EditorGUI.PropertyField(statsRect, stats);
             EditorGUI.PropertyField(directionTargetRect, directionOther);
 
             ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
@@ -67,16 +68,35 @@ public class InteractionDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 
-
-
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        SerializedProperty what = property.FindPropertyRelative("whatTarget");
+        SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
         SerializedProperty stats = property.FindPropertyRelative("listStats");
-        SerializedProperty statsOther = property.FindPropertyRelative("listStatsOther");
+        SerializedProperty range = property.FindPropertyRelative("range");
 
         float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
-        float statsOtherHeight = EditorGUI.GetPropertyHeight(statsOther, statsOther.isExpanded);
+        float dirHeight = EditorGUI.GetPropertyHeight(directionOther);
+        float rangeHeight = EditorGUI.GetPropertyHeight(range);
 
-        return statsHeight + statsOtherHeight;
+        ETypeTarget target = (ETypeTarget)what.enumValueIndex;
+
+        if (target == ETypeTarget.Self)
+        {
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight;
+        }
+        else if (target == ETypeTarget.Other)
+        {
+            ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
+
+            if (dirTarget != ETypeDirectionTarget.None)
+            {
+                return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight + rangeHeight;
+            }
+
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight;
+        }
+
+        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsHeight + rangeHeight;
     }
 }

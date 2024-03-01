@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 using static Price;
@@ -15,13 +16,11 @@ public class PriceDrawer : PropertyDrawer
         SerializedProperty price = property.FindPropertyRelative("price");
 
         //Rect
-        float statsHeight = EditorGUI.GetPropertyHeight(whatPrice, whatPrice.isExpanded);
-
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect whatPriceRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect priceRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect priceRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -31,11 +30,7 @@ public class PriceDrawer : PropertyDrawer
 
         ETypePrice priceTarget = (ETypePrice)whatPrice.enumValueIndex;
 
-        if (priceTarget == ETypePrice.Calm)
-        {
-            EditorGUI.PropertyField(priceRect, price, new GUIContent("Price"));
-        }
-        else if (priceTarget == ETypePrice.Energy)
+        if (priceTarget == ETypePrice.Calm || priceTarget == ETypePrice.Energy)
         {
             EditorGUI.PropertyField(priceRect, price, new GUIContent("Price"));
         }
@@ -45,10 +40,17 @@ public class PriceDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        SerializedProperty price = property.FindPropertyRelative("price");
+        SerializedProperty whatPrice = property.FindPropertyRelative("whatPrice");
 
-        float priceheight = EditorGUI.GetPropertyHeight(price, price.isExpanded);
+        float priceHeight = EditorGUI.GetPropertyHeight(whatPrice);
 
-        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + priceheight;
+        ETypePrice priceTarget = (ETypePrice)whatPrice.enumValueIndex;
+
+        if (priceTarget == ETypePrice.Calm || priceTarget == ETypePrice.Energy)
+        {
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + priceHeight;
+        }
+
+        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
     }
 }

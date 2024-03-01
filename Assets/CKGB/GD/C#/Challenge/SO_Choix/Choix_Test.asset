@@ -17,6 +17,8 @@ MonoBehaviour:
   LogsCantMakeAction: 
   listInteraction:
   - whatTarget: 0
+    whatDirectionTarget: 0
+    range: 0
     listStats:
     - whatStatsTarget: 0
       listPrice:
@@ -25,84 +27,8 @@ MonoBehaviour:
       - whatPrice: 2
         price: 0
       listGain: []
-      listMove:
+      Move:
         whatMove: 0
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
-    - whatStatsTarget: 1
-      listPrice:
-      - whatPrice: 1
-        price: 0
-      listGain:
-      - whatGain: 1
-        gain: 0
-      - whatGain: 2
-        gain: 0
-      listMove:
-        whatMove: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    - whatStatsTarget: 2
-      listPrice:
-      - whatPrice: 0
-        price: 0
-      listGain:
-      - whatGain: 1
-        gain: 0
-      - whatGain: 2
-        gain: 0
-      listMove:
-        whatMove: 1
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    listStatsOther: []
-  - whatTarget: 1
-    listStats:
-    - whatStatsTarget: 0
-      listPrice:
-      - whatPrice: 0
-        price: 0
-      - whatPrice: 2
-        price: 0
-      listGain: []
-      listMove:
-        whatMove: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    - whatStatsTarget: 1
-      listPrice:
-      - whatPrice: 1
-        price: 0
-      listGain:
-      - whatGain: 1
-        gain: 0
-      - whatGain: 2
-        gain: 0
-      listMove:
-        whatMove: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    - whatStatsTarget: 2
-      listPrice:
-      - whatPrice: 0
-        price: 0
-      listGain:
-      - whatGain: 1
-        gain: 0
-      - whatGain: 2
-        gain: 0
-      listMove:
-        whatMove: 1
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    listStatsOther:
-    - whatStatsTarget: 0
-      listPrice: []
-      listGain: []
-      listMove: []

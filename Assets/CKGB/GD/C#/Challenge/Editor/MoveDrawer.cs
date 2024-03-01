@@ -16,13 +16,11 @@ public class MoveDrawer : PropertyDrawer
         SerializedProperty acc = property.FindPropertyRelative("accessories");
 
         //Rect
-        float statsHeight = EditorGUI.GetPropertyHeight(move, move.isExpanded);
-
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect statsRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect targetRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect targetRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -50,10 +48,17 @@ public class MoveDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        SerializedProperty move = property.FindPropertyRelative("whatMove");
+        SerializedProperty whatMove = property.FindPropertyRelative("whatMove");
 
-        float moveHeight = EditorGUI.GetPropertyHeight(move, move.isExpanded);
+        float moveHeight = EditorGUI.GetPropertyHeight(whatMove);
 
-        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + moveHeight;
+        ETypeMove moveTarget = (ETypeMove)whatMove.enumValueIndex;
+
+        if (moveTarget != ETypeMove.None)
+        {
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight;
+        }
+
+        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
     }
 }

@@ -1,3 +1,4 @@
+using Ink;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,16 +14,17 @@ public class StatsDrawer : PropertyDrawer
         SerializedProperty stats = property.FindPropertyRelative("whatStatsTarget");
         SerializedProperty price = property.FindPropertyRelative("listPrice");
         SerializedProperty gain = property.FindPropertyRelative("listGain");
-        SerializedProperty move = property.FindPropertyRelative("listMove");
+        SerializedProperty move = property.FindPropertyRelative("move");
 
         //Rect
-        float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        float listPriceHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        float listGainHeight = EditorGUI.GetPropertyHeight(price, price.isExpanded);
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect statsRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect targetRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect targetRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -50,14 +52,30 @@ public class StatsDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        SerializedProperty statsTarget = property.FindPropertyRelative("whatStatsTarget");
         SerializedProperty price = property.FindPropertyRelative("listPrice");
         SerializedProperty gain = property.FindPropertyRelative("listGain");
-        SerializedProperty move = property.FindPropertyRelative("listMove");
+        SerializedProperty move = property.FindPropertyRelative("move");
 
         float priceHeight = EditorGUI.GetPropertyHeight(price, price.isExpanded);
         float gainHeight = EditorGUI.GetPropertyHeight(gain, gain.isExpanded);
-        float moveHeight = EditorGUI.GetPropertyHeight(move, move.isExpanded);
+        float moveHeight = EditorGUI.GetPropertyHeight(move);
 
-        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + priceHeight + gainHeight + moveHeight;
+        ETypeStatsTarget stats = (ETypeStatsTarget)statsTarget.enumValueIndex;
+
+        if (stats == ETypeStatsTarget.Price)
+        {
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + priceHeight;
+        }
+        else if (stats == ETypeStatsTarget.Gain)
+        {
+            return EditorGUIUtility.singleLineHeight  + EditorGUIUtility.standardVerticalSpacing + gainHeight;
+        }
+        else if (stats == ETypeStatsTarget.Movement)
+        {
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight;
+        }
+
+        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
     }
 }
