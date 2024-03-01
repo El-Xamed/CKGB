@@ -298,10 +298,10 @@ public class C_TempsMort : MonoBehaviour
     {
         if(actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text!=null)
         {
-            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().traitToWrite.buttonText;
+            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
         }
         else
-            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text +=  actor.GetComponent<C_Actor>().GetDataActor().traitToWrite.buttonText;
+            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
 
     }
     public void CharactersDataGet()
@@ -401,18 +401,18 @@ public class C_TempsMort : MonoBehaviour
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()==2)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                    //actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    //AddNewTraitToFiche(actorActif);
+                    AddNewTraitToFiche(actorActif);
                     Debug.Log("Trait de "+ actorActif.name +" numéro "+actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
 
                 }
                 if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
                     characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                    //characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                    characters[i].GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    //AddNewTraitToFiche(characters[i]);
+                    AddNewTraitToFiche(characters[i]);
                     Debug.Log("Trait de "+ characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
                 

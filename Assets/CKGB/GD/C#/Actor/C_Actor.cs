@@ -38,7 +38,17 @@ public class C_Actor : MonoBehaviour
         gameObject.name = dataActor.name; 
 
         dataActor = ScriptableObject.Instantiate(dataActor);
-        dataActor.nextTrait = dataActor.listTraits[0];
+        if(dataActor.listNewTraits==null)
+        {
+            dataActor.nextTrait = dataActor.listTraits[0];
+        }
+        else
+        {
+            dataActor.idTraitEnCours = dataActor.listNewTraits.Count - 1;
+            dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours + 1];
+            dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
+        }
+        
 
         //Setup le contoure blanc.
         transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
@@ -172,22 +182,10 @@ public class C_Actor : MonoBehaviour
     }
     public void UpdateNextTrait()
     {
-        if(dataActor.nextTrait==dataActor.listNewTraits[dataActor.idTraitEnCours])
-        {
-            dataActor.idTraitEnCours++;
-            dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
-        }
-        GiveNewTrait();
-        dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
-        dataActor.idTraitEnCours++;
-        dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
-        
-    }
-    public void GiveNewTrait()
-    {
         dataActor.listNewTraits.Add(dataActor.nextTrait);
+        dataActor.idTraitEnCours++;
+        dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];       
     }
-
     public void SetDataActor(SO_Character thisSO_Character)
     {
         dataActor = thisSO_Character;
