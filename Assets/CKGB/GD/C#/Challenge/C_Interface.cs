@@ -366,7 +366,7 @@ public class C_Interface : MonoBehaviour
                 listButtons.Add(myButton);
             }
 
-            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonActions[0].myButton);
+            myChallenge.GetEventSystem().SetSelectedGameObject(listButtons[0]);
         }
         else
         {

@@ -80,6 +80,111 @@ public class SO_ActionClass : ScriptableObject
         return 0;
     }
 
+    //Fonction qui renvoie la valeur de calm.
+    public int GetCalm()
+    {
+        //Pour toutes les liste d'action.
+        foreach (var thisInteraction in listInteraction)
+        {
+            //Check si sont enum est égale à "Self".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                //Pour toutes les list de stats.
+                foreach (var thisStats in thisInteraction.listStats)
+                {
+                    //Check si sont enum est égale à "Price".
+                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
+                    {
+                        //Pour toutes les list de prix.
+                        foreach (var thisPrice in thisStats.listPrice)
+                        {
+                            //Check si sont enum est égale à "Energy".
+                            if (thisPrice.whatPrice == Price.ETypePrice.Calm)
+                            {
+                                //Renvoie le prix de cette energy.
+                                return thisPrice.price;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+
+        return 0;
+    }
+
+    //Fonction qui renvoie la valeur d'energy.
+    public int GetGainEnergy()
+    {
+        //Pour toutes les liste d'action.
+        foreach (var thisInteraction in listInteraction)
+        {
+            //Check si sont enum est égale à "Self".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                //Pour toutes les list de stats.
+                foreach (var thisStats in thisInteraction.listStats)
+                {
+                    //Check si sont enum est égale à "Gain".
+                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
+                    {
+                        //Pour toutes les list de gain.
+                        foreach (var thisGain in thisStats.listGain)
+                        {
+                            //Check si sont enum est égale à "Energy".
+                            if (thisGain.whatGain == Gain.ETypeGain.Energy)
+                            {
+                                //Renvoie le prix de cette energy.
+                                return thisGain.gain;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+
+        return 0;
+    }
+
+    //Fonction qui renvoie la valeur de calm.
+    public int GetGainCalm()
+    {
+        //Pour toutes les liste d'action.
+        foreach (var thisInteraction in listInteraction)
+        {
+            //Check si sont enum est égale à "Self".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                //Pour toutes les list de stats.
+                foreach (var thisStats in thisInteraction.listStats)
+                {
+                    //Check si sont enum est égale à "Price".
+                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
+                    {
+                        //Pour toutes les list de prix.
+                        foreach (var thisGain in thisStats.listGain)
+                        {
+                            //Check si sont enum est égale à "Energy".
+                            if (thisGain.whatGain == Gain.ETypeGain.Calm)
+                            {
+                                //Renvoie le prix de cette energy.
+                                return thisGain.gain;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+
+        return 0;
+    }
+
     public string GetLogsChallenge()
     {
         return currentLogs;
