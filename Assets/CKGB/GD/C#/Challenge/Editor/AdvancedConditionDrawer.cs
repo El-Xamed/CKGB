@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [CustomPropertyDrawer(typeof(AdvancedCondition))]
 public class AdvancedDrawer : PropertyDrawer
@@ -61,9 +62,9 @@ public class AdvancedDrawer : PropertyDrawer
             if (boolneedAcc)
             {
                 //Rect pour placer "whatAcc".
-                Rect whatAccRect = new Rect(position.x + 100, position.y + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+                Rect whatAccRect = new Rect(position.x + 75, position.y + needAccHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
                 EditorGUI.PropertyField(whatAccRect, whatAcc);
-                needActorRect = new Rect(position.x + 50, position.y + whatAccHeight + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+                needActorRect = new Rect(position.x +50, position.y + whatAccHeight + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
             }
             if (boolneedActor)
             {
@@ -71,12 +72,12 @@ public class AdvancedDrawer : PropertyDrawer
                 if (boolneedAcc)
                 {
                     //Rect pour placer "whatActor".
-                    whatActorRect = new Rect(position.x + 100, position.y + needAccHeight + whatAccHeight + needActorHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+                    whatActorRect = new Rect(position.x + 75, position.y + needAccHeight + whatAccHeight + needActorHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
                 }
                 else
                 {
                     //Rect pour placer "whatActor".
-                    whatActorRect = new Rect(position.x + 100, position.y + needAccHeight + needActorHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+                    whatActorRect = new Rect(position.x + 75, position.y + needAccHeight + needActorHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
                 }
 
                 EditorGUI.PropertyField(whatActorRect, whatActor);
@@ -98,18 +99,43 @@ public class AdvancedDrawer : PropertyDrawer
         SerializedProperty advancedCondition = property.FindPropertyRelative("advancedCondition");
         SerializedProperty needAcc = property.FindPropertyRelative("needAcc");
         SerializedProperty needActor = property.FindPropertyRelative("canMakeByOneActor");
+        SerializedProperty whatAcc = property.FindPropertyRelative("whatAcc");
+        SerializedProperty whatActor = property.FindPropertyRelative("whatActor");
 
+        //Calcul de la hauteur de "advancedCondition".
+        float advancedConditionHeight = EditorGUI.GetPropertyHeight(advancedCondition);
         //Calcul de la hauteur de "needAcc".
         float needAccHeight = EditorGUI.GetPropertyHeight(needAcc);
         //Calcul de la hauteur de "needActor".
         float needActorHeight = EditorGUI.GetPropertyHeight(needActor);
+        //Calcul de la hauteur de "whatAcc".
+        float whatAccHeight = EditorGUI.GetPropertyHeight(whatAcc);
+        //Calcul de la hauteur de "whatActor".
+        float whatActorHeight = EditorGUI.GetPropertyHeight(whatActor);
 
         bool boolAdvancedCondition = advancedCondition.boolValue;
 
-        if (boolAdvancedCondition == true)
+        if (boolAdvancedCondition)
         {
-            return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needAccHeight + needActorHeight;
+            bool boolneedAcc = needAcc.boolValue;
+            bool boolneedActor = needActor.boolValue;
+
+            //Check si on souhaite utiliser needAcc ou needActor.
+            if (boolneedAcc || boolneedActor)
+            {
+                if (boolneedActor && boolneedAcc)
+                {
+                    return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needAccHeight + needActorHeight + whatAccHeight + whatActorHeight;
+                }
+
+                return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needAccHeight + needActorHeight;
+            }
+            else
+            {
+                return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + advancedConditionHeight;
+            }
         }
+
         return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing;
     }
 }
