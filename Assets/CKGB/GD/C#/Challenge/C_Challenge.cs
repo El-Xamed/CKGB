@@ -302,6 +302,15 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    public void CantUseAction()
+    {
+        //Joue un SFX
+
+        //Joue une animation.
+
+        Debug.Log("Impossible d'utiliser cette action.");
+    }
+
     void PlayerTrun()
     {
         //Défini la phase de jeu.

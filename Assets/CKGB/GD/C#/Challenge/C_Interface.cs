@@ -275,11 +275,25 @@ public class C_Interface : MonoBehaviour
                 //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
                 newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
 
-                //Reférence Action.
-                newActionButton.myActionClass = GetListAction()[i];
+                //Check si "currentActor" possède l'energie pour utiliser cette action.
+                if (GetCurrentActor().GetcurrentEnergy() >= newActionButton.myActionClass.GetEnergy())
+                {
+                    //Reférence Action.
+                    newActionButton.myActionClass = GetListAction()[i];
 
-                //Renseigne le "onClick" du nouveau buton.
-                newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newActionButton.myActionClass));
+                    //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
+                    newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newActionButton.myActionClass));
+                }
+                else //Sinon setup une fonction qui lui quand le joueur va appuier dessus va recevoir en retour des VFX + SFX qui montre bien au joueur qu'il ne peut pas utiliser cette action.
+                {
+                    //Modifie le visu du bouton.
+                    newActionButton.myButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("ActionButton_NotEnergy");
+
+                    //Renseigne le "onClick" du nouveau buton pour afficher les Feedback qui montre que le joueur ne peut pas sélectionner cette action.
+                    newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.CantUseAction());
+
+                    Debug.Log(newActionButton.myActionClass.buttonText + " sera impossible d'utilisation pour cette acteur.");
+                }
 
                 listButtonActions.Add(newActionButton);
             }

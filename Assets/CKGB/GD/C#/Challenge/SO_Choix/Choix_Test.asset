@@ -15,8 +15,24 @@ MonoBehaviour:
   buttonText: 
   LogsCanMakeAction: 
   LogsCantMakeAction: 
+  advancedCondition:
+    advancedCondition: 1
+    needAcc: 1
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 1
+    whatActor: {fileID: 0}
   listInteraction:
   - whatTarget: 1
     whatDirectionTarget: 1
     range: 0
-    listStats: []
+    listStats:
+    - whatStatsTarget: 0
+      listPrice:
+      - whatPrice: 1
+        price: 0
+      listGain: []
+      move:
+        whatMove: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

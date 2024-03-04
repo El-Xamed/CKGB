@@ -10,6 +10,8 @@ public class InteractionDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         #region Variables
+
+        #region Action
         //Var
         SerializedProperty what = property.FindPropertyRelative("whatTarget");
 
@@ -20,32 +22,35 @@ public class InteractionDrawer : PropertyDrawer
         SerializedProperty rangeOther = property.FindPropertyRelative("range");
         #endregion
 
-        #region Rect
-        //Rect
-        float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        #endregion
 
+        #region Rect
+        #region Liste d'interaction
+        //Calcul de la hauteur de la liste "stats" + si elle est déplié ou non.
+        float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+        //Calcul de la hauteur pour bien séparer les variables dans l'inspector.
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
+        //Rect pour placer "Target".
         Rect targetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-
+        //Rect pour placer la liste des "stats".
         Rect statsRect = new Rect(position.x, position.y + fieldHeight, position.width, statsHeight);
 
-        //
-
-        /*
-        Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
-        Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2 + statsHeight, position.width, EditorGUIUtility.singleLineHeight);
-        */
-
+        //Calcul de la hauteur de l'enum "what" + si elle est déplié ou non (pas utile de connaitre si elle est déplié ou non car c'est pas une liste A TESTER POUR CONFIRMER).
         float targetHeight = EditorGUI.GetPropertyHeight(what, what.isExpanded);
+        //Calcul de la hauteur de "range" pour bien séparer les variables dans l'inspector.
         float rangeHeight = EditorGUI.GetPropertyHeight(rangeOther);
+
+        //Pour la partie Other.
 
         Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight, position.width, targetHeight);
         Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2, position.width, targetHeight);
-
+        //Meme Rect que "statsRect" sauf qu'il est placé plus bas pour laisser apparaitre les var pour setup la partie "other".
         Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight + 10 + targetHeight, position.width, EditorGUIUtility.singleLineHeight);
         #endregion
+        #endregion
 
+        #region Dessin
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
 
@@ -78,8 +83,10 @@ public class InteractionDrawer : PropertyDrawer
 
 
         EditorGUI.EndProperty();
+        #endregion
     }
 
+    //Pour définir la taille de ma list d'interaction
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         SerializedProperty what = property.FindPropertyRelative("whatTarget");

@@ -17,6 +17,9 @@ public class SO_ActionClass : ScriptableObject
     string currentLogs;
     #endregion
 
+    [Header("Conditions")]
+    public AdvancedCondition advancedCondition;
+
     [Header("List d'action")]
     public List<Interaction> listInteraction;
     #endregion
@@ -42,14 +45,60 @@ public class SO_ActionClass : ScriptableObject
 
     #endregion
 
+    //Fonction qui renvoie la valeur d'energy.
+    public int GetEnergy()
+    {
+        //Pour toutes les liste d'action.
+        foreach (var thisInteraction in listInteraction)
+        {
+            //Check si sont enum est égale à "Self".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                //Pour toutes les list de stats.
+                foreach (var thisStats in thisInteraction.listStats)
+                {
+                    //Check si sont enum est égale à "Price".
+                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
+                    {
+                        //Pour toutes les list de prix.
+                        foreach (var thisPrice in thisStats.listPrice)
+                        {
+                            //Check si sont enum est égale à "Energy".
+                            if (thisPrice.whatPrice == Price.ETypePrice.Energy)
+                            {
+                                //Renvoie le prix de cette energy.
+                                return thisPrice.price;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Debug.LogWarning("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+
+        return 0;
+    }
+
     public string GetLogsChallenge()
     {
         return currentLogs;
     }
-
-    public List<Interaction> GetInteraction() { return listInteraction; }
 }
 
+[Serializable]
+public class AdvancedCondition
+{
+    public bool advancedCondition = false;
+
+    public bool needAcc = false; 
+    public C_Accessories whatAcc;
+
+    public bool canMakeByOneActor = false;
+    public C_Actor whatActor;
+}
+
+#region Interaction
 [Serializable]
 public class Interaction
 {
@@ -111,3 +160,4 @@ public class Move
     public C_Actor actor;
     public C_Accessories accessories;
 }
+#endregion
