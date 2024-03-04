@@ -88,6 +88,17 @@ public class C_Challenge : MonoBehaviour
             SceneManager.LoadScene("Destination_Test");
         }
     }
+
+    public void Naviguate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+            //Affiche les information de ce bouton dans la preview.
+            //Debug.Log(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().LogsCanMakeAction);
+        }
+    }
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -273,8 +284,7 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Tour du joueur
-    //A SUPP ?
-    //Fonction qui est stocké dans les button action donné par l'interface.
+    //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
     public void UseAction(SO_ActionClass thisAction)
     {
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.

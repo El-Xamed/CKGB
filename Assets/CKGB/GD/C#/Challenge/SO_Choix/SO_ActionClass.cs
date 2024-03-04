@@ -75,7 +75,7 @@ public class SO_ActionClass : ScriptableObject
             }
         }
 
-        Debug.LogWarning("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
 
         return 0;
     }
@@ -86,6 +86,7 @@ public class SO_ActionClass : ScriptableObject
     }
 }
 
+#region Conditions avancé
 [Serializable]
 public class AdvancedCondition
 {
@@ -97,6 +98,7 @@ public class AdvancedCondition
     public bool canMakeByOneActor = false;
     public C_Actor whatActor;
 }
+#endregion
 
 #region Interaction
 [Serializable]

@@ -21,6 +21,8 @@ public class C_Interface : MonoBehaviour
 
     //Mes listes d'actions / traits
     [SerializeField] List<ActionButton> listButtonActions = new List<ActionButton>();
+    // EN TEST ! AVOIR POUR SUPP LE SCRIPT AU DESSUS.
+    [SerializeField] List<GameObject> listButtons = new List<GameObject>();
 
     [SerializeField] List<ActionButton> listButtonTraits = new List<ActionButton>();
 
@@ -237,6 +239,7 @@ public class C_Interface : MonoBehaviour
     }
 
     //Fait spawn les bouton d'actions
+    /*
     void SpawnActions()
     {
         //Créer une liste qui rassemble toutes les actions de l'actor qui joue.
@@ -263,7 +266,7 @@ public class C_Interface : MonoBehaviour
             //Créer une nouvelle liste.
             listButtonActions = new List<ActionButton>();
 
-            //Créer de nouveau boutons
+            //Créer de nouveau boutons A SUPP ?
             for (int i = 0; i < GetListAction().Length; i++)
             {
                 //Nouvelle class.
@@ -275,12 +278,12 @@ public class C_Interface : MonoBehaviour
                 //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
                 newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
 
+                //Reférence Action.
+                newActionButton.myActionClass = GetListAction()[i];
+
                 //Check si "currentActor" possède l'energie pour utiliser cette action.
                 if (GetCurrentActor().GetcurrentEnergy() >= newActionButton.myActionClass.GetEnergy())
                 {
-                    //Reférence Action.
-                    newActionButton.myActionClass = GetListAction()[i];
-
                     //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
                     newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newActionButton.myActionClass));
                 }
@@ -296,6 +299,71 @@ public class C_Interface : MonoBehaviour
                 }
 
                 listButtonActions.Add(newActionButton);
+            }
+
+            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonActions[0].myButton);
+        }
+        else
+        {
+            Debug.LogError("Erreur spawn actions");
+        }
+    }*/
+    void SpawnActions()
+    {
+        //Créer une liste qui rassemble toutes les actions de l'actor qui joue.
+        List<SO_ActionClass> currentAction = new List<SO_ActionClass>();
+        foreach (var myAction in listButtons)
+        {
+            currentAction.Add(myAction.GetComponent<C_ActionButton>().GetActionClass());
+        }
+
+        //Check si cette liste "currentAction" est égal à la liste existante. Si oui alors spawn nouveau Action.
+        if (listButtons != null && currentAction == GetActionOfCurrentEtape()) return;
+
+        if (GetListAction() != null)
+        {
+            //Supprime les boutons précédent
+            if (listButtons != null)
+            {
+                foreach (var myAction in listButtons)
+                {
+                    Destroy(myAction);
+                }
+            }
+
+            //Créer une nouvelle liste.
+            listButtonActions = new List<ActionButton>();
+
+            //Créer de nouveau boutons.  EN TEST POUR DONNER LE SO_ACTIONCLASS DANS LE GAMEOBJECT DU BOUTON POUR POUVOIR LE RECUPERER AVEC L'EVENT SYSTEM.
+            for (int i = 0; i < GetListAction().Length; i++)
+            {
+                //Reférence button.
+                GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
+
+                //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
+                myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
+
+                //Reférence Action.
+                myButton.GetComponent<C_ActionButton>().SetActionClass(GetListAction()[i]);
+
+                //Check si "currentActor" possède l'energie pour utiliser cette action.
+                if (GetCurrentActor().GetcurrentEnergy() >= myButton.GetComponent<C_ActionButton>().GetActionClass().GetEnergy())
+                {
+                    //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
+                    myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>().GetActionClass()));
+                }
+                else //Sinon setup une fonction qui lui quand le joueur va appuier dessus va recevoir en retour des VFX + SFX qui montre bien au joueur qu'il ne peut pas utiliser cette action.
+                {
+                    //Modifie le visu du bouton.
+                    myButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("ActionButton_NotEnergy");
+
+                    //Renseigne le "onClick" du nouveau buton pour afficher les Feedback qui montre que le joueur ne peut pas sélectionner cette action.
+                    myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.CantUseAction());
+
+                    Debug.Log(myButton.GetComponent<C_ActionButton>().GetActionClass().buttonText + " sera impossible d'utilisation pour cette acteur.");
+                }
+
+                listButtons.Add(myButton);
             }
 
             myChallenge.GetEventSystem().SetSelectedGameObject(listButtonActions[0].myButton);
