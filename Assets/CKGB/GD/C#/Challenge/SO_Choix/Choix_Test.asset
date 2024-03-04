@@ -16,19 +16,7 @@ MonoBehaviour:
   LogsCanMakeAction: 
   LogsCantMakeAction: 
   listInteraction:
-  - whatTarget: 0
-    whatDirectionTarget: 0
+  - whatTarget: 1
+    whatDirectionTarget: 1
     range: 0
-    listStats:
-    - whatStatsTarget: 0
-      listPrice:
-      - whatPrice: 0
-        price: 0
-      - whatPrice: 2
-        price: 0
-      listGain: []
-      Move:
-        whatMove: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+    listStats: []

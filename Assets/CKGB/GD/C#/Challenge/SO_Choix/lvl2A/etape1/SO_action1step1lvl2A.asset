@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_action1step1lvl2A
   m_EditorClassIdentifier: 
   buttonText: Utiliser la violence
-  LogsCanMakeAction: "Tu cherche un arbre mort \xE0 fracasser pour cr\xE9er un pont
+  LogsCanMakeAction: "Tu cherches un arbre mort \xE0 fracasser pour cr\xE9er un pont
     en travers du ruisseau. \xC7a r\xE9glerait le probl\xE8me bien vite. Les arbres
     tremblent \xE0 la vue de tes poings serr\xE9s en qu\xEAte d\u2019une victime
     \xE0 leur gout. Les oiseaux s\u2019envolent avec anticipation. Mais malheureusement
@@ -21,9 +21,43 @@ MonoBehaviour:
     rivi\xE8re.  C\u2019\xE9tait un peu technique et tu as \xE9chou\xE9."
   LogsCantMakeAction: Pas possible
   listInteraction:
-  - whatTarget: 0
-    test: 
   - whatTarget: 1
-    test: 
-  - whatTarget: 0
-    test: 
+    whatDirectionTarget: 1
+    range: 5
+    listStats:
+    - whatStatsTarget: 0
+      listPrice:
+      - whatPrice: 1
+        price: 0
+      - whatPrice: 2
+        price: 0
+      listGain:
+      - whatGain: 2
+        gain: 0
+      move:
+        whatMove: 3
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+    - whatStatsTarget: 1
+      listPrice: []
+      listGain:
+      - whatGain: 2
+        gain: 0
+      - whatGain: 2
+        gain: 0
+      move:
+        whatMove: 3
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+    - whatStatsTarget: 2
+      listPrice: []
+      listGain:
+      - whatGain: 2
+        gain: 0
+      move:
+        whatMove: 3
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
