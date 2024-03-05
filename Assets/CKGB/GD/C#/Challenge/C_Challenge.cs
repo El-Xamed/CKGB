@@ -65,8 +65,6 @@ public class C_Challenge : MonoBehaviour
     //D�finis l'�tape actuel. RETIRER LE PUBLIC
     [SerializeField] SO_Etape currentStep;
 
-    //Pour afficher la preview des stats.
-    [SerializeField] GameObject uiPreview;
     #endregion
 
     #region Résolution
@@ -101,14 +99,15 @@ public class C_Challenge : MonoBehaviour
             //Affiche les information de ce bouton dans la preview.
             //Ecrit dans les logs le résultat de l'action.
             //Ecrire une stats par case.
-            for (int i = 0; i < uiPreview.transform.childCount; i++)
-            {
-                //Fonction qui récupère la première stats qui est dans la liste des interaction "listStats". En utilisant la var "i" ?
-            }
+
+            //Fonction qui récupère la première stats qui est dans la liste des interaction "listStats". En utilisant la var "i" ?
+
+            //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
+            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetLogsPreview(currentActor);
 
             //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetEnergy().ToString();
 
-            
+
         }
     }
     #endregion

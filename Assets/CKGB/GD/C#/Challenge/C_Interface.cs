@@ -347,7 +347,7 @@ public class C_Interface : MonoBehaviour
                 myButton.GetComponent<C_ActionButton>().SetActionClass(GetListAction()[i]);
 
                 //Check si "currentActor" possède l'energie pour utiliser cette action.
-                if (GetCurrentActor().GetcurrentEnergy() >= myButton.GetComponent<C_ActionButton>().GetActionClass().GetEnergy())
+                if (GetCurrentActor().GetcurrentEnergy() >= myButton.GetComponent<C_ActionButton>().GetActionClass().GetSelfPriceEnergy())
                 {
                     //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
                     myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>().GetActionClass()));

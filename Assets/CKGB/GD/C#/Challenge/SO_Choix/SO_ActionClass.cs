@@ -45,8 +45,9 @@ public class SO_ActionClass : ScriptableObject
 
     #endregion
 
+    #region Self
     //Fonction qui renvoie la valeur d'energy.
-    public int GetEnergy()
+    public int GetSelfPriceEnergy()
     {
         //Pour toutes les liste d'action.
         foreach (var thisInteraction in listInteraction)
@@ -81,7 +82,7 @@ public class SO_ActionClass : ScriptableObject
     }
 
     //Fonction qui renvoie la valeur de calm.
-    public int GetCalm()
+    public int GetSelfPriceCalm()
     {
         //Pour toutes les liste d'action.
         foreach (var thisInteraction in listInteraction)
@@ -116,7 +117,7 @@ public class SO_ActionClass : ScriptableObject
     }
 
     //Fonction qui renvoie la valeur d'energy.
-    public int GetGainEnergy()
+    public int GetSelfGainEnergy()
     {
         //Pour toutes les liste d'action.
         foreach (var thisInteraction in listInteraction)
@@ -151,7 +152,7 @@ public class SO_ActionClass : ScriptableObject
     }
 
     //Fonction qui renvoie la valeur de calm.
-    public int GetGainCalm()
+    public int GetSelfGainCalm()
     {
         //Pour toutes les liste d'action.
         foreach (var thisInteraction in listInteraction)
@@ -183,6 +184,73 @@ public class SO_ActionClass : ScriptableObject
         Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
 
         return 0;
+    }
+    #endregion
+
+    //Pour récupérer le texte pour la preview des stats.
+    public string GetLogsPreview(C_Actor thisActor)
+    {
+        //Liste de string pour écrire le texte.
+        List<string> listLogsPreview = new List<string>();
+        string logsPreview = "";
+
+        //Mise en place de 4 var de type string. 1 "SelfPriceEnergy" : 2 "SelfPriceCalm : 3 "SelfGainEnergy" : 4 "SelfGainCalm".
+        string SelfPriceEnergy;
+        string SelfPriceCalm;
+        string SelfGainEnergy;
+        string SelfGainCalm;
+
+        //Check si pour le "Self" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui v s'afficher.
+
+        #region Price string
+        //Pour le prix.
+        if (GetSelfPriceEnergy() != 0 || GetSelfPriceCalm() != 0)
+        {
+            //Si les deux possède un int supérieur à 0.
+            if (GetSelfPriceEnergy() != 0 && GetSelfPriceCalm() != 0)
+            {
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetSelfPriceCalm() + " de calme et " + GetSelfPriceEnergy() + " d'énergie.");
+            }
+            else if (GetSelfPriceCalm() != 0)
+            {
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetSelfPriceCalm() + " de calme.");
+            }
+            else if (GetSelfPriceEnergy() != 0)
+            {
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetSelfPriceEnergy() + " d'énergie.");
+            }
+        }
+        #endregion
+
+        #region Gain string
+        //Pour le prix.
+        if (GetSelfGainEnergy() != 0 || GetSelfGainCalm() != 0)
+        {
+            //Si les deux possède un int supérieur à 0.
+            if (GetSelfGainEnergy() != 0 && GetSelfGainCalm() != 0)
+            {
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetSelfGainCalm() + " de calme et " + GetSelfGainEnergy() + " d'énergie.");
+            }
+            else if (GetSelfGainCalm() != 0)
+            {
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetSelfGainCalm() + " de calme.");
+            }
+            else if (GetSelfGainEnergy() != 0)
+            {
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetSelfGainEnergy() + " d'énergie.");
+            }
+        }
+        #endregion
+
+        //Prépare le texte de la preview.
+        foreach (var thisText in listLogsPreview)
+        {
+            logsPreview += thisText;
+            logsPreview += "\n";
+        }
+
+        //Envoie le résultat.
+        return logsPreview;
     }
 
     public string GetLogsChallenge()
