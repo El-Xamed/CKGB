@@ -103,7 +103,7 @@ public class C_Challenge : MonoBehaviour
             //Fonction qui récupère la première stats qui est dans la liste des interaction "listStats". En utilisant la var "i" ?
 
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
-            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetLogsPreview(currentActor);
+            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
 
             //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetEnergy().ToString();
 
