@@ -51,6 +51,7 @@ public class C_TempsMort : MonoBehaviour
     [Header("Eventsystem and Selected Gameobjects")]
     [SerializeField] EventSystem Es;
     [SerializeField] GameObject currentButton;
+    [SerializeField] GameObject selectedActionButton;
 
     [SerializeField] GameObject actorActif;
     [SerializeField] GameObject Papoteur;
@@ -68,7 +69,16 @@ public class C_TempsMort : MonoBehaviour
     bool isAnActionButton = false;
 
     #endregion
-  
+    #region variables de retour en arrière
+    [SerializeField] List<GameObject> ActionToAdd = new List<GameObject>();
+    [SerializeField] List<GameObject> LastCharacterThatPlayed = new List<GameObject>();
+    public int actiontoaddID=-1;
+    public int charactertoaddID = -1;
+    [SerializeField] bool nobodyHasPlayed = true;
+
+
+    #endregion
+
     private void Awake()
     {
         SetDataTM();
@@ -128,7 +138,22 @@ public class C_TempsMort : MonoBehaviour
             {
                 actorActif = characters[i];
             }
+            if(currentButton == actions[i])
+            {
+                selectedActionButton = currentButton;
+            }
+            if(isAnActionButton==false)
+            {
+                selectedActionButton = null;
+            }
+
         }
+        if (characterHasPlayed[0] == false && characterHasPlayed[1] == false && characterHasPlayed[2] == false)
+        {
+            nobodyHasPlayed = true;
+        }
+        else
+            nobodyHasPlayed = false;
        
         AffichageMiniCartePerso();
         AffichageCarteCompletePerso();
@@ -174,22 +199,18 @@ public class C_TempsMort : MonoBehaviour
     //active les boutons de choix d'actions
     public void ActivateActionsButtons()
     {
+            
+
         for (int i = 0; i < characters.Count; i++)
         {
-            if (currentButton == charactersButton[i]&& characterHasPlayed[i] == false)
+            if (currentButton == charactersButton[i]&& actorActif == characters[i] &&characterHasPlayed[i] == false) //cas normal de choix de personnage
             {
-                characterHasPlayed[i] = true;
+                LastCharacterThatPlayed.Add(actorActif);
+                charactertoaddID++;
                 faitesunchoix.SetActive(true);
+                faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + actorActif.GetComponent<C_Actor>().name + " ?";
                 aquiletour.SetActive(false);
                 isAnActionButton = true;
-                for (int y = 0; y < characters.Count; y++)
-                {
-                    if (currentButton == charactersButton[y])
-                    {
-                        characterHasPlayed[y] = true;
-                    }
-
-                }
                 for (int x = 0; x < actions.Length; x++)
                 {
                     actions[x].SetActive(true);
@@ -199,13 +220,17 @@ public class C_TempsMort : MonoBehaviour
                 updateButton();
             }
 
+     
+
         }
-        
+    
     }
 
     //active les boutons de choix de persos
     public void ActivateCharactersButton()
     {
+        ActionToAdd.Add(selectedActionButton);
+        actiontoaddID++;
         aquiletour.SetActive(true);
         faitesunchoix.SetActive(false);
         isAnActionButton = false;
@@ -224,8 +249,10 @@ public class C_TempsMort : MonoBehaviour
                 AffichageMiniCartePerso();
                 updateButton();
             }
+
         }
         updateButton();
+       
     }
 
     //recupere les stats des actors et du so_tempsmort
@@ -371,17 +398,16 @@ public class C_TempsMort : MonoBehaviour
     {
         papoteravec.SetActive(true);
         faitesunchoix.SetActive(false);
+        isAnActionButton = false;
         for (int i = 0; i < PapotageChoiceButtons.Length; i++)
         {
-            if (characters[i] != actorActif)
-            {
                 PapotageChoiceButtons[i].SetActive(true);
-                Es.SetSelectedGameObject(PapotageChoiceButtons[i]);
-            }
+                Es.SetSelectedGameObject(PapotageChoiceButtons[i]); 
             actions[i].SetActive(false);
         }
         updateButton();
         //traitpoint
+        
     }
 
     //papotage + stats
@@ -390,7 +416,11 @@ public class C_TempsMort : MonoBehaviour
         papoteravec.SetActive(false);
         for (int i=0;i<PapotageChoiceButtons.Length;i++)
         {
-            if(currentButton==PapotageChoiceButtons[i])
+            if (actorActif == characters[i])
+            {
+                characterHasPlayed[i] = true;
+            }
+            if (currentButton==PapotageChoiceButtons[i]&&currentButton!=actorActif)
             {
                 Papoteur = characters[i];
                 actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
@@ -417,6 +447,7 @@ public class C_TempsMort : MonoBehaviour
                 }
                 
             }
+      
         }
         foreach(GameObject papot in PapotageChoiceButtons)
         {
@@ -427,25 +458,212 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Respirer()
     {
+     
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (actorActif == characters[i])
+            {
+                characterHasPlayed[i] = true;
+            }
+        }
         //energy
         actorActif.GetComponent<C_Actor>().SetMaxEnergy();
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
         UpdateCharacterStat();
+        
     }
     public void Revasser()
     {
+    
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (actorActif == characters[i])
+            {
+                characterHasPlayed[i] = true;
+            }
+        }
         //calm
         actorActif.GetComponent<C_Actor>().SetMaxStress();
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
         UpdateCharacterStat();
+       
+  
     }
     public void Challenge()
     {
         SceneManager.LoadScene("S_DestinationTest");
+    }
+    public void BACK(InputAction.CallbackContext context)
+    {
+        if(!context.performed)
+        { return; }
+        if(context.performed)
+        {
+                Debug.Log("going backward");
+                if (isAnActionButton == true)
+                {
+                    for (int i = 0; i < actions.Length; i++)
+                    {
+                        if (currentButton == actions[i])
+                        {
+                        aquiletour.SetActive(true);
+                        faitesunchoix.SetActive(false);
+                        isAnActionButton = false;
+                        for (int y = 0; y < actions.Length; y++)
+                        {
+                            actions[y].SetActive(false);
+                            charactersButton[y].GetComponent<Button>().enabled = true;
+                            Es.SetSelectedGameObject(charactersButton[y]);
+                            if (characterHasPlayed[0] == true && characterHasPlayed[y] == true && characterHasPlayed[2] == true)
+                            {
+
+                                ChallengeButton.SetActive(true);
+                                aquiletour.SetActive(false);
+                                Es.SetSelectedGameObject(ChallengeButton);
+                                actorActif = null;
+                                AffichageMiniCartePerso();
+                                updateButton();
+                            }
+
+                        }
+                        updateButton();
+
+                        }
+                }
+                    LastCharacterThatPlayed.RemoveAt(charactertoaddID);
+                    charactertoaddID--;
+                }
+                else if (PapotageChoiceButtons[0].activeSelf == true)
+                {
+                    Debug.Log("Pas de papotage pour toi mon petit");
+                    for (int i = 0; i < PapotageChoiceButtons.Length; i++)
+                    {
+                        PapotageChoiceButtons[i].SetActive(false);
+                    }
+                    faitesunchoix.SetActive(true);
+                    faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().name + " ?";
+                    for (int i = 0; i < characters.Count; i++)
+                    {
+                        if (currentButton == PapotageChoiceButtons[i]) //cas de retour au choix du personnage avec qui papoter
+                        {
+                            papoteravec.SetActive(false);
+                            faitesunchoix.SetActive(true);
+                            faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + actorActif.GetComponent<C_Actor>().name + " ?";
+                            isAnActionButton = true;
+                            for (int x = 0; x < actions.Length; x++)
+                            {
+                                charactersButton[x].SetActive(true);
+                                actions[x].SetActive(true);
+                                charactersButton[x].GetComponent<Button>().enabled = false;
+                            }
+                            Es.SetSelectedGameObject(actions[0]);
+                            updateButton();
+                        }
+                    }
+
+                }
+                else if(nobodyHasPlayed == false)
+                {
+                    if (ActionToAdd[actiontoaddID] != null && ActionToAdd[actiontoaddID] == actions[0] && charactersButton[1].activeSelf == true)
+                    {
+                        Debug.Log("retour aux personnages après avoir papoté");
+                        actorActif = LastCharacterThatPlayed[charactertoaddID];
+                        faitesunchoix.SetActive(true);
+                        faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[LastCharacterThatPlayed.Count - 1].GetComponent<C_Actor>().name + " ?";
+                        for (int i = 0; i < characters.Count; i++)
+                        {
+                            if (characterHasPlayed[i] == true && actorActif == characters[i] && ActionToAdd != null) //cas ou l'on fait retour depuis le choix de personnages
+                            {
+                                Debug.Log(actorActif);
+                                aquiletour.SetActive(false);
+                                isAnActionButton = true;
+                                characterHasPlayed[i] = false;
+
+                                for (int x = 0; x < actions.Length; x++)
+                                {
+                                    actions[x].SetActive(true);
+                                    charactersButton[x].GetComponent<Button>().enabled = false;
+                                }
+                                Es.SetSelectedGameObject(ActionToAdd[actiontoaddID]);
+                                updateButton();
+                            }
+                        }
+                    ActionToAdd.RemoveAt(actiontoaddID);
+                    actiontoaddID--;
+
+                     }
+                    else if (ActionToAdd[actiontoaddID] != null && ActionToAdd[actiontoaddID] == actions[1] && charactersButton[1].activeSelf == true)
+                    {
+                        Debug.Log("retour aux personnages après avoir révassé");
+                        actorActif = LastCharacterThatPlayed[charactertoaddID];
+                        faitesunchoix.SetActive(true);
+                        faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().name + " ?";
+                        for (int i = 0; i < characters.Count; i++)
+                        {
+                            if (characterHasPlayed[i] == true && actorActif == characters[i] && ActionToAdd != null) //cas ou l'on fait retour depuis le choix de personnages
+                            {
+                                Debug.Log(actorActif);
+                                aquiletour.SetActive(false);
+                                isAnActionButton = true;
+                                characterHasPlayed[i] = false;
+
+                                for (int x = 0; x < actions.Length; x++)
+                                {
+                                    actions[x].SetActive(true);
+                                    charactersButton[x].GetComponent<Button>().enabled = false;
+                                }
+                                Es.SetSelectedGameObject(ActionToAdd[actiontoaddID]);
+                                updateButton();
+                            }
+                        }
+                    ActionToAdd.RemoveAt(actiontoaddID);
+                    actiontoaddID--;
+                }
+                    else if (ActionToAdd[actiontoaddID] != null && ActionToAdd[actiontoaddID] == actions[2] && charactersButton[1].activeSelf == true)
+                    {
+                        Debug.Log("retour aux personnages après avoir fait l'autre truc");
+                        actorActif = LastCharacterThatPlayed[charactertoaddID];
+                        faitesunchoix.SetActive(true);
+                        Debug.Log(faitesunchoix.activeSelf);
+                        faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().name + " ?";
+                        for (int i = 0; i < characters.Count; i++)
+                        {
+                            if (characterHasPlayed[i] == true && actorActif == characters[i] && ActionToAdd != null) //cas ou l'on fait retour depuis le choix de personnages
+                            {
+                                Debug.Log(actorActif);
+                                aquiletour.SetActive(false);
+                                isAnActionButton = true;
+                                characterHasPlayed[i] = false;
+
+                                for (int x = 0; x < actions.Length; x++)
+                                {
+                                    actions[x].SetActive(true);
+                                    charactersButton[x].GetComponent<Button>().enabled = false;
+                                }
+                                Es.SetSelectedGameObject(ActionToAdd[actiontoaddID]);
+                                updateButton();
+                            }
+                        }
+                    ActionToAdd.RemoveAt(actiontoaddID);
+                    actiontoaddID--;
+                }
+
+               
+
+                }
+  
+            if (characterHasPlayed[0] == true && characterHasPlayed[1] == true && characterHasPlayed[2] == true)
+            {
+
+            }
+            else
+                ChallengeButton.SetActive(false);
+        }
+     
     }
     public void SetDataTM()
     {

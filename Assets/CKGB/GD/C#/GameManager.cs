@@ -22,13 +22,13 @@ public class GameManager : MonoBehaviour
     [Header("Paramètre de dev")]
     //Récupération en variable qui apparait dans l'inspector.
     [SerializeField]
-    List<EActorClass> myActor;
+    List<EActorClass> myActor = new List<EActorClass>();
 
     [SerializeField]
     int[] niveauTerminé;
 
     [SerializeField]
-    List<GameObject> team;
+    List<GameObject> team = new List<GameObject>();
 
     //Variable pour les challenge. DOIT RESTER CACHE C'EST UNE INFORMATION QUI RECUPERE SUR LA WORLDMAP AVANT DE LANCER LE NIVEAU.
     List<int> initialPlayerPositionOnThisDestination;
