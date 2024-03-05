@@ -6,83 +6,68 @@ public class C_ActionButton : MonoBehaviour
 {
     [SerializeField]
     SO_ActionClass actionClass;
-    List<Interaction> listInteraction;
-
-    private void Awake()
-    {
-        listInteraction = actionClass.listInteraction;
-    }
 
     #region Self
     //Fonction qui renvoie la valeur d'energy. POUR UNE RAISON INCONNU IL RECUPERE LES INFO DU SO_ACTIONCLASS PRECEDANT A VOIR POURQUOI. NOTE EN PLUS : QUAND JE SOUHAITE SEECTIONNER UNE ACTION, POUR UNE RAISON INCONNU IL RECUPERE TOUT LES LISTES DE STATS QUI SONT STOCKE DANS PLUSIEURS SO_ACTIONCLASS.
     //TESTER EN AJOUTANT UNE PRESCISION : LE BOUTON SELECTIONNER PAR L'EVENT SYSTEM. OU AVEC THIS.
     public int GetSelfPriceEnergy()
     {
-        int price = 0;
-
         //Pour toutes les liste d'action.
-        foreach (var thisInteraction in listInteraction)
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
             //Check si sont enum est égale à "Self".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
             {
                 //Pour toutes les list de stats.
-                foreach (var thisStats in thisInteraction.listStats)
+                foreach (Stats thisStats in thisInteraction.listStats)
                 {
                     //Check si sont enum est égale à "Price".
                     if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
                     {
                         //Pour toutes les list de prix.
-                        foreach (var thisPrice in thisStats.listPrice)
+                        foreach (Price thisPrice in thisStats.listPrice)
                         {
                             //Check si sont enum est égale à "Energy".
                             if (thisPrice.whatPrice == Price.ETypePrice.Energy)
                             {
-                                Debug.Log(thisPrice.price);
                                 //Renvoie le prix de cette energy.
-                                //return thisPrice.price;
-                                price = thisPrice.price;
+                                return thisPrice.price;
                             }
                         }
                     }
                 }
             }
-            Debug.Log("Test1");
         }
 
-        //Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
-        Debug.Log(price);
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
 
-        return price;
+        return 0;
     }
 
     //Fonction qui renvoie la valeur de calm.
     public int GetSelfPriceCalm()
     {
-        int price = 0;
-
         //Pour toutes les liste d'action.
-        foreach (var thisInteraction in listInteraction)
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
             //Check si sont enum est égale à "Self".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
             {
                 //Pour toutes les list de stats.
-                foreach (var thisStats in thisInteraction.listStats)
+                foreach (Stats thisStats in thisInteraction.listStats)
                 {
                     //Check si sont enum est égale à "Price".
                     if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
                     {
                         //Pour toutes les list de prix.
-                        foreach (var thisPrice in thisStats.listPrice)
+                        foreach (Price thisPrice in thisStats.listPrice)
                         {
                             //Check si sont enum est égale à "Energy".
                             if (thisPrice.whatPrice == Price.ETypePrice.Calm)
                             {
-                                Debug.Log(thisPrice.price);
+                                Debug.Log("Price Calm : " + thisPrice.price);
                                 //Renvoie le prix de cette energy.
-                                //return thisPrice.price;
-                                price = thisPrice.price;
+                                return thisPrice.price;
                             }
                         }
                     }
@@ -90,29 +75,28 @@ public class C_ActionButton : MonoBehaviour
             }
         }
 
-        //Debug.Log("ATTENTION : Cette action ne possède pas de prix de calme ! La valeur renvoyé sera de 0.");
-        Debug.Log(price);
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix de calme ! La valeur renvoyé sera de 0.");
 
-        return price;
+        return 0;
     }
 
     //Fonction qui renvoie la valeur d'energy.
     public int GetSelfGainEnergy()
     {
         //Pour toutes les liste d'action.
-        foreach (var thisInteraction in listInteraction)
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
             //Check si sont enum est égale à "Self".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
             {
                 //Pour toutes les list de stats.
-                foreach (var thisStats in thisInteraction.listStats)
+                foreach (Stats thisStats in thisInteraction.listStats)
                 {
                     //Check si sont enum est égale à "Gain".
                     if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
                     {
                         //Pour toutes les list de gain.
-                        foreach (var thisGain in thisStats.listGain)
+                        foreach (Gain thisGain in thisStats.listGain)
                         {
                             //Check si sont enum est égale à "Energy".
                             if (thisGain.whatGain == Gain.ETypeGain.Energy)
@@ -135,19 +119,19 @@ public class C_ActionButton : MonoBehaviour
     public int GetSelfGainCalm()
     {
         //Pour toutes les liste d'action.
-        foreach (var thisInteraction in listInteraction)
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
             //Check si sont enum est égale à "Self".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
             {
                 //Pour toutes les list de stats.
-                foreach (var thisStats in thisInteraction.listStats)
+                foreach (Stats thisStats in thisInteraction.listStats)
                 {
                     //Check si sont enum est égale à "Price".
                     if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
                     {
                         //Pour toutes les list de prix.
-                        foreach (var thisGain in thisStats.listGain)
+                        foreach (Gain thisGain in thisStats.listGain)
                         {
                             //Check si sont enum est égale à "Energy".
                             if (thisGain.whatGain == Gain.ETypeGain.Calm)

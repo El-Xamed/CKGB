@@ -106,8 +106,6 @@ public class C_Challenge : MonoBehaviour
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
 
             //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetEnergy().ToString();
-
-
         }
     }
     #endregion
