@@ -355,7 +355,7 @@ public class C_Interface : MonoBehaviour
                 else //Sinon setup une fonction qui lui quand le joueur va appuier dessus va recevoir en retour des VFX + SFX qui montre bien au joueur qu'il ne peut pas utiliser cette action.
                 {
                     //Modifie le visu du bouton.
-                    myButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("ActionButton_NotEnergy");
+                    myButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("EtiquetteBW");
 
                     //Renseigne le "onClick" du nouveau buton pour afficher les Feedback qui montre que le joueur ne peut pas sélectionner cette action.
                     myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.CantUseAction());

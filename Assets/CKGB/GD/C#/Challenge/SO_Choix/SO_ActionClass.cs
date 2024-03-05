@@ -21,7 +21,7 @@ public class SO_ActionClass : ScriptableObject
     public AdvancedCondition advancedCondition;
 
     [Header("List d'action")]
-    public List<Interaction> listInteraction;
+    public List<Interaction> listInteraction = new List<Interaction>();
     #endregion
 
     #region Fonctions
@@ -46,9 +46,13 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Self
-    //Fonction qui renvoie la valeur d'energy.
+    //Fonction qui renvoie la valeur d'energy. POUR UNE RAISON INCONNU IL RECUPERE LES INFO DU SO_ACTIONCLASS PRECEDANT A VOIR POURQUOI. NOTE EN PLUS : QUAND JE SOUHAITE SEECTIONNER UNE ACTION, POUR UNE RAISON INCONNU IL RECUPERE TOUT LES LISTES DE STATS QUI SONT STOCKE DANS PLUSIEURS SO_ACTIONCLASS.
+    //TESTER EN AJOUTANT UNE PRESCISION : LE BOUTON SELECTIONNER PAR L'EVENT SYSTEM. OU AVEC THIS.
+    // A TESTER AVEC NEW LIST.
     public int GetSelfPriceEnergy()
     {
+        int price = 0;
+
         //Pour toutes les liste d'action.
         foreach (var thisInteraction in listInteraction)
         {
@@ -67,23 +71,29 @@ public class SO_ActionClass : ScriptableObject
                             //Check si sont enum est égale à "Energy".
                             if (thisPrice.whatPrice == Price.ETypePrice.Energy)
                             {
+                                Debug.Log(thisPrice.price);
                                 //Renvoie le prix de cette energy.
-                                return thisPrice.price;
+                                //return thisPrice.price;
+                                price = thisPrice.price;
                             }
                         }
                     }
                 }
             }
+            Debug.Log("Test1");
         }
 
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        //Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        Debug.Log(price);
 
-        return 0;
+        return price;
     }
 
     //Fonction qui renvoie la valeur de calm.
     public int GetSelfPriceCalm()
     {
+        int price = 0;
+
         //Pour toutes les liste d'action.
         foreach (var thisInteraction in listInteraction)
         {
@@ -102,8 +112,10 @@ public class SO_ActionClass : ScriptableObject
                             //Check si sont enum est égale à "Energy".
                             if (thisPrice.whatPrice == Price.ETypePrice.Calm)
                             {
+                                Debug.Log(thisPrice.price);
                                 //Renvoie le prix de cette energy.
-                                return thisPrice.price;
+                                //return thisPrice.price;
+                                price = thisPrice.price;
                             }
                         }
                     }
@@ -111,9 +123,10 @@ public class SO_ActionClass : ScriptableObject
             }
         }
 
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        //Debug.Log("ATTENTION : Cette action ne possède pas de prix de calme ! La valeur renvoyé sera de 0.");
+        Debug.Log(price);
 
-        return 0;
+        return price;
     }
 
     //Fonction qui renvoie la valeur d'energy.
@@ -146,7 +159,7 @@ public class SO_ActionClass : ScriptableObject
             }
         }
 
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        Debug.Log("ATTENTION : Cette action ne possède pas de gain d'énergie ! La valeur renvoyé sera de 0.");
 
         return 0;
     }
@@ -181,7 +194,7 @@ public class SO_ActionClass : ScriptableObject
             }
         }
 
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
 
         return 0;
     }
@@ -223,7 +236,8 @@ public class SO_ActionClass : ScriptableObject
         #endregion
 
         #region Gain string
-        //Pour le prix.
+        //Pour le gain.
+        /*
         if (GetSelfGainEnergy() != 0 || GetSelfGainCalm() != 0)
         {
             //Si les deux possède un int supérieur à 0.
@@ -239,7 +253,7 @@ public class SO_ActionClass : ScriptableObject
             {
                 listLogsPreview.Add(thisActor.name + " va gagner " + GetSelfGainEnergy() + " d'énergie.");
             }
-        }
+        }*/
         #endregion
 
         //Prépare le texte de la preview.
@@ -287,7 +301,7 @@ public class Interaction
     public enum ETypeDirectionTarget {None, Right, Left, RightAndLeft };
     public int range;
 
-    public List<Stats> listStats;
+    public List<Stats> listStats = new List<Stats>();
 }
 
 [Serializable]
@@ -300,8 +314,8 @@ public class Stats
     public enum ETypeStatsTarget { Price, Gain, Movement };
     #endregion
 
-    public List<Price> listPrice;
-    public List<Gain> listGain;
+    public List<Price> listPrice = new List<Price>();
+    public List<Gain> listGain = new List<Gain>();
     public Move move;
 }
 
