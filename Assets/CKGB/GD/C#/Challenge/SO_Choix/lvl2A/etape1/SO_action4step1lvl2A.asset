@@ -24,23 +24,14 @@ MonoBehaviour:
     mouille ton t-shirt. La terre est froide contre ton front. Plusieurs minutes
     passent. Il semblerait que \xE7a n\u2019est pas march\xE9\u2026"
   LogsCantMakeAction: Impossible
-  coutEnergy: 0
-  coutCalm: 0
-  gainCalm: 0
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  moveRightSelf: 0
-  moveLeftSelf: 1
-  caseToGo: -1
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    whatDirectionTarget: 0
+    range: 0
+    listStats: []

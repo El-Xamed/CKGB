@@ -368,6 +368,8 @@ public class C_Interface : MonoBehaviour
             }
 
             myChallenge.GetEventSystem().SetSelectedGameObject(listButtons[0]);
+
+            myChallenge.WriteStatsPreview();
         }
         else
         {

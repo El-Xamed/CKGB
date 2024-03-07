@@ -90,18 +90,15 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    //Affiche les information de ce bouton dans la preview.
     public void Naviguate(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
 
         if (context.performed)
         {
-            //Affiche les information de ce bouton dans la preview.
+            
             //Ecrit dans les logs le résultat de l'action.
-            //Ecrire une stats par case.
-
-            //Fonction qui récupère la première stats qui est dans la liste des interaction "listStats". En utilisant la var "i" ?
-
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
 
@@ -293,6 +290,11 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Tour du joueur
+    public void WriteStatsPreview()
+    {
+        uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
+    }
+
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
     public void UseAction(SO_ActionClass thisAction)
     {

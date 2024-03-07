@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action", order = 1)]
 public class SO_ActionClass : ScriptableObject
@@ -88,7 +86,6 @@ public class Stats
 {
     #region Stats
     //Cible qu'on souhaite viser.
-    //[Header("Target")]
     public ETypeStatsTarget whatStatsTarget;
     public enum ETypeStatsTarget { Price, Gain, Movement };
     #endregion
