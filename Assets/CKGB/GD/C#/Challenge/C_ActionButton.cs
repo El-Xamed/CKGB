@@ -217,7 +217,7 @@ public class C_ActionButton : MonoBehaviour
             //Si les deux possède un int supérieur à 0.
             if (GetSelfPriceEnergy() != 0 && GetSelfPriceCalm() != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetSelfPriceEnergy().ToString(), Color.blue) + " de calme et " + GetColorText(GetSelfPriceEnergy().ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetSelfPriceEnergy().ToString(), Color.blue) + " de calme et " + GetColorText(GetSelfPriceCalm().ToString(), Color.yellow) + " d'énergie.");
             }
             else if (GetSelfPriceCalm() != 0)
             {
@@ -227,6 +227,8 @@ public class C_ActionButton : MonoBehaviour
             {
                 listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetSelfPriceEnergy().ToString(), Color.yellow) + " d'énergie.");
             }
+
+            ShowUiStatsPreview(thisActor);
         }
         #endregion
 
@@ -323,6 +325,38 @@ public class C_ActionButton : MonoBehaviour
 
         //Envoie le résultat.
         return logsPreview;
+    }
+
+    public void HideUiStatsPreview(List<C_Actor> listActor)
+    {
+        foreach (C_Actor thisActor in listActor)
+        {
+            thisActor.GetUiStats().DesactivedAllPreview();
+        }
+    }
+
+    public void ShowUiStatsPreview(C_Actor thisActor)
+    {
+        //Affiche une preview sur l'actor lui meme.
+        thisActor.GetUiStats().ActiveSelfPreviewUi(thisActor, this);
+    }
+
+    //Affiche une preview sur les autres actor.
+    public void ActiveOtherPreviewUi(List<C_Actor> otherActor, C_Actor thisActor, int range, C_ActionButton thisActionButon)
+    {
+        //Boucle avec le range.
+        for (int i = 0; i < range; i++)
+        {
+            //Boucle pour check sur tout les actor du challenge.
+            foreach (C_Actor thisOtherActor in otherActor)
+            {
+                //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                if (thisActor.GetPosition() + i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
+                {
+                    thisOtherActor.GetUiStats().ActiveSelfPreviewUi(thisOtherActor, thisActionButon);
+                }
+            }
+        }
     }
 
     public void SetActionClass(SO_ActionClass thisActionClass)

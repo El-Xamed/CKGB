@@ -36,7 +36,7 @@ MonoBehaviour:
       - whatPrice: 1
         price: 5
       - whatPrice: 2
-        price: 7
+        price: 2
       listGain:
       - whatGain: 2
         gain: 0
@@ -49,9 +49,9 @@ MonoBehaviour:
       listPrice: []
       listGain:
       - whatGain: 2
-        gain: 0
-      - whatGain: 2
-        gain: 0
+        gain: 2
+      - whatGain: 1
+        gain: 8
       move:
         whatMove: 3
         nbMove: 0
@@ -64,6 +64,6 @@ MonoBehaviour:
         gain: 0
       move:
         whatMove: 1
-        nbMove: 0
+        nbMove: 2
         actor: {fileID: 0}
         accessories: {fileID: 0}

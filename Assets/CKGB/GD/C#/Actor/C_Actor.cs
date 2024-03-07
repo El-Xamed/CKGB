@@ -96,6 +96,8 @@ public class C_Actor : MonoBehaviour
         uiStats = myStats;
     }
 
+    public C_Stats GetUiStats() { return uiStats; }
+
     public void UpdateUiStats()
     {
         uiStats.UpdateUi(this);

@@ -97,7 +97,9 @@ public class C_Challenge : MonoBehaviour
 
         if (context.performed)
         {
-            
+            //Cache tout les autres preview.
+            eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().HideUiStatsPreview(myTeam);
+
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
@@ -246,7 +248,7 @@ public class C_Challenge : MonoBehaviour
                             C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
 
                             //Add Ui Stats
-                            thisActor.GetComponent<C_Actor>().SetUiStats(newStats);
+                            thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
 
                             //Update UI
                             thisActor.GetComponent<C_Actor>().UpdateUiStats();

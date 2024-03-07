@@ -34,4 +34,14 @@ MonoBehaviour:
   - whatTarget: 0
     whatDirectionTarget: 0
     range: 0
-    listStats: []
+    listStats:
+    - whatStatsTarget: 1
+      listPrice: []
+      listGain:
+      - whatGain: 1
+        gain: 2
+      move:
+        whatMove: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
