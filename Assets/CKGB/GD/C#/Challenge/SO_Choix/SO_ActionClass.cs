@@ -78,11 +78,11 @@ public class Interaction
     public enum ETypeDirectionTarget {None, Right, Left, RightAndLeft };
     public int range;
 
-    public List<Stats> listStats = new List<Stats>();
+    public List<TargetStats> listTargetStats = new List<TargetStats>();
 }
 
 [Serializable]
-public class Stats
+public class TargetStats
 {
     #region Stats
     //Cible qu'on souhaite viser.
@@ -90,27 +90,17 @@ public class Stats
     public enum ETypeStatsTarget { Price, Gain, Movement };
     #endregion
 
-    public List<Price> listPrice = new List<Price>();
-    public List<Gain> listGain = new List<Gain>();
+    public List<Stats> listStats = new List<Stats>();
     public Move move;
 }
 
 [Serializable]
-public class Price
+public class Stats
 {
-    public ETypePrice whatPrice;
-    public enum ETypePrice { None, Energy, Calm };
+    public ETypeStats whatStats;
+    public enum ETypeStats { Energy, Calm };
 
-    public int price;
-}
-
-[Serializable]
-public class Gain
-{
-    public ETypeGain whatGain;
-    public enum ETypeGain { None, Energy, Calm };
-
-    public int gain;
+    public int value;
 }
 
 [Serializable]

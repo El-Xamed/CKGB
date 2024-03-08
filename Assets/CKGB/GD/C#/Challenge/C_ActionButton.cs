@@ -7,31 +7,30 @@ public class C_ActionButton : MonoBehaviour
     [SerializeField]
     SO_ActionClass actionClass;
 
-    #region Self
+    //Liste de string pour écrire le texte.
+    List<string> listLogsPreview = new List<string>();
+
     #region Stats
     //Fonction qui renvoie la valeur d'energy.
-    public int GetSelfPriceEnergy()
+    public int GetStats(Interaction.ETypeTarget actorTarget, TargetStats.ETypeStatsTarget targetStats, Stats.ETypeStats statsTarget)
     {
         //Pour toutes les liste d'action.
         foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            //Check si sont enum est égale à "actorTarget".
+            if (thisInteraction.whatTarget == actorTarget)
             {
                 //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    //Check si sont enum est égale à "Price".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
+                    //Check si sont enum est égale à "statsTarget".
+                    if (thisTargetStats.whatStatsTarget == targetStats)
                     {
-                        //Pour toutes les list de prix.
-                        foreach (Price thisPrice in thisStats.listPrice)
+                        foreach (Stats thisStats in thisTargetStats.listStats)
                         {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisPrice.whatPrice == Price.ETypePrice.Energy)
+                            if (thisStats.whatStats == statsTarget)
                             {
-                                //Renvoie le prix de cette energy.
-                                return thisPrice.price;
+                                return thisStats.value;
                             }
                         }
                     }
@@ -44,137 +43,25 @@ public class C_ActionButton : MonoBehaviour
         return 0;
     }
 
-    //Fonction qui renvoie la valeur de calm.
-    public int GetSelfPriceCalm()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Price".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
-                    {
-                        //Pour toutes les list de prix.
-                        foreach (Price thisPrice in thisStats.listPrice)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisPrice.whatPrice == Price.ETypePrice.Calm)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisPrice.price;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie la valeur d'energy.
-    public int GetSelfGainEnergy()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Gain".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
-                    {
-                        //Pour toutes les list de gain.
-                        foreach (Gain thisGain in thisStats.listGain)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisGain.whatGain == Gain.ETypeGain.Energy)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisGain.gain;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain d'énergie ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie la valeur de calm.
-    public int GetSelfGainCalm()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Price".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
-                    {
-                        //Pour toutes les list de prix.
-                        foreach (Gain thisGain in thisStats.listGain)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisGain.whatGain == Gain.ETypeGain.Calm)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisGain.gain;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-    #endregion
-
-    #region Movement
     //Fonction qui renvoie le parametre de mouvement.
-    public int GetSelfMovement()
+    public int GetMovement(Interaction.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
         foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
             //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            if (thisInteraction.whatTarget == actorTarget)
             {
                 //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
+                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
                 {
                     //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Movement)
+                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                     {
-                        
                         if (thisStats.move.whatMove == Move.ETypeMove.Right || thisStats.move.whatMove == Move.ETypeMove.Left)
                         {
                             return thisStats.move.nbMove;
                         }
-                        else
-                        {
-                            return 0;
-                        }
                     }
                 }
             }
@@ -184,187 +71,6 @@ public class C_ActionButton : MonoBehaviour
 
         return 0;
     }
-    #endregion
-    #endregion
-
-    #region Other
-    #region Stats
-    //Fonction qui renvoie la valeur d'energy.
-    public int GetOtherPriceEnergy()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Price".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
-                    {
-                        //Pour toutes les list de prix.
-                        foreach (Price thisPrice in thisStats.listPrice)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisPrice.whatPrice == Price.ETypePrice.Energy)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisPrice.price;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie la valeur de calm.
-    public int GetOtherPriceCalm()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Price".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Price)
-                    {
-                        //Pour toutes les list de prix.
-                        foreach (Price thisPrice in thisStats.listPrice)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisPrice.whatPrice == Price.ETypePrice.Calm)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisPrice.price;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie la valeur d'energy.
-    public int GetOtherGainEnergy()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Gain".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
-                    {
-                        //Pour toutes les list de gain.
-                        foreach (Gain thisGain in thisStats.listGain)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisGain.whatGain == Gain.ETypeGain.Energy)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisGain.gain;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain d'énergie ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie la valeur de calm.
-    public int GetOhterGainCalm()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Price".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Gain)
-                    {
-                        //Pour toutes les list de prix.
-                        foreach (Gain thisGain in thisStats.listGain)
-                        {
-                            //Check si sont enum est égale à "Energy".
-                            if (thisGain.whatGain == Gain.ETypeGain.Calm)
-                            {
-                                //Renvoie le prix de cette energy.
-                                return thisGain.gain;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-    #endregion
-
-    #region Movement
-    //Fonction qui renvoie le parametre de mouvement.
-    public int GetOtherMovement()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                //Pour toutes les list de stats.
-                foreach (Stats thisStats in thisInteraction.listStats)
-                {
-                    //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Movement)
-                    {
-
-                        if (thisStats.move.whatMove == Move.ETypeMove.Right || thisStats.move.whatMove == Move.ETypeMove.Left)
-                        {
-                            return thisStats.move.nbMove;
-                        }
-                        else
-                        {
-                            return 0;
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-    #endregion
     #endregion
 
     #region System de couleur dans un texte.
@@ -384,77 +90,90 @@ public class C_ActionButton : MonoBehaviour
     //Pour récupérer le texte pour la preview des stats.
     public string GetLogsPreview(C_Actor thisActor)
     {
-        //Liste de string pour écrire le texte.
-        List<string> listLogsPreview = new List<string>();
+        
         string logsPreview = "";
 
+        //Créer la liste pour "self"
+        GetLogsPreviewTarget(Interaction.ETypeTarget.Self, thisActor);
+
+
+        //Prépare le texte de la preview.
+        foreach (var thisText in listLogsPreview)
+        {
+            logsPreview += thisText;
+            logsPreview += "\n";
+        }
+
+        //Envoie le résultat.
+        return logsPreview;
+    }
+
+    void GetLogsPreviewTarget(Interaction.ETypeTarget target, C_Actor thisActor)
+    {
         //Check si pour le "Self" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui v s'afficher.
-        #region Self
         #region Price string
         //Pour le prix.
-        if (GetSelfPriceEnergy() != 0 || GetSelfPriceCalm() != 0)
+        if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
         {
             //Si les deux possède un int supérieur à 0.
-            if (GetSelfPriceEnergy() != 0 && GetSelfPriceCalm() != 0)
+            if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 && GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetSelfPriceEnergy().ToString(), Color.blue) + " de calme et " + GetColorText(GetSelfPriceCalm().ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.blue) + " de calme et " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.yellow) + " d'énergie.");
             }
-            else if (GetSelfPriceCalm() != 0)
+            else if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetSelfPriceEnergy().ToString(), Color.blue) + " de calme.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
             }
-            else if (GetSelfPriceEnergy() != 0)
+            else if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetSelfPriceEnergy().ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
-
-            ShowUiStatsPreview(thisActor);
         }
         #endregion
 
         #region Gain string
         //Pour le gain.
-        if (GetSelfGainEnergy() != 0 || GetSelfGainCalm() != 0)
+        if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
         {
             //Si les deux possède un int supérieur à 0.
-            if (GetSelfGainEnergy() != 0 && GetSelfGainCalm() != 0)
+            if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 && GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetSelfGainCalm().ToString(), Color.blue) + " de calme et " + GetColorText(GetSelfGainEnergy().ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
-            else if (GetSelfGainCalm() != 0)
+            else if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetSelfGainCalm().ToString(), Color.blue) + " de calme.");
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
             }
-            else if (GetSelfGainEnergy() != 0)
+            else if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetSelfGainEnergy().ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
         }
         #endregion
 
         #region Movement
         //Pour le mouvement.
-        if (GetSelfMovement() != 0)
+        if (GetMovement(target) != 0)
         {
             //Pour toutes les liste d'action.
             foreach (Interaction thisInteraction in actionClass.listInteraction)
             {
                 //Check si sont enum est égale à "Self".
-                if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+                if (thisInteraction.whatTarget == target)
                 {
                     //Pour toutes les list de stats.
-                    foreach (Stats thisStats in thisInteraction.listStats)
+                    foreach (TargetStats thisStats in thisInteraction.listTargetStats)
                     {
                         //Check si sont enum est égale à "Movement".
-                        if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Movement)
+                        if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                         {
                             if (thisStats.move.whatMove == Move.ETypeMove.Right)
                             {
-                                listLogsPreview.Add(thisActor.name + " va se déplacer de " + GetColorText(GetSelfMovement().ToString(), Color.green) + " sur la droite.");
+                                listLogsPreview.Add(thisActor.name + " va se déplacer de " + GetColorText(thisStats.move.ToString(), Color.green) + " sur la droite.");
                             }
-                            else if(thisStats.move.whatMove == Move.ETypeMove.Left)
+                            else if (thisStats.move.whatMove == Move.ETypeMove.Left)
                             {
-                                listLogsPreview.Add(thisActor.name + " va se déplacer de " + GetColorText(GetSelfMovement().ToString(), Color.green) + " sur la gauche.");
+                                listLogsPreview.Add(thisActor.name + " va se déplacer de " + GetColorText(thisStats.move.ToString(), Color.green) + " sur la gauche.");
                             }
                         }
                     }
@@ -470,10 +189,10 @@ public class C_ActionButton : MonoBehaviour
                 if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
                 {
                     //Pour toutes les list de stats.
-                    foreach (Stats thisStats in thisInteraction.listStats)
+                    foreach (TargetStats thisStats in thisInteraction.listTargetStats)
                     {
                         //Check si sont enum est égale à "Movement".
-                        if (thisStats.whatStatsTarget == Stats.ETypeStatsTarget.Movement)
+                        if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                         {
                             if (thisStats.move.whatMove == Move.ETypeMove.SwitchWithActor)
                             {
@@ -484,8 +203,8 @@ public class C_ActionButton : MonoBehaviour
                             }
                             else if (thisStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
                             {
-                                if(thisStats.move.accessories != null)
-                                listLogsPreview.Add(thisActor.name + " va échanger sa place avec " + GetColorText(thisStats.move.accessories.name, Color.green) + ".");
+                                if (thisStats.move.accessories != null)
+                                    listLogsPreview.Add(thisActor.name + " va échanger sa place avec " + GetColorText(thisStats.move.accessories.name, Color.green) + ".");
 
                                 else { Debug.LogWarning(thisStats.move.accessories); }
                             }
@@ -495,18 +214,6 @@ public class C_ActionButton : MonoBehaviour
             }
         }
         #endregion
-        #endregion
-
-
-        //Prépare le texte de la preview.
-        foreach (var thisText in listLogsPreview)
-        {
-            logsPreview += thisText;
-            logsPreview += "\n";
-        }
-
-        //Envoie le résultat.
-        return logsPreview;
     }
 
     //Cache toutes les preview.
@@ -526,7 +233,7 @@ public class C_ActionButton : MonoBehaviour
         //Check si il y a "other".
         if (CheckOtherInAction())
         {
-            ActiveOtherPreviewUi(otherActor, thisActor, GetOtherMovement(), this);
+            //ActiveOtherPreviewUi(otherActor, thisActor, GetOtherMovement(), this);
         }
     }
 

@@ -22,15 +22,29 @@ MonoBehaviour:
     canMakeByOneActor: 1
     whatActor: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    whatDirectionTarget: 1
+  - whatTarget: 1
+    whatDirectionTarget: 3
     range: 0
     listStats:
-    - whatStatsTarget: 0
+    - whatStatsTarget: 1
       listPrice:
       - whatPrice: 1
         price: 0
-      listGain: []
+      listGain:
+      - whatGain: 1
+        gain: 0
+      move:
+        whatMove: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+    - whatStatsTarget: 1
+      listPrice:
+      - whatPrice: 1
+        price: 0
+      listGain:
+      - whatGain: 2
+        gain: 0
       move:
         whatMove: 0
         nbMove: 0
