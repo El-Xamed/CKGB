@@ -100,6 +100,9 @@ public class C_Challenge : MonoBehaviour
             //Cache tout les autres preview.
             eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().HideUiStatsPreview(myTeam);
 
+            //Active une fonction qui affiche toutes les preview de stats sur les actor.
+            eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowUiStatsPreview(myTeam, currentActor);
+
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);

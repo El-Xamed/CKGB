@@ -56,6 +56,7 @@ public class C_Stats : MonoBehaviour
         ActiveSelfPreviewUi(thisActor, thisActionButon);
     }
 
+    //MODIFER LA FONCTION POUR QU'IL RECUPERE LES BONNE INFO (QUE SE SOIT "SELF" OU "OTHER").
     public void ActiveSelfPreviewUi(C_Actor thisActor, C_ActionButton thisActionButon)
     {
         calmJaugePreview.gameObject.SetActive(true);
