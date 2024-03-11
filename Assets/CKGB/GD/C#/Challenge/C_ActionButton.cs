@@ -39,7 +39,7 @@ public class C_ActionButton : MonoBehaviour
             }
         }
 
-        Debug.Log("ATTENTION : Cette action ne possède pas de prix d'énergie ! La valeur renvoyé sera de 0.");
+        Debug.Log("ATTENTION : Cette action ne possède pas de prix " + statsTarget + " ! La valeur renvoyé sera de 0.");
 
         return 0;
     }
@@ -49,7 +49,7 @@ public class C_ActionButton : MonoBehaviour
         //Pour toutes les liste d'action.
         foreach (Interaction thisInteraction in actionClass.listInteraction)
         {
-            //Check si sont enum est égale à "Self".
+            //Check si sont enum est égale à "Other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
                 return thisInteraction.range;
@@ -124,7 +124,7 @@ public class C_ActionButton : MonoBehaviour
     //Pour récupérer le texte pour la preview des stats.
     public string GetLogsPreview(List<C_Actor> team, C_Actor thisActor)
     {
-        
+        listLogsPreview = new List<string>();
         string logsPreview = "";
 
         //Créer la liste pour "self"
@@ -271,34 +271,48 @@ public class C_ActionButton : MonoBehaviour
                     //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
                     case Interaction.ETypeDirectionTarget.Right:
                         //Calcul vers la droite.
-                        if (thisActor.GetPosition() + i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
-                        }
+                        CheckPositionOther(i, thisOtherActor);
+                        Debug.Log("Direction Range = droite.");
                         break;
                     case Interaction.ETypeDirectionTarget.Left:
                         //Calcul vers la gauche.
-                        if (thisActor.GetPosition() - i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
-                        }
+                        CheckPositionOther(-i, thisOtherActor);
+                        Debug.Log("Direction Range = Gauche.");
                         break;
                     case Interaction.ETypeDirectionTarget.RightAndLeft:
                         //Calcul vers la droite + gauche.
-                        if (thisActor.GetPosition() + i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
-                        }
-                        if (thisActor.GetPosition() - i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
-                        }
+                        CheckPositionOther(i, thisOtherActor);
+                        CheckPositionOther(-i, thisOtherActor);
+                        Debug.Log("Direction Range = droite + gauche.");
                         break;
                 }
+            }
+        }
+
+        //Check si il est à bout du plateau.
+        void CheckPositionOther(int position, C_Actor target)
+        {
+            if (thisActor.GetPosition() + position >= otherActor.Count - 1)
+            {
+                if (0 + position == target.GetPosition() && target != thisActor)
+                {
+                    GetLogsPreviewTarget(Interaction.ETypeTarget.Other, target);
+                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+                }
+            }
+            else if (thisActor.GetPosition() + position <= 0)
+            {
+                if (0 + position == target.GetPosition() && target != thisActor)
+                {
+                    GetLogsPreviewTarget(Interaction.ETypeTarget.Other, target);
+                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+                    
+                }
+            }
+            else if (thisActor.GetPosition() + position == target.GetPosition() && target != thisActor)
+            {
+                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, target);
+                Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
             }
         }
     }
@@ -338,10 +352,12 @@ public class C_ActionButton : MonoBehaviour
             //Check si sont enum est égale à "Self".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
+                Debug.Log("D'autres actor peuvent etre impacté !");
                 return true;
             }
         }
 
+        Debug.Log("Aucun autre actor peuvent etre impacté !");
         return false;
     }
 
