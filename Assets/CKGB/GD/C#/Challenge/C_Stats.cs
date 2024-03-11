@@ -59,6 +59,7 @@ public class C_Stats : MonoBehaviour
     //MODIFER LA FONCTION POUR QU'IL RECUPERE LES BONNE INFO (QUE SE SOIT "SELF" OU "OTHER").
     public void ActiveSelfPreviewUi(C_Actor thisActor, C_ActionButton thisActionButon)
     {
+        /*
         calmJaugePreview.gameObject.SetActive(true);
 
         if (thisActor.GetCurrentStress() >= thisActionButon.GetSelfPriceCalm())
@@ -70,6 +71,7 @@ public class C_Stats : MonoBehaviour
         {
             Debug.Log("Prix de stress trop élevé !");
         }
+        */
     }
 
     public void DesactivedAllPreview()

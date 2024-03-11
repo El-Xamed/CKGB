@@ -105,7 +105,7 @@ public class C_Challenge : MonoBehaviour
 
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
-            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
+            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor);
 
             //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetEnergy().ToString();
         }
@@ -297,7 +297,7 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     public void WriteStatsPreview()
     {
-        uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(currentActor);
+        uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor);
     }
 
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.

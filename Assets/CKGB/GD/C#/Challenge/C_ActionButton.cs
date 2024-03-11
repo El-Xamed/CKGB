@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class C_ActionButton : MonoBehaviour
 {
@@ -43,8 +44,41 @@ public class C_ActionButton : MonoBehaviour
         return 0;
     }
 
+    int GetRange()
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "Self".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            {
+                return thisInteraction.range;
+            }
+        }
+
+        return 0;
+    }
+
     //Fonction qui renvoie le parametre de mouvement.
-    public int GetMovement(Interaction.ETypeTarget actorTarget)
+    Interaction.ETypeDirectionTarget GetTypeDirectionRange()
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "other".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            {
+                return thisInteraction.whatDirectionTarget;
+            }
+        }
+
+        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
+
+        return 0;
+    }
+
+    //Fonction qui renvoie le nombre de mouvement pour déplacer "other".
+    int GetMovement(Interaction.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
         foreach (Interaction thisInteraction in actionClass.listInteraction)
@@ -88,7 +122,7 @@ public class C_ActionButton : MonoBehaviour
     #endregion
 
     //Pour récupérer le texte pour la preview des stats.
-    public string GetLogsPreview(C_Actor thisActor)
+    public string GetLogsPreview(List<C_Actor> team, C_Actor thisActor)
     {
         
         string logsPreview = "";
@@ -96,6 +130,11 @@ public class C_ActionButton : MonoBehaviour
         //Créer la liste pour "self"
         GetLogsPreviewTarget(Interaction.ETypeTarget.Self, thisActor);
 
+        //
+        if (CheckOtherInAction())
+        {
+            GetOtherLogsPreview(team, thisActor, GetRange());
+        }
 
         //Prépare le texte de la preview.
         foreach (var thisText in listLogsPreview)
@@ -216,6 +255,56 @@ public class C_ActionButton : MonoBehaviour
         #endregion
     }
 
+    
+    //Affiche une preview sur les autres actor. A REPRENDRE LUNDI !!!
+    void GetOtherLogsPreview(List<C_Actor> otherActor, C_Actor thisActor, int range)
+    {
+        //Boucle avec le range.
+        for (int i = 0; i < range; i++)
+        {
+            //Boucle pour check sur tout les actor du challenge.
+            foreach (C_Actor thisOtherActor in otherActor)
+            {
+                //Check quel direction la range va faire effet.
+                switch (GetTypeDirectionRange())
+                {
+                    //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                    case Interaction.ETypeDirectionTarget.Right:
+                        //Calcul vers la droite.
+                        if (thisActor.GetPosition() + i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
+                        {
+                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
+                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
+                        }
+                        break;
+                    case Interaction.ETypeDirectionTarget.Left:
+                        //Calcul vers la gauche.
+                        if (thisActor.GetPosition() - i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
+                        {
+                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
+                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
+                        }
+                        break;
+                    case Interaction.ETypeDirectionTarget.RightAndLeft:
+                        //Calcul vers la droite + gauche.
+                        if (thisActor.GetPosition() + i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
+                        {
+                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
+                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
+                        }
+                        if (thisActor.GetPosition() - i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
+                        {
+                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, thisOtherActor);
+                            Debug.Log(thisOtherActor.name + " à été trouvé ! à la position: " + thisOtherActor.GetPosition());
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+
+    #region Affiche preview sur les stats
     //Cache toutes les preview.
     public void HideUiStatsPreview(List<C_Actor> listActor)
     {
@@ -236,24 +325,9 @@ public class C_ActionButton : MonoBehaviour
             //ActiveOtherPreviewUi(otherActor, thisActor, GetOtherMovement(), this);
         }
     }
+    #endregion
 
-    //Affiche une preview sur les autres actor.
-    public void ActiveOtherPreviewUi(List<C_Actor> otherActor, C_Actor thisActor, int range, C_ActionButton thisActionButon)
-    {
-        //Boucle avec le range.
-        for (int i = 0; i < range; i++)
-        {
-            //Boucle pour check sur tout les actor du challenge.
-            foreach (C_Actor thisOtherActor in otherActor)
-            {
-                //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                if (thisActor.GetPosition() + i == thisOtherActor.GetPosition() && thisOtherActor != thisActor)
-                {
-                    thisOtherActor.GetUiStats().ActiveSelfPreviewUi(thisOtherActor, thisActionButon);
-                }
-            }
-        }
-    }
+
 
     //Check si dans la config de cette action, des paramètre "other" existe.
     bool CheckOtherInAction()
