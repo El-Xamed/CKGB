@@ -73,6 +73,7 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField]TextAsset inkAssetIntro;
     [SerializeField] Story _intro;
     [SerializeField] Story _outro;
+    [SerializeField] TMP_Text naratteur;
 
     #endregion
     #region variables de retour en arrière
@@ -279,7 +280,8 @@ public class C_TempsMort : MonoBehaviour
                             //Changement de parent
                             thisActor.transform.parent = listCharactersPositions[position.position].transform;
                             thisActor.transform.position = thisActor.transform.parent.transform.position;
-                            thisActor.transform.localScale = Vector3.one;
+                            thisActor.transform.localScale = new Vector3(0.65f,0.65f,0.65f);
+                            //thisActor.transform.localScale = Vector3.one;
 
                             // Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
                             thisActor.GetComponent<C_Actor>().SetPosition(position.position);
@@ -344,6 +346,11 @@ public class C_TempsMort : MonoBehaviour
             characters[i].transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
             characters[i].transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().enabled = false;
             characters[i].transform.GetChild(2).transform.GetChild(1).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetChild(2).transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetChild(0).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetChild(4).GetComponent<Image>().enabled = false;
             characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i]; charactersLittleResume[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().smallResume;
             characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
             characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
