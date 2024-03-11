@@ -342,6 +342,8 @@ public class C_TempsMort : MonoBehaviour
         for(int i=0;i<characters.Count;i++)
         {
             characters[i].transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+            characters[i].transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetChild(2).transform.GetChild(1).GetComponent<Image>().enabled = false;
             characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i]; charactersLittleResume[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().smallResume;
             characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
             characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
