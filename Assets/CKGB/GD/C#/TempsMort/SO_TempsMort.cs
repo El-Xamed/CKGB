@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ink.Runtime;
 
 [CreateAssetMenu(fileName = "New TM", menuName = "ScriptableObjects/TempsMort", order = 1)]
 
 public class SO_TempsMort : ScriptableObject
 {
     #region DATA
-
+    [Header("Data Temps Mort")]
     [SerializeField] public Sprite TMbackground;
     [SerializeField] public GameObject[] Team;
     [SerializeField] public InitialActorPosition[] startPos;
+
+    [Header("Dialogues")]
+    [SerializeField] Story intro;
+    [SerializeField] Story Outro;
+
+
 
     #endregion
     [System.Serializable]

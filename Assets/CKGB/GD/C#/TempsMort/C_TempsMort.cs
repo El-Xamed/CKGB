@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SO_TempsMort;
+using Ink.Runtime;
 
 public class C_TempsMort : MonoBehaviour
 {
@@ -68,6 +69,11 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField]
     bool isAnActionButton = false;
 
+    [Header("Histoires")]
+    [SerializeField]TextAsset inkAssetIntro;
+    [SerializeField] Story _intro;
+    [SerializeField] Story _outro;
+
     #endregion
     #region variables de retour en arrière
     [SerializeField] List<GameObject> ActionToAdd = new List<GameObject>();
@@ -80,9 +86,8 @@ public class C_TempsMort : MonoBehaviour
     #endregion
 
     private void Awake()
-    {
-        SetDataTM();
-        
+    {  
+       // _intro = new Story(inkAssetIntro.text);
     }
     // Start is called before the first frame update
     void Start()
@@ -142,10 +147,7 @@ public class C_TempsMort : MonoBehaviour
             {
                 selectedActionButton = currentButton;
             }
-            if(isAnActionButton==false)
-            {
-                selectedActionButton = null;
-            }
+
 
         }
         if (characterHasPlayed[0] == false && characterHasPlayed[1] == false && characterHasPlayed[2] == false)
@@ -265,24 +267,28 @@ public class C_TempsMort : MonoBehaviour
                 //Récupère les info du GameManager
                 foreach (var thisActor in GameManager.instance.GetTeam())
                 {
-                    //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
-                    if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                    if(thisActor.GetComponent<C_Actor>()!=null)
                     {
-                        //Ini data actor.
-                        thisActor.GetComponent<C_Actor>().IniTempsMort();
+                        //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
+                        if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                        {
+                            //Ini data actor.
+                            thisActor.GetComponent<C_Actor>().IniTempsMort();
 
-                        //Placement des perso depuis le GameManager
-                        //Changement de parent
-                        thisActor.transform.parent = listCharactersPositions[position.position].transform;
-                        thisActor.transform.position = thisActor.transform.parent.transform.position;
-                       thisActor.transform.localScale = Vector3.one;
+                            //Placement des perso depuis le GameManager
+                            //Changement de parent
+                            thisActor.transform.parent = listCharactersPositions[position.position].transform;
+                            thisActor.transform.position = thisActor.transform.parent.transform.position;
+                            thisActor.transform.localScale = Vector3.one;
 
-                       // Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
-                        thisActor.GetComponent<C_Actor>().SetPosition(position.position);
+                            // Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
+                            thisActor.GetComponent<C_Actor>().SetPosition(position.position);
 
-                        characters.Add(thisActor);
-                        Debug.Log(thisActor);
+                            characters.Add(thisActor);
+                            Debug.Log(thisActor);
+                        }
                     }
+                    
                 }
             }
         }
@@ -335,7 +341,7 @@ public class C_TempsMort : MonoBehaviour
     {
         for(int i=0;i<characters.Count;i++)
         {
-            characters[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+            characters[i].transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
             characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i]; charactersLittleResume[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().smallResume;
             characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
             characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
@@ -571,8 +577,13 @@ public class C_TempsMort : MonoBehaviour
                     if (ActionToAdd[actiontoaddID] != null && ActionToAdd[actiontoaddID] == actions[0] && charactersButton[1].activeSelf == true)
                     {
                         Debug.Log("retour aux personnages après avoir papoté");
-                        actorActif = LastCharacterThatPlayed[charactertoaddID];
-                        faitesunchoix.SetActive(true);
+                   
+                    actorActif = LastCharacterThatPlayed[charactertoaddID];
+                    actorActif.GetComponent<C_Actor>().ReducePointTrait();
+                    Debug.Log("(retour)Points de trait du papoteur : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait());
+                    Papoteur.GetComponent<C_Actor>().ReducePointTrait();
+                    Debug.Log("(retour)Points de trait du papoté : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait());
+                    faitesunchoix.SetActive(true);
                         faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[LastCharacterThatPlayed.Count - 1].GetComponent<C_Actor>().name + " ?";
                         for (int i = 0; i < characters.Count; i++)
                         {
@@ -600,6 +611,8 @@ public class C_TempsMort : MonoBehaviour
                     {
                         Debug.Log("retour aux personnages après avoir révassé");
                         actorActif = LastCharacterThatPlayed[charactertoaddID];
+                    actorActif.GetComponent<C_Actor>().ReduceMaxStress();
+                    Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
                         faitesunchoix.SetActive(true);
                         faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().name + " ?";
                         for (int i = 0; i < characters.Count; i++)
@@ -627,6 +640,8 @@ public class C_TempsMort : MonoBehaviour
                     {
                         Debug.Log("retour aux personnages après avoir fait l'autre truc");
                         actorActif = LastCharacterThatPlayed[charactertoaddID];
+                    actorActif.GetComponent<C_Actor>().ReduceMaxEnergy();
+                    Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
                         faitesunchoix.SetActive(true);
                         Debug.Log(faitesunchoix.activeSelf);
                         faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().name + " ?";
@@ -655,7 +670,7 @@ public class C_TempsMort : MonoBehaviour
                
 
                 }
-  
+            UpdateCharacterStat();
             if (characterHasPlayed[0] == true && characterHasPlayed[1] == true && characterHasPlayed[2] == true)
             {
 
@@ -665,8 +680,12 @@ public class C_TempsMort : MonoBehaviour
         }
      
     }
-    public void SetDataTM()
+    public void StartDialogue()
     {
-        return;
+
+    }
+    public SO_TempsMort GetDataTM()
+    {
+        return TM;
     }
 }

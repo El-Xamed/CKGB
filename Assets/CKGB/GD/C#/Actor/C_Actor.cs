@@ -48,10 +48,10 @@ public class C_Actor : MonoBehaviour
             dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours + 1];
             dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
         }
-        
+
 
         //Setup le contoure blanc.
-        transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
+        transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
         IsSelected(false);
     }
 
@@ -66,9 +66,9 @@ public class C_Actor : MonoBehaviour
         currentEnergy = dataActor.energyMax;
 
         //Sprite
-        GetComponent<Image>().sprite = dataActor.challengeSprite;
-        GetComponent<Image>().preserveAspect = true;
-        GetComponent<Image>().useSpriteMesh = true;
+        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
+        transform.GetChild(2).GetComponent<Image>().preserveAspect = true;
+        transform.GetChild(2).GetComponent<Image>().useSpriteMesh = true;
 
         CheckIsOut();
 
@@ -114,11 +114,11 @@ public class C_Actor : MonoBehaviour
         {
             if (thisCase == position)
             {
-                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
             }
             else if (isOut)
             {
-                GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
             }
         }
     }
@@ -127,11 +127,11 @@ public class C_Actor : MonoBehaviour
     {
         if (isSelected)
         {
-            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
@@ -143,21 +143,21 @@ public class C_Actor : MonoBehaviour
         {
             isOut = true;
 
-            GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
+            transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
 
-            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(true);
         }
         else
         {
             isOut = false;
 
             //Check si le sprite est déjà possé.
-            if (GetComponent<Image>().sprite != dataActor.challengeSprite && GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
+            if (transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSprite && transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
             {
-                GetComponent<Image>().sprite = dataActor.challengeSprite;
+                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
             }
 
-            transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(false);
         }
     }
     #endregion
@@ -166,11 +166,11 @@ public class C_Actor : MonoBehaviour
     public void IniWorldMap()
     {
         //Sprite
-        GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
+        transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
     }
     public void IniTempsMort()
     {
-        GetComponent<Image>().sprite = dataActor.MapTmSprite;
+        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.MapTmSprite;
     }
 
     #endregion
@@ -219,6 +219,10 @@ public class C_Actor : MonoBehaviour
     {
         dataActor.stressMax++;
     }
+    public void ReduceMaxStress()
+    {
+        dataActor.stressMax--;
+    }
 
     public int GetcurrentEnergy()
     {
@@ -236,6 +240,10 @@ public class C_Actor : MonoBehaviour
     {
         dataActor.energyMax++;
     }
+    public void ReduceMaxEnergy()
+    {
+        dataActor.energyMax--;
+    }
     public int GetCurrentPointTrait()
     {
         return currentPointTrait;
@@ -243,6 +251,20 @@ public class C_Actor : MonoBehaviour
     public void SetCurrentPointTrait()
     {
          currentPointTrait++;
+    }
+    public void ReducePointTrait()
+    {
+        currentPointTrait--;
+        if(currentPointTrait==-1)
+        {
+            currentPointTrait = 0;
+            if(dataActor.listNewTraits!=null)
+            {
+                dataActor.listNewTraits.RemoveAt(dataActor.listNewTraits.Count - 1);
+            }
+            dataActor.idTraitEnCours--;
+            dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];
+        }
     }
     public void ResetPointTrait()
     {
