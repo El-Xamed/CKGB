@@ -11,6 +11,7 @@ public class MoveDrawer : PropertyDrawer
     {
         //Récupération des info.
         SerializedProperty move = property.FindPropertyRelative("whatMove");
+        SerializedProperty isTp = property.FindPropertyRelative("isTp");
         SerializedProperty nbMove = property.FindPropertyRelative("nbMove");
         SerializedProperty actor = property.FindPropertyRelative("actor");
         SerializedProperty acc = property.FindPropertyRelative("accessories");
@@ -18,9 +19,15 @@ public class MoveDrawer : PropertyDrawer
         //Rect
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
+        float isTpHeight = EditorGUI.GetPropertyHeight(isTp);
+
         Rect statsRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 
-        Rect targetRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect nbMoveRect = new Rect(position.x, position.y + isTpHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+
+        Rect switchRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+
+        Rect isTpRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -32,15 +39,17 @@ public class MoveDrawer : PropertyDrawer
 
         if (moveTarget != ETypeMove.None && moveTarget != ETypeMove.SwitchWithActor && moveTarget != ETypeMove.SwitchWithAcc)
         {
-            EditorGUI.PropertyField(targetRect, nbMove, new GUIContent("Nombre of Move"));
+            EditorGUI.PropertyField(isTpRect, isTp, new GUIContent("Téléporte l'acteur ?"));
+
+            EditorGUI.PropertyField(nbMoveRect, nbMove, new GUIContent("Nombre of Move"));
         }
         else if (moveTarget == ETypeMove.SwitchWithActor)
         {
-            EditorGUI.PropertyField(targetRect, actor, new GUIContent("With what Actor ?"));
+            EditorGUI.PropertyField(switchRect, actor, new GUIContent("With what Actor ?"));
         }
         else if (moveTarget == ETypeMove.SwitchWithAcc)
         {
-            EditorGUI.PropertyField(targetRect, acc, new GUIContent("With what Accessorie ?"));
+            EditorGUI.PropertyField(switchRect, acc, new GUIContent("With what Accessorie ?"));
         }
 
         EditorGUI.EndProperty();
@@ -49,16 +58,19 @@ public class MoveDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         SerializedProperty whatMove = property.FindPropertyRelative("whatMove");
+        SerializedProperty isTp = property.FindPropertyRelative("isTp");
 
         float moveHeight = EditorGUI.GetPropertyHeight(whatMove);
+        float isTpHeight = EditorGUI.GetPropertyHeight(isTp);
 
         ETypeMove moveTarget = (ETypeMove)whatMove.enumValueIndex;
+        bool boolIsTp = isTp.boolValue;
 
-        if (moveTarget != ETypeMove.None)
+        if (moveTarget != ETypeMove.None && moveTarget != ETypeMove.SwitchWithActor && moveTarget != ETypeMove.SwitchWithAcc)
         {
-            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight;
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight + isTpHeight;
         }
 
-        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight;
     }
 }

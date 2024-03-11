@@ -66,9 +66,19 @@ public class C_Actor : MonoBehaviour
         currentEnergy = dataActor.energyMax;
 
         //Sprite
+        //Desactivation des child. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        //Active le gameObject qui contien le sprite du coolkid. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
+        transform.GetChild(2).gameObject.SetActive(true);
+
         transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
         transform.GetChild(2).GetComponent<Image>().preserveAspect = true;
         transform.GetChild(2).GetComponent<Image>().useSpriteMesh = true;
+
 
         CheckIsOut();
 
@@ -138,7 +148,6 @@ public class C_Actor : MonoBehaviour
     //Check si le joueur est encore jouable.
     public void CheckIsOut()
     {
-
         if (currentStress <= 0)
         {
             isOut = true;

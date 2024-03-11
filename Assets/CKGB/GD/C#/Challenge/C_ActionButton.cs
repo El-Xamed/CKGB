@@ -59,6 +59,56 @@ public class C_ActionButton : MonoBehaviour
         return 0;
     }
 
+    C_Actor GetSwitchActor(Interaction.ETypeTarget actorTarget)
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "actorTarget".
+            if (thisInteraction.whatTarget == actorTarget)
+            {
+                //Pour toutes les list de stats.
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    //Check si sont enum est égale à "statsTarget".
+                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
+                    {
+                        return thisTargetStats.move.actor;
+                    }
+                }
+            }
+        }
+
+        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
+
+        return null;
+    }
+
+    C_Accessories GetSwitchAcc(Interaction.ETypeTarget actorTarget)
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "actorTarget".
+            if (thisInteraction.whatTarget == actorTarget)
+            {
+                //Pour toutes les list de stats.
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    //Check si sont enum est égale à "statsTarget".
+                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
+                    {
+                        return thisTargetStats.move.accessories;
+                    }
+                }
+            }
+        }
+
+        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
+
+        return null;
+    }
+
     //Fonction qui renvoie le parametre de mouvement.
     Interaction.ETypeDirectionTarget GetTypeDirectionRange()
     {
@@ -225,7 +275,7 @@ public class C_ActionButton : MonoBehaviour
             foreach (Interaction thisInteraction in actionClass.listInteraction)
             {
                 //Check si sont enum est égale à "Self".
-                if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+                if (thisInteraction.whatTarget == target)
                 {
                     //Pour toutes les list de stats.
                     foreach (TargetStats thisStats in thisInteraction.listTargetStats)
@@ -236,14 +286,14 @@ public class C_ActionButton : MonoBehaviour
                             if (thisStats.move.whatMove == Move.ETypeMove.SwitchWithActor)
                             {
                                 if (thisStats.move.actor != null)
-                                    listLogsPreview.Add(thisActor.name + " va échanger sa place avec " + GetColorText(thisStats.move.actor.name, Color.green) + ".");
+                                    listLogsPreview.Add(thisActor.name + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
 
                                 else { Debug.LogWarning(thisStats.move.actor); }
                             }
                             else if (thisStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
                             {
                                 if (thisStats.move.accessories != null)
-                                    listLogsPreview.Add(thisActor.name + " va échanger sa place avec " + GetColorText(thisStats.move.accessories.name, Color.green) + ".");
+                                    listLogsPreview.Add(thisActor.name + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
 
                                 else { Debug.LogWarning(thisStats.move.accessories); }
                             }
@@ -256,7 +306,7 @@ public class C_ActionButton : MonoBehaviour
     }
 
     
-    //Affiche une preview sur les autres actor. A REPRENDRE LUNDI !!!
+    //Affiche une preview sur les autres actor.
     void GetOtherLogsPreview(List<C_Actor> otherActor, C_Actor thisActor, int range)
     {
         //Boucle avec le range.

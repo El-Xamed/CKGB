@@ -32,7 +32,22 @@ MonoBehaviour:
     range: 5
     listTargetStats:
     - whatStatsTarget: 0
-      listStats: []
+      listStats:
+      - whatStats: 0
+        value: 2
+      move:
+        whatMove: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    whatDirectionTarget: 1
+    range: 5
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 3
       move:
         whatMove: 0
         nbMove: 0

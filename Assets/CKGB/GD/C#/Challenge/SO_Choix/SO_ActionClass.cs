@@ -109,6 +109,8 @@ public class Move
     public ETypeMove whatMove;
     public enum ETypeMove { None, Right, Left, SwitchWithActor, SwitchWithAcc };
 
+    public bool isTp;
+
     public int nbMove;
 
     //Pour echanger de place.
