@@ -314,6 +314,8 @@ public class C_ActionButton : MonoBehaviour
                 GetLogsPreviewTarget(Interaction.ETypeTarget.Other, target);
                 Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
             }
+
+            Debug.Log(thisActor.GetPosition() + position);
         }
     }
 
