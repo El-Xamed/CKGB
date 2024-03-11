@@ -22,29 +22,38 @@ MonoBehaviour:
     canMakeByOneActor: 1
     whatActor: {fileID: 0}
   listInteraction:
-  - whatTarget: 1
+  - whatTarget: 0
     whatDirectionTarget: 3
     range: 0
-    listStats:
-    - whatStatsTarget: 1
-      listPrice:
-      - whatPrice: 1
-        price: 0
-      listGain:
-      - whatGain: 1
-        gain: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 0
+        value: 2
+      - whatStats: 1
+        value: 1
       move:
         whatMove: 0
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
-    - whatStatsTarget: 1
-      listPrice:
-      - whatPrice: 1
-        price: 0
-      listGain:
-      - whatGain: 2
-        gain: 0
+    - whatStatsTarget: 2
+      listStats:
+      - whatStats: 0
+        value: 0
+      move:
+        whatMove: 1
+        nbMove: 2
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    whatDirectionTarget: 1
+    range: 3
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 4
       move:
         whatMove: 0
         nbMove: 0

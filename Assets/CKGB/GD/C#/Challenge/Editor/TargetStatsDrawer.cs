@@ -12,7 +12,7 @@ public class TargetStatsDrawer : PropertyDrawer
     {
         //Récupération des info.
         SerializedProperty stats = property.FindPropertyRelative("whatStatsTarget");
-        SerializedProperty listTargetStats = property.FindPropertyRelative("listTargetStats");
+        SerializedProperty listTargetStats = property.FindPropertyRelative("listStats");
         SerializedProperty move = property.FindPropertyRelative("move");
 
         //Rect
@@ -52,7 +52,7 @@ public class TargetStatsDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         SerializedProperty statsTarget = property.FindPropertyRelative("whatStatsTarget");
-        SerializedProperty listTargetStats = property.FindPropertyRelative("listTargetStats");
+        SerializedProperty listTargetStats = property.FindPropertyRelative("listStats");
         SerializedProperty move = property.FindPropertyRelative("move");
 
         float priceHeight = EditorGUI.GetPropertyHeight(listTargetStats, listTargetStats.isExpanded);

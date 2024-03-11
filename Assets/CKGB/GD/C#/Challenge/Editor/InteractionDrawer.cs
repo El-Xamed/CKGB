@@ -16,7 +16,7 @@ public class InteractionDrawer : PropertyDrawer
         SerializedProperty what = property.FindPropertyRelative("whatTarget");
 
         //List d'information pour "Self"
-        SerializedProperty stats = property.FindPropertyRelative("listStats");
+        SerializedProperty stats = property.FindPropertyRelative("listTargetStats");
         //List d'information pour "Other"
         SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
         SerializedProperty rangeOther = property.FindPropertyRelative("range");
@@ -91,7 +91,7 @@ public class InteractionDrawer : PropertyDrawer
     {
         SerializedProperty what = property.FindPropertyRelative("whatTarget");
         SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
-        SerializedProperty stats = property.FindPropertyRelative("listStats");
+        SerializedProperty stats = property.FindPropertyRelative("listTargetStats");
         SerializedProperty range = property.FindPropertyRelative("range");
 
         float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);

@@ -30,40 +30,11 @@ MonoBehaviour:
   - whatTarget: 0
     whatDirectionTarget: 1
     range: 5
-    listStats:
+    listTargetStats:
     - whatStatsTarget: 0
-      listPrice:
-      - whatPrice: 1
-        price: 5
-      - whatPrice: 2
-        price: 2
-      listGain:
-      - whatGain: 2
-        gain: 0
+      listStats: []
       move:
-        whatMove: 3
+        whatMove: 0
         nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    - whatStatsTarget: 1
-      listPrice: []
-      listGain:
-      - whatGain: 2
-        gain: 2
-      - whatGain: 1
-        gain: 8
-      move:
-        whatMove: 3
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    - whatStatsTarget: 2
-      listPrice: []
-      listGain:
-      - whatGain: 2
-        gain: 0
-      move:
-        whatMove: 1
-        nbMove: 2
         actor: {fileID: 0}
         accessories: {fileID: 0}
