@@ -107,7 +107,7 @@ public class Stats
 public class Move
 {
     public ETypeMove whatMove;
-    public enum ETypeMove { None, Right, Left, SwitchWithActor, SwitchWithAcc };
+    public enum ETypeMove { None, Right, Left, OnTargetCase, SwitchWithActor, SwitchWithAcc };
 
     public bool isTp;
 

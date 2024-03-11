@@ -37,11 +37,17 @@ public class MoveDrawer : PropertyDrawer
 
         ETypeMove moveTarget = (ETypeMove)move.enumValueIndex;
 
-        if (moveTarget != ETypeMove.None && moveTarget != ETypeMove.SwitchWithActor && moveTarget != ETypeMove.SwitchWithAcc)
+        if (moveTarget == ETypeMove.Right || moveTarget == ETypeMove.Left)
         {
             EditorGUI.PropertyField(isTpRect, isTp, new GUIContent("Téléporte l'acteur ?"));
 
             EditorGUI.PropertyField(nbMoveRect, nbMove, new GUIContent("Nombre of Move"));
+        }
+        else if (moveTarget == ETypeMove.OnTargetCase)
+        {
+            nbMoveRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+
+            EditorGUI.PropertyField(nbMoveRect, nbMove, new GUIContent("What target case ?"));
         }
         else if (moveTarget == ETypeMove.SwitchWithActor)
         {
@@ -64,9 +70,8 @@ public class MoveDrawer : PropertyDrawer
         float isTpHeight = EditorGUI.GetPropertyHeight(isTp);
 
         ETypeMove moveTarget = (ETypeMove)whatMove.enumValueIndex;
-        bool boolIsTp = isTp.boolValue;
 
-        if (moveTarget != ETypeMove.None && moveTarget != ETypeMove.SwitchWithActor && moveTarget != ETypeMove.SwitchWithAcc)
+        if (moveTarget == ETypeMove.Right || moveTarget == ETypeMove.Left)
         {
             return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight + isTpHeight;
         }
