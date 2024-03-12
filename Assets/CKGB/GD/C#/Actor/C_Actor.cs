@@ -85,6 +85,18 @@ public class C_Actor : MonoBehaviour
         Debug.Log("Init challenge : " + name);
     }
 
+    public void SetCurrentStatsPrice(int stressPrice, int energyPrice)
+    {
+        currentStress = currentStress - stressPrice;
+        currentEnergy = currentEnergy - energyPrice;
+    }
+
+    public void SetCurrentStatsGain(int stressGain, int energyGain)
+    {
+        currentStress = currentStress + stressGain;
+        currentEnergy = currentEnergy + energyGain;
+    }
+
     public void TakeDamage(int calm, int energy)
     {
         currentStress -= calm;

@@ -106,8 +106,6 @@ public class C_Challenge : MonoBehaviour
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor);
-
-            //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass().GetEnergy().ToString();
         }
     }
     #endregion
@@ -464,7 +462,7 @@ public class C_Challenge : MonoBehaviour
     //Création d'une class pour rassembler l'acteur et l'action.
     [Serializable] public class ActorResolution
     {
-        public SO_ActionClass action;
+        public C_ActionButton button;
         public C_Actor actor;
     }
 
@@ -479,6 +477,12 @@ public class C_Challenge : MonoBehaviour
         vfxResoTurn.GetComponent<Animator>().enabled = true;
 
         //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
+        //Lance la fonction d'application dans le script (a voir a la fin si c'est dans le SO_actionClass ou alors dans C_actionButton).
+        //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
+        currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
+
+
+        //A VOIR POUR SUPP UNE FOIS LE CODE AU DESSSUS FINI.
         //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
         if (currentResolution.action.CanUse(currentResolution.actor))
         {

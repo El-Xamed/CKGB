@@ -33,4 +33,6 @@ public class C_Accessories : MonoBehaviour
     {
         currentPosition = newPosition;
     }
+
+    public int GetPosition() { return  currentPosition; }
 }

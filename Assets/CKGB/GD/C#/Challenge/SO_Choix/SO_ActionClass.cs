@@ -24,16 +24,30 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Fonctions
-    public void UseAction(C_Actor thisActor, List<C_Case> listCase, List<C_Actor> myTeam)
-    {
-        Debug.Log("Use this actionClass : " + buttonText);
-    }
-
     //vérifie la condition si l'action fonctionne
     public bool CanUse(C_Actor thisActor)
     {
+        //Check si les codition bonus sont activé.
+        if (advancedCondition.advancedCondition)
+        {
+            //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
+            if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor != thisActor)
+            {
+                return false;
+            }
+
+            //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
+            if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() != thisActor.GetPosition())
+            {
+                return false;
+            }
+        }
+
+        //Condition de base.
+        //A VOIR AVEC PI LES AUTRES CONDITION CAR IL Y A PAS DE CONDITION POUR L'ENERGIE, VU QUE LE JOUEUR NE PEUT PAS CHOISIR L'ACTION SI IL NE POSSEDE PAS ASSEZ D'ENERGIE.
+
         currentLogs = LogsCantMakeAction;
-        return false;
+        return true;
     }
 
     //pour changer de mini étape
