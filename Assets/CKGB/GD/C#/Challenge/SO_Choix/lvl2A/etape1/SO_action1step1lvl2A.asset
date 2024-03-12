@@ -20,6 +20,7 @@ MonoBehaviour:
     pour toi, il semblerait qu\u2019il n\u2019y a aucun arbre mort au bord de la
     rivi\xE8re.  C\u2019\xE9tait un peu technique et tu as \xE9chou\xE9."
   LogsCantMakeAction: Pas possible
+  currentLogs: 
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -66,7 +67,7 @@ MonoBehaviour:
         actor: {fileID: 0}
         accessories: {fileID: 0}
   - whatTarget: 1
-    whatDirectionTarget: 1
+    whatDirectionTarget: 3
     range: 5
     listTargetStats:
     - whatStatsTarget: 0

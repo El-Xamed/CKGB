@@ -224,12 +224,12 @@ public class C_Challenge : MonoBehaviour
         //Fait spawn les acteurs/Acc.
         void SpawnActor(List<InitialActorPosition> listPosition)
         {
-            foreach (InitialActorPosition position in listPosition)
+            if (GameManager.instance)
             {
-                if (GameManager.instance)
+                //Récupère les info du GameManager
+                foreach (var thisActor in GameManager.instance.GetTeam())
                 {
-                    //Récupère les info du GameManager
-                    foreach (var thisActor in GameManager.instance.GetTeam())
+                    foreach (InitialActorPosition position in listPosition)
                     {
                         //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
                         if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
@@ -241,6 +241,7 @@ public class C_Challenge : MonoBehaviour
                             //Changement de parent
                             thisActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
                             thisActor.transform.localScale = Vector3.one;
+
                             //Centrage sur la case et position sur Y.
                             thisActor.transform.localPosition = Vector3.up * 300;
 
@@ -255,14 +256,26 @@ public class C_Challenge : MonoBehaviour
 
                             myTeam.Add(thisActor.GetComponent<C_Actor>());
                         }
+                        else
+                        {
+                            //Cache les actor qui ne seront pas présent dans ce challenge.
+                            thisActor.SetActive(false);
+                        }
                     }
                 }
-                else
+            }
+            else
+            {
+                foreach (InitialActorPosition position in listPosition)
                 {
                     //New actor
                     C_Actor myActor = Instantiate(position.perso);
                     myActor.IniChallenge();
                     myActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
+                    myActor.transform.localScale = Vector3.one;
+
+                    //Centrage sur la case et position sur Y.
+                    myActor.transform.localPosition = Vector3.up * 300;
 
                     //New Ui stats
                     C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);

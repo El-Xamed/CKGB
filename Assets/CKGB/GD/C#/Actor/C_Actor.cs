@@ -39,7 +39,9 @@ public class C_Actor : MonoBehaviour
         gameObject.name = dataActor.name; 
 
         dataActor = ScriptableObject.Instantiate(dataActor);
-        if(dataActor.listNewTraits[0]!=dataActor.listTraits[0])
+
+        //JE SAIS PAS C'EST QUOI A VOIR AVEC MAX.
+        if(dataActor.listNewTraits[0]!= dataActor.listTraits[0])
         {
             dataActor.nextTrait = dataActor.listTraits[0];
         }
@@ -49,9 +51,6 @@ public class C_Actor : MonoBehaviour
             dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours + 1];
             dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
         }
-
-
-       
     }
     private void Start()
     {

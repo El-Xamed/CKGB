@@ -166,9 +166,10 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < team.Count -1; i++)
         {
-            team[i].GetComponent<C_Actor>().SetPosition(initialPlayerPositionOnThisDestination[i]);
+            //team[i].GetComponent<C_Actor>().SetPosition(initialPlayerPositionOnThisDestination[i]);
         }
     }
+
     public void EnterDialogueMode(TextAsset InkJSON)
     {
         Debug.Log(InkJSON.name);

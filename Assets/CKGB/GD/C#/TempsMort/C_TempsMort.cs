@@ -286,7 +286,8 @@ public class C_TempsMort : MonoBehaviour
                             //thisActor.transform.localScale = Vector3.one;
 
                             // Debug.Log(thisActor.GetComponent<Image>().sprite.rect.width);
-                            thisActor.GetComponent<C_Actor>().SetPosition(position.position);
+                            //INUTILE !
+                            //thisActor.GetComponent<C_Actor>().SetPosition(position.position);
 
                             characters.Add(thisActor);
                             Debug.Log(thisActor);

@@ -1714,10 +1714,10 @@ MonoBehaviour:
   vfxCataTurn: {fileID: 0}
   myChallenge: {fileID: 11400000, guid: 989607bf5692fcc4f9e0bd4d180bd91a, type: 2}
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
-  myInterface: {fileID: 0}
+  myInterface: {fileID: 1867104798}
   currentStep: {fileID: 0}
   currentResolution:
-    action: {fileID: 0}
+    button: {fileID: 0}
     actor: {fileID: 0}
   uiLogs: {fileID: 530368893}
 --- !u!114 &599995160
@@ -1833,6 +1833,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8658b0c6-8ba6-4752-98e8-dbe8ce58fdb9
     m_ActionName: Challenge/Submit[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 942d176b-0b8d-4683-a4c1-50ce05785591
+    m_ActionName: TempsMort/Back[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge
@@ -3605,6 +3609,7 @@ MonoBehaviour:
   background: {fileID: 0}
   Es: {fileID: 0}
   currentButton: {fileID: 0}
+  selectedActionButton: {fileID: 0}
   actorActif: {fileID: 0}
   Papoteur: {fileID: 0}
   aquiletour: {fileID: 0}
@@ -3612,6 +3617,15 @@ MonoBehaviour:
   papoteravec: {fileID: 0}
   characterHasPlayed: 
   isAnActionButton: 0
+  inkAssetIntro: {fileID: 0}
+  _intro: {fileID: 0}
+  _outro: {fileID: 0}
+  naratteur: {fileID: 0}
+  ActionToAdd: []
+  LastCharacterThatPlayed: []
+  actiontoaddID: -1
+  charactertoaddID: -1
+  nobodyHasPlayed: 1
 --- !u!1001 &1245365848
 PrefabInstance:
   m_ObjectHideFlags: 0
