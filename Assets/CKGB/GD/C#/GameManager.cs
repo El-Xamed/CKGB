@@ -217,7 +217,9 @@ public class GameManager : MonoBehaviour
                          else if(tagValue=="Narrateur")
                         {
                             textToWriteIn.text = "";
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             textToWriteIn = TM.naratteur;
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                         }
                     }
                     break;
@@ -227,19 +229,27 @@ public class GameManager : MonoBehaviour
                     {
                         case "HautGauche":
                             textToWriteIn.text = "";
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             textToWriteIn = CharacterTalking.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             break;
                         case "HautDroite":
                             textToWriteIn.text = "";
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             textToWriteIn = CharacterTalking.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             break;
                         case "BasGauche":
                             textToWriteIn.text = "";
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             textToWriteIn = CharacterTalking.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             break;
                         case "BasDroite":
                             textToWriteIn.text = "";
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             textToWriteIn = CharacterTalking.transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
                             break;
 
                     }

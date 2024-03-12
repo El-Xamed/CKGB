@@ -12,6 +12,7 @@ public class C_Actor : MonoBehaviour
     int position;
 
     [SerializeField] SO_Character dataActor;
+    [SerializeField] List<GameObject> bulles = new List<GameObject>();
 
     [Header("Stats")]
     //Si l'actor peut encore jouer.
@@ -48,7 +49,13 @@ public class C_Actor : MonoBehaviour
             dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours + 1];
             dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
         }
-
+        if(bulles==null)
+        {
+            bulles.Add(gameObject.transform.GetChild(0).gameObject);
+            bulles.Add(gameObject.transform.GetChild(1).gameObject);
+            bulles.Add(gameObject.transform.GetChild(3).gameObject);
+            bulles.Add(gameObject.transform.GetChild(4).gameObject);
+        }
 
         //Setup le contoure blanc.
         transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
@@ -295,6 +302,18 @@ public class C_Actor : MonoBehaviour
     public bool GetIsOut()
     {
         return isOut;
+    }
+    public void CheckBulle()
+    {
+        for(int i=0;i<bulles.Count;i++)
+        {
+            if (bulles[i].GetComponentInChildren<TMP_Text>().text == "")
+            {
+                bulles[i].SetActive(false);
+            }
+            else
+                bulles[i].SetActive(true);
+        }
     }
 
     #endregion
