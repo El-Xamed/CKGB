@@ -39,7 +39,7 @@ public class C_Actor : MonoBehaviour
         gameObject.name = dataActor.name; 
 
         dataActor = ScriptableObject.Instantiate(dataActor);
-        if(dataActor.listNewTraits==null)
+        if(dataActor.listNewTraits[0]!=dataActor.listTraits[0])
         {
             dataActor.nextTrait = dataActor.listTraits[0];
         }
@@ -49,17 +49,21 @@ public class C_Actor : MonoBehaviour
             dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours + 1];
             dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
         }
-        if(bulles==null)
-        {
-            bulles.Add(gameObject.transform.GetChild(0).gameObject);
-            bulles.Add(gameObject.transform.GetChild(1).gameObject);
-            bulles.Add(gameObject.transform.GetChild(3).gameObject);
-            bulles.Add(gameObject.transform.GetChild(4).gameObject);
-        }
 
+
+       
+    }
+    private void Start()
+    {
         //Setup le contoure blanc.
         transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
         IsSelected(false);
+
+        bulles.Add(gameObject.transform.GetChild(0).gameObject);
+        Debug.Log(gameObject.transform.GetChild(0).gameObject.name);
+        bulles.Add(gameObject.transform.GetChild(1).gameObject);
+        bulles.Add(gameObject.transform.GetChild(3).gameObject);
+        bulles.Add(gameObject.transform.GetChild(4).gameObject);
     }
 
     #region Mes fonctions
