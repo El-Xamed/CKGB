@@ -133,30 +133,7 @@ public class C_Interface : MonoBehaviour
             //Pour Update ResoTrun
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
             {
-                if (myChallenge.GetListResolutions().IndexOf(myChallenge.GetCurrentResolution()) < myChallenge.GetListResolutions().Count - 1)
-                {
-                    //Reféfinis "currentResolution" avec 'index de base + 1.
-                    myChallenge.SetCurrentResolution(myChallenge.GetListResolutions()[myChallenge.GetListResolutions().IndexOf(myChallenge.GetCurrentResolution()) + 1]);
-
-                    myChallenge.ResolutionTurn();
-                }
-                else
-                {
-                    Debug.Log("Fin de la phase de réso !");
-                    /*
-                    //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
-                    if (canUpdateEtape)
-                    {
-                        myChallenge.stepUpdate();
-
-                        canUpdateEtape = false;
-                    }
-
-                    UpdateAccessories();
-                    //Lance la phase "Cata".
-                    Invoke("CataTrun", 0.5f);
-                    */
-                }
+                myChallenge.NextResolution();
             }
         }
     }

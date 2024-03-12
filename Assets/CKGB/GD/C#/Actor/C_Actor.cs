@@ -52,6 +52,7 @@ public class C_Actor : MonoBehaviour
             dataActor.traitToWrite = dataActor.listNewTraits[dataActor.idTraitEnCours];
         }
     }
+
     private void Start()
     {
         //Setup le contoure blanc.

@@ -349,30 +349,34 @@ public class C_Challenge : MonoBehaviour
 
     void PlayerTrun()
     {
+        Debug.Log("Player turn !");
+
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
+        //Check si dans la phase de résolution un actor à trouvé la bonne action.
+        if (CheckIfGetGoodAction())
+        {
+            stepUpdate();
+        }
+
+        //Vide la listeReso
+        listRes = new List<ActorResolution>();
 
         //Initialise la prochaine cata.
         InitialiseCata();
 
-        //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
+        //Joue l'animation.
         vfxPlayerTurn.GetComponent<Animator>().enabled = true;
 
         //Check si le perso est jouable
         if (!currentActor.GetIsOut())
         {
-            Debug.Log("Player turn !");
-
+            //Pour effacer le texte de la cata.
             uiLogs.text = "";
 
             //Update le contour blanc
             UpdateActorSelected();
-
-            //Vide la listeReso
-            listRes = new List<ActorResolution>();
-
-            //Met a jour le curseur des actions.
-            //UpdateActionSelected();
         }
         else
         {
@@ -476,7 +480,47 @@ public class C_Challenge : MonoBehaviour
         public C_Actor actor;
     }
 
-    public void ResolutionTurn()
+    //Fonction appelé par "C_Interface" pour passer à la résolution suivante.
+    public void NextResolution()
+    {
+        if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
+        {
+            //Reféfinis "currentResolution" avec 'index de base + 1.
+            currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+
+            ResolutionTurn();
+        }
+        else
+        {
+            Debug.Log("Fin de la phase de réso !");
+
+            
+
+            UpdateAccessories();
+            //Lance la phase "Cata".
+            Invoke("CataTrun", 0.5f);
+        }
+    }
+
+    bool CheckIfGetGoodAction()
+    {
+        foreach (ActorResolution thisReso in listRes)
+        {
+            //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
+            if (thisReso.button.GetActionClass() == currentStep.rightAnswer)
+            {
+                Debug.Log("Bonne action");
+
+                uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
+
+                uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
+            }
+        }
+
+        return false;
+    }
+
+    void ResolutionTurn()
     {
         Debug.Log("Resolution trun !");
         eventSystem.SetSelectedGameObject(null);
@@ -497,16 +541,6 @@ public class C_Challenge : MonoBehaviour
 
         //Ecrit dans les logs le résultat de l'action.
         uiLogs.text = currentResolution.button.GetActionClass().currentLogs;
-
-        //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
-        if (currentResolution.button.GetActionClass() == currentStep.rightAnswer)
-        {
-            Debug.Log("Bonne action");
-
-            uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
-
-            uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
-        }
     }
     #endregion
 
