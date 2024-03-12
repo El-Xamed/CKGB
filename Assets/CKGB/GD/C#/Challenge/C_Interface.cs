@@ -351,7 +351,7 @@ public class C_Interface : MonoBehaviour
                 if (GetCurrentActor().GetcurrentEnergy() >= myButton.GetComponent<C_ActionButton>().GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy))
                 {
                     //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
-                    myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>().GetActionClass()));
+                    myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
                 }
                 else //Sinon setup une fonction qui lui quand le joueur va appuier dessus va recevoir en retour des VFX + SFX qui montre bien au joueur qu'il ne peut pas utiliser cette action.
                 {
@@ -422,7 +422,7 @@ public class C_Interface : MonoBehaviour
                 newTraitsButton.myActionClass = GetListTrait()[i];
 
                 //Renseigne le "onClick" du nouveau buton.
-                newTraitsButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newTraitsButton.myActionClass));
+                newTraitsButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newTraitsButton.myButton.GetComponent<C_ActionButton>()));
 
                 listButtonTraits.Add(newTraitsButton);
 

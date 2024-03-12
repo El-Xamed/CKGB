@@ -105,7 +105,7 @@ public class C_Challenge : MonoBehaviour
 
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
-            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor);
+            WriteStatsPreview();
         }
     }
     #endregion
@@ -295,18 +295,18 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     public void WriteStatsPreview()
     {
-        uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor);
+        uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, listCase);
     }
 
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
-    public void UseAction(SO_ActionClass thisAction)
+    public void UseAction(C_ActionButton thisActionButton)
     {
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
         //Renseigne l'actor actuel + l'action.
         actorResolution.actor = currentActor;
-        actorResolution.action = thisAction;
+        actorResolution.button = thisActionButton;
 
         //Ajoute à la liste.
         listRes.Add(actorResolution);
@@ -484,6 +484,7 @@ public class C_Challenge : MonoBehaviour
 
         //A VOIR POUR SUPP UNE FOIS LE CODE AU DESSSUS FINI.
         //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
+        /*
         if (currentResolution.action.CanUse(currentResolution.actor))
         {
             //Utilise l'action.
@@ -505,6 +506,7 @@ public class C_Challenge : MonoBehaviour
                 uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
             }
         }
+        */
     }
     #endregion
 

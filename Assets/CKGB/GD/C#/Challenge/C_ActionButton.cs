@@ -522,7 +522,7 @@ public class C_ActionButton : MonoBehaviour
     #endregion
 
     #region Résolution
-    public void UseAction(C_Actor thisActor, List<C_Case> listCase, List<C_Actor> myTeam, List<C_Case> plateau)
+    public void UseAction(C_Actor thisActor, List<C_Case> plateau, List<C_Actor> myTeam)
     {
         Debug.Log("Use this actionClass : " + actionClass.buttonText);
 
