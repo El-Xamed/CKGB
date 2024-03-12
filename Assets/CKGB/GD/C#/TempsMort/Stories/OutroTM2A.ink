@@ -2,10 +2,10 @@
 
 ->Outro
 ===Outro===
--Blabla bla Lézard #Character:Morgan #Bulle:HautGauche 
--Je vous jure la #Bulle:HautDroite
--Bah ouai écoute go #Character:Esthela #Bulle:BasGauche 
-- Mdr lol #Character:Nimu #Bulle:BasDroite 
--ET ainsi il partirent. #Character:Narrateur
+-Blabla bla Lézard #Bulle:MorganHautGauche 
+-Je vous jure la #Bulle:MorganHautDroite
+-Bah ouai écoute go  #Bulle:EsthelaBasGauche 
+- Mdr lol #Bulle:NimuBasDroite 
+-ET ainsi il partirent. #Bulle:Narrateur
 ~ StartChallenge("ouaiiii")
 ->END

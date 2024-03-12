@@ -7,10 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 465031199898479126, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Name
+      value: TextHautDroiteEsthela
+      objectReference: {fileID: 0}
+    - target: {fileID: 548765096386693335, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Name
+      value: TextBasGaucheEsthela
+      objectReference: {fileID: 0}
     - target: {fileID: 581132152909862939, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2572368f5164ff44e8f882c77f4fa443, type: 3}
+    - target: {fileID: 722969128006118820, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Name
+      value: TextBasDroiteEsthela
+      objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -102,6 +114,10 @@ PrefabInstance:
     - target: {fileID: 5199208835674813161, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_Name
       value: Esthela
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106091988627348034, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Name
+      value: TextHautGaucheEsthela
       objectReference: {fileID: 0}
     - target: {fileID: 6382026033985779888, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_Name
