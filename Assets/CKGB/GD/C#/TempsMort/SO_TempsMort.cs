@@ -8,14 +8,16 @@ using Ink.Runtime;
 public class SO_TempsMort : ScriptableObject
 {
     #region DATA
+
+
+    [Header("Dialogues")]
+    [SerializeField] public TextAsset intro;
+    [SerializeField] public TextAsset Outro;
+
     [Header("Data Temps Mort")]
     [SerializeField] public Sprite TMbackground;
     [SerializeField] public GameObject[] Team;
     [SerializeField] public InitialActorPosition[] startPos;
-
-    [Header("Dialogues")]
-    [SerializeField] Story intro;
-    [SerializeField] Story Outro;
 
 
 

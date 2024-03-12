@@ -43,7 +43,7 @@ public class C_TempsMort : MonoBehaviour
     List<Transform> listCharactersPositions;
 
     [SerializeField]
-    List<GameObject> characters = new List<GameObject>();
+    public List<GameObject> characters = new List<GameObject>();
     [SerializeField]
     SO_TempsMort TM;
     [SerializeField]
@@ -71,9 +71,10 @@ public class C_TempsMort : MonoBehaviour
 
     [Header("Histoires")]
     [SerializeField]TextAsset inkAssetIntro;
-    [SerializeField] Story _intro;
-    [SerializeField] Story _outro;
-    [SerializeField] TMP_Text naratteur;
+    [SerializeField] TextAsset _intro;
+    [SerializeField] TextAsset _outro;
+    [SerializeField] public TMP_Text naratteur;
+
 
     #endregion
     #region variables de retour en arrière
@@ -88,11 +89,12 @@ public class C_TempsMort : MonoBehaviour
 
     private void Awake()
     {  
-       // _intro = new Story(inkAssetIntro.text);
+       
     }
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.textToWriteIn = naratteur;
         Es = FindObjectOfType<EventSystem>();
         Es.SetSelectedGameObject(Es.firstSelectedGameObject);
         currentButton = Es.currentSelectedGameObject;
@@ -309,6 +311,8 @@ public class C_TempsMort : MonoBehaviour
         }
 
         background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
+        _intro = TM.intro;
+        _outro = TM.Outro;
        
     }
     public void UpdateCharacterStat()
@@ -510,7 +514,14 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Challenge()
     {
-        SceneManager.LoadScene("S_DestinationTest");
+        for(int i=0;i<charactersButton.Length;i++)
+        {
+            charactersButton[i].SetActive(false);
+            ChallengeButton.SetActive(false);
+        }
+        updateButton();
+        StartOutro();
+        //SceneManager.LoadScene("S_DestinationTest");
     }
     public void BACK(InputAction.CallbackContext context)
     {
@@ -689,9 +700,28 @@ public class C_TempsMort : MonoBehaviour
         }
      
     }
-    public void StartDialogue()
+    //Fonction qui lance une histoire et preciser en argument le texte a lire de type Text_Asset
+
+    public void StartOutro()
+    {
+        GameManager.instance.EnterDialogueMode(_outro);
+
+    }
+    //fonction qui verifie si tu peut continuer l'histoire et la continue ou l'arrete
+    public void continueStory(InputAction.CallbackContext context)
     {
 
+        if (context.performed&&GameManager.instance.isDialoguing==true)
+        {
+            GameManager.instance.ContinueStory();
+        }
+        else
+            return;
+
+    }
+    public void GoChallenge(string named)
+    {
+        Debug.Log(named);
     }
     public SO_TempsMort GetDataTM()
     {

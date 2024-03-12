@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using Ink.Runtime;
+using System;
 
 public enum EActorClass
 {
@@ -36,10 +39,25 @@ public class GameManager : MonoBehaviour
     //Information qu'il récupère pour le Temps mort / Challenge.
     SO_TempsMort currentTM = null;
     SO_Challenge currentC = null;
+
+    //zone dédiée aux  dialogues
+    [SerializeField] public Story currentStory;
+    [SerializeField] public TMP_Text textToWriteIn;
+    [SerializeField] public bool isDialoguing = false;
+    [SerializeField] GameObject CharacterTalking;
+
+    private const string Bulle_Tag = "Bulle";
+    private const string Character_Tag = "Character";
+
+    public C_TempsMort TM;
     #endregion
 
     private void Awake()
     {
+        if(FindObjectOfType<C_TempsMort>()!=null)
+        {
+            TM = FindObjectOfType<C_TempsMort>();
+        }
         #region Singleton
         if (instance == null)
             instance = this;
@@ -146,6 +164,98 @@ public class GameManager : MonoBehaviour
         {
             team[i].GetComponent<C_Actor>().SetPosition(initialPlayerPositionOnThisDestination[i]);
         }
+    }
+    public void EnterDialogueMode(TextAsset InkJSON)
+    {
+        Debug.Log(InkJSON.name);
+        currentStory = new Story(InkJSON.text);
+        isDialoguing = true;
+        if(InkJSON.name=="OutroTM2A"|| InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3" )
+        {
+            currentStory.BindExternalFunction("StartChallenge", (string name) => { TM.GoChallenge(name); });
+        }
+
+        ContinueStory();
+    }
+    public void ContinueStory()
+    {
+        
+        if (currentStory.canContinue)
+        {
+           
+            textToWriteIn.text = currentStory.Continue();
+            HandleTags(currentStory.currentTags);
+        }
+        else
+        {
+            ExitDialogueMode();
+        }
+    }
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach(string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if(splitTag.Length!=2)
+            {
+                Debug.Log("erreur Tag "+tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch(tagKey)
+            {
+        
+                case Character_Tag:
+                    Debug.Log("Character " + tagValue);
+                    for(int i=0;i<TM.characters.Count-1; i++)
+                    {
+                         if(tagValue==TM.characters[i].name)
+                        {
+                            CharacterTalking = TM.characters[i];
+                        }
+                         else if(tagValue=="Narrateur")
+                        {
+                            textToWriteIn.text = "";
+                            textToWriteIn = TM.naratteur;
+                        }
+                    }
+                    break;
+                case Bulle_Tag:
+                    Debug.Log("Bulle : " + tagValue);
+                    switch(tagValue)
+                    {
+                        case "HautGauche":
+                            textToWriteIn.text = "";
+                            textToWriteIn = CharacterTalking.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            break;
+                        case "HautDroite":
+                            textToWriteIn.text = "";
+                            textToWriteIn = CharacterTalking.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            break;
+                        case "BasGauche":
+                            textToWriteIn.text = "";
+                            textToWriteIn = CharacterTalking.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            break;
+                        case "BasDroite":
+                            textToWriteIn.text = "";
+                            textToWriteIn = CharacterTalking.transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            break;
+
+                    }
+                    
+                    break;
+                default:
+                    return;
+  
+            }
+        }
+    }
+
+    public void ExitDialogueMode()
+    {
+        textToWriteIn.text = "";
+        isDialoguing = false;
     }
     #endregion
 }
