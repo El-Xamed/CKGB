@@ -484,7 +484,6 @@ public class C_Challenge : MonoBehaviour
 
         //A VOIR POUR SUPP UNE FOIS LE CODE AU DESSSUS FINI.
         //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
-        /*
         if (currentResolution.action.CanUse(currentResolution.actor))
         {
             //Utilise l'action.
@@ -506,7 +505,6 @@ public class C_Challenge : MonoBehaviour
                 uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
             }
         }
-        */
     }
     #endregion
 

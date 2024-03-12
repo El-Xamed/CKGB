@@ -556,19 +556,7 @@ public class C_ActionButton : MonoBehaviour
         //Pour le prix.
         if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
         {
-            //Si les deux possède un int supérieur à 0.
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 && GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
-            {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
-            }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
-            {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
-            }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
-            {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
-            }
+            thisActor.SetCurrentStatsPrice(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy));
         }
         #endregion
 
@@ -576,19 +564,7 @@ public class C_ActionButton : MonoBehaviour
         //Pour le gain.
         if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
         {
-            //Si les deux possède un int supérieur à 0.
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 && GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
-            {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
-            }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
-            {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
-            }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0)
-            {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
-            }
+            thisActor.SetCurrentStatsPrice(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy));
         }
         #endregion
 
@@ -643,13 +619,13 @@ public class C_ActionButton : MonoBehaviour
                             //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
                             if (myMove.isTp)
                             {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                
+                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
                             }
                             else
                             {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va prendre la place de " + GetColorText(thisOtherActor.name, Color.cyan) + " et sera déplacer " + GetDirectionOfMovement());
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va prendre la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+
+                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                             }
                         }
                         else
@@ -658,8 +634,8 @@ public class C_ActionButton : MonoBehaviour
 
                             if (notBusyByActor == otherActor.Count)
                             {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement() + ".");
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement());
+
+                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " c'est déplacé de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement());
                             }
                         }
                     }
