@@ -239,11 +239,10 @@ public class C_Challenge : MonoBehaviour
 
                             //Placement des perso depuis le GameManager
                             //Changement de parent
-                            thisActor.transform.parent = listCase[position.position].transform;
+                            thisActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
                             thisActor.transform.localScale = Vector3.one;
                             //Centrage sur la case et position sur Y.
                             thisActor.transform.localPosition = Vector3.up * 300;
-                            thisActor.GetComponent<C_Actor>().SetPosition(position.position);
 
                             //New Ui stats
                             C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
@@ -261,9 +260,9 @@ public class C_Challenge : MonoBehaviour
                 else
                 {
                     //New actor
-                    C_Actor myActor = Instantiate(position.perso, listCase[position.position].transform);
+                    C_Actor myActor = Instantiate(position.perso);
                     myActor.IniChallenge();
-                    myActor.SetPosition(position.position);
+                    myActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
 
                     //New Ui stats
                     C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
@@ -284,7 +283,7 @@ public class C_Challenge : MonoBehaviour
             foreach (InitialAccPosition position in listPosition)
             {
                 C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
-                myAcc.SetPosition(position.position);
+                myAcc.MoveActor(listCase, position.position);
 
                 listAcc.Add(myAcc);
             }
@@ -402,7 +401,7 @@ public class C_Challenge : MonoBehaviour
         {
             if (thisAcc.dataAcc.canMakeDamage)
             {
-                listCase[thisAcc.currentPosition].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
+                listCase[thisAcc.position].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
             }
         }
 
@@ -456,8 +455,6 @@ public class C_Challenge : MonoBehaviour
     
     #endregion
 
-
-
     #region  Phase de résolution
     //Création d'une class pour rassembler l'acteur et l'action.
     [Serializable] public class ActorResolution
@@ -466,9 +463,10 @@ public class C_Challenge : MonoBehaviour
         public C_Actor actor;
     }
 
-    void ResolutionTurn()
+    public void ResolutionTurn()
     {
         Debug.Log("Resolution trun !");
+        eventSystem.SetSelectedGameObject(null);
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
@@ -481,29 +479,20 @@ public class C_Challenge : MonoBehaviour
         //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
         currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
 
+        //Check si il est sur une case "Dangereuse".
+        currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
 
-        //A VOIR POUR SUPP UNE FOIS LE CODE AU DESSSUS FINI.
-        //Si la reso en question n'est pas dernier, alors il peut passer a la reso suivante sinon il lance la cat
-        if (currentResolution.action.CanUse(currentResolution.actor))
+        //Ecrit dans les logs le résultat de l'action.
+        uiLogs.text = currentResolution.button.GetActionClass().currentLogs;
+
+        //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
+        if (currentResolution.button.GetActionClass() == currentStep.rightAnswer)
         {
-            //Utilise l'action.
-            currentResolution.action.UseAction(currentResolution.actor, listCase, myTeam);
+            Debug.Log("Bonne action");
 
-            //Check si il est sur une case "Dangereuse".
-            currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
+            uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
 
-            //Ecrit dans les logs le résultat de l'action.
-            uiLogs.text = currentResolution.action.GetLogsChallenge();
-
-            //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
-            if (currentResolution.action == currentStep.rightAnswer)
-            {
-                Debug.Log("Bonne action");
-
-                uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
-
-                uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
-            }
+            uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
         }
     }
     #endregion
@@ -648,7 +637,7 @@ public class C_Challenge : MonoBehaviour
 
         foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
         {
-            if (thisCase == thisAcc.currentPosition)
+            if (thisCase == thisAcc.position)
             {
                 if (thisAcc.dataAcc.typeAttack == SO_Accessories.ETypeAttack.All)
                 {
@@ -670,7 +659,7 @@ public class C_Challenge : MonoBehaviour
         //Check si la position des actor est sur la meme case que l'acc.
         foreach (var thisActor in myTeam)
         {
-            if (thisActor.GetPosition() == thisAcc.currentPosition)
+            if (thisActor.GetPosition() == thisAcc.position)
             {
                 thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
@@ -719,5 +708,22 @@ public class C_Challenge : MonoBehaviour
     public List<C_Case> GetListCases() { return listCase; }
 
     public EventSystem GetEventSystem() { return eventSystem; }
+
+    #region Phase de résolution
+    public List<ActorResolution> GetListResolutions()
+    {
+        return listRes;
+    }
+
+    public ActorResolution GetCurrentResolution()
+    {
+        return currentResolution;
+    }
+
+    public void SetCurrentResolution(ActorResolution newCurrentResolution)
+    {
+        currentResolution = newCurrentResolution;
+    }
+    #endregion
     #endregion
 }

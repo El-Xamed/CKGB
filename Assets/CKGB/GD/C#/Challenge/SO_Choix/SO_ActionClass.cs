@@ -13,7 +13,7 @@ public class SO_ActionClass : ScriptableObject
     [Header("Text (Logs)")]
     public string LogsCanMakeAction;
     public string LogsCantMakeAction;
-    string currentLogs;
+    public string currentLogs;
     #endregion
 
     [Header("Conditions")]
@@ -57,11 +57,6 @@ public class SO_ActionClass : ScriptableObject
     }
 
     #endregion
-
-    public string GetLogsChallenge()
-    {
-        return currentLogs;
-    }
 }
 
 #region Conditions avancé

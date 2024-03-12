@@ -131,22 +131,23 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour Update ResoTrun
-            /*
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
             {
-                if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
+                if (myChallenge.GetListResolutions().IndexOf(myChallenge.GetCurrentResolution()) < myChallenge.GetListResolutions().Count - 1)
                 {
                     //Reféfinis "currentResolution" avec 'index de base + 1.
-                    currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+                    myChallenge.SetCurrentResolution(myChallenge.GetListResolutions()[myChallenge.GetListResolutions().IndexOf(myChallenge.GetCurrentResolution()) + 1]);
 
-                    ResolutionTurn();
+                    myChallenge.ResolutionTurn();
                 }
                 else
                 {
+                    Debug.Log("Fin de la phase de réso !");
+                    /*
                     //Check si pendant la réso, un acteur a trouvé la bonne reponse. UTILISATION D4UN BOOL QUI SERA DESACTIVE APRES. PERMET DE UPDATE AU BON MOMENT.
                     if (canUpdateEtape)
                     {
-                        stepUpdate();
+                        myChallenge.stepUpdate();
 
                         canUpdateEtape = false;
                     }
@@ -154,8 +155,9 @@ public class C_Interface : MonoBehaviour
                     UpdateAccessories();
                     //Lance la phase "Cata".
                     Invoke("CataTrun", 0.5f);
+                    */
                 }
-            }*/
+            }
         }
     }
     #endregion
@@ -238,76 +240,6 @@ public class C_Interface : MonoBehaviour
         uiButton.SetActive(true);
     }
 
-    //Fait spawn les bouton d'actions
-    /*
-    void SpawnActions()
-    {
-        //Créer une liste qui rassemble toutes les actions de l'actor qui joue.
-        List<SO_ActionClass> currentAction = new List<SO_ActionClass>();
-        foreach (var myAction in listButtonActions)
-        {
-            currentAction.Add(myAction.myActionClass);
-        }
-
-        //Check si cette liste "currentAction" est égal à la liste existante. Si oui alors spawn nouveau Action.
-        if (listButtonActions != null && currentAction == GetActionOfCurrentEtape()) return;
-
-        if (GetListAction() != null)
-        {
-            //Supprime les boutons précédent
-            if (listButtonActions != null)
-            {
-                foreach (var myAction in listButtonActions)
-                {
-                    Destroy(myAction.myButton);
-                }
-            }
-
-            //Créer une nouvelle liste.
-            listButtonActions = new List<ActionButton>();
-
-            //Créer de nouveau boutons A SUPP ?
-            for (int i = 0; i < GetListAction().Length; i++)
-            {
-                //Nouvelle class.
-                ActionButton newActionButton = new ActionButton();
-
-                //Reférence button.
-                newActionButton.myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
-
-                //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
-                newActionButton.myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
-
-                //Reférence Action.
-                newActionButton.myActionClass = GetListAction()[i];
-
-                //Check si "currentActor" possède l'energie pour utiliser cette action.
-                if (GetCurrentActor().GetcurrentEnergy() >= newActionButton.myActionClass.GetEnergy())
-                {
-                    //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
-                    newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newActionButton.myActionClass));
-                }
-                else //Sinon setup une fonction qui lui quand le joueur va appuier dessus va recevoir en retour des VFX + SFX qui montre bien au joueur qu'il ne peut pas utiliser cette action.
-                {
-                    //Modifie le visu du bouton.
-                    newActionButton.myButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("ActionButton_NotEnergy");
-
-                    //Renseigne le "onClick" du nouveau buton pour afficher les Feedback qui montre que le joueur ne peut pas sélectionner cette action.
-                    newActionButton.myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.CantUseAction());
-
-                    Debug.Log(newActionButton.myActionClass.buttonText + " sera impossible d'utilisation pour cette acteur.");
-                }
-
-                listButtonActions.Add(newActionButton);
-            }
-
-            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonActions[0].myButton);
-        }
-        else
-        {
-            Debug.LogError("Erreur spawn actions");
-        }
-    }*/
     void SpawnActions()
     {
         //Créer une liste qui rassemble toutes les actions de l'actor qui joue.

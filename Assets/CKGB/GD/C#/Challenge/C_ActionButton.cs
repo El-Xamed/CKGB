@@ -528,7 +528,7 @@ public class C_ActionButton : MonoBehaviour
 
         //Applique les conséquences de stats peut importe si c'est réusi ou non.
         //Créer la liste pour "self"
-        SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor);
+        SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
 
         //Créer la liste pour "other"
         if (CheckOtherInAction())
@@ -539,17 +539,17 @@ public class C_ActionButton : MonoBehaviour
         //Check dans les data de cette action si la condition est bonne.
         if (actionClass.CanUse(thisActor))
         {
-
+            actionClass.currentLogs = actionClass.LogsCanMakeAction;
         }
         else
         {
             //Renvoie un petit indice de pourquoi l'action n'a pas fonctionné.
-
+            actionClass.currentLogs = actionClass.LogsCantMakeAction;
             return;
         }
     }
 
-    void SetStatsTarget(Interaction.ETypeTarget target, List<C_Actor> otherActor, C_Actor thisActor)
+    void SetStatsTarget(Interaction.ETypeTarget target, List<C_Actor> otherActor, C_Actor thisActor, List<C_Case> plateau)
     {
         //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
         #region Price string
@@ -597,20 +597,18 @@ public class C_ActionButton : MonoBehaviour
                 {
                     //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
                     case Move.ETypeMove.Right:
-                        NormalMoveActor(myMove.nbMove);
+                        NormalMoveActor(myMove.nbMove, plateau);
                         break;
                     case Move.ETypeMove.Left:
-                        NormalMoveActor(-myMove.nbMove);
+                        NormalMoveActor(-myMove.nbMove, plateau);
                         break;
                     case Move.ETypeMove.OnTargetCase:
-                        TargetMoveActor(myMove.nbMove);
+                        TargetMoveActor(myMove.nbMove, plateau);
                         break;
                 }
 
-                void NormalMoveActor(int newPosition)
+                void NormalMoveActor(int newPosition, List<C_Case> plateau)
                 {
-                    int notBusyByActor = 0;
-
                     foreach (C_Actor thisOtherActor in otherActor)
                     {
                         //Détection de si il y a un autres actor.
@@ -619,26 +617,18 @@ public class C_ActionButton : MonoBehaviour
                             //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
                             if (myMove.isTp)
                             {
-                                
+                                thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
                                 Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
                             }
                             else
                             {
-
+                                thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
                                 Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                             }
                         }
-                        else
-                        {
-                            notBusyByActor++;
-
-                            if (notBusyByActor == otherActor.Count)
-                            {
-
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " c'est déplacé de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement());
-                            }
-                        }
                     }
+
+                    thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
 
                     string GetDirectionOfMovement()
                     {
@@ -655,35 +645,41 @@ public class C_ActionButton : MonoBehaviour
                     }
                 }
 
-                void TargetMoveActor(int newPosition)
+                void TargetMoveActor(int newPosition, List<C_Case> plateau)
                 {
-                    int notBusyByActor = 0;
-
                     foreach (C_Actor thisOtherActor in otherActor)
                     {
-                        if (newPosition == thisOtherActor.GetPosition())
+                        //Détection de si il y a un autres actor.
+                        if (thisActor.GetPosition() + newPosition == thisOtherActor.GetPosition())
                         {
-                            if (thisOtherActor == thisActor)
+                            //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                            if (myMove.isTp)
                             {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " ne va pas se déplacer à la case " + GetColorText(myMove.nbMove.ToString(), Color.green) + " car " + GetColorText(thisActor.name, Color.cyan) + " est déjà dessus.");
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " ne va pas se déplacer à la case " + GetColorText(myMove.nbMove.ToString(), Color.green) + " car " + GetColorText(thisActor.name, Color.green) + " est déjà dessus.");
+                                thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
                             }
                             else
                             {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green));
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green));
+                                thisOtherActor.MoveActor(plateau, newPosition + (int)Mathf.Sign(newPosition));
+                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                             }
                         }
-                        else
-                        {
-                            notBusyByActor++;
+                    }
 
-                            if (notBusyByActor == otherActor.Count)
-                            {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText(myMove.nbMove.ToString(), Color.green));
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText(myMove.nbMove.ToString(), Color.green));
-                            }
+                    thisActor.MoveActor(plateau, newPosition);
+
+                    string GetDirectionOfMovement()
+                    {
+                        if (newPosition < 0)
+                        {
+                            return " à gauche.";
                         }
+                        else if (newPosition > 0)
+                        {
+                            return " à droite.";
+                        }
+
+                        return "Direction Inconu.";
                     }
                 }
             }
@@ -706,7 +702,7 @@ public class C_ActionButton : MonoBehaviour
                             {
                                 if (thisStats.move.actor != null)
                                 {
-                                    listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
+                                    thisStats.move.actor.MoveActor(plateau, thisActor.GetPosition());
                                     Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.actor); }
@@ -715,7 +711,7 @@ public class C_ActionButton : MonoBehaviour
                             {
                                 if (thisStats.move.accessories != null)
                                 {
-                                    listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchAcc(target).name, Color.cyan) + ".");
+                                    thisStats.move.accessories.MoveActor(plateau, thisActor.GetPosition());
                                     Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchAcc(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.accessories); }
@@ -724,6 +720,8 @@ public class C_ActionButton : MonoBehaviour
                     }
                 }
             }
+
+            thisActor.MoveActor(plateau, thisActor.GetPosition());
         }
         #endregion
     }
@@ -745,7 +743,7 @@ public class C_ActionButton : MonoBehaviour
                         //Calcul vers la droite.
                         if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
                         {
-                            SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisActor);
+                            SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
                         }
                         Debug.Log("Direction Range = droite.");
                         break;
@@ -753,7 +751,7 @@ public class C_ActionButton : MonoBehaviour
                         //Calcul vers la gauche.
                         if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
                         {
-
+                            SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
                         }
                         Debug.Log("Direction Range = Gauche.");
                         break;
@@ -761,11 +759,11 @@ public class C_ActionButton : MonoBehaviour
                         //Calcul vers la droite + gauche.
                         if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
                         {
-
+                            SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
                         }
                         if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
                         {
-
+                            SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
                         }
                         Debug.Log("Direction Range = droite + gauche.");
                         break;
