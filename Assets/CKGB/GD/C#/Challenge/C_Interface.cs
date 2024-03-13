@@ -92,41 +92,45 @@ public class C_Interface : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>();
 
-            //Pour la navigation dans l'interface "Neutre"
-            if (currentInterface == Interface.Neutre)
+            //Check si l'interaction avec l'interface et possible => Phase du joueur.
+            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
             {
-                if (input.x > 0)
+                //Pour la navigation dans l'interface "Neutre"
+                if (currentInterface == Interface.Neutre)
                 {
-                    GoBack();
-                    return;
-                }
-                if (input.x < 0)
-                {
-                    GoTraits();
-                    SetShowButton(uiTrait);
-                    return;
+                    if (input.x > 0)
+                    {
+                        GoBack();
+                        return;
+                    }
+                    if (input.x < 0)
+                    {
+                        GoTraits();
+                        SetShowButton(uiTrait);
+                        return;
+                    }
+
+                    if (input.y < 0)
+                    {
+                        GoAction();
+                        SetShowButton(uiAction);
+                        return;
+                    }
+                    if (input.y > 0)
+                    {
+                        GoLogs();
+                        return;
+                    }
                 }
 
-                if (input.y < 0)
+                //Pour selectionner ses actions.
+                if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
                 {
-                    GoAction();
-                    SetShowButton(uiAction);
-                    return;
-                }
-                if (input.y > 0)
-                {
-                    GoLogs();
-                    return;
-                }
-            }
-
-            //Pour selectionner ses actions.
-            if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
-            {
-                if (input.x > 0)
-                {
-                    GoBack();
-                    return;
+                    if (input.x > 0)
+                    {
+                        GoBack();
+                        return;
+                    }
                 }
             }
 
@@ -347,6 +351,18 @@ public class C_Interface : MonoBehaviour
     }
     #endregion
 
+    #endregion
+
+    #region Partage de donné
+    public GameObject GetUiAction()
+    {
+        return uiAction;
+    }
+
+    public GameObject GetUiTrait()
+    {
+        return uiAction;
+    }
     #endregion
 
     #region Animation Event

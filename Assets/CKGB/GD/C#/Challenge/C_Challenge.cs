@@ -97,11 +97,11 @@ public class C_Challenge : MonoBehaviour
 
         if (context.performed)
         {
+            //BESOIN DE TRAVAILLER DESSUS POUR L'ALPHA !!!!!!!
             //Cache tout les autres preview.
-            eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().HideUiStatsPreview(myTeam);
-
+            //eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().HideUiStatsPreview(myTeam);
             //Active une fonction qui affiche toutes les preview de stats sur les actor.
-            eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowUiStatsPreview(myTeam, currentActor);
+            //eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowUiStatsPreview(myTeam, currentActor);
 
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
@@ -334,6 +334,12 @@ public class C_Challenge : MonoBehaviour
             currentActor = null;
             UpdateActorSelected();
             currentResolution = listRes[0];
+
+            //Cache les boutons + ferme l'interface. CHANGER ÇA POUR AVOIR L'INTERFACE SANS LES TEXT A COTE.
+            myInterface.GetComponent<Animator>().SetTrigger("CloseInterface");
+            myInterface.GetUiAction().SetActive(false);
+            myInterface.GetUiTrait().SetActive(false);
+
             ResolutionTurn();
         }
     }
@@ -588,7 +594,7 @@ public class C_Challenge : MonoBehaviour
             {
                 if (thisCase == myActor.GetPosition())
                 {
-                    myActor.TakeDamage(thisCata.reducStress, thisCata.reducEnergie);
+                    myActor.SetCurrentStatsPrice(thisCata.reducStress, thisCata.reducEnergie);
 
                     
 
@@ -691,7 +697,7 @@ public class C_Challenge : MonoBehaviour
                     //Check si la position des actor est sur la meme case que l'acc.
                     foreach (var thisActor in myTeam)
                     {
-                        thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+                        thisActor.SetCurrentStatsPrice(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
                         thisActor.CheckIsOut();
                     }
@@ -708,7 +714,7 @@ public class C_Challenge : MonoBehaviour
         {
             if (thisActor.GetPosition() == thisAcc.position)
             {
-                thisActor.TakeDamage(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+                thisActor.SetCurrentStatsPrice(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
 
                 thisActor.CheckIsOut();
 

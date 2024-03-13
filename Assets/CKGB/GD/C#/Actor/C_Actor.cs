@@ -98,16 +98,52 @@ public class C_Actor : MonoBehaviour
 
     public void SetCurrentStatsPrice(int stressPrice, int energyPrice)
     {
-        currentStress = currentStress - stressPrice;
-        currentEnergy = currentEnergy - energyPrice;
+        Debug.Log(stressPrice);
+        Debug.Log(energyPrice);
+
+        currentStress -= stressPrice;
+        currentEnergy -= energyPrice;
+
+        Debug.Log(currentStress);
+        Debug.Log(currentEnergy);
+
+        //Check si il ne dépasse pas la limite.
+        if (currentEnergy < 0)
+        {
+            currentEnergy = 0;
+        }
+
+        //Check si le joueur est encore jouable.
+        CheckIsOut();
+
+        //Update les UI stats.
+        UpdateUiStats();
     }
 
     public void SetCurrentStatsGain(int stressGain, int energyGain)
     {
-        currentStress = currentStress + stressGain;
-        currentEnergy = currentEnergy + energyGain;
+        currentStress += stressGain;
+        currentEnergy += energyGain;
+
+        //Check si il ne dépasse pas la limite.
+        if (currentStress > getMaxStress())
+        {
+            currentStress = getMaxStress();
+        }
+        if (currentEnergy > getMaxEnergy())
+        {
+            currentEnergy = getMaxEnergy();
+        }
+
+        //Check si le joueur est encore jouable.
+        CheckIsOut();
+
+        //Update les UI stats.
+        UpdateUiStats();
     }
 
+    //A SUPP
+    /*
     public void TakeDamage(int calm, int energy)
     {
         currentStress -= calm;
@@ -123,12 +159,15 @@ public class C_Actor : MonoBehaviour
 
         UpdateUiStats();
     }
+    */
 
+    //Pour lier la stats qui va le suivre dans tous le challenge.
     public void SetUiStats(C_Stats myStats)
     {
         uiStats = myStats;
     }
 
+    //Utile ???
     public C_Stats GetUiStats() { return uiStats; }
 
     public void UpdateUiStats()
@@ -136,6 +175,7 @@ public class C_Actor : MonoBehaviour
         uiStats.UpdateUi(this);
     }
 
+    //Pour faire déplacer l'actor dans le challenge. PEUT ETRE AUSSI UTILISE DANS LE TM MAIS C'EST PAS SETUP POUR ET C'EST PAS IMPORTANT.
     public void MoveActor(List<C_Case> plateau, int newPosition)
     {
         //Detection de si le perso est au bord. (TRES UTILE QUAND UN PERSONNAGE SE FAIT POUSSER)
@@ -157,8 +197,14 @@ public class C_Actor : MonoBehaviour
             transform.parent = plateau[newPosition].transform;
             position = newPosition;
         }
+
+        //Recentre le perso.
+        GetComponent<RectTransform>().position.Set(0, transform.localPosition.y, transform.localPosition.z);
+
+        //Check après chaque déplacement si il est sur une case dangereuse.
     }
 
+    //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats.
     public void CheckIsInDanger(SO_Catastrophy listDangerCases)
     {
         foreach (var thisCase in listDangerCases.targetCase)
@@ -174,6 +220,7 @@ public class C_Actor : MonoBehaviour
         }
     }
 
+    //Pour faire apparaitre le contoure blanc du joueur sélectionné.
     public void IsSelected(bool isSelected)
     {
         if (isSelected)
@@ -191,6 +238,8 @@ public class C_Actor : MonoBehaviour
     {
         if (currentStress <= 0)
         {
+            currentStress = 0;
+
             isOut = true;
 
             transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
