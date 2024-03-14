@@ -40,8 +40,7 @@ public class C_Actor : MonoBehaviour
 
         dataActor = ScriptableObject.Instantiate(dataActor);
 
-        //JE SAIS PAS C'EST QUOI A VOIR AVEC MAX.
-        if(dataActor.listNewTraits[0]!= dataActor.listTraits[0])
+        if(dataActor.listNewTraits.Contains(dataActor.listTraits[0])==false)
         {
             dataActor.nextTrait = dataActor.listTraits[0];
         }
@@ -363,16 +362,15 @@ public class C_Actor : MonoBehaviour
     }
     public void CheckBulle()
     {
-        for(int i=0;i<bulles.Count;i++)
+        for (int i = 0; i < bulles.Count; i++)
         {
-            if (bulles[i].GetComponentInChildren<TMP_Text>().text == "")
+            if (bulles[i].GetComponentInChildren<TMP_Text>().text != "")
             {
-                bulles[i].SetActive(false);
+                bulles[i].GetComponent<Image>().enabled = true;
             }
             else
-                bulles[i].SetActive(true);
+                bulles[i].GetComponent<Image>().enabled = true;
         }
     }
-
     #endregion
 }

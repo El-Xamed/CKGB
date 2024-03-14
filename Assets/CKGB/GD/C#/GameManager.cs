@@ -175,19 +175,20 @@ public class GameManager : MonoBehaviour
         Debug.Log(InkJSON.name);
         currentStory = new Story(InkJSON.text);
         isDialoguing = true;
-        if(InkJSON.name=="OutroTM2A"|| InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3" )
+        if (InkJSON.name == "OutroTM2A" || InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3")
         {
             currentStory.BindExternalFunction("StartChallenge", (string name) => { TM.GoChallenge(name); });
         }
-
+        //HandleTags(currentStory.currentTags);
         ContinueStory();
     }
     public void ContinueStory()
     {
-        
+
         if (currentStory.canContinue)
         {
-           
+
+            Debug.Log(textToWriteIn);
             textToWriteIn.text = currentStory.Continue();
             HandleTags(currentStory.currentTags);
         }
@@ -198,71 +199,113 @@ public class GameManager : MonoBehaviour
     }
     private void HandleTags(List<string> currentTags)
     {
-        foreach(string tag in currentTags)
+        foreach (string tag in currentTags)
         {
             string[] splitTag = tag.Split(':');
-            if(splitTag.Length!=2)
+            if (splitTag.Length != 2)
             {
-                Debug.Log("erreur Tag "+tag);
+                Debug.Log("erreur Tag " + tag);
             }
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
-            switch(tagKey)
+            switch (tagKey)
             {
-        
-                case Character_Tag:
-                    Debug.Log("Character " + tagValue);
-                    for(int i=0;i<TM.characters.Count-1; i++)
-                    {
-                         if(tagValue==TM.characters[i].name)
-                        {
-                            CharacterTalking = TM.characters[i];
-                        }
-                         else if(tagValue=="Narrateur")
-                        {
-                            textToWriteIn.text = "";
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
-                            textToWriteIn = TM.naratteur;
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
-                        }
-                    }
-                    break;
+
+
                 case Bulle_Tag:
                     Debug.Log("Bulle : " + tagValue);
-                    switch(tagValue)
+                    switch (tagValue)
                     {
-                        case "HautGauche":
+                        case "MorganHautGauche":
                             textToWriteIn.text = "";
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
-                            textToWriteIn = CharacterTalking.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
+                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[0].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
                             break;
-                        case "HautDroite":
+                        case "MorganHautDroite":
                             textToWriteIn.text = "";
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
-                            textToWriteIn = CharacterTalking.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
+                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[0].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
                             break;
-                        case "BasGauche":
+                        case "MorganBasGauche":
                             textToWriteIn.text = "";
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
-                            textToWriteIn = CharacterTalking.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
+                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[0].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
                             break;
-                        case "BasDroite":
+                        case "MorganBasDroite":
                             textToWriteIn.text = "";
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
-                            textToWriteIn = CharacterTalking.transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
-                            CharacterTalking.GetComponent<C_Actor>().CheckBulle();
+                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[0].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
                             break;
 
+                        case "EsthelaHautGauche":
+                            textToWriteIn.text = "";
+                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[1].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "EsthelaHautDroite":
+                            textToWriteIn.text = "";
+                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[1].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "EsthelaBasGauche":
+                            textToWriteIn.text = "";
+                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[1].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "EsthelaBasDroite":
+                            textToWriteIn.text = "";
+                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[1].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+
+                        case "NimuHautGauche":
+                            textToWriteIn.text = "";
+                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[2].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "NimuHautDroite":
+                            textToWriteIn.text = "";
+                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[2].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "NimuBasGauche":
+                            textToWriteIn.text = "";
+                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[2].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "nimuBasDroite":
+                            textToWriteIn.text = "";
+                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            textToWriteIn = TM.characters[2].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            Debug.Log(textToWriteIn.name);
+                            break;
+                        case "Narrateur":
+                            textToWriteIn.text = "";
+                            for (int i = 0; i < TM.characters.Count; i++)
+                            {
+                                TM.characters[i].GetComponent<C_Actor>().CheckBulle();
+                            }
+                            textToWriteIn = TM.naratteur;
+                            Debug.Log(textToWriteIn.name);
+                            break;
                     }
-                    
+
                     break;
                 default:
                     return;
-  
+
             }
         }
     }
