@@ -74,6 +74,7 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField] TextAsset _intro;
     [SerializeField] TextAsset _outro;
     [SerializeField] public TMP_Text naratteur;
+    [SerializeField] bool TMhasStarted = false;
 
 
     #endregion
@@ -94,10 +95,14 @@ public class C_TempsMort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initiateTMvariables();
+        CharactersDataGet();
+        GameManager.instance.ChangeActionMap("TempsMort");
         GameManager.instance.textToWriteIn = naratteur;
-        Es = FindObjectOfType<EventSystem>();
-        Es.SetSelectedGameObject(Es.firstSelectedGameObject);
-        currentButton = Es.currentSelectedGameObject;
+       
+        StartIntro();
+
+        aquiletour.SetActive(false);
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         #region HideUI
@@ -121,13 +126,23 @@ public class C_TempsMort : MonoBehaviour
             if (fiche != null)
                 fiche.SetActive(false);
         }
+        foreach (GameObject fiche in charactersLittleResume)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject button in charactersButton)
+        {
+            if (button != null)
+                button.SetActive(false);
+        }
+
         ChallengeButton.SetActive(false);
         #endregion
 
-        GameManager.instance.ChangeActionMap("TempsMort");
-        initiateTMvariables();
-        CharactersDataGet();
-        updateButton();
+       
+       
+    
 
     }
 
@@ -386,7 +401,7 @@ public class C_TempsMort : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed)
+        if (context.performed&&TMhasStarted)
         {
             updateButton();
         }
@@ -478,7 +493,16 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Respirer()
     {
-     
+        GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Respirer);
+    }
+    public void RetourAuTMAfterRespirer(string text)
+    {
+        StartCoroutine(CoroutineRetourAuTMAfterRespirer());
+    }
+    IEnumerator CoroutineRetourAuTMAfterRespirer()
+    {
+        yield return new WaitForSeconds(0.6f);
+        GameManager.instance.ExitDialogueMode();
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
@@ -492,11 +516,19 @@ public class C_TempsMort : MonoBehaviour
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
         UpdateCharacterStat();
-        
     }
     public void Revasser()
     {
-    
+        GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
+    }
+    public void RetourAuTMAfterRevasser(string text)
+    {
+        StartCoroutine(CoroutineRetourAuTMAfterRevasser());
+    }
+    IEnumerator CoroutineRetourAuTMAfterRevasser()
+    {
+        yield return new WaitForSeconds(0.6f);
+        GameManager.instance.ExitDialogueMode();
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
@@ -510,8 +542,6 @@ public class C_TempsMort : MonoBehaviour
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
         UpdateCharacterStat();
-       
-  
     }
     public void Challenge()
     {
@@ -703,6 +733,31 @@ public class C_TempsMort : MonoBehaviour
     }
     //Fonction qui lance une histoire et preciser en argument le texte a lire de type Text_Asset
 
+    public void StartIntro()
+    {
+        GameManager.instance.EnterDialogueMode(_intro);
+    }
+    public void StartTempsMort(string name)
+    {
+        StartCoroutine(TempsMortUnleashed());
+    }
+    IEnumerator TempsMortUnleashed()
+    {
+        yield return new WaitForSeconds(0.6f);
+        TMhasStarted = true;
+        Es = FindObjectOfType<EventSystem>();
+        GameManager.instance.ExitDialogueMode();
+        foreach (GameObject button in charactersButton)
+        {
+            if (button != null)
+                button.SetActive(true);
+        }
+        Es.SetSelectedGameObject(Es.firstSelectedGameObject);
+        currentButton = Es.currentSelectedGameObject;
+
+        updateButton();
+     
+    }
     public void StartOutro()
     {
         GameManager.instance.EnterDialogueMode(_outro);
@@ -722,7 +777,7 @@ public class C_TempsMort : MonoBehaviour
     }
     public void GoChallenge(string named)
     {
-        Debug.Log(named);
+        SceneManager.LoadScene(named);
     }
     public SO_TempsMort GetDataTM()
     {

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Ink.Runtime;
+
 
 [CreateAssetMenu(fileName = "New Actor", menuName = "ScriptableObjects/Personne")]
 public class SO_Character : ScriptableObject
@@ -44,6 +46,13 @@ public class SO_Character : ScriptableObject
     public string Description;
     [TextAreaAttribute]
     public string miniDescription;
+
+    [Header("Histoires")]
+    [SerializeField] public TextAsset Revasser;
+    [SerializeField] public TextAsset Respirer;
+    [SerializeField] public TextAsset PapoterAvecEsthela;
+    [SerializeField] public TextAsset PapoterAvecNimu;
+    [SerializeField] public TextAsset PapoterAvecMorgan;
     #endregion
 }
 

@@ -360,17 +360,6 @@ public class C_Actor : MonoBehaviour
     {
         return isOut;
     }
-    public void CheckBulle()
-    {
-        for (int i = 0; i < bulles.Count; i++)
-        {
-            if (bulles[i].GetComponentInChildren<TMP_Text>().text != "")
-            {
-                bulles[i].GetComponent<Image>().enabled = true;
-            }
-            else
-                bulles[i].GetComponent<Image>().enabled = true;
-        }
-    }
+
     #endregion
 }

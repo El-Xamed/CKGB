@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Ink.Runtime;
 using System;
+using UnityEngine.UI;
 
 public enum EActorClass
 {
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TMP_Text textToWriteIn;
     [SerializeField] public bool isDialoguing = false;
     [SerializeField] GameObject CharacterTalking;
+
 
     private const string Bulle_Tag = "Bulle";
     private const string Character_Tag = "Character";
@@ -179,7 +181,14 @@ public class GameManager : MonoBehaviour
         {
             currentStory.BindExternalFunction("StartChallenge", (string name) => { TM.GoChallenge(name); });
         }
-        //HandleTags(currentStory.currentTags);
+        if (InkJSON.name == "IntroTM2A" || InkJSON.name == "IntroTM2B" || InkJSON.name == "IntroTM1" || InkJSON.name == "IntroTM3")
+        {
+            currentStory.BindExternalFunction("StartTM", (string name) => { TM.StartTempsMort(name); });
+        }
+        if (InkJSON.name == "RevasserEsthela" || InkJSON.name == "RevasserMorgan" || InkJSON.name == "RevasserNimu")
+        {
+            currentStory.BindExternalFunction("RetourAuTMAfterRevasser", (string name) => { TM.RetourAuTMAfterRevasser(name); });
+        }
         ContinueStory();
     }
     public void ContinueStory()
@@ -187,17 +196,16 @@ public class GameManager : MonoBehaviour
 
         if (currentStory.canContinue)
         {
-
-            Debug.Log(textToWriteIn);
-            textToWriteIn.text = currentStory.Continue();
-            HandleTags(currentStory.currentTags);
+            string Contenue = currentStory.Continue();
+            Debug.Log(Contenue);
+            HandleTags(currentStory.currentTags,Contenue);
         }
         else
         {
             ExitDialogueMode();
         }
     }
-    private void HandleTags(List<string> currentTags)
+    private void HandleTags(List<string> currentTags,string text)
     {
         foreach (string tag in currentTags)
         {
@@ -219,101 +227,171 @@ public class GameManager : MonoBehaviour
                     {
                         case "MorganHautGauche":
                             textToWriteIn.text = "";
-                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            if(textToWriteIn.GetComponentInParent<Image>()!=null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }                           
                             textToWriteIn = TM.characters[0].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[0].transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                          //  textToWriteIn.text = text;
                             break;
                         case "MorganHautDroite":
                             textToWriteIn.text = "";
-                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[0].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[0].transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                          //  textToWriteIn.text = text;
                             break;
                         case "MorganBasGauche":
                             textToWriteIn.text = "";
-                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[0].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[0].transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                         //   textToWriteIn.text = text;
                             break;
                         case "MorganBasDroite":
                             textToWriteIn.text = "";
-                            TM.characters[0].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[0].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[0].transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                          //  textToWriteIn.text = text;
                             break;
 
                         case "EsthelaHautGauche":
                             textToWriteIn.text = "";
-                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[1].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[1].transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                           // textToWriteIn.text = text;
                             break;
                         case "EsthelaHautDroite":
                             textToWriteIn.text = "";
-                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[1].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[1].transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                           // textToWriteIn.text = text;
                             break;
                         case "EsthelaBasGauche":
                             textToWriteIn.text = "";
-                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[1].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[1].transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                          //  textToWriteIn.text = text;
                             break;
                         case "EsthelaBasDroite":
                             textToWriteIn.text = "";
-                            TM.characters[1].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[1].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[1].transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                            //textToWriteIn.text = text;
                             break;
 
                         case "NimuHautGauche":
                             textToWriteIn.text = "";
-                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[2].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[2].transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                           // textToWriteIn.text = text;
                             break;
                         case "NimuHautDroite":
                             textToWriteIn.text = "";
-                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[2].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[2].transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                           // textToWriteIn.text = text;
                             break;
                         case "NimuBasGauche":
                             textToWriteIn.text = "";
-                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[2].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[2].transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                            //textToWriteIn.text = text;
                             break;
-                        case "nimuBasDroite":
+                        case "NimuBasDroite":
                             textToWriteIn.text = "";
-                            TM.characters[2].GetComponent<C_Actor>().CheckBulle();
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
                             textToWriteIn = TM.characters[2].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            TM.characters[2].transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
+                            //textToWriteIn.text = text;
                             break;
                         case "Narrateur":
                             textToWriteIn.text = "";
-                            for (int i = 0; i < TM.characters.Count; i++)
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
-                                TM.characters[i].GetComponent<C_Actor>().CheckBulle();
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.naratteur;
                             Debug.Log(textToWriteIn.name);
+                            //textToWriteIn.text = text;
+                            break;
+                        default:
+                            //textToWriteIn.text = text;
                             break;
                     }
 
                     break;
                 default:
-                    return;
+                    //textToWriteIn.text = text;
+                    break;
 
             }
         }
+      textToWriteIn.text = text;       
     }
 
     public void ExitDialogueMode()
     {
         textToWriteIn.text = "";
         isDialoguing = false;
+        if (textToWriteIn.GetComponentInParent<Image>() != null)
+        {
+            textToWriteIn.GetComponentInParent<Image>().enabled = false;
+        }
     }
     #endregion
 }

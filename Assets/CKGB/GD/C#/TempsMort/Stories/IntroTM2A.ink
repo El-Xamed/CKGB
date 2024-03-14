@@ -1,8 +1,10 @@
-﻿EXTERNAL StartTM()
-
 ->Intro
+=== function StartTM(name)
+EXTERNAL StartTM(name)
+
 ===Intro===
-Morgan : Blabla bla Lézard
-       : Je vous jure la
-Esthela : Bah ouai écoute go
+Lézard triste #Bulle:MorganHautGauche
+Je vous jure la
+Allez on Bridge Simulator #Bulle:EsthelaBasDroite
+~ StartTM("TM")
 ->END
