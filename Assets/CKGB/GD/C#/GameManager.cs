@@ -189,6 +189,10 @@ public class GameManager : MonoBehaviour
         {
             currentStory.BindExternalFunction("RetourAuTMAfterRevasser", (string name) => { TM.RetourAuTMAfterRevasser(name); });
         }
+        if (InkJSON.name == "RespirerEsthela" || InkJSON.name == "RespirerMorgan" || InkJSON.name == "RespirerNimu")
+        {
+            currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
+        }
         ContinueStory();
     }
     public void ContinueStory()
