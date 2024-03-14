@@ -336,7 +336,7 @@ public class C_Challenge : MonoBehaviour
             currentResolution = listRes[0];
 
             //Cache les boutons + ferme l'interface. CHANGER ÇA POUR AVOIR L'INTERFACE SANS LES TEXT A COTE.
-            myInterface.GetComponent<Animator>().SetTrigger("CloseInterface");
+            myInterface.GetComponent<Animator>().SetTrigger("CloseAll");
             myInterface.GetUiAction().SetActive(false);
             myInterface.GetUiTrait().SetActive(false);
 
@@ -579,8 +579,15 @@ public class C_Challenge : MonoBehaviour
                 currentActor = myTeam[0];
 
                 Invoke("PlayerTrun", 1f);
+                Invoke("PlayerTurnAfterCata", 0.5f);
+
             }
         }
+    }
+
+    public void PlayerTurnAfterCata()
+    {
+        myInterface.GetComponent<Animator>().SetTrigger("OpenAll");
     }
 
     //Applique la cata
@@ -594,6 +601,9 @@ public class C_Challenge : MonoBehaviour
             {
                 if (thisCase == myActor.GetPosition())
                 {
+                    //VFX de la cata qui s'applique.
+                    listCase[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
+
                     myActor.SetCurrentStatsPrice(thisCata.reducStress, thisCata.reducEnergie);
 
                     

@@ -259,7 +259,10 @@ public class C_Interface : MonoBehaviour
                 //Reférence Action.
                 myButton.GetComponent<C_ActionButton>().SetActionClass(ScriptableObject.Instantiate(GetListAction()[i]));
 
-                
+                //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
+                myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
+
+                /* APRES REFLEXION SUR LES MECANIQUE DU JEU, ON SOUHAITE QUAND MEME FAIRE L'ACTION.
                 //Check si "currentActor" possède l'energie pour utiliser cette action.
                 if (GetCurrentActor().GetcurrentEnergy() >= myButton.GetComponent<C_ActionButton>().GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy))
                 {
@@ -276,10 +279,11 @@ public class C_Interface : MonoBehaviour
 
                     Debug.Log(myButton.GetComponent<C_ActionButton>().GetActionClass().buttonText + " sera impossible d'utilisation pour cette acteur.");
                 }
+                */
 
                 listButtons.Add(myButton);
             }
-
+                
             myChallenge.GetEventSystem().SetSelectedGameObject(listButtons[0]);
 
             myChallenge.WriteStatsPreview();

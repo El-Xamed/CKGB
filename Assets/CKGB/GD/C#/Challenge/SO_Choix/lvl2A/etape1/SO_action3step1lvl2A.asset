@@ -25,6 +25,7 @@ MonoBehaviour:
     pas s\xFBr qu\u2019il aient tout compris. C\u2019\xE9tait un peu technique et
     tu es presque s\xFBr d\u2019avoir \xE9chou\xE9."
   LogsCantMakeAction: 
+  currentLogs: 
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -33,16 +34,10 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   listInteraction:
   - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    actor: {fileID: 0}
+    accessories: {fileID: 0}
     whatDirectionTarget: 0
     range: 0
-    listStats:
-    - whatStatsTarget: 0
-      listPrice:
-      - whatPrice: 1
-        price: 7
-      listGain: []
-      move:
-        whatMove: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+    listTargetStats: []

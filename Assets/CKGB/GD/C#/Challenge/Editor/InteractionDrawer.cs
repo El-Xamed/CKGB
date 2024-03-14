@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static Interaction;
 
 [CustomPropertyDrawer(typeof(Interaction))]
@@ -19,6 +20,9 @@ public class InteractionDrawer : PropertyDrawer
         SerializedProperty stats = property.FindPropertyRelative("listTargetStats");
         //List d'information pour "Other"
         SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
+        SerializedProperty boolWhatTypeTarget = property.FindPropertyRelative("selectTarget");
+        SerializedProperty whatTypeTarget = property.FindPropertyRelative("whatTypeTarget");
+        SerializedProperty thistarget = property.FindPropertyRelative("target");
         SerializedProperty rangeOther = property.FindPropertyRelative("range");
         #endregion
 
@@ -28,8 +32,10 @@ public class InteractionDrawer : PropertyDrawer
         #region Liste d'interaction
         //Calcul de la hauteur de la liste "stats" + si elle est déplié ou non.
         float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
+
         //Calcul de la hauteur pour bien séparer les variables dans l'inspector.
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        float boolSelectTargetHeight = EditorGUI.GetPropertyHeight(boolWhatTypeTarget);
 
         //Rect pour placer "Target".
         Rect targetRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
@@ -38,13 +44,17 @@ public class InteractionDrawer : PropertyDrawer
 
         //Calcul de la hauteur de l'enum "what" + si elle est déplié ou non (pas utile de connaitre si elle est déplié ou non car c'est pas une liste A TESTER POUR CONFIRMER).
         float targetHeight = EditorGUI.GetPropertyHeight(what, what.isExpanded);
-        //Calcul de la hauteur de "range" pour bien séparer les variables dans l'inspector.
+        //Calcul de la hauteur de pour bien séparer les variables dans l'inspector.
         float rangeHeight = EditorGUI.GetPropertyHeight(rangeOther);
+        float actorOrAccHeight = EditorGUI.GetPropertyHeight(thistarget);
 
         //Pour la partie Other.
 
-        Rect directionTargetRect = new Rect(position.x, position.y + fieldHeight, position.width, targetHeight);
-        Rect rangeTargetRect = new Rect(position.x, position.y + fieldHeight * 2, position.width, targetHeight);
+        Rect boolWhatTypeTargetRect = new Rect(position.x, position.y + fieldHeight, position.width, targetHeight);
+        Rect directionTargetRect = new Rect(position.x, position.y + boolSelectTargetHeight + fieldHeight, position.width, targetHeight);
+        Rect whatTypeTargetRect = new Rect(position.x, position.y + boolSelectTargetHeight + fieldHeight, position.width, targetHeight);
+        Rect actorOrAccRect = new Rect(position.x, position.y + boolSelectTargetHeight + fieldHeight * 2, position.width, targetHeight);
+        Rect rangeTargetRect = new Rect(position.x, position.y + boolSelectTargetHeight + fieldHeight * 2, position.width, targetHeight);
         //Meme Rect que "statsRect" sauf qu'il est placé plus bas pour laisser apparaitre les var pour setup la partie "other".
         Rect statsOtherRect = new Rect(position.x, position.y + fieldHeight + 10 + targetHeight, position.width, EditorGUIUtility.singleLineHeight);
         #endregion
@@ -57,7 +67,6 @@ public class InteractionDrawer : PropertyDrawer
         //Dessin
         //Pour placer l'enum "Target".
         EditorGUI.PropertyField(targetRect, what, new GUIContent("Target"));
-        
 
         ETypeTarget target = (ETypeTarget)what.enumValueIndex;
 
@@ -67,15 +76,38 @@ public class InteractionDrawer : PropertyDrawer
         }
         else if (target == ETypeTarget.Other)
         {
-            EditorGUI.PropertyField(directionTargetRect, directionOther);
+            EditorGUI.PropertyField(boolWhatTypeTargetRect, boolWhatTypeTarget);
 
-            ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
+            //Detection de si on souhaite cible un actor en particuler ou non.
+            bool whatTargetOther = boolWhatTypeTarget.boolValue;
 
-            if (dirTarget != ETypeDirectionTarget.None)
+            if (whatTargetOther)
             {
-                statsOtherRect = new Rect(position.x, position.y + fieldHeight +10 + targetHeight + rangeHeight, position.width, EditorGUIUtility.singleLineHeight);
+                EditorGUI.PropertyField(whatTypeTargetRect, whatTypeTarget);
 
-                EditorGUI.PropertyField(rangeTargetRect, rangeOther);
+                EType typeTarget = (EType)whatTypeTarget.enumValueIndex;
+
+                if (typeTarget == EType.Actor || typeTarget == EType.Acc)
+                {
+                    EditorGUI.PropertyField(actorOrAccRect, thistarget);
+                }
+
+                statsOtherRect = new Rect(position.x, position.y + boolSelectTargetHeight + targetHeight + rangeHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+            }
+            else
+            {
+                EditorGUI.PropertyField(directionTargetRect, directionOther);
+
+                ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
+
+                if (dirTarget != ETypeDirectionTarget.None)
+                {
+                    statsOtherRect = new Rect(position.x, position.y + boolSelectTargetHeight + rangeHeight + fieldHeight * 2 + targetHeight + rangeHeight, position.width, EditorGUIUtility.singleLineHeight);
+
+                    EditorGUI.PropertyField(rangeTargetRect, rangeOther);
+                }
+
+                statsOtherRect = new Rect(position.x, position.y + boolSelectTargetHeight + fieldHeight * 2 + rangeHeight + rangeHeight, position.width, EditorGUIUtility.singleLineHeight);
             }
 
             EditorGUI.PropertyField(statsOtherRect, stats);
@@ -92,8 +124,13 @@ public class InteractionDrawer : PropertyDrawer
         SerializedProperty what = property.FindPropertyRelative("whatTarget");
         SerializedProperty directionOther = property.FindPropertyRelative("whatDirectionTarget");
         SerializedProperty stats = property.FindPropertyRelative("listTargetStats");
+        SerializedProperty boolWhatTypeTarget = property.FindPropertyRelative("selectTarget");
+        SerializedProperty actor = property.FindPropertyRelative("target");
         SerializedProperty range = property.FindPropertyRelative("range");
 
+        //Calcul de la hauteur de pour bien séparer les variables dans l'inspector.
+        float boolSelectTargetHeight = EditorGUI.GetPropertyHeight(boolWhatTypeTarget);
+        float actorOrAccHeight = EditorGUI.GetPropertyHeight(actor);
         float statsHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
         float dirHeight = EditorGUI.GetPropertyHeight(directionOther);
         float rangeHeight = EditorGUI.GetPropertyHeight(range);
@@ -102,18 +139,28 @@ public class InteractionDrawer : PropertyDrawer
 
         if (target == ETypeTarget.Self)
         {
-            return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight;
+            return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + statsHeight;
         }
         else if (target == ETypeTarget.Other)
         {
-            ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
+            //Detection de si on souhaite cible un actor en particuler ou non.
+            bool whatTargetOther = boolWhatTypeTarget.boolValue;
 
-            if (dirTarget != ETypeDirectionTarget.None)
+            if (whatTargetOther)
             {
-                return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight + rangeHeight;
+                return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + actorOrAccHeight + statsHeight;
             }
+            else
+            {
+                ETypeDirectionTarget dirTarget = (ETypeDirectionTarget)directionOther.enumValueIndex;
 
-            return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + dirHeight;
+                if (dirTarget != ETypeDirectionTarget.None)
+                {
+                    return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + statsHeight + rangeHeight + dirHeight + rangeHeight;
+                }
+
+                return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + statsHeight + rangeHeight + dirHeight + rangeHeight;
+            }
         }
 
         return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + rangeHeight;

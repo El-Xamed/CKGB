@@ -24,6 +24,7 @@ MonoBehaviour:
     mouille ton t-shirt. La terre est froide contre ton front. Plusieurs minutes
     passent. Il semblerait que \xE7a n\u2019est pas march\xE9\u2026"
   LogsCantMakeAction: Impossible
+  currentLogs: 
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -32,16 +33,18 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   listInteraction:
   - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    actor: {fileID: 0}
+    accessories: {fileID: 0}
     whatDirectionTarget: 0
     range: 0
-    listStats:
-    - whatStatsTarget: 1
-      listPrice: []
-      listGain:
-      - whatGain: 1
-        gain: 2
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats: []
       move:
-        whatMove: 0
-        nbMove: 0
+        whatMove: 2
+        isTp: 0
+        nbMove: 1
         actor: {fileID: 0}
         accessories: {fileID: 0}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class C_ActionButton : MonoBehaviour
@@ -59,6 +60,41 @@ public class C_ActionButton : MonoBehaviour
         }
 
         return 0;
+    }
+
+    bool GetIfTargetOrNot()
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "Other".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            {
+                if (thisInteraction.selectTarget)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    GameObject GetTarget()
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "Other".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            {
+                if (thisInteraction.selectTarget)
+                {
+                    return thisInteraction.target;
+                }
+            }
+        }
+
+        return null;
     }
 
     C_Actor GetSwitchActor(Interaction.ETypeTarget actorTarget)
@@ -434,46 +470,61 @@ public class C_ActionButton : MonoBehaviour
     //Affiche une preview sur les autres actor.
     void GetOtherLogsPreview(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
     {
-        //Boucle avec le range.
-        for (int i = 0; i < range; i++)
+        //Check si c'est ciblé ou non.
+        if (!GetIfTargetOrNot())
         {
-            //Boucle pour check sur tout les actor du challenge.
-            foreach (C_Actor thisOtherActor in otherActor)
+            //Boucle avec le range.
+            for (int i = 1; i < range; i++)
             {
-                //Check quel direction la range va faire effet.
-                switch (GetTypeDirectionRange())
+                //Boucle pour check sur tout les actor du challenge.
+                foreach (C_Actor thisOtherActor in otherActor)
                 {
-                    //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                    case Interaction.ETypeDirectionTarget.Right:
-                        //Calcul vers la droite.
-                        if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
-                        }
-                        
-                        Debug.Log("Direction Range = droite.");
-                        break;
-                    case Interaction.ETypeDirectionTarget.Left:
-                        //Calcul vers la gauche.
-                        if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
-                        }
-                        Debug.Log("Direction Range = Gauche.");
-                        break;
-                    case Interaction.ETypeDirectionTarget.RightAndLeft:
-                        //Calcul vers la droite + gauche.
-                        if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
-                        }
-                        else if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
-                        {
-                            GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
-                        }
-                        Debug.Log("Direction Range = droite + gauche.");
-                        break;
+                    //Check quel direction la range va faire effet.
+                    switch (GetTypeDirectionRange())
+                    {
+                        //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                        case Interaction.ETypeDirectionTarget.Right:
+                            //Calcul vers la droite.
+                            if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
+                            {
+                                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
+                            }
+
+                            Debug.Log("Direction Range = droite.");
+                            break;
+                        case Interaction.ETypeDirectionTarget.Left:
+                            //Calcul vers la gauche.
+                            if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
+                            {
+                                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
+                            }
+                            Debug.Log("Direction Range = Gauche.");
+                            break;
+                        case Interaction.ETypeDirectionTarget.RightAndLeft:
+                            //Calcul vers la droite + gauche.
+                            if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
+                            {
+                                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
+                            }
+                            else if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
+                            {
+                                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor);
+                            }
+                            Debug.Log("Direction Range = droite + gauche.");
+                            break;
+                    }
                 }
+            }
+        }
+        else
+        {
+            if (GetTarget().GetComponent<C_Actor>())
+            {
+                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Actor>());
+            }
+            else if(GetTarget().GetComponent<C_Accessories>())
+            {
+                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Actor>());
             }
         }
     }
@@ -526,20 +577,20 @@ public class C_ActionButton : MonoBehaviour
     {
         Debug.Log("Use this actionClass : " + actionClass.buttonText);
 
-        //Applique les conséquences de stats peut importe si c'est réusi ou non.
-        //Créer la liste pour "self"
-        SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
-
-        //Créer la liste pour "other"
-        if (CheckOtherInAction())
-        {
-            SetStatsOther(myTeam, thisActor, GetRange(), plateau);
-        }
-
         //Check dans les data de cette action si la condition est bonne.
-        if (actionClass.CanUse(thisActor))
+        if (CanUse(thisActor))
         {
             actionClass.currentLogs = actionClass.LogsCanMakeAction;
+
+            //Applique les conséquences de stats peut importe si c'est réusi ou non.
+            //Créer la liste pour "self"
+            SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
+
+            //Créer la liste pour "other"
+            if (CheckOtherInAction())
+            {
+                SetStatsOther(myTeam, thisActor, GetRange(), plateau);
+            }
         }
         else
         {
@@ -547,6 +598,34 @@ public class C_ActionButton : MonoBehaviour
             actionClass.currentLogs = actionClass.LogsCantMakeAction;
             return;
         }
+    }
+
+    //vérifie la condition si l'action fonctionne.
+    public bool CanUse(C_Actor thisActor)
+    {
+        //Check si les codition bonus sont activé.
+        if (actionClass.advancedCondition.advancedCondition)
+        {
+            //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
+            if (actionClass.advancedCondition.canMakeByOneActor && actionClass.advancedCondition.whatActor && actionClass.advancedCondition.whatActor != thisActor)
+            {
+                return false;
+            }
+
+            //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
+            if (actionClass.advancedCondition.needAcc && actionClass.advancedCondition.needAcc && actionClass.advancedCondition.whatAcc.GetPosition() != thisActor.GetPosition())
+            {
+                return false;
+            }
+        }
+
+        if (thisActor.GetcurrentEnergy() < GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) && GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
+        {
+            return false;
+        }
+
+        actionClass.currentLogs = actionClass.LogsCantMakeAction;
+        return true;
     }
 
     void SetStatsTarget(Interaction.ETypeTarget target, List<C_Actor> otherActor, C_Actor thisActor, List<C_Case> plateau)
@@ -607,28 +686,77 @@ public class C_ActionButton : MonoBehaviour
                         break;
                 }
 
+                // A VOIR POUR SIMPLIFIER LE CODE.
                 void NormalMoveActor(int newPosition, List<C_Case> plateau)
                 {
                     foreach (C_Actor thisOtherActor in otherActor)
                     {
-                        //Détection de si il y a un autres actor.
-                        if (thisActor.GetPosition() + newPosition == thisOtherActor.GetPosition())
+                        //Check si la valeur reste dans le plateau.
+                        for (int i = 1; i < newPosition; i++)
                         {
-                            //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
-                            if (myMove.isTp)
+                            //Detection de si le perso est au bord.
+                            if (thisActor.GetPosition() - i < 0)
                             {
-                                thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                //Détection de si il y a un autres actor.
+                                if (plateau.Count -1 - i == thisOtherActor.GetPosition())
+                                {
+                                    //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                    if (myMove.isTp)
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                    }
+                                    else
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                    }
+
+                                    thisActor.MoveActor(plateau, plateau.Count -1 - i);
+                                }
+                            }
+                            else if (thisActor.GetPosition() + i > plateau.Count - 1)
+                            {
+                                //Détection de si il y a un autres actor.
+                                if (0 + i == thisOtherActor.GetPosition())
+                                {
+                                    //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                    if (myMove.isTp)
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                    }
+                                    else
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                    }
+                                }
+
+                                thisActor.MoveActor(plateau, 0 + i);
                             }
                             else
                             {
-                                thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                //Détection de si il y a un autres actor.
+                                if (thisActor.GetPosition() + newPosition == thisOtherActor.GetPosition())
+                                {
+                                    //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                    if (myMove.isTp)
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                    }
+                                    else
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                    }
+
+                                    thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
+                                }
                             }
                         }
                     }
-
-                    thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
 
                     string GetDirectionOfMovement()
                     {
@@ -730,7 +858,7 @@ public class C_ActionButton : MonoBehaviour
     void SetStatsOther(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
     {
         //Boucle avec le range.
-        for (int i = 0; i < range; i++)
+        for (int i = 1; i < range; i++)
         {
             //Boucle pour check sur tout les actor du challenge.
             foreach (C_Actor thisOtherActor in otherActor)

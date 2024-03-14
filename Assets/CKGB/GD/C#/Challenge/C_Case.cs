@@ -12,6 +12,8 @@ public class C_Case : MonoBehaviour
     #region Mes fonctions
     public void ShowDangerZone(GameObject newVfxCata)
     {
+        //Si une cata à deja spaw.
+        if (vfxCata != null) { return; }
         vfxCata = Instantiate(newVfxCata, transform);
     }
 

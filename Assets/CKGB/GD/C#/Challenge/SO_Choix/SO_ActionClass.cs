@@ -24,32 +24,6 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Fonctions
-    //vérifie la condition si l'action fonctionne
-    public bool CanUse(C_Actor thisActor)
-    {
-        //Check si les codition bonus sont activé.
-        if (advancedCondition.advancedCondition)
-        {
-            //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
-            if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor != thisActor)
-            {
-                return false;
-            }
-
-            //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
-            if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() != thisActor.GetPosition())
-            {
-                return false;
-            }
-        }
-
-        //Condition de base.
-        //A VOIR AVEC PI LES AUTRES CONDITION CAR IL Y A PAS DE CONDITION POUR L'ENERGIE, VU QUE LE JOUEUR NE PEUT PAS CHOISIR L'ACTION SI IL NE POSSEDE PAS ASSEZ D'ENERGIE.
-
-        currentLogs = LogsCantMakeAction;
-        return true;
-    }
-
     //pour changer de mini étape
     void UpdateMiniActionClass()
     {
@@ -81,6 +55,12 @@ public class Interaction
     //Cible qu'on souhaite viser.
     public ETypeTarget whatTarget;
     public enum ETypeTarget { Self, Other };
+
+    //Pour un selection avancé des cibles.
+    public bool selectTarget;
+    public EType whatTypeTarget;
+    public enum EType { None, Actor, Acc };
+    public GameObject target;
     #endregion
 
     public ETypeDirectionTarget whatDirectionTarget;

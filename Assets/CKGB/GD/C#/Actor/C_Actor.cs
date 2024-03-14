@@ -198,7 +198,7 @@ public class C_Actor : MonoBehaviour
         }
 
         //Recentre le perso.
-        GetComponent<RectTransform>().position.Set(0, transform.localPosition.y, transform.localPosition.z);
+        GetComponent<RectTransform>().localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
 
         //Check après chaque déplacement si il est sur une case dangereuse.
     }
