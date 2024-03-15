@@ -56,6 +56,9 @@ public class C_TempsMort : MonoBehaviour
 
     [SerializeField] GameObject actorActif;
     [SerializeField] GameObject Papoteur;
+    [SerializeField] bool MorganAPapoteAvecEsthela = false;
+    [SerializeField] bool MorganAPapoteAvecNimu = false;
+    [SerializeField] bool NimuAPapoteAvecEsthela = false;
 
     [SerializeField]
     GameObject aquiletour;
@@ -63,6 +66,8 @@ public class C_TempsMort : MonoBehaviour
     GameObject faitesunchoix;
     [SerializeField]
     GameObject papoteravec;
+    [SerializeField]
+    bool[] ApapoteAvec;
 
     [SerializeField]
     bool[] characterHasPlayed;
@@ -90,7 +95,7 @@ public class C_TempsMort : MonoBehaviour
 
     private void Awake()
     {  
-       
+      
     }
     // Start is called before the first frame update
     void Start()
@@ -441,6 +446,7 @@ public class C_TempsMort : MonoBehaviour
         for (int i = 0; i < PapotageChoiceButtons.Length; i++)
         {
                 PapotageChoiceButtons[i].SetActive(true);
+            charactersButton[i].SetActive(false);
                 Es.SetSelectedGameObject(PapotageChoiceButtons[i]); 
             actions[i].SetActive(false);
         }
@@ -452,46 +458,274 @@ public class C_TempsMort : MonoBehaviour
     //papotage + stats
     public void PapotageFin()
     {
-        papoteravec.SetActive(false);
+
         for (int i=0;i<PapotageChoiceButtons.Length;i++)
+        { 
+           if(currentButton==PapotageChoiceButtons[i])
+            {
+                Papoteur = characters[i];
+            }
+            if (actorActif == characters[0] && Papoteur == characters[1] && MorganAPapoteAvecEsthela == false)
+            {
+                foreach (GameObject papot in PapotageChoiceButtons)
+                {
+                    papot.SetActive(false);
+                }
+                foreach (GameObject c in charactersButton)
+                {
+                    c.SetActive(false);
+                }
+                papoteravec.SetActive(false);
+                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                {
+                    Papoteur = characters[i];
+                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    UpdateCharacterStat();
+                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(actorActif);
+                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
+                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(characters[i]);
+                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                }
+                GameManager.instance.PapoterID[0]++;
+                GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
+                MorganAPapoteAvecEsthela = true;
+            }
+            else if (actorActif == characters[0] && Papoteur == characters[2] && MorganAPapoteAvecNimu == false)
+            {
+                foreach (GameObject papot in PapotageChoiceButtons)
+                {
+                    papot.SetActive(false);
+                }
+                foreach (GameObject c in charactersButton)
+                {
+                    c.SetActive(false);
+                }
+                papoteravec.SetActive(false);
+                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                {
+                    Papoteur = characters[i];
+                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    UpdateCharacterStat();
+                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(actorActif);
+                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
+                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(characters[i]);
+                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                }
+                GameManager.instance.PapoterID[1]++;
+                GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
+                MorganAPapoteAvecNimu = true;
+            }
+            else if (actorActif == characters[1] && Papoteur == characters[0] && MorganAPapoteAvecEsthela == false)
+            {
+                foreach (GameObject papot in PapotageChoiceButtons)
+                {
+                    papot.SetActive(false);
+                }
+                foreach (GameObject c in charactersButton)
+                {
+                    c.SetActive(false);
+                }
+                papoteravec.SetActive(false);
+                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                {
+                    Papoteur = characters[i];
+                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    UpdateCharacterStat();
+                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(actorActif);
+                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
+                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(characters[i]);
+                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                }
+                GameManager.instance.PapoterID[0]++;
+                GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
+                MorganAPapoteAvecEsthela = true;
+            }
+            else if (actorActif == characters[1] && Papoteur == characters[2] && NimuAPapoteAvecEsthela == false)
+            {
+                foreach (GameObject papot in PapotageChoiceButtons)
+                {
+                    papot.SetActive(false);
+                }
+                foreach (GameObject c in charactersButton)
+                {
+                    c.SetActive(false);
+                }
+                papoteravec.SetActive(false);
+                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                {
+                    Papoteur = characters[i];
+                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    UpdateCharacterStat();
+                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(actorActif);
+                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
+                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(characters[i]);
+                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                }
+                GameManager.instance.PapoterID[2]++;
+                GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
+                NimuAPapoteAvecEsthela = true;
+            }
+            else if (actorActif == characters[2] && Papoteur == characters[0] && MorganAPapoteAvecNimu == false)
+            {
+                foreach (GameObject papot in PapotageChoiceButtons)
+                {
+                    papot.SetActive(false);
+                }
+                foreach (GameObject c in charactersButton)
+                {
+                    c.SetActive(false);
+                }
+                papoteravec.SetActive(false);
+                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                {
+                    Papoteur = characters[i];
+                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    UpdateCharacterStat();
+                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(actorActif);
+                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
+                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(characters[i]);
+                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                }
+                GameManager.instance.PapoterID[1]++;
+                GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
+                MorganAPapoteAvecNimu = true;
+            }
+            else if (actorActif == characters[2] && Papoteur == characters[1] && NimuAPapoteAvecEsthela == false)
+            {
+                foreach (GameObject papot in PapotageChoiceButtons)
+                {
+                    papot.SetActive(false);
+                }
+                foreach (GameObject c in charactersButton)
+                {
+                    c.SetActive(false);
+                }
+                papoteravec.SetActive(false);
+                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                {
+                    Papoteur = characters[i];
+                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    UpdateCharacterStat();
+                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(actorActif);
+                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                    {
+                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
+                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
+                        UpdateCharacterStat();
+                        AddNewTraitToFiche(characters[i]);
+                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                    }
+                }
+                GameManager.instance.PapoterID[2]++;
+                GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
+                NimuAPapoteAvecEsthela = true;
+            }
+        }  
+        /* ActivateCharactersButton();
+         UpdateCharacterStat();*/
+    }
+    public void RetourAuTMAfterPapotage(string name)
+    {
+        StartCoroutine(ReprendreTMAfterPapotage());
+        
+    }
+    IEnumerator ReprendreTMAfterPapotage()
+    {
+        yield return new WaitForSeconds(0.6f);
+        GameManager.instance.ExitDialogueMode();
+        for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
             {
                 characterHasPlayed[i] = true;
             }
-            if (currentButton==PapotageChoiceButtons[i]&&currentButton!=actorActif)
-            {
-                Papoteur = characters[i];
-                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                Debug.Log("Le papoteur possède : "+actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()+" pts de traits");
-                characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait()+" pts de traits");
-                UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()==2)
-                {
-                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                    UpdateCharacterStat();
-                    AddNewTraitToFiche(actorActif);
-                    Debug.Log("Trait de "+ actorActif.name +" numéro "+actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-
-                }
-                if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                {
-                    characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                    characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                    UpdateCharacterStat();
-                    AddNewTraitToFiche(characters[i]);
-                    Debug.Log("Trait de "+ characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                }
-                
-            }
-      
         }
-        foreach(GameObject papot in PapotageChoiceButtons)
-        {
-            papot.SetActive(false);
-        }
+        Debug.Log("Retour TM apres papotage");
         ActivateCharactersButton();
         UpdateCharacterStat();
     }
@@ -534,11 +768,20 @@ public class C_TempsMort : MonoBehaviour
 
         ChallengeButton.SetActive(false);
         #endregion
+        for (int y = 0; y < characters.Count; y++)
+        {
+            if (actorActif == characters[y])
+            {
+                GameManager.instance.RespirerID[y]++;
+            }
+
+        }
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Respirer);
     }
     public void RetourAuTMAfterRespirer(string text)
     {
         StartCoroutine(CoroutineRetourAuTMAfterRespirer());
+    
     }
     IEnumerator CoroutineRetourAuTMAfterRespirer()
     {
@@ -597,6 +840,15 @@ public class C_TempsMort : MonoBehaviour
 
         ChallengeButton.SetActive(false);
         #endregion
+        for(int y=0;y<characters.Count;y++)
+        {
+            if(actorActif==characters[y])
+            {
+                GameManager.instance.RevasserID[y]++;
+            }
+        
+        }
+
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
     }
     public void RetourAuTMAfterRevasser(string text)

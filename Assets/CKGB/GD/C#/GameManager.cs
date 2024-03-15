@@ -43,7 +43,11 @@ public class GameManager : MonoBehaviour
 
     //zone dédiée aux  dialogues
     [SerializeField] public Story currentStory;
+    [SerializeField] public int[] RevasserID;
+    [SerializeField] public int[] RespirerID;
+    [SerializeField] public int[] PapoterID;
     [SerializeField] public TMP_Text textToWriteIn;
+    [SerializeField] public TextAsset[]papotage;
     [SerializeField] public bool isDialoguing = false;
     [SerializeField] GameObject CharacterTalking;
 
@@ -176,6 +180,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(InkJSON.name);
         currentStory = new Story(InkJSON.text);
+
         isDialoguing = true;
         if (InkJSON.name == "OutroTM2A" || InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3")
         {
@@ -192,6 +197,10 @@ public class GameManager : MonoBehaviour
         if (InkJSON.name == "RespirerEsthela" || InkJSON.name == "RespirerMorgan" || InkJSON.name == "RespirerNimu")
         {
             currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
+        }
+        if (InkJSON.name == "PapoterMorganEsthela" || InkJSON.name == "PapoterMorganNimu" || InkJSON.name == "PapoterNimuEsthela")
+        {
+            currentStory.BindExternalFunction("RetourAuTMAfterPapotage", (string name) => { TM.RetourAuTMAfterPapotage(name); });
         }
         ContinueStory();
     }

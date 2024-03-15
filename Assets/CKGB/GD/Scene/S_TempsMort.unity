@@ -2464,7 +2464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Papoter
+  m_text: Papoter +1C
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3566,6 +3566,26 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: papotage.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: RevasserID.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: papotage.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: 71b5832f4f27c314da3eb144fda44d68, type: 3}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: papotage.Array.data[1]
+      value: 
+      objectReference: {fileID: 4900000, guid: 0b546778299324c4481f7276073376dc, type: 3}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: papotage.Array.data[2]
+      value: 
+      objectReference: {fileID: 4900000, guid: ff5aa539fbf240c4bb6a2950b9832947, type: 3}
+    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: ressourceActor.Array.data[0]
       value: 
       objectReference: {fileID: 5199208835674813161, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
@@ -3828,9 +3848,13 @@ MonoBehaviour:
   selectedActionButton: {fileID: 0}
   actorActif: {fileID: 0}
   Papoteur: {fileID: 0}
+  MorganAPapoteAvecEsthela: 0
+  MorganAPapoteAvecNimu: 0
+  NimuAPapoteAvecEsthela: 0
   aquiletour: {fileID: 1067198603}
   faitesunchoix: {fileID: 615504522}
   papoteravec: {fileID: 176317810}
+  ApapoteAvec: 000000
   characterHasPlayed: 000000
   isAnActionButton: 0
   inkAssetIntro: {fileID: 0}
@@ -5962,7 +5986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Respirer
+  m_text: 'Respirer +1/2T
 
 '
   m_isRightToLeft: 0
@@ -10179,7 +10203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "R\xE9vasser"
+  m_text: "R\xE9vasser +1E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

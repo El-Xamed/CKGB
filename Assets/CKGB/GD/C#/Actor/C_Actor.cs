@@ -345,7 +345,7 @@ public class C_Actor : MonoBehaviour
             currentPointTrait = 0;
             if(dataActor.listNewTraits!=null)
             {
-                dataActor.listNewTraits.RemoveAt(dataActor.listNewTraits.Count - 1);
+                dataActor.listNewTraits.Remove(dataActor.listNewTraits[dataActor.idTraitEnCours]);
             }
             dataActor.idTraitEnCours--;
             dataActor.nextTrait = dataActor.listTraits[dataActor.idTraitEnCours];

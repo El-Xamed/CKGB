@@ -15,18 +15,21 @@ Je papote avec toi 0 #Bulle:MorganHautGauche
 Oui je vois ca #Bulle:EsthelaBasDroite
 //blabla
 ~ IdPapoter++
+~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter1===
 Je papote avec toi 1#Bulle:MorganHautGauche
 Oui je vois ca #Bulle:EsthelaBasDroite
 //blabla
 ~ IdPapoter++
+~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter2===
 Je papote avec toi 2#Bulle:MorganHautGauche
 Oui je vois ca #Bulle:EsthelaBasDroite
 //blabla
 ~ IdPapoter++
+~ RetourAuTMAfterPapotage("name")
 ->DONE
 
 ->END
