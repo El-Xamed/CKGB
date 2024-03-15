@@ -11,7 +11,7 @@ public class SO_Etape : ScriptableObject
     SO_turnContext condition;
 
     Test_challenge TC;
-    public SO_ActionClass[] actions;
+    public List<SO_ActionClass> actions;
     public SO_ActionClass rightAnswer;
 
     #endregion
@@ -30,7 +30,7 @@ public class SO_Etape : ScriptableObject
             else
             {
                 nombreErreurs++;
-                if (nombreErreurs == actions.Length)
+                if (nombreErreurs == actions.Count -1)
                 {
                     Debug.LogError("ERREUR : La bonne réponse n'est pas dans la liste des actions, veuillez rensegner la bonne réponse par un élément de la liste");
                 }

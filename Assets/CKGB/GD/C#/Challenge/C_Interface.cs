@@ -12,7 +12,7 @@ public class C_Interface : MonoBehaviour
     //Récupération du script.
     C_Challenge myChallenge;
 
-    enum Interface { Neutre, Logs, Actions, Traits, Back }
+    public enum Interface { Neutre, Logs, Actions, Traits, Back }
     Interface currentInterface = Interface.Neutre;
 
     [Header("Actions / Traits")]
@@ -39,7 +39,7 @@ public class C_Interface : MonoBehaviour
 
     #region Racourcis
     //Racourcis pour récupérer la liste des action d'une etape ciblé par le challenge.
-    SO_ActionClass[] GetListAction()
+    List<SO_ActionClass> GetListAction()
     {
         return myChallenge.GetListActionOfCurrentStep();
     }
@@ -65,6 +65,18 @@ public class C_Interface : MonoBehaviour
         }
 
         return listCurrentAction;
+    }
+
+    List<SO_ActionClass> GetActionOfCInterface()
+    {
+        List<SO_ActionClass> listCurrentActionOfInterface = new List<SO_ActionClass>();
+
+        foreach (GameObject thisAction in listButtons)
+        {
+            listCurrentActionOfInterface.Add(thisAction.GetComponent<C_ActionButton>().GetActionClass());
+        }
+
+        return listCurrentActionOfInterface;
     }
 
     PhaseDeJeu GetPhaseDeJeu()
@@ -245,10 +257,10 @@ public class C_Interface : MonoBehaviour
             }
 
             //Créer une nouvelle liste.
-            listButtonActions = new List<ActionButton>();
+            listButtons = new List<GameObject>();
 
-            //Créer de nouveau boutons.  EN TEST POUR DONNER LE SO_ACTIONCLASS DANS LE GAMEOBJECT DU BOUTON POUR POUVOIR LE RECUPERER AVEC L'EVENT SYSTEM.
-            for (int i = 0; i < GetListAction().Length; i++)
+            //Créer de nouveau boutons. EN TEST POUR DONNER LE SO_ACTIONCLASS DANS LE GAMEOBJECT DU BOUTON POUR POUVOIR LE RECUPERER AVEC L'EVENT SYSTEM.
+            for (int i = 0; i < GetListAction().Count -1; i++)
             {
                 //Reférence button.
                 GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
@@ -257,7 +269,7 @@ public class C_Interface : MonoBehaviour
                 myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
 
                 //Reférence Action.
-                myButton.GetComponent<C_ActionButton>().SetActionClass(ScriptableObject.Instantiate(GetListAction()[i]));
+                myButton.GetComponent<C_ActionButton>().SetActionClass(GetListAction()[i]);
 
                 //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
                 myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
@@ -358,6 +370,11 @@ public class C_Interface : MonoBehaviour
     #endregion
 
     #region Partage de donné
+    public void SetCurrentInterface(Interface newCurrentInterface)
+    {
+        currentInterface = newCurrentInterface;
+    }
+
     public GameObject GetUiAction()
     {
         return uiAction;

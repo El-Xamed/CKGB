@@ -19,6 +19,9 @@ public class SO_ActionClass : ScriptableObject
     [Header("Conditions")]
     public AdvancedCondition advancedCondition;
 
+    [Header("Next Action")]
+    public SO_ActionClass nextAction;
+
     [Header("List d'action")]
     public List<Interaction> listInteraction = new List<Interaction>();
     #endregion

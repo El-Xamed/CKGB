@@ -33,11 +33,18 @@ MonoBehaviour:
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    actor: {fileID: 0}
-    accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 1
+    whatTypeTarget: 2
+    target: {fileID: 1604187264348684230, guid: b9111873b30f5c94ba6873a2b2789bea, type: 3}
     whatDirectionTarget: 0
     range: 0
-    listTargetStats: []
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats: []
+      move:
+        whatMove: 1
+        isTp: 0
+        nbMove: 1
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

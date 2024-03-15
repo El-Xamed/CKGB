@@ -6,10 +6,9 @@ using TMPro;
 
 
 
-public class C_Actor : MonoBehaviour
+public class C_Actor : C_Pion
 {
     #region data
-    int position;
 
     [SerializeField] SO_Character dataActor;
     [SerializeField] List<GameObject> bulles = new List<GameObject>();
@@ -97,14 +96,8 @@ public class C_Actor : MonoBehaviour
 
     public void SetCurrentStatsPrice(int stressPrice, int energyPrice)
     {
-        Debug.Log(stressPrice);
-        Debug.Log(energyPrice);
-
         currentStress -= stressPrice;
         currentEnergy -= energyPrice;
-
-        Debug.Log(currentStress);
-        Debug.Log(currentEnergy);
 
         //Check si il ne dépasse pas la limite.
         if (currentEnergy < 0)
@@ -141,25 +134,6 @@ public class C_Actor : MonoBehaviour
         UpdateUiStats();
     }
 
-    //A SUPP
-    /*
-    public void TakeDamage(int calm, int energy)
-    {
-        currentStress -= calm;
-        currentEnergy -= energy;
-
-        UpdateUiStats();
-    }
-
-    public void TakeHeal(int calm, int energy)
-    {
-        currentStress += calm;
-        currentEnergy += energy;
-
-        UpdateUiStats();
-    }
-    */
-
     //Pour lier la stats qui va le suivre dans tous le challenge.
     public void SetUiStats(C_Stats myStats)
     {
@@ -172,35 +146,6 @@ public class C_Actor : MonoBehaviour
     public void UpdateUiStats()
     {
         uiStats.UpdateUi(this);
-    }
-
-    //Pour faire déplacer l'actor dans le challenge. PEUT ETRE AUSSI UTILISE DANS LE TM MAIS C'EST PAS SETUP POUR ET C'EST PAS IMPORTANT.
-    public void MoveActor(List<C_Case> plateau, int newPosition)
-    {
-        //Detection de si le perso est au bord. (TRES UTILE QUAND UN PERSONNAGE SE FAIT POUSSER)
-        if (newPosition < 0)
-        {
-            //Déplace le perso à droite du pleteau.
-            transform.parent = plateau[plateau.Count -1].transform;
-            position = plateau.Count - 1;
-        }
-        else if (newPosition > plateau.Count -1)
-        {
-            //Déplace le perso à gauche du plateau.
-            transform.parent = plateau[0].transform;
-            position = 0;
-        }
-        else
-        {
-            //Déplace le perso.
-            transform.parent = plateau[newPosition].transform;
-            position = newPosition;
-        }
-
-        //Recentre le perso.
-        GetComponent<RectTransform>().localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
-
-        //Check après chaque déplacement si il est sur une case dangereuse.
     }
 
     //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats.
@@ -289,11 +234,6 @@ public class C_Actor : MonoBehaviour
     public void SetDataActor(SO_Character thisSO_Character)
     {
         dataActor = thisSO_Character;
-    }
-
-    public int GetPosition()
-    {
-        return position;     
     }
 
     public int GetCurrentStress()

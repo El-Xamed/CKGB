@@ -57,7 +57,7 @@ public class Test_challenge : MonoBehaviour
     //Fonction de spawn les boutons.
     void SpawnActions()
     {
-        for (int i = 0; i < currentStep.actions.Length; i++)
+        for (int i = 0; i < currentStep.actions.Count -1; i++)
         {
             //Création d'une nouvelle class qui sera ajouté dans une liste.
             Action myAction = new Action();
@@ -138,7 +138,7 @@ public class Test_challenge : MonoBehaviour
         {
             currentStep = allSteps[currentStepID + 1];
             Debug.Log("next step yay");
-            for (int i = 0; i < currentStep.actions.Length; i++)
+            for (int i = 0; i < currentStep.actions.Count -1; i++)
             {
                 //Instantiate(currentStep.actions[i].actionButton, buttonPlacements[i].transform.position, buttonPlacements[i].transform.rotation, FindObjectOfType<Canvas>().transform);
                 currentStepID = i;

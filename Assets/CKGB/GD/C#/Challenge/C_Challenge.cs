@@ -152,6 +152,35 @@ public class C_Challenge : MonoBehaviour
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
+        #region Instance des data challenge.
+        //Instancie le challenge
+        myChallenge = SO_Challenge.Instantiate(myChallenge);
+
+        //Instancie les etape du challenge A FAIRE ABSOLUMENT.
+        List<SO_Etape> listSoEtapeInstance = new List<SO_Etape>();
+        List<SO_ActionClass> listSoActionClassInstance = new List<SO_ActionClass>();
+
+        foreach (SO_Etape thisEtape in myChallenge.listEtape)
+        {
+            SO_Etape etapeInstance = SO_Etape.Instantiate(thisEtape);
+
+            listSoEtapeInstance.Add(etapeInstance);
+
+            foreach (SO_ActionClass thisAction in thisEtape.actions)
+            {
+                SO_ActionClass actionInstance = SO_ActionClass.Instantiate(thisAction);
+
+                listSoActionClassInstance.Add(actionInstance);
+            }
+
+            //Remplace la liste par les instance d'étape.
+            thisEtape.actions = listSoActionClassInstance;
+        }
+
+        //Remplace la liste par les instance d'étape.
+        myChallenge.listEtape = listSoEtapeInstance;
+        #endregion
+
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
@@ -307,7 +336,10 @@ public class C_Challenge : MonoBehaviour
     #region Tour du joueur
     public void WriteStatsPreview()
     {
-        uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, listCase);
+        if (eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject.activeSelf)
+        {
+            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, listCase);
+        }
     }
 
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
@@ -339,6 +371,9 @@ public class C_Challenge : MonoBehaviour
             myInterface.GetComponent<Animator>().SetTrigger("CloseAll");
             myInterface.GetUiAction().SetActive(false);
             myInterface.GetUiTrait().SetActive(false);
+
+            //Passe l'interface en neutre.
+            myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
             ResolutionTurn();
         }
@@ -422,9 +457,9 @@ public class C_Challenge : MonoBehaviour
         //Ajout des zones de danger des acc
         foreach (var thisAcc in listAcc)
         {
-            if (thisAcc.dataAcc.canMakeDamage)
+            if (thisAcc.GetDataAcc().canMakeDamage)
             {
-                listCase[thisAcc.position].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
+                listCase[thisAcc.GetPosition()].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
             }
         }
 
@@ -458,7 +493,7 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("next step");
 
             //Nouvelle étape.
-            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) +1];
+            currentStep = SO_Etape.Instantiate(myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1]);
         }
         else
         {
@@ -510,6 +545,7 @@ public class C_Challenge : MonoBehaviour
 
     bool CheckIfGetGoodAction()
     {
+        //Reagarde tous la liste de reso si il y a une bonne action.
         foreach (ActorResolution thisReso in listRes)
         {
             //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
@@ -520,6 +556,25 @@ public class C_Challenge : MonoBehaviour
                 uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
 
                 uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
+            }
+        }
+
+        //Check si dans les actions utilisé, il y a pas de sous action.
+        foreach (ActorResolution thisReso in listRes)
+        {
+            if (thisReso.button.GetActionClass().nextAction != null)
+            {
+                Debug.Log(thisReso.button.GetActionClass());
+                //Retrouve la liste d'action du challenge.
+                foreach (SO_ActionClass thisAction in myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions)
+                {
+                    Debug.Log(thisAction);
+                    if (thisAction == thisReso.button.GetActionClass())
+                    {
+                        //Change l'action.
+                        thisReso.button.SetActionClass(thisReso.button.GetActionClass());
+                    }
+                }
             }
         }
 
@@ -696,18 +751,18 @@ public class C_Challenge : MonoBehaviour
     void ApplyAccDamage(C_Accessories thisAcc)
     {
         //Check si il attaque.
-        if (!thisAcc.dataAcc.canMakeDamage) { return; }
+        if (!thisAcc.GetDataAcc().canMakeDamage) { return; }
 
         foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
         {
-            if (thisCase == thisAcc.position)
+            if (thisCase == thisAcc.GetPosition())
             {
-                if (thisAcc.dataAcc.typeAttack == SO_Accessories.ETypeAttack.All)
+                if (thisAcc.GetDataAcc().typeAttack == SO_Accessories.ETypeAttack.All)
                 {
                     //Check si la position des actor est sur la meme case que l'acc.
                     foreach (var thisActor in myTeam)
                     {
-                        thisActor.SetCurrentStatsPrice(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+                        thisActor.SetCurrentStatsPrice(thisAcc.GetDataAcc().reducStress, thisAcc.GetDataAcc().reducEnergie);
 
                         thisActor.CheckIsOut();
                     }
@@ -722,14 +777,14 @@ public class C_Challenge : MonoBehaviour
         //Check si la position des actor est sur la meme case que l'acc.
         foreach (var thisActor in myTeam)
         {
-            if (thisActor.GetPosition() == thisAcc.position)
+            if (thisActor.GetPosition() == thisAcc.GetPosition())
             {
-                thisActor.SetCurrentStatsPrice(thisAcc.dataAcc.reducStress, thisAcc.dataAcc.reducEnergie);
+                thisActor.SetCurrentStatsPrice(thisAcc.GetDataAcc().reducStress, thisAcc.GetDataAcc().reducEnergie);
 
                 thisActor.CheckIsOut();
 
                 //Ecrit dans les logs le résultat de l'action.
-                uiLogs.text = thisAcc.dataAcc.damageLogs;
+                uiLogs.text = thisAcc.GetDataAcc().damageLogs;
             }
         }
 
@@ -753,7 +808,7 @@ public class C_Challenge : MonoBehaviour
         return currentActor;
     }
 
-    public SO_ActionClass[] GetListActionOfCurrentStep()
+    public List<SO_ActionClass> GetListActionOfCurrentStep()
     {
         return currentStep.actions;
     }
