@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1422159501}
   - component: {fileID: 1422159500}
   - component: {fileID: 1422159499}
+  - component: {fileID: 1422159502}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,6 +208,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1422159502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422159498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &2929715506690256280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,6 +252,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: up
+      value: 
+      objectReference: {fileID: 8300000, guid: 20236117583f78f4cbef991304f9d11e, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: down
+      value: 
+      objectReference: {fileID: 8300000, guid: f66607b0d05e2824c9a1f61a46067ce1, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: logs
+      value: 
+      objectReference: {fileID: 8300000, guid: b89bb49b78bda9345b6262cc5cb336d1, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: hover
+      value: 
+      objectReference: {fileID: 8300000, guid: 093a97231fe5b4a48a5f6fa73320cb23, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: danger
+      value: 
+      objectReference: {fileID: 8300000, guid: f07c469eacbcb9f4f8dea1b8bf061443, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: marche
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cc8737fe724422408a4075348918182, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: option
+      value: 
+      objectReference: {fileID: 8300000, guid: 89da2d8c3f262d0408ae18df0bdbd018, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: tetaniser
+      value: 
+      objectReference: {fileID: 8300000, guid: bf5458880a4ac3f4f80ac62ecddf96f3, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: confirmation
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a23645a760b55245b4103ba9a6a8b43, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: musicChallenge
+      value: 
+      objectReference: {fileID: 8300000, guid: dd0569506f2d0084ab0de7ab8bf72956, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: musicTempsMort
+      value: 
+      objectReference: {fileID: 8300000, guid: da89ef69edb3cbf4f8510ed8bc8e011e, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: retourEnArriere
+      value: 
+      objectReference: {fileID: 8300000, guid: f77cb35d77a6ed74faabd5ae6f411b47, type: 3}
     - target: {fileID: 2929715506357219770, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: m_RootOrder
       value: 1

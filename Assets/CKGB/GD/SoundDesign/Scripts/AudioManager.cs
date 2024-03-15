@@ -5,30 +5,56 @@ using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
-    #region Variable
+    [Header("--------- Audio Source ---------")]
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource ambianceSource;
+
+    [Header("--------- Audio Clip ---------")]
+    public AudioClip up;
+    public AudioClip down;
+    public AudioClip hover;
+    public AudioClip confirmation;
+    public AudioClip retourEnArriere;
+    public AudioClip option;
+    public AudioClip tetaniser;
+    public AudioClip logs;
+    public AudioClip danger;
+    public AudioClip musicTempsMort;
+    public AudioClip musicChallenge;
+    public AudioClip oiseaux;
+    public AudioClip vent;
+    public AudioClip ruisseau;
+    public AudioClip marche;
+
     public static AudioManager instance;
-    #endregion
 
     private void Awake()
     {
-        #region Singleton
         if (instance == null)
+        {
             instance = this;
-        #endregion
+        }
 
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void Main()
-   {
+    private void Start()
+    {
+        musicSource.clip = musicTempsMort;
+        
+        musicSource.Play();
+    }
 
-        IDictionary<string, string> openWith =
-            new Dictionary<string, string>();
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.PlayOneShot(clip);
+    }
 
-        openWith.Add("fire", "fire2");
-        openWith.Add("resolution", "resolusion2");
-        openWith.Add("water", "water2");
-        openWith.Add("birds", "birds2");
-        openWith.Add("fire", "fire2");
-   }
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.Stop();
+        musicSource.clip = clip;
+        musicSource.Play();
+    }
 }
