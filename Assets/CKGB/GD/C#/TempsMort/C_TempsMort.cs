@@ -206,7 +206,7 @@ public class C_TempsMort : MonoBehaviour
                 charactersCompleteResume1[i].SetActive(true);
                 charactersCompleteResume2[i].SetActive(false);
             }
-            else if (actorActif == characters[i] && isAnActionButton == true)
+            else if (actorActif == characters[i] && isAnActionButton == true&&GameManager.instance.isDialoguing==false)
             {
                 charactersCompleteResume1[i].SetActive(true);
                 charactersLittleResume[i].SetActive(false);
@@ -257,6 +257,10 @@ public class C_TempsMort : MonoBehaviour
         for (int i = 0; i < actions.Length; i++)
         {
             actions[i].SetActive(false);
+            if(charactersButton[i].activeSelf==false)
+            {
+                charactersButton[i].SetActive(true);
+            }
             charactersButton[i].GetComponent<Button>().enabled = true;
             Es.SetSelectedGameObject(charactersButton[i]);       
             if (characterHasPlayed[0] == true && characterHasPlayed[1] == true && characterHasPlayed[2] == true)
@@ -353,7 +357,7 @@ public class C_TempsMort : MonoBehaviour
     {
         if(actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text!=null)
         {
-            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
+            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours-1].buttonText;
         }
         else
             actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
@@ -493,6 +497,43 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Respirer()
     {
+        aquiletour.SetActive(false);
+        faitesunchoix.SetActive(false);
+        papoteravec.SetActive(false);
+        #region HideUI
+
+        foreach (GameObject button in actions)
+        {
+            if (button != null)
+                button.SetActive(false);
+        }
+        foreach (GameObject papot in PapotageChoiceButtons)
+        {
+            papot.SetActive(false);
+        }
+        foreach (GameObject fiche in charactersCompleteResume1)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject fiche in charactersCompleteResume2)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject fiche in charactersLittleResume)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject button in charactersButton)
+        {
+            if (button != null)
+                button.SetActive(false);
+        }
+
+        ChallengeButton.SetActive(false);
+        #endregion
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Respirer);
     }
     public void RetourAuTMAfterRespirer(string text)
@@ -519,6 +560,43 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Revasser()
     {
+        aquiletour.SetActive(false);
+        faitesunchoix.SetActive(false);
+        papoteravec.SetActive(false);
+        #region HideUI
+
+        foreach (GameObject button in actions)
+        {
+            if (button != null)
+                button.SetActive(false);
+        }
+        foreach (GameObject papot in PapotageChoiceButtons)
+        {
+            papot.SetActive(false);
+        }
+        foreach (GameObject fiche in charactersCompleteResume1)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject fiche in charactersCompleteResume2)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject fiche in charactersLittleResume)
+        {
+            if (fiche != null)
+                fiche.SetActive(false);
+        }
+        foreach (GameObject button in charactersButton)
+        {
+            if (button != null)
+                button.SetActive(false);
+        }
+
+        ChallengeButton.SetActive(false);
+        #endregion
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
     }
     public void RetourAuTMAfterRevasser(string text)
@@ -747,6 +825,7 @@ public class C_TempsMort : MonoBehaviour
         TMhasStarted = true;
         Es = FindObjectOfType<EventSystem>();
         GameManager.instance.ExitDialogueMode();
+        aquiletour.SetActive(true);
         foreach (GameObject button in charactersButton)
         {
             if (button != null)
