@@ -108,6 +108,11 @@ public class C_Challenge : MonoBehaviour
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             WriteStatsPreview();
+
+            if (AudioManager.instance)
+            {
+                AudioManager.instance.PlaySFX(AudioManager.instance.hover);
+            }
         }
     }
     #endregion
@@ -185,6 +190,11 @@ public class C_Challenge : MonoBehaviour
         Invoke("PlayerTrun", 2f);
         uiGameOver.SetActive(false);
 
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.musicChallenge);
+        }
         #endregion
     }
 
@@ -340,6 +350,11 @@ public class C_Challenge : MonoBehaviour
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
     public void UseAction(C_ActionButton thisActionButton)
     {
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.confirmation);
+        }
+
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
@@ -426,6 +441,11 @@ public class C_Challenge : MonoBehaviour
     //VFX des cases visées.
     void InitialiseCata()
     {
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.danger);
+        }
+
         //Supprime toutes les cata
         foreach (var thisCase in listCase)
         {
