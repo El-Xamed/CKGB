@@ -41,8 +41,36 @@ La vie à cette époque à l’air définitivement bien compliquée. #Bulle:Esth
 ===Revasser1===
 
 //blabla
+Les mains sous ta cape, tu carresse instinctivement une des balles de jonglage dans les poches de ta robe.
+Les gens sont toujours surpris quand ils apprennent que tu les portent tout le temps sur toi.#Bulle:EsthelaHautDroite
+A quoi est-ce qu’ils s’attendaient ?#Bulle:EsthelaHautDroite
+Tu en sors une, et commence à la lancer et la rattraper d’une main. Ca te fais te sentir bien.#Bulle:EsthelaHautDroite
+Confiante.#Bulle:EsthelaHautDroite
+Tu repense à ces photos imprimées par le Musée.#Bulle:EsthelaHautDroite
+Ces gens adossés à un mur, l’oeil assuré et une cigarette à la bouche. C’est un peu pareil.#Bulle:EsthelaHautDroite
+Comme quand Morgan tient son stylo en parlant.#Bulle:EsthelaHautDroite
+Ca confère une contenance, une attitude.#Bulle:EsthelaHautDroite
+Des gens fument à Brekelantte. Du blémi, du chançoit, et même du tabac. Mais pas comme ils le faisaient à l’époque.#Bulle:EsthelaHautDroite
+Ca se sent, dans la manière dont les plus vieilles personnes en parlent.#Bulle:EsthelaHautDroite
+Tu ne comprends pas ce qui peut être si différent. Mais aussi, tu n’as jamais vu de cigarettes comme sur les photos à Brekelantte. #Bulle:EsthelaHautDroite
+Tu fais tomber la balle remplie de graines.#Bulle:EsthelaHautDroite
+Oups. #Bulle:EsthelaHautDroite
+Tu la ramasse. Ton pouce poursuis la ligne tracée par la couture.#Bulle:EsthelaHautDroite
+Tu ne dira jamais assez merci à tes amis du cirque pour te l’avoir offerte.#Bulle:EsthelaHautDroite
+Pour t’avoir initié à leur monde. Pour t’avoir fait l’une des leurs.#Bulle:EsthelaHautDroite
+Tu ne t’es jamais sentie différente la-bas. Pourtant, tu ne les connaissais pas il y a un mois. #Bulle:EsthelaHautDroite
+Ca avait été comme si… Comme si tu avais toujours été un poisson, et qu’on t’avais jeté dans l’eau pour la première fois.#Bulle:EsthelaHautDroite
+Tu n’étais plus seule, et pourtant tu n’as jamais été aussi libre.
+Tu sors deux autres balles.
+Ce n’est pas vraiment possible de jouer à deux balles. On peut le faire, plus ou moins,
+mais c’est bizarre, car tout le concept du jonglage repose sur le fait de ne pas avoir assez de mains mais de faire avec. #Bulle:EsthelaHautDroite
 
-Je revasse 1 #Bulle:EsthelaBasDroite
+Tu lance une balle.#Bulle:EsthelaHautDroite
+Le destin tient à si peu de choses. Elle retombe.
+Tu en lance une autre pour pouvoir l’accueillir. On est tous lancés dans des directions différentes. La deuxieme balle retombe.#Bulle:EsthelaHautDroite
+Tu dois en lancer une nouvelle pour avoir la place de la ramasser.#Bulle:EsthelaHautDroite
+Et il suffit d’un rien pour qu’on croise celle d’une autre personne. Elle entame sa cloche, et tu relance celle de l’autre coté.#Bulle:EsthelaHautDroite
+Elle se carambolent dans les airs.  Et que notre vie entière change de trajectoire.#Bulle:EsthelaHautDroite
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
@@ -51,7 +79,7 @@ Je revasse 1 #Bulle:EsthelaBasDroite
 
 //blabla
 
-Je revasse 2 #Bulle:EsthelaBasDroite
+J'ai que deux temps mort à moi, comment vous êtes arrivés là ?? #Bulle:EsthelaBasDroite
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
