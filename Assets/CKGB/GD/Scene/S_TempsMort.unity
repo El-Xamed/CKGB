@@ -676,7 +676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232709660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -208, y: 279, z: 0.10489358}
+  m_LocalPosition: {x: -334, y: 180, z: 0.10489358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3860,6 +3860,7 @@ MonoBehaviour:
   inkAssetIntro: {fileID: 0}
   _intro: {fileID: 4900000, guid: 171cafb8be8e56d4786a935743b2e134, type: 3}
   _outro: {fileID: 4900000, guid: 4e0ecb31268432946bd68d06dc36d1df, type: 3}
+  Observage: {fileID: 0}
   naratteur: {fileID: 2076009918}
   TMhasStarted: 0
   ActionToAdd: []
@@ -11091,7 +11092,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -5.8377686, y: -5.838028, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -11122,8 +11123,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 623.05176, y: -478.66235}
-  m_SizeDelta: {x: 630.8323, y: 89.9741}
+  m_AnchoredPosition: {x: 574.8879, y: -452.32}
+  m_SizeDelta: {x: 727.1598, y: 142.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076009921
 MonoBehaviour:
@@ -11775,7 +11776,7 @@ MonoBehaviour:
   scriptable_globalBehaviorsValues: {fileID: 0}
   scriptable_globalAppearancesValues: {fileID: 0}
   useDynamicScaling: 1
-  referenceFontSize: 36
+  referenceFontSize: 32
   isResettingEffectsOnNewText: 1
   timeScale: 0
 --- !u!1 &2093795492
@@ -11926,6 +11927,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: musicChallenge
+      value: 
+      objectReference: {fileID: 8300000, guid: da89ef69edb3cbf4f8510ed8bc8e011e, type: 3}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: musicTempsMort
+      value: 
+      objectReference: {fileID: 8300000, guid: dd0569506f2d0084ab0de7ab8bf72956, type: 3}
     - target: {fileID: 2929715506357219770, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: m_RootOrder
       value: 4
