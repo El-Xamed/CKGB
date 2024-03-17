@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Project
   m_RootView: {fileID: 8}
-  m_MinSize: {x: 875, y: 371}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 274
+  controlID: 108
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 191
+  controlID: 107
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -206,7 +206,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 772.8
-  m_MinSize: {x: 875, y: 371}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -947,23 +947,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/CKGB/GD/C#/TempsMort/Stories/CharactersStories/Respirer
+    - Assets/CKGB/GD/C#/TempsMort/Stories/CharactersStories/Observer
     m_Globs: []
     m_OriginalText: 
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 46
   m_LastFolders:
-  - Assets/CKGB/GD/C#/TempsMort/Stories/CharactersStories/Respirer
+  - Assets/CKGB/GD/C#/TempsMort/Stories/CharactersStories/Observer
   m_LastFoldersGridSize: 46
   m_LastProjectPath: D:\E-Art\PFE\CKGB
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 71.80002}
-    m_SelectedIDs: d42e0000
-    m_LastClickedID: 11988
-    m_ExpandedIDs: 00000000ea2e0000486f00004a6f00004c6f00004e6f0000506f0000067200008472000086720000a2720000fe72000008730000
+    m_SelectedIDs: d26b0000
+    m_LastClickedID: 27602
+    m_ExpandedIDs: 000000004e6900005069000052690000546900005669000058690000d06b0000d46b0000d66b0000d86b0000da6b0000dc6b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -991,7 +991,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000486f00004a6f00004c6f00004e6f0000506f0000526f0000
+    m_ExpandedIDs: 000000004e6900005069000052690000546900005669000058690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1022,18 +1022,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Respirer
-      m_OriginalName: Respirer
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 11988
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 2}
     m_CreateAssetUtility:
@@ -1121,9 +1121,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e02e0000
+      m_SelectedIDs: 0c6c0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 3af8ffff
+      m_ExpandedIDs: 28fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0.71391875, y: 2.8266912, z: 0.10000398}
     speed: 2
-    m_Value: {x: -21.083199, y: -69.74146, z: 54.135048}
+    m_Value: {x: 0.71391875, y: 2.8266912, z: 0.10000398}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 13.296568
     speed: 2
-    m_Value: 82.3424
+    m_Value: 13.296568
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1568,7 +1568,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -1581,7 +1581,7 @@ MonoBehaviour:
       y: 21
       width: 898
       height: 439.6
-    m_Scale: {x: 0.5087963, y: 0.5087963}
+    m_Scale: {x: 0.53310186, y: 0.53310186}
     m_Translation: {x: 449, y: 219.8}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1589,12 +1589,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -882.47504
-      y: -432.00003
-      width: 1764.9501
-      height: 864.00006
+      x: -842.24054
+      y: -412.30396
+      width: 1684.4811
+      height: 824.6079
     m_MinimalGUI: 1
-  m_defaultScale: 0.5087963
+  m_defaultScale: 0.53310186
   m_LastWindowPixelSize: {x: 1122.5, y: 575.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
