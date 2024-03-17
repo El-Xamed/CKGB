@@ -86,9 +86,10 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (!context.performed)
+        if (context.performed)
         {
-            SceneManager.LoadScene("Destination_Test");
+            Debug.Log("Reload");
+            SceneManager.LoadScene("S_DestinationTest");
         }
     }
 
