@@ -5,9 +5,9 @@ EXTERNAL RetourAuTMAfterRespirer(name)
 VAR IDobserver = 0
 ===checkID===
 { 
-- IDobserver==0: ->observer0
-- IDobserver==1: ->observer1
-- IDobserver==2: ->observer2
+- IDobserver==1: ->observer0
+- IDobserver==2: ->observer1
+- IDobserver==3: ->observer2
 - else: ->END
 }
 ===observer0===
@@ -33,7 +33,7 @@ Tu es prêt.e à repartir. #Bulle:Narrateur
 
 //blabla
 
-Nerveusement, presque comme un automatisme, tu entretient les plantes devant lesquelles tu passe.#Bulle:Narrateur
+Nerveusement, presque comme un automatisme, tu entretient les plantes devant lesquelles tu passes.#Bulle:Narrateur
 Un coup d’arrosoirs ici, retirer des galets là,#Bulle:Narrateur
 arracher quelques pousses qui risquent de gêner les autres. #Bulle:Narrateur
 C’est un travail sans fin. #Bulle:Narrateur

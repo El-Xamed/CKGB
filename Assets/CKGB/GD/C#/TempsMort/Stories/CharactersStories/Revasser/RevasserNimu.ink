@@ -5,9 +5,9 @@ EXTERNAL RetourAuTMAfterRevasser(name)
 VAR IDrevasser = 0
 ===checkID===
 { 
-- IDrevasser==0: ->Revasser0
-- IDrevasser==1: ->Revasser1
-- IDrevasser==2: ->Revasser2
+- IDrevasser==1: ->Revasser0
+- IDrevasser==2: ->Revasser1
+- IDrevasser==3: ->Revasser2
 - else: ->END
 }
 ===Revasser0===

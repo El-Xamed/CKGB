@@ -44,8 +44,7 @@ public class C_TempsMort : MonoBehaviour
 
     [SerializeField]
     public List<GameObject> characters = new List<GameObject>();
-    [SerializeField]
-    SO_TempsMort TM;
+    [SerializeField] public SO_TempsMort TM;
     [SerializeField]
     public GameObject background;
 
@@ -54,8 +53,8 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField] GameObject currentButton;
     [SerializeField] GameObject selectedActionButton;
 
-    [SerializeField] GameObject actorActif;
-    [SerializeField] GameObject Papoteur;
+    [SerializeField] public GameObject actorActif;
+    [SerializeField] public GameObject  Papoteur;
     [SerializeField] bool MorganAPapoteAvecEsthela = false;
     [SerializeField] bool MorganAPapoteAvecNimu = false;
     [SerializeField] bool NimuAPapoteAvecEsthela = false;
@@ -78,6 +77,7 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField]TextAsset inkAssetIntro;
     [SerializeField] TextAsset _intro;
     [SerializeField] TextAsset _outro;
+    [SerializeField] public TextAsset Observage;
     [SerializeField] public TMP_Text naratteur;
     [SerializeField] bool TMhasStarted = false;
 
@@ -338,6 +338,7 @@ public class C_TempsMort : MonoBehaviour
         background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
         _intro = TM.intro;
         _outro = TM.Outro;
+        Observage = TM.Observer;
        
     }
     public void UpdateCharacterStat()
@@ -772,11 +773,11 @@ public class C_TempsMort : MonoBehaviour
         {
             if (actorActif == characters[y])
             {
-                GameManager.instance.RespirerID[y]++;
+                GameManager.instance.RespirerID++;
             }
 
         }
-        GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Respirer);
+        GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
     {

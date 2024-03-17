@@ -5,9 +5,9 @@ EXTERNAL RetourAuTMAfterRespirer(name)
 VAR IDobserver = 0
 ===checkID===
 { 
-- IDobserver==0: ->observer0
-- IDobserver==1: ->observer1
-- IDobserver==2: ->observer2
+- IDobserver==1: ->observer0
+- IDobserver==2: ->observer1
+- IDobserver==3: ->observer2
 - else: ->END
 }
 ===observer0===

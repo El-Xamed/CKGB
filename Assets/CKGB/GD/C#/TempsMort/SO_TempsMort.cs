@@ -13,6 +13,7 @@ public class SO_TempsMort : ScriptableObject
     [Header("Dialogues")]
     [SerializeField] public TextAsset intro;
     [SerializeField] public TextAsset Outro;
+    [SerializeField] public TextAsset Observer;
 
     [Header("Data Temps Mort")]
     [SerializeField] public Sprite TMbackground;

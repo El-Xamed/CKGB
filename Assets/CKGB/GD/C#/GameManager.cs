@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     //zone dédiée aux  dialogues
     [SerializeField] public Story currentStory;
     [SerializeField] public int[] RevasserID;
-    [SerializeField] public int[] RespirerID;
+    [SerializeField] public int RespirerID;
     [SerializeField] public int[] PapoterID;
     [SerializeField] public TMP_Text textToWriteIn;
     [SerializeField] public TextAsset[]papotage;
@@ -193,9 +193,23 @@ public class GameManager : MonoBehaviour
         if (InkJSON.name == "RevasserEsthela" || InkJSON.name == "RevasserMorgan" || InkJSON.name == "RevasserNimu")
         {
             currentStory.BindExternalFunction("RetourAuTMAfterRevasser", (string name) => { TM.RetourAuTMAfterRevasser(name); });
+            if(TM.actorActif==TM.characters[0])
+            {
+                currentStory.variablesState["IDrevasser"] = RevasserID[0];
+            }
+            else if (TM.actorActif == TM.characters[1])
+            {
+                currentStory.variablesState["IDrevasser"] = RevasserID[1];
+            }
+            else if (TM.actorActif == TM.characters[2])
+            {
+                currentStory.variablesState["IDrevasser"] = RevasserID[2];
+            }
+
         }
-        if (InkJSON.name == "RespirerEsthela" || InkJSON.name == "RespirerMorgan" || InkJSON.name == "RespirerNimu")
+        if (InkJSON.name == TM.Observage.name)
         {
+            currentStory.variablesState["IDoberver"] = RespirerID;
             currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
         }
         if (InkJSON.name == "PapoterMorganEsthela" || InkJSON.name == "PapoterMorganNimu" || InkJSON.name == "PapoterNimuEsthela")
