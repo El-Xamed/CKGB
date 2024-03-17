@@ -284,6 +284,7 @@ public class C_Challenge : MonoBehaviour
                             C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
 
                             //Add Ui Stats
+                            thisActor.GetComponent<C_Actor>().SetUiStats(newStats);
                             thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
 
                             //Update UI
@@ -294,7 +295,7 @@ public class C_Challenge : MonoBehaviour
                         else
                         {
                             //Cache les actor qui ne seront pas présent dans ce challenge.
-                            thisActor.SetActive(false);
+                            //thisActor.SetActive(false);
                         }
                     }
                 }

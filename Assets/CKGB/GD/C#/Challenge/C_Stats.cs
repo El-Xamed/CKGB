@@ -26,7 +26,7 @@ public class C_Stats : MonoBehaviour
         PDP.sprite = thisActor.GetDataActor().challengeSpriteUi;
 
         //Place les bordures par rapport au nombres de calm que possède le personnage.
-        SpawnBorderCalm(thisActor.GetComponent<C_Actor>().getMaxStress());
+        //SpawnBorderCalm(thisActor.GetComponent<C_Actor>().getMaxStress());
     }
 
     void SpawnBorderCalm(int nbCalm)
