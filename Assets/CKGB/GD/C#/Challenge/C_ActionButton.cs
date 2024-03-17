@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static TargetStats;
 using static UnityEngine.GraphicsBuffer;
 
 public class C_ActionButton : MonoBehaviour
@@ -79,6 +80,56 @@ public class C_ActionButton : MonoBehaviour
 
         return false;
     }
+
+    bool GetIfSwitchOrNot()
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "Other".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
+                    {
+                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
+                        {
+                            thisTargetStats.move.accessories = GameObject.Find(GetSwitchGameObject().GetDataAcc().name).GetComponent<C_Accessories>();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    C_Accessories GetSwitchGameObject()
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in actionClass.listInteraction)
+        {
+            //Check si sont enum est égale à "Other".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
+                    {
+                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
+                        {
+                            return thisTargetStats.move.accessories;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
     GameObject GetTarget()
     {
         //Pour toutes les liste d'action.
@@ -534,7 +585,7 @@ public class C_ActionButton : MonoBehaviour
                 }
             }
         }
-        else
+        else if (GetIfTargetOrNot())
         {
             if (GetTarget().GetComponent<C_Actor>())
             {

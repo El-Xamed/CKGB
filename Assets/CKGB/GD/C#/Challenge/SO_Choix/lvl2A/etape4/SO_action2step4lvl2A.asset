@@ -13,29 +13,61 @@ MonoBehaviour:
   m_Name: SO_action2step4lvl2A
   m_EditorClassIdentifier: 
   buttonText: Vandaliser le panneau
-  LogsCanMakeAction: 
+  LogsCanMakeAction: "Ce sera fait t\xF4t ou tard, autant prendre de l\u2019avance.
+    Rien ne reste fig\xE9 \xE0 jamais. Au dessus de \u201CPont \xE0 L\xE9zards\u201D,
+    tu rajoute une mention \u201Cpont \xE0 lazer\u201D avec une couleur diff\xE9rente,
+    avant de barrer le tout. Hehe."
   LogsCantMakeAction: 
-  coutEnergy: 1
-  coutCalm: 0
-  gainCalm: 2
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 0
-  moveRightSelf: 0
-  moveLeftSelf: 0
-  caseToGo: 0
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  currentLogs: 
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 0
+        value: 1
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 3
+    range: 2
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

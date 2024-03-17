@@ -25,15 +25,6 @@ public class SO_ActionClass : ScriptableObject
     [Header("List d'action")]
     public List<Interaction> listInteraction = new List<Interaction>();
     #endregion
-
-    #region Fonctions
-    //pour changer de mini étape
-    void UpdateMiniActionClass()
-    {
-
-    }
-
-    #endregion
 }
 
 #region Conditions avancé

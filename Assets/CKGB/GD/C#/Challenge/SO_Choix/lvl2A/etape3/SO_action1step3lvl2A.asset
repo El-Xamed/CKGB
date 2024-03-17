@@ -20,27 +20,46 @@ MonoBehaviour:
     bruit douloureux. L\u2019arbre n\u2019a pas boug\xE9 d\u2019un pouce. Ton compagnon
     trouve \xE7a un peu dr\xF4le."
   LogsCantMakeAction: 
-  coutEnergy: 2
-  coutCalm: 0
-  gainCalm: 0
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 3
-  gainEnergyOther: 0
-  leftRangeStatsOther: 2
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 0
-  moveRightSelf: 0
-  moveLeftSelf: 0
-  caseToGo: -1
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  currentLogs: 
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 0
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 2
+    range: 2
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 3
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

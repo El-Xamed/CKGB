@@ -21,27 +21,12 @@ MonoBehaviour:
     l\xE9zards \xE0 la place des \xE9paules. Bon. Au moins, il y a toujours des snacks
     dans le cabanon."
   LogsCantMakeAction: Impossible
-  coutEnergy: 0
-  coutCalm: 0
-  gainCalm: 0
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 1
-  moveRightSelf: 0
-  moveLeftSelf: 0
-  caseToGo: -1
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  currentLogs: 
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

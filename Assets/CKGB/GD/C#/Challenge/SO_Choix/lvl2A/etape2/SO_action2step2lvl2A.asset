@@ -17,27 +17,27 @@ MonoBehaviour:
     entre les plants \xE0 la recherche de quoi te sustenter, malheureusement il semblerait
     que toutes les tomates mures aient \xE9t\xE9 r\xE9colt\xE9es ce matin."
   LogsCantMakeAction: Impossible
-  coutEnergy: 0
-  coutCalm: 0
-  gainCalm: 0
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 0
-  moveRightSelf: 0
-  moveLeftSelf: 2
-  caseToGo: -1
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  currentLogs: 
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats: []
+      move:
+        whatMove: 2
+        isTp: 0
+        nbMove: 2
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

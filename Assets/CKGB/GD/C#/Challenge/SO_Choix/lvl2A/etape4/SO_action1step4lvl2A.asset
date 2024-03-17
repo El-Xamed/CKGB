@@ -28,27 +28,12 @@ MonoBehaviour:
     que tu mime avec tes doigts. L\u2019assembl\xE9 des l\xE9zard applaudit avec
     ses petites pattes \xE9cailleuses. Tu as accomplit ta mission."
   LogsCantMakeAction: 
-  coutEnergy: 1
-  coutCalm: 0
-  gainCalm: 2
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 0
-  moveRightSelf: 0
-  moveLeftSelf: 0
-  caseToGo: 0
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  currentLogs: 
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

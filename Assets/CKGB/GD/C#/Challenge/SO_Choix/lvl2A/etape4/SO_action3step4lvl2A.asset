@@ -13,29 +13,34 @@ MonoBehaviour:
   m_Name: SO_action3step4lvl2A
   m_EditorClassIdentifier: 
   buttonText: Casser le pont
-  LogsCanMakeAction: 
+  LogsCanMakeAction: "\u2026Tu songe \xE0 l\u2019id\xE9e, tes doigts crisp\xE9s le
+    long de ton corps. Mais non. Pas apr\xE8s tout ce que vous avez travers\xE9 pour
+    le construire. Tu refuse de priver ces l\xE9zards de leur libert\xE9 de circulation.
+    Tu laisse le pont comme il est."
   LogsCantMakeAction: 
-  coutEnergy: 0
-  coutCalm: 4
-  gainCalm: 0
-  gainEnergy: 0
-  coutEnergyOther: 0
-  coutCalmOther: 0
-  gainCalmOther: 0
-  gainEnergyOther: 0
-  leftRangeStatsOther: 0
-  rightRangeStatsOther: 0
-  leftRangeOtherMovement: 0
-  rightRangeOtherMovement: 0
-  swithWithAcc: 0
-  moveRightSelf: 0
-  moveLeftSelf: 0
-  caseToGo: 0
-  moveOther: 0
-  moveRightOther: 0
-  moveLeftOther: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
-  needActor: 0
-  actor: {fileID: 0}
+  currentLogs: 
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 4
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

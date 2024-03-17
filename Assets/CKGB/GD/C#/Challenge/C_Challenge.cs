@@ -60,11 +60,13 @@ public class C_Challenge : MonoBehaviour
 
     #region Challenge
     [Space(50)]
-    C_Actor currentActor;
+    [SerializeField] C_Actor currentActor;
 
     //D�finis l'�tape actuel. RETIRER LE PUBLIC
     [SerializeField] SO_Etape currentStep;
 
+    bool writeAccLogs = false;
+    bool canUpdateEtape = false;
     #endregion
 
     #region Résolution
@@ -156,29 +158,22 @@ public class C_Challenge : MonoBehaviour
         //Instancie le challenge
         myChallenge = SO_Challenge.Instantiate(myChallenge);
 
-        //Instancie les etape du challenge A FAIRE ABSOLUMENT.
-        List<SO_Etape> listSoEtapeInstance = new List<SO_Etape>();
-        List<SO_ActionClass> listSoActionClassInstance = new List<SO_ActionClass>();
-
-        foreach (SO_Etape thisEtape in myChallenge.listEtape)
+        for (int i = 0; i < myChallenge.listEtape.Count; i++)
         {
-            SO_Etape etapeInstance = SO_Etape.Instantiate(thisEtape);
+            myChallenge.listEtape[i] = SO_Etape.Instantiate(myChallenge.listEtape[i]);
 
-            listSoEtapeInstance.Add(etapeInstance);
+            myChallenge.listEtape[i].rightAnswer = SO_ActionClass.Instantiate(myChallenge.listEtape[i].rightAnswer);
 
-            foreach (SO_ActionClass thisAction in thisEtape.actions)
+            for (int j = 0; j < myChallenge.listEtape[i].actions.Count; j++)
             {
-                SO_ActionClass actionInstance = SO_ActionClass.Instantiate(thisAction);
+                myChallenge.listEtape[i].actions[j] = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j]);
 
-                listSoActionClassInstance.Add(actionInstance);
+                if (myChallenge.listEtape[i].actions[j].nextAction != null)
+                {
+                    myChallenge.listEtape[i].actions[j].nextAction = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j].nextAction);
+                }
             }
-
-            //Remplace la liste par les instance d'étape.
-            thisEtape.actions = listSoActionClassInstance;
         }
-
-        //Remplace la liste par les instance d'étape.
-        myChallenge.listEtape = listSoEtapeInstance;
         #endregion
 
         //Set l'étape en question.
@@ -396,9 +391,11 @@ public class C_Challenge : MonoBehaviour
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
         //Check si dans la phase de résolution un actor à trouvé la bonne action.
-        if (CheckIfGetGoodAction())
+        if (canUpdateEtape)
         {
             stepUpdate();
+            canUpdateEtape = false;
+            Debug.Log("test");
         }
 
         //Vide la listeReso
@@ -493,7 +490,7 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("next step");
 
             //Nouvelle étape.
-            currentStep = SO_Etape.Instantiate(myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1]);
+            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
         }
         else
         {
@@ -543,65 +540,71 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    bool CheckIfGetGoodAction()
+    void ResolutionTurn()
     {
-        //Reagarde tous la liste de reso si il y a une bonne action.
-        foreach (ActorResolution thisReso in listRes)
+        //Check si il n'est pas sur un acc qui attaque.
+        if (CheckApplyAccDamageInReso(listAcc[0]) && writeAccLogs == false)
         {
-            //Si c'est la bonne réponse. LE FAIRE DANS L'ACTION DIRECTEMENT
-            if (thisReso.button.GetActionClass() == currentStep.rightAnswer)
+            writeAccLogs = true;
+        }
+        else
+        {
+            Debug.Log("Resolution trun !");
+            eventSystem.SetSelectedGameObject(null);
+
+            //Défini la phase de jeu.
+            myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+
+            //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
+            vfxResoTurn.GetComponent<Animator>().enabled = true;
+
+            //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
+            //Lance la fonction d'application dans le script (a voir a la fin si c'est dans le SO_actionClass ou alors dans C_actionButton).
+            //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
+            currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
+
+            Debug.Log(currentResolution.button.GetActionClass());
+            Debug.Log(currentStep.rightAnswer);
+
+            //Check si c'est la bonne action.
+            if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
             {
                 Debug.Log("Bonne action");
 
                 uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
 
                 uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
-            }
-        }
 
-        //Check si dans les actions utilisé, il y a pas de sous action.
-        foreach (ActorResolution thisReso in listRes)
-        {
-            if (thisReso.button.GetActionClass().nextAction != null)
+                canUpdateEtape = true;
+
+                Debug.Log("Update etape");
+            }
+            else
             {
-                Debug.Log(thisReso.button.GetActionClass());
-                //Retrouve la liste d'action du challenge.
-                foreach (SO_ActionClass thisAction in myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions)
+                foreach (ActorResolution thisReso in listRes)
                 {
-                    Debug.Log(thisAction);
-                    if (thisAction == thisReso.button.GetActionClass())
+                    if (thisReso.button.GetActionClass().nextAction != null)
                     {
-                        //Change l'action.
-                        thisReso.button.SetActionClass(thisReso.button.GetActionClass());
+                        for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
+                        {
+                            if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.button.GetActionClass())
+                            {
+                                Debug.Log("Update next action");
+                                myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.button.GetActionClass().nextAction;
+                            }
+                        }
                     }
                 }
             }
+
+            //Check si il est sur une case "Dangereuse".
+            currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
+
+            //Ecrit dans les logs le résultat de l'action.
+            uiLogs.text = currentResolution.button.GetActionClass().currentLogs;
+
+            writeAccLogs = false;
         }
-
-        return false;
-    }
-
-    void ResolutionTurn()
-    {
-        Debug.Log("Resolution trun !");
-        eventSystem.SetSelectedGameObject(null);
-
-        //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.ResoTurn;
-
-        //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
-        vfxResoTurn.GetComponent<Animator>().enabled = true;
-
-        //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
-        //Lance la fonction d'application dans le script (a voir a la fin si c'est dans le SO_actionClass ou alors dans C_actionButton).
-        //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
-        currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
-
-        //Check si il est sur une case "Dangereuse".
-        currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
-
-        //Ecrit dans les logs le résultat de l'action.
-        uiLogs.text = currentResolution.button.GetActionClass().currentLogs;
     }
     #endregion
 
@@ -792,6 +795,30 @@ public class C_Challenge : MonoBehaviour
 
         //Check si le jeu est fini "GameOver".
         CheckGameOver();
+    }
+
+    bool CheckApplyAccDamageInReso(C_Accessories thisAcc)
+    {
+        //Check si la position des actor est sur la meme case que l'acc.
+        foreach (var thisActor in myTeam)
+        {
+            if (thisActor.GetPosition() == thisAcc.GetPosition())
+            {
+                thisActor.SetCurrentStatsPrice(thisAcc.GetDataAcc().reducStress, thisAcc.GetDataAcc().reducEnergie);
+
+                thisActor.CheckIsOut();
+
+                //Ecrit dans les logs le résultat de l'action.
+                uiLogs.text = thisAcc.GetDataAcc().damageLogs;
+
+                //Check si le jeu est fini "GameOver".
+                CheckGameOver();
+
+                return true;
+            }
+        }
+
+        return false;
     }
     #endregion
 

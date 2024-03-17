@@ -260,7 +260,7 @@ public class C_Interface : MonoBehaviour
             listButtons = new List<GameObject>();
 
             //Créer de nouveau boutons. EN TEST POUR DONNER LE SO_ACTIONCLASS DANS LE GAMEOBJECT DU BOUTON POUR POUVOIR LE RECUPERER AVEC L'EVENT SYSTEM.
-            for (int i = 0; i < GetListAction().Count -1; i++)
+            for (int i = 0; i < GetListAction().Count; i++)
             {
                 //Reférence button.
                 GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
@@ -273,25 +273,6 @@ public class C_Interface : MonoBehaviour
 
                 //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
                 myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
-
-                /* APRES REFLEXION SUR LES MECANIQUE DU JEU, ON SOUHAITE QUAND MEME FAIRE L'ACTION.
-                //Check si "currentActor" possède l'energie pour utiliser cette action.
-                if (GetCurrentActor().GetcurrentEnergy() >= myButton.GetComponent<C_ActionButton>().GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy))
-                {
-                    //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
-                    myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
-                }
-                else //Sinon setup une fonction qui lui quand le joueur va appuier dessus va recevoir en retour des VFX + SFX qui montre bien au joueur qu'il ne peut pas utiliser cette action.
-                {
-                    //Modifie le visu du bouton.
-                    myButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("EtiquetteBW");
-
-                    //Renseigne le "onClick" du nouveau buton pour afficher les Feedback qui montre que le joueur ne peut pas sélectionner cette action.
-                    myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.CantUseAction());
-
-                    Debug.Log(myButton.GetComponent<C_ActionButton>().GetActionClass().buttonText + " sera impossible d'utilisation pour cette acteur.");
-                }
-                */
 
                 listButtons.Add(myButton);
             }

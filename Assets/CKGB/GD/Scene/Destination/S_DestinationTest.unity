@@ -1715,6 +1715,7 @@ MonoBehaviour:
   myChallenge: {fileID: 11400000, guid: 989607bf5692fcc4f9e0bd4d180bd91a, type: 2}
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
   myInterface: {fileID: 1867104798}
+  currentActor: {fileID: 0}
   currentStep: {fileID: 0}
   currentResolution:
     button: {fileID: 0}
@@ -3612,15 +3613,20 @@ MonoBehaviour:
   selectedActionButton: {fileID: 0}
   actorActif: {fileID: 0}
   Papoteur: {fileID: 0}
+  MorganAPapoteAvecEsthela: 0
+  MorganAPapoteAvecNimu: 0
+  NimuAPapoteAvecEsthela: 0
   aquiletour: {fileID: 0}
   faitesunchoix: {fileID: 0}
   papoteravec: {fileID: 0}
+  ApapoteAvec: 
   characterHasPlayed: 
   isAnActionButton: 0
   inkAssetIntro: {fileID: 0}
   _intro: {fileID: 0}
   _outro: {fileID: 0}
   naratteur: {fileID: 0}
+  TMhasStarted: 0
   ActionToAdd: []
   LastCharacterThatPlayed: []
   actiontoaddID: -1
