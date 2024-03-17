@@ -663,6 +663,7 @@ public class C_TempsMort : MonoBehaviour
                     }
                 }
                 GameManager.instance.PapoterID[1]++;
+                Debug.Log("Nimu papot avec Morgan valeur : " + GameManager.instance.PapoterID[1]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }

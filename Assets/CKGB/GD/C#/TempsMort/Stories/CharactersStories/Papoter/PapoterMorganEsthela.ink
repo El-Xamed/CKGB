@@ -6,9 +6,10 @@ VAR IdPapoter = 0
 
 ===checkID===
 {
-- IdPapoter==0:->Papoter0
-- IdPapoter==1:->Papoter1
-- IdPapoter==2:->Papoter2
+- IdPapoter==1:->Papoter0
+- IdPapoter==2:->Papoter1
+- IdPapoter==3:->Papoter2
+- else: ->END
 }
 ===Papoter0===
 Je papote avec toi 0 #Bulle:MorganHautGauche

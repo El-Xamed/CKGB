@@ -209,12 +209,36 @@ public class GameManager : MonoBehaviour
         }
         if (InkJSON.name == TM.Observage.name)
         {
-            currentStory.variablesState["IDoberver"] = RespirerID;
+            currentStory.variablesState["IDobserver"] = RespirerID;
             currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
         }
         if (InkJSON.name == "PapoterMorganEsthela" || InkJSON.name == "PapoterMorganNimu" || InkJSON.name == "PapoterNimuEsthela")
         {
             currentStory.BindExternalFunction("RetourAuTMAfterPapotage", (string name) => { TM.RetourAuTMAfterPapotage(name); });
+            if (TM.actorActif == TM.characters[0]&&TM.Papoteur==TM.characters[1])
+            {
+                currentStory.variablesState["IdPapoter"] = PapoterID[0];
+            }
+            else if (TM.actorActif == TM.characters[0] && TM.Papoteur == TM.characters[2])
+            {
+                currentStory.variablesState["IdPapoter"] = PapoterID[1];
+            }
+            else if (TM.actorActif == TM.characters[1] && TM.Papoteur == TM.characters[0])
+            {
+                currentStory.variablesState["IdPapoter"] = PapoterID[0];
+            }
+            else if (TM.actorActif == TM.characters[1] && TM.Papoteur == TM.characters[2])
+            {
+                currentStory.variablesState["IdPapoter"] = PapoterID[2];
+            }
+            else if (TM.actorActif == TM.characters[2] && TM.Papoteur == TM.characters[0])
+            {
+                currentStory.variablesState["IdPapoter"] = PapoterID[1];
+            }
+            else if (TM.actorActif == TM.characters[2] && TM.Papoteur == TM.characters[1])
+            {
+                currentStory.variablesState["IdPapoter"] = PapoterID[2];
+            }
         }
         ContinueStory();
     }

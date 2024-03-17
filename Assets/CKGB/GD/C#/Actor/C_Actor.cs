@@ -283,7 +283,7 @@ public class C_Actor : C_Pion
         if(currentPointTrait==-1)
         {
             currentPointTrait = 0;
-            if(dataActor.listNewTraits!=null)
+            if(dataActor.listNewTraits.Count!=0)
             {
                 dataActor.listNewTraits.Remove(dataActor.listNewTraits[dataActor.idTraitEnCours]);
             }
