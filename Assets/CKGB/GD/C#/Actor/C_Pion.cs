@@ -9,6 +9,11 @@ public class C_Pion : MonoBehaviour
     //Pour faire déplacer l'actor dans le challenge. PEUT ETRE AUSSI UTILISE DANS LE TM MAIS C'EST PAS SETUP POUR ET C'EST PAS IMPORTANT.
     public virtual void MoveActor(List<C_Case> plateau, int newPosition)
     {
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.marche);
+        }
+
         //Detection de si le perso est au bord. (TRES UTILE QUAND UN PERSONNAGE SE FAIT POUSSER)
         if (newPosition < 0)
         {
