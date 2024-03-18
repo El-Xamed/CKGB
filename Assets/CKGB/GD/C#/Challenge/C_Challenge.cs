@@ -102,7 +102,7 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed)
+        if (context.performed && context.ReadValue<Vector2>().x > 0.5f || context.performed && context.ReadValue<Vector2>().y > 0.5f)
         {
             //BESOIN DE TRAVAILLER DESSUS POUR L'ALPHA !!!!!!!
             //Cache tout les autres preview.
@@ -114,9 +114,14 @@ public class C_Challenge : MonoBehaviour
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             WriteStatsPreview();
 
+            context.ReadValue<Vector2>();
+
+            Debug.Log(context.ReadValue<Vector2>());
+
             if (AudioManager.instance)
             {
                 AudioManager.instance.PlaySFX(AudioManager.instance.hover);
+                return;
             }
         }
     }
