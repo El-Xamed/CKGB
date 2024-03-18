@@ -31,6 +31,7 @@ public class C_TempsMort : MonoBehaviour
     [Header("Buttons Lists")]
     [SerializeField]
     GameObject[] charactersButton;
+    [SerializeField] GameObject tree;
     [SerializeField]
     GameObject[] actions;
     [SerializeField]
@@ -112,6 +113,7 @@ public class C_TempsMort : MonoBehaviour
         aquiletour.SetActive(false);
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
+        tree.SetActive(false);
         #region HideUI
        
         foreach (GameObject button in actions)
@@ -226,8 +228,6 @@ public class C_TempsMort : MonoBehaviour
     //active les boutons de choix d'actions
     public void ActivateActionsButtons()
     {
-            
-
         for (int i = 0; i < characters.Count; i++)
         {
             if (currentButton == charactersButton[i]&& actorActif == characters[i] &&characterHasPlayed[i] == false) //cas normal de choix de personnage
@@ -282,6 +282,7 @@ public class C_TempsMort : MonoBehaviour
             }
 
         }
+        tree.SetActive(true);
         updateButton();
        
     }
@@ -443,6 +444,7 @@ public class C_TempsMort : MonoBehaviour
     //provoque le choix du personnage avec qui papoter
     public void Papoter()
     {
+        tree.SetActive(true);
         papoteravec.SetActive(true);
         faitesunchoix.SetActive(false);
         isAnActionButton = false;
@@ -461,7 +463,7 @@ public class C_TempsMort : MonoBehaviour
     //papotage + stats
     public void PapotageFin()
     {
-
+        tree.SetActive(false);
         for (int i=0;i<PapotageChoiceButtons.Length;i++)
         { 
            if(currentButton==PapotageChoiceButtons[i])
@@ -780,6 +782,7 @@ public class C_TempsMort : MonoBehaviour
             }
 
         }
+
         GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
@@ -1077,7 +1080,9 @@ public class C_TempsMort : MonoBehaviour
     }
     IEnumerator TempsMortUnleashed()
     {
+  
         yield return new WaitForSeconds(0.6f);
+        tree.SetActive(true);
         TMhasStarted = true;
         Es = FindObjectOfType<EventSystem>();
         GameManager.instance.ExitDialogueMode();
