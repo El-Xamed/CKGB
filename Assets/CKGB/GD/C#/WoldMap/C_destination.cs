@@ -29,8 +29,8 @@ public class C_destination : MonoBehaviour
     string scenename;
 
     [Header("Data")]
-    [SerializeField] SO_TempsMort dataTM;
-    [SerializeField] SO_Challenge dataC;
+    [SerializeField] public SO_TempsMort dataTM;
+    [SerializeField] public SO_Challenge dataC;
     //PAS SUR D'EN AVOIR BESOIN.
     [SerializeField] GameObject actor;
 

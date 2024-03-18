@@ -100,6 +100,8 @@ public class C_TempsMort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        GameManager.instance.TM = this;
         initiateTMvariables();
         CharactersDataGet();
         GameManager.instance.ChangeActionMap("TempsMort");

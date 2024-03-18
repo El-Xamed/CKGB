@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     List<int> initialPlayerPositionOnThisDestination;
 
     //Information qu'il récupère pour le Temps mort / Challenge.
-    SO_TempsMort currentTM = null;
-    SO_Challenge currentC = null;
+    public SO_TempsMort currentTM = null;
+    public SO_Challenge currentC = null;
 
     //zone dédiée aux  dialogues
     [SerializeField] public Story currentStory;
@@ -60,10 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(FindObjectOfType<C_TempsMort>()!=null)
-        {
-            TM = FindObjectOfType<C_TempsMort>();
-        }
+        
         #region Singleton
         if (instance == null)
             instance = this;
@@ -75,6 +72,10 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        if (FindObjectOfType<C_TempsMort>() != null)
+        {
+            TM = FindObjectOfType<C_TempsMort>();
+        }
         SetUpTeam();
     }
 
