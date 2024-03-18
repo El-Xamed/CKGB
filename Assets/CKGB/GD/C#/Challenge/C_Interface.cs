@@ -192,11 +192,7 @@ public class C_Interface : MonoBehaviour
     //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
-        if (AudioManager.instance)
-        {
-            AudioManager.instance.PlaySFX(AudioManager.instance.retourEnArriere);
-        }
-
+        
         switch (currentInterface)
         {
             case Interface.Actions:

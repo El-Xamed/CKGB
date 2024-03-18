@@ -1,60 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
-using UnityEngine.UIElements;
+using System;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("--------- Audio Source ---------")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
-    [SerializeField] AudioSource ambianceSource;
-
-    [Header("--------- Audio Clip ---------")]
-    public AudioClip up;
-    public AudioClip down;
-    public AudioClip hover;
-    public AudioClip confirmation;
-    public AudioClip retourEnArriere;
-    public AudioClip option;
-    public AudioClip tetaniser;
-    public AudioClip logs;
-    public AudioClip danger;
-    public AudioClip musicTempsMort;
-    public AudioClip musicChallenge;
-    public AudioClip oiseaux;
-    public AudioClip vent;
-    public AudioClip ruisseau;
-    public AudioClip marche;
-
     public static AudioManager instance;
-
-    private void Awake()
+    public Sound[] sounds;
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
 
-        DontDestroyOnLoad(gameObject);
+        /*
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = null;
+            s.source.outputAudioMixerGroup = s.group;
+
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+
     }
 
     private void Start()
     {
-        musicSource.clip = musicTempsMort;
-        
-        musicSource.Play();
+
+
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void Play(string name)
     {
-        SFXSource.PlayOneShot(clip);
-    }
 
-    public void PlayMusic(AudioClip clip)
+
+
+        Sound p = System.Array.Find(sounds, sound => sound.name == name);
+        p.source.clip = p.clip[Random.Range(0, p.clip.Length)];
+        if (p == null)
+        {
+            Debug.LogWarning("Sound:" + name + "not found!");
+            return;
+
+        }
+        p.source.Play();
+    }
+    */
+
+
+    }
+    [Serializable]
+    public class Sound
     {
-        musicSource.Stop();
-        musicSource.clip = clip;
-        musicSource.Play();
+        [SerializeField] string febehbekbg;
+
     }
 }
