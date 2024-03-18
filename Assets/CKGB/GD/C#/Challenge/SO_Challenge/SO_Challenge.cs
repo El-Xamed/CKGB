@@ -14,6 +14,8 @@ public class SO_Challenge : ScriptableObject
 
     [Header("Paramètre du challenge")]
     public Sprite background;
+    public List<Sprite> element;
+
     public string objectif;
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
     public int nbCase;
