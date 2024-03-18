@@ -1712,7 +1712,7 @@ MonoBehaviour:
   vfxPlayerTurn: {fileID: 402547181}
   vfxResoTurn: {fileID: 1775372999}
   vfxCataTurn: {fileID: 0}
-  myChallenge: {fileID: 11400000, guid: 989607bf5692fcc4f9e0bd4d180bd91a, type: 2}
+  myChallenge: {fileID: 11400000, guid: 3717d10933abcfa47b6cb682f2e40576, type: 2}
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
   myInterface: {fileID: 1867104798}
   currentActor: {fileID: 0}
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8863c16b60e8e454383d4a3bd0fac4c3, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3601,6 +3601,7 @@ MonoBehaviour:
   CompleteCharactersSpecs1: []
   CompleteCharactersSpecs2: []
   charactersButton: []
+  tree: {fileID: 0}
   actions: []
   ChallengeButton: {fileID: 0}
   PapotageChoiceButtons: []

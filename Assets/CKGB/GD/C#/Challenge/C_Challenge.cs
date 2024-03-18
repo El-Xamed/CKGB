@@ -133,6 +133,7 @@ public class C_Challenge : MonoBehaviour
         uiCases = canva.transform.GetChild(1).gameObject;
 
         #endregion
+
         if (GameManager.instance)
         {
             GameManager.instance.ChangeActionMap("Challenge");
@@ -158,6 +159,14 @@ public class C_Challenge : MonoBehaviour
         #region Initialisation
         //Set le background
         background = myChallenge.background;
+
+        if (myChallenge.element.Count != 0)
+        {
+            foreach (Sprite thisElement in myChallenge.element)
+            {
+                Instantiate(thisElement, GameObject.Find("BackGround").transform);
+            }
+        }
 
         //Apparition des cases
         SpawnCases();
