@@ -1,7 +1,8 @@
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+
+
 
 public class AudioManager : MonoBehaviour
 {
@@ -58,12 +59,12 @@ public class AudioManager : MonoBehaviour
     {
         public string name;
 
-        public AudioClip clip;
+        public AudioClip[] clip;
         public AudioMixerGroup group;
 
         [Range(0f, 1f)]
         public float volume;
-        [Range(.1f, 3f)]
+        [Range(0f, 1f)]
         public float pitch;
 
         public bool loop;

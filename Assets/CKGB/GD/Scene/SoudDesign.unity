@@ -385,6 +385,10 @@ PrefabInstance:
       value: MusiqueChargement
       objectReference: {fileID: 0}
     - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: sounds.Array.data[10].clip
       value: 
       objectReference: {fileID: 8300000, guid: da89ef69edb3cbf4f8510ed8bc8e011e, type: 3}
@@ -401,8 +405,16 @@ PrefabInstance:
       value: MusiqueChallenge2.B
       objectReference: {fileID: 0}
     - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 0
+      value: 0.649
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.697
       objectReference: {fileID: 0}
     - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: sounds.Array.data[0].clip.Array.size
@@ -452,5 +464,109 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+--- !u!1 &2929715506690256281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2929715506357219768, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+  m_PrefabInstance: {fileID: 2929715506690256280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2929715506690256282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929715506690256281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd38bd26e829a1543a80663c7e5b9c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: SfxHover
+    clip:
+    - {fileID: 0}
+    group: {fileID: 0}
+    volume: 0.538
+    pitch: 0.512
+    loop: 0
+    source: {fileID: 0}
+  - name: SfxSonDeConfirmation
+    clip: []
+    group: {fileID: 0}
+    volume: 0.697
+    pitch: 1.52
+    loop: 0
+    source: {fileID: 0}
+  - name: SfxRetourArriere
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SfxPowerUp
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SfxPowerDown
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SfxDanger
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Sfxlogs
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueTuto
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueSplashScreen
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueChargement
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueChallenge2.A
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueChallenge2.B
+    clip: []
+    group: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
