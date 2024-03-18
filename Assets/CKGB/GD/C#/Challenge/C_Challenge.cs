@@ -7,7 +7,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SO_Challenge;
@@ -28,7 +27,7 @@ public class C_Challenge : MonoBehaviour
     GameObject canva;
     GameObject uiCases;
     [Header("UI")]
-    [SerializeField] Sprite background;
+    [SerializeField] GameObject background;
     [SerializeField] C_Stats uiStatsPrefab;
     [SerializeField] GameObject uiStats;
     [SerializeField] GameObject uiEtape;
@@ -44,6 +43,8 @@ public class C_Challenge : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] SO_Challenge myChallenge;
+
+    [SerializeField] GameObject plateau;
 
     List<C_Actor> myTeam = new List<C_Actor>();
     List<C_Accessories> listAcc = new List<C_Accessories>();
@@ -130,7 +131,6 @@ public class C_Challenge : MonoBehaviour
         #region Racourcis
         canva = transform.GetChild(0).gameObject;
 
-        uiCases = canva.transform.GetChild(1).gameObject;
 
         #endregion
 
@@ -158,13 +158,21 @@ public class C_Challenge : MonoBehaviour
     {
         #region Initialisation
         //Set le background
-        background = myChallenge.background;
+        background.GetComponent<Image>().sprite = myChallenge.background;
 
         if (myChallenge.element.Count != 0)
         {
-            foreach (Sprite thisElement in myChallenge.element)
+            foreach (var thisElement in myChallenge.element)
             {
-                Instantiate(thisElement, GameObject.Find("BackGround").transform);
+                GameObject newUI = Instantiate(new GameObject(), GameObject.Find("Element").transform);
+
+                newUI.name = thisElement.name;
+
+                newUI.AddComponent<Image>();
+
+                newUI.GetComponent<Image>().sprite = thisElement;
+
+                newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920,1080);
             }
         }
 
@@ -219,7 +227,7 @@ public class C_Challenge : MonoBehaviour
         for (int i = 0; i < myChallenge.nbCase; i++)
         {
             //Création d'une case
-            C_Case newCase = Instantiate(myCase, uiCases.transform);
+            C_Case newCase = Instantiate(myCase, plateau.transform);
             newCase.GetComponentInChildren<TMP_Text>().text = i.ToString();
 
             //Change la dernière case par un autre sprite.
@@ -283,13 +291,15 @@ public class C_Challenge : MonoBehaviour
                             //Ini data actor.
                             thisActor.GetComponent<C_Actor>().IniChallenge();
 
+                            thisActor.transform.parent = GameObject.Find("BackGround").transform;
+
                             //Placement des perso depuis le GameManager
                             //Changement de parent
                             thisActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
                             thisActor.transform.localScale = Vector3.one;
 
                             //Centrage sur la case et position sur Y.
-                            thisActor.transform.localPosition = Vector3.up * 300;
+                            thisActor.transform.localPosition = new Vector3();
 
                             //New Ui stats
                             C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
@@ -316,13 +326,13 @@ public class C_Challenge : MonoBehaviour
                 foreach (InitialActorPosition position in listPosition)
                 {
                     //New actor
-                    C_Actor myActor = Instantiate(position.perso);
+                    C_Actor myActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
                     myActor.IniChallenge();
                     myActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
                     myActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
-                    myActor.transform.localPosition = Vector3.up * 300;
+                    myActor.transform.localPosition = new Vector3();
 
                     //New Ui stats
                     C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
@@ -451,7 +461,10 @@ public class C_Challenge : MonoBehaviour
     //VFX des cases visées.
     void InitialiseCata()
     {
-        
+        if (myChallenge.listCatastrophy.Count == 0)
+        {
+            return;
+        }
 
         //Supprime toutes les cata
         foreach (var thisCase in listCase)
@@ -569,7 +582,63 @@ public class C_Challenge : MonoBehaviour
 
     void ResolutionTurn()
     {
-        //Check si il n'est pas sur un acc qui attaque.
+        Debug.Log("Resolution trun !");
+        eventSystem.SetSelectedGameObject(null);
+
+        //Défini la phase de jeu.
+        myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+
+        //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
+        vfxResoTurn.GetComponent<Animator>().enabled = true;
+
+        //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
+        //Lance la fonction d'application dans le script (a voir a la fin si c'est dans le SO_actionClass ou alors dans C_actionButton).
+        //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
+        currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
+
+        Debug.Log(currentResolution.button.GetActionClass());
+        Debug.Log(currentStep.rightAnswer);
+
+        //Check si c'est la bonne action.
+        if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
+        {
+            Debug.Log("Bonne action");
+
+            uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
+
+            uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
+
+            canUpdateEtape = true;
+
+            Debug.Log("Update etape");
+        }
+        else
+        {
+            foreach (ActorResolution thisReso in listRes)
+            {
+                if (thisReso.button.GetActionClass().nextAction != null)
+                {
+                    for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
+                    {
+                        if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.button.GetActionClass())
+                        {
+                            Debug.Log("Update next action");
+                            myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.button.GetActionClass().nextAction;
+                        }
+                    }
+                }
+            }
+        }
+
+        //Check si il est sur une case "Dangereuse".
+        //currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
+
+        //Ecrit dans les logs le résultat de l'action.
+        uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
+
+        writeAccLogs = false;
+
+        /*//Check si il n'est pas sur un acc qui attaque. C'EST DU BRICOLAGE !!!!! A SUPP !!!!
         if (CheckApplyAccDamageInReso(listAcc[0]) && writeAccLogs == false)
         {
             writeAccLogs = true;
@@ -631,7 +700,7 @@ public class C_Challenge : MonoBehaviour
             uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
 
             writeAccLogs = false;
-        }
+        }*/
     }
     #endregion
 
