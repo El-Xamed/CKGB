@@ -532,10 +532,10 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //Pour Update l'UI.
+    //Pour Update l'UI. CHANGER LA FONCTION !!!!
     void UpdateUi(SO_Etape myEtape)
     {
-        uiEtape.GetComponentInChildren<TMP_Text>().text = myEtape.énoncé;
+        uiEtape.GetComponentInChildren<TMP_Text>().text = myChallenge.objectif;
     }
 
     
@@ -632,7 +632,7 @@ public class C_Challenge : MonoBehaviour
             currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
 
             //Ecrit dans les logs le résultat de l'action.
-            uiLogs.text = currentResolution.button.GetActionClass().currentLogs;
+            uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
 
             writeAccLogs = false;
         }

@@ -6,11 +6,6 @@ using UnityEngine;
 public class SO_Etape : ScriptableObject
 {
     #region Mes variables
-    public string titre;
-    public string énoncé;
-    SO_turnContext condition;
-
-    Test_challenge TC;
     public List<SO_ActionClass> actions;
     public SO_ActionClass rightAnswer;
 

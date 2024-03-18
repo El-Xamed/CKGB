@@ -651,8 +651,6 @@ public class C_ActionButton : MonoBehaviour
         //Check dans les data de cette action si la condition est bonne.
         if (CanUse(thisActor))
         {
-            actionClass.currentLogs = actionClass.LogsCanMakeAction;
-
             //Applique les conséquences de stats peut importe si c'est réusi ou non.
             //Créer la liste pour "self"
             SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
@@ -666,7 +664,7 @@ public class C_ActionButton : MonoBehaviour
         else
         {
             //Renvoie un petit indice de pourquoi l'action n'a pas fonctionné.
-            actionClass.currentLogs = actionClass.LogsCantMakeAction;
+            //A VOIR PLUS TARD.
             return;
         }
     }
@@ -695,7 +693,6 @@ public class C_ActionButton : MonoBehaviour
             return false;
         }
 
-        actionClass.currentLogs = actionClass.LogsCantMakeAction;
         return true;
     }
 

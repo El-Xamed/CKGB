@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
+  m_Name: SO_action3step2lvl1
+  m_EditorClassIdentifier: 
+  buttonText: Utiliser la violence
+  LogsMakeAction: "Tu ne vas pas te laisser faire ! Aller !! Tu vas sortir de ce
+    lit, et maintenant ! Tu plonge sous la couverture pour rassembler tes forces,
+    et envoyer le drap voler dramatiquement ! Attends, je crois que ton pied emm\xEAl\xE9.
+    C\u2019est compliqu\xE9 de respirer la dessous. Et elle est ou la sortie ? Tu
+    te d\xE9bat dans la couverture sans r\xE9ussir \xE0 te d\xE9patouiller. Tu finit
+    par ressortir sur ton oreiller, vaincu."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

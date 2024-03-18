@@ -11,9 +11,7 @@ public class SO_ActionClass : ScriptableObject
     public string buttonText;
 
     [Header("Text (Logs)")]
-    public string LogsCanMakeAction;
-    public string LogsCantMakeAction;
-    public string currentLogs;
+    public string LogsMakeAction;
     #endregion
 
     [Header("Conditions")]
