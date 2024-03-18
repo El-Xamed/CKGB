@@ -88,6 +88,10 @@ public class C_Challenge : MonoBehaviour
 
         if (context.performed)
         {
+            foreach (GameObject c in GameManager.instance.GetTeam())
+            {
+                c.transform.parent = GameManager.instance.transform;
+            }
             Debug.Log("Reload");
             SceneManager.LoadScene("S_DestinationTest");
         }

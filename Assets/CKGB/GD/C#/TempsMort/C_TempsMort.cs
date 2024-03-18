@@ -1112,6 +1112,10 @@ public class C_TempsMort : MonoBehaviour
     }
     public void GoChallenge(string named)
     {
+        foreach(GameObject c in characters)
+        {
+            c.transform.parent = GameManager.instance.transform;
+        }
         SceneManager.LoadScene(named);
     }
     public SO_TempsMort GetDataTM()
