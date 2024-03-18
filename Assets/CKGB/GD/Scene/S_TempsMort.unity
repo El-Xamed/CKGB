@@ -953,6 +953,254 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292541602}
   m_CullTransparentMesh: 1
+--- !u!1 &297278239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297278242}
+  - component: {fileID: 297278241}
+  - component: {fileID: 297278240}
+  m_Layer: 0
+  m_Name: TM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297278240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297278239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87861308bbcb2e74088297fcbd3b8f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersLittleResume:
+  - {fileID: 1957113662}
+  - {fileID: 16340454}
+  - {fileID: 427721157}
+  charactersCompleteResume1:
+  - {fileID: 1281673907}
+  - {fileID: 103066727}
+  - {fileID: 865863226}
+  charactersCompleteResume2:
+  - {fileID: 587651133}
+  - {fileID: 1291212177}
+  - {fileID: 1906648873}
+  littleCharactersSpecs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1307200956}
+  CompleteCharactersSpecs1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CompleteCharactersSpecs2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  charactersButton:
+  - {fileID: 1582212329}
+  - {fileID: 877318802}
+  - {fileID: 1640949973}
+  actions:
+  - {fileID: 1544838778}
+  - {fileID: 838562953}
+  - {fileID: 622633869}
+  ChallengeButton: {fileID: 1060218827}
+  PapotageChoiceButtons:
+  - {fileID: 1348701323}
+  - {fileID: 789748125}
+  - {fileID: 1822309263}
+  listCharactersPositions:
+  - {fileID: 725347977}
+  - {fileID: 1496903104}
+  - {fileID: 232709661}
+  characters: []
+  TM: {fileID: 11400000, guid: 7207b04ea79f0a040995820cebf7486b, type: 2}
+  background: {fileID: 581488266}
+  Es: {fileID: 0}
+  currentButton: {fileID: 0}
+  selectedActionButton: {fileID: 0}
+  actorActif: {fileID: 0}
+  Papoteur: {fileID: 0}
+  MorganAPapoteAvecEsthela: 0
+  MorganAPapoteAvecNimu: 0
+  NimuAPapoteAvecEsthela: 0
+  aquiletour: {fileID: 1067198603}
+  faitesunchoix: {fileID: 615504522}
+  papoteravec: {fileID: 176317810}
+  ApapoteAvec: 000000
+  characterHasPlayed: 000000
+  isAnActionButton: 0
+  inkAssetIntro: {fileID: 0}
+  _intro: {fileID: 4900000, guid: 171cafb8be8e56d4786a935743b2e134, type: 3}
+  _outro: {fileID: 4900000, guid: 4e0ecb31268432946bd68d06dc36d1df, type: 3}
+  Observage: {fileID: 0}
+  naratteur: {fileID: 2076009918}
+  TMhasStarted: 0
+  ActionToAdd: []
+  LastCharacterThatPlayed: []
+  actiontoaddID: -1
+  charactertoaddID: -1
+  nobodyHasPlayed: 1
+--- !u!114 &297278241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297278239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: afeca8c8-71a7-416c-bd69-e8240f5acf1e
+    m_ActionName: WorldMap/PlayLevel[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36a42cc7-7ce6-4992-b642-48bf9aec373d
+    m_ActionName: WorldMap/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2616de63-5eda-4dce-b374-00d49655662c
+    m_ActionName: WorldMap/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da23a3e5-c1f4-48da-8f5d-2a3529a07600
+    m_ActionName: WorldMap/Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
+    m_ActionName: WorldMap/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2568446-36e9-4720-8cb0-c41c45fa077b
+    m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 297278240}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: SwitchCharacterCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 792e24f3-d1a2-4a6a-80cd-6c6939953e23
+    m_ActionName: TempsMort/FlipCard[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 297278240}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: continueStory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2df5d24f-27f7-4b12-a9da-06728aa1057b
+    m_ActionName: TempsMort/ChooseButton[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 297278240}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: Naviguate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4518165f-b12e-43b7-aa38-07d9c8ccb776
+    m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
+    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
+    m_ActionName: Challenge/ResetChallenge
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b99505ec-be92-4fb8-abf0-6b66ebf09852
+    m_ActionName: Challenge/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8658b0c6-8ba6-4752-98e8-dbe8ce58fdb9
+    m_ActionName: Challenge/Submit[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 297278240}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: BACK
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 942d176b-0b8d-4683-a4c1-50ce05785591
+    m_ActionName: TempsMort/Back[/Keyboard/b]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: TempsMort
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &297278242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297278239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.7886505, y: -0.28241432, z: -0.31187758}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299445140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,8 +2818,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 784704942}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &581488268
 SpriteRenderer:
@@ -2906,7 +3154,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Respirer
         m_Mode: 1
@@ -3554,320 +3802,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766424321}
   m_CullTransparentMesh: 1
---- !u!1001 &784704940
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5978931268482471700, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: papotage.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: RevasserID.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: papotage.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: 71b5832f4f27c314da3eb144fda44d68, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: papotage.Array.data[1]
-      value: 
-      objectReference: {fileID: 4900000, guid: 0b546778299324c4481f7276073376dc, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: papotage.Array.data[2]
-      value: 
-      objectReference: {fileID: 4900000, guid: ff5aa539fbf240c4bb6a2950b9832947, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: ressourceActor.Array.data[0]
-      value: 
-      objectReference: {fileID: 5199208835674813161, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: ressourceActor.Array.data[1]
-      value: 
-      objectReference: {fileID: 3561831080530771211, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
-    - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: ressourceActor.Array.data[2]
-      value: 
-      objectReference: {fileID: 3566547770443611643, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
---- !u!1 &784704941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5978931268482471700, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-  m_PrefabInstance: {fileID: 784704940}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &784704942 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5978931268482471702, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
-  m_PrefabInstance: {fileID: 784704940}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &784704943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784704941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: afeca8c8-71a7-416c-bd69-e8240f5acf1e
-    m_ActionName: WorldMap/PlayLevel[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 36a42cc7-7ce6-4992-b642-48bf9aec373d
-    m_ActionName: WorldMap/Up[/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2616de63-5eda-4dce-b374-00d49655662c
-    m_ActionName: WorldMap/Down[/Keyboard/downArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: da23a3e5-c1f4-48da-8f5d-2a3529a07600
-    m_ActionName: WorldMap/Left[/Keyboard/leftArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
-    m_ActionName: WorldMap/Right[/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c2568446-36e9-4720-8cb0-c41c45fa077b
-    m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 784704944}
-        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
-        m_MethodName: SwitchCharacterCard
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 792e24f3-d1a2-4a6a-80cd-6c6939953e23
-    m_ActionName: TempsMort/FlipCard[/Keyboard/y]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 784704944}
-        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
-        m_MethodName: continueStory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2df5d24f-27f7-4b12-a9da-06728aa1057b
-    m_ActionName: TempsMort/ChooseButton[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 784704944}
-        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
-        m_MethodName: Naviguate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4518165f-b12e-43b7-aa38-07d9c8ccb776
-    m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
-    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
-    m_ActionName: Challenge/ResetChallenge
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b99505ec-be92-4fb8-abf0-6b66ebf09852
-    m_ActionName: Challenge/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8658b0c6-8ba6-4752-98e8-dbe8ce58fdb9
-    m_ActionName: Challenge/Submit[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 784704944}
-        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
-        m_MethodName: BACK
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 942d176b-0b8d-4683-a4c1-50ce05785591
-    m_ActionName: TempsMort/Back[/Keyboard/b]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: TempsMort
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &784704944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784704941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87861308bbcb2e74088297fcbd3b8f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charactersLittleResume:
-  - {fileID: 1957113662}
-  - {fileID: 16340454}
-  - {fileID: 427721157}
-  charactersCompleteResume1:
-  - {fileID: 1281673907}
-  - {fileID: 103066727}
-  - {fileID: 865863226}
-  charactersCompleteResume2:
-  - {fileID: 587651133}
-  - {fileID: 1291212177}
-  - {fileID: 1906648873}
-  littleCharactersSpecs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1307200956}
-  CompleteCharactersSpecs1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CompleteCharactersSpecs2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  charactersButton:
-  - {fileID: 1582212329}
-  - {fileID: 877318802}
-  - {fileID: 1640949973}
-  actions:
-  - {fileID: 1544838778}
-  - {fileID: 838562953}
-  - {fileID: 622633869}
-  ChallengeButton: {fileID: 1060218827}
-  PapotageChoiceButtons:
-  - {fileID: 1348701323}
-  - {fileID: 789748125}
-  - {fileID: 1822309263}
-  listCharactersPositions:
-  - {fileID: 725347977}
-  - {fileID: 1496903104}
-  - {fileID: 232709661}
-  characters: []
-  TM: {fileID: 11400000, guid: 7207b04ea79f0a040995820cebf7486b, type: 2}
-  background: {fileID: 581488266}
-  Es: {fileID: 0}
-  currentButton: {fileID: 0}
-  selectedActionButton: {fileID: 0}
-  actorActif: {fileID: 0}
-  Papoteur: {fileID: 0}
-  MorganAPapoteAvecEsthela: 0
-  MorganAPapoteAvecNimu: 0
-  NimuAPapoteAvecEsthela: 0
-  aquiletour: {fileID: 1067198603}
-  faitesunchoix: {fileID: 615504522}
-  papoteravec: {fileID: 176317810}
-  ApapoteAvec: 000000
-  characterHasPlayed: 000000
-  isAnActionButton: 0
-  inkAssetIntro: {fileID: 0}
-  _intro: {fileID: 4900000, guid: 171cafb8be8e56d4786a935743b2e134, type: 3}
-  _outro: {fileID: 4900000, guid: 4e0ecb31268432946bd68d06dc36d1df, type: 3}
-  Observage: {fileID: 0}
-  naratteur: {fileID: 2076009918}
-  TMhasStarted: 0
-  ActionToAdd: []
-  LastCharacterThatPlayed: []
-  actiontoaddID: -1
-  charactertoaddID: -1
-  nobodyHasPlayed: 1
 --- !u!1 &789078047
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,7 +4000,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: PapotageFin
         m_Mode: 1
@@ -4531,7 +4465,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &828157613
 MonoBehaviour:
@@ -4685,7 +4619,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Revasser
         m_Mode: 1
@@ -5133,7 +5067,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: ActivateActionsButtons
         m_Mode: 1
@@ -5437,7 +5371,7 @@ RectTransform:
   - {fileID: 232709661}
   - {fileID: 2076009920}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6129,7 +6063,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Challenge
         m_Mode: 1
@@ -7668,7 +7602,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: PapotageFin
         m_Mode: 1
@@ -8818,7 +8752,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Papoter
         m_Mode: 1
@@ -9127,7 +9061,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: ActivateActionsButtons
         m_Mode: 1
@@ -9261,7 +9195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: ActivateActionsButtons
         m_Mode: 1
@@ -9804,7 +9738,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784704944}
+      - m_Target: {fileID: 297278240}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: PapotageFin
         m_Mode: 1
