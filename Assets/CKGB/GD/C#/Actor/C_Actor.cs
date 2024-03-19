@@ -155,11 +155,11 @@ public class C_Actor : C_Pion
         {
             if (thisCase == position)
             {
-                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCata;
             }
-            else if (isOut)
+            else
             {
-                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpritePreviewCata;
+                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
             }
         }
     }
@@ -195,7 +195,7 @@ public class C_Actor : C_Pion
             isOut = false;
 
             //Check si le sprite est déjà possé.
-            if (transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSprite && transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSpritePreviewCata)
+            if (transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSprite && transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSpriteOnCata)
             {
                 transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
             }
@@ -301,5 +301,27 @@ public class C_Actor : C_Pion
         return isOut;
     }
 
+    #endregion
+
+    #region Pour l'animation
+    public void SetSpriteChallengeNormalBlackAndWhite()
+    {
+        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteBlackandWhite;
+    }
+
+    public void SetSpriteChallengeNormal()
+    {
+        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
+    }
+
+    public void SetSpriteChallengeOnCataBlackAndWhite()
+    {
+        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCataBlackAndWhite;
+    }
+
+    public void SetSpriteChallengeOnCata()
+    {
+        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCata;
+    }
     #endregion
 }

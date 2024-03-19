@@ -24,253 +24,6 @@ public class C_ActionButton : MonoBehaviour
     List<string> listLogsPreview = new List<string>();
     #endregion
 
-    #region Stats
-    //Fonction qui renvoie la valeur d'energy.
-    public int GetStats(Interaction.ETypeTarget actorTarget, TargetStats.ETypeStatsTarget targetStats, Stats.ETypeStats statsTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == targetStats)
-                    {
-                        foreach (Stats thisStats in thisTargetStats.listStats)
-                        {
-                            if (thisStats.whatStats == statsTarget)
-                            {
-                                return thisStats.value;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        //Debug.Log("ATTENTION : Cette action ne possède pas de prix " + statsTarget + " ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    int GetRange()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                return thisInteraction.range;
-            }
-        }
-
-        return 0;
-    }
-
-    bool GetIfTargetOrNot()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                if (thisInteraction.selectTarget)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    bool GetIfSwitchOrNot()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
-                    {
-                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
-                        {
-                            thisTargetStats.move.accessories = GameObject.Find(GetSwitchGameObject().GetDataAcc().name).GetComponent<C_Accessories>();
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    C_Accessories GetSwitchGameObject()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
-                    {
-                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
-                        {
-                            return thisTargetStats.move.accessories;
-                        }
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
-
-    GameObject GetTarget()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                if (thisInteraction.selectTarget)
-                {
-                    return thisInteraction.target;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    void SetTarget(GameObject thisTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                if (thisInteraction.selectTarget)
-                {
-                    thisInteraction.target = thisTarget;
-                }
-            }
-        }
-    }
-
-    C_Actor GetSwitchActor(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        return thisTargetStats.move.actor;
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
-
-        return null;
-    }
-
-    C_Accessories GetSwitchAcc(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        return thisTargetStats.move.accessories;
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
-
-        return null;
-    }
-
-    //Fonction qui renvoie le parametre de mouvement.
-    Interaction.ETypeDirectionTarget GetTypeDirectionRange()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                return thisInteraction.whatDirectionTarget;
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie le nombre de mouvement pour déplacer "other".
-    int GetMovement(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in actionClass.listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        if (thisStats.move.whatMove == Move.ETypeMove.Right || thisStats.move.whatMove == Move.ETypeMove.Left || thisStats.move.whatMove == Move.ETypeMove.OnTargetCase)
-                        {
-                            return thisStats.move.nbMove;
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-    #endregion
-
     //Check si il y a des acteurs dans la range.
     bool CheckPositionOther(C_Actor thisActor, int position, List<C_Case> listCase, C_Actor target)
     {
@@ -326,7 +79,7 @@ public class C_ActionButton : MonoBehaviour
         //Créer la liste pour "other"
         if (CheckOtherInAction())
         {
-            GetOtherLogsPreview(team, thisActor, GetRange(), plateau);
+            GetOtherLogsPreview(team, thisActor, actionClass.GetRange(), plateau);
         }
 
         //Prépare le texte de la preview.
@@ -345,47 +98,47 @@ public class C_ActionButton : MonoBehaviour
         //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
         #region Price string
         //Pour le prix.
-        if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
+        if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
         {
             //Si les deux possède un int supérieur à 0.
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 && GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
+            if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 && actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
+            else if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
             }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
+            else if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va perdre " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
         }
         #endregion
 
         #region Gain string
         //Pour le gain.
-        if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
+        if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
         {
             //Si les deux possède un int supérieur à 0.
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 && GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
+            if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 && actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme et " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
+            else if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm).ToString(), Color.blue) + " de calme.");
             }
-            else if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0)
+            else if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0)
             {
-                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
+                listLogsPreview.Add(thisActor.name + " va gagner " + GetColorText(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy).ToString(), Color.yellow) + " d'énergie.");
             }
         }
         #endregion
 
         #region Movement
         //Pour le mouvement.
-        if (GetMovement(target) != 0)
+        if (actionClass.GetMovement(target) != 0)
         {
             //Pour toutes les liste d'action.
             foreach (Interaction thisInteraction in actionClass.listInteraction)
@@ -508,8 +261,8 @@ public class C_ActionButton : MonoBehaviour
                             {
                                 if (thisStats.move.actor != null)
                                 {
-                                    listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
-                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
+                                    listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(actionClass.GetSwitchActor(target).name, Color.cyan) + ".");
+                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(actionClass.GetSwitchActor(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.actor); }
                             }
@@ -517,8 +270,8 @@ public class C_ActionButton : MonoBehaviour
                             {
                                 if (thisStats.move.accessories != null)
                                 {
-                                    listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchAcc(target).name, Color.cyan) + ".");
-                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchAcc(target).name, Color.cyan) + ".");
+                                    listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(actionClass.GetSwitchAcc(target).name, Color.cyan) + ".");
+                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(actionClass.GetSwitchAcc(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.accessories); }
                             }
@@ -534,7 +287,7 @@ public class C_ActionButton : MonoBehaviour
     void GetOtherLogsPreview(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
     {
         //Check si c'est ciblé ou non.
-        if (!GetIfTargetOrNot())
+        if (!actionClass.GetIfTargetOrNot())
         {
             //Boucle avec le range.
             for (int i = 1; i < range; i++)
@@ -543,7 +296,7 @@ public class C_ActionButton : MonoBehaviour
                 foreach (C_Actor thisOtherActor in otherActor)
                 {
                     //Check quel direction la range va faire effet.
-                    switch (GetTypeDirectionRange())
+                    switch (actionClass.GetTypeDirectionRange())
                     {
                         //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
                         case Interaction.ETypeDirectionTarget.Right:
@@ -579,17 +332,17 @@ public class C_ActionButton : MonoBehaviour
                 }
             }
         }
-        else if (GetIfTargetOrNot())
+        else if (actionClass.GetIfTargetOrNot())
         {
-            if (GetTarget().GetComponent<C_Actor>())
+            if (actionClass.GetTarget().GetComponent<C_Actor>())
             {
-                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Actor>());
+                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, actionClass.GetTarget().GetComponent<C_Actor>());
             }
-            else if(GetTarget().GetComponent<C_Accessories>())
+            else if(actionClass.GetTarget().GetComponent<C_Accessories>())
             {
-                SetTarget(GameObject.Find(GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
+                actionClass.SetTarget(GameObject.Find(actionClass.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
 
-                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Accessories>());
+                GetLogsPreviewTarget(Interaction.ETypeTarget.Other, otherActor, actionClass.GetTarget().GetComponent<C_Accessories>());
             }
         }
     }
@@ -652,7 +405,7 @@ public class C_ActionButton : MonoBehaviour
             //Créer la liste pour "other"
             if (CheckOtherInAction())
             {
-                SetStatsOther(myTeam, thisActor, GetRange(), plateau);
+                SetStatsOther(myTeam, thisActor, actionClass.GetRange(), plateau);
             }
         }
         else
@@ -682,7 +435,7 @@ public class C_ActionButton : MonoBehaviour
             }
         }
 
-        if (thisActor.GetcurrentEnergy() < GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) && GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
+        if (thisActor.GetcurrentEnergy() < actionClass.GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) && actionClass.GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
         {
             return false;
         }
@@ -698,9 +451,9 @@ public class C_ActionButton : MonoBehaviour
         //Check si il possède le component "C_Actor". A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
         if (thisActor.GetComponent<C_Actor>())
         {
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
+            if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
             {
-                thisActor.GetComponent<C_Actor>().SetCurrentStatsPrice(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy));
+                thisActor.GetComponent<C_Actor>().SetCurrentStatsPrice(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm), actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy));
             }
         }
         #endregion
@@ -710,16 +463,16 @@ public class C_ActionButton : MonoBehaviour
         //Check si il possède le component "C_Actor". A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
         if (thisActor.GetComponent<C_Actor>())
         {
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
+            if (actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
             {
-                thisActor.GetComponent<C_Actor>().SetCurrentStatsGain(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy));
+                thisActor.GetComponent<C_Actor>().SetCurrentStatsGain(actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm), actionClass.GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy));
             }
         }
         #endregion
 
         #region Movement
         //Pour le mouvement.
-        if (GetMovement(target) != 0)
+        if (actionClass.GetMovement(target) != 0)
         {
             //Pour toutes les liste d'action.
             foreach (Interaction thisInteraction in actionClass.listInteraction)
@@ -1179,7 +932,7 @@ public class C_ActionButton : MonoBehaviour
                                 if (thisStats.move.actor != null)
                                 {
                                     thisStats.move.actor.MoveActor(plateau, thisActor.GetPosition());
-                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
+                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(actionClass.GetSwitchActor(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.actor); }
                             }
@@ -1188,7 +941,7 @@ public class C_ActionButton : MonoBehaviour
                                 if (thisStats.move.accessories != null)
                                 {
                                     thisStats.move.accessories.MoveActor(plateau, thisActor.GetPosition());
-                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(GetSwitchAcc(target).name, Color.cyan) + ".");
+                                    Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + GetColorText(actionClass.GetSwitchAcc(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.accessories); }
                             }
@@ -1205,7 +958,7 @@ public class C_ActionButton : MonoBehaviour
     //Affiche une preview sur les autres actor.
     void SetStatsOther(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
     {
-        if (!GetIfTargetOrNot())
+        if (!actionClass.GetIfTargetOrNot())
         {
             //Boucle avec le range.
             for (int i = 1; i < range; i++)
@@ -1214,7 +967,7 @@ public class C_ActionButton : MonoBehaviour
                 foreach (C_Actor thisOtherActor in otherActor)
                 {
                     //Check quel direction la range va faire effet.
-                    switch (GetTypeDirectionRange())
+                    switch (actionClass.GetTypeDirectionRange())
                     {
                         //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
                         case Interaction.ETypeDirectionTarget.Right:
@@ -1251,15 +1004,15 @@ public class C_ActionButton : MonoBehaviour
         }
         else
         {
-            if (GetTarget().GetComponent<C_Actor>())
+            if (actionClass.GetTarget().GetComponent<C_Actor>())
             {
-                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Actor>(), plateau);
+                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, actionClass.GetTarget().GetComponent<C_Actor>(), plateau);
             }
-            else if (GetTarget().GetComponent<C_Accessories>())
+            else if (actionClass.GetTarget().GetComponent<C_Accessories>())
             {
-                SetTarget(GameObject.Find(GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
+                actionClass.SetTarget(GameObject.Find(actionClass.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
 
-                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Accessories>(), plateau);
+                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, actionClass.GetTarget().GetComponent<C_Accessories>(), plateau);
             }
         }
     }

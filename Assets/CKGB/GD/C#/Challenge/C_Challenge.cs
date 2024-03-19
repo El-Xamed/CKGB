@@ -66,6 +66,8 @@ public class C_Challenge : MonoBehaviour
     //D�finis l'�tape actuel. RETIRER LE PUBLIC
     [SerializeField] SO_Etape currentStep;
 
+    [SerializeField] SO_Catastrophy currentCata;
+
     bool writeAccLogs = false;
     bool canUpdateEtape = false;
     #endregion
@@ -201,6 +203,7 @@ public class C_Challenge : MonoBehaviour
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
+        currentCata = myChallenge.listCatastrophy[0];
         UpdateUi(currentStep);
 
         //Lance directement le tour du joueur
@@ -430,7 +433,7 @@ public class C_Challenge : MonoBehaviour
         listRes = new List<ActorResolution>();
 
         //Initialise la prochaine cata.
-        InitialiseCata();
+        currentCata.InitialiseCata(listCase, myTeam);
 
         //Joue l'animation.
         vfxPlayerTurn.GetComponent<Animator>().enabled = true;
@@ -448,55 +451,6 @@ public class C_Challenge : MonoBehaviour
         {
             NextActor();
             PlayerTrun();
-        }
-    }
-
-    //VFX des cases visées.
-    void InitialiseCata()
-    {
-        if (myChallenge.listCatastrophy.Count == 0)
-        {
-            return;
-        }
-
-        //Supprime toutes les cata
-        foreach (var thisCase in listCase)
-        {
-            thisCase.DestroyVfxCata();
-        }
-
-        //Initialise la cata (Random)
-        if (myChallenge.listCatastrophy[0].modeAttack == SO_Catastrophy.EModeAttack.Random)
-        {
-            //Augmente ou réduit le nombre.
-            int newInt = UnityEngine.Random.Range(0, listCase.Count -1);
-
-            //Vide la liste.
-            myChallenge.listCatastrophy[0].targetCase.Clear();
-
-            //Ajoute la valeur aléatoire.
-            myChallenge.listCatastrophy[0].targetCase.Add(newInt);
-        }
-
-        //Affiche la prochaine cata.
-        foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
-        {
-            listCase[thisCase].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
-        }
-
-        //Ajout des zones de danger des acc
-        foreach (var thisAcc in listAcc)
-        {
-            if (thisAcc.GetDataAcc().canMakeDamage)
-            {
-                listCase[thisAcc.GetPosition()].ShowDangerZone(myChallenge.listCatastrophy[0].vfxCataPrefab);
-            }
-        }
-
-        //Check si les actor sont en danger
-        foreach (var thisActor in myTeam)
-        {
-            thisActor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
         }
     }
 
@@ -565,9 +519,7 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Fin de la phase de réso !");
 
-            
-
-            UpdateAccessories();
+            //UpdateAccessories();
             //Lance la phase "Cata".
             Invoke("CataTrun", 0.5f);
         }
@@ -703,23 +655,35 @@ public class C_Challenge : MonoBehaviour
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
+        //Ecrit dans les logs le résultat de l'action.
+        uiLogs.text = currentCata.catastrophyLog;
+
         //Check au début si tous les perso sont "out".
         if (!CheckGameOver())
         {
             //Applique la catastrophe. FONCTIONNE AVEC 1 CATA, A MODIFIER POUR QU'IL UTILISE LES CATA
-            ApplyCatastrophy(myChallenge.listCatastrophy[0]);
+            currentCata.ApplyCatastrophy(listCase, myTeam);
 
             //Re-Check si tous les perso sont "out".
-            CheckGameOver();
-
             if (!CheckGameOver())
             {
                 //Update les acc
-                UpdateAccessories();
+                //UpdateAccessories();
 
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
 
+                //Update la prochaine Cata.
+                //Check si c'étais la dernière Cata.
+                if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count -1)
+                {
+                    currentCata = myChallenge.listCatastrophy[0];
+                }
+                else
+                {
+                    currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
+                }
+                
                 Invoke("PlayerTrun", 1f);
                 Invoke("PlayerTurnAfterCata", 0.5f);
 
@@ -731,37 +695,6 @@ public class C_Challenge : MonoBehaviour
     {
         myInterface.GetComponent<Animator>().SetTrigger("OpenAll");
     }
-
-    //Applique la cata
-    void ApplyCatastrophy(SO_Catastrophy thisCata)
-    {
-        //Pour tous les nombre dans la liste dela cata.
-        foreach (var thisCase in thisCata.targetCase)
-        {
-            //Pour tous les actor.
-            foreach (var myActor in myTeam)
-            {
-                if (thisCase == myActor.GetPosition())
-                {
-                    //VFX de la cata qui s'applique.
-                    listCase[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
-
-                    myActor.SetCurrentStatsPrice(thisCata.reducStress, thisCata.reducEnergie);
-
-                    
-
-                    myActor.CheckIsOut();
-                }
-            }
-        }
-
-        //Ecrit dans les logs le résultat de l'action.
-        uiLogs.text = thisCata.catastrophyLog;
-
-        //Check si le jeu est fini "GameOver".
-        CheckGameOver();
-    }
-
     
     #endregion
 
