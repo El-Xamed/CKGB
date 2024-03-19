@@ -103,7 +103,7 @@ public class C_Challenge : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed && context.ReadValue<Vector2>().x > 0.5f || context.performed && context.ReadValue<Vector2>().y > 0.5f)
+        if (context.performed /*&& context.ReadValue<Vector2>().x > 0.5f || context.performed && context.ReadValue<Vector2>().y > 0.5f*/)
         {
             //BESOIN DE TRAVAILLER DESSUS POUR L'ALPHA !!!!!!!
             //Cache tout les autres preview.
@@ -114,12 +114,6 @@ public class C_Challenge : MonoBehaviour
             //Ecrit dans les logs le résultat de l'action.
             //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
             WriteStatsPreview();
-
-            context.ReadValue<Vector2>();
-
-            Debug.Log(context.ReadValue<Vector2>());
-
-            
         }
     }
     #endregion
@@ -366,6 +360,16 @@ public class C_Challenge : MonoBehaviour
     {
         if (eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject.activeSelf)
         {
+            //Cache les autres curseur.
+            foreach (GameObject thisActionButton in myInterface.GetListActionButton())
+            {
+                thisActionButton.GetComponent<C_ActionButton>().HideCurseur();
+            }
+
+            //Fait apparaitre le curseur.
+            eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
+
+            //Affiche la preview.
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, listCase);
         }
     }

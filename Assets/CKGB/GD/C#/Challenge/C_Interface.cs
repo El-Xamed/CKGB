@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static C_Challenge;
@@ -224,14 +225,20 @@ public class C_Interface : MonoBehaviour
     }
 
     #region Spawn button
+    //PEUT ETRE UTILISE PLUS TARD.
     void SetShowButton(GameObject thisUiButton)
     {
         uiButton = thisUiButton;
     }
 
+    //Affiche les boutons d'actions.
     public void ShowButton()
     {
         uiButton.SetActive(true);
+
+        myChallenge.GetEventSystem().SetSelectedGameObject(listButtons[0]);
+
+        myChallenge.WriteStatsPreview();
     }
 
     void SpawnActions()
@@ -275,12 +282,11 @@ public class C_Interface : MonoBehaviour
                 //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
                 myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
 
+                //Fait apparaitre le curseur.
+                myButton.GetComponent<C_ActionButton>().HideCurseur();
+
                 listButtons.Add(myButton);
             }
-                
-            myChallenge.GetEventSystem().SetSelectedGameObject(listButtons[0]);
-
-            myChallenge.WriteStatsPreview();
         }
         else
         {
@@ -355,6 +361,11 @@ public class C_Interface : MonoBehaviour
     public void SetCurrentInterface(Interface newCurrentInterface)
     {
         currentInterface = newCurrentInterface;
+    }
+
+    public List<GameObject> GetListActionButton()
+    {
+        return listButtons;
     }
 
     public GameObject GetUiAction()

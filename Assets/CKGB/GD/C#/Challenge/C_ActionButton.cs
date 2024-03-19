@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static TargetStats;
 using static UnityEngine.GraphicsBuffer;
@@ -8,7 +9,15 @@ using static UnityEngine.GraphicsBuffer;
 public class C_ActionButton : MonoBehaviour
 {
     [SerializeField]
+    GameObject curseur;
+
+    [SerializeField]
     SO_ActionClass actionClass;
+
+    private void Awake()
+    {
+        curseur.SetActive(false);
+    }
 
     #region DataPreview
     //Liste de string pour écrire le texte.
@@ -1115,6 +1124,16 @@ public class C_ActionButton : MonoBehaviour
         }
     }
     #endregion
+
+    public void HideCurseur()
+    {
+        curseur.SetActive(false);
+    }
+
+    public void ShowCurseur()
+    {
+        curseur.SetActive(true);
+    }
 
     public void SetActionClass(SO_ActionClass thisActionClass)
     {
