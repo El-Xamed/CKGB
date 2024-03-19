@@ -15,4 +15,6 @@ public class SO_Catastrophy : ScriptableObject
     public List<int> targetCase = new List<int>();
 
     public string catastrophyLog;
+
+    public SO_ActionClass actionClass;
 }
