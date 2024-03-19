@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SO_TempsMort;
 using Ink.Runtime;
+using Febucci.UI;
 
 public class C_TempsMort : MonoBehaviour
 {
@@ -60,8 +61,7 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField] bool MorganAPapoteAvecNimu = false;
     [SerializeField] bool NimuAPapoteAvecEsthela = false;
 
-    [SerializeField]
-    GameObject aquiletour;
+
     [SerializeField]
     GameObject faitesunchoix;
     [SerializeField]
@@ -75,12 +75,15 @@ public class C_TempsMort : MonoBehaviour
     bool isAnActionButton = false;
 
     [Header("Histoires")]
+    [SerializeField] public GameObject PageNarrateur;
+    [SerializeField] public GameObject Cine;
     [SerializeField]TextAsset inkAssetIntro;
     [SerializeField] TextAsset _intro;
     [SerializeField] TextAsset _outro;
     [SerializeField] public TextAsset Observage;
     [SerializeField] public TMP_Text naratteur;
     [SerializeField] bool TMhasStarted = false;
+    [SerializeField] public bool canContinue=false;
 
 
     #endregion
@@ -108,9 +111,9 @@ public class C_TempsMort : MonoBehaviour
         GameManager.instance.ChangeActionMap("TempsMort");
         GameManager.instance.textToWriteIn = naratteur;
        
-        StartIntro();
+        StartCoroutine(StartIntro());
 
-        aquiletour.SetActive(false);
+
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         tree.SetActive(false);
@@ -163,7 +166,15 @@ public class C_TempsMort : MonoBehaviour
 
     public void updateButton()
     {
+        if (currentButton.transform.GetChild(0) != null)
+        {
+            currentButton.transform.GetChild(0).gameObject.SetActive(false);
+        }
         currentButton = Es.currentSelectedGameObject;
+        if (currentButton.transform.GetChild(0) != null)
+        {
+            currentButton.transform.GetChild(0).gameObject.SetActive(true);
+        }
         for (int i = 0; i < charactersButton.Length; i++)
         {
             if (currentButton == charactersButton[i])
@@ -236,7 +247,6 @@ public class C_TempsMort : MonoBehaviour
                 charactertoaddID++;
                 faitesunchoix.SetActive(true);
                 faitesunchoix.GetComponent<TMP_Text>().text = "Que doit faire " + actorActif.GetComponent<C_Actor>().name + " ?";
-                aquiletour.SetActive(false);
                 isAnActionButton = true;
                 for (int x = 0; x < actions.Length; x++)
                 {
@@ -258,7 +268,6 @@ public class C_TempsMort : MonoBehaviour
     {
         ActionToAdd.Add(selectedActionButton);
         actiontoaddID++;
-        aquiletour.SetActive(true);
         faitesunchoix.SetActive(false);
         isAnActionButton = false;
         for (int i = 0; i < actions.Length; i++)
@@ -274,7 +283,6 @@ public class C_TempsMort : MonoBehaviour
             {
                 
                 ChallengeButton.SetActive(true);
-                aquiletour.SetActive(false);
                 Es.SetSelectedGameObject(ChallengeButton);
                 actorActif = null;
                 AffichageMiniCartePerso();
@@ -343,6 +351,21 @@ public class C_TempsMort : MonoBehaviour
         _outro = TM.Outro;
         Observage = TM.Observer;
        
+        
+        for (int i=0;i<characters.Count; i++)
+        {
+            characters[i].transform.GetChild(0).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].transform.GetChild(1).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].transform.GetChild(3).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].transform.GetChild(4).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
+            characters[i].transform.GetChild(0).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].transform.GetChild(1).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].transform.GetChild(3).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].transform.GetChild(4).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+        }
+        naratteur.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+        naratteur.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
     }
     public void UpdateCharacterStat()
     {
@@ -507,6 +530,7 @@ public class C_TempsMort : MonoBehaviour
                     }
                 }
                 GameManager.instance.PapoterID[0]++;
+                Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -547,6 +571,7 @@ public class C_TempsMort : MonoBehaviour
                     }
                 }
                 GameManager.instance.PapoterID[1]++;
+                Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -587,6 +612,7 @@ public class C_TempsMort : MonoBehaviour
                     }
                 }
                 GameManager.instance.PapoterID[0]++;
+                Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -627,6 +653,7 @@ public class C_TempsMort : MonoBehaviour
                     }
                 }
                 GameManager.instance.PapoterID[2]++;
+                Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -668,6 +695,7 @@ public class C_TempsMort : MonoBehaviour
                 }
                 GameManager.instance.PapoterID[1]++;
                 Debug.Log("Nimu papot avec Morgan valeur : " + GameManager.instance.PapoterID[1]);
+                Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -708,6 +736,7 @@ public class C_TempsMort : MonoBehaviour
                     }
                 }
                 GameManager.instance.PapoterID[2]++;
+                Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -723,6 +752,7 @@ public class C_TempsMort : MonoBehaviour
     IEnumerator ReprendreTMAfterPapotage()
     {
         yield return new WaitForSeconds(0.6f);
+        Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.ExitDialogueMode();
         for (int i = 0; i < characters.Count; i++)
         {
@@ -737,7 +767,6 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Respirer()
     {
-        aquiletour.SetActive(false);
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         #region HideUI
@@ -782,7 +811,8 @@ public class C_TempsMort : MonoBehaviour
             }
 
         }
-
+        tree.SetActive(false);
+        Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
@@ -793,6 +823,7 @@ public class C_TempsMort : MonoBehaviour
     IEnumerator CoroutineRetourAuTMAfterRespirer()
     {
         yield return new WaitForSeconds(0.6f);
+        Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.ExitDialogueMode();
         for (int i = 0; i < characters.Count; i++)
         {
@@ -810,7 +841,6 @@ public class C_TempsMort : MonoBehaviour
     }
     public void Revasser()
     {
-        aquiletour.SetActive(false);
         faitesunchoix.SetActive(false);
         papoteravec.SetActive(false);
         #region HideUI
@@ -855,7 +885,8 @@ public class C_TempsMort : MonoBehaviour
             }
         
         }
-
+        tree.SetActive(false);
+        Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
     }
     public void RetourAuTMAfterRevasser(string text)
@@ -865,6 +896,7 @@ public class C_TempsMort : MonoBehaviour
     IEnumerator CoroutineRetourAuTMAfterRevasser()
     {
         yield return new WaitForSeconds(0.6f);
+        Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.ExitDialogueMode();
         for (int i = 0; i < characters.Count; i++)
         {
@@ -895,7 +927,7 @@ public class C_TempsMort : MonoBehaviour
     {
         if(!context.performed)
         { return; }
-        if(context.performed)
+        if(context.performed&&GameManager.instance.isDialoguing==false)
         {
                 Debug.Log("going backward");
                 if (isAnActionButton == true)
@@ -904,7 +936,6 @@ public class C_TempsMort : MonoBehaviour
                     {
                         if (currentButton == actions[i])
                         {
-                        aquiletour.SetActive(true);
                         faitesunchoix.SetActive(false);
                         isAnActionButton = false;
                         for (int y = 0; y < actions.Length; y++)
@@ -916,7 +947,6 @@ public class C_TempsMort : MonoBehaviour
                             {
 
                                 ChallengeButton.SetActive(true);
-                                aquiletour.SetActive(false);
                                 Es.SetSelectedGameObject(ChallengeButton);
                                 actorActif = null;
                                 AffichageMiniCartePerso();
@@ -978,7 +1008,6 @@ public class C_TempsMort : MonoBehaviour
                             if (characterHasPlayed[i] == true && actorActif == characters[i] && ActionToAdd != null) //cas ou l'on fait retour depuis le choix de personnages
                             {
                                 Debug.Log(actorActif);
-                                aquiletour.SetActive(false);
                                 isAnActionButton = true;
                                 characterHasPlayed[i] = false;
 
@@ -1008,7 +1037,6 @@ public class C_TempsMort : MonoBehaviour
                             if (characterHasPlayed[i] == true && actorActif == characters[i] && ActionToAdd != null) //cas ou l'on fait retour depuis le choix de personnages
                             {
                                 Debug.Log(actorActif);
-                                aquiletour.SetActive(false);
                                 isAnActionButton = true;
                                 characterHasPlayed[i] = false;
 
@@ -1038,7 +1066,6 @@ public class C_TempsMort : MonoBehaviour
                             if (characterHasPlayed[i] == true && actorActif == characters[i] && ActionToAdd != null) //cas ou l'on fait retour depuis le choix de personnages
                             {
                                 Debug.Log(actorActif);
-                                aquiletour.SetActive(false);
                                 isAnActionButton = true;
                                 characterHasPlayed[i] = false;
 
@@ -1070,8 +1097,10 @@ public class C_TempsMort : MonoBehaviour
     }
     //Fonction qui lance une histoire et preciser en argument le texte a lire de type Text_Asset
 
-    public void StartIntro()
+    IEnumerator StartIntro()
     {
+        Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+        yield return new WaitForSeconds(0.8f);
         GameManager.instance.EnterDialogueMode(_intro);
     }
     public void StartTempsMort(string name)
@@ -1085,8 +1114,8 @@ public class C_TempsMort : MonoBehaviour
         tree.SetActive(true);
         TMhasStarted = true;
         Es = FindObjectOfType<EventSystem>();
+        Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.ExitDialogueMode();
-        aquiletour.SetActive(true);
         foreach (GameObject button in charactersButton)
         {
             if (button != null)
@@ -1100,6 +1129,7 @@ public class C_TempsMort : MonoBehaviour
     }
     public void StartOutro()
     {
+        Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         GameManager.instance.EnterDialogueMode(_outro);
 
     }
@@ -1107,13 +1137,24 @@ public class C_TempsMort : MonoBehaviour
     public void continueStory(InputAction.CallbackContext context)
     {
 
-        if (context.performed&&GameManager.instance.isDialoguing==true)
+        if (context.performed&&GameManager.instance.isDialoguing==true&&canContinue==true)
         {
             GameManager.instance.ContinueStory();
         }
-        else
+        else if(context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
+        {
+            GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+        }
             return;
 
+    }
+    public void SetCanContinueToYes()
+    {
+        canContinue = true;
+    }
+    public void SetCanContinueToNo()
+    {
+        canContinue = false;
     }
     public void GoChallenge(string named)
     {

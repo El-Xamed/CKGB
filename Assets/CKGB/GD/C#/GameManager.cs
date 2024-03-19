@@ -418,6 +418,7 @@ public class GameManager : MonoBehaviour
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.naratteur;
+                            TM.PageNarrateur.GetComponent<Animator>().SetBool("Active", true);
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -433,11 +434,16 @@ public class GameManager : MonoBehaviour
 
             }
         }
+        if(textToWriteIn!=TM.naratteur)
+        {
+            TM.PageNarrateur.GetComponent<Animator>().SetBool("Active", false);
+        }
       textToWriteIn.text = text;       
     }
 
     public void ExitDialogueMode()
     {
+        TM.PageNarrateur.GetComponent<Animator>().SetBool("Active", false);
         textToWriteIn.text = "";
         isDialoguing = false;
         if (textToWriteIn.GetComponentInParent<Image>() != null)

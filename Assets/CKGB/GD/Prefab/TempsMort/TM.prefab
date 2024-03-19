@@ -1,0 +1,253 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2552519295231897061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2552519295231897048}
+  - component: {fileID: 2552519295231897051}
+  - component: {fileID: 2552519295231897050}
+  m_Layer: 0
+  m_Name: TM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2552519295231897048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552519295231897061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.7886505, y: -0.28241432, z: -0.31187758}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2552519295231897051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552519295231897061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 593e815767640394b9ecc670862bfbfd, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: afeca8c8-71a7-416c-bd69-e8240f5acf1e
+    m_ActionName: WorldMap/PlayLevel[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36a42cc7-7ce6-4992-b642-48bf9aec373d
+    m_ActionName: WorldMap/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2616de63-5eda-4dce-b374-00d49655662c
+    m_ActionName: WorldMap/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da23a3e5-c1f4-48da-8f5d-2a3529a07600
+    m_ActionName: WorldMap/Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0ca04d3-e3bc-49ff-9dd9-4509a5b17e2f
+    m_ActionName: WorldMap/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2568446-36e9-4720-8cb0-c41c45fa077b
+    m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2552519295231897050}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: SwitchCharacterCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 792e24f3-d1a2-4a6a-80cd-6c6939953e23
+    m_ActionName: TempsMort/FlipCard[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2552519295231897050}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: continueStory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2df5d24f-27f7-4b12-a9da-06728aa1057b
+    m_ActionName: TempsMort/ChooseButton[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2552519295231897050}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: Naviguate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4518165f-b12e-43b7-aa38-07d9c8ccb776
+    m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
+    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
+    m_ActionName: Challenge/ResetChallenge
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b99505ec-be92-4fb8-abf0-6b66ebf09852
+    m_ActionName: Challenge/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8658b0c6-8ba6-4752-98e8-dbe8ce58fdb9
+    m_ActionName: Challenge/Submit[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2552519295231897050}
+        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+        m_MethodName: BACK
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 942d176b-0b8d-4683-a4c1-50ce05785591
+    m_ActionName: TempsMort/Back[/Keyboard/b]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: TempsMort
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &2552519295231897050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552519295231897061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87861308bbcb2e74088297fcbd3b8f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersLittleResume:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  charactersCompleteResume1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  charactersCompleteResume2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  littleCharactersSpecs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CompleteCharactersSpecs1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CompleteCharactersSpecs2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  charactersButton:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  tree: {fileID: 0}
+  actions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ChallengeButton: {fileID: 0}
+  PapotageChoiceButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  listCharactersPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  characters: []
+  TM: {fileID: 11400000, guid: 7207b04ea79f0a040995820cebf7486b, type: 2}
+  background: {fileID: 0}
+  Es: {fileID: 0}
+  currentButton: {fileID: 0}
+  selectedActionButton: {fileID: 0}
+  actorActif: {fileID: 0}
+  Papoteur: {fileID: 0}
+  MorganAPapoteAvecEsthela: 0
+  MorganAPapoteAvecNimu: 0
+  NimuAPapoteAvecEsthela: 0
+  faitesunchoix: {fileID: 0}
+  papoteravec: {fileID: 0}
+  ApapoteAvec: 000000
+  characterHasPlayed: 000000
+  isAnActionButton: 0
+  PageNarrateur: {fileID: 0}
+  Cine: {fileID: 0}
+  inkAssetIntro: {fileID: 0}
+  _intro: {fileID: 4900000, guid: 171cafb8be8e56d4786a935743b2e134, type: 3}
+  _outro: {fileID: 4900000, guid: 4e0ecb31268432946bd68d06dc36d1df, type: 3}
+  Observage: {fileID: 0}
+  naratteur: {fileID: 0}
+  TMhasStarted: 0
+  canContinue: 0
+  ActionToAdd: []
+  LastCharacterThatPlayed: []
+  actiontoaddID: -1
+  charactertoaddID: -1
+  nobodyHasPlayed: 1
