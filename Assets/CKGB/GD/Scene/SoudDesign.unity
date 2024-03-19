@@ -487,85 +487,99 @@ MonoBehaviour:
   sounds:
   - name: SfxHover
     clip:
-    - {fileID: 0}
-    group: {fileID: 0}
-    volume: 0.538
-    pitch: 0.512
+    - {fileID: 8300000, guid: 3381113d140b8e4419708fcd7ba32727, type: 3}
+    - {fileID: 8300000, guid: 093a97231fe5b4a48a5f6fa73320cb23, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0
+    pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: SfxSonDeConfirmation
-    clip: []
-    group: {fileID: 0}
-    volume: 0.697
-    pitch: 1.52
+    clip:
+    - {fileID: 8300000, guid: 540529b62e006304e98b728674536085, type: 3}
+    - {fileID: 8300000, guid: 9a23645a760b55245b4103ba9a6a8b43, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0
+    pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: SfxRetourArriere
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: 7648708241ea6134682d8a278ec5e66c, type: 3}
+    - {fileID: 8300000, guid: f77cb35d77a6ed74faabd5ae6f411b47, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: SfxPowerUp
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: 20236117583f78f4cbef991304f9d11e, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: SfxPowerDown
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: f66607b0d05e2824c9a1f61a46067ce1, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: SfxDanger
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: f07c469eacbcb9f4f8dea1b8bf061443, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Sfxlogs
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: b89bb49b78bda9345b6262cc5cb336d1, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: MusiqueTuto
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: 4865848892910ed4d9a0bb7f21617a54, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: MusiqueSplashScreen
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: 97f9cef01b42c954eb45e46d4685e04a, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: MusiqueChargement
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: 66ca9db4c56c824419ffd4bc03099631, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: MusiqueChallenge2.A
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: da89ef69edb3cbf4f8510ed8bc8e011e, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: MusiqueChallenge2.B
-    clip: []
-    group: {fileID: 0}
+    clip:
+    - {fileID: 8300000, guid: 3c8035df1f7c92743bfea6b0d046f0ed, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0
     pitch: 0
     loop: 0
