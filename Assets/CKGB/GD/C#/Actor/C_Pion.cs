@@ -13,19 +13,19 @@ public class C_Pion : MonoBehaviour
         if (newPosition < 0)
         {
             //Déplace le perso à droite du pleteau.
-            transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, 0);
+            transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, transform.position.z);
             position = plateau.Count - 1;
         }
         else if (newPosition > plateau.Count - 1)
         {
             //Déplace le perso à gauche du plateau.
-            transform.position = new Vector3(plateau[0].transform.position.x, transform.position.y, 0);
+            transform.position = new Vector3(plateau[0].transform.position.x, transform.position.y, transform.position.z);
             position = 0;
         }
         else
         {
             //Déplace le perso.
-            transform.position = new Vector3(plateau[newPosition].transform.position.x, transform.position.y, 0);
+            transform.position = new Vector3(plateau[newPosition].transform.position.x, transform.position.y, transform.position.z);
             position = newPosition;
         }
 

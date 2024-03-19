@@ -377,8 +377,6 @@ public class C_Challenge : MonoBehaviour
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
     public void UseAction(C_ActionButton thisActionButton)
     {
-        
-
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
@@ -411,15 +409,6 @@ public class C_Challenge : MonoBehaviour
 
             ResolutionTurn();
         }
-    }
-
-    public void CantUseAction()
-    {
-        //Joue un SFX
-
-        //Joue une animation.
-
-        Debug.Log("Impossible d'utiliser cette action.");
     }
 
     void PlayerTrun()
@@ -595,13 +584,8 @@ public class C_Challenge : MonoBehaviour
         //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
         vfxResoTurn.GetComponent<Animator>().enabled = true;
 
-        //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
-        //Lance la fonction d'application dans le script (a voir a la fin si c'est dans le SO_actionClass ou alors dans C_actionButton).
-        //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
+        //Applique toutes les actions. 1 par 1.
         currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
-
-        Debug.Log(currentResolution.button.GetActionClass());
-        Debug.Log(currentStep.rightAnswer);
 
         //Check si c'est la bonne action.
         if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)

@@ -450,7 +450,7 @@ public class C_ActionButton : MonoBehaviour
 
                             if (notBusyByActor == otherActor.Count)
                             {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement() + ".");
+                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement());
                                 Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer de " + GetColorText(myMove.nbMove.ToString(), Color.green) + GetDirectionOfMovement());
                             }
                         }
@@ -474,32 +474,17 @@ public class C_ActionButton : MonoBehaviour
 
                 void TargetMoveActor(int newPosition)
                 {
-                    int notBusyByActor = 0;
-                    
                     foreach (C_Actor thisOtherActor in otherActor)
                     {
                         if (newPosition == thisOtherActor.GetPosition())
                         {
-                            if (thisOtherActor == thisActor)
-                            {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " ne va pas se déplacer à la case " + GetColorText(myMove.nbMove.ToString(), Color.green) + " car " + GetColorText(thisActor.name, Color.cyan) + " est déjà dessus.");
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " ne va pas se déplacer à la case " + GetColorText(myMove.nbMove.ToString(), Color.green) + " car " + GetColorText(thisActor.name, Color.green) + " est déjà dessus.");
-                            }
-                            else
-                            {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green));
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green));
-                            }
+                            listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green)+ ".");
+                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va échanger de place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
                         }
                         else
                         {
-                            notBusyByActor++;
-
-                            if (notBusyByActor == otherActor.Count)
-                            {
-                                listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText(myMove.nbMove.ToString(), Color.green));
-                                Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText(myMove.nbMove.ToString(), Color.green));
-                            }
+                            listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText((newPosition + 1).ToString(), Color.green) + ".");
+                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText((newPosition + 1).ToString(), Color.green) + ".");
                         }
                     }
                 }
@@ -777,7 +762,7 @@ public class C_ActionButton : MonoBehaviour
                     //Check si la valeur reste dans le plateau.
                     for (int i = 0; i < newPosition; i++)
                     {
-                        //Check si c'est un acc. A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
+                        /*//Check si c'est un acc. A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
                         if (!GetIfTargetOrNot())
                         {
                             Debug.Log("C'est un ator");
@@ -854,26 +839,60 @@ public class C_ActionButton : MonoBehaviour
                         else
                         {
                             Debug.Log("C'est un acc");
-                            //Detection de si le perso est au bord.
-                            if (thisActor.GetPosition() - i < 0)
+                            
+                        }*/
+
+                        //Check si un autre membre de l'équipe occupe deja a place. A voir si je le garde.
+                        foreach (C_Actor thisOtherActor in otherActor)
+                        {
+                            //Si dans la list de l'équipe c'est pas égale à l'actor qui joue.
+                            if (thisActor != thisOtherActor)
                             {
-                                thisActor.MoveActor(plateau, plateau.Count - 1 - i);
-                            }
-                            else if (thisActor.GetPosition() + i > plateau.Count - 1)
-                            {
-                                thisActor.MoveActor(plateau, 0 + i);
-                            }
-                            else
-                            {
-                                thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
+                                //Detection de si le perso est au bord (à droite).
+                                if (thisActor.GetPosition() + i > plateau.Count - 1)
+                                {
+                                    //Détection de si il y a un autres actor.
+                                    if (0 + i == thisOtherActor.GetPosition())
+                                    {
+                                        //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                        if (myMove.isTp)
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                        }
+                                        else
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //Détection de si il y a un autres actor.
+                                    if (thisActor.GetPosition() + newPosition == thisOtherActor.GetPosition())
+                                    {
+                                        //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                        if (myMove.isTp)
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                        }
+                                        else
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-
-                    //Check si la valeur reste dans le plateau. A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
+                    
+                    //Check si la valeur reste dans le plateau. A VOIR POUR GARDER CETTE PARTIS SI C'EST PAS POSSIBLE.
                     for (int i = 0; i > newPosition; i--)
                     {
-                        //Check si c'est un acc. A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
+                        /*//Check si c'est un acc. A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
                         if (!GetIfTargetOrNot())
                         {
                             Debug.Log("C'est un ator");
@@ -963,8 +982,129 @@ public class C_ActionButton : MonoBehaviour
                             {
                                 thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
                             }
+                        }*/
+
+                        /*foreach (C_Actor thisOtherActor in otherActor)
+                        {
+                            //Si dans la list de l'équipe c'est pas égale à l'actor qui joue.
+                            if (thisActor != thisOtherActor)
+                            {
+                                //Detection de si le perso est au bord.
+                                if (thisActor.GetPosition() - i < 0)
+                                {
+                                    //Détection de si il y a un autres actor.
+                                    if (plateau.Count - 1 - i == thisOtherActor.GetPosition())
+                                    {
+                                        //Check si c'est une TP (donc un switch) ou un déplacement normal (pousse le personnage).
+                                        if (myMove.isTp)
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                        }
+                                        else
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                        }
+
+                                        thisActor.MoveActor(plateau, plateau.Count - 1 - i);
+                                    }
+                                }
+                                else if (thisActor.GetPosition() + i > plateau.Count - 1)
+                                {
+                                    //Détection de si il y a un autres actor.
+                                    if (0 + i == thisOtherActor.GetPosition())
+                                    {
+                                        //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                        if (myMove.isTp)
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                        }
+                                        else
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                        }
+                                    }
+
+                                    thisActor.MoveActor(plateau, 0 + i);
+                                }
+                                else
+                                {
+                                    //Détection de si il y a un autres actor.
+                                    if (thisActor.GetPosition() + newPosition == thisOtherActor.GetPosition())
+                                    {
+                                        //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
+                                        if (myMove.isTp)
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                        }
+                                        else
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                        }
+                                    }
+                                    Debug.Log("zer");
+                                    thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
+                                }
+                            }
+                        }*/
+
+                        //Detection de si le perso est au bord (à gauche).
+                        if (thisActor.GetPosition() - i < 0)
+                        {
+                            //Si il y a d'autre actor, check si ces dernier vont etre déplacé.
+                            foreach (C_Actor thisOtherActor in otherActor)
+                            {
+                                //Détection de si il y a un autres actor.
+                                if (plateau.Count - 1 - i == thisOtherActor.GetPosition())
+                                {
+                                    //Check si c'est une TP (donc un switch) ou un déplacement normal (pousse le personnage).
+                                    if (myMove.isTp)
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                    }
+                                    else
+                                    {
+                                        thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                        Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Si il y a d'autre actor, check si ces dernier vont etre déplacé.
+                            foreach (C_Actor thisOtherActor in otherActor)
+                            {
+                                if (thisActor != thisOtherActor)
+                                {
+                                    //Détection de si il y a un autres actor.
+                                    if (thisActor.GetPosition() + i == thisOtherActor.GetPosition())
+                                    {
+                                        //Check si c'est une TP (donc un switch) ou un déplacement normal (pousse le personnage).
+                                        if (myMove.isTp)
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + GetColorText(thisOtherActor.name, Color.green) + ".");
+                                        }
+                                        else
+                                        {
+                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
+
+                    //Déplace l'actor.
+                    thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
 
                     string GetDirectionOfMovement()
                     {
