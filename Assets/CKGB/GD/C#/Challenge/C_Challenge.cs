@@ -442,7 +442,10 @@ public class C_Challenge : MonoBehaviour
         listRes = new List<ActorResolution>();
 
         //Initialise la prochaine cata.
-        currentCata.InitialiseCata(listCase, myTeam);
+        if (currentStep.useCata)
+        {
+            currentCata.InitialiseCata(listCase, myTeam);
+        }
 
         //Joue l'animation.
         vfxPlayerTurn.GetComponent<Animator>().enabled = true;
@@ -538,7 +541,7 @@ public class C_Challenge : MonoBehaviour
         vfxResoTurn.GetComponent<Animator>().enabled = true;
 
         //Applique toutes les actions. 1 par 1.
-        currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
+        currentResolution.button.GetActionClass().UseAction(currentResolution.actor, listCase, myTeam);
 
         //Check si c'est la bonne action.
         if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)

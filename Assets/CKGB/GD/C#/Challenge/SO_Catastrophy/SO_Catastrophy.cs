@@ -77,15 +77,17 @@ public class SO_Catastrophy : ScriptableObject
                     //VFX de la cata qui s'applique.
                     plateau[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
 
-                    //Applique les conséquences "Price" à l'aide de "l'actionClass" qui est renseigné.
-                    if (actionClass.GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || actionClass.GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
-                    {
-                        thisActor.GetComponent<C_Actor>().SetCurrentStatsPrice(actionClass.GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm), actionClass.GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy));
-                    }
+                    //Applique des conséquence grace au finction de actionClass.
+                    actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, team, thisActor, plateau);
 
                     thisActor.CheckIsOut();
                 }
             }
         }
+    }
+
+    public override string ToString()
+    {
+        return TextUtils.GetColorText(catastrophyLog, Color.red);
     }
 }

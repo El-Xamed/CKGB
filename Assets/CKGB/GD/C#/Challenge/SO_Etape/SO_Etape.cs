@@ -6,6 +6,7 @@ using UnityEngine;
 public class SO_Etape : ScriptableObject
 {
     #region Mes variables
+    public bool useCata = true;
     public List<SO_ActionClass> actions;
     public SO_ActionClass rightAnswer;
 
