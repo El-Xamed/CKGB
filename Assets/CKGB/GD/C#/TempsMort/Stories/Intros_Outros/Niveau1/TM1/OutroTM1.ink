@@ -1,61 +1,54 @@
-//Bruit de porte, l’écran du temps mort apparait. Morgan est près d’un porte, Sa grand-mère à table, en train de petit-déjeuner.
+->Outro
+=== function StartChallenge(name)
 
-“’lut”
+EXTERNAL StartChallenge(name)
 
-“Yo BG. Bien dormi ?”
+===Outro===
+//Après avoir validé la fin du temps mort, swipe noir soft vers la droite de l'écran Morgan commence à faire les cents pas. Bruit de porte qui se ferme et la grand mère qui s'écarte d'une des portes en debut de scène. Morgan est en train de faire les 100 pas.
 
-“’uai. ’va ?”
+“Tiens, t’es pas encore partit ?”#Bulle:NimuHautDroit
 
-“Super. Juste, d’un POV pratique, est-ce que dire des moitiés de mots c’est un plan à long terme ?”
+“Mes cheveux.”#Bulle:MorganHautDroit
 
-“’tetre.”
+"Ils sont sur ta tête, à ma connaissance."#Bulle:NimuHautGauche
 
-“Ok bah gucchi.”
+“Il sont bien comme ça ?”#Bulle:MorganHautDroit
 
-Morgan traverse la pièce vers la porte d’entrée.
+“Sur ta tête ?”#Bulle:NimuHautGauche
 
-“Tu as l’air pressé.e de partir ?”
+Tu te retourne partiellemet vers elle et fais ta fameuse moue inexpressive et sincèrement ennuyée jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
 
-“H-hm, j’vais prendre le train. J’ai… Un truc. Aux marches.”
+"Ils sont parfaits tes cheveux."#Bulle:NimuHautDroit
 
-“Ah. Un truc. Je vois.”
+“Parfait. Et j’ai pas de tâche de confiture dans mon dos ?”#Bulle:MorganBasGauche
 
-Tu espére sincèrement que ce ne soit pas le cas. Elle sourit. Tu réalise qu’il n’y a aucune chance qu’elle n’ai pas comprit.
+Tu te contortionne de nouveau pour lui faire observer ta chemise.
 
- “Bah alors je suppose que je vais manger toute seule ce matin…”
+“Mais… pourquoi t’aurai de la confiture dans le… Non !” #Bulle:NimuHautDroit
 
-Tu te sens basculer, puis tu cède, incapable de lui resister.
+Tu pousse un soupir de soulagement et te frotte les mains un instant.#Bulle:Narrateur
 
-“… Nah mais j’peux prendre cinq minutes si c’est important pour toi.”
+“’’kay. Brillant."#Bulle:MorganHautDroit
 
-Elle sourit d’un air satisfait.
+Prêt à partir, tu tape successivement tes poches pour t'assurer que tout est bien à sa place (pour la 21e fois).#Bulle:Narrateur
+Tu fronce les sourcils.#Bulle:Narrateur
 
-“Bueño, tu me refera six tartines de confiture avec du beurre s’il te plait.” elle se met à lire. Lui s’approche de la table.
+"Ah, et t’aurai pas vu mes clefs ?”#Bulle:MorganHautauche
 
-“ARG, LA TRAITRESSE.” ← Pensée par Morgan
+“Mais tu vas décamper à la fin ?”#Bule:NimuHautDroit
 
-“ *soupir* ’fais quoi ‘jourd’hui ?”
+“Non, mais pour de vrai!"#Bulle:MorganHautDroit
+"Je mets pas la main dessus !” #Bulle:MorganHautGauche
 
-“Je pensais chill à la maison. Je developpe une relation symbiotique avec le canapé. Et aller chercher les jeunes à l’école vers 15h. Et toi, tu as un rendez-v-”
+"Bah attends je vais te prêter les miennes."#Bulle:NimuHautGauche
 
-“CHHHH- 
+Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses clefs.#Bulle:Narrateur
 
-Est-c’que tu vas vraiment manger SIX tartines de plus ?”
+"Hm"#Bulle:NimuHautDroit
 
-“Hm quoi ?” elle lève à peine les yeux de son livre. “Ah !” “Non pas du tout.” “Ien a trois qui sont pour toi.”
+“… Je les retrouve pas non plus.”#Bulle:NimuHautDroit
 
-“…’e sais m’nourrir t’sais ?”
+“Ah, cata. j’vais checker dans l’entrée.” #Bulle:MorganBasGauche
 
-Elle hausse les épaules derrières sa façade de papier. “J’ai assez la dalle pour tout mange si tu les veux.”
-
-“ARG, LA TRAITRESSE.” ← Pensée par Morgan
-
-“… Nah.”
-
-“H-hm ?”
-
-“Je vais avoir besoin de force.”
-
-Tu prends une bouchée franche de pain.
-
-Ca te fais du bien.
+//Start challenge
+->END

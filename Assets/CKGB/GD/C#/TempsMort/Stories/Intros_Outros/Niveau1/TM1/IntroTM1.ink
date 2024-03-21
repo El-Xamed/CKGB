@@ -6,65 +6,75 @@ EXTERNAL StartTM(name)
 
 //Bruit de porte, l’écran du temps mort apparait. Morgan est près d’un porte, Sa grand-mère à table, en train de petit-déjeuner.
 
-“’lut”#Bulle:BulleMorganBasGauche
+“’lut”#Bulle:MorganBasGauche
 
-“Yo BG. Bien dormi ?”
+“Yo BG. Bien dormi ?”#Bulle:NimuHautDroit
 
-“’uai. ’va ?”
+//lancer l'animation pour qu'il se rapproche
 
-“Super. Juste, d’un POV pratique, est-ce que dire des moitiés de mots c’est un plan à long terme ?”
+“’uai. ’va ?”#Bulle:MorganHautGauche
 
-“’tetre.”
+“Super. Juste, d’un POV pratique, est-ce que dire des moitiés de mots c’est un plan à long terme ?”#Bulle:NimuHautGauche
 
-“Ok bah gucchi.”
+“’tetre.”#Bulle:MorganHautGauche
 
-Morgan traverse la pièce vers la porte d’entrée.
+“Ok bah gucchi.”#Bulle:NimuBasDroite
 
-“Tu as l’air pressé.e de partir ?”
+//Morgan traverse la pièce vers la porte d’entrée.
 
-“H-hm, j’vais prendre le train. J’ai… Un truc. Aux marches.”
+“Tu as l’air pressé.e de partir ?”#Bulle:NimuHautGauche
 
-“Ah. Un truc. Je vois.”
+“H-hm, j’vais prendre le train. J’ai… Un truc. Aux marches.”#Bulle:MorganHautGauche
 
-Tu espére sincèrement que ce ne soit pas le cas. Elle sourit. Tu réalise qu’il n’y a aucune chance qu’elle n’ai pas comprit.
+“Ah. Un truc. Je vois.”#Bulle:NimuHautGauche
 
- “Bah alors je suppose que je vais manger toute seule ce matin…”
+Tu espére sincèrement que ce ne soit pas le cas. Elle sourit. Tu réalise qu’il n’y a aucune chance qu’elle n’ai pas comprit.#Bulle:Narrateur
 
-Tu te sens basculer, puis tu cède, incapable de lui resister.
+ “Bah alors je suppose que je vais manger toute seule ce matin…”#Bulle:NimuHautGauche
 
-“… Nah mais j’peux prendre cinq minutes si c’est important pour toi.”
+Tu te sens basculer, puis tu cède, incapable de lui resister.#Bulle:Narrateur
 
-Elle sourit d’un air satisfait.
+“… Nah mais j’peux prendre cinq minutes si c’est important pour toi.”#Bulle:MorganHautDroit
 
-“Bueño, tu me refera six tartines de confiture avec du beurre s’il te plait.” elle se met à lire. Lui s’approche de la table.
+Elle sourit d’un air satisfait.#Bulle:Narrateur
 
-“ARG, LA TRAITRESSE.” ← Pensée par Morgan
+“Bueño, tu me refera six tartines de confiture avec du beurre s’il te plait.” elle se met à lire. Lui s’approche de la table.#Bulle:NimuHautGauche
 
-“ *soupir* ’fais quoi ‘jourd’hui ?”
+(“ARG, LA TRAITRESSE.”) #Bulle:MorganHautDroit
+Tu soupir lourdement#Bulle:Narrateur
+//Il va à la table
 
-“Je pensais chill à la maison. Je developpe une relation symbiotique avec le canapé. Et aller chercher les jeunes à l’école vers 15h. Et toi, tu as un rendez-v-”
+“ ’fais quoi ‘jourd’hui ?”#Bulle:MorganHautGauche
 
-“CHHHH- 
+“Je pensais chill à la maison. Et aller chercher les jeunes à l’école vers 15h. Et toi ?”#Bulle:NimuHautGauche
 
-Est-c’que tu vas vraiment manger SIX tartines de plus ?”
+Un piège évident. Elle essaies de te faire parler de ton rencard. Vite. Contre-attaque avant qu'elle ne remarque.#Bulle:Narrateur
 
-“Hm quoi ?” elle lève à peine les yeux de son livre. “Ah !” “Non pas du tout.” “Ien a trois qui sont pour toi.”
+"Est-c’que tu vas vraiment manger SIX tartines de plus ?”#Bulle:MorganHautDroit
 
-“…’e sais m’nourrir t’sais ?”
+“Hm quoi ?” #Bulle:NimuHautGauche
+elle lève à peine les yeux de son livre.#Bulle:Narrateur
+“Ah !”#Bulle:NimuHautGauche
+“Non pas du tout.”#Bulle:NimuHautGauche
+“Ien a trois qui sont pour toi.”#Bulle:NimuHautGauche
 
-Elle hausse les épaules derrières sa façade de papier. “J’ai assez la dalle pour tout mange si tu les veux.”
+Echec et mat.#Bulle:Narrateur
+Tu fronce les sourcils pour répondre que tu es parfaitement capable de te nourir tout seul, mais elle te devance.#Bulle:Narrateur
 
-“ARG, LA TRAITRESSE.” ← Pensée par Morgan
+“Après, J’ai assez la dalle pour tout manger si tu préfères.”#Bulle:NimuHautGauche
 
-“… Nah.”
+(“ARG, LA TRAITRESSE.”) #Bulle:MorganHautGauche
 
-“H-hm ?”
+“… Nah.”#Bulle:MorganHautGauche
 
-“Je vais avoir besoin de force.”
+“H-hm ?”#Bulle:NimuHautGauche
 
-Tu prends une bouchée franche de pain.
+“Je vais avoir besoin de force.”#Bulle:MorganHautGauche
 
-Ca te fais du bien.
+Tu prends une franche bouchée de pain.#Bulle:Narrateur
+
+Tu as encore bien 4 heure d'avance.#Bulle:Narrateur
+Et une sacrée fringuale.#Bulle:Narrateur
 
 ~ StartTM("TM")
 ->END
