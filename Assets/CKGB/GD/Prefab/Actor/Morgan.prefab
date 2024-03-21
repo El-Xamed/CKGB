@@ -1164,7 +1164,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3085631622730366072}
   - component: {fileID: 5199208835674813160}
-  - component: {fileID: 2684511193515360120}
   m_Layer: 0
   m_Name: Morgan
   m_TagString: Untagged
@@ -1219,27 +1218,6 @@ MonoBehaviour:
   smallResume: {fileID: 0}
   BigResume1: {fileID: 0}
   BigResume2: {fileID: 0}
---- !u!95 &2684511193515360120
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5199208835674813161}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2e4f3b73ab8d56b4b83f3f1f907d571c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6106091988627348034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1665,7 @@ GameObject:
   - component: {fileID: 6580761691026952547}
   - component: {fileID: 1215369260791277314}
   - component: {fileID: 220444131563177934}
+  - component: {fileID: 3059787271219966387}
   m_Layer: 0
   m_Name: Morgan
   m_TagString: Untagged
@@ -1767,6 +1746,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!95 &3059787271219966387
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382026033985779888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e4f3b73ab8d56b4b83f3f1f907d571c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8419593432038998704
 GameObject:
   m_ObjectHideFlags: 0
