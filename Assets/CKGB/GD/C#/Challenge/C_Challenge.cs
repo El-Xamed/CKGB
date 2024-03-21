@@ -386,6 +386,9 @@ public class C_Challenge : MonoBehaviour
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
     public void UseAction(C_ActionButton thisActionButton)
     {
+        //FeedBack
+        currentActor.PlayAnimSelectAction();
+
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 

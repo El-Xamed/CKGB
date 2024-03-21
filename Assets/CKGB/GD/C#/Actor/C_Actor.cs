@@ -68,6 +68,13 @@ public class C_Actor : C_Pion
 
     #region Mes fonctions
     #region Challenge
+    #region Feedback
+    public void PlayAnimSelectAction()
+    {
+        GetComponent<Animator>().SetTrigger("ActionSelected");
+    }
+    #endregion
+
     public void IniChallenge()
     {
         //dataActor.energyMax;
