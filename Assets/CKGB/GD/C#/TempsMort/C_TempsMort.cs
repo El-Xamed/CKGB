@@ -377,28 +377,28 @@ public class C_TempsMort : MonoBehaviour
     {
         if(actorActif!=null)
         {
-            actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
-            actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
-            actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
-            actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
-            actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<TMP_Text>().text = "Points de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(3).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
+            actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(4).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
+            actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(4).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
+            actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(5).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
+            actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = "Points de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
             if(Papoteur!=null)
             {
-                Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<TMP_Text>().text = "Points de trait : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait();
-                Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(4).GetComponent<TMP_Text>().text = "Points de trait : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait();           
+                Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = "Points de trait : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait();
+                Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(7).GetComponent<TMP_Text>().text = "Points de trait : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait();           
             }               
-            actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(4).GetComponent<TMP_Text>().text = "Points de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(7).GetComponent<TMP_Text>().text = "Points de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                      
         }        
     }
     public void AddNewTraitToFiche(GameObject actor)
     {
-        if(actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text!=null)
+        if(actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text!=null)
         {
-            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours-1].buttonText;
+            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours-1].buttonText;
         }
         else
-            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text += actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
+            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text += actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
 
     }
     public void CharactersDataGet()
@@ -417,24 +417,24 @@ public class C_TempsMort : MonoBehaviour
             characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
             characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
             //characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(characters[i].GetComponent<C_Actor>().GetDataActor().currentPointTrait);
-            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(0).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
-            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(0).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
-            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(0).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
-            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
-            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
-            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
-            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(4).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().Description;
-            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
-            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(1).GetComponent<TMP_Text>().text = "Energie : " + characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
-            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax;
-            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(2).GetComponent<TMP_Text>().text = "Calme : " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax;
-            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<TMP_Text>().text = "Points de trait : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait();
-            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(4).GetComponent<TMP_Text>().text = "Points de trait : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait();
-            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(5).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().miniDescription;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(3).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(6).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(5).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
+            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(4).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().name;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(6).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().Description;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(3).GetComponent<TMP_Text>().text = "Energie : " + characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(4).GetComponent<TMP_Text>().text = "Energie : " + characters[i].GetComponent<C_Actor>().GetDataActor().energyMax;
+            characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(4).GetComponent<TMP_Text>().text = "Calme : " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax;
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(5).GetComponent<TMP_Text>().text = "Calme : " + characters[i].GetComponent<C_Actor>().GetDataActor().stressMax;
+            characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = "Points de trait : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait();
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(7).GetComponent<TMP_Text>().text = "Points de trait : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait();
+            characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(8).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().GetDataActor().miniDescription;
 
             for (int y = 0;y < characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits.Count;y++)
             {
-                characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(2).GetComponent<TMP_Text>().text + "\n" + characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+                characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(4).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(4).GetComponent<TMP_Text>().text + "\n" + characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
             }
         }
     }
