@@ -1,11 +1,14 @@
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
 
 
 
 public class AudioManager : MonoBehaviour
 {
+
+    
     public static AudioManager instance;
     public Sound[] sounds;
     void Awake()
@@ -25,7 +28,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
-        }
+        }*/
 
     }
 
@@ -33,10 +36,12 @@ public class AudioManager : MonoBehaviour
     {
 
 
-    }
+    } 
 
-    public void Play(string name)
-    {
+
+
+        public void Play(string name)
+        {
 
 
 
@@ -49,11 +54,11 @@ public class AudioManager : MonoBehaviour
 
         }
         p.source.Play();
-    }
-    */
+        }
+    
 
 
-    }
+    
     [System.Serializable]
     public class Sound
     {
