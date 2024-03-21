@@ -359,6 +359,12 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Tour du joueur
+    //Pour Update l'UI. CHANGER LA FONCTION !!!!
+    void UpdateUi(SO_Etape myEtape)
+    {
+        uiEtape.GetComponentInChildren<TMP_Text>().text = myChallenge.objectif;
+    }
+
     public void WriteStatsPreview()
     {
         if (eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject.activeSelf)
@@ -487,14 +493,6 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Fin du niveau");
         }
     }
-
-    //Pour Update l'UI. CHANGER LA FONCTION !!!!
-    void UpdateUi(SO_Etape myEtape)
-    {
-        uiEtape.GetComponentInChildren<TMP_Text>().text = myChallenge.objectif;
-    }
-
-    
     #endregion
 
     #region  Phase de résolution
@@ -761,85 +759,7 @@ public class C_Challenge : MonoBehaviour
         uiVictoire.SetActive(true);
         Debug.Log("Fin du challenge");
     }
-
-    //Pour faire d�placer les accessoires.
-    void UpdateAccessories()
-    {
-        ApplyAccDamage(listAcc[0]);
-    }
-
-    void ApplyAccDamage(C_Accessories thisAcc)
-    {
-        //Check si il attaque.
-        if (!thisAcc.GetDataAcc().canMakeDamage) { return; }
-
-        foreach (var thisCase in myChallenge.listCatastrophy[0].targetCase)
-        {
-            if (thisCase == thisAcc.GetPosition())
-            {
-                if (thisAcc.GetDataAcc().typeAttack == SO_Accessories.ETypeAttack.All)
-                {
-                    //Check si la position des actor est sur la meme case que l'acc.
-                    foreach (var thisActor in myTeam)
-                    {
-                        thisActor.SetCurrentStatsPrice(thisAcc.GetDataAcc().reducStress, thisAcc.GetDataAcc().reducEnergie);
-
-                        thisActor.CheckIsOut();
-                    }
-
-                    //Ecrit dans les logs le résultat de l'action.
-                    uiLogs.text = "La cata à frappé le lézard ! Tous le monde perd -2 de calm !";
-                }
-            }
-        }
-        
-
-        //Check si la position des actor est sur la meme case que l'acc.
-        foreach (var thisActor in myTeam)
-        {
-            if (thisActor.GetPosition() == thisAcc.GetPosition())
-            {
-                thisActor.SetCurrentStatsPrice(thisAcc.GetDataAcc().reducStress, thisAcc.GetDataAcc().reducEnergie);
-
-                thisActor.CheckIsOut();
-
-                //Ecrit dans les logs le résultat de l'action.
-                uiLogs.text = thisAcc.GetDataAcc().damageLogs;
-            }
-        }
-
-        
-
-        //Check si le jeu est fini "GameOver".
-        CheckGameOver();
-    }
-
-    bool CheckApplyAccDamageInReso(C_Accessories thisAcc)
-    {
-        //Check si la position des actor est sur la meme case que l'acc.
-        foreach (var thisActor in myTeam)
-        {
-            if (thisActor.GetPosition() == thisAcc.GetPosition())
-            {
-                thisActor.SetCurrentStatsPrice(thisAcc.GetDataAcc().reducStress, thisAcc.GetDataAcc().reducEnergie);
-
-                thisActor.CheckIsOut();
-
-                //Ecrit dans les logs le résultat de l'action.
-                uiLogs.text = thisAcc.GetDataAcc().damageLogs;
-
-                //Check si le jeu est fini "GameOver".
-                CheckGameOver();
-
-                return true;
-            }
-        }
-
-        return false;
-    }
     #endregion
-
-
 
     #region Data Interface
     public ActorResolution GetActorResolution()

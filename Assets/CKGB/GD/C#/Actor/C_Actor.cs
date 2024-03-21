@@ -10,6 +10,8 @@ public class C_Actor : C_Pion
 {
     #region data
 
+    Sprite saveAnimSprite = null;
+
     [SerializeField] SO_Character dataActor;
     [SerializeField] List<GameObject> bulles = new List<GameObject>();
 
@@ -304,6 +306,16 @@ public class C_Actor : C_Pion
     #endregion
 
     #region Pour l'animation
+    public void SaveSpriteChallenge()
+    {
+        saveAnimSprite = transform.GetChild(2).GetComponent<Image>().sprite;
+    }
+
+    public void SetSpriteChallenge()
+    {
+        transform.GetChild(2).GetComponent<Image>().sprite = saveAnimSprite;
+    }
+
     public void SetSpriteChallengeNormalBlackAndWhite()
     {
         transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteBlackandWhite;
