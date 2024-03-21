@@ -767,6 +767,18 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
 
+    #region Animation
+    public void EnableControl()
+    {
+        
+    }
+
+    public void DisableControl()
+    {
+
+    }
+    #endregion
+
     #region Data Interface
     public ActorResolution GetActorResolution()
     {
