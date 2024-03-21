@@ -33,6 +33,7 @@ public class C_TempsMort : MonoBehaviour
     [SerializeField]
     GameObject[] charactersButton;
     [SerializeField] GameObject tree;
+    [SerializeField] Animator[] charactersTrees;
     [SerializeField]
     GameObject[] actions;
     [SerializeField]
@@ -177,9 +178,14 @@ public class C_TempsMort : MonoBehaviour
         }
         for (int i = 0; i < charactersButton.Length; i++)
         {
+            if(currentButton!=charactersButton[i])
+            {
+                charactersTrees[i].GetComponent<Animator>().SetBool("IsHover", false);
+            }
             if (currentButton == charactersButton[i])
             {
                 actorActif = characters[i];
+                charactersTrees[i].GetComponent<Animator>().SetBool("IsHover", true);
             }
             if(currentButton == actions[i])
             {
