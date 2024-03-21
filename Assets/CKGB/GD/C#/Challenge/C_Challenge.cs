@@ -770,12 +770,12 @@ public class C_Challenge : MonoBehaviour
     #region Animation
     public void EnableControl()
     {
-        
+        GetComponentInParent<PlayerInput>().enabled = true;
     }
 
     public void DisableControl()
     {
-
+        GetComponentInParent<PlayerInput>().enabled = false;
     }
     #endregion
 
