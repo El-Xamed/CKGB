@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693c9ad26591724d90d6f851b799902, type: 3}
   m_Name: SO_step1lvl2B
   m_EditorClassIdentifier: 
-  titre: 
-  "\xE9nonc\xE9": 
-  actions: []
-  rightAnswer: {fileID: 0}
+  useCata: 1
+  actions:
+  - {fileID: 11400000, guid: 79722f0bbf47d324b88edf917ebfb62f, type: 2}
+  - {fileID: 11400000, guid: f788b7830b4f9df4aa28d9445555dff6, type: 2}
+  - {fileID: 11400000, guid: a4ce3abc1ab47f543aac1b75207da3e2, type: 2}
+  - {fileID: 11400000, guid: 28660e0ba5d301b4cb8e5d47e17e89f7, type: 2}
+  rightAnswer: {fileID: 11400000, guid: f788b7830b4f9df4aa28d9445555dff6, type: 2}

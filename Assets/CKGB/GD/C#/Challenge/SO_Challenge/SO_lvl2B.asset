@@ -12,11 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4790af45b8f5552499175a066e3389d5, type: 3}
   m_Name: SO_lvl2B
   m_EditorClassIdentifier: 
-  background: {fileID: 21300000, guid: 8863c16b60e8e454383d4a3bd0fac4c3, type: 3}
-  nbCase: 6
+  background: {fileID: 0}
+  element: []
+  objectif: Retrouve tes clefs
+  nbCase: 4
   listStartPosAcc: []
-  listStartPosTeam: []
-  listCatastrophy: []
+  listStartPosTeam:
+  - position: 0
+    perso: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+  - position: 2
+    perso: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
+  listCatastrophy:
+  - {fileID: 11400000, guid: 657c44d84a1b9614e9ad5ec3d9022acd, type: 2}
+  - {fileID: 11400000, guid: 60540a3d9646a75458955cfbf4acf17c, type: 2}
   listEtape:
   - {fileID: 11400000, guid: 2f349d037f28d14498079fd488da62bd, type: 2}
   - {fileID: 11400000, guid: 35ae4694b1cb8d545a42473c195d3915, type: 2}
