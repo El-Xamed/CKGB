@@ -395,7 +395,7 @@ public class C_TempsMort : MonoBehaviour
     {
         if(actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text!=null)
         {
-            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours-1].buttonText;
+            actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
         }
         else
             actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text += actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
@@ -434,7 +434,7 @@ public class C_TempsMort : MonoBehaviour
 
             for (int y = 0;y < characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits.Count;y++)
             {
-                characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(4).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(4).GetComponent<TMP_Text>().text + "\n" + characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+                characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text = characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text + "\n" + characters[i].GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
             }
         }
     }
@@ -492,7 +492,7 @@ public class C_TempsMort : MonoBehaviour
     //papotage + stats
     public void PapotageFin()
     {
-        tree.SetActive(false);
+       
         for (int i=0;i<PapotageChoiceButtons.Length;i++)
         { 
            if(currentButton==PapotageChoiceButtons[i])
@@ -510,31 +510,30 @@ public class C_TempsMort : MonoBehaviour
                     c.SetActive(false);
                 }
                 papoteravec.SetActive(false);
-                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                tree.SetActive(false);
+
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.name+" possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(Papoteur.name+" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                UpdateCharacterStat();
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    Papoteur = characters[i];
-                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(actorActif);
-                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
-                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(characters[i]);
-                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
+                    AddNewTraitToFiche(actorActif);
+                    Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                {
+                    Papoteur.GetComponent<C_Actor>().ResetPointTrait();
+                    Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
+                    UpdateCharacterStat();
+                    AddNewTraitToFiche(Papoteur);
+                    Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+
                 GameManager.instance.PapoterID[0]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
@@ -551,31 +550,29 @@ public class C_TempsMort : MonoBehaviour
                     c.SetActive(false);
                 }
                 papoteravec.SetActive(false);
-                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                tree.SetActive(false);
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.name+" possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(Papoteur.name+" possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                UpdateCharacterStat();
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    Papoteur = characters[i];
-                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(actorActif);
-                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
-                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(characters[i]);
-                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
+                    AddNewTraitToFiche(actorActif);
+                    Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                {
+                    Papoteur.GetComponent<C_Actor>().ResetPointTrait();
+                    Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
+                    UpdateCharacterStat();
+                    AddNewTraitToFiche(Papoteur);
+                    Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+
                 GameManager.instance.PapoterID[1]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
@@ -592,31 +589,29 @@ public class C_TempsMort : MonoBehaviour
                     c.SetActive(false);
                 }
                 papoteravec.SetActive(false);
-                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                tree.SetActive(false);
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.name+" possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(Papoteur.name+" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                UpdateCharacterStat();
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    Papoteur = characters[i];
-                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(actorActif);
-                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
-                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(characters[i]);
-                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
+                    AddNewTraitToFiche(actorActif);
+                    Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                {
+                    Papoteur.GetComponent<C_Actor>().ResetPointTrait();
+                    Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
+                    UpdateCharacterStat();
+                    AddNewTraitToFiche(Papoteur);
+                    Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+
                 GameManager.instance.PapoterID[0]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
@@ -633,31 +628,29 @@ public class C_TempsMort : MonoBehaviour
                     c.SetActive(false);
                 }
                 papoteravec.SetActive(false);
-                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                tree.SetActive(false);
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.name+" possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(Papoteur.name+" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                UpdateCharacterStat();
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    Papoteur = characters[i];
-                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(actorActif);
-                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
-                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(characters[i]);
-                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
+                    AddNewTraitToFiche(actorActif);
+                    Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                {
+                    Papoteur.GetComponent<C_Actor>().ResetPointTrait();
+                    Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
+                    UpdateCharacterStat();
+                    AddNewTraitToFiche(Papoteur);
+                    Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+
                 GameManager.instance.PapoterID[2]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
@@ -674,31 +667,29 @@ public class C_TempsMort : MonoBehaviour
                     c.SetActive(false);
                 }
                 papoteravec.SetActive(false);
-                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                tree.SetActive(false);
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(Papoteur.name + " possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                UpdateCharacterStat();
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    Papoteur = characters[i];
-                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(actorActif);
-                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
-                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(characters[i]);
-                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
+                    AddNewTraitToFiche(actorActif);
+                    Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                {
+                    Papoteur.GetComponent<C_Actor>().ResetPointTrait();
+                    Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
+                    UpdateCharacterStat();
+                    AddNewTraitToFiche(Papoteur);
+                    Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+
                 GameManager.instance.PapoterID[1]++;
                 Debug.Log("Nimu papot avec Morgan valeur : " + GameManager.instance.PapoterID[1]);
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
@@ -716,36 +707,39 @@ public class C_TempsMort : MonoBehaviour
                     c.SetActive(false);
                 }
                 papoteravec.SetActive(false);
-                if (currentButton == PapotageChoiceButtons[i] && currentButton != actorActif)
+                tree.SetActive(false);
+                actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
+                Debug.Log(Papoteur.name +" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                UpdateCharacterStat();
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
-                    Papoteur = characters[i];
-                    actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoteur possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                    characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
-                    Debug.Log("Le papoté possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                    actorActif.GetComponent<C_Actor>().ResetPointTrait();
+                    actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
-                    if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        actorActif.GetComponent<C_Actor>().ResetPointTrait();
-                        actorActif.GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(actorActif);
-                        Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
-                    if (characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
-                    {
-                        characters[i].GetComponent<C_Actor>().ResetPointTrait();
-                        characters[i].GetComponent<C_Actor>().UpdateNextTrait();
-                        UpdateCharacterStat();
-                        AddNewTraitToFiche(characters[i]);
-                        Debug.Log("Trait de " + characters[i].name + " numéro " + characters[i].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                    }
+                    AddNewTraitToFiche(actorActif);
+                    Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                {
+                    Papoteur.GetComponent<C_Actor>().ResetPointTrait();
+                    Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
+                    UpdateCharacterStat();
+                    AddNewTraitToFiche(Papoteur);
+                    Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+
                 }
                 GameManager.instance.PapoterID[2]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
+            else
+            {
+                Debug.Log("peut pas papoter");
+            }
+               
         }  
         /* ActivateCharactersButton();
          UpdateCharacterStat();*/

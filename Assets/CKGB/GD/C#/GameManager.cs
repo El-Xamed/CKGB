@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
 
     private const string Bulle_Tag = "Bulle";
+    private const string anim_Tag = "Anim";
     private const string Character_Tag = "Character";
 
     public C_TempsMort TM;
@@ -257,6 +258,8 @@ public class GameManager : MonoBehaviour
             ExitDialogueMode();
         }
     }
+
+    //LES TAGS A ECRIRE DANS INK ET LEUR UTILITE SONT DEFINIS ICI
     private void HandleTags(List<string> currentTags,string text)
     {
         foreach (string tag in currentTags)
@@ -427,6 +430,134 @@ public class GameManager : MonoBehaviour
                             break;
                     }
 
+                    break;
+                case anim_Tag:
+                    switch(tagValue)
+                    {
+                        case "TM1_Papoter1":
+
+                            break;
+                        case "TM1_Papoter2":
+
+                            break;
+                        case "TM2A_Papoter1":
+
+                            break;
+                        case "TM2A_Papoter2":
+
+                            break;
+                        case "TM2A_Papoter3":
+
+                            break;
+                        case "TM2B_Papoter1":
+
+                            break;
+                        case "TM2B_Papoter2":
+
+                            break;
+                        case "TM2B_Papoter3":
+
+                            break;
+                        case "TM3_Papoter1":
+
+                            break;
+                        case "TM3_Papoter2":
+
+                            break;
+                        case "TM3_Papoter3":
+
+                            break;
+                        case "TM1_Observer1":
+
+                            break;
+                        case "TM1_Observer2":
+
+                            break;
+                        case "TM2A_Observer1":
+
+                            break;
+                        case "TM2A_Observer2":
+
+                            break;
+                        case "TM2A_Observer3":
+
+                            break;
+                        case "TM2B_Observer1":
+
+                            break;
+                        case "TM2B_Observer2":
+
+                            break;
+                        case "TM2B_Observer3":
+
+                            break;
+                        case "TM3_Observer1":
+
+                            break;
+                        case "TM3_Observer2":
+
+                            break;
+                        case "TM3_Observer3":
+
+                            break;
+                        case "TM1_Revasser1":
+
+                            break;
+                        case "TM1_Revasser2":
+
+                            break;
+                        case "TM2A_Revasser1":
+
+                            break;
+                        case "TM2A_Revasser2":
+
+                            break;
+                        case "TM2A_Revasser3":
+
+                            break;
+                        case "TM2B_Revasser1":
+
+                            break;
+                        case "TM2B_Revasser2":
+
+                            break;
+                        case "TM2B_Revasser3":
+
+                            break;
+                        case "TM3_Revasser1":
+
+                            break;
+                        case "TM3_Revasser2":
+
+                            break;
+                        case "TM3_Revasser3":
+
+                            break;
+                        case "TM1_intro":
+
+                            break;
+                        case "TM1_outro":
+
+                            break;
+                        case "TM2A_intro":
+
+                            break;
+                        case "TM2A_outro":
+
+                            break;
+                        case "TM2B_intro":
+
+                            break;
+                        case "TM2B_outro":
+
+                            break;
+                        case "TM3_intro":
+
+                            break;
+                        case "TM3_outro":
+
+                            break;
+                    }
                     break;
                 default:
                     //textToWriteIn.text = text;
