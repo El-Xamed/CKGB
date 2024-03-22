@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     List<EActorClass> myActor = new List<EActorClass>();
 
     [SerializeField]
-    int[] niveauTermin�;
+    int[] niveauTermine;
 
     [SerializeField]
     List<GameObject> team = new List<GameObject>();
