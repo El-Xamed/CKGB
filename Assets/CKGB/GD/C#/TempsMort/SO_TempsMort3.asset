@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c116bd53f8cd484286832752b272708, type: 3}
+  m_Name: SO_TempsMort3
+  m_EditorClassIdentifier: 
+  intro: {fileID: 4900000, guid: d48e2d7c4f4c0da448a70dbfa5defdf0, type: 3}
+  Outro: {fileID: 4900000, guid: 8b6d66ad7b2d1914c9bf595676ed76ea, type: 3}
+  Observer: {fileID: 4900000, guid: f81a345b3d8e8dd46939197fe2bbdc3a, type: 3}
+  TMbackground: {fileID: 0}
+  Team:
+  - {fileID: 5199208835674813161, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+  - {fileID: 3561831080530771211, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
+  - {fileID: 3566547770443611643, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
+  startPos:
+  - position: 0
+    perso: {fileID: 0}
+  - position: 1
+    perso: {fileID: 0}
+  - position: 2
+    perso: {fileID: 0}
