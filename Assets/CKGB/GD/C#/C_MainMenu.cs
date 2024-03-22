@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class C_MainMenu : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class C_MainMenu : MonoBehaviour
 
     public void NewParty()
     {
+        if (GameManager.instance)
+        {
+            GameManager.instance.SetDataLevel(null, firthChallenge);
+        }
 
+        SceneManager.LoadScene("C_Challenge");
     }
 
     public void OpenSave()
