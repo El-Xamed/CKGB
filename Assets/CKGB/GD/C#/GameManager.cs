@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     private const string Bulle_Tag = "Bulle";
     private const string anim_Tag = "Anim";
+    private const string emotion_Tag = "emot";
     private const string Character_Tag = "Character";
 
     public C_TempsMort TM;
@@ -434,7 +435,7 @@ public class GameManager : MonoBehaviour
                 case anim_Tag:
                     switch(tagValue)
                     {
-                        case "TM1_Papoter1":
+                        case "TM1_Papoter1"://animation morgan et coolkid qu'il faut donner le meme nom
 
                             break;
                         case "TM1_Papoter2":
@@ -555,6 +556,44 @@ public class GameManager : MonoBehaviour
 
                             break;
                         case "TM3_outro":
+
+                            break;
+                    }
+                    break;
+                case emotion_Tag:
+                    switch(tagValue)
+                    {
+                        case "!":
+
+                            break;
+                        case "?":
+
+                            break;
+                        case "Dots":
+
+                            break;
+                        case "Drop":
+
+                            break;
+                        case "Sparkles":
+
+                            break;
+                        case "Deception":
+
+                            break;
+                        case "Anger":
+
+                            break;
+                        case "JoyLeft":
+
+                            break;
+                        case "JoyRight":
+
+                            break;
+                        case "Heart":
+
+                            break;
+                        case "Rainbow":
 
                             break;
                     }
