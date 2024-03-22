@@ -15,21 +15,21 @@ public enum EActorClass
 public class GameManager : MonoBehaviour
 {
     //Pour le dev.
-    [Header("Paramètre de dev")]
-    [Tooltip("Ceci est un paramètre de dev (Paul) ce dernier à pour objectif de rediriger correctement les object en question pour la création de l'équipe.")]
+    [Header("Paramï¿½tre de dev")]
+    [Tooltip("Ceci est un paramï¿½tre de dev (Paul) ce dernier ï¿½ pour objectif de rediriger correctement les object en question pour la crï¿½ation de l'ï¿½quipe.")]
     [SerializeField]
     List<GameObject> ressourceActor = new List<GameObject>();
 
     #region Variables
     public static GameManager instance;
 
-    [Header("Paramètre de dev")]
-    //Récupération en variable qui apparait dans l'inspector.
+    [Header("Paramï¿½tre de dev")]
+    //Rï¿½cupï¿½ration en variable qui apparait dans l'inspector.
     [SerializeField]
     List<EActorClass> myActor = new List<EActorClass>();
 
     [SerializeField]
-    int[] niveauTerminé;
+    int[] niveauTerminï¿½;
 
     [SerializeField]
     List<GameObject> team = new List<GameObject>();
@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
     //Variable pour les challenge. DOIT RESTER CACHE C'EST UNE INFORMATION QUI RECUPERE SUR LA WORLDMAP AVANT DE LANCER LE NIVEAU.
     List<int> initialPlayerPositionOnThisDestination;
 
-    //Information qu'il récupère pour le Temps mort / Challenge.
+    //Information qu'il rï¿½cupï¿½re pour le Temps mort / Challenge.
     public SO_TempsMort currentTM = null;
     public SO_Challenge currentC = null;
 
-    //zone dédiée aux  dialogues
+    //zone dï¿½diï¿½e aux  dialogues
     [SerializeField] public Story currentStory;
     [SerializeField] public int[] RevasserID;
     [SerializeField] public int RespirerID;
@@ -85,10 +85,10 @@ public class GameManager : MonoBehaviour
     {
         foreach (EActorClass thisActor in myActor)
         {
-            //Définition des acteurs dans une nouvelle list par l'enum.
+            //Dï¿½finition des acteurs dans une nouvelle list par l'enum.
             switch (thisActor)
             {
-                //Récupération automatique dans le dossier Resources.
+                //Rï¿½cupï¿½ration automatique dans le dossier Resources.
                 case EActorClass.Koolkid:
                     if (ressourceActor[0])
                     {

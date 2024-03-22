@@ -8,7 +8,7 @@ EXTERNAL StartTM(name)
 
 “’lut”#Bulle:MorganBasGauche
 
-“Yo BG. Bien dormi ?”#Bulle:NimuHautDroit
+“Yo BG. Bien dormi ?”#Bulle:NimuHaute
 
 //lancer l'animation pour qu'il se rapproche
 
@@ -34,13 +34,13 @@ Tu espére sincèrement que ce ne soit pas le cas. Elle sourit. Tu réalise qu�
 
 Tu te sens basculer, puis tu cède, incapable de lui resister.#Bulle:Narrateur
 
-“… Nah mais j’peux prendre cinq minutes si c’est important pour toi.”#Bulle:MorganHautDroit
+“… Nah mais j’peux prendre cinq minutes si c’est important pour toi.”#Bulle:MorganHautDroite
 
 Elle sourit d’un air satisfait.#Bulle:Narrateur
 
 “Bueño, tu me refera six tartines de confiture avec du beurre s’il te plait.” elle se met à lire. Lui s’approche de la table.#Bulle:NimuHautGauche
 
-(“ARG, LA TRAITRESSE.”) #Bulle:MorganHautDroit
+(“ARG, LA TRAITRESSE.”) #Bulle:MorganHautDroite
 Tu soupir lourdement#Bulle:Narrateur
 //Il va à la table
 
@@ -50,7 +50,7 @@ Tu soupir lourdement#Bulle:Narrateur
 
 Un piège évident. Elle essaies de te faire parler de ton rencard. Vite. Contre-attaque avant qu'elle ne remarque.#Bulle:Narrateur
 
-"Est-c’que tu vas vraiment manger SIX tartines de plus ?”#Bulle:MorganHautDroit
+"Est-c’que tu vas vraiment manger SIX tartines de plus ?”#Bulle:MorganHautDroite
 
 “Hm quoi ?” #Bulle:NimuHautGauche
 elle lève à peine les yeux de son livre.#Bulle:Narrateur

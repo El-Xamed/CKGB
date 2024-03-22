@@ -11,19 +11,19 @@ Tu les rattrapes et mets tes chaussures pour sortir.#Bulle:Narrateur
 
 “T’as l’air bien exigeant pour un gars qui ves-qui l’école.”#Bulle:NimuHautGauche
 
-“Je suis dans mon droit. J’ai posé un jour d'congé.”#Bulle:MorganHautDroit
+“Je suis dans mon droit. J’ai posé un jour d'congé.”#Bulle:MorganHautDroite
 
 “Pff haha, tu as raison, je sais. Tu m’apprendra pas les règles. T’avais pas encore l’âge de les suivre j’étais en train de les écrire.”
 
 Un silence passe.#Bulle:Narrateur
 
-“Quand j‘t’écoute, ça m’rappelle parfois que mon intêret pour la poésie n’est pas sorti de nulle part.”#Bulle:MorganHautDroit
+“Quand j‘t’écoute, ça m’rappelle parfois que mon intêret pour la poésie n’est pas sorti de nulle part.”#Bulle:MorganHautDroite
 
 Tu te relève, sur le point de sortir.#Bulle:Narrateur
 
 “ ‘Et ouai, boloss.”#Bulle:NimuHautGauche
 
-“Parfois.”#Bulle:MorganHautDroit
+“Parfois.”#Bulle:MorganHautDroite
 
 Tu baisse brièvement les yeux, et les relève avec un froncement de sourcil.#Bulle:Narrateur
 
@@ -44,7 +44,7 @@ Vous sortez. La clef tintinnabule avant que tu la fasse tourner dans la serrure 
 
 “Mémé ?#Bulle:MorganHautGauche
 
-“Oui chouchou ?”"#Bulle:NimuHautDroit
+“Oui chouchou ?”"#Bulle:NimuHautDroite
 
 “…"#Bulle:MorganHautGauche
 
