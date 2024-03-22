@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step2lvl3
   m_EditorClassIdentifier: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: 
-  TC: {fileID: 0}
+  buttonText: "Demander \xE0 Morgan s\u2019il a besoin de quelque chose"
+  LogsMakeAction: "Je vais pas te mentir, je suis plutot CERTAIN.E que Morgan a besoin
+    d\u2019un truc ouai. Je sais pas si on a fait un bon travail pour le mettre en
+    valeur jusque l\xE0, mais NON, il ne va pas SUPER BIEN. Il a m\xEAme pas l\u2019air
+    de vraiment entendre tout ce qui se passe \xE0 l\u2019exterieur de sa t\xEAte.
+    Il faudrait quelqu\u2019un qui soit vraiment TRES DOU\xC9E  pour se faire remarquer
+    pour r\xE9ussir \xE0 le faire r\xE9pondre."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

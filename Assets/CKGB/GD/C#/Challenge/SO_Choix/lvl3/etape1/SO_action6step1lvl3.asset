@@ -12,17 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action6step1lvl3
   m_EditorClassIdentifier: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: 
-  TC: {fileID: 0}
+  buttonText: PLEURER
+  LogsMakeAction: "Tu pleures \xE0 chaudes larmes, mais tu as l\u2019intime conviction
+    que la personne qui en aurait le plus besoin ici est celle la plus en d\xE9tresse
+    \xE9motionellement. Utile (et conditions si oui) : Oui. Condition : Coolkid. 
+    Tu sens quelque chose c\xE9der en toi. Tu fonds en larmes \xE9paisses et sal\xE9es.
+    Tu deviens plus l\xE9ger maintenant que tu n\u2019as plus \xE0 faire l\u2019effort
+    de retenir ta d\xE9tresse. Tu as le sentiment que ton coeur coule par tes yeux."
+  advancedCondition:
+    advancedCondition: 1
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 1
+    whatActor: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 4
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
