@@ -32,19 +32,20 @@ Tu pointe vigoureusement les bébés lézards au sol.#Bulle:Narrateur
 
 "On doit les aider !! Ils ont plus aucun moyen de traverser !"#Bulle:MorganHautGauche
 
-CW: MAIS J’AI PEUR DES RÉPTILES !""
+"MAIS J’AI PEUR DES RÉPTILES !"#Bulle:EsthelaHautDroite
 
-CK: OH NON ! MAIS ALORS ILS POURRONT JAMAIS REJOINDRE LEUR MAMAN !
+"OH NON ! MAIS ALORS ILS POURRONT JAMAIS REJOINDRE LEUR MAMAN !"#Bulle:MorganHautGauche
 
-CW: AAAAH
+"AAAAH"#Bulle:EsthelaHautDroite
 
-CK: AAAAH
+"AAAAH"#Bulle:MorganHautGauche
 
-Le clown s’essuie les yeux dramatiquement, puis relève la tête, le regard remplie de détermination.
+Esthéla s’essuie les yeux dramatiquement, puis relève la tête, le regard remplie de détermination.#Bulle:Narrateur
 
-CW: D’ACCORD. JE VEUX BIEN ESSAYER. POUR LES BÉBÉS LÉZARDS.
+"D’ACCORD. JE VEUX BIEN ESSAYER. POUR LES BÉBÉS LÉZARDS."#Bulle:EsthelaHautDroite
 
-CK: POUR LES BÉBÉS LÉZARDS.
+"POUR LES BÉBÉS LÉZARDS."#Bulle:MorganHautGauche
+
 
 ~ StartTM("TM")
 ->END
