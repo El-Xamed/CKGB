@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
+
+    // permets l acess aux differents slider
     [SerializeField] private AudioMixer myMixer;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
@@ -12,6 +14,7 @@ public class VolumeSettings : MonoBehaviour
 
     private void Start()
     {
+
         SetMusicVolume();
         SetGeneralVolume();
         SetSFXVolume();
