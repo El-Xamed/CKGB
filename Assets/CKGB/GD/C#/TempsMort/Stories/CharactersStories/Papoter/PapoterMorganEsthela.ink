@@ -34,7 +34,7 @@ Avec un vent Nord-Ouest de 15 Km/h, qui arriv’rait en premier ?#Bulle:MorganHa
 
  De quel couleur est le cheval ?#Bulle:EsthelaBasDroite
 
- Rose. A pois bleus. Et le merle porte un chapeau.#Bulle:EsthelaBasDroite
+ Rose. A pois bleus. Et le merle porte un chapeau.#Bulle:MorganHautGauche
 
 Quoi ? Mais il doit s’envoler tout le temps !!#Bulle:EsthelaBasDroite
 
