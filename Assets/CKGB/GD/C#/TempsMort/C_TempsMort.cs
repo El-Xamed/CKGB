@@ -109,7 +109,7 @@ public class C_TempsMort : MonoBehaviour
         GameManager.instance.TM = this;
         initiateTMvariables();
         CharactersDataGet();
-        GameManager.instance.ChangeActionMap("TempsMort");
+        //GameManager.instance.ChangeActionMap("TempsMort");
         GameManager.instance.textToWriteIn = naratteur;
        
         StartCoroutine(StartIntro());

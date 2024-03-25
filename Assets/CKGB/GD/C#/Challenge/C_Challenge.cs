@@ -132,7 +132,7 @@ public class C_Challenge : MonoBehaviour
 
         if (GameManager.instance)
         {
-            GameManager.instance.ChangeActionMap("Challenge");
+            //GameManager.instance.ChangeActionMap("Challenge");
 
             //Check si le GameManager possède bien l'info de la Worldmap.
             if (GameManager.instance.GetDataChallenge() != null)

@@ -69,7 +69,7 @@ public class C_Worldmap : MonoBehaviour
     {
         if (context.performed && currentPoint.Islocked == false)
         {
-            GameManager.instance.ChangeActionMap("TempsMort");
+            //GameManager.instance.ChangeActionMap("TempsMort");
 
             //Lance la scene avec les info qu'il récupère.
             GameManager.instance.SetDataLevel(currentPoint.dataTM, currentPoint.dataC);

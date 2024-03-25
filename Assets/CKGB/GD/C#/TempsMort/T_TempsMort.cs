@@ -76,7 +76,7 @@ public class T_TempsMort : MonoBehaviour
         }
         ChallengeButton.SetActive(false);
         
-        GameManager.instance.ChangeActionMap("TempsMort");
+        //GameManager.instance.ChangeActionMap("TempsMort");
         initiatePosition();
         //Pour setup les perso
         //InitialisationTempsMort();

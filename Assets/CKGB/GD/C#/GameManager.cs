@@ -121,10 +121,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /*//Inutile
     public void ChangeActionMap(string actionMap)
     {
         GetComponent<PlayerInput>().SwitchCurrentActionMap(actionMap);
-    }
+    }*/
     #endregion
 
     #region Pour la WorldMap
