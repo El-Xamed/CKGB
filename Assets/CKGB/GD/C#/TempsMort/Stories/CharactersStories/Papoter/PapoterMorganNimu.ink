@@ -141,55 +141,70 @@ Sa voix est calme. Presque absente. Tu sens la tienne s'emporter.#Bulle:Narrateu
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter2===
-"’Hey, mémé ?
+"’Hey, mémé ?"#Bulle:MorganHautGauche
 
 "H-hm ?"
 
-"Est-ce que ça va ?"
+"Est-ce que ça va ?"#Bulle:MorganHautGauche
 
-GM: Bien sûr chouchou. C’est gentil de demander.
+"Bien sûr chouchou. C’est gentil de demander."
 
-CK : Pour de vrai ?
+"Pour de vrai ?"#Bulle:MorganHautGauche
 
-GM : *elle fronce les sourcils* Est-ce que quelque chose t’inquiète ?
+Elle a l'air... Perturbé par ton intêret.#Bulle:Narrateur
 
-CK : Tu mens
+"Est-ce que quelque chose t’inquiète ?"#Bulle:NimuHautDroit
+
+"Tu mens"#Bulle:MorganHautGauche
 
 GM : Morgan ?
 
-CK : J’ai prit des notes.
+"J’ai prit des notes."#Bulle:MorganHautGauche
 
-GM : Ca sonne creepy.
+"Ca sonne creepy."#Bulle:NimuHautDroit
 
-CK : Cathy. Elle t’a offert un collier. Tu lui as dit que tu l’adorais. Tu l’as pas porté depuis. Elle l’as remarqué. Et depuis tu l’porte.
+"Cathy. Elle t’a offert un collier. Tu lui as dit que tu l’adorais. Tu l’as pas porté depuis. Elle l’as remarqué. Et depuis tu l’porte."#Bulle:MorganHautGauche
 
-GM : Je l’avais simplement oublié.
+"Je l’avais simplement oublié."#Bulle:NimuHautDroit
 
-CK : Georges. Il t’as d’mandé s’il pouvait repeter sa prez d’vant toi. Quand il a finit, t’as fait semblant de t’êtr’endormi pour pas qu’il te confronte sur le fait que tu avais pas écouté.
+"Georges. Il t’as d’mandé s’il pouvait repeter sa prez d’vant toi."#Bulle:MorganHautGauche
+"Quand il a finit, t’as fait semblant de t’êtr’endormi pour pas qu’il te confronte sur le fait que tu avais pas écouté."#Bulle:MorganHautGauche
 
-GM : Je-
+"Je-"#Bulle:NimuHautDroit
 
-CK : Le pt’tit déjeuner. Tu as jamais aimé faire la grasse mat’. C’est à cause de ça que tout le monde se lève tôt dans la baraque. Depuis six mois tu te reveille deux heures après les autres. Tu les évite.
+"Le pt’tit déjeuner. Tu as jamais aimé faire la grasse mat’."#Bulle:MorganHautGauche
 
-GM : …
+"C’est à cause de ça que tout le monde se lève tôt dans la baraque."#Bulle:MorganHautGauche
 
-CK : Tu peux nous dire quand t’aime pas quelque chose. Ou quand t’as besoin de temps. T’as le droit de nous dire non. En toute transparence, c’plus vexant qu’tu prétende le contraire. Tu ne nous laisse même pas l’occasion d’écouter ton avis. 
+"Depuis six mois tu te reveille deux heures après les autres. Tu les évite."#Bulle:MorganHautGauche
 
-GM : Tu veux vraiment la vérité ? Rien n’a plus d’importance. Chaque année pourrait être ma dernière Morgan. J’ai fais tout ce que je voulais faire dans cette vie. J’ai un pied dans la tombe. Peu importe ce qui se passe, je m’en fiche. Rien de ce qui se passe ne me concerne encore vraiment.
+"…"#Bulle:NimuHautDroit
 
-CK : OK.
+"Tu peux nous dire quand t’aime pas quelque chose. Ou quand t’as besoin de temps."#Bulle:MorganHautGauche
+"T’as le droit de nous dire non. En toute transparence, c’plus vexant qu’tu prétende le contraire."#Bulle:MorganHautGauche
+"Tu ne nous laisse même pas l’occasion d’écouter ton avis. "#Bulle:MorganHautGauche
 
-GM : …
+"Tu veux vraiment la vérité ? Rien n’a plus d’importance."#Bulle:NimuHautDroit
+"Chaque année pourrait être ma dernière Morgan. J’ai fais tout ce que je voulais faire dans cette vie."#Bulle:NimuHautDroit
+"J’ai un pied dans la tombe. Peu importe ce qui se passe, je m’en fiche."#Bulle:NimuHautDroit
+"Rien de ce qui se passe ne me concerne encore vraiment."#Bulle:NimuHautDroit
 
-CK : J’voulais juste qu’t’en parle. J’peux voir pourquoi tu ressens ça. *il fronce les sourcils* tu vies un truc vraiment pas facile. Ah, mais t’as encore mentit.
+"OK."#Bulle:MorganHautGauche
 
-GM : Ah ouai sherlock, et j’peux savoir sur quoi maintenant ?
+"…"#Bulle:NimuHautDroit
 
-CK : Si t’en avais vraiment plus rien à faire, tu s’rai pas venu avec moi. C’tout.
+"J’voulais juste qu’t’en parle. J’peux voir pourquoi tu ressens ça. "#Bulle:MorganHautGauche
+Tes sourcils se froncent imperceptiblement#Bulle:Narrateur
+"Tu vies un truc vraiment pas facile. Ah, mais t’as encore mentit."#Bulle:MorganHautGauche
 
-*il s’écarte, comme si il n’y avait rien a dire de plus.*
+"Ah ouai sherlock, et j’peux savoir sur quoi maintenant ?"#Bulle:NimuHautDroit
 
-GM : *long soupir j’ai pas* élevé des andouilles moi.
+"Si t’en avais vraiment plus rien à faire, tu s’rai pas venu avec moi. C’tout."#Bulle:MorganHautGauche
+
+Tu t'écartes. Tu l'as assez dérangé.#Bulle:Narrateur
+Derrière toi, ta grand mère soupir et marmonne dans sa barbe.#Bulle:Narrateur
+
+"J'ai pas élevé des andouilles moi."#Bulle:NimuHautDroit
 //blabla
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")
