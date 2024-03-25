@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     private const string anim_Tag = "Anim";
     private const string emotion_Tag = "emot";
     private const string Character_Tag = "Character";
+    private const string Type_Tag = "Type";
 
     public C_TempsMort TM;
     #endregion
@@ -599,6 +600,16 @@ public class GameManager : MonoBehaviour
                             break;
                     }
                     break;
+                case Type_Tag:
+                    switch(tagKey)
+                    {
+                        case "pensee":
+                            break;
+                        case "normal":
+                            break;
+                    }
+                    break;
+
                 default:
                     //textToWriteIn.text = text;
                     break;

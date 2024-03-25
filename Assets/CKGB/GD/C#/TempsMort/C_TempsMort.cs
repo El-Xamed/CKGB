@@ -458,8 +458,8 @@ public class C_TempsMort : MonoBehaviour
             {
                 if(actorActif.GetComponent<C_Actor>().BigResume1.activeSelf==true)
                 {
-                    actorActif.GetComponent<C_Actor>().BigResume2.SetActive(true);
                     actorActif.GetComponent<C_Actor>().BigResume1.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.SetActive(true);                  
                 }
                 else if(actorActif.GetComponent<C_Actor>().BigResume2.activeSelf == true)
                 {
@@ -835,6 +835,7 @@ public class C_TempsMort : MonoBehaviour
         //energy
         actorActif.GetComponent<C_Actor>().SetMaxEnergy();
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
+        actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(9).gameObject.SetActive(true);
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
         UpdateCharacterStat();
@@ -908,6 +909,7 @@ public class C_TempsMort : MonoBehaviour
         //calm
         actorActif.GetComponent<C_Actor>().SetMaxStress();
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
+        actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(10).gameObject.SetActive(true);
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
         UpdateCharacterStat();
