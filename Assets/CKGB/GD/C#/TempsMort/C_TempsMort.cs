@@ -517,7 +517,7 @@ public class C_TempsMort : MonoBehaviour
                 Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papoteur.name+" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
@@ -537,7 +537,7 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
-                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     Papoteur.GetComponent<C_Actor>().ResetPointTrait();
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
@@ -580,7 +580,7 @@ public class C_TempsMort : MonoBehaviour
                 characters[i].GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papoteur.name+" possède : " + characters[i].GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
@@ -600,7 +600,7 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
-                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     Papoteur.GetComponent<C_Actor>().ResetPointTrait();
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
@@ -643,7 +643,7 @@ public class C_TempsMort : MonoBehaviour
                 Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papoteur.name+" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
@@ -663,7 +663,7 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
-                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     Papoteur.GetComponent<C_Actor>().ResetPointTrait();
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
@@ -706,7 +706,7 @@ public class C_TempsMort : MonoBehaviour
                 Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papoteur.name+" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
@@ -726,7 +726,7 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
-                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     Papoteur.GetComponent<C_Actor>().ResetPointTrait();
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
@@ -769,7 +769,7 @@ public class C_TempsMort : MonoBehaviour
                 Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papoteur.name + " possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
@@ -789,7 +789,7 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
-                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     Papoteur.GetComponent<C_Actor>().ResetPointTrait();
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
@@ -833,7 +833,7 @@ public class C_TempsMort : MonoBehaviour
                 Papoteur.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papoteur.name +" possède : " + Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 UpdateCharacterStat();
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
@@ -853,7 +853,7 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
                     actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
-                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
+                if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
                     Papoteur.GetComponent<C_Actor>().ResetPointTrait();
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();

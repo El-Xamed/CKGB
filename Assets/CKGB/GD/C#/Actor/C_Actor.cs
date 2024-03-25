@@ -22,7 +22,7 @@ public class C_Actor : C_Pion
     //Stats
     [SerializeField] int currentStress;
     [SerializeField] int currentEnergy;
-    [SerializeField] int currentPointTrait;
+    [SerializeField] float currentPointTrait;
 
     //Ui Challenge
     C_Stats uiStats;
@@ -283,18 +283,18 @@ public class C_Actor : C_Pion
     {
         dataActor.energyMax--;
     }
-    public int GetCurrentPointTrait()
+    public float GetCurrentPointTrait()
     {
         return currentPointTrait;
     }
     public void SetCurrentPointTrait()
     {
-         currentPointTrait++;
+         currentPointTrait=currentPointTrait +0.5f;
     }
     public void ReducePointTrait()
     {
-        currentPointTrait--;
-        if(currentPointTrait==-1)
+        currentPointTrait-=0.5f;
+        if(currentPointTrait==-0.5)
         {
             currentPointTrait = 0;
             if(dataActor.listNewTraits.Count!=0)
