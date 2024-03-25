@@ -523,7 +523,19 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(actorActif);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
@@ -531,7 +543,19 @@ public class C_TempsMort : MonoBehaviour
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(Papoteur);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                   Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                   Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
 
                 GameManager.instance.PapoterID[0]++;
@@ -562,7 +586,19 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(actorActif);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
@@ -570,7 +606,19 @@ public class C_TempsMort : MonoBehaviour
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(Papoteur);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
 
                 GameManager.instance.PapoterID[1]++;
@@ -601,7 +649,19 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(actorActif);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
@@ -609,7 +669,19 @@ public class C_TempsMort : MonoBehaviour
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(Papoteur);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
 
                 GameManager.instance.PapoterID[0]++;
@@ -640,7 +712,19 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(actorActif);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
@@ -648,7 +732,19 @@ public class C_TempsMort : MonoBehaviour
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(Papoteur);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
 
                 GameManager.instance.PapoterID[2]++;
@@ -679,7 +775,19 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(actorActif);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
@@ -687,7 +795,19 @@ public class C_TempsMort : MonoBehaviour
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(Papoteur);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
 
                 GameManager.instance.PapoterID[1]++;
@@ -719,7 +839,19 @@ public class C_TempsMort : MonoBehaviour
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(actorActif);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 if (Papoteur.GetComponent<C_Actor>().GetCurrentPointTrait() == 2)
                 {
@@ -727,8 +859,20 @@ public class C_TempsMort : MonoBehaviour
                     Papoteur.GetComponent<C_Actor>().UpdateNextTrait();
                     UpdateCharacterStat();
                     AddNewTraitToFiche(Papoteur);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(12).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
                     Debug.Log("Trait de " + Papoteur.name + " numéro " + Papoteur.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
 
+                }
+                else
+                {
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().smallResume.transform.GetChild(11).gameObject.SetActive(true);
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                    Papoteur.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
                 }
                 GameManager.instance.PapoterID[2]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
@@ -836,6 +980,7 @@ public class C_TempsMort : MonoBehaviour
         actorActif.GetComponent<C_Actor>().SetMaxEnergy();
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
         actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(9).gameObject.SetActive(true);
+        actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(8).gameObject.SetActive(true);
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
         UpdateCharacterStat();
@@ -910,6 +1055,7 @@ public class C_TempsMort : MonoBehaviour
         actorActif.GetComponent<C_Actor>().SetMaxStress();
         Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
         actorActif.GetComponent<C_Actor>().smallResume.transform.GetChild(10).gameObject.SetActive(true);
+        actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(9).gameObject.SetActive(true);
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
         UpdateCharacterStat();
