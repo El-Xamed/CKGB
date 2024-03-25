@@ -14,7 +14,7 @@ public class C_MainMenu : MonoBehaviour
             GameManager.instance.SetDataLevel(null, firthChallenge);
         }
 
-        SceneManager.LoadScene("C_Challenge");
+        SceneManager.LoadScene("S_Challenge");
     }
 
     public void OpenSave()
