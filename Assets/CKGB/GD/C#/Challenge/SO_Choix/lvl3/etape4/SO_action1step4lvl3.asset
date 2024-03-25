@@ -12,17 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action1step4lvl3
   m_EditorClassIdentifier: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: 
-  TC: {fileID: 0}
+  buttonText: Regarder le ciel
+  LogsMakeAction: "Le ciel est d\u2019un bleu crayon de couleur, avec des nuages
+    d\u2019aquarel qui flottent \xE0 sa surface. Tu te sens fatigu\xE9."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 1
+      - whatStats: 0
+        value: 1
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

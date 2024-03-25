@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693c9ad26591724d90d6f851b799902, type: 3}
   m_Name: SO_step1lvl3
   m_EditorClassIdentifier: 
-  titre: 
-  "\xE9nonc\xE9": 
+  useCata: 1
   actions:
   - {fileID: 11400000, guid: 0d7794e8a85e9e84da89d4156c31e6f2, type: 2}
   - {fileID: 11400000, guid: e7059374c6e1a8e4398928410fdf0262, type: 2}
@@ -21,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b3b419cf716a034c92bda4bf4c6325e, type: 2}
   - {fileID: 11400000, guid: da16c219b4329c048bf1f0bb403f99e9, type: 2}
   - {fileID: 11400000, guid: e529638f4fa61f44e8f815457c83fea5, type: 2}
-  rightAnswer: {fileID: 0}
+  rightAnswer: {fileID: 11400000, guid: e529638f4fa61f44e8f815457c83fea5, type: 2}

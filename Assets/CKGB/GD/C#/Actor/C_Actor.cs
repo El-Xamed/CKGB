@@ -27,6 +27,9 @@ public class C_Actor : C_Pion
     //Ui Challenge
     C_Stats uiStats;
 
+    //
+    bool inDanger;
+
     //A voir avec MAX.
     public GameObject smallResume;
     public GameObject BigResume1;
@@ -164,10 +167,12 @@ public class C_Actor : C_Pion
         {
             if (thisCase == position)
             {
+                inDanger = true;
                 transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCata;
             }
             else
             {
+                inDanger = false;
                 transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
             }
         }
@@ -313,34 +318,33 @@ public class C_Actor : C_Pion
     #endregion
 
     #region Pour l'animation
-    public void SaveSpriteChallenge()
-    {
-        saveAnimSprite = transform.GetChild(2).GetComponent<Image>().sprite;
-    }
 
     public void SetSpriteChallenge()
     {
-        transform.GetChild(2).GetComponent<Image>().sprite = saveAnimSprite;
+        //Check si l'actor est sur une cata pour sauvegarder la bonne image.
+        if (!inDanger)
+        {
+            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSprite;
+        }
+        else
+        {
+            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCata;
+        }
     }
 
-    public void SetSpriteChallengeNormalBlackAndWhite()
+    public void SetSpriteChallengeBlackAndWhite()
     {
-        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteBlackandWhite;
-    }
-
-    public void SetSpriteChallengeNormal()
-    {
-        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
-    }
-
-    public void SetSpriteChallengeOnCataBlackAndWhite()
-    {
-        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCataBlackAndWhite;
-    }
-
-    public void SetSpriteChallengeOnCata()
-    {
-        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCata;
+        //Check si l'actor est sur une cata pour sauvegarder la bonne image.
+        if (!inDanger)
+        {
+            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteBlackAndWhite;
+            Debug.Log(GetDataActor().challengeSpriteBlackAndWhite);
+        }
+        else
+        {
+            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCataBlackAndWhite;
+            Debug.Log(GetDataActor().challengeSpriteOnCataBlackAndWhite);
+        }
     }
     #endregion
 }

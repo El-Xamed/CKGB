@@ -21,7 +21,7 @@ public class SO_Character : ScriptableObject
 
     [Header("Challenge (Sprite)")]
     public Sprite challengeSprite;
-    public Sprite challengeSpriteBlackandWhite;
+    public Sprite challengeSpriteBlackAndWhite;
     public Sprite challengeSpriteOnCata;
     public Sprite challengeSpriteOnCataBlackAndWhite;
     public Sprite challengeSpriteSlected;

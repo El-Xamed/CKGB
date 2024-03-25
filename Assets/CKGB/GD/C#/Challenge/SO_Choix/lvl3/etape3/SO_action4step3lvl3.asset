@@ -12,17 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step3lvl3
   m_EditorClassIdentifier: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: 
-  TC: {fileID: 0}
+  buttonText: Rassurer Morgan
+  LogsMakeAction: "Tu as peur de juste empirer les choses si tu essaye. Quelqu\u2019un
+    d\u2019experiment\xE9 et de confiant aurait s\xFBrement bien plus de chance de
+    r\xE9ussir. "
+  advancedCondition:
+    advancedCondition: 1
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 1
+    whatActor: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
+  nextAction: {fileID: 0}
+  listInteraction: []

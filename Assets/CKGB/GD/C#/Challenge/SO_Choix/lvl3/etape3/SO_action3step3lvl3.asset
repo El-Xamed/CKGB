@@ -12,17 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action3step3lvl3
   m_EditorClassIdentifier: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
-  buttonText: 
-  TC: {fileID: 0}
+  buttonText: Utiliser la violence
+  LogsMakeAction: "Vivre est par nature un acte violent. Nous luttons contre la gravit\xE9
+    pour rester debout. Nous devons prendre d\u2019autre vies pour nous nourir.  
+    Tu tremble sous le poids de tes propres \xE9motions. Mais tu ne te laissera pas
+    \xE9craser par le poids du monde. Tu prends une grande respiration, ferme les
+    yeux, et contre tout ce qui cherche \xE0 te mettre \xE0 genoux, tu UTILISE LA
+    VIOLENCE. Tout le monde autour de toi \xE0 l\u2019air inspir\xE9 par cette nouvelle
+    aura."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 0
+        value: 3
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 3
+    range: 1
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 1
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
