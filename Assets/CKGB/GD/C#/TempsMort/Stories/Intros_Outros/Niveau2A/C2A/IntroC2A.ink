@@ -8,7 +8,7 @@ Tes yeux glisse sur le ruisseau a tes pieds d'une trentaine de centimetre de lar
 
 "Attends"#Bulle:MorganHautGauche
 
-"Quoi ?"#bulle:EsthelaHautDroit
+"Quoi ?"#bulle:EsthelaHautDroite
 
 "Oh merde. Elle a marché sur le pont."#Bulle:MorganHautGauche
 
@@ -28,7 +28,7 @@ Tes yeux glisse sur le ruisseau a tes pieds d'une trentaine de centimetre de lar
 
 Tu pointe vigoureusement les bébés lézards au sol.#Bulle:Narrateur
 
-"WOAAH ?!"#Bulle:EsthelaHautDroit
+"WOAAH ?!"#Bulle:EsthelaHautDroite
 
 "On doit les aider !! Ils ont plus aucun moyen de traverser !"#Bulle:MorganHautGauche
 

@@ -19,7 +19,7 @@ A la grande surprise de toutes les entitées concernées, Esthéla émets un fur
 
 "Oh. Pardon. C'était très insensible de ma part."#Bulle:CoolkidHautGauche
 
-"Est-ce que tu veux vraiment te faire pardonner ?"#Bulle:EsthélaHautDroit
+"Est-ce que tu veux vraiment te faire pardonner ?"#Bulle:EsthélaHautDroite
 
 "A tout prix."#Bulle:CoolkidHautGauche
 
