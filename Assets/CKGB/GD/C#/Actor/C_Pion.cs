@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class C_Pion : MonoBehaviour
 {
     [SerializeField] protected int position;
+    protected bool inDanger = false;
+
+    protected SO_Catastrophy currentCata = null;
 
     //Pour faire déplacer l'actor dans le challenge. PEUT ETRE AUSSI UTILISE DANS LE TM MAIS C'EST PAS SETUP POUR ET C'EST PAS IMPORTANT.
     public virtual void MoveActor(List<C_Case> plateau, int newPosition)
@@ -32,7 +36,32 @@ public class C_Pion : MonoBehaviour
         //Recentre le perso.
         //GetComponent<RectTransform>().localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
 
-        //Check après chaque déplacement si il est sur une case dangereuse.
+        //Check si l'objet est un actor
+        if (GetComponent<C_Actor>() && currentCata != null)
+        {
+            //Check apres chaque déplacement si il est sur une case dangereuse.
+            CheckIsInDanger(currentCata);
+        }
+
+
+    }
+
+    //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. FONCTIONNE QUE SUR LES ACTOR !!!!
+    public void CheckIsInDanger(SO_Catastrophy listDangerCases)
+    {
+        foreach (var thisCase in listDangerCases.targetCase)
+        {
+            if (thisCase == position)
+            {
+                inDanger = true;
+                transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
+            }
+            else
+            {
+                inDanger = false;
+                transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSprite;
+            }
+        }
     }
 
     public virtual int GetPosition()

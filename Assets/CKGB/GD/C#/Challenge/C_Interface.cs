@@ -147,10 +147,16 @@ public class C_Interface : MonoBehaviour
                 }
             }
 
-            //Pour Update ResoTrun
+            //Pour Update ResoTrun.
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
             {
                 myChallenge.NextResolution();
+            }
+
+            //Pour Update CataTurn.
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn && myChallenge.GetCurrentEtape().useCata)
+            {
+                myChallenge.CataTrun();
             }
         }
     }

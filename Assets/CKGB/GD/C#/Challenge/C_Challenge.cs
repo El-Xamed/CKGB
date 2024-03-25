@@ -207,11 +207,7 @@ public class C_Challenge : MonoBehaviour
         UpdateUi(currentStep);
 
         //Lance directement le tour du joueur
-        Invoke("PlayerTrun", 2f);
         uiGameOver.SetActive(false);
-
-
-        
         #endregion
     }
 
@@ -419,11 +415,12 @@ public class C_Challenge : MonoBehaviour
             //Passe l'interface en neutre.
             myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
+            //
             ResolutionTurn();
         }
     }
 
-    void PlayerTrun()
+    public void PlayerTurn()
     {
         Debug.Log("Player turn !");
 
@@ -445,6 +442,11 @@ public class C_Challenge : MonoBehaviour
         if (currentStep.useCata)
         {
             currentCata.InitialiseCata(listCase, myTeam);
+
+            foreach (C_Actor thisActor in myTeam)
+            {
+                thisActor.SetCurrentCata(currentCata);
+            }
         }
 
         //Joue l'animation.
@@ -462,7 +464,7 @@ public class C_Challenge : MonoBehaviour
         else
         {
             NextActor();
-            PlayerTrun();
+            PlayerTurn();
         }
     }
 
@@ -523,9 +525,19 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Fin de la phase de réso !");
 
-            //UpdateAccessories();
-            //Lance la phase "Cata".
-            Invoke("CataTrun", 0.5f);
+            //Check si une cata est présente.
+            if (GetCurrentEtape().useCata)
+            {
+                //Lance la phase "Cata".
+                CataTrun();
+            }
+            else
+            {
+                OpenInterface();
+                //Redéfini le début de la liste.
+                currentActor = myTeam[0];
+                PlayerTurn();
+            }
         }
     }
 
@@ -536,6 +548,19 @@ public class C_Challenge : MonoBehaviour
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+
+        //Met en noir et blanc tous les actor.
+        foreach (C_Actor thisActor in myTeam)
+        {
+            if (thisActor != currentResolution.actor)
+            {
+                //thisActor.SetSpriteChallengeBlackAndWhite();
+            }
+
+            thisActor.SetSpriteChallengeBlackAndWhite();
+        }
+
+        currentResolution.actor.SetSpriteChallenge();
 
         //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
         vfxResoTurn.GetComponent<Animator>().enabled = true;
@@ -574,77 +599,10 @@ public class C_Challenge : MonoBehaviour
             }
         }
 
-        //Check si il est sur une case "Dangereuse".
-        //currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
-
         //Ecrit dans les logs le résultat de l'action.
         uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
 
         writeAccLogs = false;
-
-        /*//Check si il n'est pas sur un acc qui attaque. C'EST DU BRICOLAGE !!!!! A SUPP !!!!
-        if (CheckApplyAccDamageInReso(listAcc[0]) && writeAccLogs == false)
-        {
-            writeAccLogs = true;
-        }
-        else
-        {
-            Debug.Log("Resolution trun !");
-            eventSystem.SetSelectedGameObject(null);
-
-            //Défini la phase de jeu.
-            myPhaseDeJeu = PhaseDeJeu.ResoTurn;
-
-            //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
-            vfxResoTurn.GetComponent<Animator>().enabled = true;
-
-            //Applique toutes les actions. 1 par 1. EN CONSTRUCTION
-            //Lance la fonction d'application dans le script (a voir a la fin si c'est dans le SO_actionClass ou alors dans C_actionButton).
-            //Le faire dans le bouton car il possède déjà les fonction pour récupérer les data enregistré.
-            currentResolution.button.UseAction(currentResolution.actor, listCase, myTeam);
-
-            Debug.Log(currentResolution.button.GetActionClass());
-            Debug.Log(currentStep.rightAnswer);
-
-            //Check si c'est la bonne action.
-            if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
-            {
-                Debug.Log("Bonne action");
-
-                uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
-
-                uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
-
-                canUpdateEtape = true;
-
-                Debug.Log("Update etape");
-            }
-            else
-            {
-                foreach (ActorResolution thisReso in listRes)
-                {
-                    if (thisReso.button.GetActionClass().nextAction != null)
-                    {
-                        for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
-                        {
-                            if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.button.GetActionClass())
-                            {
-                                Debug.Log("Update next action");
-                                myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.button.GetActionClass().nextAction;
-                            }
-                        }
-                    }
-                }
-            }
-
-            //Check si il est sur une case "Dangereuse".
-            currentResolution.actor.CheckIsInDanger(myChallenge.listCatastrophy[0]);
-
-            //Ecrit dans les logs le résultat de l'action.
-            uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
-
-            writeAccLogs = false;
-        }*/
     }
     #endregion
 
@@ -652,50 +610,54 @@ public class C_Challenge : MonoBehaviour
 
     #region Tour de la Cata
     //Pour lancer la cata.
-    void CataTrun()
+    public void CataTrun()
     {
-        Debug.Log("CataTrun");
-
-        //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.CataTurn;
+        Debug.Log("CataTurn");
 
         //Ecrit dans les logs le résultat de l'action.
         uiLogs.text = currentCata.catastrophyLog;
 
-        //Check au début si tous les perso sont "out".
-        if (!CheckGameOver())
+        //
+        if (myPhaseDeJeu == PhaseDeJeu.CataTurn)
         {
-            //Applique la catastrophe. FONCTIONNE AVEC 1 CATA, A MODIFIER POUR QU'IL UTILISE LES CATA
-            currentCata.ApplyCatastrophy(listCase, myTeam);
-
-            //Re-Check si tous les perso sont "out".
+            //Check au début si tous les perso sont "out".
             if (!CheckGameOver())
             {
-                //Update les acc
-                //UpdateAccessories();
+                //Applique la catastrophe. FONCTIONNE AVEC 1 CATA, A MODIFIER POUR QU'IL UTILISE LES CATA
+                currentCata.ApplyCatastrophy(listCase, myTeam);
 
-                //Redéfini le début de la liste.
-                currentActor = myTeam[0];
-
-                //Update la prochaine Cata.
-                //Check si c'étais la dernière Cata.
-                if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count -1)
+                //Re-Check si tous les perso sont "out".
+                if (!CheckGameOver())
                 {
-                    currentCata = myChallenge.listCatastrophy[0];
-                }
-                else
-                {
-                    currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
-                }
-                
-                Invoke("PlayerTrun", 1f);
-                Invoke("PlayerTurnAfterCata", 0.5f);
+                    //Update les acc
+                    //UpdateAccessories();
 
+                    //Redéfini le début de la liste.
+                    currentActor = myTeam[0];
+
+                    //Update la prochaine Cata.
+                    //Check si c'étais la dernière Cata.
+                    if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
+                    {
+                        currentCata = myChallenge.listCatastrophy[0];
+                    }
+                    else
+                    {
+                        currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
+                    }
+
+                    PlayerTurn();
+                    Invoke("PlayerTurnAfterCata", 0.5f);
+
+                }
             }
         }
+
+        //Défini la phase de jeu.
+        myPhaseDeJeu = PhaseDeJeu.CataTurn;
     }
 
-    public void PlayerTurnAfterCata()
+    public void OpenInterface()
     {
         myInterface.GetComponent<Animator>().SetTrigger("OpenAll");
     }
@@ -763,19 +725,17 @@ public class C_Challenge : MonoBehaviour
     void EndChallenge()
     {
         uiVictoire.SetActive(true);
+
+        //Supp tous les elements sup.
+        if (GameObject.Find("Element").transform.childCount > 0)
+        {
+            for (int i = 0; i < GameObject.Find("Element").transform.childCount; i++)
+            {
+                Destroy(GameObject.Find("Element").transform.GetChild(i).gameObject);
+            }
+        }
+
         Debug.Log("Fin du challenge");
-    }
-    #endregion
-
-    #region Animation
-    public void EnableControl()
-    {
-        GetComponentInParent<PlayerInput>().enabled = true;
-    }
-
-    public void DisableControl()
-    {
-        GetComponentInParent<PlayerInput>().enabled = false;
     }
     #endregion
 

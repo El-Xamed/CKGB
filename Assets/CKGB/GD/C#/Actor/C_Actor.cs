@@ -10,8 +10,6 @@ public class C_Actor : C_Pion
 {
     #region data
 
-    Sprite saveAnimSprite = null;
-
     [SerializeField] SO_Character dataActor;
     [SerializeField] List<GameObject> bulles = new List<GameObject>();
 
@@ -26,9 +24,6 @@ public class C_Actor : C_Pion
 
     //Ui Challenge
     C_Stats uiStats;
-
-    //
-    bool inDanger;
 
     //A voir avec MAX.
     public GameObject smallResume;
@@ -160,24 +155,6 @@ public class C_Actor : C_Pion
         uiStats.UpdateUi(this);
     }
 
-    //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats.
-    public void CheckIsInDanger(SO_Catastrophy listDangerCases)
-    {
-        foreach (var thisCase in listDangerCases.targetCase)
-        {
-            if (thisCase == position)
-            {
-                inDanger = true;
-                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteOnCata;
-            }
-            else
-            {
-                inDanger = false;
-                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
-            }
-        }
-    }
-
     //Pour faire apparaitre le contoure blanc du joueur sélectionné.
     public void IsSelected(bool isSelected)
     {
@@ -216,6 +193,11 @@ public class C_Actor : C_Pion
 
             transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(false);
         }
+    }
+
+    public void SetCurrentCata(SO_Catastrophy thisCata)
+    {
+        currentCata = thisCata;
     }
     #endregion
 
@@ -318,7 +300,6 @@ public class C_Actor : C_Pion
     #endregion
 
     #region Pour l'animation
-
     public void SetSpriteChallenge()
     {
         //Check si l'actor est sur une cata pour sauvegarder la bonne image.
