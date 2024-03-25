@@ -345,6 +345,10 @@ public class C_TempsMort : MonoBehaviour
     {
         if (GameManager.instance)
         {
+            Instantiate(GameManager.instance.GetDataTempsMort().TMbackground, background.transform);
+            _intro = GameManager.instance.GetDataTempsMort().intro;
+            _outro = GameManager.instance.GetDataTempsMort().Outro;
+            Observage = TM.Observer;
             foreach (InitialActorPosition position in TM.startPos)
             {
                 //Récupère les info du GameManager
@@ -360,8 +364,15 @@ public class C_TempsMort : MonoBehaviour
 
                             //Placement des perso depuis le GameManager
                             //Changement de parent
-                            thisActor.transform.parent = listCharactersPositions[position.position].transform;
-                            thisActor.transform.position = thisActor.transform.parent.transform.position;
+                            //thisActor.transform.parent = listCharactersPositions[position.position].transform;
+                            foreach(var sp in GameManager.instance.GetDataTempsMort().startPos)
+                            {
+                                if(sp.perso==thisActor)
+                                {
+                                    thisActor.transform.position = sp.position;
+                                }
+                            }
+                           
                             thisActor.transform.localScale = new Vector3(0.65f,0.65f,0.65f);
                             //thisActor.transform.localScale = Vector3.one;
 
@@ -390,11 +401,7 @@ public class C_TempsMort : MonoBehaviour
            actorActif = characters[0];
        }*/
         }
-
-        background.GetComponent<SpriteRenderer>().sprite = TM.TMbackground;
-        _intro = TM.intro;
-        _outro = TM.Outro;
-        Observage = TM.Observer;
+       
        
         
         for (int i=0;i<characters.Count; i++)

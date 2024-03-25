@@ -16,7 +16,7 @@ public class C_Worldmap : MonoBehaviour
     [SerializeField] float moveSpeed2 = 0.9f;
 
     [SerializeField] C_destination[] allMapPoints;
-    C_destination currentPoint;
+    [SerializeField] C_destination currentPoint;
     [SerializeField] C_destination Left, Right, Up, Down;
     [SerializeField] Transform[] leftpath, rightpath, uppath, downpath;
 
@@ -71,15 +71,17 @@ public class C_Worldmap : MonoBehaviour
         {
             //GameManager.instance.ChangeActionMap("TempsMort");
 
-            //Lance la scene avec les info qu'il récupère.
-            GameManager.instance.SetDataLevel(currentPoint.dataTM, currentPoint.dataC);
-            SceneManager.LoadScene("S_TempsMort");
+          
+            
+           
 
             //Set Les data du TM et C dans le GameManager.
             GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
 
             AddActorInTeam();
             Debug.Log("Load Scene...");
+            SceneManager.LoadScene("S_TempsMort");
+            //Lance la scene avec les info qu'il récupère.
         }
     }
 

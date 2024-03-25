@@ -16,7 +16,7 @@ public class SO_TempsMort : ScriptableObject
     [SerializeField] public TextAsset Observer;
 
     [Header("Data Temps Mort")]
-    [SerializeField] public Sprite TMbackground;
+    [SerializeField] public GameObject TMbackground = null;
     [SerializeField] public GameObject[] Team;
     [SerializeField] public InitialActorPosition[] startPos;
 
@@ -26,7 +26,7 @@ public class SO_TempsMort : ScriptableObject
     [System.Serializable]
     public class InitialActorPosition
     {
-        public int position;
+        public Vector3 position;
         public C_Actor perso;
     }
     // Start is called before the first frame update
