@@ -200,7 +200,46 @@ public class C_TempsMort : MonoBehaviour
         }
         else
             nobodyHasPlayed = false;
-       
+       for(int y=0;y<actions.Length;y++)
+        {
+            if(currentButton==actions[0])
+            {
+                if(actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()+0.5f==1)
+                {
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+0.5";
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(7).gameObject.SetActive(true);
+                    actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(true);
+                }
+                else
+                {
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).GetComponent<TMP_Text>().text = "+0.5";
+                    actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                actorActif.GetComponent<C_Actor>().BigResume2.transform.GetChild(6).gameObject.SetActive(false);
+                actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(10).gameObject.SetActive(false);
+            }
+            if (currentButton == actions[1])
+            {
+                actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(9).gameObject.SetActive(true);
+            }
+            else
+            {
+                actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(9).gameObject.SetActive(false);
+            }
+            if (currentButton == actions[2])
+            {
+                actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(8).gameObject.SetActive(true);
+            }
+            else
+            {
+                actorActif.GetComponent<C_Actor>().BigResume1.transform.GetChild(8).gameObject.SetActive(false);
+            }
+
+        }
         AffichageMiniCartePerso();
         AffichageCarteCompletePerso();
     }
@@ -393,7 +432,8 @@ public class C_TempsMort : MonoBehaviour
     }
     public void AddNewTraitToFiche(GameObject actor)
     {
-        if(actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text!=null)
+        Debug.Log(actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText);
+        if (actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text!=null)
         {
             actor.GetComponent<C_Actor>().BigResume2.transform.GetChild(3).GetComponent<TMP_Text>().text += "\n" + actor.GetComponent<C_Actor>().GetDataActor().listNewTraits[actor.GetComponent<C_Actor>().GetDataActor().idTraitEnCours].buttonText;
         }

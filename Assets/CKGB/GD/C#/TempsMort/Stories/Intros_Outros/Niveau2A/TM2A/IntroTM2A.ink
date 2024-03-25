@@ -27,7 +27,7 @@ Elle secoue soudainement sa tête, donnant l'air de revenir à la réalité.#Bul
 "Quoi ? Heu si tu, erm."#Bulle:NimuHautGauche
 "Parlais de la lavande qui jouait du trombone ?"#Bulle:NimuHautGauche
 
-#A l'ombre d'un arbre, un clown dort.
+A l'ombre d'un arbre, un clown dort.#Bulle:Narrateur
 
 "Attends."#Bulle:MorganHautGauche
 "Ia un clown qui dort sous cet arbe. On va essayer de le contourner."#Bulle:MorganHautGauche

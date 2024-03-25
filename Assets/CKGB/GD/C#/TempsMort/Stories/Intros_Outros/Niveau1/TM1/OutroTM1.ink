@@ -49,6 +49,6 @@ Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses cl
 “… Je les retrouve pas non plus.”#Bulle:NimuHautDroite
 
 “Ah, cata. j’vais checker dans l’entrée.” #Bulle:MorganBasGauche
-
+~ StartChallenge("S_DestinationTest")
 //Start challenge
 ->END
