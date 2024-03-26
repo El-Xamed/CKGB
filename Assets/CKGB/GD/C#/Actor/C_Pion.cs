@@ -55,11 +55,13 @@ public class C_Pion : MonoBehaviour
             {
                 inDanger = true;
                 transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
+                transform.GetChild(5).gameObject.SetActive(true);
             }
             else
             {
                 inDanger = false;
                 transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSprite;
+                transform.GetChild(5).gameObject.SetActive(false);
             }
         }
     }

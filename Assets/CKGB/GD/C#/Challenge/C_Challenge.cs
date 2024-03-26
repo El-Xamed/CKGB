@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using TMPro;
@@ -153,6 +154,9 @@ public class C_Challenge : MonoBehaviour
     private void Start()
     {
         #region Initialisation
+        //Transition
+        C_Transition.instance.OpenTransFlannel();
+
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
 
@@ -415,8 +419,9 @@ public class C_Challenge : MonoBehaviour
             //Passe l'interface en neutre.
             myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
-            //
-            ResolutionTurn();
+            //Lance la phase de réso. BESOIN D'AJOUTER UN DELAY A CAUSE DE L'ANIMATION QUI EMPECHE D'APPLIQUER LES SPRITES.
+            //Debug.Log(currentResolution.actor.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            Invoke("ResolutionTurn", 0.2f);
         }
     }
 

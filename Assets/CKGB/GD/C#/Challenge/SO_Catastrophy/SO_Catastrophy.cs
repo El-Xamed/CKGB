@@ -30,7 +30,7 @@ public class SO_Catastrophy : ScriptableObject
         if (modeAttack == SO_Catastrophy.EModeAttack.Random)
         {
             //Augmente ou réduit le nombre.
-            int newInt = Random.Range(0, plateau.Count - 1);
+            int newInt = Random.Range(0, plateau.Count);
 
             //Vide la liste.
             targetCase.Clear();
