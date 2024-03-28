@@ -165,7 +165,7 @@ public class C_TempsLibre : MonoBehaviour
             Observage = GameManager.instance.GetDataTempsMort().Observer;
             for (int i = 0; i < GameManager.instance.GetDataTempsMort().startPos.Length; i++)
             {
-                SpawnParent.transform.GetChild(i).position = GameManager.instance.GetDataTempsMort().startPos[i].position;
+                SpawnParent.transform.GetChild(i).localPosition = GameManager.instance.GetDataTempsMort().startPos[i].position;
             }
             foreach (GameObject thisActor in GameManager.instance.GetTeam())
             {
@@ -181,7 +181,7 @@ public class C_TempsLibre : MonoBehaviour
                         characters.Add(thisActor);
                         characterNB++;
                         thisActor.transform.parent = SpawnParent.transform.GetChild(characterNB);
-                        thisActor.transform.position = SpawnParent.transform.GetChild(characterNB).position;
+                        thisActor.transform.localPosition = SpawnParent.transform.GetChild(characterNB).position;
                     }
                     else
                     {
@@ -266,15 +266,16 @@ public class C_TempsLibre : MonoBehaviour
         }
         for(int i =0;i<characters.Count;i++)
         {
-            if(currentButton.name == characters[i].name + "CharacterChoice")
+            TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", false);
+            if (currentButton.name == characters[i].name + "CharacterChoice")
             {
                 actorActif = characters[i];
-   
+                TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", true);
             }
             if (currentButton.name == characters[i].name + "PapotageChoice")
             {
                 Papote = characters[i];
-             
+                TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", true);
             }
         }
         for(int i=0;i<actions.Count;i++)
@@ -329,6 +330,27 @@ public class C_TempsLibre : MonoBehaviour
             FichePersoParent.transform.GetChild(0).GetChild(6).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
             FichePersoParent.transform.GetChild(0).GetChild(7).GetComponent<TMP_Text>().text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
             FichePersoParent.transform.GetChild(0).GetChild(8).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().miniDescription;
+            if(actorActif.GetComponent<C_Actor>().HasObserved)
+            {
+                FichePersoParent.transform.GetChild(0).GetChild(9).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(0).GetChild(9).gameObject.SetActive(false); }
+            if (actorActif.GetComponent<C_Actor>().HasRevassed)
+            {
+                FichePersoParent.transform.GetChild(0).GetChild(10).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(0).GetChild(10).gameObject.SetActive(false); }
+            if (actorActif.GetComponent<C_Actor>().HasPapoted)
+            {
+                FichePersoParent.transform.GetChild(0).GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                FichePersoParent.transform.GetChild(0).GetChild(11).gameObject.SetActive(true);
+            }
+            else if(actorActif.GetComponent<C_Actor>().HasPapoted&& actorActif.GetComponent<C_Actor>().HasTraited)
+            {
+                FichePersoParent.transform.GetChild(0).GetChild(12).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(0).GetChild(11).gameObject.SetActive(false); FichePersoParent.transform.GetChild(0).GetChild(12).gameObject.SetActive(false); }
+
         }
         if (FichePersoParent.transform.GetChild(1).gameObject.activeSelf == true)
         {
@@ -337,6 +359,21 @@ public class C_TempsLibre : MonoBehaviour
             FichePersoParent.transform.GetChild(1).GetChild(4).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
             FichePersoParent.transform.GetChild(1).GetChild(5).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
             FichePersoParent.transform.GetChild(1).GetChild(6).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().Description;
+            if (actorActif.GetComponent<C_Actor>().HasObserved||currentButton==ObserverButton)
+            {
+                FichePersoParent.transform.GetChild(1).GetChild(8).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(1).GetChild(8).gameObject.SetActive(false); }
+            if (actorActif.GetComponent<C_Actor>().HasRevassed||currentButton==RevasserButton)
+            {
+                FichePersoParent.transform.GetChild(1).GetChild(9).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(1).GetChild(9).gameObject.SetActive(false); }
+            if (actorActif.GetComponent<C_Actor>().HasTraited||currentButton==PapoterButton&& actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()+0.5f==1)
+            {
+                FichePersoParent.transform.GetChild(1).GetChild(10).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(1).GetChild(10).gameObject.SetActive(false); }
         }
         if (FichePersoParent.transform.GetChild(2).gameObject.activeSelf == true)
         {
@@ -347,6 +384,21 @@ public class C_TempsLibre : MonoBehaviour
             {
                 FichePersoParent.transform.GetChild(2).GetChild(4).GetComponent<TMP_Text>().text = FichePersoParent.transform.GetChild(0).GetChild(3).GetComponent<TMP_Text>().text + "\n" + actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
             }
+            if (actorActif.GetComponent<C_Actor>().HasPapoted)
+            {
+                FichePersoParent.transform.GetChild(2).GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                FichePersoParent.transform.GetChild(2).GetChild(6).gameObject.SetActive(true);
+            }
+            else if (currentButton == PapoterButton)
+            {
+                FichePersoParent.transform.GetChild(2).GetChild(6).GetComponent<TMP_Text>().text = "+0,5";
+                FichePersoParent.transform.GetChild(2).GetChild(6).gameObject.SetActive(true);
+            }
+            else if (actorActif.GetComponent<C_Actor>().HasPapoted && actorActif.GetComponent<C_Actor>().HasTraited || currentButton == PapoterButton)
+            {
+                FichePersoParent.transform.GetChild(2).GetChild(7).gameObject.SetActive(true);
+            }
+            else { FichePersoParent.transform.GetChild(2).GetChild(6).gameObject.SetActive(false); FichePersoParent.transform.GetChild(2).GetChild(7).gameObject.SetActive(false); }
         }
     }
     public void SwitchCharacterCard(InputAction.CallbackContext context)
@@ -478,12 +530,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                  
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
                 if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
                     Papote.GetComponent<C_Actor>().UpdateNextTrait();
                    
@@ -503,12 +557,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                 
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }                
                 if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
                     Papote.GetComponent<C_Actor>().UpdateNextTrait();                    
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
@@ -527,12 +583,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");   
              if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                   
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }              
                 if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
                     Papote.GetComponent<C_Actor>().UpdateNextTrait();                    
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
@@ -551,12 +609,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");               
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }               
                 if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
                     Papote.GetComponent<C_Actor>().UpdateNextTrait();                  
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
@@ -575,12 +635,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }               
                 if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
                     Papote.GetComponent<C_Actor>().UpdateNextTrait();                   
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
@@ -601,12 +663,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                    
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }               
                 if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
                 {
+                    Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
                     Papote.GetComponent<C_Actor>().UpdateNextTrait();                    
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
@@ -684,6 +748,11 @@ public class C_TempsLibre : MonoBehaviour
         foreach (GameObject c in characters)
         {
             c.transform.parent = GameManager.instance.transform;
+            c.GetComponent<C_Actor>().HasObserved = false;
+            c.GetComponent<C_Actor>().HasPapoted = false;
+            c.GetComponent<C_Actor>().HasPlayed = false;
+            c.GetComponent<C_Actor>().HasRevassed = false;
+            c.GetComponent<C_Actor>().HasTraited = false;
         }
         SceneManager.LoadScene(named);
     }
