@@ -89,14 +89,9 @@ Et, à vrai dire, même si ca te stress un peu de ne pas déjà être à la gare
 
 ...#Bulle:Narrateur
 
-Il semblerait que ta grnad-mère soit déjà partie se mettre à l'ombr de toute façon.#
+Il semblerait que ta grnad-mère soit déjà partie se mettre à l'ombre de toute façon.#Bulle:Narrateur
 
-Si je te révèle des informations, tu promets de pas les retourner contre moi ?#Bulle:MorganHautGauche
+Bon, bah il semblerait que tu sois bloqué avec nous, alors.#Bulle:MorganHautGauche
 
-
-
-"Non !!"#Bulle:EsthelaHautGauche
-
-Alors disons juste que on à 10~15 minutes a tuer pour aucune raison en particulier.#Bulle:MorganHautGauche
 ~ StartTM("TM")
 ->END
