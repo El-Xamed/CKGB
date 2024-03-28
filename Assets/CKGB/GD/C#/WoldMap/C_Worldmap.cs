@@ -80,7 +80,7 @@ public class C_Worldmap : MonoBehaviour
 
             AddActorInTeam();
             Debug.Log("Load Scene...");
-            SceneManager.LoadScene("S_TempsMort");
+            SceneManager.LoadScene("S_TempsLibre");
             //Lance la scene avec les info qu'il récupère.
         }
     }

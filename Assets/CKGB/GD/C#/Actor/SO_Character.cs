@@ -38,9 +38,8 @@ public class SO_Character : ScriptableObject
     [Header("Tempsmort (Sprite)")]
     public Sprite ProfilPhoto;
     public Sprite MapTmSprite;
-    public Sprite smallResume;
-    public Sprite BigResume1;
-    public Sprite BigResume2;
+
+    public GameObject characterTree;
 
     //A VOIR AVEC MAX
     [Header("Tempsmort (Stats)")]   

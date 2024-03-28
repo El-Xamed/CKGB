@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     private const string Character_Tag = "Character";
     private const string Type_Tag = "Type";
 
-    public C_TempsMort TM;
+    public C_TempsLibre TM;
     #endregion
 
     private void Awake()
@@ -75,9 +75,9 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        if (FindObjectOfType<C_TempsMort>() != null)
+        if (FindObjectOfType<C_TempsLibre>() != null)
         {
-            TM = FindObjectOfType<C_TempsMort>();
+            TM = FindObjectOfType<C_TempsLibre>();
         }
         SetUpTeam();
     }
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
         }
         if (InkJSON.name == "IntroTM2A" || InkJSON.name == "IntroTM2B" || InkJSON.name == "IntroTM1" || InkJSON.name == "IntroTM3")
         {
-            currentStory.BindExternalFunction("StartTM", (string name) => { TM.StartTempsMort(name); });
+           currentStory.BindExternalFunction("StartTM", (string name) => { TM.StartTempsMort(name);});
         }
         if (InkJSON.name == "RevasserEsthela" || InkJSON.name == "RevasserMorgan" || InkJSON.name == "RevasserNimu")
         {
@@ -220,27 +220,27 @@ public class GameManager : MonoBehaviour
         if (InkJSON.name == "PapoterMorganEsthela" || InkJSON.name == "PapoterMorganNimu" || InkJSON.name == "PapoterNimuEsthela")
         {
             currentStory.BindExternalFunction("RetourAuTMAfterPapotage", (string name) => { TM.RetourAuTMAfterPapotage(name); });
-            if (TM.actorActif == TM.characters[0]&&TM.Papoteur==TM.characters[1])
+            if (TM.actorActif.name == "Morgan"&&TM.Papote.name=="Esthela")
             {
                 currentStory.variablesState["IdPapoter"] = PapoterID[0];
             }
-            else if (TM.actorActif == TM.characters[0] && TM.Papoteur == TM.characters[2])
+            else if (TM.actorActif.name =="Morgan" && TM.Papote.name == "Nimu")
             {
                 currentStory.variablesState["IdPapoter"] = PapoterID[1];
             }
-            else if (TM.actorActif == TM.characters[1] && TM.Papoteur == TM.characters[0])
+            else if (TM.actorActif.name == "Esthela" && TM.Papote.name == "Morgan")
             {
                 currentStory.variablesState["IdPapoter"] = PapoterID[0];
             }
-            else if (TM.actorActif == TM.characters[1] && TM.Papoteur == TM.characters[2])
+            else if (TM.actorActif.name == "Esthela" && TM.Papote.name == "Nimu")
             {
                 currentStory.variablesState["IdPapoter"] = PapoterID[2];
             }
-            else if (TM.actorActif == TM.characters[2] && TM.Papoteur == TM.characters[0])
+            else if (TM.actorActif.name == "Nimu" && TM.Papote.name == "Morgan")
             {
                 currentStory.variablesState["IdPapoter"] = PapoterID[1];
             }
-            else if (TM.actorActif == TM.characters[2] && TM.Papoteur == TM.characters[1])
+            else if (TM.actorActif.name == "Nimu" && TM.Papote.name == "Esthela")
             {
                 currentStory.variablesState["IdPapoter"] = PapoterID[2];
             }
@@ -289,8 +289,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }                           
-                            textToWriteIn = TM.characters[0].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[0].transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Morgan.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Morgan.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -300,8 +300,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[0].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[0].transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Morgan.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Morgan.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -311,8 +311,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[0].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[0].transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Morgan.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Morgan.transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
                             break;
@@ -322,8 +322,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[0].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[0].transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Morgan.transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Morgan.transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -334,8 +334,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[1].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[1].transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Esthela.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Esthela.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -345,8 +345,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[1].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[1].transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Esthela.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Esthela.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -356,8 +356,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[1].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[1].transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Esthela.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Esthela.transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -367,8 +367,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[1].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[1].transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Esthela.transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Esthela.transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -379,8 +379,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[2].transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[2].transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Nimu.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Nimu.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -390,8 +390,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[2].transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[2].transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Nimu.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Nimu.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -401,8 +401,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[2].transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[2].transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Nimu.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Nimu.transform.GetChild(3).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -412,8 +412,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.characters[2].transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
-                            TM.characters[2].transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
+                            textToWriteIn = TM.Nimu.transform.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                            TM.Nimu.transform.GetChild(4).gameObject.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -423,8 +423,8 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.naratteur;
-                            TM.PageNarrateur.GetComponent<Animator>().SetBool("Active", true);
+                            textToWriteIn = TM.naratteurText;
+                            TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -616,16 +616,16 @@ public class GameManager : MonoBehaviour
 
             }
         }
-        if(textToWriteIn!=TM.naratteur)
+        if(textToWriteIn!=TM.naratteurText)
         {
-            TM.PageNarrateur.GetComponent<Animator>().SetBool("Active", false);
+            TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
         }
       textToWriteIn.text = text;       
     }
 
     public void ExitDialogueMode()
     {
-        TM.PageNarrateur.GetComponent<Animator>().SetBool("Active", false);
+        TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
         textToWriteIn.text = "";
         isDialoguing = false;
         if (textToWriteIn.GetComponentInParent<Image>() != null)

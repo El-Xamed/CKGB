@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2552519295231897061
+--- !u!1 &1467735151561282812
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,85 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2552519295231897048}
-  - component: {fileID: 2552519295231897051}
-  - component: {fileID: -5181947553401394128}
+  - component: {fileID: 1467735151561282815}
+  - component: {fileID: 1467735151561282814}
+  - component: {fileID: 1467735151561282809}
   m_Layer: 0
-  m_Name: TM
+  m_Name: TempsLibreScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2552519295231897048
+--- !u!4 &1467735151561282815
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2552519295231897061}
+  m_GameObject: {fileID: 1467735151561282812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7886505, y: -0.28241432, z: -0.31187758}
+  m_LocalPosition: {x: 1087.4198, y: 550.44806, z: 1.1957123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2552519295231897051
+--- !u!114 &1467735151561282814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2552519295231897061}
+  m_GameObject: {fileID: 1467735151561282812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa94270a35182848af5adaedf5c73f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnParent: {fileID: 0}
+  listCharactersPositions: []
+  actorActif: {fileID: 0}
+  Papote: {fileID: 0}
+  characters: []
+  characterNB: 0
+  Morgan: {fileID: 0}
+  Esthela: {fileID: 0}
+  Nimu: {fileID: 0}
+  FichePersoParent: {fileID: 0}
+  TreeParent: {fileID: 0}
+  ActionsParents: {fileID: 0}
+  actions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  RevasserButton: {fileID: 0}
+  ObserverButton: {fileID: 0}
+  PapoterButton: {fileID: 0}
+  ChallengeButton: {fileID: 0}
+  MorganAPapoteAvecEsthela: 0
+  MorganAPapoteAvecNimu: 0
+  NimuAPapoteAvecEsthela: 0
+  NarrateurParent: {fileID: 0}
+  naratteurText: {fileID: 0}
+  Cine: {fileID: 0}
+  _intro: {fileID: 0}
+  _outro: {fileID: 0}
+  Observage: {fileID: 0}
+  TMhasStarted: 0
+  canContinue: 0
+  TM: {fileID: 0}
+  background: {fileID: 0}
+  Es: {fileID: 0}
+  currentButton: {fileID: 0}
+--- !u!114 &1467735151561282809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467735151561282812}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -84,9 +131,9 @@ MonoBehaviour:
     m_ActionName: TempsMort/Dialogue[/Keyboard/q,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1467735151561282812}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
-        m_MethodName: SwitchCharacterCard
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -100,8 +147,8 @@ MonoBehaviour:
     m_ActionName: TempsMort/FlipCard[/Keyboard/y]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+      - m_Target: {fileID: 1467735151561282814}
+        m_TargetAssemblyTypeName: C_TempsLibre, Assembly-CSharp
         m_MethodName: continueStory
         m_Mode: 0
         m_Arguments:
@@ -116,8 +163,8 @@ MonoBehaviour:
     m_ActionName: TempsMort/ChooseButton[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
+      - m_Target: {fileID: 1467735151561282814}
+        m_TargetAssemblyTypeName: C_TempsLibre, Assembly-CSharp
         m_MethodName: Naviguate
         m_Mode: 0
         m_Arguments:
@@ -148,9 +195,9 @@ MonoBehaviour:
     m_ActionName: Challenge/Submit[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1467735151561282812}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
-        m_MethodName: BACK
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -167,47 +214,3 @@ MonoBehaviour:
   m_DefaultActionMap: TempsMort
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &-5181947553401394128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2552519295231897061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa94270a35182848af5adaedf5c73f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpawnParent: {fileID: 0}
-  listCharactersPositions: []
-  actorActif: {fileID: 0}
-  Papote: {fileID: 0}
-  characters: []
-  characterNB: 0
-  Morgan: {fileID: 0}
-  Esthela: {fileID: 0}
-  Nimu: {fileID: 0}
-  FichePersoParent: {fileID: 0}
-  TreeParent: {fileID: 0}
-  ActionsParents: {fileID: 0}
-  actions: []
-  RevasserButton: {fileID: 0}
-  ObserverButton: {fileID: 0}
-  PapoterButton: {fileID: 0}
-  ChallengeButton: {fileID: 0}
-  MorganAPapoteAvecEsthela: 0
-  MorganAPapoteAvecNimu: 0
-  NimuAPapoteAvecEsthela: 0
-  NarrateurParent: {fileID: 0}
-  naratteurText: {fileID: 0}
-  Cine: {fileID: 0}
-  _intro: {fileID: 0}
-  _outro: {fileID: 0}
-  Observage: {fileID: 0}
-  TMhasStarted: 0
-  canContinue: 0
-  TM: {fileID: 0}
-  background: {fileID: 0}
-  Es: {fileID: 0}
-  currentButton: {fileID: 0}

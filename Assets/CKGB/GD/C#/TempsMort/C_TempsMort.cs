@@ -78,7 +78,7 @@ public class C_TempsMort : MonoBehaviour
     [Header("Histoires")]
     [SerializeField] public GameObject PageNarrateur;
     [SerializeField] public GameObject Cine;
-    [SerializeField]TextAsset inkAssetIntro;
+    [SerializeField] TextAsset inkAssetIntro;
     [SerializeField] TextAsset _intro;
     [SerializeField] TextAsset _outro;
     [SerializeField] public TextAsset Observage;
@@ -106,7 +106,7 @@ public class C_TempsMort : MonoBehaviour
     void Start()
     {
 
-        GameManager.instance.TM = this;
+        //GameManager.instance.TM = this;
         initiateTMvariables();
         CharactersDataGet();
         //GameManager.instance.ChangeActionMap("TempsMort");
@@ -460,10 +460,6 @@ public class C_TempsMort : MonoBehaviour
             characters[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
             characters[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
             characters[i].transform.GetChild(4).GetComponent<Image>().enabled = false;
-            characters[i].GetComponent<C_Actor>().smallResume = charactersLittleResume[i]; charactersLittleResume[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().smallResume;
-            characters[i].GetComponent<C_Actor>().BigResume1 = charactersCompleteResume1[i]; charactersCompleteResume1[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume1;
-            characters[i].GetComponent<C_Actor>().BigResume2 = charactersCompleteResume2[i]; charactersCompleteResume2[i].GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().BigResume2;
-            //characters[i].GetComponent<C_Actor>().GetCurrentPointTrait().Equals(characters[i].GetComponent<C_Actor>().GetDataActor().currentPointTrait);
             characters[i].GetComponent<C_Actor>().smallResume.transform.GetChild(3).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
             characters[i].GetComponent<C_Actor>().BigResume1.transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
             characters[i].GetComponent<C_Actor>().BigResume2.transform.GetChild(1).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
