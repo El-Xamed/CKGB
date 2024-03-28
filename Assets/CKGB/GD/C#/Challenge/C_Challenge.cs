@@ -340,6 +340,7 @@ public class C_Challenge : MonoBehaviour
 
                     //Add Ui Stats
                     thisActor.SetUiStats(newStats);
+                    thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
 
                     //Update UI
                     thisActor.UpdateUiStats();

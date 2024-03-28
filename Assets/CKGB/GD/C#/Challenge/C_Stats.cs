@@ -9,7 +9,7 @@ public class C_Stats : MonoBehaviour
 {
     [Header("Stats PDP")]
     [SerializeField] Image PDP;
-    [SerializeField] Sprite border;
+    [SerializeField] GameObject borderPrefab;
     [SerializeField] Image calmJaugePreview;
 
     [Header("Stats (Text)")]
@@ -26,16 +26,21 @@ public class C_Stats : MonoBehaviour
         PDP.sprite = thisActor.GetDataActor().challengeSpriteUi;
 
         //Place les bordures par rapport au nombres de calm que possède le personnage.
-        //SpawnBorderCalm(thisActor.GetComponent<C_Actor>().getMaxStress());
+        SpawnBorderCalm(thisActor.GetComponent<C_Actor>().getMaxStress());
+
     }
 
     void SpawnBorderCalm(int nbCalm)
     {
         float calmWidth = 360 / nbCalm;
 
+        //new Quaternion(0, 0, calmWidth * i, 1)
+
         for (int i = 0; i < nbCalm; i++)
         {
-            Instantiate(border, new Vector3(0,0,0), new Quaternion(0, 0, calmWidth * i, 0), transform.GetChild(0).transform.GetChild(0));
+            GameObject newBorder = Instantiate(borderPrefab, uiCalm.transform.position, Quaternion.Euler(0, 0, calmWidth * i), transform);
+
+            newBorder.name = "Border " + i;
         }
     }
 
