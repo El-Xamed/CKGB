@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static C_Challenge;
 
@@ -14,7 +15,7 @@ public class C_Interface : MonoBehaviour
     C_Challenge myChallenge;
 
     public enum Interface { Neutre, Logs, Actions, Traits, Back }
-    Interface currentInterface = Interface.Neutre;
+    [SerializeField] Interface currentInterface = Interface.Neutre;
 
     [Header("Actions / Traits")]
     [SerializeField] GameObject uiTrait;
@@ -147,16 +148,24 @@ public class C_Interface : MonoBehaviour
                 }
             }
 
+            //Pour passer à la suite du jeu.
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame)
+            {
+                myChallenge.EndChallenge();
+            }
+
+            //Pour Update CataTurn.
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
+            {
+                myChallenge.PlayerTurn();
+                //Ouvre l'interface.
+                myChallenge.OpenInterface();
+            }
+
             //Pour Update ResoTrun.
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
             {
                 myChallenge.NextResolution();
-            }
-
-            //Pour Update CataTurn.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn && myChallenge.GetCurrentEtape().useCata)
-            {
-                myChallenge.CataTrun();
             }
         }
     }

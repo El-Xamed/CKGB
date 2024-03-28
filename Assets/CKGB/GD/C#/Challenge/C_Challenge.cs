@@ -18,11 +18,13 @@ public class C_Challenge : MonoBehaviour
 
     #region De base
     //Pour connaitre la phasse de jeu.
-    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn }
+    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn , EndGame}
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
     [SerializeField] EventSystem eventSystem;
+
+    bool canGoNext = false;
 
     #region UI
     GameObject canva;
@@ -68,9 +70,6 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] SO_Etape currentStep;
 
     [SerializeField] SO_Catastrophy currentCata;
-
-    bool writeAccLogs = false;
-    bool canUpdateEtape = false;
     #endregion
 
     #region Résolution
@@ -208,7 +207,7 @@ public class C_Challenge : MonoBehaviour
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
         currentCata = myChallenge.listCatastrophy[0];
-        UpdateUi(currentStep);
+        UpdateUi();
 
         //Lance directement le tour du joueur
         uiGameOver.SetActive(false);
@@ -278,7 +277,7 @@ public class C_Challenge : MonoBehaviour
             if (GameManager.instance)
             {
                 //Récupère les info du GameManager
-                foreach (var thisActor in GameManager.instance.GetTeam())
+                foreach (GameObject thisActor in GameManager.instance.GetTeam())
                 {
                     foreach (InitialActorPosition position in listPosition)
                     {
@@ -360,7 +359,7 @@ public class C_Challenge : MonoBehaviour
 
     #region Tour du joueur
     //Pour Update l'UI. CHANGER LA FONCTION !!!!
-    void UpdateUi(SO_Etape myEtape)
+    void UpdateUi()
     {
         uiEtape.GetComponentInChildren<TMP_Text>().text = myChallenge.objectif;
     }
@@ -416,12 +415,9 @@ public class C_Challenge : MonoBehaviour
             myInterface.GetUiAction().SetActive(false);
             myInterface.GetUiTrait().SetActive(false);
 
-            //Passe l'interface en neutre.
-            myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
-
             //Lance la phase de réso. BESOIN D'AJOUTER UN DELAY A CAUSE DE L'ANIMATION QUI EMPECHE D'APPLIQUER LES SPRITES.
             //Debug.Log(currentResolution.actor.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name);
-            Invoke("ResolutionTurn", 0.2f);
+            ResolutionTurn();
         }
     }
 
@@ -429,16 +425,13 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("Player turn !");
 
+        //VFX
+        vfxPlayerTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
+
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
-        //Check si dans la phase de résolution un actor à trouvé la bonne action.
-        if (canUpdateEtape)
-        {
-            stepUpdate();
-            canUpdateEtape = false;
-            Debug.Log("test");
-        }
+        UpdateUi();
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
@@ -487,25 +480,6 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //Passe à l'étape suivant.
-    public void stepUpdate()
-    {
-        //Check si il reste des étapes.
-        if (CheckEtape())
-        {
-            Debug.Log("next step");
-
-            //Nouvelle étape.
-            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
-        }
-        else
-        {
-            //Fin du challenge.
-            EndChallenge();
-
-            Debug.Log("Fin du niveau");
-        }
-    }
     #endregion
 
     #region  Phase de résolution
@@ -533,14 +507,19 @@ public class C_Challenge : MonoBehaviour
             //Check si une cata est présente.
             if (GetCurrentEtape().useCata)
             {
-                //Lance la phase "Cata".
-                CataTrun();
+                //Check si après la phase de réso, tous les perso sont vivant.
+                if (!CheckGameOver())
+                {
+                    //Lance la phase "Cata".
+                    CataTrun();
+                }
             }
             else
             {
-                OpenInterface();
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
+                //Ouvre l'interface.
+                OpenInterface();
                 PlayerTurn();
             }
         }
@@ -553,6 +532,9 @@ public class C_Challenge : MonoBehaviour
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+
+        //Passe l'interface en neutre.
+        myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
         //Met en noir et blanc tous les actor.
         foreach (C_Actor thisActor in myTeam)
@@ -582,9 +564,10 @@ public class C_Challenge : MonoBehaviour
 
             uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
 
-            canUpdateEtape = true;
-
             Debug.Log("Update etape");
+
+            //Check si c'est la fin.
+            UpdateEtape();
         }
         else
         {
@@ -606,12 +589,8 @@ public class C_Challenge : MonoBehaviour
 
         //Ecrit dans les logs le résultat de l'action.
         uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
-
-        writeAccLogs = false;
     }
     #endregion
-
-
 
     #region Tour de la Cata
     //Pour lancer la cata.
@@ -619,47 +598,35 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("CataTurn");
 
+        //Défini la phase de jeu.
+        myPhaseDeJeu = PhaseDeJeu.CataTurn;
+
         //Ecrit dans les logs le résultat de l'action.
         uiLogs.text = currentCata.catastrophyLog;
 
-        //
-        if (myPhaseDeJeu == PhaseDeJeu.CataTurn)
+        //Applique la catastrophe.
+        currentCata.ApplyCatastrophy(listCase, myTeam);
+
+        //Re-Check si tous les perso sont "out".
+        if (!CheckGameOver())
         {
-            //Check au début si tous les perso sont "out".
-            if (!CheckGameOver())
+            //Redéfini le début de la liste.
+            currentActor = myTeam[0];
+
+            //Update la prochaine Cata.
+            //Check si c'étais la dernière Cata.
+            if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
             {
-                //Applique la catastrophe. FONCTIONNE AVEC 1 CATA, A MODIFIER POUR QU'IL UTILISE LES CATA
-                currentCata.ApplyCatastrophy(listCase, myTeam);
-
-                //Re-Check si tous les perso sont "out".
-                if (!CheckGameOver())
-                {
-                    //Update les acc
-                    //UpdateAccessories();
-
-                    //Redéfini le début de la liste.
-                    currentActor = myTeam[0];
-
-                    //Update la prochaine Cata.
-                    //Check si c'étais la dernière Cata.
-                    if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
-                    {
-                        currentCata = myChallenge.listCatastrophy[0];
-                    }
-                    else
-                    {
-                        currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
-                    }
-
-                    PlayerTurn();
-                    Invoke("PlayerTurnAfterCata", 0.5f);
-
-                }
+                currentCata = myChallenge.listCatastrophy[0];
             }
-        }
+            else
+            {
+                currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
+            }
 
-        //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.CataTurn;
+            //Active la passage CataTurn -> PlayerTurn.
+
+        }
     }
 
     public void OpenInterface()
@@ -688,15 +655,22 @@ public class C_Challenge : MonoBehaviour
 
     #region GameOver
     //Bool pour check si le vhallenge est fini.
-    bool CheckEtape()
+    void UpdateEtape()
     {
-        if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count -1)
+        //Check si il reste des étapes.
+        if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count - 1)
         {
-            return true;
+            Debug.Log("next step");
+
+            //Nouvelle étape.
+            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
         }
         else
         {
-            return false;
+            //Fin du challenge.
+            myPhaseDeJeu = PhaseDeJeu.EndGame;
+
+            Debug.Log("Fin du niveau");
         }
     }
 
@@ -727,18 +701,18 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     //Fin du challenge.
-    void EndChallenge()
+    public void EndChallenge()
     {
-        uiVictoire.SetActive(true);
-
-        //Supp tous les elements sup.
-        if (GameObject.Find("Element").transform.childCount > 0)
+        if (canGoNext)
         {
-            for (int i = 0; i < GameObject.Find("Element").transform.childCount; i++)
-            {
-                Destroy(GameObject.Find("Element").transform.GetChild(i).gameObject);
-            }
+            SceneManager.LoadScene("S_WorldMap");
         }
+        else
+        {
+            canGoNext = true;
+        }
+
+        uiVictoire.SetActive(true);
 
         Debug.Log("Fin du challenge");
     }
