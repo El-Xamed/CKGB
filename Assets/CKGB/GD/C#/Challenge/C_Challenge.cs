@@ -715,6 +715,7 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("GameOver");
         uiGameOver.SetActive(true);
+        uiGameOver.GetComponent<Image>().sprite = myChallenge.ecranDefaite;
         return;
     }
     #endregion
