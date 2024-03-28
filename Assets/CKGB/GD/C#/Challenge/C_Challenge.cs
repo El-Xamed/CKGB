@@ -383,6 +383,12 @@ public class C_Challenge : MonoBehaviour
                 thisActionButton.GetComponent<C_ActionButton>().HideCurseur();
             }
 
+            //Cache les autres curseur.
+            foreach (GameObject thisTraitButton in myInterface.GetListTraitButton())
+            {
+                thisTraitButton.GetComponent<C_ActionButton>().HideCurseur();
+            }
+
             //Fait apparaitre le curseur.
             eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
 
