@@ -26,6 +26,8 @@ public class SO_Catastrophy : ScriptableObject
             thisCase.DestroyVfxCata();
         }
 
+        Debug.Log("Les cases ont été sup.");
+
         //Initialise la cata (Random avec 1 valeur).
         if (modeAttack == SO_Catastrophy.EModeAttack.Random)
         {
@@ -42,7 +44,15 @@ public class SO_Catastrophy : ScriptableObject
         //Affiche la prochaine cata.
         foreach (var thisCase in targetCase)
         {
+            //Check si le VFX est bien renseigné.
+            if (vfxCataPrefab == null)
+            {
+                Debug.LogWarning("Il y a pas de cata dans cette cata !");
+                return;
+            }
+
             plateau[thisCase].ShowDangerZone(vfxCataPrefab);
+            Debug.Log("nouvelle Cata sur la case " + thisCase);
         }
 
         /*//Ajout des zones de danger des acc
@@ -69,13 +79,19 @@ public class SO_Catastrophy : ScriptableObject
         //Pour tous les nombre dans la liste dela cata.
         foreach (var thisCase in targetCase)
         {
+            //Check si la case possède un vfx.
+            if (plateau[thisCase].GetVfxCata() != null)
+            {
+                //VFX de la cata qui s'applique.
+                plateau[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
+            }
+
             //Pour tous les actor.
             foreach (C_Actor thisActor in team)
             {
                 if (thisCase == thisActor.GetPosition())
                 {
-                    //VFX de la cata qui s'applique.
-                    plateau[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
+                    Debug.Log("La case " + thisCase + " est attaqué !");
 
                     //Applique des conséquence grace au finction de actionClass.
                     actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, team, thisActor, plateau);

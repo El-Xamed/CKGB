@@ -208,7 +208,6 @@ public class C_Challenge : MonoBehaviour
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
         currentActor = myTeam[0];
-        currentCata = myChallenge.listCatastrophy[0];
         UpdateUi();
 
         //Lance directement le tour du joueur
@@ -446,9 +445,15 @@ public class C_Challenge : MonoBehaviour
         //Vide la listeReso
         listRes = new List<ActorResolution>();
 
-        //Initialise la prochaine cata. PAS UTILE JE PENSE DE PLACER "canIniCat" DANS LE IF. A VOIR PLUS TARD.
-        if (currentStep.useCata && canIniCata)
+        //Initialise la prochaine cata.
+        if (currentStep.useCata)
         {
+            //Check si il n'est pas null.
+            if (currentCata == null)
+            {
+                currentCata = myChallenge.listCatastrophy[0];
+            }
+
             currentCata.InitialiseCata(listCase, myTeam);
 
             foreach (C_Actor thisActor in myTeam)
@@ -627,10 +632,12 @@ public class C_Challenge : MonoBehaviour
             //Check si c'étais la dernière Cata.
             if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
             {
+                Debug.Log("Première Cata");
                 currentCata = myChallenge.listCatastrophy[0];
             }
             else
             {
+                Debug.Log("Next Cata");
                 currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
             }
 

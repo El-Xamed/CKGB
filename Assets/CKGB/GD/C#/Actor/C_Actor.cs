@@ -325,12 +325,10 @@ public class C_Actor : C_Pion
         if (!inDanger)
         {
             transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteBlackAndWhite;
-            Debug.Log(GetDataActor().challengeSpriteBlackAndWhite);
         }
         else
         {
             transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCataBlackAndWhite;
-            Debug.Log(GetDataActor().challengeSpriteOnCataBlackAndWhite);
         }
     }
     #endregion

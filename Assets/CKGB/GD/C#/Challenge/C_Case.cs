@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class C_Case : MonoBehaviour
 {
     #region Mes variables
-    GameObject vfxCata;
+    [SerializeField] GameObject vfxCata;
     #endregion
 
     #region Mes fonctions
@@ -27,11 +28,17 @@ public class C_Case : MonoBehaviour
 
     #region Data partagé
 
+    public GameObject GetVfxCata()
+    {
+        return vfxCata;
+    }
+
     public void DestroyVfxCata()
     {
         if (vfxCata != null)
         {
             Destroy(vfxCata);
+            vfxCata = null;
         }
     }
     #endregion

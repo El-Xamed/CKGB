@@ -64,6 +64,8 @@ public class C_Pion : MonoBehaviour
                 transform.GetChild(5).gameObject.SetActive(false);
             }
         }
+
+        GetComponent<Animator>().SetBool("isInDanger", inDanger);
     }
 
     public virtual int GetPosition()
