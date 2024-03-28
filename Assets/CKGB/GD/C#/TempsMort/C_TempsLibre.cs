@@ -165,7 +165,7 @@ public class C_TempsLibre : MonoBehaviour
             Observage = GameManager.instance.GetDataTempsMort().Observer;
             for (int i = 0; i < GameManager.instance.GetDataTempsMort().startPos.Length; i++)
             {
-                SpawnParent.transform.GetChild(i).localPosition = GameManager.instance.GetDataTempsMort().startPos[i].position;
+                SpawnParent.transform.GetChild(i).position = GameManager.instance.GetDataTempsMort().startPos[i].position;
             }
             foreach (GameObject thisActor in GameManager.instance.GetTeam())
             {
@@ -180,8 +180,8 @@ public class C_TempsLibre : MonoBehaviour
 
                         characters.Add(thisActor);
                         characterNB++;
-                        thisActor.transform.parent = SpawnParent.transform.GetChild(characterNB);
-                        thisActor.transform.localPosition = SpawnParent.transform.GetChild(characterNB).localPosition;
+                        thisActor.transform.SetParent(SpawnParent.transform) ;
+                        thisActor.GetComponent<RectTransform>().anchoredPosition = SpawnParent.transform.GetChild(characterNB).position;
                     }
                     else
                     {
