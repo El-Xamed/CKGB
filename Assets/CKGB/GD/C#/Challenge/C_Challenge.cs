@@ -52,6 +52,8 @@ public class C_Challenge : MonoBehaviour
     List<C_Actor> myTeam = new List<C_Actor>();
     List<C_Accessories> listAcc = new List<C_Accessories>();
 
+    bool canIniCata = false;
+
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
     List<C_Case> listCase = new List<C_Case>();
@@ -307,6 +309,10 @@ public class C_Challenge : MonoBehaviour
                             //Update UI
                             thisActor.GetComponent<C_Actor>().UpdateUiStats();
 
+                            //Mise en place du VFX de bonne action.
+                            GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                            thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
+
                             myTeam.Add(thisActor.GetComponent<C_Actor>());
                         }
                         else
@@ -322,24 +328,28 @@ public class C_Challenge : MonoBehaviour
                 foreach (InitialActorPosition position in listPosition)
                 {
                     //New actor
-                    C_Actor myActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
-                    myActor.IniChallenge();
-                    myActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
-                    myActor.transform.localScale = Vector3.one;
+                    C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
+                    thisActor.IniChallenge();
+                    thisActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
+                    thisActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
-                    myActor.transform.localPosition = new Vector3();
+                    thisActor.transform.localPosition = new Vector3();
 
                     //New Ui stats
                     C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
 
                     //Add Ui Stats
-                    myActor.SetUiStats(newStats);
+                    thisActor.SetUiStats(newStats);
 
                     //Update UI
-                    myActor.UpdateUiStats();
+                    thisActor.UpdateUiStats();
 
-                    myTeam.Add(myActor);
+                    //Mise en place du VFX de bonne action.
+                    GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                    thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
+
+                    myTeam.Add(thisActor);
                 }
             }
         }
@@ -436,8 +446,8 @@ public class C_Challenge : MonoBehaviour
         //Vide la listeReso
         listRes = new List<ActorResolution>();
 
-        //Initialise la prochaine cata.
-        if (currentStep.useCata)
+        //Initialise la prochaine cata. PAS UTILE JE PENSE DE PLACER "canIniCat" DANS LE IF. A VOIR PLUS TARD.
+        if (currentStep.useCata && canIniCata)
         {
             currentCata.InitialiseCata(listCase, myTeam);
 
@@ -445,6 +455,8 @@ public class C_Challenge : MonoBehaviour
             {
                 thisActor.SetCurrentCata(currentCata);
             }
+
+            canIniCata = false;
         }
 
         //Joue l'animation.
@@ -505,7 +517,7 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Fin de la phase de réso !");
 
             //Check si une cata est présente.
-            if (GetCurrentEtape().useCata)
+            if (GetCurrentEtape().useCata && !canIniCata)
             {
                 //Check si après la phase de réso, tous les perso sont vivant.
                 if (!CheckGameOver())
@@ -541,10 +553,8 @@ public class C_Challenge : MonoBehaviour
         {
             if (thisActor != currentResolution.actor)
             {
-                //thisActor.SetSpriteChallengeBlackAndWhite();
+                thisActor.SetSpriteChallengeBlackAndWhite();
             }
-
-            thisActor.SetSpriteChallengeBlackAndWhite();
         }
 
         currentResolution.actor.SetSpriteChallenge();
@@ -560,11 +570,11 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Bonne action");
 
-            uiGoodAction.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().challengeSpriteUiGoodAction;
+            //Vfx de bonna action.
+            currentResolution.actor.GetDataActor().vfxUiGoodAction.SetTrigger("GoodAction");
 
-            uiGoodAction.GetComponent<Animator>().SetTrigger("GoodAction");
-
-            Debug.Log("Update etape");
+            //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
+            canIniCata = true;
 
             //Check si c'est la fin.
             UpdateEtape();
@@ -657,6 +667,8 @@ public class C_Challenge : MonoBehaviour
     //Bool pour check si le vhallenge est fini.
     void UpdateEtape()
     {
+        Debug.Log("Update etape");
+
         //Check si il reste des étapes.
         if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count - 1)
         {

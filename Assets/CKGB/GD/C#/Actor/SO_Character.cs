@@ -27,7 +27,7 @@ public class SO_Character : ScriptableObject
     public Sprite challengeSpriteSlected;
     public Sprite challengeSpriteIsOut;
     public Sprite challengeSpriteUi;
-    public Sprite challengeSpriteUiGoodAction;
+    public Animator vfxUiGoodAction;
 
     [Header("Challenge (Stats)")]
     public int stressMax;
@@ -56,5 +56,3 @@ public class SO_Character : ScriptableObject
     [SerializeField] public TextAsset PapoterAvecMorgan;
     #endregion
 }
-
-
