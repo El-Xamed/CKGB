@@ -181,7 +181,7 @@ public class C_TempsLibre : MonoBehaviour
                         characters.Add(thisActor);
                         characterNB++;
                         thisActor.transform.parent = SpawnParent.transform.GetChild(characterNB);
-                        thisActor.transform.localPosition = SpawnParent.transform.GetChild(characterNB).position;
+                        thisActor.transform.localPosition = SpawnParent.transform.GetChild(characterNB).localPosition;
                     }
                     else
                     {
