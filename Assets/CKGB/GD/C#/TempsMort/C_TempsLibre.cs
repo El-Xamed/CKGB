@@ -299,6 +299,7 @@ public class C_TempsLibre : MonoBehaviour
     public void SetCanContinueToYes()
     {
         canContinue = true;
+        GameManager.instance.textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void SetCanContinueToNo()
     {

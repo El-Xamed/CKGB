@@ -285,6 +285,7 @@ public class GameManager : MonoBehaviour
                     {
                         case "MorganHautGauche":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if(textToWriteIn.GetComponentInParent<Image>()!=null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -296,6 +297,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "MorganHautDroite":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -307,6 +309,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "MorganBasGauche":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -318,6 +321,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "MorganBasDroite":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -330,6 +334,7 @@ public class GameManager : MonoBehaviour
 
                         case "EsthelaHautGauche":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -341,6 +346,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "EsthelaHautDroite":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -352,6 +358,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "EsthelaBasGauche":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -363,6 +370,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "EsthelaBasDroite":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -375,6 +383,7 @@ public class GameManager : MonoBehaviour
 
                         case "NimuHautGauche":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -386,6 +395,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "NimuHautDroite":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -397,6 +407,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "NimuBasGauche":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -408,6 +419,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "NimuBasDroite":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -419,6 +431,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "Narrateur":
                             textToWriteIn.text = "";
+                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
@@ -627,6 +640,7 @@ public class GameManager : MonoBehaviour
     {
         TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
         textToWriteIn.text = "";
+        textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
         isDialoguing = false;
         if (textToWriteIn.GetComponentInParent<Image>() != null)
         {
