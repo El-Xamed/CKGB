@@ -3,39 +3,42 @@
 EXTERNAL StartTM(name)
 
 ===Intro===
-“…Okay.” #Bulle:MorganHautGauche
+<size=60%>…Okay.</size=60%>#Bulle:MorganHautGauche
 
-“3, 2, 1, maintenant !” #Bulle:MorganHautGauche
+3, 2, 1, <pend>maintenant !</pend> #Bulle:MorganHautGauche
 
 Rien ne se passe. #Bulle:Narrateur
 
-Urg. De deception, tu tort brièvement ta bouche. #Bulle:Narrateur
+<shake a=0.5>Urg</shake>. #Bulle:MorganHautGauche
 
-“Hm. Trop tôt. Ca doit faire bientot 4 heures pourtant.”#Bulle:MorganHautGauche
+De deception, tu tort brièvement ta bouche. #Bulle:Narrateur
+
+Hm.#Bulle:MorganHautGauche
+Trop tôt. Ca doit faire bientot <incr> 4 heures</incr> pourtant.#Bulle:MorganHautGauche
 
 L’ombre d’un doute survole ton esprit.#Bulle:Narrateur 
-Et si tu avais largement surestimé le passage du temps ? Et si tu avais encore deux heures à poirauter ici ?#Bulle:Narrateur
+Et si tu avais largement surestimé le passage du temps ? Et si tu avais encore <incr>deux heures</incr> à poirauter ici ?#Bulle:Narrateur
 
 Pour te rassurer, tu relance un pari avec toi même.#Bulle:Narrateur
 
-“Allez, 3…#Bulle:MorganHautGauche
+Allez, 3<bounce> …</bounce>#Bulle:MorganHautGauche
 
-2…”#Bulle:MorganHautGauche
+2<bounce> …</bounce>#Bulle:MorganHautGauche
 
-BRUIT DE CARILLON. ca c'est du sound design je peux pas le faie moi les frères.#Bulle:Narrateur
+BRUIT DE CARILLON. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:Narrateur
 
-Tu sursaute. Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:Narrateur
+<bounce> u sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:Narrateur
 
 //[Écran du C0 sans l’UI. La caméra est au dessus du Coolkid, dans une position d’attente dans son lit.][Musique commence) #Bulle:Narrateur
 
-“…”#Bulle:MorganHautGauche
+<bounce>…</bounce> #Bulle:MorganHautGauche
 
 9H. #Bulle:Narrateur
-Comme tu l’avais programmé la semaine dernière. C’est la première chose que tu as faites après avoir confirmé ton rencard.#Bulle:Narrateur
-Tu es habitué à avoir de l’anxiété, mais même à ton échelle, tu dois te l’admettre :#Bulle:Narrateur
-Tu es devenu un peu fou ces derniers jours.#Bulle:Narrateur
-#Bulle:MorganHautGauche
-…
+Comme tu l’avais programmé la semaine dernière. C’est la première chose que tu as faites après avoir confirmé ton <rainb>rencard</rainb> .#Bulle:Narrateur
+Tu es habitué à avoir de <shake a=0.5>l’anxiété</shake a=0.5>, mais même à ton échelle, tu dois te l’admettre :#Bulle:Narrateur
+Tu es devenu <i>un peu<i> fou ces derniers jours.#Bulle:Narrateur
+
+<bounce> …</bounce>#Bulle:MorganHautGauche
 
 Allez.#Bulle:MorganHautGauche
 
