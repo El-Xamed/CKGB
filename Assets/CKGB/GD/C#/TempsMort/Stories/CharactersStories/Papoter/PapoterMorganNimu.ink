@@ -17,43 +17,43 @@ VAR IdPapoter = 0
  …#Bulle:NimuBasDroite
 Tu te ronge les ongles. Le bout de tes doigts te brûle #Bulle:Narrateur
 Ta grand mère commence à fredonner une chanson #Bulle:Narrateur
- "…" #Bulle:MorganHautGauche
-"Alors..."
-" Pas trop nerveux ?"#Bulle:NimuBasDroite
-"Hm ?"#Bulle:MorganHautGauche
-"…‘Nah." #Bulle:MorganHautGauche
-"Bah tu vas dead ça alors.#Bulle:NimuBasDroite
-"…"#Bulle:MorganHautGauche
-"Hey, je suis vraiment fière que de toi, tu sais ?"#Bulle:NimuBasDroite
+ …"#Bulle:MorganHautGauche
+Alors...
+ Pas trop nerveux ?#Bulle:NimuBasDroite
+Hm ?#Bulle:MorganHautGauche
+…‘Nah.#Bulle:MorganHautGauche
+Bah tu vas dead ça alors.#Bulle:NimuBasDroite
+…#Bulle:MorganHautGauche
+Hey, je suis vraiment fière que de toi, tu sais ?#Bulle:NimuBasDroite
 Tu es prit au dépourvu. Tu ne le laisse pas paraitre.#Bulle:Narrateur
-"A-ah oui ?" #Bulle:MorganHautGauche
- "De fou ! ça demande vlà du courage d'être aussi calme dans cette situation."#Bulle:NimuBasDroite
-"…"#Bulle:MorganHautGauche
-"Ca me rappelle mon premier rendez-vous amoureux. Haha, comment c’était claquée au sol."
-"J’ai mit des années avant de trouver des techniques pour garder mon sang froid."
-"Tu m’impressione vraiment".#Bulle:NimuBasDroite
+A-ah oui ?#Bulle:MorganHautGauche
+De fou ! ça demande vlà du courage d'être aussi calme dans cette situation.#Bulle:NimuBasDroite
+…#Bulle:MorganHautGauche
+Ca me rappelle mon premier rendez-vous amoureux. Haha, comment c’était claquée au sol.
+J’ai mit des années avant de trouver des techniques pour garder mon sang froid.
+Tu m’impressione vraiment.#Bulle:NimuBasDroite
 
-Tu te mets nerveusement à jouer avec la fermeture éclaire de tes poches #Bulle:Narrateur
+Tu te mets nerveusement à jouer avec la fermeture éclaire de tes poches.#Bulle:Narrateur
 
-Ta grand mère reprend son fredonnement. #Bulle:Narrateur
+Ta grand mère reprend son fredonnement.#Bulle:Narrateur
 
-"…" #Bulle:MorganHautGauche 
+… #Bulle:MorganHautGauche
 
-"Néanmoins."#Bulle:NimuHautDroite
+Néanmoins.#Bulle:NimuHautDroite
 
-"Sache que je ne serai pas moins fiere de toi si tu appelle à l'aide. Si jamais, à n’importe quel moment, tu sens que tu as besoin de soutient, tu as juste à me demander."#Bulle:NimuBasDroite
-"Ca ne demande pas moins de courage que d'avouer qu'on a un problème. J'en sais quelque chose."#Bulle:NimuHautDroite
+Sache que je ne serai pas moins fiere de toi si tu appelle à l'aide. Si jamais, à n’importe quel moment, tu sens que tu as besoin de soutient, tu as juste à me demander.#Bulle:NimuBasDroite
+Ca ne demande pas moins de courage que d'avouer qu'on a un problème. J'en sais quelque chose.#Bulle:NimuHautDroite
 Elle a un regard pour son bras.#Bulle:NimuHautDroit
-"hm."#Bulle:MorganHautGauche
+hm.#Bulle:MorganHautGauche
 
 Ta grand mère commence à chantonner au milieu de ses freudonnement.#Bulle:Narrateur
-"-ark tutudulutu..Baby sh"-#Bulle:NimuBasDroite
+-ark tutudulutu..Baby sh-#Bulle:NimuBasDroite
 
-"P’tetre."#Bulle:MorganHautGauche
+P’tetre.#Bulle:MorganHautGauche
 
-"Hm ?"#Bulle:NimuBasDroite
+Hm ?#Bulle:NimuBasDroite
 
-"Peut-être que j’aprécierai beneficier de quelques conseils."#Bulle:MorganHautGauche
+Peut-être que j’aprécierai beneficier de quelques conseils.#Bulle:MorganHautGauche
 
 Elle a un petit sourire joueur. Et te montre qu'elle est prête à écouter tes questions. #Bulle:Narrateur
 //blabla
@@ -61,29 +61,29 @@ Elle a un petit sourire joueur. Et te montre qu'elle est prête à écouter tes 
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter1===
-"Mémé ?"#Bulle:MorganHautDroite
+Mémé ?#Bulle:MorganHautDroite
 
--Hm ?#Bulle:NimuHautGauche
+Hm ?#Bulle:NimuHautGauche
 
-"J’me… J’me sens fébrile.""#Bulle:MorganHautDroite
+J’me… J’me sens fébrile.#Bulle:MorganHautDroite
 
-"Bah viens on se pose."#Bulle:NimuHautGauche
+Bah viens on se pose.#Bulle:NimuHautGauche
 
 Tu sens une boule te monter dans la gorge alors que tu t'assois à coté de ta grand-mère.#BulleNarrateur
 
-"… J’pense que je vais faire demie-tour."#Bulle:MorganHautGauche
-"J’ai… plus assez d'énergie pour continuer. J'crois qu'la pression emotionnelle est trop pour moi."#Bulle:MorganHautGauche
-"Je vais retourner à la maison. J'lui ferai passer un message pour m'excuser."#Bulle:MorganHautDroite"
+… J’pense que je vais faire demie-tour.#Bulle:MorganHautGauche
+J’ai… plus assez d'énergie pour continuer. J'crois qu'la pression emotionnelle est trop pour moi.#Bulle:MorganHautGauche
+Je vais retourner à la maison. J'lui ferai passer un message pour m'excuser.#Bulle:MorganHautDroite"
 
 Ta grand mère lève sa main dans ta direction, attendant ton signal. Tu lui fais non de la tête, et elle la ramène dans sa poche.#Bulle:Narrateur
 Elle fait toujours attention à ne pas te toucher sans t'avoir demandé avant. Cette attention t’as toujours bien plus réconforté que n’importe quel caresse.#Bulle:Narrateur
 
-"Si c’est vraiment ce que tu veux, c’est ce qu’on fait.#Bulle:NimuHautGauche
+Si c’est vraiment ce que tu veux, c’est ce qu’on fait.#Bulle:NimuHautGauche
 
-"Il n’y a rien de cringe dans le fait de prendre soin de soi."#Bulle:NimuHautGauche
-"Pour l’instant, prends ton temps. Tu as l’air de te sentir mal, ce n’est peut-être pas forcément le meilleur moment pour prendre des décisions."#Bulle:NimuHautGauche
+Il n’y a rien de cringe dans le fait de prendre soin de soi."#Bulle:NimuHautGauche
+Pour l’instant, prends ton temps. Tu as l’air de te sentir mal, ce n’est peut-être pas forcément le meilleur moment pour prendre des décisions."#Bulle:NimuHautGauche
 Tu fronce les sourcils. Tu n'es pas d'accord.#Bule:Narrateur
-"C’est parc’que j’suis dans c’t’état que j’prends cette décision. On rentre."#ulle:MorganHautDroite
+"C’est parc’que j’suis dans c’t’état que j’prends cette décision. On rentre."#Bulle:MorganHautDroite
 
 Tu te relève.#Bulle:Narrateur
 
