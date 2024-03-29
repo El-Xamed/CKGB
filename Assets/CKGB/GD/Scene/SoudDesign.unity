@@ -224,7 +224,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66554686}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 6.904046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -232,12 +232,12 @@ RectTransform:
   - {fileID: 2047982989}
   - {fileID: 1684572119}
   - {fileID: 1008020212}
-  m_Father: {fileID: 1647779329}
+  m_Father: {fileID: 349291054}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -763, y: 90}
+  m_AnchoredPosition: {x: -757.1449, y: -133.29382}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66554688
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647779330}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetVoiceVolume
         m_Mode: 1
@@ -303,6 +303,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &349291053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349291054}
+  - component: {fileID: 349291055}
+  m_Layer: 0
+  m_Name: OptionsParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &349291054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349291053}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.855133, y: 223.29382, z: -6.904046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1354327027}
+  - {fileID: 1813613348}
+  - {fileID: 1444611004}
+  - {fileID: 66554687}
+  m_Father: {fileID: 1647779329}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &349291055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349291053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113aea3e042026743ba523461ce3293a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+  musicSlider: {fileID: 1813613349}
+  sfxSlider: {fileID: 1444611005}
+  voiceSlider: {fileID: 66554688}
+  generalSlider: {fileID: 1354327028}
 --- !u!1 &414105485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,8 +1533,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354327026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6.904046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1489,12 +1542,12 @@ RectTransform:
   - {fileID: 1259008690}
   - {fileID: 414105486}
   - {fileID: 565937317}
-  m_Father: {fileID: 1647779329}
+  m_Father: {fileID: 349291054}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -763, y: 366}
+  m_AnchoredPosition: {x: -757.1449, y: 142.70618}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1354327028
@@ -1548,7 +1601,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647779330}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetGeneralVolume
         m_Mode: 1
@@ -1703,7 +1756,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444611003}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 6.904046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1711,12 +1764,12 @@ RectTransform:
   - {fileID: 1674731597}
   - {fileID: 1859418015}
   - {fileID: 1123161744}
-  m_Father: {fileID: 1647779329}
+  m_Father: {fileID: 349291054}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -763, y: 178}
+  m_AnchoredPosition: {x: -757.1449, y: -45.293793}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1444611005
@@ -1770,7 +1823,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647779330}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
@@ -1794,7 +1847,6 @@ GameObject:
   - component: {fileID: 1647779328}
   - component: {fileID: 1647779327}
   - component: {fileID: 1647779326}
-  - component: {fileID: 1647779330}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1875,10 +1927,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1354327027}
-  - {fileID: 1813613348}
-  - {fileID: 1444611004}
-  - {fileID: 66554687}
+  - {fileID: 349291054}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1887,23 +1936,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1647779330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647779325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113aea3e042026743ba523461ce3293a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMixer: {fileID: 24100000, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-  musicSlider: {fileID: 1813613349}
-  sfxSlider: {fileID: 1444611005}
-  voiceSlider: {fileID: 66554688}
-  generalSlider: {fileID: 1354327028}
 --- !u!1 &1656030159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,8 +2254,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813613347}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6.904046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2231,12 +2263,12 @@ RectTransform:
   - {fileID: 676203549}
   - {fileID: 1023787315}
   - {fileID: 514471324}
-  m_Father: {fileID: 1647779329}
+  m_Father: {fileID: 349291054}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -763, y: 275}
+  m_AnchoredPosition: {x: -757.1449, y: 51.706207}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1813613349
@@ -2290,7 +2322,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647779330}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -2877,7 +2909,6 @@ MonoBehaviour:
   - name: SfxSonDeConfirmation
     clip:
     - {fileID: 8300000, guid: 9a23645a760b55245b4103ba9a6a8b43, type: 3}
-    - {fileID: 8300000, guid: 9e6cfb99643780e408e1540cd5460e1d, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
@@ -2886,7 +2917,6 @@ MonoBehaviour:
   - name: SfxRetourArriere
     clip:
     - {fileID: 8300000, guid: 7648708241ea6134682d8a278ec5e66c, type: 3}
-    - {fileID: 8300000, guid: 2322615cf6c56734a8b9c9921d510237, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
@@ -2924,14 +2954,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: MusiqueTuto
-    clip:
-    - {fileID: 8300000, guid: 770109d58c1f61c4aa620d50af32a5da, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: MusiqueSplashScreen
     clip:
     - {fileID: 8300000, guid: 97f9cef01b42c954eb45e46d4685e04a, type: 3}
@@ -2940,9 +2962,33 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: MusiqueChargement
+  - name: MusiqueTuto
     clip:
-    - {fileID: 8300000, guid: 66ca9db4c56c824419ffd4bc03099631, type: 3}
+    - {fileID: 8300000, guid: 770109d58c1f61c4aa620d50af32a5da, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueTempsMort1
+    clip:
+    - {fileID: 8300000, guid: e15f8f6a4bbf4da4fa5debbaa470016f, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueChallenge1
+    clip:
+    - {fileID: 0}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueTempsMort2.A
+    clip:
+    - {fileID: 8300000, guid: ebcc47e0ff8dac24ba364899f0dec8fe, type: 3}
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
@@ -2956,10 +3002,58 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MusiqueTempsMort2.B
+    clip:
+    - {fileID: 0}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: MusiqueChallenge2.B
     clip:
     - {fileID: 8300000, guid: cb808d8d55074904898ad358ad78a60f, type: 3}
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueTempsMort3
+    clip:
+    - {fileID: 0}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusiqueChallenge3
+    clip:
+    - {fileID: 8300000, guid: 2975e06308e2a4641a11c5cbcf308b31, type: 3}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Voix_NIMU
+    clip:
+    - {fileID: 8300000, guid: 41ce2a650e05cdf4da8f8e1e61743207, type: 3}
+    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Voix_MORGAN
+    clip:
+    - {fileID: 8300000, guid: b30c4fef3fcc49f44882bc2f5c9bbd2a, type: 3}
+    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Voix_ESTHELA
+    clip:
+    - {fileID: 0}
+    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
     loop: 0
