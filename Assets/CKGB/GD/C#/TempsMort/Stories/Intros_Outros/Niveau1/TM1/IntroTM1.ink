@@ -4,7 +4,7 @@ EXTERNAL StartTM(name)
 
 ===Intro===
 
-//Bruit de porte, l’écran du temps mort apparait. Morgan est près d’un porte, Sa grand-mère à table, en train de petit-déjeuner.
+//Bruit de porte, l’écran du temps mort apparait. Morgan est près d’une porte, Sa grand-mère à table, en train de petit-déjeuner.
 
 ’lut#Bulle:MorganBasGauche
 
@@ -40,7 +40,7 @@ Tu te sens basculer, puis tu cèdes, incapable de lui resister.#Bulle:Narrateur
 
 Elle sourit d’un air satisfait.#Bulle:Narrateur
 
-Bueño, tu me refera six tartines de confiture avec du beurre s’il te plait.#Bulle:NimuHautGauche
+Bueño, tu me refera six tartines de confiture<br> avec du beurre s’il te plait.#Bulle:NimuHautGauche
 //elle se met à lire. Lui s’approche de la table.
 
 (ARG, LA TRAITRESSE.) #Bulle:MorganHautDroite
