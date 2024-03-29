@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
+  m_Name: SO_action2step3lvl1
+  m_EditorClassIdentifier: 
+  buttonText: "Descendre l\u2019\xE9chelle"
+  LogsMakeAction: "Des pens\xE9es anxiog\xE8ne bourdonne autour de toi. Mais des
+    fois, la seule solution qui reste quand on a du mal \xE0 faire quelque chose\u2026
+    C\u2019est d\u2019arr\xEAter de penser et d\u2019agir. Tu ne ressens pas une
+    vague de courage. Mais pendant un instant, tu sens ta peur disparaitre alors
+    que tu te l\xE8ve, aggripe la rambarde de ton lit, et entame ta descente pour
+    te pr\xE9parer."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

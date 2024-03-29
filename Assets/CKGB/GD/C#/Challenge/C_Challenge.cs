@@ -82,6 +82,9 @@ public class C_Challenge : MonoBehaviour
     //RANGER CETTE VARIABLE
     [SerializeField] TMP_Text uiLogs;
     #endregion
+
+    [SerializeField] SO_TempsMort tm1;
+    [SerializeField] SO_Challenge c1;
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -732,7 +735,16 @@ public class C_Challenge : MonoBehaviour
     {
         if (canGoNext)
         {
-            SceneManager.LoadScene("S_WorldMap");
+            if(GameManager.instance.currentC.name=="SO_lvl1")
+            {
+                SceneManager.LoadScene("S_WorldMap");
+            }
+            else
+            {
+                GameManager.instance.SetDataLevel(tm1, c1 );
+                SceneManager.LoadScene("S_TempsLibre");
+            }
+              
         }
         else
         {

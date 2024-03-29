@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4790af45b8f5552499175a066e3389d5, type: 3}
   m_Name: SO_Tuto
   m_EditorClassIdentifier: 
-  background: {fileID: 21300000, guid: 8863c16b60e8e454383d4a3bd0fac4c3, type: 3}
-  nbCase: 6
-  listStartPosAcc:
-  - position: 0
-    acc: {fileID: 3107106521850036101, guid: b9111873b30f5c94ba6873a2b2789bea, type: 3}
+  background: {fileID: 21300000, guid: 425c598cb6905c040b34818207567a16, type: 3}
+  element:
+  - {fileID: 21300000, guid: c032a3004137aed46b77ad008f560b90, type: 3}
+  ecranDefaite: {fileID: 21300000, guid: dc02b67e48db88f488eb8c632b684ec9, type: 3}
+  objectif: Sors du Lit !
+  nbCase: 3
+  listStartPosAcc: []
   listStartPosTeam:
-  - position: 2
-    perso: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
   - position: 1
-    perso: {fileID: 3561831080530771210, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
+    perso: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
   listCatastrophy:
+  - {fileID: 11400000, guid: 875d458a2da60a44789a427a780b2492, type: 2}
   - {fileID: 11400000, guid: 875d458a2da60a44789a427a780b2492, type: 2}
   listEtape:
   - {fileID: 11400000, guid: c17188791fc58cc47bf2f9d663339036, type: 2}
