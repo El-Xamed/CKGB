@@ -16,10 +16,17 @@ MonoBehaviour:
   element: []
   ecranDefaite: {fileID: 21300000, guid: 3d9a480f8091a5b45bee94cccf7f8e94, type: 3}
   objectif: Trouver son courage
-  nbCase: 8
+  nbCase: 7
   listStartPosAcc: []
-  listStartPosTeam: []
-  listCatastrophy: []
+  listStartPosTeam:
+  - position: 4
+    perso: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+  - position: 2
+    perso: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
+  - position: 6
+    perso: {fileID: 3561831080530771210, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
+  listCatastrophy:
+  - {fileID: 11400000, guid: 875d458a2da60a44789a427a780b2492, type: 2}
   listEtape:
   - {fileID: 11400000, guid: 1a8cf689b33ab8346ac1d7665bd923a6, type: 2}
   - {fileID: 11400000, guid: 105b809a4646ec84ead429a29d66b503, type: 2}

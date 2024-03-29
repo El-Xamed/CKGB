@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action3step1lvl1
   m_EditorClassIdentifier: 
-  buttonText: 
-  LogsMakeAction: 
+  buttonText: Fouiller les tiroirs
+  LogsMakeAction: "Tu fouilles les tiroirs du meuble devant toi. Dans le premier,
+    tu trouves un sachet de d\xE9licieux biscuits. Miam ! Mais le deuxi\xE8me \xE0
+    l\u2019air d\u2019\xEAtre ferm\xE9 \xE0 clef. Oh non. Tu stresses en imaginant
+    que ce que tu cherche est enferm\xE9 \xE0 l\u2019int\xE9rieur."
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -21,4 +24,38 @@ MonoBehaviour:
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
-  listInteraction: []
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 0
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 1
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

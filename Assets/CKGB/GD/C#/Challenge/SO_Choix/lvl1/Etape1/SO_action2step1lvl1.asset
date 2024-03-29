@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action2step1lvl1
   m_EditorClassIdentifier: 
-  buttonText: "Regarder l\u2019heure"
-  LogsMakeAction: "Chaque seconde que tu passe a regarder l\u2019horloge te fais
-    prendre un peu plus conscience de toutes les secondes que tu perds \xE0 regarder
-    l\u2019horloge."
+  buttonText: Essayer de se rappeller
+  LogsMakeAction: "Ton regard se fige alors que tu poses ta main sur ta t\xEAte.
+    Les souvenirs d\xE9filent dans ton cr\xE2ne. Mais si ! Quelqu\u2019un t\u2019as
+    dit qu\u2019il posait tes clefs\u2026 Dans le tiroir !"
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -31,8 +31,10 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 2
-      listStats: []
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 0
+        value: 2
       move:
         whatMove: 2
         isTp: 0

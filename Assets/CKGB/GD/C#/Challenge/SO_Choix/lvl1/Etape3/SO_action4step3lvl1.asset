@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step3lvl1
   m_EditorClassIdentifier: 
-  buttonText: "Descendre l\u2019\xE9chelle"
-  LogsMakeAction: "Des pens\xE9es anxiog\xE8ne bourdonne autour de toi. Mais des
-    fois, la seule solution qui reste quand on a du mal \xE0 faire quelque chose\u2026
-    C\u2019est d\u2019arr\xEAter de penser et d\u2019agir. Tu ne ressens pas une
-    vague de courage. Mais pendant un instant, tu sens ta peur disparaitre alors
-    que tu te l\xE8ve, aggripe la rambarde de ton lit, et entame ta descente pour
-    te pr\xE9parer."
+  buttonText: "Rappeller la cl\xE9"
+  LogsMakeAction: "Invoquant en ton fort int\xE9rieur tous les moments \xE9mouvant
+    que tu as pass\xE9 avec ce jeu de clef, tu fais bouillir ton \xE2me d\u2019\xE9nergie
+    et rugis le nom v\xE9ritable de la clef au travers du salon \u201CTitou Elvira
+    J\xE9rome-Ga\xEFa le neuvieme !!!\u201D."
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -26,4 +24,38 @@ MonoBehaviour:
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
-  listInteraction: []
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 0
+        value: 3
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
