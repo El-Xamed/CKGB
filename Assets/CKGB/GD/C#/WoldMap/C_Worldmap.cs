@@ -83,7 +83,8 @@ public class C_Worldmap : MonoBehaviour
         {
             //GameManager.instance.ChangeActionMap("TempsMort");
 
-
+            currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
+            currentPoint.GetComponent<C_destination>().IsDone = true;
                 switch (currentPoint.name)
                 {
                     case "lvl1":
@@ -97,15 +98,23 @@ public class C_Worldmap : MonoBehaviour
                     currentPoint.right.GetComponent<C_destination>().Islocked = false;
                     currentPoint.down.GetComponent<C_destination>().Islocked = true;
                     currentPoint.down.right.GetComponent<C_destination>().Islocked = true;
+                    currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    currentPoint.down.GetComponent<SpriteRenderer>().color = Color.green;
+                    currentPoint.down.right.GetComponent<SpriteRenderer>().color = Color.red;
                     break;
                     case "lvl2b":
                     currentPoint.up.GetComponent<C_destination>().Islocked = false;
                     currentPoint.left.GetComponent<C_destination>().Islocked = true;
                     currentPoint.left.up.GetComponent<C_destination>().Islocked = true;
+                    currentPoint.up.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    currentPoint.left.GetComponent<SpriteRenderer>().color = Color.green;
+                    currentPoint.left.up.GetComponent<SpriteRenderer>().color = Color.red;
                     break;
                     case "lvl3":
+
                     currentPoint.left.GetComponent<C_destination>().Islocked = true;
                     currentPoint.down.GetComponent<C_destination>().Islocked = true;
+
                     break;
                     default:
                         break;
