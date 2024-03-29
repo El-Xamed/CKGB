@@ -16,7 +16,6 @@ Il sont bien comme ça ?#Bulle:MorganHautDroite
 
 Sur ta tête ?#Bulle:NimuHautGauche
 
-<<<<<<< HEAD
 Tu te retournes partiellemet vers elle et fais ta fameuse moue inexpressive et sincèrement ennuyée jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
 
 Ils sont parfaits tes cheveux.#Bulle:NimuHautDroite
@@ -25,16 +24,11 @@ Tu te retourne partiellemet vers elle et fais ta fameuse "moue inexpressive et s
 
 Ils sont parfaits, tes cheveux.#Bulle:NimuHautDroite
 
-
-Parfait.<br>Et j’ai pas de tâche de confiture dans mon dos ?#Bulle:MorganBasGauche
+Ok.<br>Et j’ai pas de tâche de confiture dans mon dos ?#Bulle:MorganBasGauche
 
 Tu te contortionnes de nouveau pour lui faire observer ta chemise.
 
-
-Mais… pourquoi t’aurai<br> de la confiture dans le…<br> Non ! #Bulle:NimuHautDroite
-
-Des taches... Mais… pourquoi t’aurai de la confiture dans le… Non ! #Bulle:NimuHautDroite
-
+Mais<bounce>…</bounce> pourquoi t’aurai<br> de la confiture dans le<bounce>…</bounce><br> <shake a=0.5>Non<sahke> ! #Bulle:NimuHautDroite
 
 Tu pousses un soupir de soulagement et te frottes les mains un instant.#Bulle:Narrateur
 
@@ -43,7 +37,7 @@ Tu pousses un soupir de soulagement et te frottes les mains un instant.#Bulle:Na
 Prêt à partir, tu tapes successivement tes poches pour t'assurer que tout est bien à sa place (pour la 21e fois).#Bulle:Narrateur
 Tu fronces les sourcils.#Bulle:Narrateur
 
-Ah, et t’aurais pas vu mes clefs ?#Bulle:MorganHautauche
+Ah, et t’aurais pas vu mes <wave>clefs</wave> ?#Bulle:MorganHautauche
 
 Mais tu vas décamper à la fin ?#Bule:NimuHautDroite
 
@@ -56,7 +50,7 @@ Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses cl
 
 Hm#Bulle:NimuHautDroite
 
-… Je les retrouve pas non plus.#Bulle:NimuHautDroite
+<bouncce>…</bounce> Je les retrouve pas non plus.#Bulle:NimuHautDroite
 
 Ah, cata. j’vais checker dans l’entrée. #Bulle:MorganBasGauche
 ~ StartChallenge("S_Challenge")
