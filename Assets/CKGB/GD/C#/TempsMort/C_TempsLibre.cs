@@ -744,6 +744,7 @@ public class C_TempsLibre : MonoBehaviour
     public void StartOutro()
     {
         HideUI();
+        ChallengeButton.SetActive(false);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         GameManager.instance.EnterDialogueMode(_outro);
 
