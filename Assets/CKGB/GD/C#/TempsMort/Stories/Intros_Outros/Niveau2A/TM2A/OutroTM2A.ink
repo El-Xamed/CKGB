@@ -28,5 +28,5 @@ Morgan, est-ce que ta grand-mère viens de nous menacer de mort ?#Bulle:EsthelaH
 Yeah,#Bulle:MorganHautGauche
 Tu hausse les épaules.#Bulle:Narrateur
 elle fait ça des fois.#Bulle:MorganHautGauche
-~ StartChallenge("S_DestinationTest")
+~ StartChallenge("S_Challenge")
 ->END

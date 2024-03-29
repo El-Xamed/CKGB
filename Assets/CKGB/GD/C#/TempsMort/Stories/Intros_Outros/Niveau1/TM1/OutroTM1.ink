@@ -20,21 +20,21 @@ Sur ta tête ?#Bulle:NimuHautGauche
 Tu te retournes partiellemet vers elle et fais ta fameuse moue inexpressive et sincèrement ennuyée jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
 
 Ils sont parfaits tes cheveux.#Bulle:NimuHautDroite
-=======
+
 Tu te retourne partiellemet vers elle et fais ta fameuse "moue inexpressive et sincèrement ennuyée" jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
 
-"Ils sont parfaits, tes cheveux."#Bulle:NimuHautDroite
->>>>>>> 97f6859 (Ink corrections)
+Ils sont parfaits, tes cheveux.#Bulle:NimuHautDroite
+
 
 Parfait.<br>Et j’ai pas de tâche de confiture dans mon dos ?#Bulle:MorganBasGauche
 
 Tu te contortionnes de nouveau pour lui faire observer ta chemise.
 
-<<<<<<< HEAD
+
 Mais… pourquoi t’aurai<br> de la confiture dans le…<br> Non ! #Bulle:NimuHautDroite
-=======
-“Des taches... Mais… pourquoi t’aurai de la confiture dans le… Non !” #Bulle:NimuHautDroite
->>>>>>> 97f6859 (Ink corrections)
+
+Des taches... Mais… pourquoi t’aurai de la confiture dans le… Non ! #Bulle:NimuHautDroite
+
 
 Tu pousses un soupir de soulagement et te frottes les mains un instant.#Bulle:Narrateur
 
@@ -59,6 +59,6 @@ Hm#Bulle:NimuHautDroite
 … Je les retrouve pas non plus.#Bulle:NimuHautDroite
 
 Ah, cata. j’vais checker dans l’entrée. #Bulle:MorganBasGauche
-~ StartChallenge("S_DestinationTest")
+~ StartChallenge("S_Challenge")
 //Start challenge
 ->END

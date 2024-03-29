@@ -36,5 +36,5 @@ Tu remonte tes lunettes de soleil sur ton nez.#Bulle:Narrateur
 Ta grand-mère fait claquer ses mains sonorement.#Bulle:Narrateur
 
 “Et bah c’est partie meuf, montre moi la bête.”#Bulle:NimuHautGauche
-~ StartChallenge("S_DestinationTest")
+~ StartChallenge("S_Challenge")
 ->END

@@ -56,5 +56,5 @@ Nos corps sont tous extrêmement important et nous avons l'obligation morale d'e
 
 "wow."#Bulle:EsthelaHautGauche
 
-~ StartChallenge("S_DestinationTest")
+~ StartChallenge("S_Challenge")
 ->END
