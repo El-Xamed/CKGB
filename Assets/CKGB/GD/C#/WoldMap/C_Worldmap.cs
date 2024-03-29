@@ -10,6 +10,7 @@ using System;
 
 public class C_Worldmap : MonoBehaviour
 {
+    public static C_Worldmap instance;
     #region variables
     [SerializeField]C_destination startPoint;
     [SerializeField] float moveSpeed = 1f;
@@ -25,8 +26,6 @@ public class C_Worldmap : MonoBehaviour
     [SerializeField]
     GameObject actor;
 
-    [SerializeField]
-    GameObject Follower;
 
 
 
@@ -36,28 +35,41 @@ public class C_Worldmap : MonoBehaviour
     #region methodes
     private void Awake()
     {
-        allMapPoints = FindObjectsOfType<C_destination>();
+        #region Singleton
+        if (instance == null)
+            instance = this;
+        #endregion
+        
     }
     void Start()
     {
-        initiateTheMapCharacterProtocol();
-        //sets the initial position
-          currentPoint = startPoint;
-        transform.position = startPoint.transform.position;
-        Follower.transform.position = startPoint.transform.position;
+        if(SceneManager.GetSceneByName("S_Worldmap")==SceneManager.GetActiveScene())
+        {
+            allMapPoints = FindObjectsOfType<C_destination>();
+            for (int i = 0; i < allMapPoints.Length; i++)
+            {
+                GameManager.instance.levels.Add(allMapPoints[i]);
+            }
+            initiateTheMapCharacterProtocol();
+            //sets the initial position
+            currentPoint = startPoint;
+            transform.position = startPoint.transform.position;
 
-     
 
-        //sets up the destinations
-        Left = currentPoint.left;
-        Right = currentPoint.right;
-        Up = currentPoint.up;
-        Down = currentPoint.down;
 
-        leftpath = currentPoint.leftPath;
-        rightpath = currentPoint.rightPath;
-        uppath = currentPoint.upPath;
-        downpath = currentPoint.downPath;
+
+            //sets up the destinations
+            Left = currentPoint.left;
+            Right = currentPoint.right;
+            Up = currentPoint.up;
+            Down = currentPoint.down;
+
+            leftpath = currentPoint.leftPath;
+            rightpath = currentPoint.rightPath;
+            uppath = currentPoint.upPath;
+            downpath = currentPoint.downPath;
+        }
+        
     }
     private void FixedUpdate()
     {
@@ -67,14 +79,42 @@ public class C_Worldmap : MonoBehaviour
     //Fonction qui lance le niveau en question.
     public void SelectLevel(InputAction.CallbackContext context)
     {
-        if (context.performed && currentPoint.Islocked == false)
+        if (context.performed && currentPoint.Islocked == false&&currentPoint.IsCorner!=true)
         {
             //GameManager.instance.ChangeActionMap("TempsMort");
 
-          
-            
-           
 
+                switch (currentPoint.name)
+                {
+                    case "lvl1":
+                    currentPoint.right.right.GetComponent<C_destination>().Islocked = false;
+                    currentPoint.right.up.GetComponent<C_destination>().Islocked = false;
+                    currentPoint.right.right.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    currentPoint.right.up.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    break;
+
+                    case "lvl2a":
+                    currentPoint.right.GetComponent<C_destination>().Islocked = false;
+                    currentPoint.down.GetComponent<C_destination>().Islocked = true;
+                    currentPoint.down.right.GetComponent<C_destination>().Islocked = true;
+                    break;
+                    case "lvl2b":
+                    currentPoint.up.GetComponent<C_destination>().Islocked = false;
+                    currentPoint.left.GetComponent<C_destination>().Islocked = true;
+                    currentPoint.left.up.GetComponent<C_destination>().Islocked = true;
+                    break;
+                    case "lvl3":
+                    currentPoint.left.GetComponent<C_destination>().Islocked = true;
+                    currentPoint.down.GetComponent<C_destination>().Islocked = true;
+                    break;
+                    default:
+                        break;
+                }
+            
+
+            currentPoint.GetComponent<C_destination>().IsDone = true;
+            currentPoint.GetComponent<C_destination>().Islocked = true;
+            currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
             //Set Les data du TM et C dans le GameManager.
             GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
 
@@ -178,30 +218,30 @@ public class C_Worldmap : MonoBehaviour
         {
             if(i==-1)
             {
-                yield return MoveToNextPoint(transform, point[i + 1],Follower.transform,point);
+                yield return MoveToNextPoint(transform, point[i + 1],point);
                 //yield return FollowerMoveToNextPoint(Follower.transform, point[i + 1], point);
             }
             else
-                yield return MoveToNextPoint(point[i],point[i+1], Follower.transform, point);
+                yield return MoveToNextPoint(point[i],point[i+1],  point);
                 //yield return FollowerMoveToNextPoint(point[i], point[i + 1], point);
         } 
     }
-    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2,Transform transform3, Transform[]list)
+    private IEnumerator MoveToNextPoint(Transform transform1, Transform transform2, Transform[]list)
     {
         float ellapsed = 0;
         float distance = (transform2.position - transform1.position).magnitude;
-        float distance2 = (transform2.position - transform3.position).magnitude;
+        
         float maxTime = distance / (moveSpeed*list.Length);
-        float maxTime2 = distance2 / (moveSpeed2 * list.Length);
+       
         Vector3 a=transform1.position;
         Vector3 b=transform2.position;
-        Vector3 c=transform3.position;
+       
         while(ellapsed<maxTime)
         {
             ellapsed += Time.deltaTime; 
             transform.position = Vector3.Lerp(a, b, ellapsed / maxTime);
 
-            Follower.transform.position = Vector3.Lerp(c, b, ellapsed / maxTime2);
+          
            
             yield return null;
         }

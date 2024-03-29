@@ -28,8 +28,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<EActorClass> myActor = new List<EActorClass>();
 
+    [Header("Map")]
     [SerializeField]
     int[] niveauTermine;
+
+    [SerializeField] public List<C_destination> levels = new List<C_destination>();
 
     [SerializeField]
     List<GameObject> team = new List<GameObject>();
@@ -143,7 +146,10 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentTM);
         Debug.Log(currentC);
     }
-
+    public void GetLevels()
+    {
+    
+    }
     public SO_TempsMort GetDataTempsMort()
     {
         return currentTM;

@@ -259,16 +259,20 @@ public class C_TempsLibre : MonoBehaviour
         {
             currentButton.transform.GetChild(0).gameObject.SetActive(false);
         }
+        for(int i=0;i<characters.Count;i++)
+        {
+            TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", false);
+        }
         currentButton = Es.currentSelectedGameObject;
         if (currentButton.transform.GetChild(0) != null)
         {
             currentButton.transform.GetChild(0).gameObject.SetActive(true);
         }
         for(int i =0;i<characters.Count;i++)
-        {
-            TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", false);
+        {    
             if (currentButton.name == characters[i].name + "CharacterChoice")
             {
+                Debug.Log(characters[i].name + "CharacterChoice");
                 actorActif = characters[i];
                 TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", true);
             }
