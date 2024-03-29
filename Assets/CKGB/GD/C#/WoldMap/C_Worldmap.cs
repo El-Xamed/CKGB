@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class C_Worldmap : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class C_Worldmap : MonoBehaviour
     [SerializeField]
     GameObject actor;
 
-
+    [SerializeField] GameObject Bulle;
+    [SerializeField] TMP_Text text;
 
 
     [SerializeField] Text UIlevel;

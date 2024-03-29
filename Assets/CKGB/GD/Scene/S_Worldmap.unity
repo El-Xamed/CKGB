@@ -1079,6 +1079,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6623429575098774954, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623429575098774954, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623429575098774954, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623429575098774954, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -1499,6 +1511,8 @@ MonoBehaviour:
   uppath: []
   downpath: []
   actor: {fileID: 5199208835674813161, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+  Bulle: {fileID: 0}
+  text: {fileID: 0}
   UIlevel: {fileID: 1081640529}
 --- !u!212 &993408252
 SpriteRenderer:
@@ -2615,7 +2629,7 @@ PrefabInstance:
       objectReference: {fileID: 1783852786}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: IsDone
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: dataTM
@@ -2627,7 +2641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: Islocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: leveltext
