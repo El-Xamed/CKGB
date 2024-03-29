@@ -15,7 +15,7 @@ VAR IDrevasser = 0
 //blabla
 
 Tu prends un moment pour fermer les yeux.#Bulle:NimuHautDroite
-C’est quelque chose que tu fais de plus en plus souvent. 
+C’est quelque chose que tu fais de plus en plus souvent. #Bulle:NimuHautDroite
 Tu ne ressens plus vraiment le besoin de bouger. #Bulle:NimuHautDroite
 Est-ce que c’est un signe ?#Bulle:NimuHautDroite
 Être là ou tu es te suffit.#Bulle:NimuHautDroite
@@ -23,7 +23,7 @@ Depuis plusieurs années tu te sens… Accomplie.#Bulle:NimuHautDroite
 Fière. 
 Ton ptit gars à pas toujours les idées bien alignées, #Bulle:NimuHautDroite
 mais il est sur la bonne voie.#Bulle:NimuHautDroite
-Ses adelphes et ses cousins sont pas pires.
+Ses adelphes et ses cousins sont pas pires.#Bulle:NimuHautDroite
 Tu as vraiment fais un bon travail.#Bulle:NimuHautDroite
 Enfin, pas que tu aies grands choses à voir avec le faits qu’ils soient géniaux.#Bulle:NimuHautDroite
 Il se débrouille très bien tout seul pour ça.#Bulle:NimuHautDroite
@@ -49,8 +49,8 @@ La plupart du temps, tu te sens totalement lucide et en pleine possession de tes
 Mais parfois, les douleurs qui constellent ton corps se font lancinantes, et tu sens que tu perds un peu pieds.#Bulle:NimuHautDroite
 Sans doute le soleil. Qu’est-ce que ça tape aujourd’hui.#Bulle:NimuHautDroite
 Satanée couche d’ozone. Chiffe molle.#Bulle:NimuHautDroite
-Combien de temps est-ce qu’elle va mettre à se remettre sur pied ?
-Ça fait des années que tu t’es rétablies toi.
+Combien de temps est-ce qu’elle va mettre à se remettre sur pied ?#Bulle:NimuHautDroite
+Ça fait des années que tu t’es rétablies toi.#Bulle:NimuHautDroite
 Elle pense vraiment qu’elle peut rester en morceau, à se reposer à jamais ? #Bulle:NimuHautDroite
 C’est pas une ptite apocalypse qui va la mettre au tapis quand même. #Bulle:NimuHautDroite
 Tu soupir en te massant l’arête du nez. #Bulle:NimuHautDroite

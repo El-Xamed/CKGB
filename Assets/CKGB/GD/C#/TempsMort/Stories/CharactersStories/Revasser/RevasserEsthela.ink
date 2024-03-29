@@ -41,7 +41,7 @@ La vie à cette époque à l’air définitivement bien compliquée. #Bulle:Esth
 ===Revasser1===
 
 //blabla
-Les mains sous ta cape, tu carresse instinctivement une des balles de jonglage dans les poches de ta robe.
+Les mains sous ta cape, tu carresse instinctivement une des balles de jonglage dans les poches de ta robe..#Bulle:EsthelaHautDroite
 Les gens sont toujours surpris quand ils apprennent que tu les portent tout le temps sur toi.#Bulle:EsthelaHautDroite
 A quoi est-ce qu’ils s’attendaient ?#Bulle:EsthelaHautDroite
 Tu en sors une, et commence à la lancer et la rattraper d’une main. Ca te fais te sentir bien.#Bulle:EsthelaHautDroite
@@ -60,13 +60,13 @@ Tu ne dira jamais assez merci à tes amis du cirque pour te l’avoir offerte.#B
 Pour t’avoir initié à leur monde. Pour t’avoir fait l’une des leurs.#Bulle:EsthelaHautDroite
 Tu ne t’es jamais sentie différente la-bas. Pourtant, tu ne les connaissais pas il y a un mois. #Bulle:EsthelaHautDroite
 Ca avait été comme si… Comme si tu avais toujours été un poisson, et qu’on t’avais jeté dans l’eau pour la première fois.#Bulle:EsthelaHautDroite
-Tu n’étais plus seule, et pourtant tu n’as jamais été aussi libre.
-Tu sors deux autres balles.
-Ce n’est pas vraiment possible de jouer à deux balles. On peut le faire, plus ou moins,
+Tu n’étais plus seule, et pourtant tu n’as jamais été aussi libre..#Bulle:EsthelaHautDroite
+Tu sors deux autres balles..#Bulle:EsthelaHautDroite
+Ce n’est pas vraiment possible de jouer à deux balles. On peut le faire, plus ou moins,.#Bulle:EsthelaHautDroite
 mais c’est bizarre, car tout le concept du jonglage repose sur le fait de ne pas avoir assez de mains mais de faire avec. #Bulle:EsthelaHautDroite
 
 Tu lance une balle.#Bulle:EsthelaHautDroite
-Le destin tient à si peu de choses. Elle retombe.
+Le destin tient à si peu de choses. Elle retombe..#Bulle:EsthelaHautDroite
 Tu en lance une autre pour pouvoir l’accueillir. On est tous lancés dans des directions différentes. La deuxieme balle retombe.#Bulle:EsthelaHautDroite
 Tu dois en lancer une nouvelle pour avoir la place de la ramasser.#Bulle:EsthelaHautDroite
 Et il suffit d’un rien pour qu’on croise celle d’une autre personne. Elle entame sa cloche, et tu relance celle de l’autre coté.#Bulle:EsthelaHautDroite

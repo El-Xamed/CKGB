@@ -16,7 +16,7 @@ VAR IDrevasser = 0
 
 Les lumières vives des évènements -passés et à venir- de la journée flash devant tes yeux. #Bulle:MorganHautGauche
 Tu as besoin de temps. Pour digérer tes pensées. Pour te préparer.#Bulle:MorganHautGauche
-Tu fais quelques pas à l’écart des autres, tes yeux rivés vers le ciel. 
+Tu fais quelques pas à l’écart des autres, tes yeux rivés vers le ciel. #Bulle:MorganHautGauche
 #Bulle:MorganHautGauche
 Ta main vient caresser le carnet de poésie logé dans ta poche. Tu souris. Tu ne sors jamais sans lui.#Bulle:MorganHautGauche
 Tu t’assois par terre et commence à mâchouiller ton stylo.#Bulle:MorganHautGauche
@@ -25,9 +25,9 @@ Des gens ont déjà essayé de te guider vers la méditation ou l’exercice phy
 Mais rien n’a jamais aussi bien marché que l’art-thérapie.#Bulle:MorganHautGauche
 Tu commence à griffonner.#Bulle:MorganHautGauche
 De quoi tu as envie ? #Bulle:MorganHautGauche
-Tu te sens d’humeur haïku aujourd’hui.
+Tu te sens d’humeur haïku aujourd’hui.#Bulle:MorganHautGauche
 #Bulle:MorganHautGauche
-Depuis quelques semaines, c’est devenu ta marotte.
+Depuis quelques semaines, c’est devenu ta marotte.#Bulle:MorganHautGauche
 #Bulle:MorganHautGauche
 5, 7, 5. #Bulle:MorganHautGauche
 La structure simple et stable des syllabes t’apporte du réconfort.#Bulle:MorganHautGauche
@@ -58,7 +58,7 @@ La foudre dans tes épaules.#Bulle:MorganBasGauche
 La vitesse de ta respiration. #Bulle:MorganBasGauche
 Tu décroche un des tes stylos d’une de tes poches, et commence à le faire tourner entre tes doigts.#Bulle:MorganBasGauche
 Tu cherche quelque chose contre lequel t’adosser. Tes doigts frole le papier contenu dans tes poches, à la recherche de ton carnet dans un océan de brouillons, de notes et de penses-bête.#Bulle:MorganBasGauche
-Quelque chose t’arrête cependant.
+Quelque chose t’arrête cependant.#Bulle:MorganHautGauche
 #Bulle:MorganBasGauche
 La pointe de ton stylo plume touche la fibre végétale. N’es tu pas entrain d’entretenir un cercle vicieux ? #Bulle:MorganBasGauche
 Tu t’es mit dans la tête que l’art thérapie était une bonne manière de gérer tes sentiments. Mais est-ce que c’est vraiment le cas ?#Bulle:MorganBasGauche
