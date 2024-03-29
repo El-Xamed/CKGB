@@ -118,7 +118,8 @@ public class C_Stats : MonoBehaviour
             for (int i = listEnergie.Count; i > myActor.GetComponent<C_Actor>().GetcurrentEnergy(); i--)
             {
                 //Detruit les points en trop.
-                Destroy(listEnergie[i]);
+                Debug.Log(i);
+                Destroy(listEnergie[i -1]);
             }
         }
         #endregion
