@@ -453,24 +453,24 @@ public class C_Challenge : MonoBehaviour
         listRes = new List<ActorResolution>();
 
         //Initialise la prochaine cata.
-        if (currentStep.useCata)
+        //Check si il n'est pas null.
+        if (currentCata == null)
         {
-            //Check si il n'est pas null.
-            if (currentCata == null)
+            currentCata = myChallenge.listCatastrophy[0];
+
+            if (currentStep.useCata)
             {
-                currentCata = myChallenge.listCatastrophy[0];
+                currentCata.InitialiseCata(listCase, myTeam);
+
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    thisActor.SetCurrentCata(currentCata);
+                }
+
+                canIniCata = false;
             }
-
-            currentCata.InitialiseCata(listCase, myTeam);
-
-            foreach (C_Actor thisActor in myTeam)
-            {
-                thisActor.SetCurrentCata(currentCata);
-            }
-
-            canIniCata = false;
         }
-
+        
         //Joue l'animation.
         vfxPlayerTurn.GetComponent<Animator>().enabled = true;
 
