@@ -13,17 +13,29 @@ MonoBehaviour:
   m_Name: SO_action1step1tuto
   m_EditorClassIdentifier: 
   buttonText: Attraper tes lunettes
-  LogsCanMakeAction: Je rammase mes lunettes
-  LogsCantMakeAction: Impossible de rammaser mes lunettes
-  coutEnergy: 2
-  coutCalm: 3
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 1
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
+  LogsMakeAction: "Tu te sens \xE0 poil sans elles. Tu roules jusqu\u2019\xE0 l\u2019\xE9tag\xE8re
+    qui te sert de table de nuit. Un vrai Coolkid est toujours pr\xEAt. Tu poses
+    la monture sur ton nez. Voil\xE0. Maintenant, la journ\xE9e peut commencer."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats: []
+      move:
+        whatMove: 3
+        isTp: 0
+        nbMove: 3
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

@@ -12,17 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action2step2tuto
   m_EditorClassIdentifier: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 2
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  caseTarget: []
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 0}
   buttonText: "Attraper M\xE9m\xE9-L\xE9on"
-  TC: {fileID: 0}
+  LogsMakeAction: "Tu sens une boule de tissu au bout de ton pied. Tu l\u2019as p\xEAche
+    d\u2019un mouvement de jambe, te penche et l\u2019attrape dans tes bras. C\u2019est
+    M\xE9m\xE9-L\xE9on ! La peluche de cam\xE9l\xE9on que tu as depuis que tu es
+    tout petit. Qu\u2019est-ce que tu ferai sans elle ? La serrant contre ta poitrine,
+    tu sens une vague d\u2019apaisement te parcourir."
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
