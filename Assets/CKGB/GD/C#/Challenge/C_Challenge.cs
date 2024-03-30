@@ -210,6 +210,12 @@ public class C_Challenge : MonoBehaviour
 
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
+
+        if (currentStep.useCata)
+        {
+            currentCata = myChallenge.listCatastrophy[0];
+        }
+
         currentActor = myTeam[0];
         UpdateUi();
 
@@ -311,9 +317,19 @@ public class C_Challenge : MonoBehaviour
                             //Update UI
                             thisActor.GetComponent<C_Actor>().UpdateUiStats();
 
+                            Debug.Log(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction);
+                            Debug.Log(uiGoodAction.transform);
+
                             //Mise en place du VFX de bonne action.
-                            GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
-                            thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
+                            if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
+                            {
+                                GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                                //thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
+                            }
+                            else
+                            {
+                                Debug.LogWarning("Pas de vfx good action de détecté !");
+                            }
 
                             myTeam.Add(thisActor.GetComponent<C_Actor>());
                         }
@@ -349,8 +365,15 @@ public class C_Challenge : MonoBehaviour
                     thisActor.UpdateUiStats();
 
                     //Mise en place du VFX de bonne action.
-                    GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
-                    thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
+                    if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
+                    {
+                        GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                        //thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Pas de vfx good action de détecté !");
+                    }
 
                     myTeam.Add(thisActor);
                 }
@@ -454,6 +477,8 @@ public class C_Challenge : MonoBehaviour
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
+
+
 
         //Initialise la prochaine cata.
         if (currentStep.useCata)
@@ -586,7 +611,8 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Bonne action");
 
             //Vfx de bonna action.
-            currentResolution.actor.GetDataActor().vfxUiGoodAction.SetTrigger("GoodAction");
+            GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name+"(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
+            //currentResolution.actor.GetDataActor().vfxUiGoodAction.SetTrigger("GoodAction");
 
             //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
             canIniCata = true;

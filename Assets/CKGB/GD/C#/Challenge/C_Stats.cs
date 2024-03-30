@@ -104,7 +104,7 @@ public class C_Stats : MonoBehaviour
                 newEnergieGameObject.name = "UI_Stats_" + myActor.name + "_Energie_Pastille_ " + (i + 1);
                 newEnergieGameObject.AddComponent<Image>();
                 newEnergieGameObject.GetComponent<Image>().sprite = spriteEnergie;
-                newEnergieGameObject.transform.parent = uiEnergie.transform;
+                //newEnergieGameObject.transform.parent = uiEnergie.transform;
                 newEnergieGameObject.transform.localScale = Vector3.one;
                 newEnergieGameObject.transform.localPosition = Vector3.zero;
 

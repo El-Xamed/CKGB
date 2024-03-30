@@ -758,6 +758,9 @@ public class C_TempsLibre : MonoBehaviour
     {
         foreach (GameObject c in characters)
         {
+            Debug.Log(c.name + " Passe dans le GameManager");
+
+            Debug.Log(c.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction);
             c.transform.parent = GameManager.instance.transform;
             c.GetComponent<C_Actor>().HasObserved = false;
             c.GetComponent<C_Actor>().HasPapoted = false;
