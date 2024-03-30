@@ -735,7 +735,7 @@ public class C_Challenge : MonoBehaviour
     {
         if (canGoNext)
         {
-            if(GameManager.instance.currentC.name=="SO_lvl1")
+            if(GameManager.instance.currentC.name!="SO_Tuto")
             {
                 SceneManager.LoadScene("S_WorldMap");
             }
