@@ -41,7 +41,10 @@ public class C_Worldmap : MonoBehaviour
         if (instance == null)
             instance = this;
         #endregion
-        
+
+        DontDestroyOnLoad(gameObject);
+
+
     }
     void Start()
     {
@@ -128,7 +131,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
             //Set Les data du TM et C dans le GameManager.
             GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
-
+            startPoint = currentPoint;
             AddActorInTeam();
             Debug.Log("Load Scene...");
             SceneManager.LoadScene("S_TempsLibre");
