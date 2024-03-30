@@ -165,7 +165,7 @@ public class C_TempsLibre : MonoBehaviour
             Observage = GameManager.instance.GetDataTempsMort().Observer;
             for (int i = 0; i < GameManager.instance.GetDataTempsMort().startPos.Length; i++)
             {
-                SpawnParent.transform.GetChild(i).position = GameManager.instance.GetDataTempsMort().startPos[i].position;
+                SpawnParent.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition = GameManager.instance.GetDataTempsMort().startPos[i].position;
             }
             foreach (GameObject thisActor in GameManager.instance.GetTeam())
             {
@@ -180,8 +180,13 @@ public class C_TempsLibre : MonoBehaviour
 
                         characters.Add(thisActor);
                         characterNB++;
-                        thisActor.transform.SetParent(SpawnParent.transform) ;
-                        thisActor.GetComponent<RectTransform>().anchoredPosition = SpawnParent.transform.GetChild(characterNB).position;
+                        thisActor.GetComponent<RectTransform>().parent= SpawnParent.transform.GetChild(characterNB).GetComponent<RectTransform>() ;
+                        thisActor.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+                        thisActor.transform.GetChild(0).gameObject.SetActive(true);
+                        thisActor.transform.GetChild(1).gameObject.SetActive(true);
+                        thisActor.transform.GetChild(3).gameObject.SetActive(true);
+                        thisActor.transform.GetChild(4).gameObject.SetActive(true);
+                        thisActor.transform.GetChild(5).gameObject.SetActive(false);
                     }
                     else
                     {
@@ -241,7 +246,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void continueStory(InputAction.CallbackContext context)
     {
-
+        Debug.Log("continue");
         if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
         {
             GameManager.instance.ContinueStory();

@@ -737,10 +737,18 @@ public class C_Challenge : MonoBehaviour
         {
             if(GameManager.instance.currentC.name!="SO_Tuto")
             {
-                SceneManager.LoadScene("S_WorldMap");
+                foreach (C_Actor c in myTeam)
+                {
+                    c.transform.parent = GameManager.instance.transform;
+                }
+                    SceneManager.LoadScene("S_WorldMap");
             }
             else
             {
+                foreach (C_Actor c in myTeam)
+                {
+                    c.transform.parent = GameManager.instance.transform;
+                }
                 GameManager.instance.SetDataLevel(tm1, c1 );
                 SceneManager.LoadScene("S_TempsLibre");
             }
