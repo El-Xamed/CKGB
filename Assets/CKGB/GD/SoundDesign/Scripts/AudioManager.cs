@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    
-
     public AudioSource source;
     public static AudioManager instance;
     public Sound[] sounds;
@@ -40,8 +38,6 @@ public class AudioManager : MonoBehaviour
         instance = this;
         Play("MusiqueTuto");
 
-      
-
     } 
 
         public void Play(string name)
@@ -60,6 +56,25 @@ public class AudioManager : MonoBehaviour
         p.source.Play();
         Debug.Log("re,h");
         }
+
+    public void MuteMusic(string name)
+    {
+        Sound p = System.Array.Find(sounds, sound => sound.name == name);
+
+        p.source.volume = 0;
+
+        /*
+        if (p.source.volume == 0)
+        {
+            p.source.volume = 1;
+            return;
+        }
+        else
+        {
+            p.source.volume = 0;
+            return;
+        }*/
+    }
     
     
     [System.Serializable]

@@ -182,6 +182,11 @@ public class C_Interface : MonoBehaviour
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Actions;
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.Play("SfxSonDeConfirmation");
+        }
     }
 
     //Pour accéder au logs.
@@ -201,12 +206,22 @@ public class C_Interface : MonoBehaviour
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Traits;
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.Play("SfxSonDeConfirmation");
+        }
     }
 
     //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
-        
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.Play("SfxRetourArriere");
+        }
+
         switch (currentInterface)
         {
             case Interface.Actions:

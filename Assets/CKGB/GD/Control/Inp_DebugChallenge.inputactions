@@ -1,0 +1,76 @@
+{
+    "name": "Inp_DebugChallenge",
+    "maps": [
+        {
+            "name": "Challenge",
+            "id": "b72017a9-ccbb-4aa5-8117-ca7c4ffe4bb7",
+            "actions": [
+                {
+                    "name": "Challenge",
+                    "type": "PassThrough",
+                    "id": "73abec58-c220-47e9-aecc-7fee05ca5a1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SFX",
+                    "type": "PassThrough",
+                    "id": "77bfd61f-f335-49b9-828d-2b85cc975ee4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Reset",
+                    "id": "305de52b-5c4c-4a97-98b1-bb0cd6d4bc72",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Challenge",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Button",
+                    "id": "073875a8-59c9-4a7e-9802-bc2f99a10561",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Challenge",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "MuteMusic",
+                    "id": "810e358a-e4e8-4be1-ab1a-4bb7286364b9",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SFX",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Button",
+                    "id": "388759d5-974c-4aa9-8ff4-63d990a771a0",
+                    "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SFX",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

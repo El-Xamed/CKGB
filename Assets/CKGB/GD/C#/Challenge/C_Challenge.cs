@@ -158,6 +158,12 @@ public class C_Challenge : MonoBehaviour
     private void Start()
     {
         #region Initialisation
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.Play("MusiqueTuto");
+        }
+
         //Transition
         C_Transition.instance.OpenTransFlannel();
 
@@ -430,6 +436,11 @@ public class C_Challenge : MonoBehaviour
         //FeedBack
         currentActor.PlayAnimSelectAction();
 
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.Play("SfxSonDeConfirmation");
+        }
+
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
@@ -580,6 +591,12 @@ public class C_Challenge : MonoBehaviour
     void ResolutionTurn()
     {
         Debug.Log("Resolution trun !");
+
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.Play("Sfxlogs");
+        }
+
         eventSystem.SetSelectedGameObject(null);
 
         //Défini la phase de jeu.
