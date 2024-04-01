@@ -244,7 +244,7 @@ public class C_Challenge : MonoBehaviour
         {
             //Création d'une case
             C_Case newCase = Instantiate(myCase, plateau.transform);
-            newCase.GetComponentInChildren<TMP_Text>().text = i.ToString();
+            //newCase.GetComponentInChildren<TMP_Text>().text = i.ToString();
 
             //Change la dernière case par un autre sprite.
             if (i == myChallenge.nbCase -1)

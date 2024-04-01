@@ -2024,17 +2024,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292541602}
   m_CullTransparentMesh: 1
---- !u!114 &297278240 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2552519295231897050, guid: 8937f604dbcb6c4429a7effdde99834a, type: 3}
-  m_PrefabInstance: {fileID: 2552519294971328250}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87861308bbcb2e74088297fcbd3b8f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &299445140
 GameObject:
   m_ObjectHideFlags: 0
@@ -5004,7 +4993,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Respirer
         m_Mode: 1
@@ -6462,7 +6451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: PapotageFin
         m_Mode: 1
@@ -7157,7 +7146,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Revasser
         m_Mode: 1
@@ -7767,7 +7756,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: ActivateActionsButtons
         m_Mode: 1
@@ -9381,7 +9370,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Challenge
         m_Mode: 1
@@ -11817,7 +11806,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: PapotageFin
         m_Mode: 1
@@ -13363,7 +13352,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: Papoter
         m_Mode: 1
@@ -13784,7 +13773,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: ActivateActionsButtons
         m_Mode: 1
@@ -14075,7 +14064,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: ActivateActionsButtons
         m_Mode: 1
@@ -15527,7 +15516,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: PapotageFin
         m_Mode: 1
@@ -18044,7 +18033,7 @@ MonoBehaviour:
   onTextShowed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: SetCanContinueToYes
         m_Mode: 1
@@ -18059,7 +18048,7 @@ MonoBehaviour:
   onTypewriterStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297278240}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: C_TempsMort, Assembly-CSharp
         m_MethodName: SetCanContinueToNo
         m_Mode: 1
@@ -19191,6 +19180,10 @@ PrefabInstance:
     - target: {fileID: 2929715506357219768, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929715506357219768, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929715506357219769, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: musicChallenge

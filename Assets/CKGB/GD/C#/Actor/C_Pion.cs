@@ -13,30 +13,32 @@ public class C_Pion : MonoBehaviour
     //Pour faire déplacer l'actor dans le challenge. PEUT ETRE AUSSI UTILISE DANS LE TM MAIS C'EST PAS SETUP POUR ET C'EST PAS IMPORTANT.
     public virtual void MoveActor(List<C_Case> plateau, int newPosition)
     {
+        Debug.Log(newPosition);
+
         //Detection de si le perso est au bord. (TRES UTILE QUAND UN PERSONNAGE SE FAIT POUSSER)
         if (newPosition < 0)
         {
             //Déplace le perso à droite du pleteau.
-            transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, transform.position.z);
-            GetComponent<RectTransform>().localPosition = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, 0, plateau[plateau.Count - 1].transform.position.z);
+            //GetComponent<RectTransform>().localPosition = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, transform.position.z);
             position = plateau.Count - 1;
         }
         else if (newPosition > plateau.Count - 1)
         {
             //Déplace le perso à gauche du plateau.
-            transform.position = new Vector3(plateau[0].transform.position.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(plateau[0].transform.position.x, 0, plateau[0].transform.position.z);
             position = 0;
         }
         else
         {
             //Déplace le perso.
-            transform.position = new Vector3(plateau[newPosition].transform.position.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(plateau[newPosition].transform.position.x, 0, plateau[newPosition].transform.position.z);
             position = newPosition;
         }
 
         //Recentre le perso.
         //Centrage sur la case et position sur Y.
-        transform.localPosition = new Vector3();
+        //transform.position = new Vector3();
         //GetComponent<RectTransform>().localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
 
         //Check si l'objet est un actor

@@ -208,8 +208,8 @@ public class C_ActionButton : MonoBehaviour
                         }
                         else
                         {
-                            listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText((newPosition + 1).ToString(), Color.green) + ".");
-                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText((newPosition + 1).ToString(), Color.green) + ".");
+                            listLogsPreview.Add(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText(newPosition.ToString(), Color.green) + ".");
+                            Debug.Log(GetColorText(thisActor.name, Color.cyan) + " va se déplacer sur la case " + GetColorText(newPosition.ToString(), Color.green) + ".");
                         }
                     }
                 }
