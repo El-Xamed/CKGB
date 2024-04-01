@@ -13,13 +13,13 @@ public class C_Worldmap : MonoBehaviour
 {
     public static C_Worldmap instance;
     #region variables
-    [SerializeField]C_destination startPoint;
+    [SerializeField]public C_destination startPoint;
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] float moveSpeed2 = 0.9f;
 
-    [SerializeField] C_destination[] allMapPoints;
-    [SerializeField] C_destination currentPoint;
-    [SerializeField] C_destination Left, Right, Up, Down;
+    [SerializeField] List<C_destination> allMapPoints=new List<C_destination>();
+    [SerializeField] public C_destination currentPoint;
+    [SerializeField] C_destination Leftlevel, Rightlevel, Uplevel, Downlevel;
     [SerializeField] Transform[] leftpath, rightpath, uppath, downpath;
 
     bool canMove = true;
@@ -37,57 +37,124 @@ public class C_Worldmap : MonoBehaviour
     #region methodes
     private void Awake()
     {
-        #region Singleton
-        if (instance == null)
-            instance = this;
-        #endregion
-
-        DontDestroyOnLoad(gameObject);
 
 
     }
     void Start()
     {
-        if(SceneManager.GetSceneByName("S_Worldmap")==SceneManager.GetActiveScene())
+        if(GameManager.instance!=null)
         {
-            allMapPoints = FindObjectsOfType<C_destination>();
-            for (int i = 0; i < allMapPoints.Length; i++)
+            GameManager.instance.W = this;
+        }
+        if (GameObject.Find("lvl1")!=null)
+        {
+            allMapPoints.Add(GameObject.Find("lvl1").GetComponent<C_destination>());
+        }
+        if (GameObject.Find("lvl2a") != null)
+        {
+            allMapPoints.Add(GameObject.Find("lvl2a").GetComponent<C_destination>());
+        }
+        if (GameObject.Find("lvl2b") != null)
+        {
+            allMapPoints.Add(GameObject.Find("lvl2b").GetComponent<C_destination>());
+        }
+        if (GameObject.Find("lvl3") != null)
+        {
+            allMapPoints.Add(GameObject.Find("lvl3").GetComponent<C_destination>());
+        }
+       
+
+        if (GameObject.Find("lvl1") != null&&GameManager.instance.WorldstartPoint==0)
+        {
+            startPoint = allMapPoints[0];
+        }
+
+            for (int i = 0; i < allMapPoints.Count; i++)
             {
                 GameManager.instance.levels.Add(allMapPoints[i]);
             }
             initiateTheMapCharacterProtocol();
             //sets the initial position
-            currentPoint = startPoint;
-            transform.position = startPoint.transform.position;
+
+        startPoint = allMapPoints[GameManager.instance.WorldstartPoint];
+        currentPoint = startPoint;
+            transform.position = currentPoint.transform.position;
+        switch (currentPoint.name)
+        {
+            case "lvl1":
+                currentPoint.IsDone = true;currentPoint.Islocked = true;
+                currentPoint.right.right.GetComponent<C_destination>().Islocked = true;
+                currentPoint.right.up.GetComponent<C_destination>().Islocked = false;
+                currentPoint.right.up.right.Islocked = true;
+                currentPoint.right.right.GetComponent<SpriteRenderer>().color = Color.yellow;
+                currentPoint.right.up.GetComponent<SpriteRenderer>().color = Color.yellow;
+                break;
+
+            case "lvl2a":
+                currentPoint.right.GetComponent<C_destination>().Islocked = false;
+                currentPoint.down.GetComponent<C_destination>().Islocked = true;
+                currentPoint.down.right.GetComponent<C_destination>().Islocked = true;
+                currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;
+                currentPoint.down.GetComponent<SpriteRenderer>().color = Color.green;
+                currentPoint.down.right.GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case "lvl2b":
+                currentPoint.up.GetComponent<C_destination>().Islocked = false;
+                currentPoint.left.GetComponent<C_destination>().Islocked = true;
+                currentPoint.left.up.GetComponent<C_destination>().Islocked = true;
+                currentPoint.up.GetComponent<SpriteRenderer>().color = Color.yellow;
+                currentPoint.left.GetComponent<SpriteRenderer>().color = Color.green;
+                currentPoint.left.up.GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case "lvl3":
+
+                currentPoint.left.GetComponent<C_destination>().Islocked = true;
+                currentPoint.down.GetComponent<C_destination>().Islocked = true;
+
+                break;
+            default:
+                break;
+        }
 
 
 
-
-            //sets up the destinations
-            Left = currentPoint.left;
-            Right = currentPoint.right;
-            Up = currentPoint.up;
-            Down = currentPoint.down;
+        //sets up the destinations
+        Leftlevel = currentPoint.left;
+            Rightlevel = currentPoint.right;
+            Uplevel = currentPoint.up;
+            Downlevel = currentPoint.down;
 
             leftpath = currentPoint.leftPath;
             rightpath = currentPoint.rightPath;
             uppath = currentPoint.upPath;
             downpath = currentPoint.downPath;
-        }
+        
         
     }
     private void FixedUpdate()
     {
 
     }
-
+    public void SetGameManagerWorldData()
+    {
+        startPoint = currentPoint;
+        for(int i=0;i<allMapPoints.Count;i++)
+        {
+            if(startPoint==allMapPoints[i])
+            {
+                GameManager.instance.WorldstartPoint = i;
+                GameManager.instance.WorldcurrentPoint = i;
+            }
+        }
+       
+    }
     //Fonction qui lance le niveau en question.
     public void SelectLevel(InputAction.CallbackContext context)
     {
         if (context.performed && currentPoint.Islocked == false&&currentPoint.IsCorner!=true)
         {
             //GameManager.instance.ChangeActionMap("TempsMort");
-
+            SetGameManagerWorldData();
             currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
             currentPoint.GetComponent<C_destination>().IsDone = true;
                 switch (currentPoint.name)
@@ -131,7 +198,6 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
             //Set Les data du TM et C dans le GameManager.
             GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
-            startPoint = currentPoint;
             AddActorInTeam();
             Debug.Log("Load Scene...");
             SceneManager.LoadScene("S_TempsLibre");
@@ -143,51 +209,51 @@ public class C_Worldmap : MonoBehaviour
 
     public void moveUp(InputAction.CallbackContext context)
     {
-        if (context.started && Up != null && Up.Islocked == false&&canMove==true)
+        if (context.started && Uplevel != null && Uplevel.Islocked == false&&canMove==true)
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(uppath));
             //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
-            currentPoint = Up;
+            currentPoint = Uplevel;
                 updateDestinations();            
-            Debug.Log("Up");
+            Debug.Log("Uplevel");
             canMove = true;          
         }
     }
     public void moveLeft(InputAction.CallbackContext context)
     {
-        if (context.started && Left != null && Left.Islocked == false&&canMove==true)
+        if (context.started && Leftlevel != null && Leftlevel.Islocked == false&&canMove==true)
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(leftpath));
             //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
-            currentPoint = Left;
+            currentPoint = Leftlevel;
                 updateDestinations();           
-            Debug.Log("Left");
+            Debug.Log("Leftlevel");
             canMove = true;          
         }
     }
     public void moveRight(InputAction.CallbackContext context)
     {
-        if (context.started && Right != null && Right.Islocked == false&&canMove==true)
+        if (context.started && Rightlevel != null && Rightlevel.Islocked == false&&canMove==true)
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(rightpath));
             //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
-            currentPoint = Right;
+            currentPoint = Rightlevel;
                 updateDestinations();
-            Debug.Log("Right");
+            Debug.Log("Rightlevel");
             canMove = true;      
         }
     }
     public void moveDown(InputAction.CallbackContext context)
     {
-        if (context.started && Down != null && Down.Islocked == false&&canMove==true)
+        if (context.started && Downlevel != null && Downlevel.Islocked == false&&canMove==true)
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(downpath));
             //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);           
-                currentPoint = Down;
+                currentPoint = Downlevel;
                 updateDestinations();            
             Debug.Log("Down");
             canMove = true;         
@@ -200,17 +266,17 @@ public class C_Worldmap : MonoBehaviour
     void updateDestinations()
     {
         if (currentPoint.left != null)
-            Left = currentPoint.left;
-        else Left = null;
+            Leftlevel = currentPoint.left;
+        else Leftlevel = null;
         if (currentPoint.right != null)
-            Right = currentPoint.right;
-        else Right = null;
+            Rightlevel = currentPoint.right;
+        else Rightlevel = null;
         if (currentPoint.up != null)
-            Up = currentPoint.up;
-        else Up = null;
+            Uplevel = currentPoint.up;
+        else Uplevel = null;
         if (currentPoint.down != null)
-            Down = currentPoint.down;
-        else Down = null;
+            Downlevel = currentPoint.down;
+        else Downlevel = null;
 
         if (currentPoint.leftPath != null)
             leftpath = currentPoint.leftPath;

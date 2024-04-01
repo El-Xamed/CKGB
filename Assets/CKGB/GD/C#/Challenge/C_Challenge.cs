@@ -778,7 +778,15 @@ public class C_Challenge : MonoBehaviour
     {
         if (canGoNext)
         {
-            if(GameManager.instance.currentC.name!="SO_Tuto")
+            if (GameManager.instance.currentC.name != "SO_lvl3")
+            {
+                foreach (C_Actor c in myTeam)
+                {
+                    c.transform.parent = GameManager.instance.transform;
+                }
+                SceneManager.LoadScene("S_MainMenu");
+            }
+            if (GameManager.instance.currentC.name!="SO_Tuto")
             {
                 foreach (C_Actor c in myTeam)
                 {

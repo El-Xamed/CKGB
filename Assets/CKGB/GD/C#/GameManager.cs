@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     [Header("Map")]
     [SerializeField]
     int[] niveauTermine;
+    [SerializeField] public int WorldcurrentPoint = 0;
+    [SerializeField] public int WorldstartPoint = 0;
 
     [SerializeField] public List<C_destination> levels = new List<C_destination>();
 
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
     private const string Type_Tag = "Type";
 
     public C_TempsLibre TM;
+    public C_Worldmap W;
     #endregion
 
     private void Awake()
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        
         if (FindObjectOfType<C_TempsLibre>() != null)
         {
             TM = FindObjectOfType<C_TempsLibre>();
@@ -186,7 +190,7 @@ public class GameManager : MonoBehaviour
             //team[i].GetComponent<C_Actor>().SetPosition(initialPlayerPositionOnThisDestination[i]);
         }
     }
-
+    #region Dialogues
     public void EnterDialogueMode(TextAsset InkJSON)
     {
         Debug.Log(InkJSON.name);
@@ -653,5 +657,6 @@ public class GameManager : MonoBehaviour
             textToWriteIn.GetComponentInParent<Image>().enabled = false;
         }
     }
+    #endregion
     #endregion
 }
