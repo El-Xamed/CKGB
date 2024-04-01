@@ -401,22 +401,6 @@ MonoBehaviour:
     m_ActionName: TempsMort/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5ae597c8-0243-43a7-9564-735157bc5351
-    m_ActionName: Challenge/SelectCurrentButton[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5487983b-3b01-4e89-b72b-067eeb1dc38a
-    m_ActionName: Challenge/ResetChallenge
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b99505ec-be92-4fb8-abf0-6b66ebf09852
-    m_ActionName: Challenge/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8658b0c6-8ba6-4752-98e8-dbe8ce58fdb9
-    m_ActionName: Challenge/Submit[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 942d176b-0b8d-4683-a4c1-50ce05785591
     m_ActionName: TempsMort/Back[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1136,7 +1120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: Islocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: leveltext
@@ -3226,6 +3210,10 @@ PrefabInstance:
     - target: {fileID: 5978931268482471700, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978931268482471700, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5978931268482471701, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: testActor
