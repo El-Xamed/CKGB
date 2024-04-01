@@ -676,7 +676,7 @@ public class C_Challenge : MonoBehaviour
         if (!CheckGameOver())
         {
             //Update les acc
-            UpdateAccessories();
+            //UpdateAccessories();
 
             //Redéfini le début de la liste.
             currentActor = myTeam[0];
