@@ -783,6 +783,11 @@ public class C_Challenge : MonoBehaviour
     {
         if (canGoNext)
         {
+            foreach (C_Actor thisActor in myTeam)
+            {
+                thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+            }
+
             if (GameManager.instance.currentC.name != "SO_lvl3")
             {
                 foreach (C_Actor c in myTeam)
