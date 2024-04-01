@@ -2786,6 +2786,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 77bfd61f-f335-49b9-828d-2b85cc975ee4
     m_ActionName: Challenge/SFX[/Keyboard/semicolon]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1930138963}
+        m_TargetAssemblyTypeName: C_Challenge_Debug, Assembly-CSharp
+        m_MethodName: GoWorldMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 30e90c66-77f1-42e1-9a8c-67dc4d30c244
+    m_ActionName: Challenge/WorldMap[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge
