@@ -14,6 +14,8 @@ using static SO_Challenge;
 
 public class C_Challenge : MonoBehaviour
 {
+    [SerializeField] GameObject startGame;
+
     #region Mes variables
 
     #region De base
@@ -129,6 +131,8 @@ public class C_Challenge : MonoBehaviour
 
     private void Awake()
     {
+        startGame.SetActive(true);
+
         #region Racourcis
         canva = transform.GetChild(0).gameObject;
 

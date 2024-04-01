@@ -1033,6 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0512023a1e54dd24895740d3ce6a3a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGame: {fileID: 1378459810}
   myPhaseDeJeu: 0
   eventSystem: {fileID: 83058667}
   background: {fileID: 605952334}
@@ -2069,6 +2070,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5830666820850183979, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8553281364477429429, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2078,6 +2083,11 @@ PrefabInstance:
 --- !u!224 &1378459809 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5830666820612021611, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
+  m_PrefabInstance: {fileID: 1378459808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1378459810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5830666820850183979, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
   m_PrefabInstance: {fileID: 1378459808}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1468433190
