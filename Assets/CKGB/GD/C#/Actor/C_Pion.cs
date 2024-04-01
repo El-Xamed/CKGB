@@ -18,6 +18,7 @@ public class C_Pion : MonoBehaviour
         {
             //Déplace le perso à droite du pleteau.
             transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, transform.position.z);
+            GetComponent<RectTransform>().localPosition = new Vector3(plateau[plateau.Count - 1].transform.position.x, transform.position.y, transform.position.z);
             position = plateau.Count - 1;
         }
         else if (newPosition > plateau.Count - 1)
@@ -34,6 +35,8 @@ public class C_Pion : MonoBehaviour
         }
 
         //Recentre le perso.
+        //Centrage sur la case et position sur Y.
+        transform.localPosition = new Vector3();
         //GetComponent<RectTransform>().localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
 
         //Check si l'objet est un actor
