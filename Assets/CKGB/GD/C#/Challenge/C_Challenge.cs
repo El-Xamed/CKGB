@@ -193,6 +193,7 @@ public class C_Challenge : MonoBehaviour
         //Apparition des cases
         SpawnCases();
 
+
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
