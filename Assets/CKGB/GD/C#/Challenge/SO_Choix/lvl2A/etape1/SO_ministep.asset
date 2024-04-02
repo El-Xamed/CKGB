@@ -13,30 +13,27 @@ MonoBehaviour:
   m_Name: SO_ministep
   m_EditorClassIdentifier: 
   buttonText: Poser une planche
-  LogsCanMakeAction: "Tu prends une planche de bois dans la pile du caba-oui. Tu
-    esp\xE8re qu\u2019elle ne manquera \xE0 personne ? C\u2019est pour la bonne cause,
-    mais tu ne peux pas t\u2019emp\xEAcher d\u2019\xEAtre un peu nerveux. Tu viens
-    te placer sur la rive et tu la laisse tomber en travers du ruisseau. La terre
-    ramollie par le l\u2019eau fait un \u201Cplosh\u201D humide alors que la planche
-    s\u2019enfonce l\xE9g\xE8rement dedans. Mission accomplie ! Maintenant, il faudrait
-    quelque chose pour baliser le pont, pour que les gens sachent que c\u2019est
-    important de la laisser l\xE0. Tu pourrais facilement faire un panneau avec les
-    planches, mais pour \xE7a, il faudrait retrouver cette myst\xE9rieuse caisse
-    \xE0 outil."
-  LogsCantMakeAction: Pas possible
-  currentLogs: 
+  LogsMakeAction: "Tu prends une planche de bois dans la pile du caba-oui. Tu esp\xE8re
+    qu\u2019elle ne manquera \xE0 personne ? C\u2019est pour la bonne cause, mais
+    tu ne peux pas t\u2019emp\xEAcher d\u2019\xEAtre un peu nerveux. Tu viens te
+    placer sur la rive et tu la laisse tomber en travers du ruisseau. La terre ramollie
+    par le l\u2019eau fait un \u201Cplosh\u201D humide alors que la planche s\u2019enfonce
+    l\xE9g\xE8rement dedans. Mission accomplie ! Maintenant, il faudrait quelque
+    chose pour baliser le pont, pour que les gens sachent que c\u2019est important
+    de la laisser l\xE0. Tu pourrais facilement faire un panneau avec les planches,
+    mais pour \xE7a, il faudrait retrouver cette myst\xE9rieuse caisse \xE0 outil."
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
   listInteraction:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
-    actor: {fileID: 0}
-    accessories: {fileID: 0}
+    target: {fileID: 0}
     whatDirectionTarget: 0
     range: 0
     listTargetStats:

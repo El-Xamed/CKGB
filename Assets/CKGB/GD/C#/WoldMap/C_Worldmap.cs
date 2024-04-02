@@ -83,6 +83,7 @@ public class C_Worldmap : MonoBehaviour
         {
             case "lvl1":
                 currentPoint.IsDone = true;currentPoint.Islocked = true;
+                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
                 currentPoint.right.right.GetComponent<C_destination>().Islocked = true;
                 currentPoint.right.up.GetComponent<C_destination>().Islocked = false;
                 currentPoint.right.up.right.Islocked = true;
@@ -91,6 +92,8 @@ public class C_Worldmap : MonoBehaviour
                 break;
 
             case "lvl2a":
+                currentPoint.IsDone = true; currentPoint.Islocked = true;
+                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
                 currentPoint.down.GetComponent<C_destination>().Islocked = true;
                 currentPoint.down.right.GetComponent<C_destination>().Islocked = true;
@@ -99,6 +102,8 @@ public class C_Worldmap : MonoBehaviour
                 currentPoint.down.right.GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case "lvl2b":
+                currentPoint.IsDone = true; currentPoint.Islocked = true;
+                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
                 currentPoint.up.GetComponent<C_destination>().Islocked = false;
                 currentPoint.left.GetComponent<C_destination>().Islocked = true;
                 currentPoint.left.up.GetComponent<C_destination>().Islocked = true;
@@ -107,7 +112,8 @@ public class C_Worldmap : MonoBehaviour
                 currentPoint.left.up.GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case "lvl3":
-
+                currentPoint.IsDone = true; currentPoint.Islocked = true;
+                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
                 currentPoint.left.GetComponent<C_destination>().Islocked = true;
                 currentPoint.down.GetComponent<C_destination>().Islocked = true;
 
