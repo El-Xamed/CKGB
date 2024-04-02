@@ -12,23 +12,19 @@ Mes cheveux.#Bulle:MorganHautDroite
 
 Ils sont sur ta tête,<br> à ma connaissance.#Bulle:NimuHautGauche
 
-Il sont bien comme ça ?#Bulle:MorganHautDroite
+Ils sont bien comme ça ?#Bulle:MorganHautDroite
 
 Sur ta tête ?#Bulle:NimuHautGauche
 
-Tu te retournes partiellemet vers elle et fais ta fameuse moue inexpressive et sincèrement ennuyée jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
+Tu te retournes partiellement vers elle et fais ta fameuse moue inexpressive et sincèrement ennuyée jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
 
 Ils sont parfaits tes cheveux.#Bulle:NimuHautDroite
 
-Tu te retourne partiellemet vers elle et fais ta fameuse "moue inexpressive et sincèrement ennuyée" jusqu'à ce qu'elle concède d'arrêter ses bêtises. #Bulle:Narrateur
+Ok.<br>et j’ai pas de tâche de confiture dans mon dos ?#Bulle:MorganBasGauche
 
-Ils sont parfaits, tes cheveux.#Bulle:NimuHautDroite
+Tu te contortionnes de nouveau pour lui faire observer ta chemise.#Bulle:Narrateur
 
-Ok.<br>Et j’ai pas de tâche de confiture dans mon dos ?#Bulle:MorganBasGauche
-
-Tu te contortionnes de nouveau pour lui faire observer ta chemise.
-
-Mais<bounce>…</bounce> pourquoi t’aurai<br> de la confiture dans le<bounce>…</bounce><br> <shake a=0.5>Non<sahke> ! #Bulle:NimuHautDroite
+Mais<bounce>…</bounce> pourquoi t’aurai<br> de la confiture dans le<bounce>…</bounce><br> <shake>Non<shake> ! #Bulle:NimuHautDroite
 
 Tu pousses un soupir de soulagement et te frottes les mains un instant.#Bulle:Narrateur
 
@@ -37,7 +33,7 @@ Tu pousses un soupir de soulagement et te frottes les mains un instant.#Bulle:Na
 Prêt à partir, tu tapes successivement tes poches pour t'assurer que tout est bien à sa place (pour la 21e fois).#Bulle:Narrateur
 Tu fronces les sourcils.#Bulle:Narrateur
 
-Ah, et t’aurais pas vu mes <wave>clefs</wave> ?#Bulle:MorganHautauche
+Ah, et t’aurais pas vu mes <wave>clés</wave> ?#Bulle:MorganHautauche
 
 Mais tu vas décamper à la fin ?#Bule:NimuHautDroite
 
@@ -46,7 +42,7 @@ Je mets pas la main dessus ! #Bulle:MorganHautGauche
 
 Bah attends je vais te prêter les miennes.#Bulle:NimuHautGauche
 
-Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses clefs.#Bulle:Narrateur
+Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses clés.#Bulle:Narrateur
 
 Hm#Bulle:NimuHautDroite
 

@@ -14,9 +14,9 @@ VAR IDobserver = 0
 
 //blabla
 
-Tu tourne légèrement là tête.#Bulle:Narrateur
+Tu tournes légèrement là tête.#Bulle:Narrateur
 Click.#Bulle:Narrateur
-Comme la pellicule d’un appareil photo, tu sens que ton cerveau capture l’instant.#Bulle:Narrateur
+Comme la pellicule d’un appareil photo,<br> tu sens que ton cerveau capture l’instant.#Bulle:Narrateur
 L’odeur de cannelle et de menthe laissée par le thé. L’amertume d’un café oublié qui s’y emmèle.#Bulle:Narrateur
 La toile verte, débordante de tâche multicolore au travers de la fenêtre.#Bulle:Narrateur
 Les rayons de soleil cristallins qui transpercent l’espace par l’immense baie vitrée.#Bulle:Narrateur

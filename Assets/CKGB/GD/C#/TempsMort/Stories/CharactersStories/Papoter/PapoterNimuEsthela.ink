@@ -16,41 +16,41 @@ NIMU !!!!!#Bulle:EsthelaBasDroite
 
 Ah, tu as entendue ça ?#Bulle:NimuBasGauche
 
-CW : ??#Bulle:EsthelaBasDroite
+??#Bulle:EsthelaBasDroite
 
-C’était le bruit de mon coeur qui s’arrête. Tu viens de tuer une pauvre grand-mère.#Bulle:NimuBasGauche
+C’était le bruit de mon coeur qui s’arrête.<BR> Tu viens de tuer une pauvre grand-mère.#Bulle:NimuBasGauche
 
-Noooooooon ! Pardon je promets promets je vais être toooute calme et silencieuse à partir de maintenant !!#Bulle:EsthelaBasDroite
+Noooooooon !<BR> Pardon je promets je vais être toooute <BR>calme et silencieuse<br>à partir de maintenant !!#Bulle:EsthelaBasDroite
 
-Ptdr. Tu tiendra pas cinq minutes.#Bulle:NimuBasGauche
+Ptdr. Tu tiendras pas cinq minutes.#Bulle:NimuBasGauche
 
-Peut-être éventuellement que je pourrais être motivée par une petite histoire d’avant la singularité ?#Bulle:EsthelaBasDroite
+Peut-être éventuellement <br>que je pourrais <br>être motivée par <br>une petite histoire d’avant la singularité ?#Bulle:EsthelaBasDroite
 
-Nimu soupir lourdement. #Bulle:Narrateur
+Nimu soupire lourdement. #Bulle:Narrateur
 
-Roh la forceuse. T’en as pas eut assez à l’école ? Tu m’adresse jamais la parole pour autre chose.#Bulle:NimuBasGauche
+Roh la forceuse.<br> T’en as pas eu assez à l’école ? <br>Tu m’adresses jamais la parole <br>pour autre chose.#Bulle:NimuBasGauche
 
-Mais parce que t’as toujours refusé de m’en donner !!#Bulle:EsthelaBasDroite
+Mais parce que t’as toujours<br> refusé de m’en donner !!#Bulle:EsthelaBasDroite
 
 Esthélaaa..?#Bulle:NimuBasGauche
 
-Oups. Je voulais dire “mais parce que t’as toujours refusé de m’en donner”. ← en petit#Bulle:EsthelaBasDroite
+Oups. Je voulais dire <br>“mais parce que t’as toujours <br>refusé de m’en donner”.#Bulle:EsthelaBasDroite
 
- Si t’as autant le seum, pourquoi ne pas plutot aller poser tes questions à d’autres zoomers qui ne font rien de leur journée ?#Bulle:NimuBasGauche
+ Si t’as autant le seum,<br> pourquoi ne pas plutot<br> aller poser tes questions<br> à d’autres zoomers <br>qui ne font rien de leur journée ?#Bulle:NimuBasGauche
 
-Parce que la plupart sont morts. Ou sénile. Ou les deux. Et ce qui restent et bien… je suis mal à l’aise avec les inconnus.#Bulle:EsthelaBasDroite
+Parce que la plupart <br>sont morts. Ou sénile.<br> Ou les deux. Et ce qui<br> restent et bien… <br>je suis mal à l’aise avec les inconnus.#Bulle:EsthelaBasDroite
 
-Je comprends, Esthéla. Mais j’ai bien peur que ce combat t’appartienne. Maintenant, yeet. Morgan à besoin du soutient de ses amis.#Bulle:NimuBasGauche
+Je comprends, Esthéla.<br> Mais j’ai bien peur<br> que ce combat t’appartienne.<br> Maintenant, yeet. <br>Morgan à besoin du soutien de ses amis.#Bulle:NimuBasGauche
 
-J’ai aussi besoin de soutient d’une amie. Comment je pourrais soutenarisationner Morgan si j’ai moi même tu m’as pas soutenurisationnarisée alors que tu es mon amie ?#Bulle:EsthelaBasDroite
+J’ai aussi besoin de soutien<br> d’une amie. <br>Comment je pourrais<br> soutenarisationner Morgan <br>si j’ai moi même tu m’as pas soutenurisationnarisée <br>alors que tu es mon amie ?#Bulle:EsthelaBasDroite
 
- Esthéla, je suis profondément touchée. Mais je pense que ce n’est pas que à toi de décider du statu de notre relation.#Bulle:NimuBasGauche
+ Esthéla, je suis profondément touchée.<br> Mais je pense que ce n’est pas que<br> à toi de décider du statut de notre relation.#Bulle:NimuBasGauche
 
-Oh. Oh… Hrm. D’accord. Bah. Je vais soutenir Morgan alors. Navré de t’avoir dérangé.#Bulle:EsthelaBasDroite
+Oh. Oh… Hrm. D’accord.<br> Bah. Je vais soutenir<br> Morgan alors. <br>Navré de t’avoir dérangé.#Bulle:EsthelaBasDroite
 
-Mais l’amité est quelque chose qui peut évoluer avec le temps. Et tu sais quoi ? Je suis plutôt touchée que tu aies essayer de tenir ta parole. Ca a été agréable discuter #Bulle:NimuBasGauche
+Mais l’amité est quelque chose<br> qui peut évoluer avec le temps.<br> Et tu sais quoi ? <br>Je suis plutôt touchée<br> que tu aies essayé<br> de tenir ta parole.<br> Ca a été agréable discuter #Bulle:NimuBasGauche
 
-QUOI ?! YES TROP BIEN !! HAHA, MERCI MERCI !! RAAH TU VAS VOIR ON VA ÊTRE TELLEMENT AMIS ! ET BIENTOT, TOUS LES SECRETS DE L’ANCIEN MONDE SERONT MIEN !#Bulle:EsthelaBasDroite
+QUOI ?! <br>YES TROP BIEN !!<br> HAHA, MERCI MERCI !!<br> RAAH TU VAS VOIR ON VA ÊTRE TELLEMENT AMIES ! <br>ET BIENTOT, TOUS LES SECRETS DE L’ANCIEN MONDE SERONT MIEN !#Bulle:EsthelaBasDroite
 
 GM: …#Bulle:NimuBasGauche
 

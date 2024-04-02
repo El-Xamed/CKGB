@@ -14,7 +14,8 @@ Yo BG. Bien dormi ?#Bulle:NimuHaute
 
 ’uai. ’va ?#Bulle:MorganHautGauche
 
-Super. Juste, d’un POV pratique,#Bulle:NimuHautGauche
+Super. #Bulle:NimuHautGauche
+Juste, d’un POV pratique,#Bulle:NimuHautGauche
 Est-ce que dire des moitiés de mots<br>c’est un plan à long terme ?”#Bulle:NimuHautGauche
 
 ’tetre.#Bulle:MorganHautGauche
@@ -30,7 +31,9 @@ J’ai… <rainb>Un truc</rainb>. Aux marches.#Bulle:MorganHautGauche
 
 Ah. <rainb>Un truc</rainb>. Je vois.#Bulle:NimuHautGauche
 
-Tu espères sincèrement que ce ne soit pas le cas. Elle sourit. Tu réalises qu’il n’y a aucune chance qu’elle n’ai pas compris.#Bulle:Narrateur
+Tu espères sincèrement que ce ne soit pas le cas.#Bulle:Narrateur
+Elle sourit.
+Tu réalises qu’il n’y a aucune chance qu’elle n’ai pas compris.#Bulle:Narrateur
 
  Bah alors je suppose<br> que je vais manger <br>toute seule ce matin…#Bulle:NimuHautGauche
 
@@ -40,7 +43,7 @@ Tu te sens basculer, puis tu <i>cèdes</i>, incapable de lui resister.#Bulle:Nar
 
 Elle sourit d’un air satisfait.#Bulle:Narrateur
 
-<i>Bueño</i>, tu me refera six tartines de confiture<br> avec du beurre s’il te plait.#Bulle:NimuHautGauche
+<i>Bueño</i>, tu me referas six tartines de confiture<br> avec du beurre s’il te plait.#Bulle:NimuHautGauche
 //elle se met à lire. Lui s’approche de la table.
 
 <i>(ARG, LA TRAITRESSE.)</i> #Bulle:MorganHautDroite
