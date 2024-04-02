@@ -190,13 +190,6 @@ public class C_Challenge : MonoBehaviour
             }
         }
 
-        //Apparition des cases
-        SpawnCases();
-
-
-        //Place les acteurs sur les cases.
-        InitialiseAllPosition();
-
         #region Instance des data challenge.
         //Instancie le challenge
         myChallenge = SO_Challenge.Instantiate(myChallenge);
@@ -218,6 +211,12 @@ public class C_Challenge : MonoBehaviour
             }
         }
         #endregion
+
+        //Apparition des cases
+        SpawnCases();
+
+        //Place les acteurs sur les cases.
+        InitialiseAllPosition();
 
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
@@ -786,32 +785,21 @@ public class C_Challenge : MonoBehaviour
             foreach (C_Actor thisActor in myTeam)
             {
                 thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+                thisActor.transform.parent = GameManager.instance.transform;
             }
 
-            if (GameManager.instance.currentC.name != "SO_lvl3")
+            if (GameManager.instance.currentC.name == "SO_lvl3")
             {
-                foreach (C_Actor c in myTeam)
-                {
-                    c.transform.parent = GameManager.instance.transform;
-                }
                 SceneManager.LoadScene("S_MainMenu");
             }
-            if (GameManager.instance.currentC.name!="SO_Tuto")
+            if (GameManager.instance.currentC.name == "SO_Tuto")
             {
-                foreach (C_Actor c in myTeam)
-                {
-                    c.transform.parent = GameManager.instance.transform;
-                }
-                    SceneManager.LoadScene("S_WorldMap");
+                GameManager.instance.SetDataLevel(tm1, c1);
+                SceneManager.LoadScene("S_TempsLibre");
             }
             else
             {
-                foreach (C_Actor c in myTeam)
-                {
-                    c.transform.parent = GameManager.instance.transform;
-                }
-                GameManager.instance.SetDataLevel(tm1, c1 );
-                SceneManager.LoadScene("S_TempsLibre");
+                SceneManager.LoadScene("S_WorldMap");
             }
               
         }

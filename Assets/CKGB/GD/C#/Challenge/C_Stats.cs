@@ -68,23 +68,23 @@ public class C_Stats : MonoBehaviour
 
         #region Jauge
         //Calcul.
-        float calmWidth = myActor.GetComponent<C_Actor>().GetCurrentStress() / myActor.GetDataActor().stressMax * 1;
+        float calmWidth = (float)myActor.GetComponent<C_Actor>().GetCurrentStress() / (float)myActor.GetDataActor().stressMax;
 
         //Update le calm.
         uiCalm.fillAmount = calmWidth;
         //Check l'état de l'actor
         //Si c'est pv sont au dessus des 2/3.
-        if (myActor.GetComponent<C_Actor>().GetCurrentStress() > 2 / myActor.GetDataActor().stressMax)
+        if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() > 2 / (float)myActor.GetDataActor().stressMax)
         {
             uiCalm.sprite = uiPvJaugeGreen;
             uiPvBackground.sprite = uiPvGreenBackground;
         }
-        else if(myActor.GetComponent<C_Actor>().GetCurrentStress() < 2 / myActor.GetDataActor().stressMax) //Si c'est pv sont au dessus des 1/3.
+        else if((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 2 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont au dessus des 1/3.
         {
             uiCalm.sprite = uiPvJaugeOrange;
             uiPvBackground.sprite = uiPvOrangeBackground;
         }
-        else if (myActor.GetComponent<C_Actor>().GetCurrentStress() < 1 / myActor.GetDataActor().stressMax) //Si c'est pv sont inférieur des 1/3.
+        else if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 1 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont inférieur des 1/3.
         {
             uiCalm.sprite = uiPvJaugeRed;
             uiPvBackground.sprite = uiPvRedBackground;

@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-using static TargetStats;
-using static UnityEngine.GraphicsBuffer;
 
 public class C_ActionButton : MonoBehaviour
 {
@@ -17,6 +13,12 @@ public class C_ActionButton : MonoBehaviour
     private void Awake()
     {
         curseur.SetActive(false);
+
+        //Check si la condition avancé est activé
+        if (GetActionClass().advancedCondition.canMakeByOneActor)
+        {
+            GetActionClass().advancedCondition.whatActor = GameObject.Find(GetActionClass().advancedCondition.whatActor.name).GetComponent<C_Actor>();
+        }
     }
 
     #region DataPreview
