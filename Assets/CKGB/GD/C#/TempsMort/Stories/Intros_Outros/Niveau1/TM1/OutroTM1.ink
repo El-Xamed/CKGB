@@ -46,7 +46,7 @@ Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses cl
 
 Hm#Bulle:NimuHautDroite
 
-<bouncce>…</bounce> Je les retrouve pas non plus.#Bulle:NimuHautDroite
+<bounce>…</bounce> Je les retrouve pas non plus.#Bulle:NimuHautDroite
 
 Ah, cata. j’vais checker dans l’entrée. #Bulle:MorganBasGauche
 ~ StartChallenge("S_Challenge")

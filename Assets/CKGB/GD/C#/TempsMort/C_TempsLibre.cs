@@ -770,4 +770,13 @@ public class C_TempsLibre : MonoBehaviour
         }
         SceneManager.LoadScene(named);
     }
-}
+    public void BACK(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        { return; }
+        if (context.performed && GameManager.instance.isDialoguing == false)
+        {
+            Debug.Log("going backward");
+        }
+    }
+    }

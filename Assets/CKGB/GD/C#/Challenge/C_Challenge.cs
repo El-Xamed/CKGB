@@ -165,7 +165,7 @@ public class C_Challenge : MonoBehaviour
 
         if (AudioManager.instance)
         {
-            AudioManager.instance.Play("MusiqueTuto");
+            //AudioManager.instance.Play("MusiqueTuto");
         }
 
         //Transition
