@@ -20,7 +20,7 @@ public class C_Actor : C_Pion
     //Stats
     [SerializeField] int currentStress;
     [SerializeField] int currentEnergy;
-    [SerializeField] float currentPointTrait;
+    [SerializeField] public float currentPointTrait;
     [SerializeField] public bool HasPlayed = false;
     [SerializeField] public bool HasRevassed = false;
     [SerializeField] public bool HasObserved = false;

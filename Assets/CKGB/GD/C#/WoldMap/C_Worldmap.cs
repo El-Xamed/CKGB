@@ -49,13 +49,9 @@ public class C_Worldmap : MonoBehaviour
         {
             allMapPoints.Add(GameObject.Find("lvl1").GetComponent<C_destination>());
         }
-        if (GameObject.Find("lvl2a") != null)
+        if (GameObject.Find("lvl2") != null)
         {
-            allMapPoints.Add(GameObject.Find("lvl2a").GetComponent<C_destination>());
-        }
-        if (GameObject.Find("lvl2b") != null)
-        {
-            allMapPoints.Add(GameObject.Find("lvl2b").GetComponent<C_destination>());
+            allMapPoints.Add(GameObject.Find("lvl2").GetComponent<C_destination>());
         }
         if (GameObject.Find("lvl3") != null)
         {
@@ -83,39 +79,20 @@ public class C_Worldmap : MonoBehaviour
             case "lvl1":
                 currentPoint.IsDone = true;currentPoint.Islocked = true;
                 currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
-                currentPoint.right.right.GetComponent<C_destination>().Islocked = true;
-                currentPoint.right.up.GetComponent<C_destination>().Islocked = false;
-                currentPoint.right.up.right.Islocked = true;
-                currentPoint.right.right.GetComponent<SpriteRenderer>().color = Color.yellow;
-                currentPoint.right.up.GetComponent<SpriteRenderer>().color = Color.yellow;
-                break;
-
-            case "lvl2a":
-                currentPoint.IsDone = true; currentPoint.Islocked = true;
-                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
-                currentPoint.down.GetComponent<C_destination>().Islocked = true;
-                currentPoint.down.right.GetComponent<C_destination>().Islocked = true;
+                currentPoint.right.right.GetComponent<C_destination>().Islocked = true;
+                currentPoint.right.right.GetComponent<SpriteRenderer>().color = Color.gray;
                 currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;
-                currentPoint.down.GetComponent<SpriteRenderer>().color = Color.green;
-                currentPoint.down.right.GetComponent<SpriteRenderer>().color = Color.red;
                 break;
-            case "lvl2b":
+            case "lvl2":
                 currentPoint.IsDone = true; currentPoint.Islocked = true;
                 currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
-                currentPoint.up.GetComponent<C_destination>().Islocked = false;
-                currentPoint.left.GetComponent<C_destination>().Islocked = true;
-                currentPoint.left.up.GetComponent<C_destination>().Islocked = true;
-                currentPoint.up.GetComponent<SpriteRenderer>().color = Color.yellow;
-                currentPoint.left.GetComponent<SpriteRenderer>().color = Color.green;
-                currentPoint.left.up.GetComponent<SpriteRenderer>().color = Color.red;
-                break;
+                currentPoint.right.GetComponent<C_destination>().Islocked = false;               
+                currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;       
+                break;           
             case "lvl3":
                 currentPoint.IsDone = true; currentPoint.Islocked = true;
                 currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
-                currentPoint.left.GetComponent<C_destination>().Islocked = true;
-                currentPoint.down.GetComponent<C_destination>().Islocked = true;
-
                 break;
             default:
                 break;
