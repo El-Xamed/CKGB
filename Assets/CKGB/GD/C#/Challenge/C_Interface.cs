@@ -18,28 +18,21 @@ public class C_Interface : MonoBehaviour
     [SerializeField] Interface currentInterface = Interface.Neutre;
 
     [Header("Actions / Traits")]
-    [SerializeField] GameObject uiTrait;
     [SerializeField] GameObject uiAction;
 
     //Mes listes d'actions / traits
-    [SerializeField] List<GameObject> listButtonActions = new List<GameObject>();
-
-    [SerializeField] List<GameObject> listButtonTraits = new List<GameObject>();
-
-    //Pour afficher l'ui
-    GameObject uiButton;
+    [SerializeField] List<GameObject> listCurrentButton = new List<GameObject>();
 
     private void Awake()
     {
         myChallenge = GetComponentInParent<C_Challenge>();
 
-        uiTrait.SetActive(false);
         uiAction.SetActive(false);
     }
 
     #region Racourcis
     //Racourcis pour récupérer la liste des action d'une etape ciblé par le challenge.
-    List<SO_ActionClass> GetListAction()
+    List<SO_ActionClass> GetListActorAction()
     {
         return myChallenge.GetListActionOfCurrentStep();
     }
@@ -65,18 +58,6 @@ public class C_Interface : MonoBehaviour
         }
 
         return listCurrentAction;
-    }
-
-    List<SO_ActionClass> GetActionOfCInterface()
-    {
-        List<SO_ActionClass> listCurrentActionOfInterface = new List<SO_ActionClass>();
-
-        foreach (GameObject thisAction in listButtonActions)
-        {
-            listCurrentActionOfInterface.Add(thisAction.GetComponent<C_ActionButton>().GetActionClass());
-        }
-
-        return listCurrentActionOfInterface;
     }
 
     PhaseDeJeu GetPhaseDeJeu()
@@ -118,14 +99,12 @@ public class C_Interface : MonoBehaviour
                     if (input.x < 0)
                     {
                         GoTraits();
-                        SetShowButton(uiTrait);
                         return;
                     }
 
                     if (input.y < 0)
                     {
                         GoAction();
-                        SetShowButton(uiAction);
                         return;
                     }
                     if (input.y > 0)
@@ -178,7 +157,7 @@ public class C_Interface : MonoBehaviour
         GetComponent<Animator>().SetTrigger("OpenInterface");
 
         //Spawn actions
-        SpawnActions();
+        SpawnActions(GetListActorAction());
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Actions;
@@ -202,7 +181,7 @@ public class C_Interface : MonoBehaviour
         GetComponent<Animator>().SetTrigger("OpenInterface");
 
         //Spawn actions
-        SpawnTraits();
+        SpawnActions(GetListTrait());
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Traits;
@@ -230,7 +209,7 @@ public class C_Interface : MonoBehaviour
                 break;
             case Interface.Traits:
                 GetComponent<Animator>().SetTrigger("CloseInterface");
-                uiTrait.SetActive(false);
+                uiAction.SetActive(false);
                 break;
             case Interface.Logs:
 
@@ -238,65 +217,57 @@ public class C_Interface : MonoBehaviour
         }
 
         currentInterface = Interface.Neutre;
-
-        SetShowButton(null);
     }
     #endregion
 
     #region Actions / Traits
 
     #region Spawn button
-    //PEUT ETRE UTILISE PLUS TARD.
-    void SetShowButton(GameObject thisUiButton)
-    {
-        uiButton = thisUiButton;
-    }
-
     //Affiche les boutons d'actions.
     public void ShowButton()
     {
-        uiButton.SetActive(true);
+        uiAction.SetActive(true);
 
         myChallenge.WriteStatsPreview();
     }
 
-    void SpawnActions()
+    void SpawnActions(List<SO_ActionClass> spawnListAction)
     {
-        //Créer une liste qui rassemble toutes les actions de l'actor qui joue.
+        //Créer une liste qui rassemble toutes les actions de l'actor qui joue. A MODIFER + DEPLACER.
         List<SO_ActionClass> currentAction = new List<SO_ActionClass>();
-        foreach (var myAction in listButtonActions)
+        foreach (GameObject myAction in listCurrentButton)
         {
             currentAction.Add(myAction.GetComponent<C_ActionButton>().GetActionClass());
         }
 
-        //Check si cette liste "currentAction" est égal à la liste existante. Si oui alors spawn nouveau Action.
-        if (listButtonActions != null && currentAction == GetActionOfCurrentEtape()) return;
+        //Check la liste "listCurrentAction" n'est pas vide + si c'est bien egale a la liste d'action de l'etape.
+        if (listCurrentButton != null && currentAction == GetActionOfCurrentEtape()) return;
 
-        if (GetListAction() != null)
+        if (spawnListAction != null)
         {
             //Supprime les boutons précédent
-            if (listButtonActions != null)
+            if (listCurrentButton != null)
             {
-                foreach (var myAction in listButtonActions)
+                foreach (var myAction in listCurrentButton)
                 {
                     Destroy(myAction);
                 }
             }
 
             //Créer une nouvelle liste.
-            listButtonActions = new List<GameObject>();
+            listCurrentButton = new List<GameObject>();
 
             //Créer de nouveau boutons. EN TEST POUR DONNER LE SO_ACTIONCLASS DANS LE GAMEOBJECT DU BOUTON POUR POUVOIR LE RECUPERER AVEC L'EVENT SYSTEM.
-            for (int i = 0; i < GetListAction().Count; i++)
+            for (int i = 0; i < spawnListAction.Count; i++)
             {
                 //Reférence button.
                 GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
 
                 //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
-                myButton.GetComponentInChildren<TMP_Text>().text = GetListAction()[i].buttonText;
+                myButton.GetComponentInChildren<TMP_Text>().text = spawnListAction[i].buttonText;
 
                 //Reférence Action.
-                myButton.GetComponent<C_ActionButton>().SetActionClass(GetListAction()[i]);
+                myButton.GetComponent<C_ActionButton>().SetActionClass(spawnListAction[i]);
 
                 //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
                 myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(myButton.GetComponent<C_ActionButton>()));
@@ -304,77 +275,16 @@ public class C_Interface : MonoBehaviour
                 //Fait dispparaitre le curseur.
                 myButton.GetComponent<C_ActionButton>().HideCurseur();
 
-                listButtonActions.Add(myButton);
+                //Ajoute l'action à la liste de currentButton.
+                listCurrentButton.Add(myButton);
             }
 
-            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonActions[0]);
+            //Vise le premier bouton.
+            myChallenge.GetEventSystem().SetSelectedGameObject(listCurrentButton[0]);
         }
         else
         {
             Debug.LogError("Erreur spawn actions");
-        }
-    }
-
-    void SpawnTraits()
-    {
-        #region Check spawn + check same list of currentActor in PlayerTurn.
-        //Créer une liste qui rassemble toutes les actions de l'actor qui joue.
-        List<SO_ActionClass> currentTrait = new List<SO_ActionClass>();
-        foreach (var myTrait in listButtonTraits)
-        {
-            currentTrait.Add(myTrait.GetComponent<C_ActionButton>().GetActionClass());
-        }
-
-        //Check si cette liste "currentTrait" est égal à la liste existante. Si oui alors spawn nouveau trait.
-        if (listButtonTraits != null && currentTrait == GetListTrait()) return;
-        #endregion
-
-        //Check si la list stocké dans le SO_Character est vide
-        if (GetListTrait() != null)
-        {
-            //Supprime les boutons précédent si une liste est deja existante.
-            if (listButtonTraits != null)
-            {
-                foreach (var myTraits in listButtonTraits)
-                {
-                    Destroy(myTraits);
-                }
-            }
-
-            //Créer une nouvelle liste.
-            listButtonTraits = new List<GameObject>();
-
-            //Créer de nouveau boutons (Traits)
-            for (int i = 0; i < GetListTrait().Count; i++)
-            {
-                //Nouvelle class.
-                GameObject newTraitsButton = new GameObject();
-
-                //Reférence button.
-                newTraitsButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiTrait.transform.GetChild(0).transform);
-
-                //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
-                newTraitsButton.GetComponentInChildren<TMP_Text>().text = GetListTrait()[i].buttonText;
-
-                //Reférence Action.
-                newTraitsButton.GetComponent<C_ActionButton>().SetActionClass(GetListTrait()[i]);
-
-                //Renseigne le "onClick" du nouveau buton.
-                newTraitsButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.UseAction(newTraitsButton.GetComponent<C_ActionButton>()));
-
-                //Fait dispparaitre le curseur.
-                newTraitsButton.GetComponent<C_ActionButton>().HideCurseur();
-
-                listButtonTraits.Add(newTraitsButton);
-
-                //BESOIN D'UNE FONCTION POUR DETECTER SI UN NOUVEAU TRAIT A ETE DETECTE.
-            }
-
-            myChallenge.GetEventSystem().SetSelectedGameObject(listButtonTraits[0]);
-        }
-        else
-        {
-            Debug.LogError("Erreur spawn traits. La liste de trait du perso est vide.");
         }
     }
     #endregion
@@ -389,12 +299,7 @@ public class C_Interface : MonoBehaviour
 
     public List<GameObject> GetListActionButton()
     {
-        return listButtonActions;
-    }
-
-    public List<GameObject> GetListTraitButton()
-    {
-        return listButtonTraits;
+        return listCurrentButton;
     }
 
     public GameObject GetUiAction()

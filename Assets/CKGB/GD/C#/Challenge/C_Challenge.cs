@@ -174,6 +174,7 @@ public class C_Challenge : MonoBehaviour
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
 
+        //Set les element en plus.
         if (myChallenge.element.Count != 0)
         {
             foreach (var thisElement in myChallenge.element)
@@ -244,13 +245,6 @@ public class C_Challenge : MonoBehaviour
         {
             //Création d'une case
             C_Case newCase = Instantiate(myCase, plateau.transform);
-            //newCase.GetComponentInChildren<TMP_Text>().text = i.ToString();
-
-            //Change la dernière case par un autre sprite.
-            if (i == myChallenge.nbCase -1)
-            {
-                newCase.GetComponent<Image>().sprite = Resources.Load<Sprite>("Barre_Segment_Bout");
-            }
 
             listCase.Add(newCase);
         }
@@ -415,12 +409,6 @@ public class C_Challenge : MonoBehaviour
             foreach (GameObject thisActionButton in myInterface.GetListActionButton())
             {
                 thisActionButton.GetComponent<C_ActionButton>().HideCurseur();
-            }
-
-            //Cache les autres curseur.
-            foreach (GameObject thisTraitButton in myInterface.GetListTraitButton())
-            {
-                thisTraitButton.GetComponent<C_ActionButton>().HideCurseur();
             }
 
             //Fait apparaitre le curseur.

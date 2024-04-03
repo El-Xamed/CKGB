@@ -36,6 +36,7 @@ public class C_CaseManager : MonoBehaviour
             currentLine.size =  new Vector2 (caseWidth, currentLine.size.y);
 
             Instantiate(circle, start + Vector3.right * (i + 0.5f) * caseWidth, Quaternion.identity, transform);
+            if(border != null)
             Instantiate(border, start + Vector3.right * i * caseWidth, Quaternion.identity, transform);
         }
 
