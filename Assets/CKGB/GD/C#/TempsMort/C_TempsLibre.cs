@@ -809,17 +809,19 @@ public class C_TempsLibre : MonoBehaviour
                         {
                             Es.SetSelectedGameObject(TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).gameObject);
                             updateButton();
+                        
                         }
                     }
+                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasPlayed = false;
                     LastCharacterThatPlayed.RemoveAt(charactertoaddID);
                     charactertoaddID--;
                     ActionsParents.SetActive(false);
                 }
-                if (ActionsParents.activeSelf == false && actiontoaddID != -1)
+                else if (!ActionsParents.activeSelf && actiontoaddID != -1)
                 {
                     for (int i = 0; i < characters.Count; i++)
                     {
-                        if (TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.activeSelf == true)
+                        if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
                         {
                             for (int y = 0; y < characters.Count; y++)
                             {
@@ -828,7 +830,24 @@ public class C_TempsLibre : MonoBehaviour
                             //TreeParent.SetActive(false);
                             ActionsParents.SetActive(true);
 
-                            
+                            Debug.Log(LastAction[actiontoaddID]);
+                            Es.SetSelectedGameObject(LastAction[actiontoaddID]);
+                            updateButton();
+                            LastAction.RemoveAt(actiontoaddID);
+                            actiontoaddID--;
+                        }
+                        else if(TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
+                        {
+                            for (int y = 0; y < characters.Count; y++)
+                            {
+                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(1).gameObject.SetActive(false);
+                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
+                            }
+                            //TreeParent.SetActive(false);
+                            ActionsParents.SetActive(true);
+
+                            Debug.Log(LastAction[actiontoaddID]);
                             Es.SetSelectedGameObject(LastAction[actiontoaddID]);
                             updateButton();
                             LastAction.RemoveAt(actiontoaddID);
@@ -1016,6 +1035,7 @@ public class C_TempsLibre : MonoBehaviour
 
                             Es.SetSelectedGameObject(LastAction[actiontoaddID]);
                             updateButton();
+                     
                             LastAction.RemoveAt(actiontoaddID);
                             actiontoaddID--;
                         }

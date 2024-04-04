@@ -172,6 +172,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.settings-manager": {
+      "version": "1.0.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.shadergraph": {
       "version": "12.1.13",
       "depth": 0,
@@ -180,6 +187,17 @@
         "com.unity.render-pipelines.core": "12.1.12",
         "com.unity.searcher": "4.9.1"
       }
+    },
+    "com.unity.splines": {
+      "version": "https://github.com/needle-mirror/com.unity.splines.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.settings-manager": "1.0.3",
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "0e8b0ddc03f66487c3957b6833990f551911ae71"
     },
     "com.unity.test-framework": {
       "version": "1.1.33",
