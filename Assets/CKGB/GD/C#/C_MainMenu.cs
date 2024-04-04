@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class C_MainMenu : MonoBehaviour
 {
+    [SerializeField] GameObject Boutton_SplashScreen;
+    [SerializeField] GameObject Logo_Jeu;
+    [SerializeField] GameObject Logo_Eart;
+    [SerializeField] GameObject Boutons_Groupe;
+    [SerializeField] GameObject OptionsParent;
     [SerializeField] SO_Challenge firthChallenge;
 
     public void NewParty()
@@ -14,13 +22,35 @@ public class C_MainMenu : MonoBehaviour
             GameManager.instance.SetDataLevel(null, firthChallenge);
         }
 
-        SceneManager.LoadScene("S_Challenge");
+        SceneManager.LoadScene("S_Challenge"); 
     }
 
     public void OpenSave()
     {
 
     }
+
+    public void OpenOptions()
+    {
+
+
+        if (OptionsParent)
+        {
+            Boutton_SplashScreen.SetActive(false);
+            Logo_Eart.SetActive(false);
+            Logo_Jeu.SetActive(false);
+            Boutons_Groupe.SetActive(false);
+            OptionsParent.SetActive(true);
+            Debug.Log("ça marche");
+        }
+        else
+        {
+            OptionsParent.SetActive(false);
+            Debug.Log("ça marche pas");
+        }
+
+    }
+
 
     public void OpenCredits()
     {

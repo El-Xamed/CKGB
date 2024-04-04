@@ -12,4 +12,6 @@ public class C_MenuButton : MonoBehaviour
     {
         GameObject.Find("EventSystem").GetComponent<EventSystem>().firstSelectedGameObject = firtButton.gameObject;
     }
+
+
 }
