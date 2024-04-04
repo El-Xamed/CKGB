@@ -401,10 +401,15 @@ public class C_TempsLibre : MonoBehaviour
             FichePersoParent.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
             FichePersoParent.transform.GetChild(2).GetChild(1).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
             FichePersoParent.transform.GetChild(2).GetChild(3).GetComponent<TMP_Text>().text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            string listtrait = "Liste Traits : ";
             for (int y = 0; y < actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits.Count; y++)
             {
-                FichePersoParent.transform.GetChild(2).GetChild(4).GetComponent<TMP_Text>().text = FichePersoParent.transform.GetChild(0).GetChild(3).GetComponent<TMP_Text>().text + "\n" + actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+                if(actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[y]!=null)
+                {
+                    listtrait +="\n" + actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
+                }   
             }
+            FichePersoParent.transform.GetChild(2).GetChild(4).GetComponent<TMP_Text>().text = listtrait;
             if (actorActif.GetComponent<C_Actor>().HasPapoted)
             {
                 FichePersoParent.transform.GetChild(2).GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
