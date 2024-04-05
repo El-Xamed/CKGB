@@ -12,7 +12,10 @@ public class C_Actor : C_Pion
 
     [SerializeField] SO_Character dataActor;
     [SerializeField] List<GameObject> bulles = new List<GameObject>();
-
+    [SerializeField] public GameObject BulleHautGauche;
+    [SerializeField] public GameObject BulleHautDroite;
+    [SerializeField] public GameObject BulleBasGauche;
+    [SerializeField] public GameObject BulleBasDroite;
     [Header("Stats")]
     //Si l'actor peut encore jouer.
     [SerializeField] public bool isOut = false;
