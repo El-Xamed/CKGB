@@ -610,7 +610,7 @@ public class C_Challenge : MonoBehaviour
 
         //Applique toutes les actions. 1 par 1.
         //New : Utilise l'action directement dans le challenge.
-        UseAction(currentResolution.button, currentResolution.actor);
+        //UseAction(currentResolution.actor, currentResolution.button);
         //Old
         //currentResolution.button.GetActionClass().UseAction(currentResolution.actor, plateau, myTeam);
 

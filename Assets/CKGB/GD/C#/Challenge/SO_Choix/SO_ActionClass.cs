@@ -460,7 +460,7 @@ public class SO_ActionClass : ScriptableObject
         {
             //Récupère la class "Move".
             //Deplace l'actor avec l'info de déplacement + type de déplacement.
-            thisActor.MoveActor(GetClassMove(target).nbMove, GetClassMove(target).whatMove, otherActor, plateau, GetClassMove(target).isTp);
+            //thisActor.MoveActor(GetClassMove(target).nbMove, GetClassMove(target).whatMove, otherActor, plateau, GetClassMove(target).isTp);
         }
         #endregion
     }
