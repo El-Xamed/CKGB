@@ -627,8 +627,16 @@ public class GameManager : MonoBehaviour
                     switch(tagKey)
                     {
                         case "pensee":
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().sprite = textToWriteIn.GetComponentInParent<C_Actor>().GetDataActor().ThinkBulle;
+                            }
                             break;
                         case "normal":
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().sprite = textToWriteIn.GetComponentInParent<C_Actor>().GetDataActor().NormalBulle;
+                            }
                             break;
                     }
                     break;
