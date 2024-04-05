@@ -21,7 +21,7 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Sprite uiPvJaugeGreen;
     [SerializeField] Sprite uiPvJaugeOrange;
     [SerializeField] Sprite uiPvJaugeRed;
-    [SerializeField] Sprite uiPvJaugeTetanisé;
+    [SerializeField] Sprite uiPvJaugeTetanise;
 
     [Header("Background")]
     [SerializeField] Image uiPvBackground;
@@ -38,7 +38,7 @@ public class C_Stats : MonoBehaviour
         //Setup le PDP.
         PDP.sprite = thisActor.GetDataActor().challengeSpriteUi;
 
-        //Place les bordures par rapport au nombres de calm que possède le personnage.
+        //Place les bordures par rapport au nombres de calm que possï¿½de le personnage.
         SpawnBorderCalm(thisActor.GetComponent<C_Actor>().getMaxStress());
 
         UpdateUi(thisActor);
@@ -72,7 +72,7 @@ public class C_Stats : MonoBehaviour
 
         //Update le calm.
         uiCalm.fillAmount = calmWidth;
-        //Check l'état de l'actor
+        //Check l'ï¿½tat de l'actor
         //Si c'est pv sont au dessus des 2/3.
         if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() > 2 / (float)myActor.GetDataActor().stressMax)
         {
@@ -84,7 +84,7 @@ public class C_Stats : MonoBehaviour
             uiCalm.sprite = uiPvJaugeOrange;
             uiPvBackground.sprite = uiPvOrangeBackground;
         }
-        else if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 1 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont inférieur des 1/3.
+        else if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 1 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont infï¿½rieur des 1/3.
         {
             uiCalm.sprite = uiPvJaugeRed;
             uiPvBackground.sprite = uiPvRedBackground;
@@ -99,7 +99,7 @@ public class C_Stats : MonoBehaviour
             //Regarde combien de points il manque.
             for (int i = listEnergie.Count; i < myActor.GetComponent<C_Actor>().GetcurrentEnergy(); i++)
             {
-                //Création d'un nouvel GameObject.
+                //Crï¿½ation d'un nouvel GameObject.
                 GameObject newEnergieGameObject = new GameObject();
                 newEnergieGameObject.name = "UI_Stats_" + myActor.name + "_Energie_Pastille_ " + (i + 1);
                 newEnergieGameObject.AddComponent<Image>();
@@ -143,7 +143,7 @@ public class C_Stats : MonoBehaviour
         }
         else
         {
-            Debug.Log("Prix de stress trop élevé !");
+            Debug.Log("Prix de stress trop ï¿½levï¿½ !");
         }
         */
     }
