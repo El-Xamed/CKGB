@@ -65,9 +65,9 @@ public class SO_Catastrophy : ScriptableObject
         }*/
 
         //Check si les actor sont en danger
-        foreach (var thisActor in team)
+        foreach (C_Case thisCase in plateau)
         {
-            thisActor.CheckIsInDanger(this);
+            thisCase.CheckIsInDanger();
         }
     }
 

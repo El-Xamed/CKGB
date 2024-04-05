@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -49,7 +46,7 @@ public class C_Challenge : MonoBehaviour
     [Header("Data")]
     [SerializeField] SO_Challenge myChallenge;
 
-    [SerializeField] GameObject plateau;
+    [SerializeField] GameObject plateauGameObject;
 
     List<C_Actor> myTeam = new List<C_Actor>();
     List<C_Accessories> listAcc = new List<C_Accessories>();
@@ -58,7 +55,7 @@ public class C_Challenge : MonoBehaviour
 
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
-    List<C_Case> listCase = new List<C_Case>();
+    List<C_Case> plateau = new List<C_Case>();
     #endregion
 
     #region Interface
@@ -244,11 +241,11 @@ public class C_Challenge : MonoBehaviour
         for (int i = 0; i < myChallenge.nbCase; i++)
         {
             //Création d'une case
-            C_Case newCase = Instantiate(myCase, plateau.transform);
+            C_Case newCase = Instantiate(myCase, plateauGameObject.transform);
 
             newCase.AddNumber(i + 1);
 
-            listCase.Add(newCase);
+            plateau.Add(newCase);
         }
     }
 
@@ -307,7 +304,7 @@ public class C_Challenge : MonoBehaviour
 
                             //Placement des perso depuis le GameManager
                             //Changement de parent
-                            thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(listCase, position.position);
+                            thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(plateau, position.position);
                             thisActor.transform.localScale = Vector3.one;
 
                             //New Ui stats
@@ -351,7 +348,7 @@ public class C_Challenge : MonoBehaviour
                     //New actor
                     C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
                     thisActor.IniChallenge();
-                    thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(listCase, position.position);
+                    thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(plateau, position.position);
                     thisActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
@@ -387,8 +384,8 @@ public class C_Challenge : MonoBehaviour
         {
             foreach (InitialAccPosition position in listPosition)
             {
-                C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
-                myAcc.PlaceActorOnBoard(listCase, position.position);
+                C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
+                myAcc.PlaceActorOnBoard(plateau, position.position);
 
                 listAcc.Add(myAcc);
             }
@@ -417,7 +414,7 @@ public class C_Challenge : MonoBehaviour
             eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
 
             //Affiche la preview.
-            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, listCase);
+            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, plateau);
         }
     }
 
@@ -492,12 +489,7 @@ public class C_Challenge : MonoBehaviour
                 currentCata = myChallenge.listCatastrophy[0];
             }
 
-            currentCata.InitialiseCata(listCase, myTeam);
-
-            foreach (C_Actor thisActor in myTeam)
-            {
-                thisActor.SetCurrentCata(currentCata);
-            }
+            currentCata.InitialiseCata(plateau, myTeam);
 
             canIniCata = false;
         }
@@ -617,7 +609,10 @@ public class C_Challenge : MonoBehaviour
         vfxResoTurn.GetComponent<Animator>().enabled = true;
 
         //Applique toutes les actions. 1 par 1.
-        currentResolution.button.GetActionClass().UseAction(currentResolution.actor, listCase, myTeam);
+        //New : Utilise l'action directement dans le challenge.
+        UseAction(currentResolution.button, currentResolution.actor);
+        //Old
+        //currentResolution.button.GetActionClass().UseAction(currentResolution.actor, plateau, myTeam);
 
         //Check si c'est la bonne action.
         if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
@@ -656,6 +651,127 @@ public class C_Challenge : MonoBehaviour
         currentResolution.button.GetActionClass().ResetLogs();
         uiLogs.text = currentResolution.button.GetActionClass().GetListLogs();
     }
+
+    //Utilise l'action.
+    //TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
+    public void UseAction(C_Actor thisActor, SO_ActionClass thisAction)
+    {
+        Debug.Log("Use this actionClass : " + buttonText);
+
+        //Check dans les data de cette action si la condition est bonne.
+        if (CanUse(thisActor))
+        {
+            //Applique les conséquences de stats peut importe si c'est réusi ou non.
+            //Créer la liste pour "self"
+            SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
+
+            //Créer la liste pour "other"
+            if (CheckOtherInAction())
+            {
+                SetStatsOther(myTeam, thisActor, GetRange(), plateau);
+            }
+        }
+        else
+        {
+            //Renvoie un petit indice de pourquoi l'action n'a pas fonctionné.
+            //A VOIR PLUS TARD.
+            return;
+        }
+    }
+
+    //Fonction qui déplace les actor.
+    public void MoveActorInBoard(C_Actor thisActor, int nbMove, Move.ETypeMove whatMove, bool isTp)
+    {
+        //Check si c'est le mode normal de déplacement ou alors le mode target case.
+        if (whatMove == Move.ETypeMove.Right || whatMove == Move.ETypeMove.Left) //Normal move mode.
+        {
+            //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
+            if (whatMove == Move.ETypeMove.Left)
+            {
+                nbMove = -nbMove;
+            }
+
+            CheckIfNotExceed(nbMove);
+        }
+        else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
+        {
+            //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
+            if (nbMove > plateau.Count - 1)
+            {
+                Debug.LogWarning("La valeur de déplacement et trop élevé par rapport au nombre de cases sur le plateau la valeur sera donc égale à 0.");
+
+                nbMove = 0;
+            }
+        }
+
+        //Check si un autre membre de l'équipe occupe deja a place. A voir si je le garde.
+        foreach (C_Actor thisOtherActor in myTeam)
+        {
+            //Si dans la list de l'équipe c'est pas égale à l'actor qui joue. Et si "i" est égale à "newPosition" pour décaler seulement l'actor qui occupe la case ou on souhaite ce déplacer.
+            if (this != thisOtherActor)
+            {
+                //Détection de si il y a un autres actor.
+                if (nbMove == thisOtherActor.GetPosition())
+                {
+                    //Check si c'est une Tp ou non.
+                    if (isTp)
+                    {
+                        //Place l'autre actor à la position de notre actor.
+                        thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
+                        Debug.Log(TextUtils.GetColorText(name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
+                    }
+                    else
+                    {
+                        //Déplace le deuxieme actor. Fonctionne en récurrence. (New version)
+                        MoveActorInBoard(thisOtherActor, 1, whatMove, isTp);
+
+                        //Check si il y a pas encore un autre perso.
+                        Debug.Log(TextUtils.GetColorText(name, Color.cyan) + " a prit la place de " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
+                    }
+                }
+            }
+        }
+
+        //Nouvelle position
+        thisActor.PlaceActorOnBoard(plateau, nbMove);
+
+        //BESOIN DE FAIRE ENCORE DES MODIF DE CALCUL + Faire en sort de faire de la récurence tant que la valeur ne sera pas inférieur au nombre de case ou supérieur à 0 !!!
+        //Récurence qui permet de réduire/augmenter la valeur pour placer l'actor dans la scene.
+        void CheckIfNotExceed(int value)
+        {
+            //Detection de si le perso est au bord (à droite).
+            if (thisActor.GetPosition() + nbMove > plateau.Count - 1)
+            {
+                //Change la valeur du déplacement.
+                nbMove = (thisActor.GetPosition() + nbMove) - (plateau.Count - 1);
+            }
+            else if (thisActor.GetPosition() + nbMove < 0)
+            {
+                //Change la valeur du déplacement.
+                nbMove = (plateau.Count - 1) + nbMove;
+            }
+            else
+            {
+                return;
+            }
+
+            CheckIfNotExceed(value);
+        }
+
+        string GetDirectionOfMovement()
+        {
+            if (nbMove < 0)
+            {
+                return " à gauche.";
+            }
+            else if (nbMove > 0)
+            {
+                return " à droite.";
+            }
+
+            return "Direction Inconu.";
+        }
+    }
     #endregion
 
     #region Tour de la Cata
@@ -671,7 +787,7 @@ public class C_Challenge : MonoBehaviour
         uiLogs.text = currentCata.catastrophyLog;
 
         //Applique la catastrophe.
-        currentCata.ApplyCatastrophy(listCase, myTeam);
+        currentCata.ApplyCatastrophy(plateau, myTeam);
 
         //Re-Check si tous les perso sont "out".
         if (!CheckGameOver())
@@ -837,7 +953,7 @@ public class C_Challenge : MonoBehaviour
         return myPhaseDeJeu;
     }
 
-    public List<C_Case> GetListCases() { return listCase; }
+    public List<C_Case> GetListCases() { return plateau; }
 
     public EventSystem GetEventSystem() { return eventSystem; }
 

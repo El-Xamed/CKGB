@@ -8,10 +8,9 @@ public class C_Pion : MonoBehaviour
     [SerializeField] protected int position;
     protected bool inDanger = false;
 
-    protected SO_Catastrophy currentCata = null;
-
     //Pour faire déplacer l'actor dans le challenge.
     //New version.
+    /*DEPLACEMENT EN COUR DANS LA CHALLENGE CAR C'EST LUI QUI GERE LE PLATEAU.
     public virtual void MoveActor(int nbMove, Move.ETypeMove whatMove, List<C_Actor> otherActor, List<C_Case> plateau, bool isTp)
     {
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
@@ -103,7 +102,7 @@ public class C_Pion : MonoBehaviour
 
             return "Direction Inconu.";
         }
-    }
+    }*/
 
     //Old version. UTILISE POUR PLACER LE PERSO SUR LE PLATEAU. A VOIR POUR PLACER CETTE FONCTION DANS LE CHALLENGE !!!!
     public virtual void PlaceActorOnBoard(List<C_Case> plateau, int thisCase)
@@ -149,5 +148,15 @@ public class C_Pion : MonoBehaviour
     public virtual int GetPosition()
     {
         return position;
+    }
+
+    public bool GetInDanger()
+    {
+        return inDanger;
+    }
+
+    public void SetInDanger(bool value)
+    {
+        inDanger = value;
     }
 }

@@ -31,24 +31,24 @@ public class C_Case : MonoBehaviour
     }
 
     //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. FONCTIONNE QUE SUR LES ACTOR A LE DEPLACER DANS LE SCRIPT "C_ACTOR" EN OVERRIDE (prendre exeple sur le check in danger) !!!!
-    public void CheckIsInDanger(C_Pion thisPion)
+    public void CheckIsInDanger()
     {
-        if (thisPion.GetComponent<C_Actor>())
+        if (myPion.GetComponent<C_Actor>())
         {
             if (vfxCata != null)
             {
-                thisPion.GetInDanger() = true;
+                myPion.SetInDanger(true);
                 transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
                 transform.GetChild(5).gameObject.SetActive(true);
             }
             else
             {
-                thisPion.GetInDanger() = false;
+                myPion.SetInDanger(false);
                 transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSprite;
                 transform.GetChild(5).gameObject.SetActive(false);
             }
 
-            GetComponent<Animator>().SetBool("isInDanger", thisPion.GetInDanger());
+            GetComponent<Animator>().SetBool("isInDanger", myPion.GetInDanger());
         }
     }
     #endregion

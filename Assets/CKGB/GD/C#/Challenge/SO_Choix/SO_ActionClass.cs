@@ -373,6 +373,7 @@ public class SO_ActionClass : ScriptableObject
         logsCursor = 0;
     }
 
+    /*TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
     public void UseAction(C_Actor thisActor, List<C_Case> plateau, List<C_Actor> myTeam)
     {
         Debug.Log("Use this actionClass : " + buttonText);
@@ -396,7 +397,7 @@ public class SO_ActionClass : ScriptableObject
             //A VOIR PLUS TARD.
             return;
         }
-    }
+    }*/
 
     //vérifie la condition si l'action fonctionne.
     public bool CanUse(C_Actor thisActor)
@@ -454,7 +455,6 @@ public class SO_ActionClass : ScriptableObject
 
         #region Movement
         //Pour le mouvement.
-        //New version.
         //Check si le parametre de déplacement est utilisé.
         if (GetMovement(target) != 0)
         {
