@@ -1,15 +1,11 @@
-using JetBrains.Annotations;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.VFX;
 
 public class C_Case : MonoBehaviour
 {
     #region Mes variables
     GameObject vfxCata;
+    C_Pion myPion;
 
     [SerializeField] Sprite addNumberSprite;
     [SerializeField] bool addNumber = true;
@@ -21,6 +17,39 @@ public class C_Case : MonoBehaviour
         //Si une cata à deja spaw.
         if (vfxCata != null) { return; }
         vfxCata = Instantiate(newVfxCata, transform);
+    }
+
+    public void PlacePion(C_Pion thisPion)
+    {
+        //Place l'actor et change sa valeur de position.
+        thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+    }
+
+    public void ResetPion()
+    {
+        myPion = null;
+    }
+
+    //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. FONCTIONNE QUE SUR LES ACTOR A LE DEPLACER DANS LE SCRIPT "C_ACTOR" EN OVERRIDE (prendre exeple sur le check in danger) !!!!
+    public void CheckIsInDanger(C_Pion thisPion)
+    {
+        if (thisPion.GetComponent<C_Actor>())
+        {
+            if (vfxCata != null)
+            {
+                thisPion.GetInDanger() = true;
+                transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
+                transform.GetChild(5).gameObject.SetActive(true);
+            }
+            else
+            {
+                thisPion.GetInDanger() = false;
+                transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSprite;
+                transform.GetChild(5).gameObject.SetActive(false);
+            }
+
+            GetComponent<Animator>().SetBool("isInDanger", thisPion.GetInDanger());
+        }
     }
     #endregion
 

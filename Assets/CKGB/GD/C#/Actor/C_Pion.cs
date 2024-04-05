@@ -64,6 +64,7 @@ public class C_Pion : MonoBehaviour
             }
         }
 
+        //Nouvelle position
         PlaceActorOnBoard(plateau, nbMove);
 
         //BESOIN DE FAIRE ENCORE DES MODIF DE CALCUL + Faire en sort de faire de la récurence tant que la valeur ne sera pas inférieur au nombre de case ou supérieur à 0 !!!
@@ -105,16 +106,25 @@ public class C_Pion : MonoBehaviour
     }
 
     //Old version. UTILISE POUR PLACER LE PERSO SUR LE PLATEAU. A VOIR POUR PLACER CETTE FONCTION DANS LE CHALLENGE !!!!
-    public virtual void PlaceActorOnBoard(List<C_Case> plateau, int newPosition)
+    public virtual void PlaceActorOnBoard(List<C_Case> plateau, int thisCase)
     {
-        Debug.Log(newPosition);
+        Debug.Log(thisCase);
 
         //Place l'actor et change sa valeur de position.
-        transform.position = new Vector3(plateau[newPosition].transform.position.x, 0, plateau[newPosition].transform.position.z);
-        position = newPosition;
+        //Old
+        //transform.position = new Vector3(plateau[newPosition].transform.position.x, 0, plateau[newPosition].transform.position.z);
+
+        //New
+        //Supprime la dernière position.
+        plateau[position].ResetPion();
+
+        //Place l'actor
+        plateau[thisCase].PlacePion(this);
+        //Change la valeur
+        position = thisCase;
     }
 
-    //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. FONCTIONNE QUE SUR LES ACTOR A LE DEPLACER DANS LE SCRIPT "C_ACTOR" EN OVERRIDE (prendre exeple sur le check in danger) !!!!
+    /*Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. SUREMENT A SUP
     public void CheckIsInDanger(SO_Catastrophy listDangerCases)
     {
         foreach (var thisCase in listDangerCases.targetCase)
@@ -134,7 +144,7 @@ public class C_Pion : MonoBehaviour
         }
 
         GetComponent<Animator>().SetBool("isInDanger", inDanger);
-    }
+    }*/
 
     public virtual int GetPosition()
     {
