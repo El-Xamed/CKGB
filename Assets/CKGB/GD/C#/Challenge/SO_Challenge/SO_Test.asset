@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4790af45b8f5552499175a066e3389d5, type: 3}
+  m_Name: SO_Test
+  m_EditorClassIdentifier: 
+  background: {fileID: 21300000, guid: 425c598cb6905c040b34818207567a16, type: 3}
+  element:
+  - {fileID: 21300000, guid: c032a3004137aed46b77ad008f560b90, type: 3}
+  ecranDefaite: {fileID: 21300000, guid: dc02b67e48db88f488eb8c632b684ec9, type: 3}
+  objectif: Sors du Lit !
+  nbCase: 3
+  listStartPosAcc: []
+  listStartPosTeam:
+  - position: 1
+    perso: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+  listCatastrophy:
+  - {fileID: 11400000, guid: e9bfe074e4fcf314a82a8465d7ad4809, type: 2}
+  - {fileID: 11400000, guid: 15aeed1a7e8258247b59d41b0268b0f4, type: 2}
+  listEtape:
+  - {fileID: 11400000, guid: 8038cc7410b038843a080fdab329fa4c, type: 2}
+  - {fileID: 11400000, guid: 08b68bd9d487fde4eb0e1636af40666d, type: 2}

@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: SO_action2step2tuto
   m_EditorClassIdentifier: 
   buttonText: "Attraper M\xE9m\xE9-L\xE9on"
-  LogsMakeAction: "Tu sens une boule de tissu au bout de ton pied. Tu l\u2019as p\xEAche
-    d\u2019un mouvement de jambe, te penche et l\u2019attrape dans tes bras. C\u2019est
-    M\xE9m\xE9-L\xE9on ! La peluche de cam\xE9l\xE9on que tu as depuis que tu es
-    tout petit. Qu\u2019est-ce que tu ferai sans elle ? La serrant contre ta poitrine,
-    tu sens une vague d\u2019apaisement te parcourir."
+  LogsMakeAction: 
+  listLogsAction:
+  - "Tu sens une boule de tissu au bout de ton pied. Tu l\u2019as p\xEAche d\u2019un
+    mouvement de jambe, te penche et l\u2019attrape dans tes bras. C\u2019est M\xE9m\xE9-L\xE9on
+    ! La peluche de cam\xE9l\xE9on que tu as depuis que tu es tout petit."
+  - "Qu\u2019est-ce que tu ferai sans elle ? La serrant contre ta poitrine, tu sens
+    une vague d\u2019apaisement te parcourir."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0

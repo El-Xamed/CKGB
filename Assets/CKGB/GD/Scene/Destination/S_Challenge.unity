@@ -895,7 +895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -700, y: 400}
+  m_AnchoredPosition: {x: -699.99994, y: 400}
   m_SizeDelta: {x: -1400, y: -800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503554412
@@ -1130,8 +1130,8 @@ MonoBehaviour:
     button: {fileID: 0}
     actor: {fileID: 0}
   uiLogs: {fileID: 530368893}
-  tm1: {fileID: 11400000, guid: 429ef7747213b6d40b366e404684cc22, type: 2}
-  c1: {fileID: 11400000, guid: 3717d10933abcfa47b6cb682f2e40576, type: 2}
+  tm1: {fileID: 0}
+  c1: {fileID: 11400000, guid: e017fc6468b182f4593106daa8049e34, type: 2}
 --- !u!114 &599995160
 MonoBehaviour:
   m_ObjectHideFlags: 0

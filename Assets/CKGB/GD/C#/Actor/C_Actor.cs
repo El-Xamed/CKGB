@@ -79,6 +79,20 @@ public class C_Actor : C_Pion
     }
     #endregion
 
+    public override void PlaceActorOnBoard(List<C_Case> plateau, int newPosition)
+    {
+        base.PlaceActorOnBoard(plateau, newPosition);
+
+        //Check si l'objet est un actor
+        if (GetComponent<C_Actor>() && currentCata != null)
+        {
+            //Check apres chaque déplacement si il est sur une case dangereuse.
+            CheckIsInDanger(currentCata);
+        }
+    }
+
+    //Faire de meme avec la cata.
+
     public void IniChallenge()
     {
         //dataActor.energyMax;

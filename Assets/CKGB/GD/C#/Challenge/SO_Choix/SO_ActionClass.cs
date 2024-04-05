@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static TargetStats;
+using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action", order = 1)]
 public class SO_ActionClass : ScriptableObject
@@ -13,6 +14,8 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("Text (Logs)")]
     public string LogsMakeAction;
+    public List<string> listLogsAction;
+    public int logsCursor;
     #endregion
 
     [Header("Conditions")]
@@ -56,6 +59,30 @@ public class SO_ActionClass : ScriptableObject
         //Debug.Log("ATTENTION : Cette action ne possède pas de prix " + statsTarget + " ! La valeur renvoyé sera de 0.");
 
         return 0;
+    }
+
+    public Move GetClassMove(Interaction.ETypeTarget target)
+    {
+        //Pour toutes les liste d'action.
+        foreach (Interaction thisInteraction in listInteraction)
+        {
+            //Check si sont enum est égale à "target".
+            if (thisInteraction.whatTarget == target)
+            {
+                //Pour toutes les list de stats.
+                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
+                {
+                    //Check si sont enum est égale à "Movement".
+                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
+                    {
+                        //Deplace l'actor.
+                        return thisStats.move;
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     public int GetRange()
@@ -319,6 +346,33 @@ public class SO_ActionClass : ScriptableObject
     }
 
     #region Résolution
+    public string GetListLogs()
+    {
+        if (listLogsAction.Count == 0 && logsCursor == 0)
+        {
+            logsCursor++;
+
+            return LogsMakeAction;
+        }
+        if (logsCursor >= listLogsAction.Count)
+        {
+            return null;
+        }
+        else
+        {
+            string logs = listLogsAction[logsCursor];
+
+            logsCursor++;
+
+            return logs;
+        }
+    }
+
+    public void ResetLogs()
+    {
+        logsCursor = 0;
+    }
+
     public void UseAction(C_Actor thisActor, List<C_Case> plateau, List<C_Actor> myTeam)
     {
         Debug.Log("Use this actionClass : " + buttonText);
@@ -400,7 +454,18 @@ public class SO_ActionClass : ScriptableObject
 
         #region Movement
         //Pour le mouvement.
+        //New version.
+        //Check si le parametre de déplacement est utilisé.
         if (GetMovement(target) != 0)
+        {
+            //Récupère la class "Move".
+            //Deplace l'actor avec l'info de déplacement + type de déplacement.
+            thisActor.MoveActor(GetClassMove(target).nbMove, GetClassMove(target).whatMove, otherActor, plateau, GetClassMove(target).isTp);
+        }
+        
+
+        //Old version.
+        /*if (GetMovement(target) != 0)
         {
             //Pour toutes les liste d'action.
             foreach (Interaction thisInteraction in listInteraction)
@@ -458,12 +523,12 @@ public class SO_ActionClass : ScriptableObject
                                         //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
                                         if (myMove.isTp)
                                         {
-                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                             Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
                                         }
                                         else
                                         {
-                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            thisOtherActor.PlaceActorOnBoard(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
                                             Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                                         }
                                     }
@@ -476,12 +541,12 @@ public class SO_ActionClass : ScriptableObject
                                         //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
                                         if (myMove.isTp)
                                         {
-                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                             Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
                                         }
                                         else
                                         {
-                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            thisOtherActor.PlaceActorOnBoard(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
                                             Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                                         }
                                     }
@@ -505,12 +570,12 @@ public class SO_ActionClass : ScriptableObject
                                     //Check si c'est une TP (donc un switch) ou un déplacement normal (pousse le personnage).
                                     if (myMove.isTp)
                                     {
-                                        thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                        thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                         Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
                                     }
                                     else
                                     {
-                                        thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                        thisOtherActor.PlaceActorOnBoard(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
                                         Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                                     }
                                 }
@@ -529,12 +594,12 @@ public class SO_ActionClass : ScriptableObject
                                         //Check si c'est une TP (donc un switch) ou un déplacement normal (pousse le personnage).
                                         if (myMove.isTp)
                                         {
-                                            thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                            thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                             Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
                                         }
                                         else
                                         {
-                                            thisOtherActor.MoveActor(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
+                                            thisOtherActor.PlaceActorOnBoard(plateau, thisOtherActor.GetPosition() + (int)Mathf.Sign(newPosition));
                                             Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                                         }
                                     }
@@ -544,7 +609,7 @@ public class SO_ActionClass : ScriptableObject
                     }
 
                     //Déplace l'actor.
-                    thisActor.MoveActor(plateau, thisActor.GetPosition() + newPosition);
+                    thisActor.PlaceActorOnBoard(plateau, thisActor.GetPosition() + newPosition);
 
                     string GetDirectionOfMovement()
                     {
@@ -571,18 +636,18 @@ public class SO_ActionClass : ScriptableObject
                             //Check si c'est une TP (donc un swtich) ou un déplacement normal (pousse le personnage).
                             if (myMove.isTp)
                             {
-                                thisOtherActor.MoveActor(plateau, thisActor.GetPosition());
+                                thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                 Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
                             }
                             else
                             {
-                                thisOtherActor.MoveActor(plateau, newPosition + (int)Mathf.Sign(newPosition));
+                                thisOtherActor.PlaceActorOnBoard(plateau, newPosition + (int)Mathf.Sign(newPosition));
                                 Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " a prit la place de " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + " et sera déplacer " + GetDirectionOfMovement());
                             }
                         }
                     }
 
-                    thisActor.MoveActor(plateau, newPosition);
+                    thisActor.PlaceActorOnBoard(plateau, newPosition);
 
                     string GetDirectionOfMovement()
                     {
@@ -618,7 +683,7 @@ public class SO_ActionClass : ScriptableObject
                             {
                                 if (thisStats.move.actor != null)
                                 {
-                                    thisStats.move.actor.MoveActor(plateau, thisActor.GetPosition());
+                                    thisStats.move.actor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                     Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + TextUtils.GetColorText(GetSwitchActor(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.actor); }
@@ -627,7 +692,7 @@ public class SO_ActionClass : ScriptableObject
                             {
                                 if (thisStats.move.accessories != null)
                                 {
-                                    thisStats.move.accessories.MoveActor(plateau, thisActor.GetPosition());
+                                    thisStats.move.accessories.PlaceActorOnBoard(plateau, thisActor.GetPosition());
                                     Debug.Log(TextUtils.GetColorText(thisActor.name, Color.cyan) + " va échanger sa place avec " + TextUtils.GetColorText(GetSwitchAcc(target).name, Color.cyan) + ".");
                                 }
                                 else { Debug.LogWarning(thisStats.move.accessories); }
@@ -637,8 +702,8 @@ public class SO_ActionClass : ScriptableObject
                 }
             }
 
-            thisActor.MoveActor(plateau, thisActor.GetPosition());
-        }
+            thisActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
+        }*/
         #endregion
     }
 

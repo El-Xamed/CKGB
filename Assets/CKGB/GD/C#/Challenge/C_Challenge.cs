@@ -246,6 +246,8 @@ public class C_Challenge : MonoBehaviour
             //Création d'une case
             C_Case newCase = Instantiate(myCase, plateau.transform);
 
+            newCase.AddNumber(i + 1);
+
             listCase.Add(newCase);
         }
     }
@@ -305,7 +307,7 @@ public class C_Challenge : MonoBehaviour
 
                             //Placement des perso depuis le GameManager
                             //Changement de parent
-                            thisActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
+                            thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(listCase, position.position);
                             thisActor.transform.localScale = Vector3.one;
 
                             //New Ui stats
@@ -349,7 +351,7 @@ public class C_Challenge : MonoBehaviour
                     //New actor
                     C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
                     thisActor.IniChallenge();
-                    thisActor.GetComponent<C_Actor>().MoveActor(listCase, position.position);
+                    thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(listCase, position.position);
                     thisActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
@@ -386,7 +388,7 @@ public class C_Challenge : MonoBehaviour
             foreach (InitialAccPosition position in listPosition)
             {
                 C_Accessories myAcc = Instantiate(position.acc, listCase[position.position].transform);
-                myAcc.MoveActor(listCase, position.position);
+                myAcc.PlaceActorOnBoard(listCase, position.position);
 
                 listAcc.Add(myAcc);
             }
@@ -545,7 +547,12 @@ public class C_Challenge : MonoBehaviour
     //Fonction appelé par "C_Interface" pour passer à la résolution suivante.
     public void NextResolution()
     {
-        if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
+        string nextLogs = currentResolution.button.GetActionClass().GetListLogs();
+        if (!string.IsNullOrEmpty(nextLogs))
+        {
+            uiLogs.text = nextLogs;
+        }
+        else if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
         {
             //Reféfinis "currentResolution" avec 'index de base + 1.
             currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
@@ -645,7 +652,8 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Ecrit dans les logs le résultat de l'action.
-        uiLogs.text = currentResolution.button.GetActionClass().LogsMakeAction;
+        currentResolution.button.GetActionClass().ResetLogs();
+        uiLogs.text = currentResolution.button.GetActionClass().GetListLogs();
     }
     #endregion
 
