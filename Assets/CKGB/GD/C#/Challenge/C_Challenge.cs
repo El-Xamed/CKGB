@@ -304,7 +304,7 @@ public class C_Challenge : MonoBehaviour
 
                             //Placement des perso depuis le GameManager
                             //Changement de parent
-                            thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(plateau, position.position);
+                            PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position);
                             thisActor.transform.localScale = Vector3.one;
 
                             //New Ui stats
@@ -348,7 +348,7 @@ public class C_Challenge : MonoBehaviour
                     //New actor
                     C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
                     thisActor.IniChallenge();
-                    thisActor.GetComponent<C_Actor>().PlaceActorOnBoard(plateau, position.position);
+                    PlacePionOnBoard(thisActor, position.position);
                     thisActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
@@ -385,7 +385,7 @@ public class C_Challenge : MonoBehaviour
             foreach (InitialAccPosition position in listPosition)
             {
                 C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
-                myAcc.PlaceActorOnBoard(plateau, position.position);
+                PlacePionOnBoard(myAcc, position.position);
 
                 listAcc.Add(myAcc);
             }
@@ -610,7 +610,7 @@ public class C_Challenge : MonoBehaviour
 
         //Applique toutes les actions. 1 par 1.
         //New : Utilise l'action directement dans le challenge.
-        //UseAction(currentResolution.actor, currentResolution.button);
+        UseAction(currentResolution.actor, currentResolution.button.GetActionClass());
         //Old
         //currentResolution.button.GetActionClass().UseAction(currentResolution.actor, plateau, myTeam);
 
@@ -653,22 +653,22 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Utilise l'action.
-    /*TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
+    //TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
     public void UseAction(C_Actor thisActor, SO_ActionClass thisAction)
     {
-        Debug.Log("Use this actionClass : " + buttonText);
+        Debug.Log("Use this actionClass : " + thisAction.buttonText);
 
         //Check dans les data de cette action si la condition est bonne.
-        if (CanUse(thisActor))
+        if (thisAction.CanUse(thisActor))
         {
             //Applique les conséquences de stats peut importe si c'est réusi ou non.
             //Créer la liste pour "self"
-            SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
+            thisAction.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
 
             //Créer la liste pour "other"
-            if (CheckOtherInAction())
+            if (thisAction.CheckOtherInAction())
             {
-                SetStatsOther(myTeam, thisActor, GetRange(), plateau);
+                thisAction.SetStatsOther(myTeam, thisActor, thisAction.GetRange(), plateau);
             }
         }
         else
@@ -677,10 +677,10 @@ public class C_Challenge : MonoBehaviour
             //A VOIR PLUS TARD.
             return;
         }
-    }*/
+    }
 
     //Fonction qui déplace les actor.
-    public void MoveActorInBoard(C_Actor thisActor, int nbMove, Move.ETypeMove whatMove, bool isTp)
+    public void MoveActorInBoard(C_Pion thisPion, int nbMove, Move.ETypeMove whatMove, bool isTp)
     {
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == Move.ETypeMove.Right || whatMove == Move.ETypeMove.Left) //Normal move mode.
@@ -717,7 +717,7 @@ public class C_Challenge : MonoBehaviour
                     if (isTp)
                     {
                         //Place l'autre actor à la position de notre actor.
-                        thisOtherActor.PlaceActorOnBoard(plateau, thisActor.GetPosition());
+                        PlacePionOnBoard(thisOtherActor, thisPion.GetPosition());
                         Debug.Log(TextUtils.GetColorText(name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
                     }
                     else
@@ -733,19 +733,19 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Nouvelle position
-        thisActor.PlaceActorOnBoard(plateau, nbMove);
+        PlacePionOnBoard(thisPion, nbMove);
 
         //BESOIN DE FAIRE ENCORE DES MODIF DE CALCUL + Faire en sort de faire de la récurence tant que la valeur ne sera pas inférieur au nombre de case ou supérieur à 0 !!!
         //Récurence qui permet de réduire/augmenter la valeur pour placer l'actor dans la scene.
         void CheckIfNotExceed(int value)
         {
             //Detection de si le perso est au bord (à droite).
-            if (thisActor.GetPosition() + nbMove > plateau.Count - 1)
+            if (thisPion.GetPosition() + nbMove > plateau.Count - 1)
             {
                 //Change la valeur du déplacement.
-                nbMove = (thisActor.GetPosition() + nbMove) - (plateau.Count - 1);
+                nbMove = (thisPion.GetPosition() + nbMove) - (plateau.Count - 1);
             }
-            else if (thisActor.GetPosition() + nbMove < 0)
+            else if (thisPion.GetPosition() + nbMove < 0)
             {
                 //Change la valeur du déplacement.
                 nbMove = (plateau.Count - 1) + nbMove;
@@ -771,6 +771,22 @@ public class C_Challenge : MonoBehaviour
 
             return "Direction Inconu.";
         }
+    }
+
+    public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase)
+    {
+        Debug.Log(thisCase);
+
+        //Place l'actor et change sa valeur de position.
+        //Old
+        //transform.position = new Vector3(plateau[newPosition].transform.position.x, 0, plateau[newPosition].transform.position.z);
+
+        //New
+        //Supprime la dernière position.
+        plateau[thisPion.GetPosition()].ResetPion();
+
+        //Place l'actor
+        plateau[thisCase].PlacePion(thisPion);
     }
     #endregion
 

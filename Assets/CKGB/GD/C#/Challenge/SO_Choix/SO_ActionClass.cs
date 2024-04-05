@@ -1,21 +1,26 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static TargetStats;
-using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action", order = 1)]
 public class SO_ActionClass : ScriptableObject
 {
     #region Data
     #region Texte
+    C_Challenge challenge;
+
     [Header("Text (Button)")]
     public string buttonText;
 
     [Header("Text (Logs)")]
     public string LogsMakeAction;
+
+    public string logsCantMakeAction;
+
     public List<string> listLogsAction;
-    public int logsCursor;
+    [HideInInspector] public int logsCursor;
     #endregion
 
     [Header("Conditions")]
@@ -426,7 +431,7 @@ public class SO_ActionClass : ScriptableObject
         return true;
     }
 
-    public void SetStatsTarget(Interaction.ETypeTarget target, List<C_Actor> otherActor, C_Pion thisActor, List<C_Case> plateau)
+    public void SetStatsTarget(Interaction.ETypeTarget target, C_Pion thisActor)
     {
         //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
         #region Price string
@@ -458,15 +463,14 @@ public class SO_ActionClass : ScriptableObject
         //Check si le parametre de déplacement est utilisé.
         if (GetMovement(target) != 0)
         {
-            //Récupère la class "Move".
             //Deplace l'actor avec l'info de déplacement + type de déplacement.
-            //thisActor.MoveActor(GetClassMove(target).nbMove, GetClassMove(target).whatMove, otherActor, plateau, GetClassMove(target).isTp);
+            challenge.MoveActorInBoard(thisActor ,GetClassMove(target).nbMove, GetClassMove(target).whatMove, GetClassMove(target).isTp);
         }
         #endregion
     }
 
     //Affiche une preview sur les autres actor.
-    void SetStatsOther(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
+    public void SetStatsOther(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
     {
         if (!GetIfTargetOrNot())
         {
@@ -484,7 +488,7 @@ public class SO_ActionClass : ScriptableObject
                             //Calcul vers la droite.
                             if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
                             {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
+                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
                             }
                             Debug.Log("Direction Range = droite.");
                             break;
@@ -492,7 +496,7 @@ public class SO_ActionClass : ScriptableObject
                             //Calcul vers la gauche.
                             if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
                             {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
+                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
                             }
                             Debug.Log("Direction Range = Gauche.");
                             break;
@@ -500,11 +504,11 @@ public class SO_ActionClass : ScriptableObject
                             //Calcul vers la droite + gauche.
                             if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
                             {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
+                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
                             }
                             if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
                             {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, thisOtherActor, plateau);
+                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
                             }
                             Debug.Log("Direction Range = droite + gauche.");
                             break;
@@ -516,15 +520,32 @@ public class SO_ActionClass : ScriptableObject
         {
             if (GetTarget().GetComponent<C_Actor>())
             {
-                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Actor>(), plateau);
+                SetStatsTarget(Interaction.ETypeTarget.Other, GetTarget().GetComponent<C_Actor>());
             }
             else if (GetTarget().GetComponent<C_Accessories>())
             {
                 SetTarget(GameObject.Find(GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
 
-                SetStatsTarget(Interaction.ETypeTarget.Other, otherActor, GetTarget().GetComponent<C_Accessories>(), plateau);
+                SetStatsTarget(Interaction.ETypeTarget.Other, GetTarget().GetComponent<C_Accessories>());
             }
         }
+    }
+    #endregion
+
+    #region Partage de données
+    public void SetChallengeData(C_Challenge thisChallenge)
+    {
+        challenge = thisChallenge;
+    }
+
+    public bool HasMovement(Interaction.ETypeTarget target)
+    {
+        if (GetMovement(target) != 0)
+        {
+            return true;
+        }
+
+        return false;
     }
     #endregion
 }

@@ -8,6 +8,7 @@ public class C_Case : MonoBehaviour
     C_Pion myPion;
 
     [SerializeField] Sprite addNumberSprite;
+    int number;
     [SerializeField] bool addNumber = true;
     #endregion
 
@@ -23,6 +24,9 @@ public class C_Case : MonoBehaviour
     {
         //Place l'actor et change sa valeur de position.
         thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+        //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
+        thisPion.SetPosition(number - 1);
     }
 
     public void ResetPion()
@@ -54,13 +58,15 @@ public class C_Case : MonoBehaviour
     #endregion
 
     #region Data partagé
-    public bool AddNumber(int number)
+    public bool AddNumber(int newNumber)
     {
         if (addNumber)
         {
             GetComponent<Image>().sprite = addNumberSprite;
 
             transform.GetChild(0).gameObject.SetActive(true);
+
+            number = newNumber;
 
             return true; 
         }

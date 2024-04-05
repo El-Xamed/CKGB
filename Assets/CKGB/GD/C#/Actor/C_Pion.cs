@@ -104,7 +104,7 @@ public class C_Pion : MonoBehaviour
         }
     }*/
 
-    //Old version. UTILISE POUR PLACER LE PERSO SUR LE PLATEAU. A VOIR POUR PLACER CETTE FONCTION DANS LE CHALLENGE !!!!
+    /*Old version. UTILISE POUR PLACER LE PERSO SUR LE PLATEAU. A VOIR POUR PLACER CETTE FONCTION DANS LE CHALLENGE !!!!
     public virtual void PlaceActorOnBoard(List<C_Case> plateau, int thisCase)
     {
         Debug.Log(thisCase);
@@ -121,7 +121,7 @@ public class C_Pion : MonoBehaviour
         plateau[thisCase].PlacePion(this);
         //Change la valeur
         position = thisCase;
-    }
+    }*/
 
     /*Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. SUREMENT A SUP
     public void CheckIsInDanger(SO_Catastrophy listDangerCases)
@@ -148,6 +148,11 @@ public class C_Pion : MonoBehaviour
     public virtual int GetPosition()
     {
         return position;
+    }
+
+    public virtual void SetPosition(int newPosition)
+    {
+        position = newPosition;
     }
 
     public bool GetInDanger()
