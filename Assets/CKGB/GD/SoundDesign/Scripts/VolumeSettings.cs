@@ -55,6 +55,7 @@ public class VolumeSettings : MonoBehaviour
         {
             
             Generalmute = false;
+
             Debug.Log("ça mute");
         }
         else
@@ -64,7 +65,7 @@ public class VolumeSettings : MonoBehaviour
             Debug.Log("ça mute pas");
         }
 
-        //generalSlider.enabled = Generalmute; //
+         generalSlider.enabled = Generalmute;
 
         
     }
