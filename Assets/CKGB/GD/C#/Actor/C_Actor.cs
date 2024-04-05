@@ -38,7 +38,6 @@ public class C_Actor : C_Pion
 
     #endregion
 
-
     private void Awake()
     {
         gameObject.name = dataActor.name; 

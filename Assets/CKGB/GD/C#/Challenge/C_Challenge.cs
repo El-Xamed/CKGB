@@ -450,8 +450,11 @@ public class C_Challenge : MonoBehaviour
         }
         else
         {
+            //Pour retirer le contour blanc.
             currentActor = null;
             UpdateActorSelected();
+
+            //Début de la list de la phase de réso.
             currentResolution = listRes[0];
 
             //Cache les boutons + ferme l'interface. CHANGER ÇA POUR AVOIR L'INTERFACE SANS LES TEXT A COTE.
@@ -479,8 +482,6 @@ public class C_Challenge : MonoBehaviour
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
-
-
 
         //Initialise la prochaine cata.
         if (currentStep.useCata)
