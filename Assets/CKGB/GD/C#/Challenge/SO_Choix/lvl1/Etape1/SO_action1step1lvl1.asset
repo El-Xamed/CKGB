@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: SO_action1step1lvl1
   m_EditorClassIdentifier: 
   buttonText: "Faire du th\xE9"
-  LogsMakeAction: "Tu fais un aller retour \xE0 la cuisine pour te faire du th\xE9.
-    Tu n\u2019es plus vraiment s\xFBr de la case sur laquelle tu \xE9tais quand tu
-    es partie, et tu te replaces de mani\xE8re approximative."
+  LogsMakeAction: "Tu mets de l\u2019eau \xE0 bouillir, et proppose du th\xE9 autour
+    de toi. La douce saveur de l\u2019eau chaude calme toutes les personnes qui en
+    boivent."
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -34,21 +36,21 @@ MonoBehaviour:
     - whatStatsTarget: 1
       listStats:
       - whatStats: 1
-        value: 1
+        value: 2
       move:
         whatMove: 3
         isTp: 0
         nbMove: 2
         actor: {fileID: 0}
         accessories: {fileID: 0}
-  - whatTarget: 0
+  - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 0
     target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
+    whatDirectionTarget: 3
+    range: 1
     listTargetStats:
-    - whatStatsTarget: 2
+    - whatStatsTarget: 1
       listStats:
       - whatStats: 1
         value: 1

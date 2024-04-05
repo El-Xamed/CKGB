@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step1lvl1
   m_EditorClassIdentifier: 
-  buttonText: Fouiller le vase
-  LogsMakeAction: "Tu tends la main pou- eeeet tu l\u2019as fait tomber. Il se brise
-    au sol en mille morceaux. Hmpf. Bon. Bah elles avaient pas l\u2019air d\u2019\xEAtre
-    dedans. Heureusement que vous avez un nombre \xE9trangement grand de vase dans
-    cette maison."
+  buttonText: Appeller la clef
+  LogsMakeAction: "Le coeur embras\xE9, tu d\xE9ambule dans le salon en criant son
+    nom v\xE9ritable : \u201CTitou Elvira J\xE9rome-Ga\xEFa le neuvieme !!!\u201D,
+    cassant les oreilles de toute personne \xE0 port\xE9 dans le processus."
+  listLogsAction:
+  - "Le coeur embras\xE9, tu d\xE9ambule dans le salon en criant son nom v\xE9ritable
+    : \u201CTitou Elvira J\xE9rome-Ga\xEFa le neuvieme !!!\u201D, cassant les oreilles
+    de toute personne \xE0 port\xE9 dans le processus."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -25,20 +29,37 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
+  - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 0
     target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
+    whatDirectionTarget: 1
+    range: 2
     listTargetStats:
     - whatStatsTarget: 0
       listStats:
       - whatStats: 1
-        value: 2
+        value: 1
       move:
         whatMove: 0
         isTp: 0
         nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 1
+    range: 2
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats:
+      - whatStats: 1
+        value: 1
+      move:
+        whatMove: 1
+        isTp: 0
+        nbMove: 1
         actor: {fileID: 0}
         accessories: {fileID: 0}

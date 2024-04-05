@@ -12,10 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action2step1lvl1
   m_EditorClassIdentifier: 
-  buttonText: Essayer de se rappeller
-  LogsMakeAction: "Ton regard se fige alors que tu poses ta main sur ta t\xEAte.
-    Les souvenirs d\xE9filent dans ton cr\xE2ne. Mais si ! Quelqu\u2019un t\u2019as
-    dit qu\u2019il posait tes clefs\u2026 Dans le tiroir !"
+  buttonText: Interroger M.Dos-FIn
+  LogsMakeAction: Grand chapeau. Imper. Cigarette. Le monde devient noir et blanc.
+  listLogsAction:
+  - "M. Dos-fin est une petite frappe qui passe ses journ\xE9es \xE0 trainer dans
+    le salon plutot qu\u2019\xE0 \xEAtre un membre utile de la soci\xE9t\xE9. Apr\xE8s
+    avoir train\xE9 avec les gangs de la chambre, il a commenc\xE9 une carri\xE8re
+    de loup solitaire. "
+  - "Tu l\u2019as crois\xE9 pour la premi\xE8re fois il y a 4 ans, lors de l\u2019affaire
+    du kidnapping de M\xE9m\xE9 L\xE9on."
+  - Sale histoire. Tu esperais ne plus jamais avoir affaire a ce gaillard.
+  - "Apr\xE8s l\u2019avoir traqu\xE9 autours du canap\xE9, tu r\xE9ussit \xE0 le
+    coincer contre le pot des plantes. \u201DFinis de jouer, dos-fin.\u201D"
+  - "Il te regarde avec ses yeux de merlan-fris. Malgr\xE9 le fait que les dauphins
+    soient des mammif\xE8re. Et que celui-ci soit une peluche."
+  - "Tu perds ton sang froid. Tu le saisit et tu le jette sur la table. Sa colonne
+    vertebrale cogne le bois. \u201CAlors, tu regrette peut \xEAtre d\u2019avoir
+    le dos aussi fin ? Maintenant, parle.\u201D"
+  - "Il tremble. A cot\xE9 de lui, tu remarque un papier. C\u2019est un mot de ton
+    p\xE8re. Il dit qu\u2019il a rang\xE9 les clefs sur le meuble du salon. Sur le
+    meuble ? Tu n\u2019as pourtant rien remarqu\xE9 dessus\u2026 "
+  - "Quelque chose de pas net se trame dans cette foutue ville. Tu repose M. DOs-fin
+    par terre. \u201CMaintenant file, et que je te revoies plus.\u201D. Tu as une
+    nouvelle piste pour ton enqu\xEAte."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -33,11 +53,28 @@ MonoBehaviour:
     listTargetStats:
     - whatStatsTarget: 0
       listStats:
-      - whatStats: 0
+      - whatStats: 1
         value: 2
       move:
         whatMove: 2
         isTp: 0
         nbMove: 1
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats:
+      - whatStats: 1
+        value: 2
+      move:
+        whatMove: 3
+        isTp: 0
+        nbMove: 3
         actor: {fileID: 0}
         accessories: {fileID: 0}

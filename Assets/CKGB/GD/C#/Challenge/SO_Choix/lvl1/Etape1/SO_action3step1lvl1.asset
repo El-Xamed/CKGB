@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: SO_action3step1lvl1
   m_EditorClassIdentifier: 
   buttonText: Fouiller les tiroirs
-  LogsMakeAction: "Tu fouilles les tiroirs du meuble devant toi. Dans le premier,
-    tu trouves un sachet de d\xE9licieux biscuits. Miam ! Mais le deuxi\xE8me \xE0
-    l\u2019air d\u2019\xEAtre ferm\xE9 \xE0 clef. Oh non. Tu stresses en imaginant
-    que ce que tu cherche est enferm\xE9 \xE0 l\u2019int\xE9rieur."
+  LogsMakeAction: 'Fouiller les tiroirs ? Mais ien a bien une bonne quinzaine ! Tu
+    les tires tous energiquement, manquant dans sortir certains de leur rail. Rien,
+    rien, rien, rien, clac ! '
+  listLogsAction:
+  - 'Quoi ? '
+  - "Hm, on dirait qu\u2019il y en a un qui soit ferm\xE9 \xE0 clef ! Rolala, tu
+    esp\xE8re vraiment que la clef que tu cherche est pas coinc\xE9e dedans\u2026"
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -32,10 +36,10 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 1
+    - whatStatsTarget: 0
       listStats:
       - whatStats: 0
-        value: 2
+        value: 1
       move:
         whatMove: 0
         isTp: 0
@@ -49,13 +53,13 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 0
+    - whatStatsTarget: 2
       listStats:
       - whatStats: 1
         value: 1
       move:
-        whatMove: 0
+        whatMove: 3
         isTp: 0
-        nbMove: 0
+        nbMove: 4
         actor: {fileID: 0}
         accessories: {fileID: 0}

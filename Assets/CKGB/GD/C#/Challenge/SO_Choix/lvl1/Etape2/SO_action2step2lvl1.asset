@@ -16,6 +16,8 @@ MonoBehaviour:
   LogsMakeAction: "Tu retournes la table la plus proche ! Son contenu s\u2019\xE9tale
     au sol dans un grand fracas. Pas de trace de la clef. Bon\u2026 Plus qu\u2019\xE0
     ranger."
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -24,34 +26,17 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
+  - whatTarget: 1
     selectTarget: 0
-    whatTypeTarget: 0
+    whatTypeTarget: 1
     target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
+    whatDirectionTarget: 1
+    range: 2
     listTargetStats:
     - whatStatsTarget: 0
       listStats:
-      - whatStats: 0
-        value: 2
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      listStats:
       - whatStats: 1
-        value: 4
+        value: 2
       move:
         whatMove: 0
         isTp: 0

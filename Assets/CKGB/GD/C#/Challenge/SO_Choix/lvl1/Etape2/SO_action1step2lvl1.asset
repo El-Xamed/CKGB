@@ -17,6 +17,8 @@ MonoBehaviour:
     cot\xE9 ! vous le glissez sur la droite. Oh ! Une cl\xE9 \xE9tait vraiment coinc\xE9
     en dessous ! Mais\u2026 On dirait pas celle de la porte ? A quoi est-ce qu\u2019elle
     peut correspondre ?"
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -25,23 +27,6 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      listStats:
-      - whatStats: 1
-        value: 2
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
@@ -71,8 +56,8 @@ MonoBehaviour:
       - whatStats: 1
         value: 2
       move:
-        whatMove: 1
+        whatMove: 3
         isTp: 0
-        nbMove: 1
+        nbMove: 4
         actor: {fileID: 0}
         accessories: {fileID: 0}
