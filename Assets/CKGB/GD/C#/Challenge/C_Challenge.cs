@@ -653,7 +653,7 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Utilise l'action.
-    //TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
+    /*TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
     public void UseAction(C_Actor thisActor, SO_ActionClass thisAction)
     {
         Debug.Log("Use this actionClass : " + buttonText);
@@ -677,7 +677,7 @@ public class C_Challenge : MonoBehaviour
             //A VOIR PLUS TARD.
             return;
         }
-    }
+    }*/
 
     //Fonction qui déplace les actor.
     public void MoveActorInBoard(C_Actor thisActor, int nbMove, Move.ETypeMove whatMove, bool isTp)
