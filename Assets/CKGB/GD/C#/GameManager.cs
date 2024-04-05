@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
             switch (tagKey)
             {
 
-
+               
                 case Bulle_Tag:
                     Debug.Log("Bulle : " + tagValue);
                     switch (tagValue)
@@ -623,10 +623,12 @@ public class GameManager : MonoBehaviour
                             break;
                     }
                     break;
-                case Type_Tag:
-                    switch(tagKey)
+               /* case Type_Tag:
+                    Debug.Log("Type " + tagValue);
+                    switch (tagValue)
                     {
                         case "pensee":
+                            
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().sprite = textToWriteIn.GetComponentInParent<C_Actor>().GetDataActor().ThinkBulle;
@@ -639,7 +641,7 @@ public class GameManager : MonoBehaviour
                             }
                             break;
                     }
-                    break;
+                    break;*/
 
                 default:
                     //textToWriteIn.text = text;

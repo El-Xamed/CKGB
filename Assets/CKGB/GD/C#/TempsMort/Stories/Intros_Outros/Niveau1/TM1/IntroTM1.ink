@@ -8,7 +8,7 @@ EXTERNAL StartTM(name)
 
 ’lut#Bulle:MorganBasGauche
 
-Yo BG. Bien dormi ?#Bulle:NimuHaute
+Yo BG. Bien dormi ?#Bulle:NimuHautDroite
 
 //lancer l'animation pour qu'il se rapproche
 
@@ -46,11 +46,11 @@ Elle sourit d’un air satisfait.#Bulle:Narrateur
 <i>Bueño</i>, tu me referas six tartines de confiture<br> avec du beurre s’il te plait.#Bulle:NimuHautGauche
 //elle se met à lire. Lui s’approche de la table.
 
-<i>(ARG, LA TRAITRESSE.)</i> #Bulle:MorganHautDroite
+<i>ARG, LA TRAITRESSE.</i> #Bulle:MorganHautDroite #Type:pensee
 Tu <fade>soupires</fade> lourdement#Bulle:Narrateur
 //Il va à la table
 
-’fais quoi ‘jourd’hui ?#Bulle:MorganHautGauche
+’fais quoi ‘jourd’hui ?#Bulle:MorganHautGauche #Type:normal
 
 Je pensais <i>chill</i> à la maison. <br>Et aller chercher les jeunes à l’école vers 15h.#Bulle:NimuHautGauche
 Et toi ?”#Bulle:NimuHautGauche
