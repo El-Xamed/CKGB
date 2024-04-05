@@ -6,14 +6,15 @@ public class VolumeSettings : MonoBehaviour
 {
 
     // permets l acess aux differents slider
-    [SerializeField] private AudioMixer myMixer;
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider sfxSlider;
-    [SerializeField] private Slider voiceSlider;
-    [SerializeField] private Slider generalSlider;
+    [SerializeField]  AudioMixer myMixer;
+    [SerializeField]  Slider musicSlider;
+    [SerializeField]  Slider sfxSlider;
+    [SerializeField]  Slider voiceSlider;
+    [SerializeField]  Slider generalSlider;
+    bool Generalmute = true;
 
     // recupere les valeurs de audio mixer
-    private void Start()
+    public void Start()
     {
 
         SetMusicVolume();
@@ -27,23 +28,44 @@ public class VolumeSettings : MonoBehaviour
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;
-        myMixer.SetFloat("music",volume);
+        myMixer.SetFloat("music",Mathf.Log10(volume) * 20);
     }
 
     public void SetSFXVolume()
     {
         float volume = sfxSlider.value;
-        myMixer.SetFloat("sfx",volume);
+        myMixer.SetFloat("sfx",Mathf.Log10(volume) * 20);
     }
     public void SetVoiceVolume()
     {
         float volume = voiceSlider.value;
-        myMixer.SetFloat("voice",volume);
+        myMixer.SetFloat("voice",Mathf.Log10(volume) * 20);
     }
 
     public void SetGeneralVolume()
     {
         float volume = generalSlider.value;
-        myMixer.SetFloat("general",volume);
+        myMixer.SetFloat("general",Mathf.Log10(volume) * 20);
+    }
+
+
+    public void MuteGeneral()
+    {
+        if (Generalmute)
+        {
+            
+            Generalmute = false;
+            Debug.Log("ça mute");
+        }
+        else
+        {
+            
+            Generalmute = true;
+            Debug.Log("ça mute pas");
+        }
+
+        //generalSlider.enabled = Generalmute; //
+
+        
     }
 }

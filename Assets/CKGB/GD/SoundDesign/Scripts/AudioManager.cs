@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    
     public AudioSource source;
     public static AudioManager instance;
     public Sound[] sounds;
@@ -36,7 +37,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         instance = this;
-       // Play("MusiqueTuto");
+        Play("MusiqueTuto");
 
     } 
 
@@ -75,6 +76,11 @@ public class AudioManager : MonoBehaviour
             return;
         }*/
     }
+
+   /* public void PlaySfx()
+    {
+        AudioSource.PlayOneShot();
+    }*/
     
     
     [System.Serializable]
@@ -96,5 +102,8 @@ public class AudioManager : MonoBehaviour
         [HideInInspector]
         public AudioSource source;
     }
+   
+
+
    
 }

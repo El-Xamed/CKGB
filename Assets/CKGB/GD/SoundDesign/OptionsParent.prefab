@@ -161,10 +161,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5102577142721289558}
   m_HandleRect: {fileID: 5102577142635329669}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -40
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1523,16 +1523,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 5102577141795623693}
   m_HandleRect: {fileID: 5102577141578726745}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -80
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
-        m_MethodName: SetGeneralVolume
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1627,10 +1627,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5102577141672711142}
   m_HandleRect: {fileID: 5102577140869065221}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -40
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1957,10 +1957,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5102577142574589675}
   m_HandleRect: {fileID: 5102577142844903947}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -40
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
