@@ -94,7 +94,7 @@ public class SO_Catastrophy : ScriptableObject
                     Debug.Log("La case " + thisCase + " est attaqué !");
 
                     //Applique des conséquence grace au finction de actionClass.
-                    actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, team, thisActor, plateau);
+                    //actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, team, thisActor, plateau);
 
                     thisActor.CheckIsOut();
                 }
