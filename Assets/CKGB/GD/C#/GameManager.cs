@@ -300,7 +300,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }                           
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().BulleHautGauche.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtHautGauche;
                             TM.Morgan.GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().BulleHautDroite.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtHautDroite;
                             TM.Morgan.GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().BulleBasGauche.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtBasGauche;
                             TM.Morgan.GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
@@ -336,7 +336,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().BulleBasDroite.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtBasDroite;
                             TM.Morgan.GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
@@ -349,7 +349,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().BulleHautGauche.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautGauche;
                             TM.Esthela.GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
@@ -361,7 +361,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().BulleHautDroite.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautDroite;
                             TM.Esthela.GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
@@ -373,7 +373,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().BulleBasGauche.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtBasGauche;
                             TM.Esthela.GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
@@ -385,7 +385,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().BulleBasDroite.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtBasDroite;
                             TM.Esthela.GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
@@ -398,7 +398,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().BulleHautGauche.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtHautGauche;
                             TM.Nimu.GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
@@ -410,7 +410,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().BulleHautDroite.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtHautDroite;
                             TM.Nimu.GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
@@ -422,7 +422,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().BulleBasGauche.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtBasGauche;
                             TM.Nimu.GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
@@ -434,7 +434,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().BulleBasDroite.transform.GetChild(0).GetComponent<TMP_Text>();
+                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtBasDroite;
                             TM.Nimu.GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
@@ -466,24 +466,16 @@ public class GameManager : MonoBehaviour
                         case "TM1_Papoter2":
 
                             break;
-                        case "TM2A_Papoter1":
+                        case "TM2_Papoter1":
 
                             break;
-                        case "TM2A_Papoter2":
+                        case "TM2_Papoter2":
 
                             break;
-                        case "TM2A_Papoter3":
+                        case "TM2_Papoter3":
 
                             break;
-                        case "TM2B_Papoter1":
 
-                            break;
-                        case "TM2B_Papoter2":
-
-                            break;
-                        case "TM2B_Papoter3":
-
-                            break;
                         case "TM3_Papoter1":
 
                             break;
@@ -499,24 +491,16 @@ public class GameManager : MonoBehaviour
                         case "TM1_Observer2":
 
                             break;
-                        case "TM2A_Observer1":
+                        case "TM2_Observer1":
 
                             break;
-                        case "TM2A_Observer2":
+                        case "TM2_Observer2":
 
                             break;
-                        case "TM2A_Observer3":
+                        case "TM2_Observer3":
 
                             break;
-                        case "TM2B_Observer1":
 
-                            break;
-                        case "TM2B_Observer2":
-
-                            break;
-                        case "TM2B_Observer3":
-
-                            break;
                         case "TM3_Observer1":
 
                             break;
@@ -532,24 +516,14 @@ public class GameManager : MonoBehaviour
                         case "TM1_Revasser2":
 
                             break;
-                        case "TM2A_Revasser1":
+                        case "TM2_Revasser1":
 
                             break;
-                        case "TM2A_Revasser2":
+                        case "TM2_Revasser2":
 
                             break;
-                        case "TM2A_Revasser3":
+                        case "TM2_Revasser3":
 
-                            break;
-                        case "TM2B_Revasser1":
-
-                            break;
-                        case "TM2B_Revasser2":
-
-                            break;
-                        case "TM2B_Revasser3":
-
-                            break;
                         case "TM3_Revasser1":
 
                             break;
@@ -565,18 +539,13 @@ public class GameManager : MonoBehaviour
                         case "TM1_outro":
 
                             break;
-                        case "TM2A_intro":
+                        case "TM2_intro":
 
                             break;
-                        case "TM2A_outro":
+                        case "TM2_outro":
 
                             break;
-                        case "TM2B_intro":
-
-                            break;
-                        case "TM2B_outro":
-
-                            break;
+                       
                         case "TM3_intro":
 
                             break;
