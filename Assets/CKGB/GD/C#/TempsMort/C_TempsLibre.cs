@@ -62,6 +62,7 @@ public class C_TempsLibre : MonoBehaviour
     [Header("Else")]
     [SerializeField] public SO_TempsMort TM;
     [SerializeField] public GameObject background;
+    [SerializeField] C_Fiche f;
 
     [Header("Eventsystem and Selected Gameobjects")]
     [SerializeField] EventSystem Es;
@@ -193,10 +194,10 @@ public class C_TempsLibre : MonoBehaviour
                         characterNB++;
                         thisActor.GetComponent<RectTransform>().parent= SpawnParent.transform.GetChild(characterNB).GetComponent<RectTransform>() ;
                         thisActor.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
-                        thisActor.transform.GetChild(0).gameObject.SetActive(true);
-                        thisActor.transform.GetChild(1).gameObject.SetActive(true);
-                        thisActor.transform.GetChild(3).gameObject.SetActive(true);
-                        thisActor.transform.GetChild(4).gameObject.SetActive(true);
+                        thisActor.GetComponent<C_Actor>().BulleHautGauche.SetActive(true);
+                        thisActor.GetComponent<C_Actor>().BulleHautDroite.SetActive(true);
+                        thisActor.GetComponent<C_Actor>().BulleBasGauche.SetActive(true);
+                        thisActor.GetComponent<C_Actor>().BulleBasDroite.SetActive(true);
                         thisActor.transform.GetChild(5).gameObject.SetActive(false);
                     }
                     else
@@ -210,15 +211,15 @@ public class C_TempsLibre : MonoBehaviour
         }
         for (int i = 0; i < characters.Count; i++)
         {
-            characters[i].transform.GetChild(0).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            characters[i].transform.GetChild(1).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            characters[i].transform.GetChild(3).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            characters[i].transform.GetChild(4).GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
-            characters[i].transform.GetChild(0).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            characters[i].transform.GetChild(1).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            characters[i].transform.GetChild(3).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            characters[i].transform.GetChild(4).GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            characters[i].GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
             characters[i].GetComponent<C_Actor>().GetDataActor().characterTree.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => GoToActions());
         }
         naratteurText.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
@@ -328,79 +329,87 @@ public class C_TempsLibre : MonoBehaviour
     public void AfficherFichereduite()
     {
         FichePersoParent.SetActive(true);
-        FichePersoParent.transform.GetChild(0).gameObject.SetActive(true);
-        FichePersoParent.transform.GetChild(1).gameObject.SetActive(false);
-        FichePersoParent.transform.GetChild(2).gameObject.SetActive(false);
+        f.Reduite.SetActive(true);
+        f.Agrandi1.SetActive(false);
+        f.Agrandi2.SetActive(false);
         DisplayFicheInfos();
     }
     public void AfficherGrandeFiche()
     {
         FichePersoParent.SetActive(true);
-        FichePersoParent.transform.GetChild(0).gameObject.SetActive(false);
-        FichePersoParent.transform.GetChild(1).gameObject.SetActive(true);
-        FichePersoParent.transform.GetChild(2).gameObject.SetActive(false);
+        f.Reduite.SetActive(false);
+        f.Agrandi1.SetActive(true);
+        f.Agrandi2.SetActive(false);
         DisplayFicheInfos();
     }
     public void DisplayFicheInfos()
     {
-        if(FichePersoParent.transform.GetChild(0).gameObject.activeSelf == true)
+        if(f.Reduite.activeSelf == true)
         {
-            FichePersoParent.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
-            FichePersoParent.transform.GetChild(0).GetChild(4).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
-            FichePersoParent.transform.GetChild(0).GetChild(5).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
-            FichePersoParent.transform.GetChild(0).GetChild(6).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
-            FichePersoParent.transform.GetChild(0).GetChild(7).GetComponent<TMP_Text>().text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
-            FichePersoParent.transform.GetChild(0).GetChild(8).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().miniDescription;
+            f.r_PP.GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            f.r_energy.text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
+            f.r_calm.text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
+            f.r_name.text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
+            f.r_ptstrait.text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            f.r_description.text = actorActif.GetComponent<C_Actor>().GetDataActor().miniDescription;
             if(actorActif.GetComponent<C_Actor>().HasObserved)
             {
-                FichePersoParent.transform.GetChild(0).GetChild(9).gameObject.SetActive(true);
+                f.r_menergy.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(0).GetChild(9).gameObject.SetActive(false); }
+            else { f.r_menergy.SetActive(false); }
             if (actorActif.GetComponent<C_Actor>().HasRevassed)
             {
-                FichePersoParent.transform.GetChild(0).GetChild(10).gameObject.SetActive(true);
+                f.r_mcalm.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(0).GetChild(10).gameObject.SetActive(false); }
+            else { f.r_mcalm.SetActive(false); }
             if (actorActif.GetComponent<C_Actor>().HasPapoted)
             {
-                FichePersoParent.transform.GetChild(0).GetChild(11).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
-                FichePersoParent.transform.GetChild(0).GetChild(11).gameObject.SetActive(true);
+                f.r_mtraits.text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                if (f.r_mtraits.text == "+0.5")
+                {
+                    f.r_mtraits.gameObject.SetActive(true);
+                }
+                else if (f.r_mtraits.text == "+0")
+                {
+                    f.r_mtraits.text = "+1";
+                    f.r_mtraits.gameObject.SetActive(true);
+                }
             }
             else if(actorActif.GetComponent<C_Actor>().HasPapoted&& actorActif.GetComponent<C_Actor>().HasTraited)
             {
-                FichePersoParent.transform.GetChild(0).GetChild(12).gameObject.SetActive(true);
+                f.r_new.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(0).GetChild(11).gameObject.SetActive(false); FichePersoParent.transform.GetChild(0).GetChild(12).gameObject.SetActive(false); }
+            else { f.r_mtraits.gameObject.SetActive(false); f.r_new.SetActive(false); }
 
         }
-        if (FichePersoParent.transform.GetChild(1).gameObject.activeSelf == true)
+        if (f.Agrandi1.activeSelf == true)
         {
-            FichePersoParent.transform.GetChild(1).GetChild(2).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
-            FichePersoParent.transform.GetChild(1).GetChild(3).GetComponent<TMP_Text>().text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
-            FichePersoParent.transform.GetChild(1).GetChild(4).GetComponent<TMP_Text>().text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
-            FichePersoParent.transform.GetChild(1).GetChild(5).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
-            FichePersoParent.transform.GetChild(1).GetChild(6).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().Description;
+            f.g1_PP.GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            f.g1_energy.text = "Energie : " + actorActif.GetComponent<C_Actor>().GetDataActor().energyMax;
+            f.g1_calm.text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
+            f.g1_name.text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
+            f.g1_description.text = actorActif.GetComponent<C_Actor>().GetDataActor().Description;
             if (actorActif.GetComponent<C_Actor>().HasObserved||currentButton==ObserverButton)
             {
-                FichePersoParent.transform.GetChild(1).GetChild(8).gameObject.SetActive(true);
+                f.g1_menergy.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(1).GetChild(8).gameObject.SetActive(false); }
+            else { f.g1_menergy.SetActive(false); }
             if (actorActif.GetComponent<C_Actor>().HasRevassed||currentButton==RevasserButton)
             {
-                FichePersoParent.transform.GetChild(1).GetChild(9).gameObject.SetActive(true);
+                f.g1_mcalm.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(1).GetChild(9).gameObject.SetActive(false); }
+            else { f.g1_mcalm.SetActive(false); }
             if (actorActif.GetComponent<C_Actor>().HasTraited||currentButton==PapoterButton&& actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()+0.5f==1)
             {
-                FichePersoParent.transform.GetChild(1).GetChild(10).gameObject.SetActive(true);
+                f.g1_new.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(1).GetChild(10).gameObject.SetActive(false); }
+            else { f.g1_new.SetActive(false); }
         }
-        if (FichePersoParent.transform.GetChild(2).gameObject.activeSelf == true)
+        if (f.Agrandi2.activeSelf == true)
         {
-            FichePersoParent.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
-            FichePersoParent.transform.GetChild(2).GetChild(1).GetComponent<TMP_Text>().text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
-            FichePersoParent.transform.GetChild(2).GetChild(3).GetComponent<TMP_Text>().text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            f.g2_PP.GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
+            f.g2_name.text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
+            f.g2_ptstrait.text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
             string listtrait = "Liste Traits : ";
             for (int y = 0; y < actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits.Count; y++)
             {
@@ -409,22 +418,31 @@ public class C_TempsLibre : MonoBehaviour
                     listtrait +="\n" + actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits[y].buttonText;
                 }   
             }
-            FichePersoParent.transform.GetChild(2).GetChild(4).GetComponent<TMP_Text>().text = listtrait;
+            f.g2_traitlist.text = listtrait;
             if (actorActif.GetComponent<C_Actor>().HasPapoted)
             {
-                FichePersoParent.transform.GetChild(2).GetChild(6).GetComponent<TMP_Text>().text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
-                FichePersoParent.transform.GetChild(2).GetChild(6).gameObject.SetActive(true);
+                f.g2_mtraits.text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+                if(f.g2_mtraits.text=="+0.5")
+                {
+                    f.g2_mtraits.gameObject.SetActive(true);
+                }
+                else if(f.g2_mtraits.text == "+0")
+                {
+                    f.g2_mtraits.text = "+1";
+                    f.g2_mtraits.gameObject.SetActive(true);
+                }
+
             }
             else if (currentButton == PapoterButton)
             {
-                FichePersoParent.transform.GetChild(2).GetChild(6).GetComponent<TMP_Text>().text = "+0,5";
-                FichePersoParent.transform.GetChild(2).GetChild(6).gameObject.SetActive(true);
+               f.g2_mtraits.text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()+0.5f;
+               f.g2_mtraits.gameObject.SetActive(true);
             }
             else if (actorActif.GetComponent<C_Actor>().HasPapoted && actorActif.GetComponent<C_Actor>().HasTraited || currentButton == PapoterButton)
             {
-                FichePersoParent.transform.GetChild(2).GetChild(7).gameObject.SetActive(true);
+               f.g2_new.gameObject.SetActive(true);
             }
-            else { FichePersoParent.transform.GetChild(2).GetChild(6).gameObject.SetActive(false); FichePersoParent.transform.GetChild(2).GetChild(7).gameObject.SetActive(false); }
+            else { f.g2_mtraits.gameObject.SetActive(false); f.g2_new.gameObject.SetActive(false); }
         }
     }
     public void SwitchCharacterCard(InputAction.CallbackContext context)
@@ -434,17 +452,17 @@ public class C_TempsLibre : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("switch card");
-            if(FichePersoParent.transform.GetChild(1).gameObject.activeSelf==true)
+            if(f.Agrandi1.activeSelf==true)
             {
-                FichePersoParent.transform.GetChild(2).gameObject.SetActive(true);
-                FichePersoParent.transform.GetChild(1).gameObject.SetActive(false);
+                f.Agrandi2.SetActive(true);
+                f.Agrandi1.SetActive(false);
                 DisplayFicheInfos();
                 Debug.Log("Card 2/2");
             }
-            else if (FichePersoParent.transform.GetChild(2).gameObject.activeSelf == true)
+            else if (f.Agrandi2.activeSelf == true)
             {
-                FichePersoParent.transform.GetChild(2).gameObject.SetActive(false);
-                FichePersoParent.transform.GetChild(1).gameObject.SetActive(true);
+                f.Agrandi2.SetActive(false);
+                f.Agrandi1.SetActive(true);
                 DisplayFicheInfos();
                 Debug.Log("card 1/2");
             }
@@ -1045,4 +1063,6 @@ public class C_TempsLibre : MonoBehaviour
            
         }
     }
-    }
+
+    
+}
