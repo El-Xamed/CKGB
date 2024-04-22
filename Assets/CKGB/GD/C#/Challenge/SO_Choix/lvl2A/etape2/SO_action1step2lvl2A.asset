@@ -16,14 +16,23 @@ MonoBehaviour:
   LogsMakeAction: "D\u2019anciennes traditions parlent du destin qui se d\xE9roule
     dans les lignes de la main ou de la trajectoire de la destin\xE9e \xE9crite dans
     les \xE9toiles. Un de ces arts de divination ancestrale est l\u2019observation
-    des nuages. Tu l\xE8ve tes yeux, scrutant les volumes blancs roulant dans sous
-    le soleil. Oh, la bo\xEEte \xE0 outil. Qu\u2019est-ce qu\u2019elle fait accroch\xE9
-    dans cette arbre ? Elle au moins \xE0 4 m\xE8tres du sol."
+    des nuages. "
+  logsCantMakeAction: "Tu l\xE8ve les yeux vers le ciel. Ils brulent. Tu baisse les
+    yeux. Peut-\xEAtre qu\u2019il serait plus sage que la personne avec des lunettes
+    de soleil fasse cela. Pour s\u2019excuser, les oracles des nuages essaient de
+    t\u2019offrir la bonne fortune, mais une l\xE9g\xE8re erreur de calcul la d\xE9vie
+    sur les deux cases derri\xE8res toi."
+  listLogsAction:
+  - "Tu l\xE8ve tes yeux, scrutant les volumes blancs roulant dans sous le soleil. "
+  - "Oh, la bo\xEEte \xE0 outil. "
+  - "Qu\u2019est-ce qu\u2019elle fait accroch\xE9 dans cette arbre ? Elle au moins
+    \xE0 4 m\xE8tres du sol."
+  logsCursor: 0
   advancedCondition:
-    advancedCondition: 0
+    advancedCondition: 1
     needAcc: 0
     whatAcc: {fileID: 0}
-    canMakeByOneActor: 0
+    canMakeByOneActor: 1
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:

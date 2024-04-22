@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: Utiliser la violence
   LogsMakeAction: "Tu cherches un arbre mort \xE0 fracasser pour cr\xE9er un pont.
-    \xC7a r\xE9glerait le probl\xE8me. Les arbres tremblent \xE0 la vue de tes poings
-    serr\xE9s en qu\xEAte d\u2019une victime \xE0 leur gout. Les oiseaux s\u2019envolent
-    avec anticipation. Mais malheureusement pour toi, il semblerait qu\u2019il n\u2019y
-    a aucun arbre mort au bord de la rivi\xE8re.  C\u2019\xE9tait un peu technique
-    et tu as \xE9chou\xE9."
+    \xC7a r\xE9glerait le probl\xE8me. "
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Les arbres tremblent \xE0 la vue de tes poings serr\xE9s en qu\xEAte d\u2019une
+    victime \xE0 leur gout. Les oiseaux s\u2019envolent avec anticipation. "
+  - "Mais malheureusement pour toi, il semblerait qu\u2019il n\u2019y a aucun arbre
+    mort au bord de la rivi\xE8re.  C\u2019\xE9tait un peu technique et tu as \xE9chou\xE9."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0

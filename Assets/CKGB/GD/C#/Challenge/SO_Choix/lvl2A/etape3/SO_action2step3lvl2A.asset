@@ -14,10 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: "T\xE9l\xE9kin\xE9sie : ACTIVATION"
   LogsMakeAction: " Tu t\u2019es entrain\xE9 toute ta vie pour \xE7a. C\u2019est
-    le moment. Les yeux riv\xE9s sur le m\xE9tal rouges d\xE9lav\xE9s, tu prends
-    la pose de Pers\xE9vo, ton personnage de bande dessin\xE9 pr\xE9f\xE9r\xE9, les
-    cuisses gain\xE9es, les tempes contract\xE9s et les doigts formants des figures
-    \xE9sot\xE9riques. Rassemblant toute ta conviction, tu compte \xE0 voix haute."
+    le moment. "
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Les yeux riv\xE9s sur le m\xE9tal rouges d\xE9lav\xE9s, tu prends la pose de
+    Pers\xE9vo, ton personnage de bande dessin\xE9 pr\xE9f\xE9r\xE9, les cuisses
+    gain\xE9es, les tempes contract\xE9s et les doigts formants des figures \xE9sot\xE9riques. "
+  - "Rassemblant toute ta conviction, tu compte \xE0 voix haute."
+  - 3.
+  - 2.
+  - 1.
+  - 0.5
+  - 0.3
+  - 0
+  - .000000002
+  - 0
+  - Puis, tu rugis.
+  - "\u201CACTIVATIOOOOOOON.\u201D"
+  - "Mais peut-\xEAtre que ce miracle est possible."
+  - "Peut-\xEAtre que tout ce dont tu as besoin, c\u2019est de l\u2019\xE9nergie
+    psychique DEUX personnes en m\xEAme temps ! "
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0

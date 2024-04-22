@@ -16,10 +16,13 @@ MonoBehaviour:
   LogsMakeAction: "Tu essaies d\u2019attirer quelques l\xE9zards dans le cabanon
     pour leur faire flairer la piste de la caisse \xE0 outil. Est-ce que les l\xE9zards
     ont un bon flair ? En tout cas, tu arrive \xE0 leur communiquer l\u2019id\xE9e
-    assez clairement. Mais une fois dans la cabanon, ils ont juste lev\xE9 la t\xEAte
-    vers toi et hauss\xE9 les \xE9paules. Ou\u2026 Peu importe ce qu\u2019on les
-    l\xE9zards \xE0 la place des \xE9paules. Bon. Au moins, il y a toujours des snacks
-    dans le cabanon."
+    assez clairement. "
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Mais une fois dans le caba-oui, ils ont juste lev\xE9 la t\xEAte vers toi et
+    hauss\xE9 les \xE9paules. Ou\u2026 Peu importe ce qu\u2019on les l\xE9zards \xE0
+    la place des \xE9paules. Bon. Au moins, il y a toujours des snacks dans le caba-oui."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -27,4 +30,19 @@ MonoBehaviour:
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
-  listInteraction: []
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats: []
+      move:
+        whatMove: 5
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

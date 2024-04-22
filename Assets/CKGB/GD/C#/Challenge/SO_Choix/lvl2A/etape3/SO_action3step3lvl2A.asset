@@ -15,9 +15,13 @@ MonoBehaviour:
   buttonText: Escalade
   LogsMakeAction: "Tes doigts caressent l\u2019\xE9corce \xE0 la recherche d\u2019une
     prise. Tes ongles s\u2019enfoncent doucement entre les plaque, mais rien n\u2019y
-    fait. Aucune prise ne s\u2019offre \xE0 toi. Tu ne pense pas pouvoir escalader
-    l\u2019arbre. Pour faire comme si tout \xE9tais calcul\xE9, tu fais un grand
-    thumb up aux deux cases \xE0 ta droite."
+    fait. "
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Aucune prise ne s\u2019offre \xE0 toi. Tu ne pense pas pouvoir escalader l\u2019arbre.
+    Pour faire comme si tout \xE9tais calcul\xE9, tu fais un grand thumb up aux deux
+    cases \xE0 ta droite."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: SO_action4step2lvl2A
   m_EditorClassIdentifier: 
   buttonText: "Regarder derri\xE8re le caba-oui"
-  LogsMakeAction: "Tu fais le tour du caba-oui, voir si quelqu\u2019un a juste laiss\xE9
-    la caisse trainer l\xE0 alors qu\u2019il travaillait sur quelque chose. Mais
-    non, rien, deux tr\xE9teaux repli\xE9s sont pos\xE9 contre un mur. Aveugl\xE9
-    par l\u2019ombre du cabanon apr\xE8s t\u2019\xEAtre habitu\xE9 au soleil des
-    champs, tu mets le pied dans un seau remplie d\u2019eau de pluie croupie et boueuse.
-    Beurk."
+  LogsMakeAction: "\xC9coutes, on t'aime bien, mais tr\xE9s sinc\xE8rement tu nous
+    fait courir dans tous les sens depuis tout  \xE0 l'heure sans vraiment faire
+    grand chose de ton cot\xE9."
+  logsCantMakeAction: 
+  listLogsAction:
+  - "On veut bien faire beaucoup de chose mais l\xE0 on commence  avoir un peu la
+    flemme, donc on va probablement juste rester la et bronzer un peu."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -34,12 +36,27 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 0
+    - whatStatsTarget: 1
       listStats:
       - whatStats: 1
         value: 1
-      - whatStats: 0
-        value: 2
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 3
+    range: 1
+    listTargetStats:
+    - whatStatsTarget: 1
+      listStats:
+      - whatStats: 1
+        value: 1
       move:
         whatMove: 0
         isTp: 0
