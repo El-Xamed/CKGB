@@ -12,11 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step3lvl1
   m_EditorClassIdentifier: 
-  buttonText: "Rappeller la cl\xE9"
-  LogsMakeAction: "Invoquant en ton fort int\xE9rieur tous les moments \xE9mouvant
-    que tu as pass\xE9 avec ce jeu de clef, tu fais bouillir ton \xE2me d\u2019\xE9nergie
-    et rugis le nom v\xE9ritable de la clef au travers du salon \u201CTitou Elvira
-    J\xE9rome-Ga\xEFa le neuvieme !!!\u201D."
+  buttonText: Interroger cette clef
+  LogsMakeAction: '9h10. '
+  logsCantMakeAction: 
+  listLogsAction:
+  - "u as trouv\xE9 un nouveau t\xE9moins. A moins qu\u2019il ne s\u2019agisse de
+    la disparue ? La lumi\xE8re d\u2019un rideau persienne projette des lignes horizontale
+    sur ton visage."
+  - "Tu tient la clef devant toi, et mime de lui souffler une bouffee de cigarette
+    \xE0 la figure."
+  - "\u201CQu\u2019est-il arriv\xE9e \xE0 Madame keyington ?.\u201D Tu murmure d\u2019une
+    voix grave. Des articles de journaux te reviennent \xE0 l\u2019esprit."
+  - "Des histoires de serrure, de jalousie et de trahison. Et si il s\u2019agissait\u2026
+    De la clef de toute cette enqu\xEAte ?"
+  - "Tu passe ta main sur ton visage. Cette affaire te donne mal \xE0 la t\xEAte.
+    Tu mime de boire un verre d\u2019un alcool quelconque. L\u2019effet placebo te
+    rend de l\u2019energie."
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -35,24 +47,7 @@ MonoBehaviour:
     - whatStatsTarget: 1
       listStats:
       - whatStats: 0
-        value: 3
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      listStats:
-      - whatStats: 1
-        value: 2
+        value: 1
       move:
         whatMove: 0
         isTp: 0

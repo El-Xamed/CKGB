@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
-  m_Name: SO_action2step3lvl1
+  m_Name: SO_action2step2lvl1 1
   m_EditorClassIdentifier: 
-  buttonText: Chevaucher M. Dos-fin
-  LogsMakeAction: WOUHOOOOOOOOOOOOOOOOU.
-  logsCantMakeAction: 
+  buttonText: Utiliser la violence
+  LogsMakeAction: "Tu retournes la table la plus proche ! Son contenu s\u2019\xE9tale
+    au sol dans un grand fracas. Pas de trace de la clef. Bon\u2026 Plus qu\u2019\xE0
+    ranger."
   listLogsAction: []
   logsCursor: 0
   advancedCondition:
@@ -25,35 +26,20 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
+  - whatTarget: 1
     selectTarget: 0
-    whatTypeTarget: 0
+    whatTypeTarget: 1
     target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
+    whatDirectionTarget: 1
+    range: 2
     listTargetStats:
-    - whatStatsTarget: 1
+    - whatStatsTarget: 0
       listStats:
       - whatStats: 1
-        value: 3
+        value: 2
       move:
         whatMove: 0
         isTp: 0
         nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 2
-      listStats: []
-      move:
-        whatMove: 3
-        isTp: 0
-        nbMove: 3
         actor: {fileID: 0}
         accessories: {fileID: 0}

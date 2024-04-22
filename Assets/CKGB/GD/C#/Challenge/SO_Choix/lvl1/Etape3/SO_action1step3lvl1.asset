@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: SO_action1step3lvl1
   m_EditorClassIdentifier: 
   buttonText: 'Fouiller les tiroirs '
-  LogsMakeAction: "Tu ouvres le premier tiroir. Chouette, des biscuits, comme d\u2019hab,
-    et le deuxi\xE8me\u2026 La clef s\u2019enfonce dans le tiroir. Tu la tournes.
-    Tu entends un \u201Cclic\u201D. Victoire ! AH-AH !! Tes clefs de porte \xE9taient
+  LogsMakeAction: "Tu ouvre le premier tiroir. Chouette, des biscuits, comme d\u2019hab,
+    et le deuxi\xE8me\u2026"
+  logsCantMakeAction: 
+  listLogsAction:
+  - "La clef s\u2019enfonce dans le tiroir. Tu la tourne."
+  - "Tu entends un \u201Cclic\u201D. Victoire ! AH-AH !! Tes clefs de porte \xE9taient
     bien \xE0 l\u2019int\xE9rieur ! Mais qui les a mit l\xE0 ??"
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -32,10 +36,10 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 1
+    - whatStatsTarget: 0
       listStats:
       - whatStats: 0
-        value: 2
+        value: 1
       move:
         whatMove: 0
         isTp: 0
@@ -49,13 +53,13 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 0
+    - whatStatsTarget: 2
       listStats:
       - whatStats: 1
         value: 1
       move:
-        whatMove: 0
+        whatMove: 3
         isTp: 0
-        nbMove: 0
+        nbMove: 4
         actor: {fileID: 0}
         accessories: {fileID: 0}

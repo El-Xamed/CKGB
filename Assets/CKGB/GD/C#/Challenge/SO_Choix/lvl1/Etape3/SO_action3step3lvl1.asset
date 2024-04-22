@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action3step3lvl1
   m_EditorClassIdentifier: 
-  buttonText: Remettre le meuble a sa place
+  buttonText: Essayer la clef sur la porte
   LogsMakeAction: "Vous remettez le meuble \xE0 la place, voila c'est tout"
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -32,23 +35,23 @@ MonoBehaviour:
     - whatStatsTarget: 1
       listStats:
       - whatStats: 1
-        value: 3
+        value: 1
       move:
         whatMove: 0
         isTp: 0
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
-  - whatTarget: 0
+  - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 0
     target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
+    whatDirectionTarget: 1
+    range: 2
     listTargetStats:
-    - whatStatsTarget: 0
+    - whatStatsTarget: 1
       listStats:
-      - whatStats: 0
+      - whatStats: 1
         value: 2
       move:
         whatMove: 0

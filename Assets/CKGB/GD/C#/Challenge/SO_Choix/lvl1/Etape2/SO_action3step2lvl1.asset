@@ -12,11 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action3step2lvl1
   m_EditorClassIdentifier: 
-  buttonText: Pousser le meuble
-  LogsMakeAction: "Tu essaies de pousser le meuble, mais on dirait qu\u2019il est
-    trop lourd pour \xEAtre pouss\xE9 tout.e seul.e."
+  buttonText: Faire un tableau conspirationniste
+  LogsMakeAction: "Tu sors un tableau de li\xE8ge et commence \xE0 faire les cents
+    pas devant."
+  logsCantMakeAction: 
   listLogsAction:
-  - 
+  - "Au centre du tableau, tu \xE9pingle le mot que vous avez trouv\xE9."
+  - "A cot\xE9, un selfie de la clef disparue."
+  - "Tu le relie avec un fil rouge \xE0 un selfie de M. Dos-fin, que tu relie \xE0
+    une photo de M\xE9m\xE9 L\xE9on,"
+  - "que tu relie aux r\xE9ptiliens, que tu relis aux pyramides, que tu que tu relie
+    \xE0 un point d\u2019interrogation avec \xE9crit \u201CColin\u201D en dessous."
+  - "Tu es pas encore vraiment s\xFBr de qui est ce Colin exactement, mais tu es
+    s\xFBre que \xE7a deviendra bientot un \xE9l\xE9ment capitale de l\u2019enqu\xEAte."
+  - "u recule pour regarder l\u2019ensemble, et tu te sens frapper par une r\xE9alisation
+    gla\xE7ante."
+  - "T\u2019es vraiment pas plus avanc\xE9."
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
@@ -33,30 +44,13 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 1
+    - whatStatsTarget: 2
       listStats:
       - whatStats: 0
         value: 3
       move:
-        whatMove: 0
+        whatMove: 2
         isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      listStats:
-      - whatStats: 1
-        value: 2
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
+        nbMove: 1
         actor: {fileID: 0}
         accessories: {fileID: 0}

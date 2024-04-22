@@ -17,10 +17,12 @@ MonoBehaviour:
     cot\xE9 ! vous le glissez sur la droite. Oh ! Une cl\xE9 \xE9tait vraiment coinc\xE9
     en dessous ! Mais\u2026 On dirait pas celle de la porte ? A quoi est-ce qu\u2019elle
     peut correspondre ?"
+  logsCantMakeAction: "Tu essaies de pousser le meuble, mais on dirait qu\u2019il
+    est trop lourd pour \xEAtre pouss\xE9 tout.e seul.e."
   listLogsAction: []
   logsCursor: 0
   advancedCondition:
-    advancedCondition: 0
+    advancedCondition: 1
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
@@ -37,7 +39,7 @@ MonoBehaviour:
     - whatStatsTarget: 0
       listStats:
       - whatStats: 0
-        value: 1
+        value: 2
       move:
         whatMove: 0
         isTp: 0
