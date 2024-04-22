@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 2296779152173599188}
   - component: {fileID: 2698221375160985797}
   - component: {fileID: 2164990398259341175}
+  - component: {fileID: 8086820775410190534}
   m_Layer: 5
   m_Name: TreeNimu
   m_TagString: Untagged
@@ -610,6 +611,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8086820775410190534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720100580055531552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2485b5aa5c6d434fa0a0f6174099947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  c_button: {fileID: 6572443910598592841}
+  c_cursor: {fileID: 7869342589219704389}
+  p_button: {fileID: 1417632209203921257}
+  p_cursor: {fileID: 5048401925801324226}
 --- !u!1 &7869342589219704389
 GameObject:
   m_ObjectHideFlags: 0
