@@ -304,34 +304,6 @@ public class SO_ActionClass : ScriptableObject
     }
     #endregion
 
-    //Check si il y a des acteurs dans la range.
-    public bool CheckPositionOther(C_Actor thisActor, int position, List<C_Case> listCase, C_Actor target)
-    {
-        if (thisActor.GetPosition() + position >= listCase.Count - 1)
-        {
-            if (0 + position == target.GetPosition() && target != thisActor)
-            {
-                Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-                return true;
-            }
-        }
-        else if (thisActor.GetPosition() + position <= 0)
-        {
-            if (0 + position == target.GetPosition() && target != thisActor)
-            {
-                Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-                return true;
-            }
-        }
-        else if (thisActor.GetPosition() + position == target.GetPosition() && target != thisActor)
-        {
-            Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-            return true;
-        }
-
-        return false;
-    }
-
     //Check si dans la config de cette action, des paramètre "other" existe.
     public bool CheckOtherInAction()
     {
@@ -378,35 +350,11 @@ public class SO_ActionClass : ScriptableObject
         logsCursor = 0;
     }
 
-    /*TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
-    public void UseAction(C_Actor thisActor, List<C_Case> plateau, List<C_Actor> myTeam)
-    {
-        Debug.Log("Use this actionClass : " + buttonText);
-
-        //Check dans les data de cette action si la condition est bonne.
-        if (CanUse(thisActor))
-        {
-            //Applique les conséquences de stats peut importe si c'est réusi ou non.
-            //Créer la liste pour "self"
-            SetStatsTarget(Interaction.ETypeTarget.Self, myTeam, thisActor, plateau);
-
-            //Créer la liste pour "other"
-            if (CheckOtherInAction())
-            {
-                SetStatsOther(myTeam, thisActor, GetRange(), plateau);
-            }
-        }
-        else
-        {
-            //Renvoie un petit indice de pourquoi l'action n'a pas fonctionné.
-            //A VOIR PLUS TARD.
-            return;
-        }
-    }*/
-
     //vérifie la condition si l'action fonctionne.
     public bool CanUse(C_Actor thisActor)
     {
+        //AJOUTER LA CONDITION DES ACTIONS FAIT A 2.
+
         //Check si les codition bonus sont activé.
         if (advancedCondition.advancedCondition)
         {
@@ -457,78 +405,6 @@ public class SO_ActionClass : ScriptableObject
             }
         }
         #endregion
-
-        #region Movement
-        //Pour le mouvement.
-        //Check si le parametre de déplacement est utilisé.
-        if (GetMovement(target) != 0)
-        {
-            //Deplace l'actor avec l'info de déplacement + type de déplacement.
-            challenge.MoveActorInBoard(thisActor ,GetClassMove(target).nbMove, GetClassMove(target).whatMove, GetClassMove(target).isTp);
-        }
-        #endregion
-    }
-
-    //Affiche une preview sur les autres actor.
-    public void SetStatsOther(List<C_Actor> otherActor, C_Actor thisActor, int range, List<C_Case> plateau)
-    {
-        if (!GetIfTargetOrNot())
-        {
-            //Boucle avec le range.
-            for (int i = 1; i < range; i++)
-            {
-                //Boucle pour check sur tout les actor du challenge.
-                foreach (C_Actor thisOtherActor in otherActor)
-                {
-                    //Check quel direction la range va faire effet.
-                    switch (GetTypeDirectionRange())
-                    {
-                        //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                        case Interaction.ETypeDirectionTarget.Right:
-                            //Calcul vers la droite.
-                            if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
-                            {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            }
-                            Debug.Log("Direction Range = droite.");
-                            break;
-                        case Interaction.ETypeDirectionTarget.Left:
-                            //Calcul vers la gauche.
-                            if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
-                            {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            }
-                            Debug.Log("Direction Range = Gauche.");
-                            break;
-                        case Interaction.ETypeDirectionTarget.RightAndLeft:
-                            //Calcul vers la droite + gauche.
-                            if (CheckPositionOther(thisActor, i, plateau, thisOtherActor))
-                            {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            }
-                            if (CheckPositionOther(thisActor, -i, plateau, thisOtherActor))
-                            {
-                                SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
-                            }
-                            Debug.Log("Direction Range = droite + gauche.");
-                            break;
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (GetTarget().GetComponent<C_Actor>())
-            {
-                SetStatsTarget(Interaction.ETypeTarget.Other, GetTarget().GetComponent<C_Actor>());
-            }
-            else if (GetTarget().GetComponent<C_Accessories>())
-            {
-                SetTarget(GameObject.Find(GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
-
-                SetStatsTarget(Interaction.ETypeTarget.Other, GetTarget().GetComponent<C_Accessories>());
-            }
-        }
     }
     #endregion
 

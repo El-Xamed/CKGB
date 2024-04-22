@@ -27,19 +27,6 @@ public class C_ActionButton : MonoBehaviour
     #endregion
 
     #region Preview
-    #region System de couleur dans un texte.
-    string GetColorToString(Color32 color)
-    {
-        string hex = color.r.ToString("X2") + color.g.ToString("X2") + color.b.ToString("X2");
-        return hex;
-    }
-
-    string GetColorText(string myString, Color32 myColor)
-    {
-        
-        return "<color=#" + GetColorToString(myColor) + ">" + myString + "<" + "/color>";
-    }
-    #endregion
 
     //Pour récupérer le texte pour la preview des stats.
     public string GetLogsPreview(List<C_Actor> team, C_Actor thisActor, List<C_Case> plateau)
@@ -47,6 +34,7 @@ public class C_ActionButton : MonoBehaviour
         listLogsPreview = new List<string>();
         string logsPreview = "";
 
+        /* BLOCAGE DE CETTE PARTIE DE SCRIPT QUI PERMET D'ECRIRE LES PREVIEW CAR CA VA ETRE REMPLACE PAR UN OUTIL DE PREVIEW.
         //Créer la liste pour "self"
         GetLogsPreviewTarget(Interaction.ETypeTarget.Self, team, thisActor);
 
@@ -54,7 +42,7 @@ public class C_ActionButton : MonoBehaviour
         if (actionClass.CheckOtherInAction())
         {
             GetOtherLogsPreview(team, thisActor, actionClass.GetRange(), plateau);
-        }
+        }*/
 
         //Prépare le texte de la preview.
         foreach (var thisText in listLogsPreview)
@@ -67,6 +55,7 @@ public class C_ActionButton : MonoBehaviour
         return logsPreview;
     }
 
+    /* A SUPPRIMER CAR UN OUTIL SERA DEV POUR ECRIRE LES PREVIEW.
     void GetLogsPreviewTarget(Interaction.ETypeTarget target, List<C_Actor> otherActor, C_Pion thisActor)
     {
         //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
@@ -320,7 +309,7 @@ public class C_ActionButton : MonoBehaviour
             }
         }
     }
-
+    */
 
     #region Affiche preview sur les stats
     //Cache toutes les preview.

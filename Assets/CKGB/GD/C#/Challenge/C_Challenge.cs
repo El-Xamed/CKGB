@@ -6,8 +6,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static SO_Catastrophy;
 using static SO_Challenge;
+using static UnityEngine.GraphicsBuffer;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -394,6 +397,51 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Tour du joueur
+    //Fonction pour faire spawn les cata.
+    void InitialiseCata()
+    {
+        //Supprime toutes les catasur le plateau.
+        foreach (var thisCase in plateau)
+        {
+            thisCase.DestroyVfxCata();
+        }
+
+        Debug.Log("Les cases ont été sup.");
+
+        //Initialise la cata (Random avec 1 valeur).
+        if (currentCata.modeAttack == SO_Catastrophy.EModeAttack.Random)
+        {
+            //Augmente ou réduit le nombre.
+            int newInt = UnityEngine.Random.Range(0, plateau.Count);
+
+            //Vide la liste.
+            currentCata.targetCase.Clear();
+
+            //Ajoute la valeur aléatoire.
+            currentCata.targetCase.Add(newInt);
+        }
+
+        //Affiche la prochaine cata.
+        foreach (var thisCase in currentCata.targetCase)
+        {
+            //Check si le VFX est bien renseigné.
+            if (currentCata.vfxCataPrefab == null)
+            {
+                Debug.LogWarning("Il y a pas de cata dans cette cata !");
+                return;
+            }
+
+            plateau[thisCase].ShowDangerZone(currentCata.vfxCataPrefab);
+            Debug.Log("nouvelle Cata sur la case " + thisCase);
+        }
+
+        //Check si les actor sont en danger
+        foreach (C_Case thisCase in plateau)
+        {
+            thisCase.CheckIsInDanger();
+        }
+    }
+
     //Pour Update l'UI. CHANGER LA FONCTION !!!!
     void UpdateUi()
     {
@@ -489,7 +537,7 @@ public class C_Challenge : MonoBehaviour
                 currentCata = myChallenge.listCatastrophy[0];
             }
 
-            currentCata.InitialiseCata(plateau, myTeam);
+            InitialiseCata();
 
             canIniCata = false;
         }
@@ -610,10 +658,9 @@ public class C_Challenge : MonoBehaviour
 
         //Applique toutes les actions. 1 par 1.
         //New : Utilise l'action directement dans le challenge.
-        UseAction(currentResolution.actor, currentResolution.button.GetActionClass());
-        //Old
-        //currentResolution.button.GetActionClass().UseAction(currentResolution.actor, plateau, myTeam);
+        UseAction(currentResolution);
 
+        #region Check si c'est la bonne action
         //Check si c'est la bonne action.
         if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
         {
@@ -646,39 +693,156 @@ public class C_Challenge : MonoBehaviour
                 }
             }
         }
+        #endregion
 
+        #region Logs
         //Ecrit dans les logs le résultat de l'action.
         currentResolution.button.GetActionClass().ResetLogs();
         uiLogs.text = currentResolution.button.GetActionClass().GetListLogs();
+        #endregion
     }
 
     //Utilise l'action.
-    //TEST : DEPLACEMENT DANS LE CHALLENGE CAR C'EST LUI QUI APPLIQUE LES MODIFICATION SUR LES PERSO.
-    public void UseAction(C_Actor thisActor, SO_ActionClass thisAction)
+    public void UseAction(ActorResolution thisActorResolution)
     {
-        Debug.Log("Use this actionClass : " + thisAction.buttonText);
+        Debug.Log("Use this actionClass : " + thisActorResolution.button.GetActionClass().buttonText);
 
-        //Check dans les data de cette action si la condition est bonne.
-        if (thisAction.CanUse(thisActor))
+        //Raccourcis.
+        SO_ActionClass action = thisActorResolution.button.GetActionClass();
+        C_Actor actor = thisActorResolution.actor;
+
+        //Applique les conséquences de stats peut importe si c'est réusi ou non.
+        #region Self
+        //Créer la liste pour "self"
+        action.SetStatsTarget(Interaction.ETypeTarget.Self, actor);
+
+        //Check si un mouvement pour "self" existe.
+        CheckIfTargetMove(Interaction.ETypeTarget.Self, actor);
+        #endregion
+
+        #region Other
+        //Créer la liste pour "other"
+        if (action.CheckOtherInAction())
         {
-            //Applique les conséquences de stats peut importe si c'est réusi ou non.
-            //Créer la liste pour "self"
-            thisAction.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
-
-            //Créer la liste pour "other"
-            if (thisAction.CheckOtherInAction())
+            //Boucle avec la range.
+            for (int i = 1; i < action.GetRange(); i++)
             {
-                thisAction.SetStatsOther(myTeam, thisActor, thisAction.GetRange(), plateau);
+                //Boucle pour check sur tout les actor du challenge.
+                foreach (C_Actor thisOtherActor in myTeam)
+                {
+                    //Check quel direction la range va faire effet.
+                    switch (action.GetTypeDirectionRange())
+                    {
+                        //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                        case Interaction.ETypeDirectionTarget.Right:
+                            //Calcul vers la droite.
+                            CheckPositionOther(actor, i, thisOtherActor);
+                            Debug.Log("Direction Range = droite.");
+                            break;
+                        case Interaction.ETypeDirectionTarget.Left:
+                            //Calcul vers la gauche.
+                            CheckPositionOther(actor, -i, thisOtherActor);
+                            Debug.Log("Direction Range = Gauche.");
+                            break;
+                        case Interaction.ETypeDirectionTarget.RightAndLeft:
+                            //Calcul vers la droite + gauche.
+                            CheckPositionOther(actor, i, thisOtherActor);
+                            CheckPositionOther(actor, -i, thisOtherActor);
+                            Debug.Log("Direction Range = droite + gauche.");
+                            break;
+                    }
+                }
             }
+
+            //Fonction pour check si il y a des acteurs dans la range.
+            bool CheckPositionOther(C_Actor thisActor, int position, C_Actor target)
+            {
+                if (thisActor.GetPosition() + position >= plateau.Count - 1)
+                {
+                    if (0 + position == target.GetPosition() && target != thisActor)
+                    {
+                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+
+                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+
+                        //Check si un mouvement pour "other" existe.
+                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                        return true;
+                    }
+                }
+                else if (thisActor.GetPosition() + position <= 0)
+                {
+                    if (0 + position == target.GetPosition() && target != thisActor)
+                    {
+                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+
+                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+
+                        //Check si un mouvement pour "other" existe.
+                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                        return true;
+                    }
+                }
+                else if (thisActor.GetPosition() + position == target.GetPosition() && target != thisActor)
+                {
+                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+
+                    action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+
+                    //Check si un mouvement pour "other" existe.
+                    CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        #endregion
+
+        #region Logs
+        //Check dans les data de cette action si la condition est bonne.
+        if (action.CanUse(actor))
+        {
+            //Renvoie un texte de condition réussite.
         }
         else
         {
-            //Renvoie un petit indice de pourquoi l'action n'a pas fonctionné.
-            //A VOIR PLUS TARD.
+            //Renvoie un texte de condition de non réussite.
             return;
+        }
+        #endregion
+
+        //Fonction pour vérifier si un mouvment est nessecaire.
+        void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
+        {
+            //Regarde d'abord c'est quoi comme type de déplacement.
+            if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
+            {
+                //Check si un mouvement existe.
+                if (action.GetMovement(target) != 0)
+                {
+                    //Deplace l'actor avec l'info de déplacement + type de déplacement.
+                    MoveActorInBoard(thisActor, action.GetClassMove(target).nbMove, action.GetClassMove(target).whatMove, action.GetClassMove(target).isTp);
+                }
+            }
+            else //Ciblé par un actor ou acc.
+            {
+                //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
+                if (action.GetTarget().GetComponent<C_Actor>())
+                {
+                    action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Actor>());
+                }
+                else if (action.GetTarget().GetComponent<C_Accessories>())
+                {
+                    action.SetTarget(GameObject.Find(action.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
+
+                    action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Accessories>());
+                }
+            }
         }
     }
 
+    #region Deplace les actor
     //Fonction qui déplace les actor.
     public void MoveActorInBoard(C_Pion thisPion, int nbMove, Move.ETypeMove whatMove, bool isTp)
     {
@@ -790,7 +954,52 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
 
+    #endregion
+
     #region Tour de la Cata
+    //Fonction pour appliquer la cata.
+    public void ApplyCatastrophy()
+    {
+        //Pour tous les nombre dans la liste dela cata.
+        foreach (var thisCase in currentCata.targetCase)
+        {
+            //Check si la case possède un vfx.
+            if (plateau[thisCase].GetVfxCata() != null)
+            {
+                //VFX de la cata qui s'applique.
+                plateau[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
+            }
+
+            if (currentCata.applyForAll)
+            {
+                //Pour tous les actor.
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    //Applique des conséquence grace au finction de actionClass.
+                    currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+
+                    thisActor.CheckIsOut();
+                }
+            }
+            else
+            {
+                //Pour tous les actor.
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    if (thisCase == thisActor.GetPosition())
+                    {
+                        Debug.Log("La case " + thisCase + " est attaqué !");
+
+                        //Applique des conséquence grace au finction de actionClass.
+                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+
+                        thisActor.CheckIsOut();
+                    }
+                }
+            }
+        }
+    }
+
     //Pour lancer la cata.
     public void CataTrun()
     {
@@ -803,7 +1012,7 @@ public class C_Challenge : MonoBehaviour
         uiLogs.text = currentCata.catastrophyLog;
 
         //Applique la catastrophe.
-        currentCata.ApplyCatastrophy(plateau, myTeam);
+        ApplyCatastrophy();
 
         //Re-Check si tous les perso sont "out".
         if (!CheckGameOver())
@@ -854,7 +1063,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-
+    #region Fin de partie
 
     #region GameOver
     //Bool pour check si le vhallenge est fini.
@@ -941,6 +1150,8 @@ public class C_Challenge : MonoBehaviour
 
         Debug.Log("Fin du challenge");
     }
+    #endregion
+
     #endregion
 
     #region Data Interface
