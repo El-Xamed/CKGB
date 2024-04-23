@@ -81,6 +81,7 @@ public class C_TempsLibre : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //prepare les datas en recuperant le so temps libre, les personnages si ils existent pour simplifier la comm entre fonctions et scripts
         GameManager.instance.TM = this;
         TM = GameManager.instance.currentTM;
         HideUI();
@@ -98,12 +99,14 @@ public class C_TempsLibre : MonoBehaviour
         {
             Nimu = GameObject.Find("Nimu");
         }
+        //lance l'intro dialogue
         GameManager.instance.textToWriteIn = naratteurText;
         StartCoroutine(StartIntro());
     }
 
     private void CharactersDataGet()
     {
+        //prepare les datas du temps libre en modifiant les sprites et donnees pour passer du challenge a ce mode la
         for (int i = 0; i < characters.Count; i++)
         {
             characters[i].transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
@@ -129,24 +132,27 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void HideUI()
     {
+        //cache les parents d'ui principaux
         FichePersoParent.SetActive(false);
         TreeParent.SetActive(false);
         ActionsParents.SetActive(false);
     }
     public void GoToActions()
     {
-       
+       //ouvre le menu de choix parmi les 3 actions
         if(actorActif.GetComponent<C_Actor>().HasPlayed==false)
         {
 
             charactertoaddID++;
             LastCharacterThatPlayed.Add(actorActif);
+            //ajoute le personnage actif a la liste de tout les personnages ayant deja joues
             for (int i = 0; i < characters.Count; i++)
             {
                 TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
             }
             //TreeParent.SetActive(false);
             ActionsParents.SetActive(true);
+            //change le curseur en fonction du personnage actif
             PapoterButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
             ObserverButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
             RevasserButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
@@ -156,6 +162,7 @@ public class C_TempsLibre : MonoBehaviour
             
             allTalk.Clear();
             nbActort = 0;
+            //liste toutes les possibilites d avec qui le personnage actif peut discuter et dans quel ordre
             for (int i=0;i<characters.Count;i++)
             {
                 if(actorActif.name!=characters[i].name)
@@ -163,9 +170,8 @@ public class C_TempsLibre : MonoBehaviour
                     allTalk.Add(actorActif.name + "APapoteAvec" + characters[i].name);
                     allTalk.Add(characters[i].name + "APapoteAvec" + actorActif.name);
                 }
-                
-
             }
+            //compare ensuite si iel a deja parle avec tout les personnages possibles ou non
             for(int i=0;i< allTalk.Count;i++)
             {
                
@@ -183,6 +189,7 @@ public class C_TempsLibre : MonoBehaviour
                     nbActort++;
                 }
             }
+            //condamne ou non le bouton papoter
             if(nbActort==characterNB)
             {
                 PapoterButton.GetComponent<Image>().color = Color.gray;
@@ -198,6 +205,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void ActivateTreeCharacterChoice()
     {
+        //active l arbre de choix de personnages avec les boutons de choix de quel perso va jouer
         TreeParent.SetActive(true);
         for (int i = 0; i < characters.Count; i++)
         {
@@ -207,6 +215,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void ActivateTreePapotageChoice()
     {
+        //active l arbre de choix de personnages avec les boutons de choix de quel perso va papoter avec le perso actif
         TreeParent.SetActive(true);
         for (int i=0;i<characters.Count; i++)
         {
@@ -218,6 +227,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     private void initiateTMvariables()
     {
+        //genere les valeurs des so en jeu et les prefabs precedemment renseigne dans la world map 
         if (GameManager.instance)
         {
             Instantiate(GameManager.instance.GetDataTempsMort().TMbackground, background.transform);
@@ -260,6 +270,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         for (int i = 0; i < characters.Count; i++)
         {
+            //ajoute des fonctions pour le bouton A pour passer ou non un dialogue
             characters[i].GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
             characters[i].GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
             characters[i].GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
@@ -286,6 +297,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     IEnumerator TempsMortUnleashed()
     {
+        //reactive l ui apres l intro 
         yield return new WaitForSeconds(0.6f);
         TreeParent.SetActive(true);
         TMhasStarted = true;
@@ -307,6 +319,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void continueStory(InputAction.CallbackContext context)
     {
+        //check si l histoire continue ou pas
         Debug.Log("continue");
         if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
         {

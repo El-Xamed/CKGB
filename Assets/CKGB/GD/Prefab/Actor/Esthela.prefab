@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174771821726031280, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 186918570888302824, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 186918570888302824, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_VerticalAlignment
       value: 256
@@ -28,8 +36,28 @@ PrefabInstance:
       value: TextBasDroiteEsthela
       objectReference: {fileID: 0}
     - target: {fileID: 1260884621944680045, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260884621944680045, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_margin.w
       value: 1.3970854
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398160843508018769, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398160843508018769, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398160843508018769, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398160843508018769, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 1569805013511429960, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -204,6 +232,10 @@ PrefabInstance:
       value: -104
       objectReference: {fileID: 0}
     - target: {fileID: 4144511508975311013, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144511508975311013, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_margin.w
       value: -1.0981255
       objectReference: {fileID: 0}
@@ -278,6 +310,22 @@ PrefabInstance:
     - target: {fileID: 7710415273778380533, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_Name
       value: TextbasGaucheEsthela
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968554208236554830, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968554208236554830, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968554208236554830, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968554208236554830, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 7986074133770246352, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_AnchorMax.y
