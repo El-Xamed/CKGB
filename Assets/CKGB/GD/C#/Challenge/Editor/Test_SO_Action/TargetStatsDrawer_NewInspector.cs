@@ -24,7 +24,7 @@ public class TargetStatsDrawer_NewInspector : PropertyDrawer
         Rect statsRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
         Rect whatStatsRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
         Rect valueRect = new Rect(position.x, position.y + fieldHeight*2, position.width, EditorGUIUtility.singleLineHeight);
-        Rect targetRect = new Rect(position.x, position.y + fieldHeight *3, position.width, EditorGUIUtility.singleLineHeight);
+        Rect targetRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
@@ -32,9 +32,10 @@ public class TargetStatsDrawer_NewInspector : PropertyDrawer
         //Dessin
         ETypeStatsTarget statsTarget = (ETypeStatsTarget)stats.enumValueIndex;
 
+        EditorGUI.PropertyField(statsRect, stats, new GUIContent("Stats / Move"));
+
         if (statsTarget == ETypeStatsTarget.Stats)
         {
-            EditorGUI.PropertyField(statsRect, stats, new GUIContent("Gain / Price"));
             EditorGUI.PropertyField(whatStatsRect, whatStats, new GUIContent("what stats ?"));
             EditorGUI.PropertyField(valueRect, value, new GUIContent("Value"));
         }
