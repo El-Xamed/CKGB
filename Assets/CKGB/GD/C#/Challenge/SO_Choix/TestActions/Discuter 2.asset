@@ -12,13 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: Discuter 2
   m_EditorClassIdentifier: 
-  coutEnergy: 1
-  coutCalm: 1
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: 0
-  leftRange: 0
-  rightRange: 0
-  nextMiniStep: {fileID: 0}
-  actionButton: {fileID: 4645717401074721224, guid: ffb467525770c7d418973dca4bf35faf, type: 3}
-  buttonText: 
+  buttonText: "D\xE9placement droite +2"
+  LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
+  advancedCondition:
+    advancedCondition: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 2
+      listStats: []
+      move:
+        whatMove: 1
+        isTp: 0
+        nbMove: 4
+        actor: {fileID: 0}
+        accessories: {fileID: 0}

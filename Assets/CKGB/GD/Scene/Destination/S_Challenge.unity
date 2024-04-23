@@ -959,7 +959,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.3}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35.000244, y: -7.500061}
+  m_AnchoredPosition: {x: -35.000244, y: -7.5}
   m_SizeDelta: {x: -110, y: -15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530368893
@@ -1119,8 +1119,8 @@ MonoBehaviour:
   vfxPlayerTurn: {fileID: 402547181}
   vfxResoTurn: {fileID: 1775372999}
   vfxCataTurn: {fileID: 0}
-  myChallenge: {fileID: 11400000, guid: ec5173695574d434c8ab78cd7a121e5e, type: 2}
-  plateau: {fileID: 1665274490}
+  myChallenge: {fileID: 11400000, guid: e017fc6468b182f4593106daa8049e34, type: 2}
+  plateauGameObject: {fileID: 1665274490}
   myCase: {fileID: 3186339798148567078, guid: 452693a07bada3a409b9882099605ee6, type: 3}
   myInterface: {fileID: 404572936}
   currentActor: {fileID: 0}
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     actor: {fileID: 0}
   uiLogs: {fileID: 530368893}
   tm1: {fileID: 11400000, guid: 429ef7747213b6d40b366e404684cc22, type: 2}
-  c1: {fileID: 11400000, guid: 3717d10933abcfa47b6cb682f2e40576, type: 2}
+  c1: {fileID: 11400000, guid: e017fc6468b182f4593106daa8049e34, type: 2}
 --- !u!114 &599995160
 MonoBehaviour:
   m_ObjectHideFlags: 0

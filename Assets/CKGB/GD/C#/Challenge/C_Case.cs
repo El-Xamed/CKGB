@@ -1,11 +1,13 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class C_Case : MonoBehaviour
 {
     #region Mes variables
+    [SerializeField] TextMeshProUGUI textNumber;
     GameObject vfxCata;
-    C_Pion myPion;
+    [SerializeField] C_Pion myPion;
 
     [SerializeField] Sprite addNumberSprite;
     int number;
@@ -27,6 +29,10 @@ public class C_Case : MonoBehaviour
 
         //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
         thisPion.SetPosition(number - 1);
+
+        myPion = thisPion;
+
+        CheckIsInDanger();
     }
 
     public void ResetPion()
@@ -37,22 +43,25 @@ public class C_Case : MonoBehaviour
     //Check si dans le challenge l'actor et pas sur une case qui pourrait lui retirer des stats. FONCTIONNE QUE SUR LES ACTOR A LE DEPLACER DANS LE SCRIPT "C_ACTOR" EN OVERRIDE (prendre exeple sur le check in danger) !!!!
     public void CheckIsInDanger()
     {
-        if (myPion.GetComponent<C_Actor>())
+        if (myPion != null)
         {
-            if (vfxCata != null)
+            if (myPion.GetComponent<C_Actor>())
             {
-                myPion.SetInDanger(true);
-                transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
-                transform.GetChild(5).gameObject.SetActive(true);
-            }
-            else
-            {
-                myPion.SetInDanger(false);
-                transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<C_Actor>().GetDataActor().challengeSprite;
-                transform.GetChild(5).gameObject.SetActive(false);
-            }
+                if (vfxCata != null)
+                {
+                    myPion.SetInDanger(true);
+                    myPion.transform.GetChild(2).GetComponent<Image>().sprite = myPion.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
+                    myPion.transform.GetChild(5).gameObject.SetActive(true);
+                }
+                else
+                {
+                    myPion.SetInDanger(false);
+                    myPion.transform.GetChild(2).GetComponent<Image>().sprite = myPion.GetComponent<C_Actor>().GetDataActor().challengeSprite;
+                    myPion.transform.GetChild(5).gameObject.SetActive(false);
+                }
 
-            GetComponent<Animator>().SetBool("isInDanger", myPion.GetInDanger());
+                myPion.GetComponent<Animator>().SetBool("isInDanger", myPion.GetInDanger());
+            }
         }
     }
     #endregion
@@ -67,6 +76,8 @@ public class C_Case : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(true);
 
             number = newNumber;
+
+            textNumber.text = number.ToString();
 
             return true; 
         }
