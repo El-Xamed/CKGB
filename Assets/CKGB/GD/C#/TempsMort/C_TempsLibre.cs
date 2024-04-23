@@ -43,6 +43,9 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] bool MorganAPapoteAvecEsthela = false;
     [SerializeField] bool MorganAPapoteAvecNimu = false;
     [SerializeField] bool NimuAPapoteAvecEsthela = false;
+    [SerializeField] bool canTalk=true;
+    [SerializeField] List<string> allTalk = new List<string>();
+    [SerializeField]int nbActort = 0;
 
 
     [Header("Histoires")]
@@ -115,6 +118,7 @@ public class C_TempsLibre : MonoBehaviour
             Instantiate(characters[i].GetComponent<C_Actor>().GetDataActor().characterTree, TreeParent.transform.GetChild(i));
             TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(() => GoToActions());
             TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(() => PapotageFin());
+            characters[i].GetComponent<C_Actor>().charaTree = TreeParent.transform.GetChild(i).GetChild(0).GetComponent<C_Tree>();
         }
     }
 
@@ -134,6 +138,7 @@ public class C_TempsLibre : MonoBehaviour
        
         if(actorActif.GetComponent<C_Actor>().HasPlayed==false)
         {
+
             charactertoaddID++;
             LastCharacterThatPlayed.Add(actorActif);
             for (int i = 0; i < characters.Count; i++)
@@ -142,8 +147,52 @@ public class C_TempsLibre : MonoBehaviour
             }
             //TreeParent.SetActive(false);
             ActionsParents.SetActive(true);
+            PapoterButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
+            ObserverButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
+            RevasserButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
             Es.SetSelectedGameObject(actions[0]);
             updateButton();
+
+            
+            allTalk.Clear();
+            nbActort = 0;
+            for (int i=0;i<characters.Count;i++)
+            {
+                if(actorActif.name!=characters[i].name)
+                {
+                    allTalk.Add(actorActif.name + "APapoteAvec" + characters[i].name);
+                    allTalk.Add(characters[i].name + "APapoteAvec" + actorActif.name);
+                }
+                
+
+            }
+            for(int i=0;i< allTalk.Count;i++)
+            {
+               
+                if (allTalk[i] == "MorganAPapoteAvecEsthela"&&MorganAPapoteAvecEsthela)
+                {
+                    nbActort++;
+                }
+                if (allTalk[i] == "MorganAPapoteAvecNimu" && MorganAPapoteAvecNimu)
+                {
+                    Debug.Log("test si le personnage a deja parlé avec Morgan ou Nimu en etant l un ou l aut");
+                    nbActort++;
+                }
+                if (allTalk[i] =="NimuAPapoteAvecEsthela" && NimuAPapoteAvecEsthela)
+                {
+                    nbActort++;
+                }
+            }
+            if(nbActort==characterNB)
+            {
+                PapoterButton.GetComponent<Image>().color = Color.gray;
+                canTalk = false;
+            }
+            else
+            {
+                PapoterButton.GetComponent<Image>().color = Color.white;
+                canTalk = true;
+            }
         }
        
     }
@@ -291,6 +340,9 @@ public class C_TempsLibre : MonoBehaviour
             {
                 Debug.Log(characters[i].name + "CharacterChoice");
                 actorActif = characters[i];
+                PapoterButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
+                ObserverButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
+                RevasserButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
                 TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", true);
             }
             if (currentButton.name == characters[i].name + "PapotageChoice")
@@ -498,6 +550,8 @@ public class C_TempsLibre : MonoBehaviour
             if (actorActif == characters[i])
             {
                 characters[i].GetComponent<C_Actor>().HasPlayed = true;
+                characters[i].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+                characters[i].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
                 actorActif.GetComponent<C_Actor>().HasRevassed = true;
             }
         }
@@ -539,6 +593,8 @@ public class C_TempsLibre : MonoBehaviour
             if (actorActif == characters[i])
             {
                 characters[i].GetComponent<C_Actor>().HasPlayed = true;
+                characters[i].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+                characters[i].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
                 actorActif.GetComponent<C_Actor>().HasObserved = true;
             }
         }
@@ -551,14 +607,30 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void Papoter()
     {
-        ActivateTreePapotageChoice();
-        Es.SetSelectedGameObject(TreeParent.transform.GetChild(0).GetChild(0).GetChild(1).gameObject);
-        ActionsParents.SetActive(false);
+        if(canTalk)
+        {
+            foreach (var chara in characters)
+            {
+                if (chara==actorActif)
+                {
+                    chara.GetComponent<C_Actor>().charaTree.GetComponent<C_Tree>().p_button.GetComponent<Image>().color = Color.gray;
+                }
+                else
+                {
+                    chara.GetComponent<C_Actor>().charaTree.GetComponent<C_Tree>().p_button.GetComponent<Image>().color = Color.white;
+                }
 
-        updateButton();
-        //traitpoint
-        actiontoaddID++;
-        LastAction.Add(PapoterButton);
+            }
+            ActivateTreePapotageChoice();
+            Es.SetSelectedGameObject(TreeParent.transform.GetChild(0).GetChild(0).GetChild(1).gameObject);
+            ActionsParents.SetActive(false);
+
+            updateButton();
+            //traitpoint
+            actiontoaddID++;
+            LastAction.Add(PapoterButton);
+        }
+       
     }
     public void PapotageFin()
     {
@@ -754,6 +826,8 @@ public class C_TempsLibre : MonoBehaviour
             if (actorActif == characters[i])
             {
                 actorActif.GetComponent<C_Actor>().HasPlayed = true;
+                characters[i].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+                characters[i].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
                 actorActif.GetComponent<C_Actor>().HasPapoted = true;
                 Papote.GetComponent<C_Actor>().HasPapoted=true;
             }
@@ -831,6 +905,8 @@ public class C_TempsLibre : MonoBehaviour
                         }
                     }
                     LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasPlayed = false;
+                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
                     LastCharacterThatPlayed.RemoveAt(charactertoaddID);
                     charactertoaddID--;
                     ActionsParents.SetActive(false);

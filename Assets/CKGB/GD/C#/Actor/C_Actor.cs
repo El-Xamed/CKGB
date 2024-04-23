@@ -33,7 +33,7 @@ public class C_Actor : C_Pion
     [SerializeField] public bool HasObserved = false;
     [SerializeField] public bool HasPapoted = false;
     [SerializeField] public bool HasTraited = false;
-
+    [SerializeField] public C_Tree charaTree;
 
     //Ui Challenge
     C_Stats uiStats;
