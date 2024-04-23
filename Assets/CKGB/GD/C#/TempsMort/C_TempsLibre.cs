@@ -334,14 +334,17 @@ public class C_TempsLibre : MonoBehaviour
     }
     private void updateButton()
     {
+        //desactive si il existe le curseur du bouton precedent avant de le changer
         if (currentButton.transform.GetChild(0) != null)
         {
             currentButton.transform.GetChild(0).gameObject.SetActive(false);
         }
+        //enleve l animation de hover sur l arbre de choix de perso
         for(int i=0;i<characters.Count;i++)
         {
             TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", false);
         }
+        //check la nouvelle valeur du bouton en hover
         currentButton = Es.currentSelectedGameObject;
         if (currentButton.transform.GetChild(0) != null)
         {
