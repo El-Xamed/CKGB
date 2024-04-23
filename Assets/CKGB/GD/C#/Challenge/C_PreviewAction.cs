@@ -17,7 +17,7 @@ public class C_PreviewAction : MonoBehaviour
     void SetupPreview(SO_ActionClass thisActionClass)
     {
         //Regarde les info de l'action
-
+        /*
         //Check si il y a des info de stats.
         if (thisActionClass.AffectStats())
         {
@@ -34,7 +34,7 @@ public class C_PreviewAction : MonoBehaviour
             //Inscrit la preview de mouvement.
             onPreview += MovePreview;
         }
-
+        */
         //Lance la preview
 
     }
