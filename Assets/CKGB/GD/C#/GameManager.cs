@@ -264,6 +264,7 @@ public class GameManager : MonoBehaviour
         {
             string Contenue = currentStory.Continue();
             Debug.Log(Contenue);
+            Debug.Log(currentStory.currentTags);
             HandleTags(currentStory.currentTags,Contenue);
         }
         else

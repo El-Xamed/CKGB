@@ -1902,6 +1902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325635596}
+  - component: {fileID: 325635597}
   m_Layer: 5
   m_Name: FicheParent
   m_TagString: Untagged
@@ -1932,6 +1933,45 @@ RectTransform:
   m_AnchoredPosition: {x: 185, y: -230}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &325635597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325635595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cfa2f90ba2c234cb7b35d30eab9717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reduite: {fileID: 188115333}
+  r_PP: {fileID: 1214740104}
+  r_energy: {fileID: 583378506}
+  r_calm: {fileID: 586555225}
+  r_ptstrait: {fileID: 187448454}
+  r_name: {fileID: 1450378429}
+  r_description: {fileID: 797308625}
+  r_menergy: {fileID: 1802756178}
+  r_mcalm: {fileID: 807252961}
+  r_mtraits: {fileID: 1893370620}
+  r_new: {fileID: 125335898}
+  Agrandi1: {fileID: 736689899}
+  g1_PP: {fileID: 1664003140}
+  g1_energy: {fileID: 1571104158}
+  g1_calm: {fileID: 471632083}
+  g1_name: {fileID: 678403332}
+  g1_description: {fileID: 1699442653}
+  g1_menergy: {fileID: 1477623671}
+  g1_mcalm: {fileID: 1293007568}
+  g1_new: {fileID: 930073132}
+  Agrandi2: {fileID: 759608833}
+  g2_PP: {fileID: 1261430346}
+  g2_ptstrait: {fileID: 1993068635}
+  g2_name: {fileID: 570876449}
+  g2_traitlist: {fileID: 1013190444}
+  g2_mtraits: {fileID: 386645461}
+  g2_new: {fileID: 590508371}
 --- !u!1 &350314204
 GameObject:
   m_ObjectHideFlags: 0
@@ -8684,6 +8724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempsLibreScript
       objectReference: {fileID: 0}
+    - target: {fileID: 1467735151561282814, guid: 1ab83a89344945b4c8cb25ed94496444, type: 3}
+      propertyPath: f
+      value: 
+      objectReference: {fileID: 325635597}
     - target: {fileID: 1467735151561282814, guid: 1ab83a89344945b4c8cb25ed94496444, type: 3}
       propertyPath: Cine
       value: 
