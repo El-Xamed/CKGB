@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
-using static SO_Catastrophy;
 using static SO_Challenge;
-using static UnityEngine.GraphicsBuffer;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -812,7 +808,7 @@ public class C_Challenge : MonoBehaviour
         }
         #endregion
 
-        //Fonction pour vérifier si un mouvment est nessecaire.
+        //Fonction pour vérifier si un mouvement est nessecaire.
         void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
         {
             //Regarde d'abord c'est quoi comme type de déplacement.
@@ -977,7 +973,7 @@ public class C_Challenge : MonoBehaviour
         //Supprime la dernière position.
         plateau[thisPion.GetPosition()].ResetPion();
 
-        //Place l'actor
+        //Place l'actor.
         plateau[thisCase].PlacePion(thisPion);
     }
     #endregion
