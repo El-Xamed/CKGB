@@ -468,18 +468,30 @@ public class Interaction_NewInspector
 [Serializable]
 public class TargetStats_NewInspector
 {
-    #region Stats
+    #region Data
     //Cible qu'on souhaite viser.
     public ETypeStatsTarget whatStatsTarget;
     public enum ETypeStatsTarget { Stats, Movement };
+    #endregion
+
+    //Pour les stats.
+    public Stats_NewInspector dataStats;
+
+    //Pour le mouvement.
+    public Move_NewInspector dataMove;
+}
+
+[Serializable]
+public class Stats_NewInspector
+{
+    //Pour les stats
+    public ETypeCost whatCost;
+    public enum ETypeCost { Price, Gain };
 
     public ETypeStats whatStats;
     public enum ETypeStats { Energy, Calm };
 
     public int value;
-    #endregion
-
-    public Move_NewInspector move;
 }
 
 [Serializable]
