@@ -20,15 +20,15 @@ Ta grand mère commences à fredonner une chanson #Bulle:Narrateur
  …"#Bulle:MorganHautGauche
 Alors...#Bulle:NimuBasDroite
 Pas trop nerveux ?#Bulle:NimuBasDroite
-Hm ?#Bulle:MorganHautGauche
+Hm ?#Bulle:MorganHautGauche #emot:!
 …‘Nah.#Bulle:MorganHautGauche
 Bah tu vas dead ça alors.#Bulle:NimuBasDroite
-…#Bulle:MorganHautGauche
+…#Bulle:MorganHautGauche #emot:Dots
 Hey, <br>je suis vraiment fière de toi,<br> tu sais ?#Bulle:NimuBasDroite
 Tu es pris au dépourvu.<br> Tu ne le laisses pas paraitre.#Bulle:Narrateur
 A-ah oui ?#Bulle:MorganHautGauche
 De fou !<br> ça demande vlà du courage <br>d'être aussi calme dans cette situation.#Bulle:NimuBasDroite
-…#Bulle:MorganHautGauche
+…#Bulle:MorganHautGauche#emot:Dots
 Ca me rappelle mon premier<br> rendez-vous amoureux.<br> Haha, comment c’était claquée au sol.#Bulle:NimuBasGauche
 J’ai mis des années <br>avant de trouver des techniques<br> pour garder mon sang froid.#Bulle:NimuBasGauche
 Tu m’impressiones vraiment.#Bulle:NimuBasDroite
@@ -37,7 +37,7 @@ Tu te mets nerveusement à jouer avec la fermeture éclaire de tes poches.#Bulle
 
 Ta grand mère reprend son fredonnement.#Bulle:Narrateur
 
-… #Bulle:MorganHautGauche
+… #Bulle:MorganHautGauche #emot:Dots
 
 Néanmoins.#Bulle:NimuHautDroite
 
@@ -68,15 +68,15 @@ Hm ?#Bulle:NimuHautGauche
 
 J’me… J’me sens fébrile.#Bulle:MorganHautDroite
 
-Bah viens on se pose.#Bulle:NimuHautGauche
+Bah viens on se pose.#Bulle:NimuHautGauche #emot:!
 
 Tu sens une boule te monter <br>dans la gorge alors que <br>tu t'assois à coté de ta grand-mère.#BulleNarrateur
 
-… J’pense que je vais faire demi-tour.#Bulle:MorganHautGauche
+… J’pense que je vais faire demi-tour.#Bulle:MorganHautGauche #emot:Dots
 J’ai… plus assez d'énergie pour continuer. 
 J'crois qu'la pression emotionnelle <br>est trop pour moi.#Bulle:MorganHautGauche
 Je vais retourner à la maison.
-J'lui ferai passer un message pour m'excuser.#Bulle:MorganHautDroite"
+J'lui ferai passer un message pour m'excuser.#Bulle:MorganHautDroite
 
 Ta grand mère lève sa main dans ta direction, attendant ton signal. Tu lui fais non de la tête, et elle la ramène dans sa poche.#Bulle:Narrateur
 Elle fait toujours attention à ne pas te toucher sans t'avoir demandé avant. Cette attention t’as toujours bien plus réconforté que n’importe quel caresse.#Bulle:Narrateur
@@ -98,14 +98,14 @@ Ta grand mère prend appuie sur quelque chose pour se relever à son tour. Tous 
 
 Tiens, bois un peu d’eau."#Bulle:NimuHautGauche
 Elle sort une petite gourde de sa veste et te la tends.#Bulle:Narrateur
-"J’ai confiance en toi.<br> Et puis, t’as fais le plus dur."#Bulle:NimuHautGauche
+J’ai confiance en toi.<br> Et puis, t’as fais le plus dur.#Bulle:NimuHautGauche
 
 Je suis sorti de mon lit ?#Bulle:MorganHautDroite
 
-Tu l’as invité à ce rencard.<br> Et iel a accepté en plus ! <br>Tu penses que si iel ne t'apréciait pas déjà iel aurait accepté ?#Bulle:NimuHautGauche
+Tu l’as invité à ce rencard.<br> Et iel a accepté en plus ! <br>Tu penses que si iel ne t'apréciait pas déjà iel aurait accepté ?#Bulle:NimuHautGauche #emot:Sparkles
 
-Mais… Mais… c'est jamais trop tard<br> pour que je ruine tout.<br> Imagine qu’on trouve pas<br> d’quoi parler et qu’ia juste<br> un gros blanc pendant une heure."#Bulle:MorganHautDroite
-Imagines que le seul son qu’on entende<br> c’est le bruit bizarre que je fais<br> quand je bois du thé !#Bulle:MorganHautDroite
+Mais… Mais… c'est jamais trop tard<br> pour que je ruine tout.<br> Imagine qu’on trouve pas<br> d’quoi parler et qu’ia juste<br> un gros blanc pendant une heure.#Bulle:MorganHautDroite #emot:Deception
+Imagines que le seul son qu’on entende<br> c’est le bruit bizarre que je fais<br> quand je bois du thé !#Bulle:MorganHautDroite #emot:Drop
 
 Hey,#Bulle:NimuHautGauche
 Regardes-moi. #Bulle:NimuHautGauche
@@ -130,7 +130,7 @@ et qu'avec l'autre, <br>tu peux rigoler même quand personne<br> ne fait de blag
 
 Alors, pourquoi est-ce<br> que tu ne te sens pas comme ça ?#Bulle:NimuHautDroite
 
-...#Bulle:MorganHautGauche
+...#Bulle:MorganHautGauche #emot:Dots
 
 L'amour est une fleur.<br> Son terreau est la confiance.<br> Tu ne pourras sûrement jamais ressentir ce que tu cherches<br> si tu persistes à avoir peur<br> de l'autre.#Bulle:NimuHautDroite
 Maintenant, je veux que tu saches <br>que la peur est un adversaire <br>ancien et féroce."#Bulle:NimuHautDroite
@@ -138,7 +138,8 @@ Certains d'entre nous partent<br> avant d'avoir réussi<br>à faire la paix avec
 Même si c'est à toi<br> de faire le gros du travail,<br> je ne m'attends pas à<br> ce tu surmontes cette épreuve<br> du jour au lendemain.#Bulle:NimuHautDroite
 Est-ce que tu veux toujours faire demi-tour ? <br>Je suis sûr que l'autre comprendra.#Bulle:NimuHautDroite
 
-... Peut être plus tard.<br> Je pense que je peux encore <br>continuer un peu.#Bulle:MorganHautGauche
+...#Bulle:MorganHautGauche #emot:Dots
+Peut être plus tard.<br> Je pense que je peux encore <br>continuer un peu.#Bulle:MorganHautGauche
 
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")
@@ -166,31 +167,30 @@ J’ai pris des notes.#Bulle:MorganHautGauche
 
 Ca sonne creepy.#Bulle:NimuHautDroit
 
-Cathy. Elle t’a offert un collier.<br> Tu lui as dit que tu l’adorais.<br> Tu l’as pas porté depuis.<br> Elle l’as remarqué. <br>Et depuis tu l’porte.#Bulle:MorganHautGauche
+Cathy. Elle t’a offert un collier.<br> Tu lui as dit que tu l’adorais.<br> Tu ne l'as jamais porté.<br> Elle t'en a parlé. <br>Et depuis tu l’porte.#Bulle:MorganHautGauche
 
-Je l’avais simplement oublié.#Bulle:NimuHautDroit
-
-Georges. Il t’as d’mandé <br>s’il pouvait repeter <br>sa prez d’vant toi.#Bulle:MorganHautGauche
-Quand il a fini,<br> t’as fait semblant de t’êtr’endormi<br> pour pas qu’il te confronte <br>sur le fait que tu avais pas écouté.#Bulle:MorganHautGauche
-
-Je-#Bulle:NimuHautDroit
+H-hm oui et ? #Bulle:NimuHautDroit
 
 Le pt’tit déjeuner.<br> Tu as jamais aimé<br> faire la grasse mat’.#Bulle:MorganHautGauche
 
-C’est à cause de ça<br> que tout le monde <br>se lève tôt dans la baraque.#Bulle:MorganHautGauche
+C’est à cause de ça<br> que tout le monde <br>se lève tôt dans cette baraque.#Bulle:MorganHautGauche
 
-Depuis six mois<br> tu te reveilles deux heures <br>après les autres. <br>Tu les évite.#Bulle:MorganHautGauche
+Depuis six mois<br> tu te reveilles deux heures <br>après les autres.<br>Tu les évite.#Bulle:MorganHautGauche
 
-…#Bulle:NimuHautDroit
+…#Bulle:NimuHautDroit #emot:Dots
 
 Tu peux nous dire quand t’aimes pas quelque chose.<br> Ou quand t’as besoin de temps.#Bulle:MorganHautGauche
 T’as le droit de nous dire non.<br> En toute transparence, <br>c’plus vexant qu’tu prétendes le contraire.#Bulle:MorganHautGauche
-Tu ne nous laisses même pas<br> l’occasion d’écouter ton avis.#Bulle:MorganHautGauche
+Tu ne nous laisses même pas<br> l’occasion d’écouter ton avis.#Bulle:MorganHautGauche #emot:!
 
-Tu veux vraiment la vérité ?<br> Rien n’a plus d’importance.#Bulle:NimuHautDroit
-Chaque année pourrait être ma dernière Morgan.<br> J’ai fais tout ce que je voulais faire dans cette vie.#Bulle:NimuHautDroit
-J’ai un pied dans la tombe.<br> Peu importe ce qui se passe,<br> je m’en fiche.#Bulle:NimuHautDroit
-Rien de ce qui se passe<br> ne me concernes encore vraiment.#Bulle:NimuHautDroit
+...#Bulle:NimuHautDroit #emot:Dots
+C'est vrai.<br> Je suis dans une période un peu compliquée en ce moment.#Bulle:NimuHautDroit
+Je suis... agée, Morgan.<br> Je vois tout sous une perspective très différente de la tienne...#Bulle:NimuHautDroit
+Et je crois qu'elle me donne le vertige.#Bulle:NimuHautGauche
+J'ai beaucoup de mal à accorder de l'importance aux choses. <br> Tout à l'air si éphèmere vu d'ici.#Bulle:NimuBasGauche
+J'avoue que je ne me sens plus vraiment<br> concernée par ce qui se passe dans la maison. #Bulle:NimuBasDroite
+Mais bon, vend pas la mèche aux autres.<br> Ils me lacheraient pas les basques sinon. #Bulle:NimuHautDroit
+Et je ne me sens pas prête à en parler. #Bulle:NimuHautDroit
 
 OK.#Bulle:MorganHautGauche
 …#Bulle:NimuHautDroit
@@ -201,7 +201,7 @@ Tu vies un truc vraiment pas facile. <br>Ah, mais t’as encore menti.#Bulle:Mor
 
 Ah ouai sherlock,<br> et j’peux savoir sur quoi maintenant ?#Bulle:NimuHautDroit
 
-Si t’en avais vraiment plus rien à faire,<br> tu s’rai pas venu avec moi.<br> C’tout.#Bulle:MorganHautGauche
+Si tu te sentais vraiment plus concernée,<br> tu s’rai pas venu avec moi.<br> C’tout.#Bulle:MorganHautGauche
 
 Tu t'écartes. <br>Tu l'as assez dérangé.#Bulle:Narrateur
 Derrière toi,<br> ta grand mère soupir <br>et marmonne dans sa barbe.#Bulle:Narrateur
