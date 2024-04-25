@@ -287,9 +287,16 @@ public class C_TempsLibre : MonoBehaviour
     }
     IEnumerator StartIntro()
     {
+        GameManager.instance.transform.GetChild(1).gameObject.SetActive(true); 
+        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open"); 
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
+        GameManager.instance.TL_anim.GetComponentInChildren<Animator>().SetTrigger("triggerTL");
+        yield return new WaitForSeconds(2f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         yield return new WaitForSeconds(0.8f);
         GameManager.instance.EnterDialogueMode(_intro);
+        GameManager.instance.TL_anim.GetComponentInChildren<Animator>().ResetTrigger("triggerTL");
     }
     public void StartTempsMort(string name)
     {
@@ -897,7 +904,15 @@ public class C_TempsLibre : MonoBehaviour
             c.GetComponent<C_Actor>().HasRevassed = false;
             c.GetComponent<C_Actor>().HasTraited = false;
         }
-        SceneManager.LoadScene(named);
+        Challenge(named);
+    }
+    IEnumerator Challenge(string scenename)
+    {
+        GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
+        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
+        SceneManager.LoadScene(scenename);
     }
     public void BACK(InputAction.CallbackContext context)
     {

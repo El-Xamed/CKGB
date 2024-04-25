@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour
 
     #region Variables
     public static GameManager instance;
-
+    public GameObject TL_anim;
+    public GameObject TS_flanel;
+    public GameObject TS_maskRond;
+    public GameObject TS_softblackswipe;
     [Header("Param�tre de dev")]
     //R�cup�ration en variable qui apparait dans l'inspector.
     [SerializeField]
