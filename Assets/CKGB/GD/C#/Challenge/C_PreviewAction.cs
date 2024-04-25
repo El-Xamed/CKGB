@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static C_Challenge;
 using static UnityEngine.GraphicsBuffer;
 
 public class C_PreviewAction : MonoBehaviour
@@ -14,15 +15,27 @@ public class C_PreviewAction : MonoBehaviour
 
     public static event Action onPreview;
 
-    //Fonction qui va lancer le setup de preview.
-    void SetupPreview(SO_ActionClass_NewInspector thisActionClass)
+    //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
+    void SetupPreview(ActorResolution thisActorResolution)
     {
-        /*
+
+        SO_ActionClass thisActionClass = thisActorResolution.button.GetActionClass();
+
+        C_Actor thisActor = thisActorResolution.actor;
+
         //Check si la liste n'est pas vide
-        if (listInteraction.Count != 0)
+        if (thisActionClass.newListInteractions.Count != 0)
         {
-            //Fait toute la liste des cible.
-            foreach (Interaction_NewInspector thisInteraction in thisActionClass.listInteraction)
+            //Pour "Self".
+            SetupPreview(Interaction_NewInspector.ETypeTarget.Self, thisActor);
+
+            //Pour "Other".
+            SetupPreview(Interaction_NewInspector.ETypeTarget.Other, thisActor);
+        }
+
+        void SetupPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
+        {
+            foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
             {
                 //Check si c'est égale à "actorTarget".
                 if (thisInteraction.whatTarget == target)
@@ -30,26 +43,35 @@ public class C_PreviewAction : MonoBehaviour
                     //Applique à l'actor SEULEMENT LES STATS les stats.
                     foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
                     {
-                        int value;
-
-                        if (thisTargetStats.dataStats.whatCost == Stats_NewInspector.ETypeCost.Price)
+                        //Check si c'est des stats ou un Mouvement.
+                        if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
                         {
-                            //Retourne une valeur négative.
-                            value = -thisTargetStats.dataStats.value;
-                        }
-                        else
-                        {
-                            //Retourne une valeur positive.
-                            value = thisTargetStats.dataStats.value;
-                        }
+                            int value;
 
-                        //Envoie les nouvelles information a l'actor.
-                        thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.dataStats.whatStats);
+                            if (thisTargetStats.dataStats.whatCost == Stats_NewInspector.ETypeCost.Price)
+                            {
+                                //Retourne une valeur négative.
+                                value = -thisTargetStats.dataStats.value;
+                            }
+                            else
+                            {
+                                //Retourne une valeur positive.
+                                value = thisTargetStats.dataStats.value;
+                            }
+
+                            //Envoie une preivew des stats. INUTILE !!!
+                            //thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.dataStats.whatStats);
+
+                            //Inscrit la preview de texte + ui. Avec les info de preview.
+                        }
+                        else if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                        {
+                            //Inscrit la preview de mouvement. Avec les info de preview.
+                        }
                     }
                 }
             }
-        }*/
-
+        }
 
         //Regarde les info de l'action
         /*
@@ -71,7 +93,6 @@ public class C_PreviewAction : MonoBehaviour
         }
         */
         //Lance la preview
-
     }
 
     void TextPreview()

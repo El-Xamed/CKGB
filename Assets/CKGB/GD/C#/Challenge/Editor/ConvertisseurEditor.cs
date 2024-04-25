@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(SO_ActionClass))]
-public class NewBehaviourScript : Editor
+public class ConvertisseurEditor : Editor
 {
     public override void OnInspectorGUI()
     {
