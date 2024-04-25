@@ -908,6 +908,10 @@ public class C_TempsLibre : MonoBehaviour
             Debug.Log("going backward");
             if(GameManager.instance.isDialoguing!=true)
             {
+                if(ChallengeButton.activeSelf==true)
+                {
+                    ChallengeButton.SetActive(false);
+                }
                 if (ActionsParents.activeSelf == true)
                 {
                     for (int i = 0; i < characters.Count; i++)
@@ -926,6 +930,7 @@ public class C_TempsLibre : MonoBehaviour
                     LastCharacterThatPlayed.RemoveAt(charactertoaddID);
                     charactertoaddID--;
                     ActionsParents.SetActive(false);
+                    AfficherFichereduite();
                 }
                 else if (!ActionsParents.activeSelf && actiontoaddID != -1)
                 {
