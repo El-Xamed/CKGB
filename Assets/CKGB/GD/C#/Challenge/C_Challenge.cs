@@ -710,10 +710,10 @@ public class C_Challenge : MonoBehaviour
         //Applique les conséquences de stats peut importe si c'est réusi ou non.
         #region Self
         //Créer la liste pour "self"
-        action.SetStatsTarget(Interaction.ETypeTarget.Self, actor);
+        action.SetStatsTarget(Interaction_NewInspector.ETypeTarget.Self, actor);
 
         //Check si un mouvement pour "self" existe.
-        CheckIfTargetMove(Interaction.ETypeTarget.Self, actor);
+        CheckIfTargetMove(Interaction_NewInspector.ETypeTarget.Self, actor);
         #endregion
 
         #region Other
@@ -759,10 +759,10 @@ public class C_Challenge : MonoBehaviour
                     {
                         Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
 
-                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+                        action.SetStatsTarget(Interaction_NewInspector.ETypeTarget.Other, target);
 
                         //Check si un mouvement pour "other" existe.
-                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                        CheckIfTargetMove(Interaction_NewInspector.ETypeTarget.Other, target);
                         return true;
                     }
                 }
@@ -772,10 +772,10 @@ public class C_Challenge : MonoBehaviour
                     {
                         Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
 
-                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+                        action.SetStatsTarget(Interaction_NewInspector.ETypeTarget.Other, target);
 
                         //Check si un mouvement pour "other" existe.
-                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                        CheckIfTargetMove(Interaction_NewInspector.ETypeTarget.Other, target);
                         return true;
                     }
                 }
@@ -783,10 +783,10 @@ public class C_Challenge : MonoBehaviour
                 {
                     Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
 
-                    action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+                    action.SetStatsTarget(Interaction_NewInspector.ETypeTarget.Other, target);
 
                     //Check si un mouvement pour "other" existe.
-                    CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                    CheckIfTargetMove(Interaction_NewInspector.ETypeTarget.Other, target);
                     return true;
                 }
 
@@ -809,7 +809,7 @@ public class C_Challenge : MonoBehaviour
         #endregion
 
         //Fonction pour vérifier si un mouvement est nessecaire.
-        void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
+        void CheckIfTargetMove(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
         {
             //Regarde d'abord c'est quoi comme type de déplacement.
             if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
@@ -840,16 +840,16 @@ public class C_Challenge : MonoBehaviour
 
     #region Deplace les actor
     //Fonction qui déplace les actor.
-    public void MoveActorInBoard(C_Pion thisPion, int nbMove, Move.ETypeMove whatMove, bool isTp)
+    public void MoveActorInBoard(C_Pion thisPion, int nbMove, Move_NewInspector.ETypeMove whatMove, bool isTp)
     {
         Debug.Log("Test 1 : " + nbMove);
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
-        if (whatMove == Move.ETypeMove.Right || whatMove == Move.ETypeMove.Left) //Normal move mode.
+        if (whatMove == Move_NewInspector.ETypeMove.Right || whatMove == Move_NewInspector.ETypeMove.Left) //Normal move mode.
         {
             Debug.Log("Test 9 : Mode normal move activé !");
 
             //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
-            if (whatMove == Move.ETypeMove.Left)
+            if (whatMove == Move_NewInspector.ETypeMove.Left)
             {
                 nbMove = -nbMove;
                 Debug.Log("Test 5 : La valeur passe en nombre négatif : " + nbMove);
@@ -1000,7 +1000,7 @@ public class C_Challenge : MonoBehaviour
                 foreach (C_Actor thisActor in myTeam)
                 {
                     //Applique des conséquence grace au finction de actionClass.
-                    currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+                    currentCata.actionClass.SetStatsTarget(Interaction_NewInspector.ETypeTarget.Self, thisActor);
 
                     thisActor.CheckIsOut();
                 }
@@ -1015,7 +1015,7 @@ public class C_Challenge : MonoBehaviour
                         Debug.Log("La case " + thisCase + " est attaqué !");
 
                         //Applique des conséquence grace au finction de actionClass.
-                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+                        currentCata.actionClass.SetStatsTarget(Interaction_NewInspector.ETypeTarget.Self, thisActor);
 
                         thisActor.CheckIsOut();
                     }

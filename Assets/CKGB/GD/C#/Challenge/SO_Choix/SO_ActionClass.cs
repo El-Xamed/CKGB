@@ -67,22 +67,22 @@ public class SO_ActionClass : ScriptableObject
         return 0;
     }
 
-    public Move GetClassMove(Interaction.ETypeTarget target)
+    public Move_NewInspector GetClassMove(Interaction_NewInspector.ETypeTarget target)
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "target".
             if (thisInteraction.whatTarget == target)
             {
                 //Pour toutes les list de stats.
-                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
+                foreach (TargetStats_NewInspector thisStats in thisInteraction.listTargetStats)
                 {
                     //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
+                    if (thisStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
                         //Deplace l'actor.
-                        return thisStats.move;
+                        return thisStats.dataMove;
                     }
                 }
             }
@@ -276,23 +276,23 @@ public class SO_ActionClass : ScriptableObject
     }
 
     //Fonction qui renvoie le nombre de mouvement pour déplacer "other".
-    public int GetMovement(Interaction.ETypeTarget actorTarget)
+    public int GetMovement(Interaction_NewInspector.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "actorTarget".
             if (thisInteraction.whatTarget == actorTarget)
             {
                 //Pour toutes les list de stats.
-                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
+                foreach (TargetStats_NewInspector thisStats in thisInteraction.listTargetStats)
                 {
                     //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
+                    if (thisStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
-                        if (thisStats.move.whatMove == Move.ETypeMove.Right || thisStats.move.whatMove == Move.ETypeMove.Left || thisStats.move.whatMove == Move.ETypeMove.OnTargetCase)
+                        if (thisStats.dataMove.whatMove == Move_NewInspector.ETypeMove.Right || thisStats.dataMove.whatMove == Move_NewInspector.ETypeMove.Left || thisStats.dataMove.whatMove == Move_NewInspector.ETypeMove.OnTargetCase)
                         {
-                            return thisStats.move.nbMove;
+                            return thisStats.dataMove.nbMove;
                         }
                     }
                 }
@@ -380,38 +380,44 @@ public class SO_ActionClass : ScriptableObject
         return true;
     }
 
-    public void SetStatsTarget(Interaction.ETypeTarget target, C_Pion thisActor)
+    public void SetStatsTarget(Interaction_NewInspector.ETypeTarget target, C_Pion thisActor)
     {
-        //Cette partie de dev va etre optimisé ! Avoir la meme chose mais les 2 réunis.
         //Avoir à la place une detection de l'enum du si c'est un prix (-x) ou un gain (+x). Necessaire pour l'outil de preview.
         //New version
-        
-
-        //Old version
-        //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
-        #region Price string
-        //Pour le prix.
-        //Check si il possède le component "C_Actor". A RETIRER PLUS TARD !
         if (thisActor.GetComponent<C_Actor>())
         {
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
+            //Check si la liste n'est pas vide
+            if (listInteraction.Count != 0)
             {
-                thisActor.GetComponent<C_Actor>().SetCurrentStatsPrice(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy));
-            }
-        }
-        #endregion
+                //Fait toute la liste des cible.
+                foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+                {
+                    //Check si c'est égale à "actorTarget".
+                    if (thisInteraction.whatTarget == target)
+                    {
+                        //Applique à l'actor SEULEMENT LES STATS les stats.
+                        foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                        {
+                            int value;
 
-        #region Gain string
-        //Pour le gain.
-        //Check si il possède le component "C_Actor". A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
-        if (thisActor.GetComponent<C_Actor>())
-        {
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
-            {
-                thisActor.GetComponent<C_Actor>().SetCurrentStatsGain(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy));
+                            if (thisTargetStats.dataStats.whatCost == Stats_NewInspector.ETypeCost.Price)
+                            {
+                                //Retourne une valeur négative.
+                                value = -thisTargetStats.dataStats.value;
+                            }
+                            else
+                            {
+                                //Retourne une valeur positive.
+                                value = thisTargetStats.dataStats.value;
+                            }
+
+                            //Envoie les nouvelles information a l'actor.
+                            thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.dataStats.whatStats);
+                        }
+                    }
+                }
             }
         }
-        #endregion
     }
     #endregion
 
@@ -488,37 +494,11 @@ public class SO_ActionClass : ScriptableObject
                     {
                         if (thisStats.whatStats == Stats.ETypeStats.Energy)
                         {
-                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
-                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
-                            //Récupère l'info que c'est une stats.
-                            newListTargetStats.whatStatsTarget = TargetStats_NewInspector.ETypeStatsTarget.Stats;
-
-
-                            //Création d'une nouvelle "Stats_NewInspector" avec les info de price/gain + energy/calm à entrer pour ajouter dans le nouveau "TargetStats_NewInspector" pour pas qu'il soit null.
-                            Stats_NewInspector newStats_NewInspector = new Stats_NewInspector();
-                            //Récupère l'info que c'est un prix.
-                            newStats_NewInspector.whatCost = Stats_NewInspector.ETypeCost.Price;
-                            //Récupère l'info sur quelle stats ça va se jouer.
-                            newStats_NewInspector.whatStats = Stats_NewInspector.ETypeStats.Energy;
-
-
-                            //Ajouter "newStats_NewInspector" dans "TargetStats_NewInspector".
-                            newListTargetStats.dataStats = newStats_NewInspector;
-                            //Ajoute "newListTargetStats" dans la nouvelle version.
-                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, Stats_NewInspector.ETypeCost.Price, Stats_NewInspector.ETypeStats.Energy, thisStats.value);
                         }
                         else if (thisStats.whatStats == Stats.ETypeStats.Calm)
                         {
-                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
-                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
-
-                            //Récupère l'info que c'est un prix.
-                            newListTargetStats.dataStats.whatCost = Stats_NewInspector.ETypeCost.Price;
-
-                            newListTargetStats.dataStats.whatStats = Stats_NewInspector.ETypeStats.Calm;
-
-                            //Ajoute "newListTargetStats" dans la nouvelle version.
-                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, Stats_NewInspector.ETypeCost.Price, Stats_NewInspector.ETypeStats.Calm, thisStats.value);
                         }
                     }
                 }
@@ -529,36 +509,84 @@ public class SO_ActionClass : ScriptableObject
                     {
                         if (thisStats.whatStats == Stats.ETypeStats.Energy)
                         {
-                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
-                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
-
-                            //Récupère l'info que c'est un gain.
-                            newListTargetStats.dataStats.whatCost = Stats_NewInspector.ETypeCost.Gain;
-
-                            //Récupère l'info sur quelle stats ça va se jouer.
-                            newListTargetStats.dataStats.whatStats = Stats_NewInspector.ETypeStats.Energy;
-
-                            //Ajoute "newListTargetStats" dans la nouvelle version.
-                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, Stats_NewInspector.ETypeCost.Gain, Stats_NewInspector.ETypeStats.Energy, thisStats.value);
                         }
                         else if (thisStats.whatStats == Stats.ETypeStats.Calm)
                         {
-                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
-                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
-
-                            //Récupère l'info que c'est un gain.
-                            newListTargetStats.dataStats.whatCost = Stats_NewInspector.ETypeCost.Gain;
-
-                            newListTargetStats.dataStats.whatStats = Stats_NewInspector.ETypeStats.Calm;
-
-                            //Ajoute "newListTargetStats" dans la nouvelle version.
-                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, Stats_NewInspector.ETypeCost.Gain, Stats_NewInspector.ETypeStats.Calm, thisStats.value);
                         }
                     }
                 }
                 else if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Movement) //Si c'est un mouvement alors il donne les info de mouvement.
                 {
-                    
+                    //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
+                    TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+
+                    //Récupère l'info que c'est une stats.
+                    newListTargetStats.whatStatsTarget = TargetStats_NewInspector.ETypeStatsTarget.Movement;
+
+                    //Création d'une nouvelle "Stats_NewInspector" avec les info de price/gain + energy/calm à entrer pour ajouter dans le nouveau "TargetStats_NewInspector" pour pas qu'il soit null.
+                    Move_NewInspector newMove_NewInspector = new Move_NewInspector();
+
+                    #region whatMove
+                    //Pour Convertir la direction.
+                    switch (thisListTargetStats.move.whatMove)
+                    {
+                        case Move.ETypeMove.Right:
+                            newMove_NewInspector.whatMove = Move_NewInspector.ETypeMove.Right;
+                            break;
+                        case Move.ETypeMove.Left:
+                            newMove_NewInspector.whatMove = Move_NewInspector.ETypeMove.Left;
+                            break;
+                        case Move.ETypeMove.OnTargetCase:
+                            newMove_NewInspector.whatMove = Move_NewInspector.ETypeMove.OnTargetCase;
+                            break;
+                        case Move.ETypeMove.SwitchWithActor:
+                            newMove_NewInspector.whatMove = Move_NewInspector.ETypeMove.SwitchWithActor;
+                            break;
+                        case Move.ETypeMove.SwitchWithAcc:
+                            newMove_NewInspector.whatMove = Move_NewInspector.ETypeMove.SwitchWithAcc;
+                            break;
+                    }
+                    #endregion
+
+                    //Récupère l'info sur quelle stats ça va se jouer.
+                    newMove_NewInspector.isTp = thisListTargetStats.move.isTp;
+                    newMove_NewInspector.nbMove = thisListTargetStats.move.nbMove;
+                    newMove_NewInspector.actor = thisListTargetStats.move.actor;
+                    newMove_NewInspector.accessories = thisListTargetStats.move.accessories;
+
+                    //Ajouter "newStats_NewInspector" dans "TargetStats_NewInspector".
+                    newListTargetStats.dataMove = newMove_NewInspector;
+                    //Ajoute "newListTargetStats" dans la nouvelle version.
+                    newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                }
+
+                void ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget whatTypeStats, Stats_NewInspector.ETypeCost whatCost, Stats_NewInspector.ETypeStats whatStats, int valeur)
+                {
+                    //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
+                    TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+                    //Récupère l'info que c'est une stats.
+                    newListTargetStats.whatStatsTarget = whatTypeStats;
+
+                    //Si c'est une stats lance alors le script pour setup les stats
+                    if (whatTypeStats == TargetStats_NewInspector.ETypeStatsTarget.Stats)
+                    {
+                        //Création d'une nouvelle "Stats_NewInspector" avec les info de price/gain + energy/calm à entrer pour ajouter dans le nouveau "TargetStats_NewInspector" pour pas qu'il soit null.
+                        Stats_NewInspector newStats_NewInspector = new Stats_NewInspector();
+                        //Récupère l'info que c'est un prix.
+                        newStats_NewInspector.whatCost = whatCost;
+                        //Récupère l'info sur quelle stats ça va se jouer.
+                        newStats_NewInspector.whatStats = whatStats;
+
+                        //Récupère l'info de la valeur.
+                        newStats_NewInspector.value = valeur;
+
+                        //Ajouter "newStats_NewInspector" dans "TargetStats_NewInspector".
+                        newListTargetStats.dataStats = newStats_NewInspector;
+                        //Ajoute "newListTargetStats" dans la nouvelle version.
+                        newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                    }
                 }
             }
 
@@ -575,7 +603,7 @@ public class SO_ActionClass : ScriptableObject
         challenge = thisChallenge;
     }
 
-    public bool HasMovement(Interaction.ETypeTarget target)
+    public bool HasMovement(Interaction_NewInspector.ETypeTarget target)
     {
         if (GetMovement(target) != 0)
         {
