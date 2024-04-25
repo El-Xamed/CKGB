@@ -904,14 +904,15 @@ public class C_TempsLibre : MonoBehaviour
             c.GetComponent<C_Actor>().HasRevassed = false;
             c.GetComponent<C_Actor>().HasTraited = false;
         }
-        Challenge(named);
+        StartCoroutine(Challenge(named));
     }
     IEnumerator Challenge(string scenename)
     {
         Debug.Log(scenename);
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
+        GameManager.instance.TS_flanel.GetComponent<Animator>().ResetTrigger("Open");
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
         SceneManager.LoadScene(scenename);
     }
