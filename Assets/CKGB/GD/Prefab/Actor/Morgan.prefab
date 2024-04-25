@@ -1053,6 +1053,7 @@ GameObject:
   - component: {fileID: 3085631622730366072}
   - component: {fileID: 5199208835674813160}
   - component: {fileID: 31738878363605539}
+  - component: {fileID: 7007678296909039342}
   m_Layer: 0
   m_Name: Morgan
   m_TagString: Untagged
@@ -1144,6 +1145,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!210 &7007678296909039342
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199208835674813161}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &6106091988627348034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,7 +2516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6544905615711834128, guid: 07cb2ae2e67765243a276cfc27510cf2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6544905615711834131, guid: 07cb2ae2e67765243a276cfc27510cf2, type: 3}
       propertyPath: m_SortingLayer
