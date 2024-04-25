@@ -655,7 +655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2263075953970986457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1238,6 +1238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: 0
   dataActor: {fileID: 11400000, guid: f815fa2680ca4bc4ea731ad99aab2325, type: 2}
+  currentStress: 0
+  currentEnergy: 0
+  isOut: 0
+  character: {fileID: 1215369260791277314}
+  chains: {fileID: 4956941757229390692}
   bulles: []
   BulleHautGauche: {fileID: 3465118084754806766}
   txtHautGauche: {fileID: 1260884621944680045}
@@ -1247,9 +1252,6 @@ MonoBehaviour:
   txtBasGauche: {fileID: 174771821726031280}
   BulleBasDroite: {fileID: 6235693454164741853}
   txtBasDroite: {fileID: 186918570888302824}
-  isOut: 0
-  currentStress: 0
-  currentEnergy: 0
   currentPointTrait: 0
   HasPlayed: 0
   HasRevassed: 0
@@ -1257,11 +1259,6 @@ MonoBehaviour:
   HasPapoted: 0
   HasTraited: 0
   charaTree: {fileID: 0}
-  smallResume: {fileID: 0}
-  BigResume1: {fileID: 0}
-  BigResume2: {fileID: 0}
-  character: {fileID: 1215369260791277314}
-  chains: {fileID: 4956941757229390692}
 --- !u!95 &31738878363605539
 Animator:
   serializedVersion: 5
