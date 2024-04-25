@@ -19,18 +19,18 @@ Tu te ronges les ongles. <br>Le bout de tes doigts te brûle #Bulle:Narrateur
 Ta grand mère commences à fredonner une chanson #Bulle:Narrateur
  …"#Bulle:MorganHautGauche
 Alors...#Bulle:NimuBasDroite
- Pas trop nerveux ?#Bulle:NimuBasDroite
+Pas trop nerveux ?#Bulle:NimuBasDroite
 Hm ?#Bulle:MorganHautGauche
 …‘Nah.#Bulle:MorganHautGauche
 Bah tu vas dead ça alors.#Bulle:NimuBasDroite
 …#Bulle:MorganHautGauche
-Hey, <br>je suis vraiment fière que de toi,<br> tu sais ?#Bulle:NimuBasDroite
+Hey, <br>je suis vraiment fière de toi,<br> tu sais ?#Bulle:NimuBasDroite
 Tu es pris au dépourvu.<br> Tu ne le laisses pas paraitre.#Bulle:Narrateur
 A-ah oui ?#Bulle:MorganHautGauche
 De fou !<br> ça demande vlà du courage <br>d'être aussi calme dans cette situation.#Bulle:NimuBasDroite
 …#Bulle:MorganHautGauche
-Ca me rappelle mon premier<br> rendez-vous amoureux.<br> Haha, comment c’était claquée au sol.#bulle:NimuBasGauche
-J’ai mis des années <br>avant de trouver des techniques<br> pour garder mon sang froid.
+Ca me rappelle mon premier<br> rendez-vous amoureux.<br> Haha, comment c’était claquée au sol.#Bulle:NimuBasGauche
+J’ai mis des années <br>avant de trouver des techniques<br> pour garder mon sang froid.#Bulle:NimuBasGauche
 Tu m’impressiones vraiment.#Bulle:NimuBasDroite
 
 Tu te mets nerveusement à jouer avec la fermeture éclaire de tes poches.#Bulle:Narrateur

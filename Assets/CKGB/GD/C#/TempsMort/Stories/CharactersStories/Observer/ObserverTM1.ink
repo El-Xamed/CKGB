@@ -23,7 +23,8 @@ Les rayons de soleil cristallins qui transpercent l’espace par l’immense bai
 La sensation du papier quand tu déplace machinalement les cahier de cours oubliés sur la table afin d’éviter qu’ils ne se fassent tacher.#Bulle:Narrateur
 La chaleur des tasses. Le sucre de la confiture. Le petit choc sourd d’une cuillère en bois qui se cogne à une tasse en céramique. #Bulle:Narrateur
 Tu aprécies ces matins tranquilles. Les jour sans école, vous vous retrouvez souvent tous les deux, comme ça. #Bulle:Narrateur
-Les autres se lèvent tôt. Ils vont explorer la ville, aider dans les champs, dessiner des insectes, travailler dans un atelier, jouer à la salle d’arcade, nourrir des animaux.#Bulle:Narrateur
+Les autres se lèvent tôt. Ils vont explorer la ville, aider dans les champs, dessiner des insectes,#Bulle:Narrateur
+travailler dans un atelier, jouer à la salle d’arcade, nourrir des animaux.#Bulle:Narrateur
 Au premières heures du jour, la maisonnée bourdonne d’une rimbambelle d’adelphes, de cousins, d’amis, parents et de grands-parents en train de se préparer,#Bulle:Narrateur
 avant de les relâcher dans la nature et de se retrouver silencieuse. #Bulle:Narrateur
 Si on fait exception de vous,#Bulle:Narrateur
