@@ -908,6 +908,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     IEnumerator Challenge(string scenename)
     {
+        Debug.Log(scenename);
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(1f);
