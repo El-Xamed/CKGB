@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class C_MainMenu : MonoBehaviour
 {
@@ -66,5 +68,14 @@ public class C_MainMenu : MonoBehaviour
     public void Back()
     {
         
+    }
+    public void Naviguate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed )
+        {
+            AudioManager.instance.PlayOnce(AudioManager.instance.sounds[0].clip[0]);
+        }
     }
 }

@@ -40,6 +40,10 @@ public class AudioManager : MonoBehaviour
         Play("MusiqueTuto");
 
     } 
+    public void PlayOnce(AudioClip mp3name)
+    {
+        AudioManager.instance.GetComponent<AudioSource>().PlayOneShot(mp3name);
+    }
 
         public void Play(string name)
         {
