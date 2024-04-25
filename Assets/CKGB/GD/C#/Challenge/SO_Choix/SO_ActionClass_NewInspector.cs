@@ -1,8 +1,10 @@
 using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static TargetStats;
+using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action_NewInspector", order = 1)]
 public class SO_ActionClass_NewInspector : ScriptableObject
@@ -33,296 +35,6 @@ public class SO_ActionClass_NewInspector : ScriptableObject
     public List<Interaction_NewInspector> listInteraction = new List<Interaction_NewInspector>();
     #endregion
 
-    /*
-    #region Récupération de stats
-    //Fonction qui renvoie la valeur d'energy.
-    public int GetStats(Interaction.ETypeTarget actorTarget, TargetStats.ETypeStatsTarget targetStats, Stats.ETypeStats statsTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == targetStats)
-                    {
-                        foreach (Stats thisStats in thisTargetStats.listStats)
-                        {
-                            if (thisStats.whatStats == statsTarget)
-                            {
-                                return thisStats.value;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        //Debug.Log("ATTENTION : Cette action ne possède pas de prix " + statsTarget + " ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    public Move GetClassMove(Interaction.ETypeTarget target)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "target".
-            if (thisInteraction.whatTarget == target)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        //Deplace l'actor.
-                        return thisStats.move;
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public int GetRange()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                return thisInteraction.range;
-            }
-        }
-
-        return 0;
-    }
-
-    public bool GetIfTargetOrNot()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                if (thisInteraction.selectTarget)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public bool GetIfSwitchOrNot()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
-                    {
-                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
-                        {
-                            thisTargetStats.move.accessories = GameObject.Find(GetSwitchGameObject().GetDataAcc().name).GetComponent<C_Accessories>();
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public C_Accessories GetSwitchGameObject()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
-                    {
-                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
-                        {
-                            return thisTargetStats.move.accessories;
-                        }
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public GameObject GetTarget()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                if (thisInteraction.selectTarget)
-                {
-                    return thisInteraction.target;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public void SetTarget(GameObject thisTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                if (thisInteraction.selectTarget)
-                {
-                    thisInteraction.target = thisTarget;
-                }
-            }
-        }
-    }
-
-    public C_Actor GetSwitchActor(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        return thisTargetStats.move.actor;
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
-
-        return null;
-    }
-
-    public C_Accessories GetSwitchAcc(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        return thisTargetStats.move.accessories;
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
-
-        return null;
-    }
-
-    //Fonction qui renvoie le parametre de mouvement.
-    public Interaction.ETypeDirectionTarget GetTypeDirectionRange()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                return thisInteraction.whatDirectionTarget;
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-
-    //Fonction qui renvoie le nombre de mouvement pour déplacer "other".
-    public int GetMovement(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "Movement".
-                    if (thisStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        if (thisStats.move.whatMove == Move.ETypeMove.Right || thisStats.move.whatMove == Move.ETypeMove.Left || thisStats.move.whatMove == Move.ETypeMove.OnTargetCase)
-                        {
-                            return thisStats.move.nbMove;
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède pas de gain de calme ! La valeur renvoyé sera de 0.");
-
-        return 0;
-    }
-    #endregion
-
-    //Check si dans la config de cette action, des paramètre "other" existe.
-    public bool CheckOtherInAction()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                Debug.Log("D'autres actor peuvent etre impacté !");
-                return true;
-            }
-        }
-
-        Debug.Log("Aucun autre actor peuvent etre impacté !");
-        return false;
-    }
-
     #region Résolution
     public string GetListLogs()
     {
@@ -346,66 +58,45 @@ public class SO_ActionClass_NewInspector : ScriptableObject
         }
     }
 
-    public void ResetLogs()
+
+    public void SetStatsTarget(Interaction_NewInspector.ETypeTarget target, C_Pion thisActor)
     {
-        logsCursor = 0;
-    }
-
-    //vérifie la condition si l'action fonctionne.
-    public bool CanUse(C_Actor thisActor)
-    {
-        //AJOUTER LA CONDITION DES ACTIONS FAIT A 2.
-
-        //Check si les codition bonus sont activé.
-        if (advancedCondition.advancedCondition)
-        {
-            //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
-            if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor != thisActor)
-            {
-                return false;
-            }
-
-            //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
-            if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() != thisActor.GetPosition())
-            {
-                return false;
-            }
-        }
-
-        if (thisActor.GetcurrentEnergy() < GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) && GetStats(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public void SetStatsTarget(Interaction.ETypeTarget target, C_Pion thisActor)
-    {
-        //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
-        #region Price string
-        //Pour le prix.
-        //Check si il possède le component "C_Actor". A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
+        //Avoir à la place une detection de l'enum du si c'est un prix (-x) ou un gain (+x). Necessaire pour l'outil de preview.
+        //New version
         if (thisActor.GetComponent<C_Actor>())
         {
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
+            //Check si la liste n'est pas vide
+            if (listInteraction.Count != 0)
             {
-                thisActor.GetComponent<C_Actor>().SetCurrentStatsPrice(GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy));
-            }
-        }
-        #endregion
+                //Fait toute la liste des cible.
+                foreach (Interaction_NewInspector thisInteraction in listInteraction)
+                {
+                    //Check si c'est égale à "actorTarget".
+                    if (thisInteraction.whatTarget == target)
+                    {
+                        //Applique à l'actor SEULEMENT LES STATS les stats.
+                        foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                        {
+                            int value;
 
-        #region Gain string
-        //Pour le gain.
-        //Check si il possède le component "C_Actor". A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
-        if (thisActor.GetComponent<C_Actor>())
-        {
-            if (GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm) != 0)
-            {
-                thisActor.GetComponent<C_Actor>().SetCurrentStatsGain(GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Calm), GetStats(target, TargetStats.ETypeStatsTarget.Gain, Stats.ETypeStats.Energy));
+                            if (thisTargetStats.dataStats.whatCost == Stats_NewInspector.ETypeCost.Price)
+                            {
+                                //Retourne une valeur négative.
+                                value = -thisTargetStats.dataStats.value;
+                            }
+                            else
+                            {
+                                //Retourne une valeur positive.
+                                value = thisTargetStats.dataStats.value;
+                            }
+
+                            //Envoie les nouvelles information a l'actor.
+                            thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.dataStats.whatStats);
+                        }
+                    }
+                }
             }
         }
-        #endregion
     }
     #endregion
 
@@ -414,18 +105,8 @@ public class SO_ActionClass_NewInspector : ScriptableObject
     {
         challenge = thisChallenge;
     }
-
-    public bool HasMovement(Interaction.ETypeTarget target)
-    {
-        if (GetMovement(target) != 0)
-        {
-            return true;
-        }
-
-        return false;
-    }
     #endregion
-    */
+    
 }
 
 #region Conditions avancé

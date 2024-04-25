@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class C_Pion : MonoBehaviour
 {
+    [Header("Challenge")]
     [SerializeField] protected int position;
     protected bool inDanger = false;
 

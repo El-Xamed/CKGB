@@ -31,6 +31,7 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("List d'action")]
     public List<Interaction> listInteraction = new List<Interaction>();
+    public List<Interaction_NewInspector> newListInteractions;
     #endregion
 
     #region Récupération de stats
@@ -381,10 +382,16 @@ public class SO_ActionClass : ScriptableObject
 
     public void SetStatsTarget(Interaction.ETypeTarget target, C_Pion thisActor)
     {
+        //Cette partie de dev va etre optimisé ! Avoir la meme chose mais les 2 réunis.
+        //Avoir à la place une detection de l'enum du si c'est un prix (-x) ou un gain (+x). Necessaire pour l'outil de preview.
+        //New version
+        
+
+        //Old version
         //Check si pour le "target" les variables ne sont pas égale à 0, si c'est le cas alors un system va modifier le text qui va s'afficher.
         #region Price string
         //Pour le prix.
-        //Check si il possède le component "C_Actor". A RETIRER PLUS TARD CAR C'EST DU PUTAIN DE BRICOLAGE DE MES COUILLES CAR  J'AI PAS LE TEMPS !
+        //Check si il possède le component "C_Actor". A RETIRER PLUS TARD !
         if (thisActor.GetComponent<C_Actor>())
         {
             if (GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0 || GetStats(target, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Calm) != 0)
@@ -407,6 +414,160 @@ public class SO_ActionClass : ScriptableObject
         #endregion
     }
     #endregion
+
+    public void Convert()
+    {
+        //Création d'un nouvelle liste qui va remplacer l'ancien interface.
+        newListInteractions = new List<Interaction_NewInspector>();
+
+        //Pour toutes les interaction dans l'ancien interface.
+        foreach (Interaction item in listInteraction)
+        {
+            Interaction_NewInspector newInteraction_NewInspector = new Interaction_NewInspector();
+
+            //Convertisseur pour la liste 1.
+
+            #region Target
+            //Pour Convertir la Target.
+            switch (item.whatTarget)
+            {
+                case Interaction.ETypeTarget.Self:
+                    newInteraction_NewInspector.whatTarget = Interaction_NewInspector.ETypeTarget.Self;
+                    break;
+                case Interaction.ETypeTarget.Other:
+                    newInteraction_NewInspector.whatTarget = Interaction_NewInspector.ETypeTarget.Other;
+                    break;
+            }
+            #endregion
+
+            newInteraction_NewInspector.selectTarget = item.selectTarget;
+
+            #region whatTypeTarget
+            //Pour Convertir le type de cible.
+            switch (item.whatTypeTarget)
+            {
+                case Interaction.EType.Actor:
+                    newInteraction_NewInspector.whatTypeTarget = Interaction_NewInspector.EType.Actor;
+                    break;
+                case Interaction.EType.Acc:
+                    newInteraction_NewInspector.whatTypeTarget = Interaction_NewInspector.EType.Acc;
+                    break;
+            }
+            #endregion
+
+            newInteraction_NewInspector.target = item.target;
+
+            #region whatDirectionTarget
+            //Pour Convertir la direction.
+            switch (item.whatDirectionTarget)
+            {
+                case Interaction.ETypeDirectionTarget.Right:
+                    newInteraction_NewInspector.whatDirectionTarget = Interaction_NewInspector.ETypeDirectionTarget.Right;
+                    break;
+                case Interaction.ETypeDirectionTarget.Left:
+                    newInteraction_NewInspector.whatDirectionTarget = Interaction_NewInspector.ETypeDirectionTarget.Left;
+                    break;
+                case Interaction.ETypeDirectionTarget.RightAndLeft:
+                    newInteraction_NewInspector.whatDirectionTarget = Interaction_NewInspector.ETypeDirectionTarget.RightAndLeft;
+                    break;
+            }
+            #endregion
+
+            newInteraction_NewInspector.range = item.range;
+
+
+            //Check dans l'ancienne version la liste de stats.
+            foreach (TargetStats thisListTargetStats in item.listTargetStats)
+            {
+                //On récupère si c'est un prix ou un gain
+                //Check si c'est pas un prix.
+                if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Price)
+                {
+                    //Regarde dans la liste si la TargetStats est égale au prix pour ajouter dans la nouvelle version.
+                    foreach (Stats thisStats in thisListTargetStats.listStats)
+                    {
+                        if (thisStats.whatStats == Stats.ETypeStats.Energy)
+                        {
+                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
+                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+                            //Récupère l'info que c'est une stats.
+                            newListTargetStats.whatStatsTarget = TargetStats_NewInspector.ETypeStatsTarget.Stats;
+
+
+                            //Création d'une nouvelle "Stats_NewInspector" avec les info de price/gain + energy/calm à entrer pour ajouter dans le nouveau "TargetStats_NewInspector" pour pas qu'il soit null.
+                            Stats_NewInspector newStats_NewInspector = new Stats_NewInspector();
+                            //Récupère l'info que c'est un prix.
+                            newStats_NewInspector.whatCost = Stats_NewInspector.ETypeCost.Price;
+                            //Récupère l'info sur quelle stats ça va se jouer.
+                            newStats_NewInspector.whatStats = Stats_NewInspector.ETypeStats.Energy;
+
+
+                            //Ajouter "newStats_NewInspector" dans "TargetStats_NewInspector".
+                            newListTargetStats.dataStats = newStats_NewInspector;
+                            //Ajoute "newListTargetStats" dans la nouvelle version.
+                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                        }
+                        else if (thisStats.whatStats == Stats.ETypeStats.Calm)
+                        {
+                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
+                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+
+                            //Récupère l'info que c'est un prix.
+                            newListTargetStats.dataStats.whatCost = Stats_NewInspector.ETypeCost.Price;
+
+                            newListTargetStats.dataStats.whatStats = Stats_NewInspector.ETypeStats.Calm;
+
+                            //Ajoute "newListTargetStats" dans la nouvelle version.
+                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                        }
+                    }
+                }
+                else if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Gain) //Check si c'est pas un gain.
+                {
+                    //Regarde dans la liste si la TargetStats est égale au prix pour ajouter dans la nouvelle version.
+                    foreach (Stats thisStats in thisListTargetStats.listStats)
+                    {
+                        if (thisStats.whatStats == Stats.ETypeStats.Energy)
+                        {
+                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
+                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+
+                            //Récupère l'info que c'est un gain.
+                            newListTargetStats.dataStats.whatCost = Stats_NewInspector.ETypeCost.Gain;
+
+                            //Récupère l'info sur quelle stats ça va se jouer.
+                            newListTargetStats.dataStats.whatStats = Stats_NewInspector.ETypeStats.Energy;
+
+                            //Ajoute "newListTargetStats" dans la nouvelle version.
+                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                        }
+                        else if (thisStats.whatStats == Stats.ETypeStats.Calm)
+                        {
+                            //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
+                            TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+
+                            //Récupère l'info que c'est un gain.
+                            newListTargetStats.dataStats.whatCost = Stats_NewInspector.ETypeCost.Gain;
+
+                            newListTargetStats.dataStats.whatStats = Stats_NewInspector.ETypeStats.Calm;
+
+                            //Ajoute "newListTargetStats" dans la nouvelle version.
+                            newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
+                        }
+                    }
+                }
+                else if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Movement) //Si c'est un mouvement alors il donne les info de mouvement.
+                {
+                    
+                }
+            }
+
+            //newInteraction_NewInspector.listTargetStats = newListTargetStats;
+
+            //Ajoute à la nouvelle liste d'interaction.
+            newListInteractions.Add(newInteraction_NewInspector);
+        }
+    }
 
     #region Partage de données
     public void SetChallengeData(C_Challenge thisChallenge)

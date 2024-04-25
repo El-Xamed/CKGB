@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: Choix_Test
   m_EditorClassIdentifier: 
-  buttonText: 
+  buttonText: Test
   LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction: []
@@ -48,6 +48,70 @@ MonoBehaviour:
         value: 0
       move:
         whatMove: 2
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      listStats:
+      - whatStats: 0
+        value: 0
+      move:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+    - whatStatsTarget: 2
+      listStats:
+      - whatStats: 0
+        value: 0
+      move:
+        whatMove: 2
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      dataStats:
+        whatCost: 0
+        whatStats: 0
+        value: 0
+      dataMove:
+        whatMove: 0
+        isTp: 0
+        nbMove: 0
+        actor: {fileID: 0}
+        accessories: {fileID: 0}
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      dataStats:
+        whatCost: 0
+        whatStats: 0
+        value: 0
+      dataMove:
+        whatMove: 0
         isTp: 0
         nbMove: 0
         actor: {fileID: 0}

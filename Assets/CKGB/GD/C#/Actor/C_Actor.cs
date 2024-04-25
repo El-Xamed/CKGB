@@ -9,8 +9,26 @@ using TMPro;
 public class C_Actor : C_Pion
 {
     #region data
-
+    #region Challenge
     [SerializeField] SO_Character dataActor;
+
+    //Current stats.
+    [SerializeField] int currentStress;
+    [SerializeField] int currentEnergy;
+
+    //Ui Challenge
+    C_Stats uiStats;
+
+    //Si l'actor peut encore jouer.
+    [SerializeField] bool isOut = false;
+
+    //Character.
+    [SerializeField] Image character;
+    [SerializeField] Image chains;
+    #endregion
+
+    #region Temps Mort
+    [Header("Temps mort")]
     [SerializeField] List<GameObject> bulles = new List<GameObject>();
     [SerializeField] public GameObject BulleHautGauche;
     [SerializeField] public TMP_Text txtHautGauche;
@@ -20,13 +38,8 @@ public class C_Actor : C_Pion
     [SerializeField] public TMP_Text txtBasGauche;
     [SerializeField] public GameObject BulleBasDroite;
     [SerializeField] public TMP_Text txtBasDroite;
-    [Header("Stats")]
-    //Si l'actor peut encore jouer.
-    [SerializeField] public bool isOut = false;
 
     //Stats
-    [SerializeField] int currentStress;
-    [SerializeField] int currentEnergy;
     [SerializeField] public float currentPointTrait;
     [SerializeField] public bool HasPlayed = false;
     [SerializeField] public bool HasRevassed = false;
@@ -34,14 +47,7 @@ public class C_Actor : C_Pion
     [SerializeField] public bool HasPapoted = false;
     [SerializeField] public bool HasTraited = false;
     [SerializeField] public C_Tree charaTree;
-
-    //Ui Challenge
-    C_Stats uiStats;
-
-    //A voir avec MAX.
-    public GameObject smallResume;
-    public GameObject BigResume1;
-    public GameObject BigResume2;
+    #endregion
 
     #endregion
 
@@ -114,6 +120,51 @@ public class C_Actor : C_Pion
         Debug.Log("Init challenge : " + name);
     }
 
+    //Cette partie du dev va etre optimisé ! les 2 fonctions réunis en 1.
+    //New version
+    public void SetCurrentStats(int value, Stats_NewInspector.ETypeStats onWhatStats)
+    {
+        //Check quelle stats changer.
+        if (onWhatStats == Stats_NewInspector.ETypeStats.Calm)
+        {
+            //Change la valeur de calm
+            currentStress += value;
+        }
+        else if (onWhatStats == Stats_NewInspector.ETypeStats.Energy)
+        {
+            //Change la valeur d'energie.
+            currentEnergy += value;
+        }
+
+        //Check si il ne dépasse pas la limite.
+        //Pour l'energie.
+        if (currentEnergy < 0)
+        {
+            currentEnergy = 0;
+        }
+        if (currentEnergy > GetMaxEnergy())
+        {
+            currentEnergy = GetMaxEnergy();
+        }
+
+        //Pour le calm.
+        if (currentStress < 0)
+        {
+            currentStress = 0;
+        }
+        if (currentStress > GetMaxStress())
+        {
+            currentStress = GetMaxStress();
+        }
+
+        //Check si le joueur est encore jouable.
+        CheckIsOut();
+
+        //Update les UI stats.
+        UpdateUiStats();
+    }
+
+    //Old version
     public void SetCurrentStatsPrice(int stressPrice, int energyPrice)
     {
         currentStress -= stressPrice;
@@ -131,20 +182,20 @@ public class C_Actor : C_Pion
         //Update les UI stats.
         UpdateUiStats();
     }
-
+    //Old version
     public void SetCurrentStatsGain(int stressGain, int energyGain)
     {
         currentStress += stressGain;
         currentEnergy += energyGain;
 
         //Check si il ne dépasse pas la limite.
-        if (currentStress > getMaxStress())
+        if (currentStress > GetMaxStress())
         {
-            currentStress = getMaxStress();
+            currentStress = GetMaxStress();
         }
-        if (currentEnergy > getMaxEnergy())
+        if (currentEnergy > GetMaxEnergy())
         {
-            currentEnergy = getMaxEnergy();
+            currentEnergy = GetMaxEnergy();
         }
 
         //Check si le joueur est encore jouable.
@@ -190,21 +241,21 @@ public class C_Actor : C_Pion
 
             isOut = true;
 
-            transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSpriteIsOut;
+            character.sprite = dataActor.challengeSpriteIsOut;
 
-            transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(true);
+            chains.gameObject.SetActive(true);
         }
         else
         {
             isOut = false;
 
             //Check si le sprite est déjà possé.
-            if (transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSprite && transform.GetChild(2).GetComponent<Image>().sprite != dataActor.challengeSpriteOnCata)
+            if (character.sprite != dataActor.challengeSprite && character.sprite != dataActor.challengeSpriteOnCata)
             {
-                transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
+                character.sprite = dataActor.challengeSprite;
             }
 
-            transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(false);
+            chains.gameObject.SetActive(false);
         }
     }
     #endregion
@@ -244,7 +295,7 @@ public class C_Actor : C_Pion
     {
         return currentStress;
     }
-    public int getMaxStress()
+    public int GetMaxStress()
     {
         return dataActor.stressMax;
     }
@@ -261,7 +312,7 @@ public class C_Actor : C_Pion
     {
         return currentEnergy;
     }
-    public int getMaxEnergy()
+    public int GetMaxEnergy()
     {
         return dataActor.energyMax;
     }

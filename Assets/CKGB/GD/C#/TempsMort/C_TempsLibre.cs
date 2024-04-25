@@ -580,7 +580,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         //calm
         actorActif.GetComponent<C_Actor>().SetMaxStress();
-        Debug.Log(actorActif.GetComponent<C_Actor>().getMaxStress());
+        Debug.Log(actorActif.GetComponent<C_Actor>().GetMaxStress());
         //actorActif.GetComponent<C_Actor>().maxStress++;
         ActivateCharactersButton();
     }
@@ -623,7 +623,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         //energy
         actorActif.GetComponent<C_Actor>().SetMaxEnergy();
-        Debug.Log(actorActif.GetComponent<C_Actor>().getMaxEnergy());
+        Debug.Log(actorActif.GetComponent<C_Actor>().GetMaxEnergy());
         //actorActif.GetComponent<C_Actor>().maxEnergy+=1;
         ActivateCharactersButton();
 
