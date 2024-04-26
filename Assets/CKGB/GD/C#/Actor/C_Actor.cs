@@ -122,15 +122,15 @@ public class C_Actor : C_Pion
 
     //Cette partie du dev va etre optimisé ! les 2 fonctions réunis en 1.
     //New version
-    public void SetCurrentStats(int value, Stats_NewInspector.ETypeStats onWhatStats)
+    public void SetCurrentStats(int value, TargetStats_NewInspector.ETypeStats onWhatStats)
     {
         //Check quelle stats changer.
-        if (onWhatStats == Stats_NewInspector.ETypeStats.Calm)
+        if (onWhatStats == TargetStats_NewInspector.ETypeStats.Calm)
         {
             //Change la valeur de calm
             currentStress += value;
         }
-        else if (onWhatStats == Stats_NewInspector.ETypeStats.Energy)
+        else if (onWhatStats == TargetStats_NewInspector.ETypeStats.Energy)
         {
             //Change la valeur d'energie.
             currentEnergy += value;

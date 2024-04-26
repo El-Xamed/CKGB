@@ -734,17 +734,17 @@ public class C_Challenge : MonoBehaviour
                     switch (action.GetTypeDirectionRange())
                     {
                         //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                        case Interaction.ETypeDirectionTarget.Right:
+                        case Interaction_NewInspector.ETypeDirectionTarget.Right:
                             //Calcul vers la droite.
                             CheckPositionOther(actor, i, thisOtherActor);
                             Debug.Log("Direction Range = droite.");
                             break;
-                        case Interaction.ETypeDirectionTarget.Left:
+                        case Interaction_NewInspector.ETypeDirectionTarget.Left:
                             //Calcul vers la gauche.
                             CheckPositionOther(actor, -i, thisOtherActor);
                             Debug.Log("Direction Range = Gauche.");
                             break;
-                        case Interaction.ETypeDirectionTarget.RightAndLeft:
+                        case Interaction_NewInspector.ETypeDirectionTarget.RightAndLeft:
                             //Calcul vers la droite + gauche.
                             CheckPositionOther(actor, i, thisOtherActor);
                             CheckPositionOther(actor, -i, thisOtherActor);
@@ -819,10 +819,10 @@ public class C_Challenge : MonoBehaviour
             if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
             {
                 //Check si un mouvement existe.
-                if (action.GetMovement(target) != 0)
+                if (action.GetValue(target, TargetStats_NewInspector.ETypeStatsTarget.Movement) != 0)
                 {
                     //Deplace l'actor avec l'info de déplacement + type de déplacement.
-                    MoveActorInBoard(thisActor, action.GetClassMove(target).nbMove, action.GetClassMove(target).whatMove, action.GetClassMove(target).isTp);
+                    MoveActorInBoard(thisActor, action.GetValue(target, TargetStats_NewInspector.ETypeStatsTarget.Movement), action.GetWhatMove(target), action.GetIsTp(target));
                 }
             }
             else //Ciblé par un actor ou acc.
@@ -844,16 +844,16 @@ public class C_Challenge : MonoBehaviour
 
     #region Deplace les actor
     //Fonction qui déplace les actor.
-    public void MoveActorInBoard(C_Pion thisPion, int nbMove, Move_NewInspector.ETypeMove whatMove, bool isTp)
+    public void MoveActorInBoard(C_Pion thisPion, int nbMove, TargetStats_NewInspector.ETypeMove whatMove, bool isTp)
     {
         Debug.Log("Test 1 : " + nbMove);
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
-        if (whatMove == Move_NewInspector.ETypeMove.Right || whatMove == Move_NewInspector.ETypeMove.Left) //Normal move mode.
+        if (whatMove == TargetStats_NewInspector.ETypeMove.Right || whatMove == TargetStats_NewInspector.ETypeMove.Left) //Normal move mode.
         {
             Debug.Log("Test 9 : Mode normal move activé !");
 
             //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
-            if (whatMove == Move_NewInspector.ETypeMove.Left)
+            if (whatMove == TargetStats_NewInspector.ETypeMove.Left)
             {
                 nbMove = -nbMove;
                 Debug.Log("Test 5 : La valeur passe en nombre négatif : " + nbMove);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class C_Stats : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Sprite spriteEnergie;
     List<GameObject> listEnergie = new List<GameObject>();
 
+    [Header("Preview")]
+    [SerializeField] Image uiCalmPreview;
+
     #region Ini
     public void InitUiStats(C_Actor thisActor)
     {
@@ -54,12 +58,19 @@ public class C_Stats : MonoBehaviour
 
         for (int i = 0; i < nbCalm; i++)
         {
-            GameObject newBorder = Instantiate(borderPrefab, uiCalm.transform.position, Quaternion.Euler(0, 0, calmWidth * i), uiCalm.transform);
+            GameObject newBorder = Instantiate(borderPrefab, PDP.transform.position, Quaternion.Euler(0, 0, calmWidth * i), uiCalm.transform);
 
             newBorder.name = "Border " + i;
         }
     }
     #endregion
+
+    float CalculJauge(int currentValue, int maxValue)
+    {
+        float currentWidth = (float)currentValue / maxValue;
+
+        return currentWidth;
+    }
 
     public void UpdateUi(C_Actor myActor)
     {
@@ -70,11 +81,10 @@ public class C_Stats : MonoBehaviour
         #endregion
 
         #region Jauge
-        //Calcul.
-        float calmWidth = (float)myActor.GetComponent<C_Actor>().GetCurrentStress() / (float)myActor.GetDataActor().stressMax;
 
         //Update le calm.
-        uiCalm.fillAmount = calmWidth;
+        uiCalm.fillAmount = CalculJauge(myActor.GetComponent<C_Actor>().GetCurrentStress(), myActor.GetDataActor().stressMax);
+
         //Check l'�tat de l'actor
         //Si c'est pv sont au dessus des 2/3.
         if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() > 2 / (float)myActor.GetDataActor().stressMax)
@@ -131,37 +141,71 @@ public class C_Stats : MonoBehaviour
 
     #region Preview
     //Fonction pour afficher une preview d'une stats en particulier.
-    public void UiPreview(Stats_NewInspector.ETypeStats whatStats, int valuePreview)
+    public void UiPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
-        Debug.Log(whatStats.ToString());
-        Debug.Log(valuePreview);
-    }
-
-    /*A SUPP TOUTE LA PAERTIE DU DESSOUS.
-    public void ActiveSelfPreviewUi(C_Actor thisActor, C_ActionButton thisActionButon)
-    {
-        /*
-        calmJaugePreview.gameObject.SetActive(true);
-
-        if (thisActor.GetCurrentStress() >= thisActionButon.GetSelfPriceCalm())
+        //Check si la liste n'est pas vide
+        if (thisActionClass.newListInteractions.Count != 0)
         {
-            calmJaugePreview.fillAmount = ((float)thisActor.GetCurrentStress() - (float)thisActionButon.GetSelfPriceCalm()) / (float)thisActor.getMaxStress();
+            Debug.Log("La liste n'est pas vide !");
+
+            //Pour "Self".
+            SetupUiStatsPreview(Interaction_NewInspector.ETypeTarget.Self, thisActor);
+
+            //Pour "Other".
+            SetupUiStatsPreview(Interaction_NewInspector.ETypeTarget.Other, thisActor);
+        }
+
+        void SetupUiStatsPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
+        {
+            Debug.Log("Preview pour " + thisActor);
+
+            foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
+            {
+                //Check si c'est égale à "actorTarget".
+                if (thisInteraction.whatTarget == target)
+                {
+                    //Applique à l'actor SEULEMENT LES STATS les stats.
+                    foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                    {
+                        //Check si c'est des stats ou un Mouvement.
+                        if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
+                        {
+                            int value = 0;
+
+                            if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
+                            {
+                                //Retourne une valeur négative.
+                                value = -thisTargetStats.value;
+                            }
+                            else if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Gain)
+                            {
+                                //Retourne une valeur positive.
+                                value = thisTargetStats.value;
+                            }
+
+                            //Check si c'est pour le calm ou l'energie.
+                            if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Calm)
+                            {
+                                //Applique une preview sur le calm.
+                                PreviewCalm(value, thisActor);
+                            }
+                            else if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Energy)
+                            {
+                                //Applique une preview sur l'enrgie.
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        void PreviewCalm(int value, C_Actor thisActor)
+        {
+            //Update le calm.
+            uiCalmPreview.fillAmount = CalculJauge(value, thisActor.GetDataActor().stressMax);
+
             GetComponent<Animator>().SetBool("isPreview", true);
         }
-        else
-        {
-            Debug.Log("Prix de stress trop �lev� !");
-        }
     }
-
-    public void ActiveAllPreviewUI(List<C_Actor> otherActor, C_Actor thisActor, int range, C_ActionButton thisActionButon)
-    {
-        ActiveSelfPreviewUi(thisActor, thisActionButon);
-    }
-
-    public void DesactivedAllPreview()
-    {
-        GetComponent<Animator>().SetBool("isPreview", false);
-    }*/
     #endregion
 }

@@ -10,20 +10,15 @@ public class C_PreviewAction : MonoBehaviour
     //Il y a aussi des preview pour les autres.
     //La preview à besoin de récupérer les info de l'action.
 
-    public static event Action<Stats_NewInspector.ETypeStats, int> onPreview;
+    public static event Action<SO_ActionClass, C_Actor> onPreview;
 
     //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
         Debug.Log("Début de preview !");
 
-        //Racourcis
-        Stats_NewInspector.ETypeStats whatStats = Stats_NewInspector.ETypeStats.Energy;
-
-        int valuePreview = 0;
-
         //Check si la liste n'est pas vide
-        if (thisActionClass.newListInteractions.Count -1 != 0)
+        if (thisActionClass.newListInteractions.Count != 0)
         {
             Debug.Log("La liste n'est pas vide !");
 
@@ -34,7 +29,8 @@ public class C_PreviewAction : MonoBehaviour
             SetupPreview(Interaction_NewInspector.ETypeTarget.Other, thisActor);
         }
 
-        onPreview?.Invoke(whatStats, valuePreview);
+        Debug.Log("Tentative");
+        onPreview?.Invoke(thisActionClass, thisActor);
 
         void SetupPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
         {
@@ -45,36 +41,18 @@ public class C_PreviewAction : MonoBehaviour
                 //Check si c'est égale à "actorTarget".
                 if (thisInteraction.whatTarget == target)
                 {
-                    //Applique à l'actor SEULEMENT LES STATS les stats.
                     foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
                     {
                         //Check si c'est des stats ou un Mouvement.
                         if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
                         {
-                            int value;
-
-                            if (thisTargetStats.dataStats.whatCost == Stats_NewInspector.ETypeCost.Price)
-                            {
-                                //Retourne une valeur négative.
-                                value = -thisTargetStats.dataStats.value;
-                            }
-                            else
-                            {
-                                //Retourne une valeur positive.
-                                value = thisTargetStats.dataStats.value;
-                            }
-                            
-                            //Envoie une preivew des stats. INUTILE !!!
-                            //thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.dataStats.whatStats);
-
                             //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
                             //onPreview += TextPreview;
 
                             //Inscrit la preview de stats. (C_Stats)
-                            whatStats = thisTargetStats.dataStats.whatStats; valuePreview = thisTargetStats.dataStats.value;
                             onPreview += thisActor.GetUiStats().UiPreview;
                         }
-                        else if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                        else if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement) //Si c'est un mouvement, alors il lance la preview de déplacement.
                         {
                             //Inscrit la preview de mouvement. Avec les info de preview.
                         }

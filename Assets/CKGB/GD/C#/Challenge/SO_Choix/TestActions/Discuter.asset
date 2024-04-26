@@ -49,13 +49,10 @@ MonoBehaviour:
     range: 0
     listTargetStats:
     - whatStatsTarget: 1
-      dataStats:
-        whatCost: 0
-        whatStats: 0
-        value: 0
-      dataMove:
-        whatMove: 1
-        isTp: 0
-        nbMove: 1
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+      whatCost: 0
+      whatStats: 0
+      whatMove: 1
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
