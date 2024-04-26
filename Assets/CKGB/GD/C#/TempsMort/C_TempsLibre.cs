@@ -286,6 +286,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         naratteurText.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
         naratteurText.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
     }
     IEnumerator StartIntro()
     {
