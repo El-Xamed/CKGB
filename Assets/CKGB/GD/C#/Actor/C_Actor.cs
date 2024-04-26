@@ -356,6 +356,11 @@ public class C_Actor : C_Pion
         return isOut;
     }
 
+    public Image GetImageActor()
+    {
+        return character;
+    }
+
     #endregion
 
     #region Pour l'animation

@@ -50,13 +50,13 @@ public class C_Case : MonoBehaviour
                 if (vfxCata != null)
                 {
                     myPion.SetInDanger(true);
-                    myPion.transform.GetChild(2).GetComponent<Image>().sprite = myPion.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
+                    myPion.GetComponent<C_Actor>().GetImageActor().sprite = myPion.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata;
                     myPion.transform.GetChild(5).gameObject.SetActive(true);
                 }
                 else
                 {
                     myPion.SetInDanger(false);
-                    myPion.transform.GetChild(2).GetComponent<Image>().sprite = myPion.GetComponent<C_Actor>().GetDataActor().challengeSprite;
+                    myPion.GetComponent<C_Actor>().GetImageActor().sprite = myPion.GetComponent<C_Actor>().GetDataActor().challengeSprite;
                     myPion.transform.GetChild(5).gameObject.SetActive(false);
                 }
 
