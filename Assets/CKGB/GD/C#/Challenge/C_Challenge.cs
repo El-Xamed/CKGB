@@ -444,6 +444,7 @@ public class C_Challenge : MonoBehaviour
         uiEtape.GetComponentInChildren<TMP_Text>().text = myChallenge.objectif;
     }
 
+    //Pour la navigation dans les actions.
     public void WriteStatsPreview()
     {
         if (eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject.activeSelf)
@@ -459,6 +460,9 @@ public class C_Challenge : MonoBehaviour
 
             //Affiche la preview.
             uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, plateau);
+
+            //New version de la preview.
+            GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
         }
     }
 

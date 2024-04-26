@@ -33,6 +33,8 @@ public class C_Stats : MonoBehaviour
     [SerializeField] GameObject uiEnergie;
     [SerializeField] Sprite spriteEnergie;
     List<GameObject> listEnergie = new List<GameObject>();
+
+    #region Ini
     public void InitUiStats(C_Actor thisActor)
     {
         //Setup le PDP.
@@ -57,6 +59,7 @@ public class C_Stats : MonoBehaviour
             newBorder.name = "Border " + i;
         }
     }
+    #endregion
 
     public void UpdateUi(C_Actor myActor)
     {
@@ -125,12 +128,16 @@ public class C_Stats : MonoBehaviour
         #endregion
     }
 
-    public void ActiveAllPreviewUI(List<C_Actor> otherActor, C_Actor thisActor, int range, C_ActionButton thisActionButon)
+
+    #region Preview
+    //Fonction pour afficher une preview d'une stats en particulier.
+    public void UiPreview(Stats_NewInspector.ETypeStats whatStats, int valuePreview)
     {
-        ActiveSelfPreviewUi(thisActor, thisActionButon);
+        Debug.Log(whatStats.ToString());
+        Debug.Log(valuePreview);
     }
 
-    //MODIFER LA FONCTION POUR QU'IL RECUPERE LES BONNE INFO (QUE SE SOIT "SELF" OU "OTHER").
+    /*A SUPP TOUTE LA PAERTIE DU DESSOUS.
     public void ActiveSelfPreviewUi(C_Actor thisActor, C_ActionButton thisActionButon)
     {
         /*
@@ -145,11 +152,16 @@ public class C_Stats : MonoBehaviour
         {
             Debug.Log("Prix de stress trop �lev� !");
         }
-        */
+    }
+
+    public void ActiveAllPreviewUI(List<C_Actor> otherActor, C_Actor thisActor, int range, C_ActionButton thisActionButon)
+    {
+        ActiveSelfPreviewUi(thisActor, thisActionButon);
     }
 
     public void DesactivedAllPreview()
     {
         GetComponent<Animator>().SetBool("isPreview", false);
-    }
+    }*/
+    #endregion
 }

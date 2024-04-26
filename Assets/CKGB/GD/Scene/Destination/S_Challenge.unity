@@ -1070,6 +1070,7 @@ GameObject:
   - component: {fileID: 599995158}
   - component: {fileID: 599995159}
   - component: {fileID: 599995160}
+  - component: {fileID: 599995161}
   m_Layer: 0
   m_Name: Challenge
   m_TagString: Untagged
@@ -1202,6 +1203,18 @@ MonoBehaviour:
   m_DefaultActionMap: Challenge
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &599995161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599995156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7859a598a310ff446801a5e800b8f6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &605952334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,49 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87861308bbcb2e74088297fcbd3b8f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersLittleResume: []
-  charactersCompleteResume1: []
-  charactersCompleteResume2: []
-  littleCharactersSpecs: []
-  CompleteCharactersSpecs1: []
-  CompleteCharactersSpecs2: []
-  charactersButton: []
-  tree: {fileID: 0}
-  charactersTrees: []
-  actions: []
-  ChallengeButton: {fileID: 0}
-  PapotageChoiceButtons: []
-  listCharactersPositions: []
-  characters: []
-  TM: {fileID: 0}
-  background: {fileID: 0}
-  Es: {fileID: 0}
-  currentButton: {fileID: 0}
-  selectedActionButton: {fileID: 0}
-  actorActif: {fileID: 0}
-  Papoteur: {fileID: 0}
-  MorganAPapoteAvecEsthela: 0
-  MorganAPapoteAvecNimu: 0
-  NimuAPapoteAvecEsthela: 0
-  faitesunchoix: {fileID: 0}
-  papoteravec: {fileID: 0}
-  ApapoteAvec: 
-  characterHasPlayed: 
-  isAnActionButton: 0
-  PageNarrateur: {fileID: 0}
-  Cine: {fileID: 0}
-  inkAssetIntro: {fileID: 0}
-  _intro: {fileID: 0}
-  _outro: {fileID: 0}
-  Observage: {fileID: 0}
-  naratteur: {fileID: 0}
-  TMhasStarted: 0
-  canContinue: 0
-  ActionToAdd: []
-  LastCharacterThatPlayed: []
-  actiontoaddID: -1
-  charactertoaddID: -1
-  nobodyHasPlayed: 1
 --- !u!1001 &1245365848
 PrefabInstance:
   m_ObjectHideFlags: 0

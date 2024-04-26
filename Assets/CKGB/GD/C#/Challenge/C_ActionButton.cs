@@ -310,30 +310,6 @@ public class C_ActionButton : MonoBehaviour
         }
     }
     */
-
-    #region Affiche preview sur les stats
-    //Cache toutes les preview.
-    public void HideUiStatsPreview(List<C_Actor> listActor)
-    {
-        foreach (C_Actor thisActor in listActor)
-        {
-            thisActor.GetUiStats().DesactivedAllPreview();
-        }
-    }
-
-    public void ShowUiStatsPreview(List<C_Actor> otherActor, C_Actor thisActor)
-    {
-        //Affiche une preview sur l'actor lui meme.
-        thisActor.GetUiStats().ActiveSelfPreviewUi(thisActor, this);
-
-        //Check si il y a "other".
-        if (actionClass.CheckOtherInAction())
-        {
-            //ActiveOtherPreviewUi(otherActor, thisActor, GetOtherMovement(), this);
-        }
-    }
-    #endregion
-
     #endregion
 
     public void HideCurseur()
