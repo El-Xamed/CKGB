@@ -5,29 +5,29 @@ EXTERNAL StartTM(name)
 ===Intro===
 //Après être passé dans la world map, transition d’écran jusqu’au Temps Morts 3. L’écran s’ouvre sur l’intérieur du tram.
 
-YES !!!<br> ON L’A EUT !!!#Bulle:EsthelaHautGauche
+<size=120%><incr>YES !!!<br> ON L’A EUT !!!</incr><size=120%>#Bulle:EsthelaHautGauche
 
 Ton amie bondit énergiquement pour célebrer l'occasion.#Bulle:Narrateur
 
-’Erk. Je me suis encore <br>laissé distraire par quelque chose, #Bulle:MorganHautGauche
+Je suis vraiment désolé.#Bulle:MorganHauitDroit
+Je me suis encore <br>laissé distraire par quelque chose, #Bulle:MorganHautGauche
 et j'ai failli tous nous faire rater ce train.#Bulle:MorganHautGauche
 
-Wow, ca s’excuse un coolkid ?#Bulle:EsthelaHautGauche
+Wow, le code des Coolkids vous autorise à vous excuser ?<br> Je pensais qeu c'était, genre, un tabou.#Bulle:EsthelaHautGauche
 
-Reconnaitre ses responsabilités...#Bulle:MorganHautGauche
+Je suis plus cool que le code des Coolkids.#Bulle:MorganHautGauche #emot:Rainbow
 Tu remonte tes lunettes de soleil sur ton nez avec ton index et ton majeur.
-Ca a toujours été cool.#Bulle:MorganHautGauche
 
-Bon, c’est quand qu’on arriiiiiiiive ?#Bulle:EsthelaHautGauche
+Bon, c’est quand qu’on <wave>arriiiiiiiive</wave> ?#Bulle:EsthelaHautGauche 
 
-On vient de partir.<br> Mémé ? Est-ce que ça va ?#Bulle:MorganHautGauche
+On vient à peine de partir.<br> Mémé ? Est-ce que ça va ?#Bulle:MorganHautGauche
 
-Hm ? Oui pardon chouchou. <br>J’étais dans la lune. Tu as besoin de quelque chose ?#Bulle:NimuHautGauche
+<wave>Hm</wave> ? Oui pardon chouchou. <br>J’étais dans la lune. Tu as besoin de quelque chose ?#Bulle:NimuHautGauche
 
 Je me demandais juste si tu allais bien.#Bulle:MorganHautGauche
 
 C’est gentil de ta part.<br> Hm, Esthéla ?#Bulle:NimuBasGauche
-quel arrêt tu descends toi ?
+À quel arrêt tu descends toi ?
 
 Oh, j'en ai encore pour un moment, vous serez partis depuis longtemps.#Bulle:EsthelaHautGauche
 Par contre, si vous êtes d'accord pour m'aider à décharger les deux trois caisses que j'accompagne,<br>je me disais que je m'arrêterai sûrement au Marches pour mon repas du midi !#Bulle:EsthelaHautGauche

@@ -17,46 +17,50 @@ VAR IdPapoter = 0
  …#Bulle:NimuBasDroite
 Tu te ronges les ongles. <br>Le bout de tes doigts te brûle #Bulle:Narrateur
 Ta grand mère commences à fredonner une chanson #Bulle:Narrateur
- …"#Bulle:MorganHautGauche
-Alors...#Bulle:NimuBasDroite
+ …"#Bulle:MorganHautGauche #emot:Dots
+<wave>Alors...</wave>#Bulle:NimuBasDroite
 Pas trop nerveux ?#Bulle:NimuBasDroite
 Hm ?#Bulle:MorganHautGauche #emot:!
 …‘Nah.#Bulle:MorganHautGauche
 Bah tu vas dead ça alors.#Bulle:NimuBasDroite
 …#Bulle:MorganHautGauche #emot:Dots
-Hey, <br>je suis vraiment fière de toi,<br> tu sais ?#Bulle:NimuBasDroite
+Je suis vraiment fière de toi,<br> tu sais ?#Bulle:NimuBasDroite
 Tu es pris au dépourvu.<br> Tu ne le laisses pas paraitre.#Bulle:Narrateur
-A-ah oui ?#Bulle:MorganHautGauche
+A-ah oui ?#Bulle:MorganHautGauche #emot:!
 De fou !<br> ça demande vlà du courage <br>d'être aussi calme dans cette situation.#Bulle:NimuBasDroite
 …#Bulle:MorganHautGauche#emot:Dots
-Ca me rappelle mon premier<br> rendez-vous amoureux.<br> Haha, comment c’était claquée au sol.#Bulle:NimuBasGauche
-J’ai mis des années <br>avant de trouver des techniques<br> pour garder mon sang froid.#Bulle:NimuBasGauche
-Tu m’impressiones vraiment.#Bulle:NimuBasDroite
+Ca me rappelle mon premier<br> rendez-vous amoureux.<br> Haha, comment c’était claquée au sol.#Bulle:NimuBasGauche #emot:Drop
+J’ai mis <incr>des années</incr> <br>avant de trouver des techniques<br> pour garder mon sang froid.#Bulle:NimuBasGauche 
+Tu m’impressiones vraiment.#Bulle:NimuBasDroite #emot:Sparkles
 
 Tu te mets nerveusement à jouer avec la fermeture éclaire de tes poches.#Bulle:Narrateur
 
 Ta grand mère reprend son fredonnement.#Bulle:Narrateur
 
-… #Bulle:MorganHautGauche #emot:Dots
+…#Bulle:MorganHautGauche #emot:Dots
 
 Néanmoins.#Bulle:NimuHautDroite
 
-Sache que je ne serai<br> pas moins fiere de toi <br>si tu appelle à l'aide.#Bulle:NimuBasDroite
+Sache que je ne serai<br> pas moins fiere de toi <br>si jamais tu as besoin d'aide.#Bulle:NimuBasDroite
 Si jamais, <br>à n’importe quel moment,<br> tu sens que tu as besoin de soutien,<br> tu as juste à me demander.#Bulle:NimuBasDroite
 Ca ne demande pas moins de courage que d'avouer qu'on a un problème.<br> J'en sais quelque chose.#Bulle:NimuHautDroite
 Elle a un regard pour son bras.#Bulle:Narrateur
+On pourrait dire que peu importe ce que tu fais, je trouverai toujours une excuse pour être fiere de toi. #Bulle:NimuHautGauche
 hm.#Bulle:MorganHautGauche
+
+Wow. C'était un déclaration sacrément sentimentale et soudaine dans une journée déjà assez riche en rebondissements.#Bulle:Narrateur
+Tu sais pas vraiment comment réagir, tu vas probablement avoir besoin d'un peu de temps pour digerer tout ça.#Bulle:Narrateur
 
 Ta grand mère commence à chantonner au milieu de ses freudonnement.#Bulle:Narrateur
 -ark tutudulutu..Baby sh-#Bulle:NimuBasDroite
 
-P’tetre.#Bulle:MorganHautGauche
+<i>P’tetre.</i>#Bulle:MorganHautGauche
 
-Hm ?#Bulle:NimuBasDroite
+Hm ?#Bulle:NimuBasDroite emot:?
 
 Peut-être que j’aprécierai beneficier de quelques conseils.#Bulle:MorganHautGauche
 
-Elle a un petit sourire joueur. Et te montre qu'elle est prête à écouter tes questions. #Bulle:Narrateur
+Elle a un petit sourire joueur. Et te montre qu'elle est prête à écouter tes questions. #Bulle:Narrateur 
 //blabla
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")

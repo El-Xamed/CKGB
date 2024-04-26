@@ -14,91 +14,107 @@ VAR IdPapoter = 0
 ===Papoter0===
 Hey, tu pense qu’il faut<br> combien de fourmis pour déplacer un tram ?#Bulle:EsthelaBasDroite
 
-Hhmmmm… 857 143.#Bulle:MorganHautGauche
+857 143.#Bulle:MorganHautGauche
 
-Mais t’as répondu SUPER VITE ?!#Bulle:EsthelaBasDroite #emot:!
+Mais t’as répondu <shake>SUPER VITE</shake> ?!#Bulle:EsthelaBasDroite #emot:!
 
-A toi.<br> Si j’ai un ch’val qui court à 50 hm/h.#Bulle:MorganHautGauche
+A toi.<br> Si un cheval qui court à 50 hm/h.#Bulle:MorganHautGauche
 
 Q-Quoi mais Morgan-#Bulle:EsthelaBasDroite
 
-Qui fait la route Ruche-Terrier.#Bulle:MorganHautGauche
+Prend la route Ruche-Terrier.#Bulle:MorganHautGauche
 
 C’était pas un concours !!#Bulle:EsthelaBasDroite #emot:Drop
 
-Maintenant si.<br> Et qu’j’ai un merle <br>-qui va moins vite,<br> mais n’a pas à prendre en compte la topographie-<br> qui fait le même chemin.#Bulle:MorganHautGauche
+<i>Maintenant si.</i><br> Et qu’j’ai un merle, <br>(qui va moins vite,<br> mais n’a pas à prendre en compte la topographie)<br> qui fait le même chemin.#Bulle:MorganHautGauche
 
-Mais-#Bulle:EsthelaBasDroite #emot:Deception
+<wiggle>Mais-</wiggle>#Bulle:EsthelaBasDroite #emot:Deception
 
 Avec un vent Nord-Ouest de 15 Km/h,<br> qui arriv’rait en premier ?#Bulle:MorganHautGauche
 
+...#Bulle:ESthelaHautDroit #emot:Dots
 De quel couleur est le cheval ?#Bulle:EsthelaBasDroite
 
-Rose.<br>A pois bleus.<br> Et le merle porte un chapeau.#Bulle:MorganHautGauche
+<i>Rose</i>.<br>A pois bleus.<br> Et le merle porte un chapeau.#Bulle:MorganHautGauche
 
 Quoi ? Mais il doit s’envoler tout le temps !!#Bulle:EsthelaBasDroite
 
-Non. Il l’a attaché avec un elastique. #Bulle:MorganHautGauche
+Non. Il l’a attaché avec un elastique.#Bulle:MorganHautGauche
 
-…Tu avais aucune idée <br>de la réponse à <br>ma première question en fait ?#Bulle:EsthelaBasDroite
+…T'as juste répondu <bounce><i>n'importe quoi</i></bounce> <br>à ma première question en fait, c'est ça ?#Bulle:EsthelaBasDroite
 
-Un sourire en coin tranche les joues de Morgan.#Bulle:Narrateur
+Un sourire en coin tranche les joues de Morgan.#Bulle:Narrateur #emot:JoyRight
 
-Tu m’as toujours posé<br> aucune question sur le<br> fait que je sois <br>sapée en clown en fait.#Bulle:EsthelaBasDroite
+Tu m’as toujours posé<br> <incr>aucune question</incr> sur le<br> fait que je sois <br>sapée en clown, au fait.#Bulle:EsthelaBasDroite
 
-Oh..#Bulle:MorganHautGauche
-Je voulais pas être indiscret.#Bulle:MorganHautGauche
+Oh..#Bulle:MorganHautGauche #emot:Dots
+J'avais peur d'être indiscret.#Bulle:MorganHautGauche
+Mais c'est vrai que ça a éveillé ma curiosité.#Bulle:MorganHautGauche
+Ca t'vas vraiment bien, pour être honnête.#Bulle:MorganHautGauche
 
-Sois indiscret.<br> S'il te plait.<br> Immédiatement. <br>Steuplait steuplait steuplait !!#Bulle:EsthelaHautDroite
+Pff, <wave>charmeur</wave>. #Bulle:EsthelaHautDroite #emot:JoyLeft
+Sois indiscret !! <br> Immédiatement !! #Bulle:EsthelaHautDroite
+J'ai trop trop trop envie d'en parler depuis tout à l'heure !!!!!#Bulle:EsthelaHautDroite 
 
 Tiens, Esthéla !<br> Quel surprise ! <br>J’adore ton nouveau style.<br> C’est quoi tes inspis ?#Bulle:MorganHautGauche #emot:Sparkles
 
-Ma foi, je suis RA-VIS<br> que tu me poses la question SPONTANEMENT.<br> Laisse moi t’expliquer. #Bulle:EsthelaBasDroite #emot:Sparkles
+<bounce<MORGAN, INCROYABLE, QUELLE COïCIDENCE,</bounce> je suis RA-VIS<br> que tu me poses la question <wave>SPONTANEMENT</wave> !! #Bulle:EsthelaHautGauche
+
+<wave>Laisse moi t’expliquer en détail deux ou trois fois !!!</wave> #Bulle:EsthelaBasDroite #emot:Rainbow
+
+Ainsi soit-il.#Bulle:Morgan
 
 //blabla
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter1===
-Tu me mens par omission. #Bulle:ESthelaHautDroit
+<shake>MORGAN !!</shake> #Bulle:EsthelaHautDroite
+Est-ce que <br>tu me cache <i>quelque chose</i> ???#Bulle:EsthelaHautDroite
 
-Mon caleçon est bleu.#Bulle:MorganHautGauche
+...#Bulle:MorganHautDroite #emot:Dots
+'ffectivement, tu m'as percé à jour...#Bulle:MorganHautGauche emot:Deception
+Mon caleçon est <wave>bleu</wave>.#Bulle:MorganHautGauche
 
-C’est pas ce que j’avais en tête !!#Bulle:EsthelaHautDroite #emot:Deception
+<shake>C’est pas ce que j’avais en tête</shake> !!#Bulle:EsthelaHautDroite #emot:!
 
 Et bien maintenant, si.#Bulle:MorganHautGauche
 
-MAIS STOP !#Bulle:EsthelaHautDroite #emot:!
-Elle prend sa tête (assez rare) des discussions sérieuses.#Bulle:Narrateur
+<incr>MAIS STOOOOP !</incr>#Bulle:EsthelaHautDroite #emot:!
+Pour de vrai. #BulleEsthelaHautGauche
+Esthéla prend sa tête (assez rare) des discussions sérieuses.#Bulle:Narrateur
 
 J'aimerais vraiment avoir ton attention.#Bulle:EsthelaHautGauche
-Je veux pas dire “c’était mieux avant”.<br> Mais je vois très bien <br>que je suis pas la seule <br>qui a changée ces dernières semaines.#Bulle:EsthelaHautDroite
+Je veux pas dire <i>“c’était mieux avant”</>.<br> Mais je vois très bien <br>que je suis pas la seule <br>qui a changée ces dernières semaines.#Bulle:EsthelaHautDroite
 
 h-Hm ?#Bulle:MorganHautGauche
 
-Elle attrape tes lunettes d'un geste SEC. Les branches te fouettes le nez au passage.#Bulle:Narrateur
+Elle attrape tes lunettes d'un geste sec. Les branches te fouettes le nez au passage.#Bulle:Narrateur
 //Le sprite smol d’Esthela bump le sprite smol de Morgan. (Retirer les lunettes de Morgan si possible).
 
-Hey !!#Bulle:MorganHautGauche emot:!
+<incr>Hey !!</incr>#Bulle:MorganHautGauche emot:!
 
-Le Morgan que je connaissais <br>était moins… Placide.<br> J’aimais bien ça.'#Bulle:EsthelaHautDroite
+Le Morgan que je connaissais <br>était moins… <i>Placide</i> ?#Bulle:EsthelaHautDroite
 
-Rends !#Bulle:MorganHautGauche emot:anger
+J’aimais bien ça.#Bulle:EsthelaHautDroite
 
-Woooh mon frère tes ceeernes c’est dingue !#Bulle:EsthelaHautDroite emot:JoyRight
+<wiggle>Rends</wiggle> !#Bulle:MorganHautGauche emot:anger
+
+<wave>Wooohohoo</wave> mon frère, tes ceeernes c’est un truc de <wave>diiiingue</wave> !#Bulle:EsthelaHautDroite emot:JoyRight
 
 //Le sprite de Morgan bump celui d’Esthéla et récupère ses lunettes.
 
-Tu récupères tes lunettes du nez de la créature.#Bulle:Narrateur
+Tu récupères tes lunettes des mains de la créature pour les remettre sur l'arête de ton nez.#Bulle:Narrateur
 
-J’ai des soucis d’insomnie.#Bulle:MorganHautGauche emot:Dots
+J’ai des soucis d’insomnie en c'moment.#Bulle:MorganHautGauche 
 
-Tu veux m’en parler ?#Bulle:EsthelaHautDroite
+Est-ce queeee...<!>Tu veux m’en parler ?#Bulle:EsthelaHautDroite
 
-Change pas de sujet. <br>J’ai pas fait d’scène<br> parc’que t’es arrivé en créature de cirque.#Bulle:MorganHautGauche
-J’pensais pouvoir m’attendre à ce que tu acceptes aussi comment je m’exprime maintenant.#Bulle:MorganHautGauche
+Change pas de sujet. #Bulle:MorganHautGauche
+J’ai pas fait d’scène<br> parc’que t’es arrivé en créature de cirque.#Bulle:MorganHautGauche
+J’pensais pouvoir m’attendre à ce que tu acceptes aussi comment j'm’exprime maintenant.#Bulle:MorganHautGauche
 
-Hey, je te dois *rien*<br> juste parce que tu agis<br> comme une personne décente.#Bulle:EsthelaHautDroite
+Hey, je te dois <b>rien</b><br> juste parce que tu agis<br> comme une personne décente.#Bulle:EsthelaHautDroite
 Et j’ai pour devoir de rester honnête. <br>
 Je suis pas contre ton nouveau style.<br>
 Juste… Curieuse.#Bulle:EsthelaHautDroite
