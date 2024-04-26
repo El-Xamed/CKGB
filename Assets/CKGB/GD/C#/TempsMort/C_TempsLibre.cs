@@ -109,14 +109,16 @@ public class C_TempsLibre : MonoBehaviour
         //prepare les datas du temps libre en modifiant les sprites et donnees pour passer du challenge a ce mode la
         for (int i = 0; i < characters.Count; i++)
         {
-            characters[i].transform.GetChild(2).GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
-            characters[i].transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetChild(2).transform.GetChild(1).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetChild(2).transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetChild(0).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetChild(4).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetComponent<C_Actor>().mainchild.GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(0).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().enabled = false;
+
+                characters[i].GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = false;
+                characters[i].GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = false;
+                characters[i].GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = false;
+                characters[i].GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = false;
+            
             characters[i].GetComponent<C_Actor>().GetDataActor().characterTree.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => GoToActions());
             Instantiate(characters[i].GetComponent<C_Actor>().GetDataActor().characterTree, TreeParent.transform.GetChild(i));
             TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(() => GoToActions());

@@ -29,7 +29,7 @@ public class C_Actor : C_Pion
 
     #region Temps Mort
     [Header("Temps mort")]
-    [SerializeField] List<GameObject> bulles = new List<GameObject>();
+    [SerializeField] public List<GameObject> bulles = new List<GameObject>();
     [SerializeField] public GameObject BulleHautGauche;
     [SerializeField] public TMP_Text txtHautGauche;
     [SerializeField] public GameObject BulleHautDroite;
@@ -38,6 +38,7 @@ public class C_Actor : C_Pion
     [SerializeField] public TMP_Text txtBasGauche;
     [SerializeField] public GameObject BulleBasDroite;
     [SerializeField] public TMP_Text txtBasDroite;
+    [SerializeField] public GameObject mainchild;
 
     //Stats
     [SerializeField] public float currentPointTrait;
@@ -72,14 +73,13 @@ public class C_Actor : C_Pion
     private void Start()
     {
         //Setup le contoure blanc.
-        transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
+        mainchild.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
         IsSelected(false);
 
-        bulles.Add(gameObject.transform.GetChild(0).gameObject);
-        Debug.Log(gameObject.transform.GetChild(0).gameObject.name);
-        bulles.Add(gameObject.transform.GetChild(1).gameObject);
-        bulles.Add(gameObject.transform.GetChild(3).gameObject);
-        bulles.Add(gameObject.transform.GetChild(4).gameObject);
+        bulles.Add(BulleHautGauche);
+        bulles.Add(BulleHautDroite);
+        bulles.Add(BulleBasGauche);
+        bulles.Add(BulleBasDroite);
     }
 
     #region Mes fonctions
@@ -102,17 +102,17 @@ public class C_Actor : C_Pion
 
         //Sprite
         //Desactivation des child. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < bulles.Count; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            bulles[i].gameObject.SetActive(false);
         }
 
         //Active le gameObject qui contien le sprite du coolkid. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
-        transform.GetChild(2).gameObject.SetActive(true);
+        mainchild.gameObject.SetActive(true);
 
-        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.challengeSprite;
-        transform.GetChild(2).GetComponent<Image>().preserveAspect = true;
-        transform.GetChild(2).GetComponent<Image>().useSpriteMesh = true;
+        mainchild.GetComponent<Image>().sprite = dataActor.challengeSprite;
+        mainchild.GetComponent<Image>().preserveAspect = true;
+        mainchild.GetComponent<Image>().useSpriteMesh = true;
 
 
         CheckIsOut();
@@ -224,11 +224,11 @@ public class C_Actor : C_Pion
     {
         if (isSelected)
         {
-            transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+            mainchild.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
+            mainchild.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
@@ -264,11 +264,11 @@ public class C_Actor : C_Pion
     public void IniWorldMap()
     {
         //Sprite
-        transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
+       mainchild.GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
     }
     public void IniTempsMort()
     {
-        transform.GetChild(2).GetComponent<Image>().sprite = dataActor.MapTmSprite;
+        mainchild.GetComponent<Image>().sprite = dataActor.MapTmSprite;
     }
 
     #endregion
@@ -364,11 +364,11 @@ public class C_Actor : C_Pion
         //Check si l'actor est sur une cata pour sauvegarder la bonne image.
         if (!inDanger)
         {
-            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSprite;
+            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSprite;
         }
         else
         {
-            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCata;
+            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCata;
         }
     }
 
@@ -377,11 +377,11 @@ public class C_Actor : C_Pion
         //Check si l'actor est sur une cata pour sauvegarder la bonne image.
         if (!inDanger)
         {
-            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteBlackAndWhite;
+            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSpriteBlackAndWhite;
         }
         else
         {
-            transform.GetChild(2).GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCataBlackAndWhite;
+            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCataBlackAndWhite;
         }
     }
     #endregion
