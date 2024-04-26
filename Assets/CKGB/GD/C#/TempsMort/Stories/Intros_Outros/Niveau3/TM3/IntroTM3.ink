@@ -20,7 +20,7 @@ Tu remonte tes lunettes de soleil sur ton nez avec ton index et ton majeur.
 
 Bon, c’est quand qu’on <wave>arriiiiiiiive</wave> ?#Bulle:EsthelaHautGauche 
 
-On vient à peine de partir.<br> Mémé ? Est-ce que ça va ?#Bulle:MorganHautGauche
+On vient à peine de partir, Esthé.<br> Mémé ? Est-ce que ça va ?#Bulle:MorganHautGauche
 
 <wave>Hm</wave> ? Oui pardon chouchou. <br>J’étais dans la lune. Tu as besoin de quelque chose ?#Bulle:NimuHautGauche
 
@@ -34,13 +34,13 @@ Par contre, si vous êtes d'accord pour m'aider à décharger les deux trois cai
 
 Le sourire moqueur et complice caracteristique de ta grand-mère vient éclairer son visage ridé.#Bulle:Narrateur
 
-Tiens-donc, comme par hasard.#Bulle:NimuHautGauche
+Tiens-donc, <wave>comme par hasard</wave>.#Bulle:NimuHautGauche
 
 T'as vu un peu ? Sacrée coïncidence.#Bulle:EsthelaHautGauche
 
 Tu savais que moi aussi<br> je m'y rendais à cause d'une sacrée coïncidence ?#Bulle:NimuHautGauche
 
-Mais non, pas croyable ? <br>On devrait trop se faire des t-shirt pour notre club des "gens qui ont trouvés des sacrés coïncidence pour accompagner Morgan à son rencard !"#Bulle:EsthelaHautGauche
+Mais non, pas croyable ? <br>On devrait trop se faire des t-shirt<br> pour notre club des "gens qui ont trouvés des sacrés coïncidence<br> pour accompagner Morgan à <rainb>son rencard</rainb> !"#Bulle:EsthelaHautGauche
 
 Ouai, et des mugs !#Bulle:NimuHautGauche
 
@@ -48,12 +48,12 @@ Encore un jour <br>ou ma horde de fan m'espionne <br>pour découvrir le secret d
 
 Vous auriez pu juste me demander, vous savez ?#Bulle:MorganHautGauche
 
-OLALA, J'AI L'IMPRESSION QUE QUELQU'UN A ESSAYE DE FAIRE UN COMEBACK <br> AVEC UNE REPLIQUE BIEN TROUVEE !#Bulle:EsthelaHautGauche
+<incr>OLALA, J'AI L'IMPRESSION QUE QUELQU'UN A ESSAYE DE FAIRE UN COMEBACK <br> AVEC UNE REPLIQUE BIEN TROUVEE </incr>!#Bulle:EsthelaHautGauche
 
 QUEL DOMMAGE QUE JE N'ENTENDE RIEN A CAUSE DU BRUIT DU TRAIN."#Bulle:EsthelaHautGauche
 Morgan ? Est-ce que tu m'entends ? C’est quand qu’on arriiiiiiiiiiiiiiiiiiive ?#Bulle:EsthelaHautGauche
 
-Ma vengeance sera terrible.#Bulle:MorganHautGauche
+<b>Ma vengeance sera terrible</b>.#Bulle:MorganHautGauche
 
 ~ StartTM("TM")
 ->END

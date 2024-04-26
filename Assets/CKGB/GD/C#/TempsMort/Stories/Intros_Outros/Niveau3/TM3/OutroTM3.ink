@@ -4,7 +4,8 @@
 EXTERNAL StartChallenge(name)
 
 ===Outro===
-Vous sentez le train ralentir. La voix du conducteur passe au travers des hauts parleurs grésillant. Tes oreilles habituées au filtre sonore déchiffrent ses paroles sans peine.#Bulle:Narrateur
+Vous sentez le train ralentir. La voix du conducteur passe au travers des hauts parleurs grésillant.#Bulle:Narrateur
+ Tes oreilles habituées au filtre sonore déchiffrent ses paroles sans peine.#Bulle:Narrateur
 Vous arrivez aux Marches.#Bulle:Narrateur
 
 Vous vous pressez sur la banquette pour essayer de distinguer votre destination au travers de la fenêtre du train.#Bulle:Narrateur

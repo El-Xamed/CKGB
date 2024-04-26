@@ -12,39 +12,49 @@ VAR IdPapoter = 0
 - else: ->END
 }
 ===Papoter0===
-NIMU !!!!!#Bulle:EsthelaBasDroite
+<size=120%><incr>NIMUUUUU !!!!!</incr><size=120%>#Bulle:EsthelaBasDroite
+
+Le cri d'Esthéla déchire soudainement le silence. Nimu reste stoïc, #Bulle:Narrateur
+comme si elle s'attendait à ce que cet exact séquence d'actions #Bulle:Narrateur
 
 Ah, tu as entendue ça ?#Bulle:NimuBasGauche
 
-??#Bulle:EsthelaBasDroite
+??#Bulle:EsthelaBasDroite #emot:?
 
-C’était le bruit de mon coeur qui s’arrête.<BR> Tu viens de tuer une pauvre grand-mère.#Bulle:NimuBasGauche
+C’était le bruit de mon coeur qui s’arrête.<br> Tu viens de me faire faire un infarctus.#Bulle:NimuBasGauche
+Tu t'adresse maintenant à mon fantôme. Je te hanterait toute ta vie. Bon courage pour expliquer ça à Morgan. #Bulle:NimuBasGauche
 
-Noooooooon !<BR> Pardon je promets je vais être toooute <BR>calme et silencieuse<br>à partir de maintenant !!#Bulle:EsthelaBasDroite
+<incr>Noooooooon</incr> !<br> Pardon !! je promets je vais être toooute <br><size=60%>calme et silencieuse</size=60%><br><size=40%>à partir de maintenant !!</size=60%>#Bulle:EsthelaBasDroite
 
 Ptdr. Tu tiendras pas cinq minutes.#Bulle:NimuBasGauche
 
-Peut-être éventuellement <br>que je pourrais <br>être motivée par <br>une petite histoire d’avant la singularité ?#Bulle:EsthelaBasDroite
+<size=60%>Peut-être que si quelqu'un me  <br> me racontait <br>une petite histoire d’avant la singularité...</size=60%>#Bulle:EsthelaBasDroite
+<size=60%>Ca m'aiderait à rester motiver <br> au travers de cette terrible épreuve ?</size=60%>#Bulle:EsthelaBasDroite
 
-Nimu soupire lourdement. #Bulle:Narrateur
+Nimu soupire lourdement.#Bulle:Narrateur
 
-Roh la forceuse.<br> T’en as pas eu assez à l’école ? <br>Tu m’adresses jamais la parole <br>pour autre chose.#Bulle:NimuBasGauche
+Roh la forceuse.<br> T’en as pas eu assez à l’école ? <br>Tu m’adresses jamais la parole <br>pour autre chose.#Bulle:NimuBasGauche #emot:Deception
 
-Mais parce que t’as toujours<br> refusé de m’en donner !!#Bulle:EsthelaBasDroite
+<size=60%>L'école raconte que des trucs barbants. Et je continue de demander parce que<br> tu continues de refuser !!</size=60%>#Bulle:EsthelaBasDroite
 
-Esthélaaa..?#Bulle:NimuBasGauche
+Est-ce que tu réalise le problème avec ce que tu viens de dire ou est-ce que je dois te faire une lecture sur la notion de consentement ?#Bulle:NimuBasGauche
 
-Oups. Je voulais dire <br>“mais parce que t’as toujours <br>refusé de m’en donner”.#Bulle:EsthelaBasDroite
+<size=60%>Rah mais non mais je voulais pas le dire comme ça. C'est pas juste.</size=60%>#Bulle:EsthelaBasDroite
+Si t’as autant le seum,<br> pourquoi ne pas plutot<br> aller poser tes questions<br> à d’autres zoomers <br>qui ne font rien de leur journée ?#Bulle:NimuBasGauche
 
- Si t’as autant le seum,<br> pourquoi ne pas plutot<br> aller poser tes questions<br> à d’autres zoomers <br>qui ne font rien de leur journée ?#Bulle:NimuBasGauche
+<size=60%>Parce que la plupart <br>sont morts. Ou sénile.<br> Ou les deux. Et ce qui<br> restent et bien… <br>je suis mal à l’aise avec les inconnus.</size=60%>#Bulle:EsthelaBasDroite
 
-Parce que la plupart <br>sont morts. Ou sénile.<br> Ou les deux. Et ce qui<br> restent et bien… <br>je suis mal à l’aise avec les inconnus.#Bulle:EsthelaBasDroite
+Je comprends, Esthéla.<br> Mais j’ai bien peur<br> que ce combat t’appartienne.<br> 
 
-Je comprends, Esthéla.<br> Mais j’ai bien peur<br> que ce combat t’appartienne.<br> Maintenant, yeet. <br>Morgan à besoin du soutien de ses amis.#Bulle:NimuBasGauche
+Maintenant, yeet !#Bulle:NimuBasGauche
 
-J’ai aussi besoin de soutien<br> d’une amie. <br>Comment je pourrais<br> soutenarisationner Morgan <br>si j’ai moi même tu m’as pas soutenurisationnarisée <br>alors que tu es mon amie ?#Bulle:EsthelaBasDroite
+>Morgan à besoin du soutien de ses amis.#Bulle:NimuBasGauche
 
- Esthéla, je suis profondément touchée.<br> Mais je pense que ce n’est pas que<br> à toi de décider du statut de notre relation.#Bulle:NimuBasGauche
+J’ai aussi besoin de soutien<br> d’une amie.#Bulle:EsthelaHautGauche
+
+Comment je pourrais<br> soutenarisationner Morgan <br>si j’ai moi même tu m’as pas soutenurisationnarisée#Bulle:EsthelaBasDroite
+
+Esthéla, je suis profondément touchée.<br> Mais je pense que ce n’est pas que<br> à toi de décider du statut de notre relation.#Bulle:NimuBasGauche
 
 Oh. Oh… Hrm. D’accord.<br> Bah. Je vais soutenir<br> Morgan alors. <br>Navré de t’avoir dérangé.#Bulle:EsthelaBasDroite
 
