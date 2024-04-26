@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         instance = this;
-        Play("MusiqueTuto");
+        Play("");
 
     } 
     public void PlayOnce(AudioClip mp3name)

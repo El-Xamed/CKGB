@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 
 public class C_MainMenu : MonoBehaviour
@@ -76,6 +77,8 @@ public class C_MainMenu : MonoBehaviour
         if (context.performed )
         {
             AudioManager.instance.PlayOnce(AudioManager.instance.sounds[0].clip[0]);
+            
+            
         }
     }
 }
