@@ -20,6 +20,8 @@ public class C_destination : MonoBehaviour
     public bool IsCorner;
     public bool Islocked;
     public bool IsDone;
+    public GameObject flag;
+    public GameObject levelUI;
 
     [Header("Level UI")]
     [SerializeField] Text UiLevelName;
@@ -35,6 +37,10 @@ public class C_destination : MonoBehaviour
 
     //Variable de scene
     #endregion
+    public void Start()
+    {
+        levelUI.GetComponent<levelUI>().leveltext.text = "???";
+    }
     public string sceneGet()
     {
         return scenename;

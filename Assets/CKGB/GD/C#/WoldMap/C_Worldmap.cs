@@ -30,7 +30,7 @@ public class C_Worldmap : MonoBehaviour
     [SerializeField] TMP_Text text;
 
 
-    [SerializeField] Text UIlevel;
+   
     #endregion
 
     #region methodes
@@ -78,21 +78,20 @@ public class C_Worldmap : MonoBehaviour
         {
             case "lvl1":
                 currentPoint.IsDone = true;currentPoint.Islocked = true;
-                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
+                
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
-                currentPoint.right.right.GetComponent<C_destination>().Islocked = true;
-                currentPoint.right.right.GetComponent<SpriteRenderer>().color = Color.gray;
-                currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;
+                currentPoint.up.GetComponent<C_destination>().Islocked = false;
+                currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;
             case "lvl2":
                 currentPoint.IsDone = true; currentPoint.Islocked = true;
-                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
-                currentPoint.right.GetComponent<C_destination>().Islocked = false;               
-                currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;       
+
+                currentPoint.right.GetComponent<C_destination>().Islocked = false;
+                currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;           
             case "lvl3":
                 currentPoint.IsDone = true; currentPoint.Islocked = true;
-                currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
+                currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;
             default:
                 break;
@@ -137,37 +136,28 @@ public class C_Worldmap : MonoBehaviour
         {
             //GameManager.instance.ChangeActionMap("TempsMort");
             SetGameManagerWorldData();
-            currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
+
             currentPoint.GetComponent<C_destination>().IsDone = true;
                 switch (currentPoint.name)
                 {
                     case "lvl1":
-                    currentPoint.right.right.GetComponent<C_destination>().Islocked = false;
-                    currentPoint.right.up.GetComponent<C_destination>().Islocked = false;
-                    currentPoint.right.right.GetComponent<SpriteRenderer>().color = Color.yellow;
-                    currentPoint.right.up.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    currentPoint.right.GetComponent<C_destination>().Islocked = false;
+                    currentPoint.up.GetComponent<C_destination>().Islocked = false;
+
                     break;
 
-                    case "lvl2a":
+                    case "lvl2":
                     currentPoint.right.GetComponent<C_destination>().Islocked = false;
                     currentPoint.down.GetComponent<C_destination>().Islocked = true;
-                    currentPoint.down.right.GetComponent<C_destination>().Islocked = true;
-                    currentPoint.right.GetComponent<SpriteRenderer>().color = Color.yellow;
-                    currentPoint.down.GetComponent<SpriteRenderer>().color = Color.green;
-                    currentPoint.down.right.GetComponent<SpriteRenderer>().color = Color.red;
-                    break;
-                    case "lvl2b":
-                    currentPoint.up.GetComponent<C_destination>().Islocked = false;
                     currentPoint.left.GetComponent<C_destination>().Islocked = true;
-                    currentPoint.left.up.GetComponent<C_destination>().Islocked = true;
-                    currentPoint.up.GetComponent<SpriteRenderer>().color = Color.yellow;
-                    currentPoint.left.GetComponent<SpriteRenderer>().color = Color.green;
-                    currentPoint.left.up.GetComponent<SpriteRenderer>().color = Color.red;
+
+
+
                     break;
                     case "lvl3":
 
                     currentPoint.left.GetComponent<C_destination>().Islocked = true;
-                    currentPoint.down.GetComponent<C_destination>().Islocked = true;
+                   
 
                     break;
                     default:
@@ -177,7 +167,9 @@ public class C_Worldmap : MonoBehaviour
 
             currentPoint.GetComponent<C_destination>().IsDone = true;
             currentPoint.GetComponent<C_destination>().Islocked = true;
-            currentPoint.GetComponent<SpriteRenderer>().color = Color.green;
+            currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
+
             //Set Les data du TM et C dans le GameManager.
             GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
             AddActorInTeam();
@@ -272,7 +264,7 @@ public class C_Worldmap : MonoBehaviour
         if (currentPoint.downPath != null)
             downpath = currentPoint.downPath;
         else downpath = null;
-        UIlevel.text = currentPoint.leveltext;
+   
     }
     IEnumerator UpdatepointPosition(Transform[]point)
     {
@@ -317,7 +309,7 @@ public class C_Worldmap : MonoBehaviour
     }*/
     private void initiateTheMapCharacterProtocol()
     {
-        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<C_Actor>().GetDataActor().MapTmSprite;
+        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<C_Actor>().GetDataActor().smaller;
     }
 
     #endregion
