@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using UnityEditor.Animations;
 
 [CreateAssetMenu(fileName = "New TM", menuName = "ScriptableObjects/TempsMort", order = 1)]
 
@@ -20,7 +21,9 @@ public class SO_TempsMort : ScriptableObject
     [SerializeField] public GameObject[] Team;
     [SerializeField] public InitialActorPosition[] startPos;
 
-
+    public AnimatorController introAnimPatern;
+    public AnimatorController outroAnimPatern;
+    public AnimatorController[] observageAnimPatern;
 
     #endregion
     [System.Serializable]

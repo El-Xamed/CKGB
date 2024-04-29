@@ -6,6 +6,7 @@ using TMPro;
 using Ink.Runtime;
 using System;
 using UnityEngine.UI;
+using UnityEditor.Animations;
 
 public enum EActorClass
 {
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int[] PapoterID;
     [SerializeField] public TMP_Text textToWriteIn;
     [SerializeField] public TextAsset[]papotage;
+    public AnimatorController[] PapotageAnimPatern;
     [SerializeField] public bool isDialoguing = false;
     [SerializeField] GameObject CharacterTalking;
 
@@ -198,7 +200,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(InkJSON.name);
         currentStory = new Story(InkJSON.text);
-
+        currentStory.BindExternalFunction("Trigger", (string name) => { TM.Trigger(name); });
         isDialoguing = true;
         if (InkJSON.name == "OutroTM2A" || InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3")
         {

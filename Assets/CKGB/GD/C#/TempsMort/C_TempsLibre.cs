@@ -10,6 +10,7 @@ using static SO_TempsMort;
 using Ink.Runtime;
 using Febucci.UI;
 using System;
+using UnityEditor.Animations;
 
 public class C_TempsLibre : MonoBehaviour
 {
@@ -66,6 +67,15 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] public SO_TempsMort TM;
     [SerializeField] public GameObject background;
     [SerializeField] C_Fiche f;
+
+    [SerializeField] public Animator introAnimator;
+    [SerializeField] public Animator outroAnimator;
+    [SerializeField] public AnimatorController[] observerAnimList;
+    [SerializeField] public Animator observerAnimator;
+    [SerializeField] public Animator revasserAnimator;
+    [SerializeField] public Animator morganxesthelaAnimator;
+    [SerializeField] public Animator morganxnimuAnimator;
+    [SerializeField] public Animator nimuxesthelaAnimator;
 
     [Header("Eventsystem and Selected Gameobjects")]
     [SerializeField] EventSystem Es;
@@ -139,6 +149,12 @@ public class C_TempsLibre : MonoBehaviour
         TreeParent.SetActive(false);
         ActionsParents.SetActive(false);
     }
+
+    internal void Trigger(string name)
+    {
+        throw new NotImplementedException();
+    }
+
     public void GoToActions()
     {
        //ouvre le menu de choix parmi les 3 actions
@@ -235,6 +251,13 @@ public class C_TempsLibre : MonoBehaviour
             Instantiate(GameManager.instance.GetDataTempsMort().TMbackground, background.transform);
             _intro = GameManager.instance.GetDataTempsMort().intro;
             _outro = GameManager.instance.GetDataTempsMort().Outro;
+            introAnimator.runtimeAnimatorController = GameManager.instance.GetDataTempsMort().introAnimPatern;
+            outroAnimator.runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern;
+            observerAnimList = GameManager.instance.GetDataTempsMort().observageAnimPatern;
+            morganxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
+            morganxnimuAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
+            nimuxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
+    
             Observage = GameManager.instance.GetDataTempsMort().Observer;
             for (int i = 0; i < GameManager.instance.GetDataTempsMort().startPos.Length; i++)
             {
