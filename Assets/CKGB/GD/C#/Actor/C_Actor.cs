@@ -10,6 +10,10 @@ public class C_Actor : C_Pion
 {
     #region data
     #region Challenge
+    //Pour les feedback
+    Transform pos1 = null;
+    Transform pos2 = null;
+
     [SerializeField] SO_Character dataActor;
 
     //Current stats.
@@ -88,6 +92,27 @@ public class C_Actor : C_Pion
     public void PlayAnimSelectAction()
     {
         GetComponent<Animator>().SetTrigger("ActionSelected");
+    }
+
+    //Pour l'animation de tp.
+    public void SetStartPosition(Transform startPosition)
+    {
+        pos1 = startPosition;
+    }
+
+    public void SetEndPosition(Transform endPosition)
+    {
+        pos2 = endPosition;
+    }
+
+    public void GetStartPosition() 
+    {
+        GetComponentInParent<RectTransform>().position = new Vector3(pos1.position.x, 0, pos1.position.z);
+    }
+
+    public void GetEndPosition()
+    {
+        GetComponentInParent<RectTransform>().position = new Vector3(pos2.position.x, 0, pos2.position.z);
     }
     #endregion
 

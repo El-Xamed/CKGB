@@ -303,7 +303,7 @@ public class C_Challenge : MonoBehaviour
 
                             //Placement des perso depuis le GameManager
                             //Changement de parent
-                            PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position);
+                            PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position, false);
                             thisActor.transform.localScale = Vector3.one;
 
                             //New Ui stats
@@ -347,7 +347,7 @@ public class C_Challenge : MonoBehaviour
                     //New actor
                     C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
                     thisActor.IniChallenge();
-                    PlacePionOnBoard(thisActor, position.position);
+                    PlacePionOnBoard(thisActor, position.position, false);
                     thisActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
@@ -384,7 +384,7 @@ public class C_Challenge : MonoBehaviour
             foreach (InitialAccPosition position in listPosition)
             {
                 C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
-                PlacePionOnBoard(myAcc, position.position);
+                PlacePionOnBoard(myAcc, position.position, false);
 
                 listAcc.Add(myAcc);
             }
@@ -846,24 +846,22 @@ public class C_Challenge : MonoBehaviour
     //Fonction qui déplace les actor.
     public void MoveActorInBoard(C_Pion thisPion, int nbMove, TargetStats_NewInspector.ETypeMove whatMove, bool isTp)
     {
-        Debug.Log("Test 1 : " + nbMove);
+        //Setup la position de départ.
+        thisPion.GetComponent<C_Actor>().SetStartPosition(plateau[thisPion.GetPosition()].GetComponentInParent<Transform>());
+
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == TargetStats_NewInspector.ETypeMove.Right || whatMove == TargetStats_NewInspector.ETypeMove.Left) //Normal move mode.
         {
-            Debug.Log("Test 9 : Mode normal move activé !");
-
             //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
             if (whatMove == TargetStats_NewInspector.ETypeMove.Left)
             {
                 nbMove = -nbMove;
-                Debug.Log("Test 5 : La valeur passe en nombre négatif : " + nbMove);
             }
 
             CheckIfNotExceed();
         }
         else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
         {
-            Debug.Log("Test 10 : Mode targetCase activé !");
             //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
             if (nbMove > plateau.Count - 1)
             {
@@ -873,13 +871,9 @@ public class C_Challenge : MonoBehaviour
             }
         }
 
-        Debug.Log("Test 2 : " + nbMove);
-
         //Check si un autre membre de l'équipe occupe deja a place. A voir pour le déplacer après que l'actor ai bougé.
         foreach (C_Actor thisOtherActor in myTeam)
         {
-            Debug.Log("Test 6 : " + thisOtherActor.name + " est dans l'équipe");
-
             //Si dans la list de l'équipe c'est pas égale à l'actor qui joue. Et si "i" est égale à "newPosition" pour décaler seulement l'actor qui occupe la case ou on souhaite ce déplacer.
             if (thisPion != thisOtherActor)
             {
@@ -891,7 +885,7 @@ public class C_Challenge : MonoBehaviour
                     {
                         //Place l'autre actor à la position de notre actor.
                         Debug.Log(TextUtils.GetColorText(thisPion.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
-                        PlacePionOnBoard(thisOtherActor, thisPion.GetPosition());
+                        PlacePionOnBoard(thisOtherActor, thisPion.GetPosition(),isTp);
                     }
                     else
                     {
@@ -904,49 +898,63 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Nouvelle position de l'actor visé sur une case visée.
-        Debug.Log("Test 4 : La nouvelle position de " + TextUtils.GetColorText(thisPion.name, Color.green) + " est : " + TextUtils.GetColorText(nbMove.ToString(), Color.red));
-        PlacePionOnBoard(thisPion, nbMove);
+        PlacePionOnBoard(thisPion, nbMove, isTp);
 
         //Permet de réduire/augmenter la valeur pour placer l'actor sur le plateau.
         void CheckIfNotExceed()
         {
+            Debug.Log(thisPion.GetPosition());
+            Debug.Log(nbMove);
+
             //Si la valeur ne dépasse pas la plateau alors pas besoin de modification de valeur.
             if (thisPion.GetPosition() + nbMove < plateau.Count && thisPion.GetPosition() + nbMove > -1)
             {
-                Debug.Log("Test 3 : La valeur est bonne !");
                 nbMove = thisPion.GetPosition() + nbMove;
                 return;
             }
 
             //Pour placer l'actor de l'autre coté du plateau correctement.
-            //Vers la droite.
-            for (int i = 0; i < nbMove; i++)
+            if (nbMove > 0)
             {
-                //Detection de si le perso est au bord (à droite).
-                if (thisPion.GetPosition() + i > plateau.Count - 1)
+                //Vers la droite.
+                for (int i = 0; i <= nbMove; i++)
                 {
-                    Debug.Log("Test 11 : Nouvelle valeur !");
+                    //Detection de si le perso est au bord (à droite).
+                    if (thisPion.GetPosition() + i > plateau.Count - 1)
+                    {
+                        Debug.Log("Test 11 : Nouvelle valeur !");
 
-                    //Replace le pion sur la case 0.
-                    PlacePionOnBoard(thisPion, 0);
+                        //Replace le pion sur la case 0.
+                        PlacePionOnBoard(thisPion, 0, isTp);
 
-                    //On retire le nombre de déplacement fait.
-                    nbMove = nbMove - i;
+                        //On retire le nombre de déplacement fait.
+                        nbMove = thisPion.GetPosition() + nbMove - i;
+                        Debug.Log(nbMove);
+                    }
                 }
             }
-
-            //Vers la gauche.
-            for (int i = 0; i > nbMove; i--)
+            else if (nbMove < 0)
             {
-                if (thisPion.GetPosition() + i < 0)
+                Debug.Log("TG1");
+                Debug.Log(nbMove);
+                //Vers la gauche.
+                for (int i = 0; i >= nbMove; i--)
                 {
-                    Debug.Log("Test 12 : Nouvelle valeur !");
+                    Debug.Log(i);
+                    if (thisPion.GetPosition() + i < 0)
+                    {
+                        Debug.Log("Test 12 : Nouvelle valeur !");
 
-                    //Replace le pion sur la case sur la case la plus à droite.
-                    PlacePionOnBoard(thisPion, plateau.Count -1);
+                        //Replace le pion sur la case sur la case la plus à droite.
+                        PlacePionOnBoard(thisPion, plateau.Count - 1, isTp);
 
-                    //On retire le nombre de déplacement fait.
-                    nbMove = nbMove - i;
+                        //On retire le nombre de déplacement fait.
+                        Debug.Log(nbMove);
+                        Debug.Log(i);
+                        Debug.Log(nbMove - i);
+                        nbMove = thisPion.GetPosition() + nbMove - i;
+                        Debug.Log(nbMove);
+                    }
                 }
             }
 
@@ -970,7 +978,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase)
+    public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase, bool isTp)
     {
         Debug.Log(thisCase);
 
@@ -979,6 +987,24 @@ public class C_Challenge : MonoBehaviour
 
         //Place l'actor.
         plateau[thisCase].PlacePion(thisPion);
+
+        #region Feedback
+        //Feedback
+
+        //Check si c'est une tp ou non
+        if (isTp)
+        {
+            //Setup l'arrivé de la position.
+            thisPion.GetComponent<C_Actor>().SetEndPosition(plateau[thisCase].GetComponentInParent<Transform>());
+
+            //Lance alors l'animation de tp (Rotation sur lui meme).
+            thisPion.GetComponent<Animator>().SetTrigger("isTp");
+        }
+        else //Sinon lancer l'animation de déplacement (translation entre les 2 position).
+        {
+
+        }
+        #endregion
     }
     #endregion
 

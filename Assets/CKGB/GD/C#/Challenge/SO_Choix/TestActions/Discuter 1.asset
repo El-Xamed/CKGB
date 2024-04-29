@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: Discuter 1
   m_EditorClassIdentifier: 
-  buttonText: "D\xE9placement gauche"
+  buttonText: "D\xE9placement gauche (tp)"
   LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction: []
@@ -52,7 +52,7 @@ MonoBehaviour:
       whatCost: 0
       whatStats: 0
       whatMove: 2
-      isTp: 0
+      isTp: 1
       actorSwitch: {fileID: 0}
       accessoriesSwitch: {fileID: 0}
       value: 1
