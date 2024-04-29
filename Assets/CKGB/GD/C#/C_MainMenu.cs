@@ -1,23 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 
 public class C_MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject Boutton_SplashScreen;
-    [SerializeField] GameObject Logo_Jeu;
-    [SerializeField] GameObject Logo_Eart;
-    [SerializeField] GameObject Boutons_Groupe;
-    [SerializeField] GameObject OptionsParent;
+    [SerializeField] GameObject splashScreen;
+    [SerializeField] GameObject bouttonSplashScreen;
+    [SerializeField] GameObject logoJeu;
+    [SerializeField] GameObject logoEart;
+    [SerializeField] GameObject boutonsGroupe;
+    [SerializeField] GameObject optionsParent;
     [SerializeField] SO_Challenge firthChallenge;
     bool caMarche = true;
+
+    [SerializeField] GameObject eventSystem;
+
+    private void Start()
+    {
+        IniSplashScreen();
+    }
+
+    private void IniSplashScreen()
+    {
+        splashScreen.SetActive(true);
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(bouttonSplashScreen);
+    }
+
+    public void GoToFirthButton(Button thisButton)
+    {
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(thisButton.gameObject);
+        splashScreen.SetActive(false);
+
+        boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
+    }
 
     public void NewParty()
     {
@@ -38,18 +56,18 @@ public class C_MainMenu : MonoBehaviour
     {
 
 
-        if (OptionsParent)
+        if (optionsParent)
         {
-            Boutton_SplashScreen.SetActive(false);
-            Logo_Eart.SetActive(false);
-            Logo_Jeu.SetActive(false);
-            Boutons_Groupe.SetActive(false);
-            OptionsParent.SetActive(true);
+            bouttonSplashScreen.SetActive(false);
+            logoEart.SetActive(false);
+            logoJeu.SetActive(false);
+            boutonsGroupe.SetActive(false);
+            optionsParent.SetActive(true);
             Debug.Log("ça marche");
         }
         else
         {
-            OptionsParent.SetActive(false);
+            optionsParent.SetActive(false);
             Debug.Log("ça marche pas");
         }
 
