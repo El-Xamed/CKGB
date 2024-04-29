@@ -307,7 +307,7 @@ public class C_TempsLibre : MonoBehaviour
             Instantiate(GameManager.instance.GetDataTempsMort().TMbackground, background.transform);
             _intro = GameManager.instance.GetDataTempsMort().intro;
             _outro = GameManager.instance.GetDataTempsMort().Outro;
-           SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().introAnimPatern;
+          
             //outroAnimator.runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern;
           //  observerAnimList = GameManager.instance.GetDataTempsMort().observageAnimPatern;
            // morganxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
@@ -365,6 +365,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         naratteurText.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
         naratteurText.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().introAnimPatern;
 
     }
     IEnumerator StartIntro()
