@@ -1,6 +1,8 @@
 ->Intro
 === function StartTM(name)
 EXTERNAL StartTM(name)
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 
 ===Intro===
 
@@ -25,7 +27,7 @@ Ok bah <i>gucchi</i>.#Bulle:NimuBasDroite
 //Morgan traverse la pièce vers la porte d’entrée.
 
 Tu as l’air pressé de partir ?#Bulle:NimuHautGauche
-
+~ Trigger("name")
 H-hm, j’vais prendre le train.#Bulle:MorganHautGauche
 J’ai… <rainb>Un truc</rainb>. Aux marches.#Bulle:MorganHautGauche
 

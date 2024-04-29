@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int[] PapoterID;
     [SerializeField] public TMP_Text textToWriteIn;
     [SerializeField] public TextAsset[]papotage;
+    public TextAsset currentTextAsset;
     public AnimatorController[] PapotageAnimPatern;
     [SerializeField] public bool isDialoguing = false;
     [SerializeField] GameObject CharacterTalking;
@@ -199,6 +200,7 @@ public class GameManager : MonoBehaviour
     public void EnterDialogueMode(TextAsset InkJSON)
     {
         Debug.Log(InkJSON.name);
+        currentTextAsset = InkJSON;
         currentStory = new Story(InkJSON.text);
         currentStory.BindExternalFunction("Trigger", (string name) => { TM.Trigger(name); });
         isDialoguing = true;
@@ -213,15 +215,15 @@ public class GameManager : MonoBehaviour
         if (InkJSON.name == "RevasserEsthela" || InkJSON.name == "RevasserMorgan" || InkJSON.name == "RevasserNimu")
         {
             currentStory.BindExternalFunction("RetourAuTMAfterRevasser", (string name) => { TM.RetourAuTMAfterRevasser(name); });
-            if(TM.actorActif==TM.characters[0])
+            if(TM.actorActif==TM.Morgan)
             {
                 currentStory.variablesState["IDrevasser"] = RevasserID[0];
             }
-            else if (TM.actorActif == TM.characters[1])
+            else if (TM.actorActif == TM.Esthela)
             {
                 currentStory.variablesState["IDrevasser"] = RevasserID[1];
             }
-            else if (TM.actorActif == TM.characters[2])
+            else if (TM.actorActif == TM.Nimu)
             {
                 currentStory.variablesState["IDrevasser"] = RevasserID[2];
             }

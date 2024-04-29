@@ -152,9 +152,65 @@ public class C_TempsLibre : MonoBehaviour
 
     internal void Trigger(string name)
     {
-        throw new NotImplementedException();
-    }
+        TextAsset cText = GameManager.instance.currentTextAsset;
+        if (cText.name == "OutroTM2A" || cText.name == "OutroTM2B" || cText.name == "OutroTM1" || cText.name == "OutroTM3")
+        {
+            outroAnimator.SetTrigger("Trigger");
+        }
+        if (cText.name == "IntroTM2A" || cText.name == "IntroTM2B" || cText.name == "IntroTM1" || cText.name == "IntroTM3")
+        {
+            introAnimator.SetTrigger("Trigger");
+        }
+        if (cText.name == "RevasserEsthela" || cText.name == "RevasserMorgan" || cText.name == "RevasserNimu")
+        {
 
+            if (actorActif == Morgan)
+            {
+                
+            }
+            else if (actorActif == Esthela)
+            {
+                
+            }
+            else if (actorActif == Nimu)
+            {
+                
+            }
+
+        }
+        if (cText.name == Observage.name)
+        {
+
+        }
+        if( cText.name == "PapoterMorganEsthela" || cText.name == "PapoterMorganNimu" || cText.name == "PapoterNimuEsthela")
+        {
+
+            if (actorActif.name == "Morgan" && Papote.name == "Esthela")
+            {
+
+            }
+            else if (actorActif.name == "Morgan" && Papote.name == "Nimu")
+            {
+
+            }
+            else if (actorActif.name == "Esthela" && Papote.name == "Morgan")
+            {
+
+            }
+            else if (actorActif.name == "Esthela" && Papote.name == "Nimu")
+            {
+
+            }
+            else if (actorActif.name == "Nimu" && Papote.name == "Morgan")
+            {
+
+            }
+            else if (actorActif.name == "Nimu" && Papote.name == "Esthela")
+            {
+
+            }
+        }
+    }
     public void GoToActions()
     {
        //ouvre le menu de choix parmi les 3 actions
@@ -251,12 +307,12 @@ public class C_TempsLibre : MonoBehaviour
             Instantiate(GameManager.instance.GetDataTempsMort().TMbackground, background.transform);
             _intro = GameManager.instance.GetDataTempsMort().intro;
             _outro = GameManager.instance.GetDataTempsMort().Outro;
-            introAnimator.runtimeAnimatorController = GameManager.instance.GetDataTempsMort().introAnimPatern;
-            outroAnimator.runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern;
-            observerAnimList = GameManager.instance.GetDataTempsMort().observageAnimPatern;
-            morganxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
-            morganxnimuAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
-            nimuxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
+           SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().introAnimPatern;
+            //outroAnimator.runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern;
+          //  observerAnimList = GameManager.instance.GetDataTempsMort().observageAnimPatern;
+           // morganxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
+           // morganxnimuAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
+           // nimuxesthelaAnimator.runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
     
             Observage = GameManager.instance.GetDataTempsMort().Observer;
             for (int i = 0; i < GameManager.instance.GetDataTempsMort().startPos.Length; i++)
