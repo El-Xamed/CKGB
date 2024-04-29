@@ -17,6 +17,7 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject Boutons_Groupe;
     [SerializeField] GameObject OptionsParent;
     [SerializeField] SO_Challenge firthChallenge;
+    bool caMarche = true;
 
     public void NewParty()
     {
@@ -72,13 +73,22 @@ public class C_MainMenu : MonoBehaviour
     }
     public void Naviguate(InputAction.CallbackContext context)
     {
+        
         if (!context.performed) { return; }
 
         if (context.performed )
         {
-            AudioManager.instance.PlayOnce(AudioManager.instance.sounds[0].clip[0]);
+            if (caMarche == true)
+            {
+                AudioManager.instance.PlayOnce(AudioManager.instance.sounds[0].clip[0]);
+                caMarche = false;
+            }
+            
             
             
         }
+        else if (!context.canceled) { caMarche = true; return; }
+        
+        
     }
 }

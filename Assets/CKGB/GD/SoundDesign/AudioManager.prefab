@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd38bd26e829a1543a80663c7e5b9c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMixer: {fileID: 24100000, guid: a235190621d5da049a56600163b7c9bf, type: 2}
   source: {fileID: 0}
   sounds:
   - name: SfxHover
     clip:
-    - {fileID: 8300000, guid: 3381113d140b8e4419708fcd7ba32727, type: 3}
+    - {fileID: 8300000, guid: ff99311be79959b41a567d6a809de67e, type: 3}
     - {fileID: 8300000, guid: 093a97231fe5b4a48a5f6fa73320cb23, type: 3}
+    - {fileID: 8300000, guid: 3381113d140b8e4419708fcd7ba32727, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
