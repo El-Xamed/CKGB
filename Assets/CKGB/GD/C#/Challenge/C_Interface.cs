@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,13 +11,13 @@ public class C_Interface : MonoBehaviour
     C_Challenge myChallenge;
 
     public enum Interface { Neutre, Logs, Actions, Traits, Back }
-    [SerializeField] Interface currentInterface = Interface.Neutre;
+    Interface currentInterface = Interface.Neutre;
 
     [Header("Actions / Traits")]
     [SerializeField] GameObject uiAction;
 
-    //Mes listes d'actions / traits
-    [SerializeField] List<GameObject> listCurrentButton = new List<GameObject>();
+    //Listes d'actions / traits
+    List<GameObject> listCurrentButton = new List<GameObject>();
 
     private void Awake()
     {
@@ -259,19 +257,19 @@ public class C_Interface : MonoBehaviour
             for (int i = 0; i < spawnListAction.Count; i++)
             {
                 //Reférence button.
-                GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton"), uiAction.transform.GetChild(0).transform);
+                GameObject myButton = Instantiate(Resources.Load<GameObject>("ActionButton_Box"), uiAction.transform.GetChild(0).transform);
 
                 //Modifier le texte du nom du bouton + les stats ecrit dans les logs (AJOUTER POUR LES STATS)
                 myButton.GetComponentInChildren<TMP_Text>().text = spawnListAction[i].buttonText;
 
                 //Reférence Action.
-                myButton.GetComponent<C_ActionButton>().SetActionClass(spawnListAction[i]);
+                myButton.GetComponentInChildren<C_ActionButton>().SetActionClass(spawnListAction[i]);
 
                 //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
-                myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.ConfirmAction(myButton.GetComponent<C_ActionButton>()));
+                myButton.GetComponentInChildren<Button>().onClick.AddListener(() => myChallenge.ConfirmAction(myButton.GetComponent<C_ActionButton>()));
 
                 //Fait dispparaitre le curseur.
-                myButton.GetComponent<C_ActionButton>().HideCurseur();
+                myButton.GetComponentInChildren<C_ActionButton>().HideCurseur();
 
                 //Ajoute l'action à la liste de currentButton.
                 listCurrentButton.Add(myButton);

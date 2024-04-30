@@ -17,6 +17,8 @@ public class C_PreviewAction : MonoBehaviour
     {
         Debug.Log("Début de preview !");
 
+        return;
+
         //Check si la liste n'est pas vide
         if (thisActionClass.newListInteractions.Count != 0)
         {

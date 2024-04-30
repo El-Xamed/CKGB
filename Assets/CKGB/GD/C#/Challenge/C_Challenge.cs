@@ -518,7 +518,7 @@ public class C_Challenge : MonoBehaviour
         Debug.Log("Player turn !");
 
         //VFX
-        vfxPlayerTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
+        vfxPlayerTurn.GetComponentInChildren<Animator>().SetTrigger("PlayerTurn");
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
@@ -543,7 +543,7 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Joue l'animation.
-        vfxPlayerTurn.GetComponent<Animator>().enabled = true;
+        vfxPlayerTurn.GetComponentInChildren<Animator>().enabled = true;
 
         //Check si le perso est jouable
         if (!currentActor.GetIsOut())
@@ -654,7 +654,7 @@ public class C_Challenge : MonoBehaviour
         currentResolution.actor.SetSpriteChallenge();
 
         //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
-        vfxResoTurn.GetComponent<Animator>().enabled = true;
+        vfxResoTurn.GetComponentInChildren<Animator>().enabled = true;
 
         //Applique toutes les actions. 1 par 1.
         //New : Utilise l'action directement dans le challenge.
