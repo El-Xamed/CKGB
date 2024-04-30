@@ -380,21 +380,24 @@ public class SO_ActionClass : ScriptableObject
                         //Applique à l'actor SEULEMENT LES STATS les stats.
                         foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
                         {
-                            int value;
-
-                            if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
+                            if (thisTargetStats.whatStatsTarget != TargetStats_NewInspector.ETypeStatsTarget.Movement)
                             {
-                                //Retourne une valeur négative.
-                                value = -thisTargetStats.value;
-                            }
-                            else
-                            {
-                                //Retourne une valeur positive.
-                                value = thisTargetStats.value;
-                            }
+                                int value;
 
-                            //Envoie les nouvelles information a l'actor.
-                            thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.whatStats);
+                                if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
+                                {
+                                    //Retourne une valeur négative.
+                                    value = -thisTargetStats.value;
+                                }
+                                else
+                                {
+                                    //Retourne une valeur positive.
+                                    value = thisTargetStats.value;
+                                }
+
+                                //Envoie les nouvelles information a l'actor.
+                                thisActor.GetComponent<C_Actor>().SetCurrentStats(value, thisTargetStats.whatStats);
+                            }
                         }
                     }
                 }

@@ -29,6 +29,14 @@ public class C_Actor : C_Pion
     //Character.
     [SerializeField] Image character;
     [SerializeField] Image chains;
+
+    [Space]
+    //Animation Stats
+    [SerializeField] Animator sfxAnimator;
+    [SerializeField] Image currentStats;
+    [SerializeField] Sprite sfxWaveCalm;
+    [SerializeField] Sprite sfxWaveEnergy;
+
     #endregion
 
     #region Temps Mort
@@ -117,7 +125,6 @@ public class C_Actor : C_Pion
     }
     #endregion
 
-
     public void IniChallenge()
     {
         //dataActor.energyMax;
@@ -155,14 +162,31 @@ public class C_Actor : C_Pion
         {
             //Change la valeur de calm
             currentStress += value;
+
+            currentStats.sprite = sfxWaveCalm;
         }
         else if (onWhatStats == TargetStats_NewInspector.ETypeStats.Energy)
         {
             //Change la valeur d'energie.
             currentEnergy += value;
+
+            currentStats.sprite = sfxWaveEnergy;
         }
 
+        //Lance l'animation du sfx.
+        if (value < 0)
+        {
+            sfxAnimator.SetTrigger("statsDown");
+        }
+        else if (value > 0)
+        {
+            sfxAnimator.SetTrigger("statsUp");
+        }
+        
+
+        #region Check si il ne dépasse pas la limite
         //Check si il ne dépasse pas la limite.
+        #region Energy
         //Pour l'energie.
         if (currentEnergy < 0)
         {
@@ -172,7 +196,9 @@ public class C_Actor : C_Pion
         {
             currentEnergy = GetMaxEnergy();
         }
+        #endregion
 
+        #region Calm
         //Pour le calm.
         if (currentStress < 0)
         {
@@ -182,6 +208,8 @@ public class C_Actor : C_Pion
         {
             currentStress = GetMaxStress();
         }
+        #endregion
+        #endregion
 
         //Check si le joueur est encore jouable.
         CheckIsOut();
