@@ -86,28 +86,23 @@ Quand on connait les meilleurs spots à sieste,<br> c'est plutot un bon plan ehe
 'Hm. J'vois. Cela semble 'ffectivement être une position relativ'ment aventageuse.#Bulle:MorganBasGauche
 Maint'nant, Mémé ? pte'tre devrions-nous procéder ? J'crois qu'nous avons nous même un train à attraper.#Bulle:MorganBasGauche
 ~ Trigger("name")
-Attends un instant. Elle a raison ta pote. #Bulle:NimuHautDroite
+Attends un instant. Elle a raison ta pote. #Bulle:NimuHautDroite #emot:!
 
-A quel sujet ?#Bulle:MorganHautDroite
+A quel sujet ?#Bulle:MorganHautDroite #emot:?
 
 On est à quoi, <br>dix-quinze minutes de la gare d'ici ?#Bulle:NimuHautGauche
 
 Ouai ?#Bulle:MorganBasDroite
 
-C'EST un super spot à sieste !  Et on est à quoi, dix-quinze minutes de la gare ?#Bulle:NimuHautGauche
-
-Ouai ?#Bulle:MorganHautGauche
-
-Et le train que tu veux prendre,<br> il arrive dans vingt minutes environ ?<br> Sachant qu'il reste a quai 15-20 minutes également...#Bulle:NimuHautGauche
-
+Et bah elle a raison, <size=120>C'EST un super spot à sieste !</size=120%>#Bulle:NimuHautGauche
+Et on est à quoi, dix-quinze minutes de la gare ?#Bulle:NimuHautGauche
+Sachant que tu veux prendre le train qui<br>arrive dans vingt minutes environ#Bulle:NimuHautGauche
+Et qu'il reste toujours un bon quart d'heure à quai.#Bulle:NimuHautGauche
 
 Tu n'aimes pas la direction que ces calculs prennent.#Bulle:Narrateur
 
-
-On a largement le temps<br> pour une tite sieste ici nous aussi !#Bulle:NimuHautGauche
-On est bien mieux <br>à attendre là qu'à la gare.#Bulle:NimuHautGauche
-
-
+On peut largement se permettre d'attendre ici dans l'herbe, plutôt qu'à la gare ou il y aura du monde.#Bulle:NimuBAsGauche
+~ Trigger("name")
 Tu aurais du mal à contredire des mathématiques aussi élémentaires.#Bulle:Narrateur
 Et, à vrai dire, même si ca te stress un peu de ne pas déjà être à la gare, c'est vrai que tu te sens bien ici.#Bulle:Narrateur
 
@@ -115,7 +110,7 @@ Et, à vrai dire, même si ca te stress un peu de ne pas déjà être à la gare
 
 Il semblerait que ta grand-mère soit déjà partie se mettre à l'ombre de toute façon.#Bulle:Narrateur
 Tu te tournes vers Esthela.#Bulle:Narrateur
-
+~ Trigger("name")
 Bon,<br> bah il semblerait que<br> tu sois bloqué avec nous, alors.#Bulle:MorganHautGauche
 
 ~ StartTM("TM")
