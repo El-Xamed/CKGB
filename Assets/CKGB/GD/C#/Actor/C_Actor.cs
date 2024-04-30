@@ -112,6 +112,7 @@ public class C_Actor : C_Pion
 
     public void GetEndPosition()
     {
+        CheckInDanger();
         GetComponentInParent<RectTransform>().position = new Vector3(pos2.position.x, 0, pos2.position.z);
     }
     #endregion
@@ -189,47 +190,6 @@ public class C_Actor : C_Pion
         UpdateUiStats();
     }
 
-    //Old version
-    public void SetCurrentStatsPrice(int stressPrice, int energyPrice)
-    {
-        currentStress -= stressPrice;
-        currentEnergy -= energyPrice;
-
-        //Check si il ne dépasse pas la limite.
-        if (currentEnergy < 0)
-        {
-            currentEnergy = 0;
-        }
-
-        //Check si le joueur est encore jouable.
-        CheckIsOut();
-
-        //Update les UI stats.
-        UpdateUiStats();
-    }
-    //Old version
-    public void SetCurrentStatsGain(int stressGain, int energyGain)
-    {
-        currentStress += stressGain;
-        currentEnergy += energyGain;
-
-        //Check si il ne dépasse pas la limite.
-        if (currentStress > GetMaxStress())
-        {
-            currentStress = GetMaxStress();
-        }
-        if (currentEnergy > GetMaxEnergy())
-        {
-            currentEnergy = GetMaxEnergy();
-        }
-
-        //Check si le joueur est encore jouable.
-        CheckIsOut();
-
-        //Update les UI stats.
-        UpdateUiStats();
-    }
-
     //Pour lier la stats qui va le suivre dans tous le challenge.
     public void SetUiStats(C_Stats myStats)
     {
@@ -282,6 +242,22 @@ public class C_Actor : C_Pion
 
             chains.gameObject.SetActive(false);
         }
+    }
+
+    public void CheckInDanger()
+    {
+        if (inDanger)
+        {
+            GetImageActor().sprite = GetDataActor().challengeSpriteOnCata;
+            transform.GetChild(5).gameObject.SetActive(true);
+        }
+        else
+        {
+            GetImageActor().sprite = GetDataActor().challengeSprite;
+            transform.GetChild(5).gameObject.SetActive(false);
+        }
+
+        GetComponent<Animator>().SetBool("isInDanger", GetInDanger());
     }
     #endregion
 

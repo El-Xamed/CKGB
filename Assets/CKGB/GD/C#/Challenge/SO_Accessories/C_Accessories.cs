@@ -30,7 +30,7 @@ public class C_Accessories : C_Pion
         {
             if (thisActor.GetPosition() == position)
             {
-                thisActor.SetCurrentStatsPrice(GetDataAcc().reducStress, GetDataAcc().reducEnergie);
+                //thisActor.SetCurrentStatsPrice(GetDataAcc().reducStress, GetDataAcc().reducEnergie);
 
                 thisActor.CheckIsOut();
 
@@ -51,7 +51,7 @@ public class C_Accessories : C_Pion
         {
             if (thisActor.GetPosition() == position)
             {
-                thisActor.SetCurrentStatsPrice(GetDataAcc().reducStress, GetDataAcc().reducEnergie);
+                //thisActor.SetCurrentStatsPrice(GetDataAcc().reducStress, GetDataAcc().reducEnergie);
 
                 thisActor.CheckIsOut();
             }

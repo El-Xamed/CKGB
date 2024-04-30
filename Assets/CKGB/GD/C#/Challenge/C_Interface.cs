@@ -131,6 +131,8 @@ public class C_Interface : MonoBehaviour
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
             {
                 myChallenge.PlayerTurn();
+                GetComponent<Animator>().SetTrigger("CloseAll");
+                myChallenge.SetAnimFinish(false);
                 //Ouvre l'interface.
                 myChallenge.OpenInterface();
             }
@@ -263,13 +265,13 @@ public class C_Interface : MonoBehaviour
                 myButton.GetComponentInChildren<TMP_Text>().text = spawnListAction[i].buttonText;
 
                 //Reférence Action.
-                myButton.GetComponentInChildren<C_ActionButton>().SetActionClass(spawnListAction[i]);
+                myButton.GetComponent<C_ActionButton>().SetActionClass(spawnListAction[i]);
 
                 //Renseigne le "onClick" du nouveau buton pour qu'après selection il passe au prochain actor.
-                myButton.GetComponentInChildren<Button>().onClick.AddListener(() => myChallenge.ConfirmAction(myButton.GetComponent<C_ActionButton>()));
+                myButton.GetComponent<Button>().onClick.AddListener(() => myChallenge.ConfirmAction(myButton.GetComponent<C_ActionButton>()));
 
                 //Fait dispparaitre le curseur.
-                myButton.GetComponentInChildren<C_ActionButton>().HideCurseur();
+                myButton.GetComponent<C_ActionButton>().HideCurseur();
 
                 //Ajoute l'action à la liste de currentButton.
                 listCurrentButton.Add(myButton);

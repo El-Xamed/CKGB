@@ -83,6 +83,9 @@ public class C_Challenge : MonoBehaviour
 
     [SerializeField] SO_TempsMort tm1;
     [SerializeField] SO_Challenge c1;
+
+    //VFX
+    bool animFinish;
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -206,6 +209,9 @@ public class C_Challenge : MonoBehaviour
                     myChallenge.listEtape[i].actions[j].nextAction = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j].nextAction);
                 }
             }
+
+            //Pour ajouter l'action attendre dans toutes les étapes.
+            myChallenge.listEtape[i].actions.Add(SO_ActionClass.Instantiate(Resources.Load<SO_ActionClass>("Attendre")));
         }
         #endregion
 
@@ -304,6 +310,7 @@ public class C_Challenge : MonoBehaviour
                             //Placement des perso depuis le GameManager
                             //Changement de parent
                             PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position, false);
+                            thisActor.GetComponent<C_Actor>().CheckInDanger();
                             thisActor.transform.localScale = Vector3.one;
 
                             //New Ui stats
@@ -348,6 +355,7 @@ public class C_Challenge : MonoBehaviour
                     C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
                     thisActor.IniChallenge();
                     PlacePionOnBoard(thisActor, position.position, false);
+                    thisActor.GetComponent<C_Actor>().CheckInDanger();
                     thisActor.transform.localScale = Vector3.one;
 
                     //Centrage sur la case et position sur Y.
@@ -507,8 +515,7 @@ public class C_Challenge : MonoBehaviour
             myInterface.GetUiAction().SetActive(false);
             myInterface.GetUiTrait().SetActive(false);
 
-            //Lance la phase de réso. BESOIN D'AJOUTER UN DELAY A CAUSE DE L'ANIMATION QUI EMPECHE D'APPLIQUER LES SPRITES.
-            //Debug.Log(currentResolution.actor.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            animFinish = false;
             ResolutionTurn();
         }
     }
@@ -516,9 +523,6 @@ public class C_Challenge : MonoBehaviour
     public void PlayerTurn()
     {
         Debug.Log("Player turn !");
-
-        //VFX
-        vfxPlayerTurn.GetComponentInChildren<Animator>().SetTrigger("PlayerTurn");
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
@@ -528,36 +532,42 @@ public class C_Challenge : MonoBehaviour
         //Vide la listeReso
         listRes = new List<ActorResolution>();
 
-        //Initialise la prochaine cata.
-        if (currentStep.useCata)
+        //Ajout d'un bool pour executer le dev en dessosu après l'animation.
+        if (animFinish)
         {
-            //Check si il n'est pas null.
-            if (currentCata == null)
+            //Initialise la prochaine cata.
+            if (currentStep.useCata)
             {
-                currentCata = myChallenge.listCatastrophy[0];
+                //Check si il n'est pas null.
+                if (currentCata == null)
+                {
+                    currentCata = myChallenge.listCatastrophy[0];
+                }
+
+                InitialiseCata();
+
+                canIniCata = false;
             }
 
-            InitialiseCata();
+            //Check si le perso est jouable
+            if (!currentActor.GetIsOut())
+            {
+                //Pour effacer le texte de la cata.
+                uiLogs.text = "";
 
-            canIniCata = false;
-        }
-
-        //Joue l'animation.
-        vfxPlayerTurn.GetComponentInChildren<Animator>().enabled = true;
-
-        //Check si le perso est jouable
-        if (!currentActor.GetIsOut())
-        {
-            //Pour effacer le texte de la cata.
-            uiLogs.text = "";
-
-            //Update le contour blanc
-            UpdateActorSelected();
+                //Update le contour blanc
+                UpdateActorSelected();
+            }
+            else
+            {
+                NextActor();
+                PlayerTurn();
+            }
         }
         else
         {
-            NextActor();
-            PlayerTurn();
+            //VFX
+            vfxPlayerTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
         }
     }
 
@@ -612,6 +622,7 @@ public class C_Challenge : MonoBehaviour
                 {
                     //Lance la phase "Cata".
                     CataTrun();
+                    animFinish = false;
                 }
             }
             else
@@ -625,7 +636,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    void ResolutionTurn()
+    public void ResolutionTurn()
     {
         Debug.Log("Resolution trun !");
 
@@ -653,56 +664,64 @@ public class C_Challenge : MonoBehaviour
 
         currentResolution.actor.SetSpriteChallenge();
 
-        //Joue l'animation (PASSER PAR UNE FONCTION QUI AVEC UN SWITCH LANCE LA BONNE ANIM)
-        vfxResoTurn.GetComponentInChildren<Animator>().enabled = true;
+        Debug.Log("Anim : " + animFinish);
 
-        //Applique toutes les actions. 1 par 1.
-        //New : Utilise l'action directement dans le challenge.
-        UseAction(currentResolution);
-
-        #region Check si c'est la bonne action
-        //Check si c'est la bonne action.
-        if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
+        //Ajout d'un bool pour executer le dev en dessosu après l'animation.
+        if (animFinish)
         {
-            Debug.Log("Bonne action");
+            //Applique toutes les actions. 1 par 1.
+            //New : Utilise l'action directement dans le challenge.
+            UseAction(currentResolution);
 
-            //Vfx de bonna action.
-            GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name+"(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
-            //currentResolution.actor.GetDataActor().vfxUiGoodAction.SetTrigger("GoodAction");
-
-            //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
-            canIniCata = true;
-
-            //Check si c'est la fin.
-            UpdateEtape();
-        }
-        else
-        {
-            foreach (ActorResolution thisReso in listRes)
+            #region Check si c'est la bonne action
+            //Check si c'est la bonne action.
+            if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
             {
-                if (thisReso.button.GetActionClass().nextAction != null)
+                Debug.Log("Bonne action");
+
+                //Vfx de bonna action.
+                GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
+                //currentResolution.actor.GetDataActor().vfxUiGoodAction.SetTrigger("GoodAction");
+
+                //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
+                canIniCata = true;
+
+                //Check si c'est la fin.
+                UpdateEtape();
+            }
+            else
+            {
+                foreach (ActorResolution thisReso in listRes)
                 {
-                    for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
+                    if (thisReso.button.GetActionClass().nextAction != null)
                     {
-                        if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.button.GetActionClass())
+                        for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
                         {
-                            Debug.Log("Update next action");
-                            myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.button.GetActionClass().nextAction;
+                            if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.button.GetActionClass())
+                            {
+                                Debug.Log("Update next action");
+                                myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.button.GetActionClass().nextAction;
+                            }
                         }
                     }
                 }
             }
-        }
-        #endregion
+            #endregion
 
-        #region Logs
-        //Ecrit dans les logs le résultat de l'action.
-        currentResolution.button.GetActionClass().ResetLogs();
-        uiLogs.text = currentResolution.button.GetActionClass().GetListLogs();
-        #endregion
+            #region Logs
+            //Ecrit dans les logs le résultat de l'action.
+            currentResolution.button.GetActionClass().ResetLogs();
+            uiLogs.text = currentResolution.button.GetActionClass().GetListLogs();
+            #endregion
+        }
+        else
+        {
+            //VFX
+            vfxResoTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
+        }
     }
 
-    //Utilise l'action.
+    //Utilise l'action. VOIR POUR RETIRE LE PUBLIC.
     public void UseAction(ActorResolution thisActorResolution)
     {
         Debug.Log("Use this actionClass : " + thisActorResolution.button.GetActionClass().buttonText);
@@ -1206,6 +1225,13 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
 
+    #endregion
+
+    #region Data Vfx
+    public void SetAnimFinish(bool value)
+    {
+        animFinish = value;
+    }
     #endregion
 
     #region Data Interface

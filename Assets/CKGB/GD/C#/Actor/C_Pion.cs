@@ -161,7 +161,7 @@ public class C_Pion : MonoBehaviour
         return inDanger;
     }
 
-    public void SetInDanger(bool value)
+    public virtual void SetInDanger(bool value)
     {
         inDanger = value;
     }
