@@ -152,64 +152,7 @@ public class C_TempsLibre : MonoBehaviour
 
     internal void Trigger(string name)
     {
-        TextAsset cText = GameManager.instance.currentTextAsset;
-        if (cText.name == "OutroTM2A" || cText.name == "OutroTM2B" || cText.name == "OutroTM1" || cText.name == "OutroTM3")
-        {
-            outroAnimator.SetTrigger("Trigger");
-        }
-        if (cText.name == "IntroTM2A" || cText.name == "IntroTM2B" || cText.name == "IntroTM1" || cText.name == "IntroTM3")
-        {
-            introAnimator.SetTrigger("Trigger");
-        }
-        if (cText.name == "RevasserEsthela" || cText.name == "RevasserMorgan" || cText.name == "RevasserNimu")
-        {
-
-            if (actorActif == Morgan)
-            {
-                
-            }
-            else if (actorActif == Esthela)
-            {
-                
-            }
-            else if (actorActif == Nimu)
-            {
-                
-            }
-
-        }
-        if (cText.name == Observage.name)
-        {
-
-        }
-        if( cText.name == "PapoterMorganEsthela" || cText.name == "PapoterMorganNimu" || cText.name == "PapoterNimuEsthela")
-        {
-
-            if (actorActif.name == "Morgan" && Papote.name == "Esthela")
-            {
-
-            }
-            else if (actorActif.name == "Morgan" && Papote.name == "Nimu")
-            {
-
-            }
-            else if (actorActif.name == "Esthela" && Papote.name == "Morgan")
-            {
-
-            }
-            else if (actorActif.name == "Esthela" && Papote.name == "Nimu")
-            {
-
-            }
-            else if (actorActif.name == "Nimu" && Papote.name == "Morgan")
-            {
-
-            }
-            else if (actorActif.name == "Nimu" && Papote.name == "Esthela")
-            {
-
-            }
-        }
+        SpawnParent.GetComponent<Animator>().SetTrigger("Trigger");
     }
     public void GoToActions()
     {
@@ -772,6 +715,8 @@ public class C_TempsLibre : MonoBehaviour
                 }               
                 GameManager.instance.PapoterID[0]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+                SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -798,6 +743,8 @@ public class C_TempsLibre : MonoBehaviour
                 }             
                 GameManager.instance.PapoterID[1]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+                SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -824,6 +771,8 @@ public class C_TempsLibre : MonoBehaviour
                 }               
                 GameManager.instance.PapoterID[0]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+                SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -850,6 +799,8 @@ public class C_TempsLibre : MonoBehaviour
                 }                
                 GameManager.instance.PapoterID[2]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+                SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -878,6 +829,8 @@ public class C_TempsLibre : MonoBehaviour
                 GameManager.instance.PapoterID[1]++;
                 Debug.Log("Nimu papot avec Morgan valeur : " + GameManager.instance.PapoterID[1]);
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+                SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -905,6 +858,8 @@ public class C_TempsLibre : MonoBehaviour
                 }               
                 GameManager.instance.PapoterID[2]++;
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+                SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
