@@ -226,6 +226,7 @@ public class C_Actor : C_Pion
     public void SetUiStats(C_Stats myStats)
     {
         uiStats = myStats;
+        GetUiStats().SetActor(this);
     }
 
     //Utile ???

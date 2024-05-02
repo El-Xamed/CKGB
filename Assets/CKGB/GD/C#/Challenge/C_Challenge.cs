@@ -457,6 +457,7 @@ public class C_Challenge : MonoBehaviour
     {
         if (eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject.activeSelf)
         {
+            #region Curseur
             //Cache les autres curseur.
             foreach (GameObject thisActionButton in myInterface.GetListActionButton())
             {
@@ -465,9 +466,11 @@ public class C_Challenge : MonoBehaviour
 
             //Fait apparaitre le curseur.
             eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
+            #endregion
 
             //Affiche la preview.
-            uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, plateau);
+            //old
+            //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, plateau);
 
             //New version de la preview.
             GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
@@ -667,8 +670,6 @@ public class C_Challenge : MonoBehaviour
         }
 
         currentResolution.actor.SetSpriteChallenge();
-
-        Debug.Log("Anim : " + animFinish);
 
         //Ajout d'un bool pour executer le dev en dessosu après l'animation.
         if (animFinish)

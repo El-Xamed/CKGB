@@ -480,6 +480,7 @@ MonoBehaviour:
   textCalm: {fileID: 600195720316933593}
   textEnergie: {fileID: 8501594436034811302}
   uiCalm: {fileID: 8913917439567892273}
+  uiBorderJauge: {fileID: 1469752713269871995}
   uiPvJaugeGreen: {fileID: 21300000, guid: f0e9aea05f834df4abcde8e4b0ea30cc, type: 3}
   uiPvJaugeOrange: {fileID: 21300000, guid: 8b6c8344bf7ce444ea75a8b086dd7b7d, type: 3}
   uiPvJaugeRed: {fileID: 21300000, guid: 0829cbab440542b4aa405af8244b0daf, type: 3}
@@ -573,7 +574,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8821673436240043786}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -618,6 +619,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6258032547131798093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1469752713269871995}
+  m_Layer: 5
+  m_Name: UI_Stats_PDP_Jauge_Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1469752713269871995
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258032547131798093}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8821673436240043786}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6669160525974178609
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +788,7 @@ RectTransform:
   - {fileID: 9088984683149335602}
   - {fileID: 3959395465025418058}
   - {fileID: 442796241831022530}
+  - {fileID: 1469752713269871995}
   - {fileID: 3940203672113847352}
   - {fileID: 2789356739813452237}
   m_Father: {fileID: 1669855128482376726}
@@ -800,7 +838,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8821673436240043786}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -916,7 +954,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.77
+  m_FillAmount: 0.441
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0

@@ -50,7 +50,15 @@ public class SO_ActionClass : ScriptableObject
                     //Check si sont enum est égale à "statsTarget".
                     if (thisTargetStats.whatStatsTarget == targetStats)
                     {
-                        return thisTargetStats.value;
+                        if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
+                        {
+                            return -thisTargetStats.value;
+                        }
+                        else if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Gain)
+                        {
+                            return thisTargetStats.value;
+                        }
+
                     }
                 }
             }

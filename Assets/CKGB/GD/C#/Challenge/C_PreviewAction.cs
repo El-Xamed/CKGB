@@ -10,19 +10,19 @@ public class C_PreviewAction : MonoBehaviour
     //Il y a aussi des preview pour les autres.
     //La preview à besoin de récupérer les info de l'action.
 
-    public static event Action<SO_ActionClass, C_Actor> onPreview;
+    public static event Action<SO_ActionClass> onPreview;
 
     //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
         Debug.Log("Début de preview !");
 
-        return;
-
         //Check si la liste n'est pas vide
         if (thisActionClass.newListInteractions.Count != 0)
         {
             Debug.Log("La liste n'est pas vide !");
+
+            //Faut qu'il envoie l'actionClass au script qui vont gerer la preview et ensuite c'est eux qui décide de s'inscrir ou non.
 
             //Pour "Self".
             SetupPreview(Interaction_NewInspector.ETypeTarget.Self, thisActor);
@@ -32,7 +32,7 @@ public class C_PreviewAction : MonoBehaviour
         }
 
         Debug.Log("Tentative");
-        onPreview?.Invoke(thisActionClass, thisActor);
+        onPreview?.Invoke(thisActionClass);
 
         void SetupPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
         {
@@ -43,6 +43,13 @@ public class C_PreviewAction : MonoBehaviour
                 //Check si c'est égale à "actorTarget".
                 if (thisInteraction.whatTarget == target)
                 {
+                    //Envoie l'action au script de stats.
+                    thisActor.GetUiStats().CheckUiPreview(thisActionClass, target);
+
+
+
+                    return;
+
                     foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
                     {
                         //Check si c'est des stats ou un Mouvement.
@@ -52,7 +59,7 @@ public class C_PreviewAction : MonoBehaviour
                             //onPreview += TextPreview;
 
                             //Inscrit la preview de stats. (C_Stats)
-                            onPreview += thisActor.GetUiStats().UiPreview;
+                            //onPreview += thisActor.GetUiStats().UiPreview;
                         }
                         else if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement) //Si c'est un mouvement, alors il lance la preview de déplacement.
                         {

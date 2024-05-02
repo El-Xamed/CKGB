@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,6 +17,7 @@ public class C_Stats : MonoBehaviour
 
     [Header("Jauge")]
     [SerializeField] Image uiCalm;
+    [SerializeField] RectTransform uiBorderJauge;
     [SerializeField] Sprite uiPvJaugeGreen;
     [SerializeField] Sprite uiPvJaugeOrange;
     [SerializeField] Sprite uiPvJaugeRed;
@@ -37,6 +36,7 @@ public class C_Stats : MonoBehaviour
 
     [Header("Preview")]
     [SerializeField] Image uiCalmPreview;
+    C_Actor myActor;
 
     #region Ini
     public void InitUiStats(C_Actor thisActor)
@@ -48,6 +48,13 @@ public class C_Stats : MonoBehaviour
         SpawnBorderCalm(thisActor.GetComponent<C_Actor>().GetMaxStress());
 
         UpdateUi(thisActor);
+
+        GetComponent<Animator>().SetBool("isPreview", false);
+    }
+
+    public void SetActor(C_Actor thisActor)
+    {
+        myActor = thisActor;
     }
 
     void SpawnBorderCalm(int nbCalm)
@@ -58,7 +65,7 @@ public class C_Stats : MonoBehaviour
 
         for (int i = 0; i < nbCalm; i++)
         {
-            GameObject newBorder = Instantiate(borderPrefab, PDP.transform.position, Quaternion.Euler(0, 0, calmWidth * i), uiCalm.transform);
+            GameObject newBorder = Instantiate(borderPrefab, PDP.transform.position, Quaternion.Euler(0, 0, calmWidth * i), uiBorderJauge);
 
             newBorder.name = "Border " + i;
         }
@@ -140,7 +147,8 @@ public class C_Stats : MonoBehaviour
 
 
     #region Preview
-    //Fonction pour afficher une preview d'une stats en particulier.
+    //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
+    /*Old
     public void UiPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
         //Check si la liste n'est pas vide
@@ -206,6 +214,38 @@ public class C_Stats : MonoBehaviour
 
             GetComponent<Animator>().SetBool("isPreview", true);
         }
+    }*/
+
+    public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction_NewInspector.ETypeTarget target)
+    {
+        foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
+        {
+            //Check si c'est égale à "actorTarget".
+            if (thisInteraction.whatTarget == target)
+            {
+                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    //Check si c'est des stats ou un Mouvement.
+                    if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
+                    {
+                        //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
+                        //onPreview += TextPreview;
+
+                        //Inscrit la preview de stats. (C_Stats)
+                        C_PreviewAction.onPreview += UiPreview;
+                    }
+                }
+            }
+        }
+    }
+
+    public void UiPreview(SO_ActionClass thisActionClass)
+    {
+        //Lance l'animation de clignotoment.
+        GetComponent<Animator>().SetBool("isPreview", true);
+
+        //Caclul pour la preview les stats actuel + de l'action.
+        calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats), myActor.GetMaxStress());
     }
     #endregion
 }
