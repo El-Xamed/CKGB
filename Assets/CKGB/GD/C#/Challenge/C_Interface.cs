@@ -131,7 +131,6 @@ public class C_Interface : MonoBehaviour
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
             {
                 myChallenge.PlayerTurn();
-                GetComponent<Animator>().SetTrigger("CloseAll");
                 myChallenge.SetAnimFinish(false);
                 //Ouvre l'interface.
                 myChallenge.OpenInterface();

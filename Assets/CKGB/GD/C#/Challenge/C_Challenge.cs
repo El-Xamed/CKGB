@@ -452,7 +452,7 @@ public class C_Challenge : MonoBehaviour
         uiEtape.GetComponentInChildren<TMP_Text>().text = myChallenge.objectif;
     }
 
-    //Pour la navigation dans les actions.
+    //Pour faire déplacer le curseur + active la preview.
     public void WriteStatsPreview()
     {
         if (eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject.activeSelf)
@@ -526,6 +526,9 @@ public class C_Challenge : MonoBehaviour
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
+        //Ini l'interface.
+        myInterface.GetComponent<Animator>().SetTrigger("CloseAll");
 
         UpdateUi();
 
@@ -621,8 +624,8 @@ public class C_Challenge : MonoBehaviour
                 if (!CheckGameOver())
                 {
                     //Lance la phase "Cata".
-                    CataTrun();
                     animFinish = false;
+                    CataTrun();
                 }
             }
             else
@@ -631,6 +634,7 @@ public class C_Challenge : MonoBehaviour
                 currentActor = myTeam[0];
                 //Ouvre l'interface.
                 OpenInterface();
+                animFinish = false;
                 PlayerTurn();
             }
         }
