@@ -20,6 +20,7 @@ public class SO_TempsMort : ScriptableObject
     [SerializeField] public GameObject TMbackground = null;
     [SerializeField] public GameObject[] Team;
     [SerializeField] public InitialActorPosition[] startPos;
+    [SerializeField] public Vector3[] defautpos;
 
     public AnimatorController introAnimPatern;
     public AnimatorController outroAnimPatern;
