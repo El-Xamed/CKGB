@@ -970,6 +970,7 @@ public class C_TempsLibre : MonoBehaviour
         HideUI();
         ChallengeButton.SetActive(false);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern; 
         GameManager.instance.EnterDialogueMode(_outro);
 
     }
