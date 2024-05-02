@@ -275,8 +275,8 @@ public class C_TempsLibre : MonoBehaviour
 
                         characters.Add(thisActor);
                         characterNB++;
-                        thisActor.GetComponent<RectTransform>().parent= SpawnParent.transform.GetChild(characterNB).GetComponent<RectTransform>() ;
-                        thisActor.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+                        thisActor.GetComponent<RectTransform>().parent= SpawnParent.GetComponent<RectTransform>();
+                        thisActor.GetComponent<RectTransform>().anchoredPosition = SpawnParent.transform.GetChild(characterNB).GetComponent<RectTransform>().anchoredPosition;
                         thisActor.GetComponent<C_Actor>().BulleHautGauche.SetActive(true);
                         thisActor.GetComponent<C_Actor>().BulleHautDroite.SetActive(true);
                         thisActor.GetComponent<C_Actor>().BulleBasGauche.SetActive(true);
