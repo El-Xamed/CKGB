@@ -271,7 +271,7 @@ public class C_TempsLibre : MonoBehaviour
                     {
                         //Ini data actor.
                         thisActor.GetComponent<C_Actor>().IniTempsMort();
-                        thisActor.transform.localScale = new Vector3(0.55f, 0.55f, 0.55f);
+                        thisActor.transform.localScale = new Vector3(0.50f, 0.50f, 0f);
 
                         characters.Add(thisActor);
                         characterNB++;
