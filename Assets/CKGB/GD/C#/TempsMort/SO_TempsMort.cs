@@ -24,7 +24,7 @@ public class SO_TempsMort : ScriptableObject
 
     public AnimatorController introAnimPatern;
     public AnimatorController outroAnimPatern;
-    public AnimatorController[] observageAnimPatern;
+    public AnimatorController observageAnimPatern;
 
     #endregion
     [System.Serializable]

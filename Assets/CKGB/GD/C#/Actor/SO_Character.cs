@@ -57,6 +57,6 @@ public class SO_Character : ScriptableObject
     [SerializeField] public TextAsset PapoterAvecNimu;
     [SerializeField] public TextAsset PapoterAvecMorgan;
     [Header("Animations")]
-    public AnimatorController[] RevasserAnimPatern;
+    public AnimatorController RevasserAnimPatern;
     #endregion
 }

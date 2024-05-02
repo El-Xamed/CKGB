@@ -583,6 +583,14 @@ public class C_TempsLibre : MonoBehaviour
         actiontoaddID++;
         LastAction.Add(RevasserButton);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = actorActif.GetComponent<C_Actor>().GetDataActor().RevasserAnimPatern;
+        for(int y = 0;y<characters.Count;y++)
+        {
+            if (actorActif == characters[y])
+            {
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
+            }
+        }
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
     }
     public void RetourAuTMAfterRevasser(string text)
@@ -625,6 +633,20 @@ public class C_TempsLibre : MonoBehaviour
         actiontoaddID++;
         LastAction.Add(ObserverButton);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().observageAnimPatern;
+        SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RespirerID);
+        if (actorActif==Morgan)
+        {
+            SpawnParent.GetComponent<Animator>().SetTrigger("morgan");
+        }
+        else if(actorActif==Esthela)
+        {
+            SpawnParent.GetComponent<Animator>().SetTrigger("esthela");
+        }
+        else if(actorActif==Nimu)
+        {
+            SpawnParent.GetComponent<Animator>().SetTrigger("nimu");
+        }
         GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
