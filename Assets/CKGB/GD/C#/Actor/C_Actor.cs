@@ -29,6 +29,7 @@ public class C_Actor : C_Pion
     //Character.
     [SerializeField] Image character;
     [SerializeField] Image chains;
+    [SerializeField] Image ombre;
 
     [Space]
     //Animation Stats
@@ -139,6 +140,9 @@ public class C_Actor : C_Pion
         {
             bulles[i].gameObject.SetActive(false);
         }
+
+        //Active l'ombre du challenge.
+        ombre.gameObject.SetActive(true);
 
         //Active le gameObject qui contien le sprite du coolkid. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
         mainchild.gameObject.SetActive(true);
@@ -298,6 +302,8 @@ public class C_Actor : C_Pion
     public void IniTempsMort()
     {
         mainchild.GetComponent<Image>().sprite = dataActor.MapTmSprite;
+        //Active l'ombre du challenge.
+        ombre.gameObject.SetActive(false);
     }
 
     #endregion
