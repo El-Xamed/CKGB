@@ -1,4 +1,6 @@
 ->Intro
+ === function Trigger(name)
+EXTERNAL Trigger(name)
 === function StartTM(name)
 EXTERNAL StartTM(name)
 
