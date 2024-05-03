@@ -282,7 +282,7 @@ public class C_TempsLibre : MonoBehaviour
                         thisActor.GetComponent<C_Actor>().BulleHautDroite.SetActive(true);
                         thisActor.GetComponent<C_Actor>().BulleBasGauche.SetActive(true);
                         thisActor.GetComponent<C_Actor>().BulleBasDroite.SetActive(true);
-                        thisActor.transform.GetChild(5).gameObject.SetActive(false);
+                        thisActor.GetComponent<C_Actor>().sweats.SetActive(false);
                     }
                     else
                     {

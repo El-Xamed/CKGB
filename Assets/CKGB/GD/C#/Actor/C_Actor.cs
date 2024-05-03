@@ -30,6 +30,7 @@ public class C_Actor : C_Pion
     [SerializeField] Image character;
     [SerializeField] Image chains;
     [SerializeField] Image ombre;
+    [SerializeField]public GameObject sweats;
 
     [Space]
     //Animation Stats
