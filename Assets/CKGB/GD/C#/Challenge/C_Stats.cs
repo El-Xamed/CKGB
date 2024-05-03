@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class C_Stats : MonoBehaviour
 {
+    #region data
     [Header("Stats PDP")]
     [SerializeField] Image PDP;
     [SerializeField] GameObject borderPrefab;
@@ -30,14 +31,20 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Sprite uiPvRedBackground;
 
     [Header("Points")]
-    [SerializeField] GameObject uiEnergie;
-    [SerializeField] Sprite spriteEnergie;
+    [SerializeField] RectTransform uiEnergie;
+    [SerializeField] GameObject prefabEnergie;
     List<GameObject> listEnergie = new List<GameObject>();
 
     [Header("Preview")]
+    [SerializeField] Animator animatorUiCalmPreview;
+    [SerializeField] Animator animatorUiEnergyPreview;
     [SerializeField] Image uiCalmPreview;
-    C_Actor myActor;
 
+    //BESOIN DE REFAIRE L'ULM.
+    C_Actor myActor;
+    #endregion
+
+    #region Fonctions
     #region Ini
     public void InitUiStats(C_Actor thisActor)
     {
@@ -49,7 +56,8 @@ public class C_Stats : MonoBehaviour
 
         UpdateUi(thisActor);
 
-        GetComponent<Animator>().SetBool("isPreview", false);
+        //Sécu anim.
+        animatorUiCalmPreview.SetBool("isPreview", false);
     }
 
     public void SetActor(C_Actor thisActor)
@@ -113,6 +121,35 @@ public class C_Stats : MonoBehaviour
 
         #region Energie
         //Update l'energie.
+        //Check si la stats possède bien le nombre max d'energie.
+        if (uiEnergie.transform.childCount < myActor.GetMaxEnergy())
+        {
+            //Créer la pool d'energy.
+            for (int i = listEnergie.Count; i < myActor.GetMaxEnergy(); i++)
+            {
+                //Cr�ation d'un nouvel GameObject.
+                GameObject newEnergieGameObject = Instantiate(prefabEnergie, uiEnergie);
+                //Nouveau nom.
+                newEnergieGameObject.name = "UI_Stats_" + myActor.name + "_Energie_Pastille_ " + (i + 1);
+
+                //Ajoute dans la liste.
+                listEnergie.Add(newEnergieGameObject);
+            }
+        }
+
+        //Desactive les points d'energies.
+        foreach (GameObject thisEnergy in listEnergie)
+        {
+            thisEnergy.SetActive(false);
+        }
+
+        //Active les points necessaire.
+        for (int i = 0; i < myActor.GetcurrentEnergy(); i++)
+        {
+            listEnergie[i].SetActive(true);
+        }
+
+        /*Old
         //Check si le nombre est bon
         if (listEnergie.Count -1 < myActor.GetComponent<C_Actor>().GetcurrentEnergy())
         {
@@ -141,7 +178,7 @@ public class C_Stats : MonoBehaviour
                 Debug.Log(i);
                 Destroy(listEnergie[i -1]);
             }
-        }
+        }*/
         #endregion
     }
 
@@ -231,21 +268,49 @@ public class C_Stats : MonoBehaviour
                         //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
                         //onPreview += TextPreview;
 
-                        //Inscrit la preview de stats. (C_Stats)
-                        C_PreviewAction.onPreview += UiPreview;
+                        //Check si c'est pour le calm.
+                        if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Calm)
+                        {
+                            //Inscrit la preview de calm.
+                            C_PreviewAction.onPreview += UiPreviewCalm;
+                        }
+
+                        //Check si c'est pour l'energie.
+                        else if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Energy)
+                        {
+                            //Inscrit la preview de calm.
+                            C_PreviewAction.onPreview += UiPreviewEnergy;
+                        }
                     }
                 }
             }
         }
     }
 
-    public void UiPreview(SO_ActionClass thisActionClass)
+    public void UiPreviewCalm(SO_ActionClass thisActionClass)
     {
         //Lance l'animation de clignotoment.
-        GetComponent<Animator>().SetBool("isPreview", true);
+        animatorUiCalmPreview.SetBool("isPreview", true);
 
-        //Caclul pour la preview les stats actuel + de l'action.
+        //Caclul pour la preview du calm actuel + de l'action.
         calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats), myActor.GetMaxStress());
     }
+
+    //PAS FINI ! + BUG INCONNUE, SA JOUE L'ANIMATION MAIS RIEN SE PASSE.
+    public void UiPreviewEnergy(SO_ActionClass thisActionClass)
+    {
+        //Caclul pour la preview de l'energy actuel + de l'action. 
+        //Pour la perte d'energy.
+        if (thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats) < 0)
+        {
+            //Commence par le nombre actuel d'energy.
+            for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
+            {
+                //Active la preview.
+                listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);
+            }
+        }
+    }
+    #endregion
     #endregion
 }

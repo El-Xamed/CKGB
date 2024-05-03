@@ -46,26 +46,7 @@ public class C_PreviewAction : MonoBehaviour
                     //Envoie l'action au script de stats.
                     thisActor.GetUiStats().CheckUiPreview(thisActionClass, target);
 
-
-
-                    return;
-
-                    foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
-                    {
-                        //Check si c'est des stats ou un Mouvement.
-                        if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
-                        {
-                            //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
-                            //onPreview += TextPreview;
-
-                            //Inscrit la preview de stats. (C_Stats)
-                            //onPreview += thisActor.GetUiStats().UiPreview;
-                        }
-                        else if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement) //Si c'est un mouvement, alors il lance la preview de déplacement.
-                        {
-                            //Inscrit la preview de mouvement. Avec les info de preview.
-                        }
-                    }
+                    GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
                 }
             }
         }

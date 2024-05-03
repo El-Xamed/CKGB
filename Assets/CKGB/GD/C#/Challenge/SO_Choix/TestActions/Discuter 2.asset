@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: Discuter 2
   m_EditorClassIdentifier: 
-  buttonText: "D\xE9placement droite +2"
+  buttonText: "D\xE9placement droite +4"
   LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction: []
@@ -50,6 +50,21 @@ MonoBehaviour:
     listTargetStats:
     - whatStatsTarget: 1
       whatCost: 0
+      whatStats: 0
+      whatMove: 1
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 4
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 1
       whatStats: 0
       whatMove: 1
       isTp: 0

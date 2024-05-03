@@ -203,6 +203,7 @@ public class C_Challenge : MonoBehaviour
             for (int j = 0; j < myChallenge.listEtape[i].actions.Count; j++)
             {
                 myChallenge.listEtape[i].actions[j] = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j]);
+                //myChallenge.listEtape[i].actions[j].Convert();
 
                 if (myChallenge.listEtape[i].actions[j].nextAction != null)
                 {
@@ -576,6 +577,42 @@ public class C_Challenge : MonoBehaviour
             vfxPlayerTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
         }
     }
+
+    #region Preview
+    //Pour afficher toutes les preview du challenge.
+    public void CheckPreview(SO_ActionClass thisActionClass, Interaction_NewInspector.ETypeTarget target)
+    {
+        foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
+        {
+            //Check si c'est égale à "actorTarget".
+            if (thisInteraction.whatTarget == target)
+            {
+                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    //Check si c'est des stats ou un Mouvement.
+                    if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
+                    {
+                        //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
+                        C_PreviewAction.onPreview += TextPreview;
+                    }
+
+                    if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                    {
+                        //Inscrit la preview de movement. (C_Challenge)
+                        //onPreview += TextPreview;
+                    }
+                }
+            }
+        }
+    }
+
+    void TextPreview(SO_ActionClass thisActionClass)
+    {
+        //Récupère toutes les info directement ?
+        //Non si on veut faire apparaitre les autres actor avec leur description.
+        //Oui car le joueur a besoin de savoir toutes les conséquence de l'action, meme si ça ne touche pas les autres actor.
+    }
+    #endregion
 
     //Passe à l'acteur suivant.
     void NextActor()
