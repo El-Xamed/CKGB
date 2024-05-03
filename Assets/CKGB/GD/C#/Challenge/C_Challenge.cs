@@ -203,7 +203,6 @@ public class C_Challenge : MonoBehaviour
             for (int j = 0; j < myChallenge.listEtape[i].actions.Count; j++)
             {
                 myChallenge.listEtape[i].actions[j] = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j]);
-                //myChallenge.listEtape[i].actions[j].Convert();
 
                 if (myChallenge.listEtape[i].actions[j].nextAction != null)
                 {
