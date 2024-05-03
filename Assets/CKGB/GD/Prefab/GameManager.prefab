@@ -157,6 +157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5978931268482471702}
     m_Modifications:
+    - target: {fileID: 5100753024573014496, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5830666820612021607, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
       propertyPath: m_Name
       value: Trans_Screen
@@ -247,6 +251,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5830666820612021611, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830666820850183979, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553281364477429429, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
