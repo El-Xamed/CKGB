@@ -30,7 +30,7 @@ public class SO_ActionClass : ScriptableObject
     public SO_ActionClass nextAction;
 
     [Header("List d'action")]
-    [HideInInspector] public List<Interaction> listInteraction = new List<Interaction>();
+    public List<Interaction> listInteraction = new List<Interaction>();
     public List<Interaction_NewInspector> newListInteractions;
     #endregion
 
