@@ -1,6 +1,7 @@
 ->Outro
+ === function Trigger(name)
+EXTERNAL Trigger(name)
 === function StartChallenge(name)
-
 EXTERNAL StartChallenge(name)
 
 ===Outro===
