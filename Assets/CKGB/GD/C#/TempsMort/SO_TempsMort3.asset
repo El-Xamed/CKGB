@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c116bd53f8cd484286832752b272708, type: 3}
   m_Name: SO_TempsMort3
   m_EditorClassIdentifier: 
+  TLname: tram
   intro: {fileID: 4900000, guid: d48e2d7c4f4c0da448a70dbfa5defdf0, type: 3}
   Outro: {fileID: 4900000, guid: 8b6d66ad7b2d1914c9bf595676ed76ea, type: 3}
   Observer: {fileID: 4900000, guid: f81a345b3d8e8dd46939197fe2bbdc3a, type: 3}
@@ -27,3 +28,7 @@ MonoBehaviour:
     perso: {fileID: 3561831080530771210, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
   - position: {x: 462, y: 114, z: 0}
     perso: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
+  defautpos: []
+  introAnimPatern: {fileID: 9100000, guid: e71334a533ba6ec3da7c2170336425c8, type: 2}
+  outroAnimPatern: {fileID: 9100000, guid: 0d58b13d950c2ee1982d6f0052b64530, type: 2}
+  observageAnimPatern: {fileID: 9100000, guid: 3b4793c6e642a7a408c945647f9a8bba, type: 2}

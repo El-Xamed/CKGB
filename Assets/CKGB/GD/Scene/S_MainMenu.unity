@@ -2106,13 +2106,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 778992816460874819, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 778992816460874828, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2084245905823471819, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3212866810326179742, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_IsActive
@@ -2661,7 +2665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa6ef86a282163438a739c34db04db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firtButton: {fileID: 396252989}
 --- !u!1 &1699735020
 GameObject:
   m_ObjectHideFlags: 0

@@ -112,6 +112,7 @@ public class C_TempsLibre : MonoBehaviour
         //lance l'intro dialogue
         GameManager.instance.textToWriteIn = naratteurText;
         StartCoroutine(StartIntro());
+        GameManager.instance.TS_softblackswipe.SetActive(true);
     }
 
     private void CharactersDataGet()
@@ -316,7 +317,7 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true); 
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open"); 
         yield return new WaitForSeconds(1f);
-        GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
+        GameManager.instance.TS_flanel.SetActive(false);
         GameManager.instance.TL_anim.GetComponentInChildren<Animator>().SetTrigger("triggerTL");
         yield return new WaitForSeconds(2f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
@@ -332,6 +333,7 @@ public class C_TempsLibre : MonoBehaviour
     {
         //reactive l ui apres l intro 
         yield return new WaitForSeconds(0.6f);
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         TreeParent.SetActive(true);
         TMhasStarted = true;
         Es = FindObjectOfType<EventSystem>();
@@ -584,14 +586,23 @@ public class C_TempsLibre : MonoBehaviour
         LastAction.Add(RevasserButton);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = actorActif.GetComponent<C_Actor>().GetDataActor().RevasserAnimPatern;
-        for(int y = 0;y<characters.Count;y++)
+        for (int y = 0; y < characters.Count; y++)
+        {
+            SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
+        }
+        for (int y = 0;y<characters.Count;y++)
         {
             if (actorActif == characters[y])
             {
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
             }
         }
+        string tl = GameManager.instance.currentTM.TLname;
+        SpawnParent.GetComponent<Animator>().SetTrigger(tl);
+       
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
+
     }
     public void RetourAuTMAfterRevasser(string text)
     {
@@ -601,7 +612,9 @@ public class C_TempsLibre : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", false);
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.ExitDialogueMode();
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
@@ -647,6 +660,7 @@ public class C_TempsLibre : MonoBehaviour
         {
             SpawnParent.GetComponent<Animator>().SetTrigger("nimu");
         }
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
@@ -658,7 +672,9 @@ public class C_TempsLibre : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", false);
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.ExitDialogueMode();
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
@@ -739,6 +755,7 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -767,6 +784,7 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -795,6 +813,7 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -823,6 +842,7 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -853,6 +873,7 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -882,6 +903,7 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -903,7 +925,9 @@ public class C_TempsLibre : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", false);
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.ExitDialogueMode();
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
@@ -947,7 +971,8 @@ public class C_TempsLibre : MonoBehaviour
         HideUI();
         ChallengeButton.SetActive(false);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
-        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern; 
+        SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern;
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.EnterDialogueMode(_outro);
 
     }

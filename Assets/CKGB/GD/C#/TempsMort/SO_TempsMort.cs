@@ -10,6 +10,7 @@ public class SO_TempsMort : ScriptableObject
 {
     #region DATA
 
+    [SerializeField] public string TLname;
 
     [Header("Dialogues")]
     [SerializeField] public TextAsset intro;
