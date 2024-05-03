@@ -1,4 +1,6 @@
 ->checkID
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 
 === function RetourAuTMAfterRespirer(name)
 EXTERNAL RetourAuTMAfterRespirer(name)
@@ -14,33 +16,38 @@ VAR IDobserver = 0
 
 //blabla
 
-Sur plusieurs tables, des gens jouent aux cartes.#Bulle:Narrateur
+Sur une table, des gens jouent aux cartes.#Bulle:Narrateur
 Il y a plus de personnes interessées que de place,#Bulle:Narrateur
 et les gens qui attendent leur tour forme un banc de poisson#Bulle:Narrateur
 en arc de cercle autour de l’espace de jeu.#Bulle:Narrateur
+~ Trigger("name")
 Il y a quelque chose de fascinant#Bulle:Narrateur
 dans le fait de regarder des gens jouer à un jeu dont tu ne connais pas les règles.#Bulle:Narrateur
+~ Trigger("name")
 Comme regarder des gens parler dans une autre langue.#Bulle:Narrateur
 Les cartes qui s’échangent tacitement,#Bulle:Narrateur
 les gestes apparement anodin qui s’attirent des rires ou des insultes. #Bulle:Narrateur
+~ Trigger("name")
 La tension de ceux qui pensent gagner mais essaie de ne pas paraitre présomptueux.#Bulle:Narrateur
 L’attitude maussade de ceux qui pense être en train de perdre sans aucune solution.#Bulle:Narrateur
 Ton oreille est attiré par de la musique un peu plus loin.#Bulle:Narrateur
+~ Trigger("name")
 Là, se balançant legèrement sur place,#Bulle:Narrateur
-une joueuse d’accordéon s’exerce à bas volume.#Bulle:Narrateur
-Des familles assises les unes à cotés des autres l’observe en silence. #Bulle:Narrateur
-Les enfants se penchent, la bouche béante d’admiration.#Bulle:Narrateur
-Leur parents savourent ce moment passé avec eux, une main quelque part sur l’épaule ou le dos de leur pitchouns.#Bulle:Narrateur
+Un joueur d’accordéon s’exerce à bas volume.#Bulle:Narrateur
+Une famille l’observe en silence. #Bulle:Narrateur
+L'enfants se penche, la bouche béante d’admiration.#Bulle:Narrateur
+Ses parents savourent ce moment passé avec lui, une main quelque part sur le dos de leur pitchoun.#Bulle:Narrateur
 Le grattement irrégulier du train parcourant les colline fournit un étrange roulement de tambour en tant que percussion. #Bulle:Narrateur
 Peut-être que tu devrait faire un tour dans un des Wagons Calme,#Bulle:Narrateur
 juste pour prendre une pause du bruit.#Bulle:Narrateur
 Un bêlement te fait encore rediriger ton regard.#Bulle:Narrateur
+~ Trigger("name")
 Dans un wagon plus loin, tu vois au travers la porte un troupeau qui se fait transporter.#Bulle:Narrateur
 Au milieu des moutons, des adolescents plaisantent,#Bulle:Narrateur
 affalés contre la laine et gratouillant passivement la tête des animaux.#Bulle:Narrateur
 Parfois, l’une des bêtes menace de mâcher leur vêtement.#Bulle:Narrateur
 La victime se lève alors brusquement avec un petit cri et un rire commun agite tout le groupe.#Bulle:Narrateur
-
+~ Trigger("name")
 Les rails veinent la ville,#Bulle:Narrateur
 ses quartiers comme une constellations de coeur qui y propulse de la vie.#Bulle:Narrateur
 Tu aime bien prendre le train.#Bulle:Narrateur
