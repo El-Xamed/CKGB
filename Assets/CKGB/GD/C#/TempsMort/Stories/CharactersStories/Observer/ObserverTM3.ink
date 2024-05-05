@@ -14,8 +14,6 @@ VAR IDobserver = 0
 }
 ===observer0===
 
-//blabla
-
 Sur une table, des gens jouent aux cartes.#Bulle:Narrateur
 Il y a plus de personnes interessées que de place,#Bulle:Narrateur
 et les gens qui attendent leur tour forme un banc de poisson#Bulle:Narrateur
@@ -57,9 +55,7 @@ tu te sens à ta place pendant le trajet.#Bulle:Narrateur
 ~ RetourAuTMAfterRespirer("")
 ->DONE
 ===observer1===
-
-//blabla
-
+~ Trigger("name")
 Le train vibre de manière irrégulière. #Bulle:Narrateur
 Tu ne réussit jamais à identifier la vitesse a laquelle va le train.#Bulle:Narrateur
 Tu sais, en revanche, qu’elle est générée en grande partie par le poids du véhicule.#Bulle:Narrateur
@@ -89,10 +85,7 @@ Mais tu trouve un confort notable à te dire que tu réussies à y contribuer.#B
 ~ RetourAuTMAfterRespirer("")
 ->DONE
 ===observer2===
-
-
-//blabla
-
+~ Trigger("name")
 Tes yeux sont mis-clos.#Bulle:Narrateur
 Ta tête écrasée contre le repose-tête matelassé de ton siège. #Bulle:Narrateur
 Le monde a prit fin.#Bulle:Narrateur
