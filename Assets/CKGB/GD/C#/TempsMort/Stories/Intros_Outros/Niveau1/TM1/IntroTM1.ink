@@ -60,7 +60,7 @@ Bon.#Bulle:MorganHautDroite
 ’fais quoi ‘jourd’hui ?#Bulle:MorganHautGauche
 
 Je pensais <i>chill</i> à la maison. <br>Et aller chercher les jeunes à l’école vers 15h.#Bulle:NimuHautGauche
-Et toi ?”#Bulle:NimuHautGauche
+Et toi ?#Bulle:NimuHautGauche
 
 Un piège évident. Elle essaies de te faire parler de ton <rainb>rencard</rainb>. Vite. Contre-attaque avant qu'elle ne te tire les vers du nez.#Bulle:Narrateur
 
