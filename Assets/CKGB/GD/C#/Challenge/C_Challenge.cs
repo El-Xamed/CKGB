@@ -598,6 +598,12 @@ public class C_Challenge : MonoBehaviour
     //Pour afficher toutes les preview du challenge.
     public void CheckPreview(SO_ActionClass thisActionClass, Interaction_NewInspector.ETypeTarget target)
     {
+        //Supprime toutes les preview.
+        foreach (Image thisPreview in plateauPreview)
+        {
+            Destroy(thisPreview.gameObject);
+        }
+
         foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
         {
             //Check si c'est égale à "actorTarget".
@@ -614,6 +620,7 @@ public class C_Challenge : MonoBehaviour
 
                     if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
+                        Debug.Log("Un mouvement à été détecté !");
                         //Inscrit la preview de movement. (C_Challenge)
                         C_PreviewAction.onPreview += MovementPreview;
                     }
