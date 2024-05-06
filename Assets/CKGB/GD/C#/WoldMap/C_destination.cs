@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class C_destination : MonoBehaviour
     public bool IsDone;
     public GameObject flag;
     public GameObject levelUI;
+    public TMP_Text leveltextprovenance;
 
     [Header("Level UI")]
     [SerializeField] Text UiLevelName;

@@ -334,6 +334,10 @@ public class C_TempsLibre : MonoBehaviour
         //reactive l ui apres l intro 
         yield return new WaitForSeconds(0.6f);
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
+        for(int i=0;i<characters.Count;i++)
+        {
+            characters[i].GetComponent<RectTransform>().anchoredPosition = TM.defautpos[i];
+        }
         TreeParent.SetActive(true);
         TMhasStarted = true;
         Es = FindObjectOfType<EventSystem>();
@@ -617,6 +621,10 @@ public class C_TempsLibre : MonoBehaviour
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
         {
+            characters[i].GetComponent<RectTransform>().anchoredPosition = TM.defautpos[i];
+        }
+        for (int i = 0; i < characters.Count; i++)
+        {
             if (actorActif == characters[i])
             {
                 characters[i].GetComponent<C_Actor>().HasPlayed = true;
@@ -675,6 +683,10 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.ExitDialogueMode();
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
+        for (int i = 0; i < characters.Count; i++)
+        {
+            characters[i].GetComponent<RectTransform>().anchoredPosition = TM.defautpos[i];
+        }
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])
@@ -928,6 +940,10 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.ExitDialogueMode();
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
+        for (int i = 0; i < characters.Count; i++)
+        {
+            characters[i].GetComponent<RectTransform>().anchoredPosition = TM.defautpos[i];
+        }
         for (int i = 0; i < characters.Count; i++)
         {
             if (actorActif == characters[i])

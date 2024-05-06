@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
@@ -25,6 +24,9 @@ public class C_Worldmap : MonoBehaviour
 
     [SerializeField]
     GameObject actor;
+    [SerializeField] GameObject setup1;
+    [SerializeField] GameObject setup2;
+    [SerializeField] GameObject currentSetup;
 
     [SerializeField] GameObject Bulle;
     [SerializeField] TMP_Text text;
@@ -144,6 +146,9 @@ public class C_Worldmap : MonoBehaviour
                     currentPoint.right.GetComponent<C_destination>().Islocked = false;
                     currentPoint.up.GetComponent<C_destination>().Islocked = false;
 
+                    currentPoint.right.GetComponent<C_destination>().leveltext = currentPoint.right.GetComponent<C_destination>().leveltextprovenance.text;
+                    currentPoint.right.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
+
                     break;
 
                     case "lvl2":
@@ -151,7 +156,8 @@ public class C_Worldmap : MonoBehaviour
                     currentPoint.down.GetComponent<C_destination>().Islocked = true;
                     currentPoint.left.GetComponent<C_destination>().Islocked = true;
 
-
+                    currentPoint.right.GetComponent<C_destination>().leveltext = currentPoint.right.GetComponent<C_destination>().leveltextprovenance.text;
+                    currentPoint.right.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
 
                     break;
                     case "lvl3":
@@ -187,6 +193,7 @@ public class C_Worldmap : MonoBehaviour
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(uppath));
+            currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
             currentPoint = Uplevel;
                 updateDestinations();            
@@ -200,6 +207,7 @@ public class C_Worldmap : MonoBehaviour
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(leftpath));
+            currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
             currentPoint = Leftlevel;
                 updateDestinations();           
@@ -213,6 +221,7 @@ public class C_Worldmap : MonoBehaviour
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(rightpath));
+            currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
             currentPoint = Rightlevel;
                 updateDestinations();
@@ -226,6 +235,7 @@ public class C_Worldmap : MonoBehaviour
         {
             canMove = false;
             StartCoroutine(UpdatepointPosition(downpath));
+            currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);           
                 currentPoint = Downlevel;
                 updateDestinations();            
@@ -239,6 +249,7 @@ public class C_Worldmap : MonoBehaviour
     }
     void updateDestinations()
     {
+        currentSetup.GetComponent<Animator>().SetBool("move", false);
         if (currentPoint.left != null)
             Leftlevel = currentPoint.left;
         else Leftlevel = null;
@@ -309,7 +320,19 @@ public class C_Worldmap : MonoBehaviour
     }*/
     private void initiateTheMapCharacterProtocol()
     {
-        GetComponent<SpriteRenderer>().sprite = actor.GetComponent<C_Actor>().GetDataActor().smaller;
+        if (allMapPoints[1].GetComponent<C_destination>().IsDone)
+        {
+            setup2.SetActive(true);
+            setup1.SetActive(false);
+            currentSetup = setup2;
+        }
+        else
+        {
+            setup1.SetActive(true);
+            setup2.SetActive(false);
+            currentSetup = setup1;
+        }
+            
     }
 
     #endregion
