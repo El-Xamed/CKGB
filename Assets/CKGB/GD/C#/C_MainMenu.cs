@@ -15,6 +15,7 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject boutonsGroupe;
     [SerializeField] GameObject optionsParent;
     [SerializeField] SO_Challenge firthChallenge;
+    [SerializeField] GameObject playButton;
     bool caMarche = true;
 
     [SerializeField] GameObject eventSystem;
@@ -30,17 +31,19 @@ public class C_MainMenu : MonoBehaviour
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(bouttonSplashScreen);
     }
 
-    public void GoToFirthButton(Button thisButton)
+    public void GoToFirthButton()
     {
-        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(thisButton.gameObject);
-        splashScreen.SetActive(false);
+        splashScreen.GetComponent<Animator>().SetTrigger("trigger");
+        bouttonSplashScreen.GetComponent<Animator>().SetTrigger("Pressed");
+        StartCoroutine("firstButton");
+       // splashScreen.SetActive(false);
 
         boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
     }
     IEnumerator firstButton()
     {
         yield return new WaitForSeconds(1f);
-
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
     }
 
     public void NewParty()
@@ -49,10 +52,16 @@ public class C_MainMenu : MonoBehaviour
         {
             GameManager.instance.SetDataLevel(null, firthChallenge);
         }
-
-        SceneManager.LoadScene("S_Challenge"); 
+        GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
+        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
+        StartCoroutine("loadFirstGame");
     }
+    IEnumerator loadFirstGame()
+    {
+        yield return new WaitForSeconds(0.8f);
 
+        SceneManager.LoadScene("S_Challenge");
+    }
     public void OpenSave()
     {
 
