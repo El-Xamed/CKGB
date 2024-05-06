@@ -69,8 +69,14 @@ public class C_MainMenu : MonoBehaviour
     {
 
     }
+    public void BackOnTrack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
 
-    public void OpenOptions()
+        }
+    }
+        public void OpenOptions()
     {
 
 

@@ -72,6 +72,12 @@ public class GameManager : MonoBehaviour
     public C_TempsLibre TM;
     public C_Worldmap W;
     #endregion
+    #region MenuPauseOptions
+    [SerializeField] public GameObject optionsMenu;
+    [SerializeField] public GameObject pauseMenu;
+    [SerializeField] public GameObject recommencerButton;
+
+    #endregion
 
     private void Awake()
     {
