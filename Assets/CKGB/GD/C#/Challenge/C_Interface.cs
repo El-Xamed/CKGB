@@ -13,6 +13,10 @@ public class C_Interface : MonoBehaviour
     public enum Interface { Neutre, Logs, Actions, Traits, Back }
     Interface currentInterface = Interface.Neutre;
 
+    [Header("Logs")]
+    [SerializeField] GameObject uiLogs;
+    [SerializeField] GameObject uiLogsScrollbar;
+
     [Header("Actions / Traits")]
     [SerializeField] GameObject uiAction;
 
@@ -22,7 +26,7 @@ public class C_Interface : MonoBehaviour
     private void Awake()
     {
         myChallenge = GetComponentInParent<C_Challenge>();
-
+        uiLogs.SetActive(false);
         uiAction.SetActive(false);
     }
 
@@ -119,6 +123,16 @@ public class C_Interface : MonoBehaviour
                         return;
                     }
                 }
+
+                //Quand il est dans le logs.
+                if (currentInterface == Interface.Logs)
+                {
+                    if (input.x > 0)
+                    {
+                        GoBack();
+                        return;
+                    }
+                }
             }
 
             //Pour passer à la suite du jeu.
@@ -168,7 +182,10 @@ public class C_Interface : MonoBehaviour
     //Pour accéder au logs.
     public void GoLogs()
     {
-        Debug.Log("Pas disponible");
+        //Modifie l'état de navigation.
+        currentInterface = Interface.Logs;
+        uiLogs.SetActive(true);
+        myChallenge.GetEventSystem().SetSelectedGameObject(uiLogsScrollbar);
     }
 
     //Pour accéder au traits.
@@ -209,7 +226,8 @@ public class C_Interface : MonoBehaviour
                 uiAction.SetActive(false);
                 break;
             case Interface.Logs:
-
+                GetComponent<Animator>().SetTrigger("CloseInterface");
+                uiLogs.SetActive(false);
                 break;
         }
 

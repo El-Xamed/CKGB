@@ -101,7 +101,7 @@ public class TargetStats_NewInspector
 
     #region Movement
     //pour le mouvement
-    public ETypeMove whatMove;
+    public ETypeMove whatMove = ETypeMove.None;
     public enum ETypeMove { None, Right, Left, OnTargetCase, SwitchWithActor, SwitchWithAcc };
 
     //Si c'est une tp ou non

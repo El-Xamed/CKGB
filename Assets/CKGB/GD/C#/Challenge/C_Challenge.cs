@@ -598,12 +598,6 @@ public class C_Challenge : MonoBehaviour
     //Pour afficher toutes les preview du challenge.
     public void CheckPreview(SO_ActionClass thisActionClass, Interaction_NewInspector.ETypeTarget target)
     {
-        //Supprime toutes les preview.
-        foreach (Image thisPreview in plateauPreview)
-        {
-            Destroy(thisPreview.gameObject);
-        }
-
         foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
         {
             //Check si c'est égale à "actorTarget".
@@ -620,9 +614,17 @@ public class C_Challenge : MonoBehaviour
 
                     if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
-                        Debug.Log("Un mouvement à été détecté !");
+                        Debug.Log(thisActionClass.name + " : " + thisTargetStats.whatStatsTarget);
                         //Inscrit la preview de movement. (C_Challenge)
                         C_PreviewAction.onPreview += MovementPreview;
+                    }
+                    else
+                    {
+                        //Supprime toutes les preview.
+                        foreach (Image thisPreview in plateauPreview)
+                        {
+                            Destroy(thisPreview.gameObject);
+                        }
                     }
                 }
             }
@@ -673,7 +675,6 @@ public class C_Challenge : MonoBehaviour
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == TargetStats_NewInspector.ETypeMove.Right || whatMove == TargetStats_NewInspector.ETypeMove.Left) //Normal move mode.
         {
-            Debug.Log("Normal Move mode");
             //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
             if (whatMove == TargetStats_NewInspector.ETypeMove.Left)
             {
@@ -686,7 +687,6 @@ public class C_Challenge : MonoBehaviour
         {
             nbMove--;
 
-            Debug.Log("On target case mode");
             //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
             if (nbMove > plateau.Count - 1)
             {
@@ -695,7 +695,7 @@ public class C_Challenge : MonoBehaviour
                 nbMove = 0;
             }
         }
-
+        
         //Nouvelle position de l'actor visé sur une case visée.
         thisPreview.transform.position = new Vector3(plateau[nbMove].transform.position.x, 0, plateau[nbMove].transform.position.z);
 
@@ -1061,7 +1061,6 @@ public class C_Challenge : MonoBehaviour
         }
         else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
         {
-            Debug.Log("TEST TARGET CASE: " + nbMove);
             //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
             if (nbMove > plateau.Count - 1)
             {
@@ -1122,8 +1121,6 @@ public class C_Challenge : MonoBehaviour
                     //Detection de si le perso est au bord (à droite).
                     if (thisPion.GetPosition() + i > plateau.Count - 1)
                     {
-                        Debug.Log("Test 11 : Nouvelle valeur !");
-
                         //Replace le pion sur la case 0.
                         PlacePionOnBoard(thisPion, 0, isTp);
 
@@ -1135,7 +1132,6 @@ public class C_Challenge : MonoBehaviour
             }
             else if (nbMove < 0)
             {
-                Debug.Log("TG1");
                 Debug.Log(nbMove);
                 //Vers la gauche.
                 for (int i = 0; i >= nbMove; i--)
@@ -1143,8 +1139,6 @@ public class C_Challenge : MonoBehaviour
                     Debug.Log(i);
                     if (thisPion.GetPosition() + i < 0)
                     {
-                        Debug.Log("Test 12 : Nouvelle valeur !");
-
                         //Replace le pion sur la case sur la case la plus à droite.
                         PlacePionOnBoard(thisPion, plateau.Count - 1, isTp);
 
