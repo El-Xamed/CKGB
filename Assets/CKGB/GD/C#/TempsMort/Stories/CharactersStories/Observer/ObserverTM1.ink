@@ -1,4 +1,6 @@
 ->checkID
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 
 === function RetourAuTMAfterRespirer(name)
 EXTERNAL RetourAuTMAfterRespirer(name)
@@ -11,15 +13,16 @@ VAR IDobserver = 0
 - else: ->END
 }
 ===Observer0===
-
-//blabla
-
+~ Trigger("name")
 Tu tournes légèrement là tête.#Bulle:Narrateur
+~ Trigger("name")
 Click.#Bulle:Narrateur
 Comme la pellicule d’un appareil photo,<br> tu sens que ton cerveau capture l’instant.#Bulle:Narrateur
 L’odeur de cannelle et de menthe laissée par le thé. L’amertume d’un café oublié qui s’y emmèle.#Bulle:Narrateur
+~ Trigger("name")
 La toile verte, débordante de tâche multicolore au travers de la fenêtre.#Bulle:Narrateur
 Les rayons de soleil cristallins qui transpercent l’espace par l’immense baie vitrée.#Bulle:Narrateur
+~ Trigger("name")
 La sensation du papier quand tu déplace machinalement les cahier de cours oubliés sur la table afin d’éviter qu’ils ne se fassent tacher.#Bulle:Narrateur
 La chaleur des tasses. Le sucre de la confiture. Le petit choc sourd d’une cuillère en bois qui se cogne à une tasse en céramique. #Bulle:Narrateur
 Tu aprécies ces matins tranquilles. Les jour sans école, vous vous retrouvez souvent tous les deux, comme ça. #Bulle:Narrateur
