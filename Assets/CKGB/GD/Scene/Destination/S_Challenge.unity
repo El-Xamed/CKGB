@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0
-  m_MoveRepeatRate: 0
+  m_MoveRepeatDelay: 0.25
+  m_MoveRepeatRate: 0.25
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: bdc60600cdad0414291fa2d582adb24a, type: 3}
   m_PointAction: {fileID: 0}
@@ -2516,6 +2516,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 30e90c66-77f1-42e1-9a8c-67dc4d30c244
     m_ActionName: Challenge/WorldMap[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 32261c2a-85bf-4f4b-b024-877a865ed29f
+    m_ActionName: Challenge/EndChallenge[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge
