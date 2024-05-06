@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "backOnTrack",
+                    "type": "Button",
+                    "id": "5a9daf07-2e42-4670-9d96-183b98957ccb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -317,6 +326,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "pause/options",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "802eaddd-5c11-4f41-9d6b-fb29748dfcc6",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "backOnTrack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

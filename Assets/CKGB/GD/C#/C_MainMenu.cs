@@ -73,7 +73,11 @@ public class C_MainMenu : MonoBehaviour
     {
         if (context.performed)
         {
-
+            GameManager.instance.pauseBackground.SetActive(false);
+            GameManager.instance.pauseMenu.SetActive(false);
+            GameManager.instance.optionsMenu.SetActive(false);
+            boutonsGroupe.SetActive(true);
+            eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
         }
     }
         public void OpenOptions()
@@ -86,14 +90,13 @@ public class C_MainMenu : MonoBehaviour
             //logoEart.SetActive(false);
             //logoJeu.SetActive(false);
             boutonsGroupe.SetActive(false);
-            optionsParent.SetActive(true);
+            GameManager.instance.pauseBackground.SetActive(true);
+            GameManager.instance.optionsMenu.SetActive(true);
+            //optionsParent.SetActive(true);
             Debug.Log("Options");
+            eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(GameManager.instance.baseToggle.gameObject);
         }
-        else
-        {
-            optionsParent.SetActive(false);
-            Debug.Log("options false");
-        }
+
 
     }
 

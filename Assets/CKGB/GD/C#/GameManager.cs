@@ -73,9 +73,12 @@ public class GameManager : MonoBehaviour
     public C_Worldmap W;
     #endregion
     #region MenuPauseOptions
+    [SerializeField] public GameObject pauseBackground;
     [SerializeField] public GameObject optionsMenu;
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public GameObject recommencerButton;
+    [SerializeField] public Toggle baseToggle;
+    [SerializeField] public GameObject reprendre;
 
     #endregion
 
