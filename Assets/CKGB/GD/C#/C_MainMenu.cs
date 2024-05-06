@@ -19,6 +19,7 @@ public class C_MainMenu : MonoBehaviour
     bool caMarche = true;
 
     [SerializeField] GameObject eventSystem;
+    [SerializeField] GameObject currentButton;
 
     private void Start()
     {
@@ -29,12 +30,14 @@ public class C_MainMenu : MonoBehaviour
     {
         splashScreen.SetActive(true);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(bouttonSplashScreen);
+        currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
     }
 
     public void GoToFirthButton()
     {
         splashScreen.GetComponent<Animator>().SetTrigger("trigger");
         bouttonSplashScreen.GetComponent<Animator>().SetTrigger("Pressed");
+        logoJeu.GetComponent<Animator>().SetTrigger("trigger");
         StartCoroutine("firstButton");
        // splashScreen.SetActive(false);
 
@@ -42,7 +45,7 @@ public class C_MainMenu : MonoBehaviour
     }
     IEnumerator firstButton()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.8f);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
     }
 
@@ -73,17 +76,17 @@ public class C_MainMenu : MonoBehaviour
 
         if (optionsParent)
         {
-            bouttonSplashScreen.SetActive(false);
-            logoEart.SetActive(false);
-            logoJeu.SetActive(false);
+            //bouttonSplashScreen.SetActive(false);
+            //logoEart.SetActive(false);
+            //logoJeu.SetActive(false);
             boutonsGroupe.SetActive(false);
             optionsParent.SetActive(true);
-            Debug.Log("ça marche");
+            Debug.Log("Options");
         }
         else
         {
             optionsParent.SetActive(false);
-            Debug.Log("ça marche pas");
+            Debug.Log("options false");
         }
 
     }

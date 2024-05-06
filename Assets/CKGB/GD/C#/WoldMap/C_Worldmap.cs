@@ -195,7 +195,9 @@ public class C_Worldmap : MonoBehaviour
             StartCoroutine(UpdatepointPosition(uppath));
             currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Uplevel;
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
                 updateDestinations();            
             Debug.Log("Uplevel");
             canMove = true;          
@@ -209,8 +211,10 @@ public class C_Worldmap : MonoBehaviour
             StartCoroutine(UpdatepointPosition(leftpath));
             currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Leftlevel;
-                updateDestinations();           
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+            updateDestinations();           
             Debug.Log("Leftlevel");
             canMove = true;          
         }
@@ -223,8 +227,10 @@ public class C_Worldmap : MonoBehaviour
             StartCoroutine(UpdatepointPosition(rightpath));
             currentSetup.GetComponent<Animator>().SetBool("move", true);
             //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Rightlevel;
-                updateDestinations();
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+            updateDestinations();
             Debug.Log("Rightlevel");
             canMove = true;      
         }
@@ -236,9 +242,11 @@ public class C_Worldmap : MonoBehaviour
             canMove = false;
             StartCoroutine(UpdatepointPosition(downpath));
             currentSetup.GetComponent<Animator>().SetBool("move", true);
-            //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);           
-                currentPoint = Downlevel;
-                updateDestinations();            
+            //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
+            currentPoint = Downlevel;
+            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+            updateDestinations();            
             Debug.Log("Down");
             canMove = true;         
         }

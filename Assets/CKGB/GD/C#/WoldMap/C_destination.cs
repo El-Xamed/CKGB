@@ -24,6 +24,7 @@ public class C_destination : MonoBehaviour
     public GameObject flag;
     public GameObject levelUI;
     public TMP_Text leveltextprovenance;
+    public GameObject charactersToShow;
 
     [Header("Level UI")]
     [SerializeField] Text UiLevelName;
@@ -41,6 +42,7 @@ public class C_destination : MonoBehaviour
     #endregion
     public void Start()
     {
+        leveltextprovenance.text = UiLevelName.text;
         levelUI.GetComponent<levelUI>().leveltext.text = "???";
     }
     public string sceneGet()
