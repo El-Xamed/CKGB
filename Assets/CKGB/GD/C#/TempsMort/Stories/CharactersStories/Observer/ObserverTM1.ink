@@ -37,15 +37,15 @@ Vous aimez bien ces matinées ensemble.#Bulle:Narrateur
 ~ RetourAuTMAfterRespirer("")
 ->DONE
 ===Observer1===
-
-//blabla
-
+~ Trigger("name")
 Tu te brûle les lèvres et faits une grimace. #Bulle:Narrateur
 Ta tasse est trop chaude. Tu te précipite pour la reposer avant qu’elle ne brule complètement tes doigts.#Bulle:Narrateur
+~ Trigger("name")
 Presque par reflexe, tu te dirige vers le lavabo pour verser de l’eau fraiche dans ta bouche.#Bulle:Narrateur
 Tu n’es pas sûr que ça change grand chose. Mais ça t’as toujours semblé comme la marche à suivre. #Bulle:Narrateur
 L’eau sur ton palais a un léger arrière gout. #Bulle:Narrateur
 Tu recule, et verifie l’affichage du cabinet de la tuyauterie. #Bulle:Narrateur
+~ Trigger("name")
 Tes yeux habitués à ce geste décryptent sans mal les chiffres et les abréviations.#Bulle:Narrateur
 La composition de l’eau est légèrement déviante du standard local, mais rien de dangeureux. #Bulle:Narrateur
 L’eau a un mouvement presque hypnotisant au travers des tuyaux translucides, coulant le long des murs depuis la citerne d’eau enfouie dans la colline.#Bulle:Narrateur
@@ -54,6 +54,7 @@ Alors que tu te rasseoies, ton esprit continue de suivre le courant. L’eau du 
 Certains minéraux, comme le gravier, mais aussi les racines des plantes des alentours.#Bulle:Narrateur
 Ce qui reste après le filtrage sera utilisé pour l’eau des toilettes ou elle deviendra de l’eau noire, #Bulle:Narrateur
 et suivra ensuite son propre cycle de traitement.#Bulle:Narrateur
+~ Trigger("name")
 
 Tu trouve cela beau.#Bulle:Narrateur
 Élégant.#Bulle:Narrateur
