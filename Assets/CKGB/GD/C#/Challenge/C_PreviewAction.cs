@@ -50,27 +50,6 @@ public class C_PreviewAction : MonoBehaviour
                 }
             }
         }
-
-        //Regarde les info de l'action
-        /*
-        //Check si il y a des info de stats.
-        if (thisActionClass.AffectStats())
-        {
-            //Inscrit la preview de texte.
-            onPreview += TextPreview;
-
-            //Inscrit la preview de stats
-            onPreview += UiPreview;
-        }
-
-        //Check si il y a des info de mouvement.
-        if (thisActionClass.AffectMovement())
-        {
-            //Inscrit la preview de mouvement.
-            onPreview += MovePreview;
-        }
-        */
-        //Lance la preview
     }
 
     //A placer ailleur.

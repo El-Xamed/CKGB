@@ -1,3 +1,4 @@
+using Ink.Parsed;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -55,6 +56,7 @@ public class C_Challenge : MonoBehaviour
     [Tooltip("Case")]
     [SerializeField] C_Case myCase;
     List<C_Case> plateau = new List<C_Case>();
+    List<Image> plateauPreview = new List<Image>();
     #endregion
 
     #region Interface
@@ -599,7 +601,7 @@ public class C_Challenge : MonoBehaviour
                     if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
                         //Inscrit la preview de movement. (C_Challenge)
-                        //onPreview += TextPreview;
+                        C_PreviewAction.onPreview += MovementPreview;
                     }
                 }
             }
@@ -611,6 +613,119 @@ public class C_Challenge : MonoBehaviour
         //Récupère toutes les info directement ?
         //Non si on veut faire apparaitre les autres actor avec leur description.
         //Oui car le joueur a besoin de savoir toutes les conséquence de l'action, meme si ça ne touche pas les autres actor.
+    }
+
+    void MovementPreview(SO_ActionClass thisActionClass)
+    {
+        foreach (Image ThisActorPreview in plateauPreview)
+        {
+            Destroy(ThisActorPreview.gameObject);
+        }
+
+        plateauPreview.Clear();
+
+        //Création du pion preview.
+        Image thisPreview = Instantiate(new GameObject().AddComponent<Image>(), currentActor.transform.position, Quaternion.identity, currentActor.transform);
+        //Scale
+        thisPreview.gameObject.transform.localScale = Vector3.one;
+        //Taille
+        thisPreview.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(currentActor.GetComponent<RectTransform>().rect.width, currentActor.GetComponent<RectTransform>().rect.height);
+        //Set l'image
+        thisPreview.sprite = currentActor.GetDataActor().challengeSprite;
+        //Change le nom
+        thisPreview.name = currentActor.name + "_Preview";
+        //Change la couleur. (Assombri l'image) MARCHE PAS A CAUSE DE L'ANIMATION QUI TOURNE EN BOUCLE.
+        thisPreview.color = Color.HSVToRGB(0, 0, 0.35f);
+        //Et ajouté dans la liste des preview de movement.
+        plateauPreview.Add(thisPreview);
+
+        //Création de sa position sur le plateau.
+        int position = currentActor.GetPosition();
+
+        TargetStats_NewInspector.ETypeMove whatMove = thisActionClass.GetWhatMove(Interaction_NewInspector.ETypeTarget.Self);
+        int nbMove = thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Movement);
+        
+        bool isTp = thisActionClass.GetIsTp(Interaction_NewInspector.ETypeTarget.Self);
+
+        //Check si c'est le mode normal de déplacement ou alors le mode target case.
+        if (whatMove == TargetStats_NewInspector.ETypeMove.Right || whatMove == TargetStats_NewInspector.ETypeMove.Left) //Normal move mode.
+        {
+            Debug.Log("Normal Move mode");
+            //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
+            if (whatMove == TargetStats_NewInspector.ETypeMove.Left)
+            {
+                nbMove = -nbMove;
+            }
+
+            CheckIfNotExceed();
+        }
+        else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
+        {
+            nbMove--;
+
+            Debug.Log("On target case mode");
+            //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
+            if (nbMove > plateau.Count - 1)
+            {
+                Debug.LogWarning("La valeur de déplacement et trop élevé par rapport au nombre de cases sur le plateau la valeur sera donc égale à 0.");
+
+                nbMove = 0;
+            }
+        }
+
+        //Nouvelle position de l'actor visé sur une case visée.
+        thisPreview.transform.position = new Vector3(plateau[nbMove].transform.position.x, 0, plateau[nbMove].transform.position.z);
+
+        //Permet de réduire/augmenter la valeur pour placer l'actor sur le plateau.
+        void CheckIfNotExceed()
+        {
+            //Si la valeur ne dépasse pas la plateau alors pas besoin de modification de valeur.
+            if (position + nbMove < plateau.Count && position + nbMove > -1)
+            {
+                nbMove = position + nbMove;
+                return;
+            }
+
+            //Pour placer l'actor de l'autre coté du plateau correctement.
+            if (nbMove > 0)
+            {
+                //Vers la droite.
+                for (int i = 0; i <= nbMove; i++)
+                {
+                    //Detection de si le perso est au bord (à droite).
+                    if (position + i > plateau.Count - 1)
+                    {
+                        //Replace le pion sur la case 0.
+                        thisPreview.transform.position = new Vector3(plateau[0].transform.position.x, 0, plateau[0].transform.position.z);
+                        position = 0;
+
+                        //On retire le nombre de déplacement fait.
+                        nbMove = position + nbMove - i;
+                    }
+                }
+            }
+            else if (nbMove < 0)
+            {
+                Debug.Log(nbMove);
+                //Vers la gauche.
+                for (int i = 0; i >= nbMove; i--)
+                {
+                    Debug.Log(i);
+                    if (position + i < 0)
+                    {
+                        //Replace le pion sur la case sur la case la plus à droite.
+                        thisPreview.transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, 0, plateau[plateau.Count - 1].transform.position.z);
+                        position = plateau.Count - 1;
+
+                        //On retire le nombre de déplacement fait.
+                        nbMove = position + nbMove - i;
+                    }
+                }
+            }
+
+            //Puis recheck si le calcul est bon.
+            CheckIfNotExceed();
+        }
     }
     #endregion
 

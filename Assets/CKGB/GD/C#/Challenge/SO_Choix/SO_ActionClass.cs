@@ -35,7 +35,7 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Récupération de stats
-    //Fonction qui renvoie la valeur d'un des stats.
+    //Fonction qui renvoie la valeur d'un des stats. RETIRER "TARGET STATS" CAR IL EST INUTILE.
     public int GetValue(Interaction_NewInspector.ETypeTarget actorTarget, TargetStats_NewInspector.ETypeStatsTarget targetStats)
     {
         //Pour toutes les liste d'action.
@@ -47,8 +47,7 @@ public class SO_ActionClass : ScriptableObject
                 //Pour toutes les list de TargetStats.
                 foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == targetStats)
+                    if (targetStats == TargetStats_NewInspector.ETypeStatsTarget.Stats)
                     {
                         if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
                         {
@@ -58,7 +57,10 @@ public class SO_ActionClass : ScriptableObject
                         {
                             return thisTargetStats.value;
                         }
-
+                    }
+                    else if (targetStats == TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                    {
+                        return thisTargetStats.value;
                     }
                 }
             }
@@ -124,10 +126,10 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIfTargetOrNot()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
             {
                 if (thisInteraction.selectTarget)
                 {
