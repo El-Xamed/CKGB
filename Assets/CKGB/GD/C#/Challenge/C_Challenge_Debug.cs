@@ -23,4 +23,18 @@ public class C_Challenge_Debug : MonoBehaviour
         if (context.performed)
             AudioManager.instance.MuteMusic("MusiqueTuto");
     }
+
+    public void EndGame()
+    {
+        if (GameObject.Find("Challenge"))
+        {
+            GameObject.Find("Challenge").GetComponent<C_Challenge>().SetAnimFinish(true);
+            GameObject.Find("Challenge").GetComponent<C_Challenge>().EndChallenge();
+        }
+        else
+        {
+            Debug.LogWarning("Aucun challenge détecté !!!");
+        }
+        
+    }
 }

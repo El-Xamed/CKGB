@@ -175,12 +175,15 @@ public class C_Challenge : MonoBehaviour
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
 
-        //Set les element en plus.
+        //Set les element en plus. ICI UN GAMEOBJECT SPAWN AU PIFF SANS NOM
         if (myChallenge.element.Count != 0)
         {
             foreach (var thisElement in myChallenge.element)
             {
-                GameObject newUI = Instantiate(new GameObject(), GameObject.Find("Element").transform);
+
+                GameObject newUI = new GameObject();
+
+                newUI.transform.parent = GameObject.Find("Element").transform;
 
                 newUI.name = thisElement.name;
 
@@ -189,6 +192,10 @@ public class C_Challenge : MonoBehaviour
                 newUI.GetComponent<Image>().sprite = thisElement;
 
                 newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920,1080);
+
+                newUI.GetComponent<RectTransform>().position = GameObject.Find("Element").transform.position;
+
+                newUI.GetComponent<RectTransform>().localScale = Vector3.one;
             }
         }
 
@@ -217,7 +224,7 @@ public class C_Challenge : MonoBehaviour
             myChallenge.listEtape[i].actions.Add(SO_ActionClass.Instantiate(Resources.Load<SO_ActionClass>("Attendre")));
         }
         #endregion
-
+        
         //Apparition des cases
         SpawnCases();
 
@@ -233,6 +240,7 @@ public class C_Challenge : MonoBehaviour
         }
 
         currentActor = myTeam[0];
+
         UpdateUi();
 
         //Lance directement le tour du joueur
@@ -523,6 +531,12 @@ public class C_Challenge : MonoBehaviour
 
             animFinish = false;
             ResolutionTurn();
+
+            //Supprime toutes les preview.
+            foreach (Image thisPreview in plateauPreview)
+            {
+                Destroy(thisPreview.gameObject);
+            }
         }
     }
 
@@ -624,8 +638,10 @@ public class C_Challenge : MonoBehaviour
 
         plateauPreview.Clear();
 
+        Image thisPreview = new GameObject().AddComponent<Image>();
+
         //Création du pion preview.
-        Image thisPreview = Instantiate(new GameObject().AddComponent<Image>(), currentActor.transform.position, Quaternion.identity, currentActor.transform);
+        thisPreview.transform.parent = currentActor.transform;
         //Scale
         thisPreview.gameObject.transform.localScale = Vector3.one;
         //Taille
@@ -1038,6 +1054,7 @@ public class C_Challenge : MonoBehaviour
         }
         else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
         {
+            Debug.Log("TEST TARGET CASE: " + nbMove);
             //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
             if (nbMove > plateau.Count - 1)
             {

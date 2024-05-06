@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "EndChallenge",
+                    "type": "PassThrough",
+                    "id": "32261c2a-85bf-4f4b-b024-877a865ed29f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SFX",
                     "type": "PassThrough",
                     "id": "77bfd61f-f335-49b9-828d-2b85cc975ee4",
@@ -97,6 +106,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "WorldMap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "EndChallenge",
+                    "id": "db6077ed-3e0c-4ffd-850e-c3e76f024637",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndChallenge",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Button",
+                    "id": "afcc87b7-c63f-4bce-87f1-2ff86a2aef70",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndChallenge",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
