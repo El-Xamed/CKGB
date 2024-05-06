@@ -5,7 +5,6 @@ EXTERNAL StartTM(name)
 EXTERNAL Trigger(name)
 
 ===Intro===
-
 //Bruit de porte, l’écran du temps mort apparait. Morgan est près d’une porte, Sa grand-mère à table, en train de petit-déjeuner.
 
 ’lut#Bulle:MorganBasGauche
