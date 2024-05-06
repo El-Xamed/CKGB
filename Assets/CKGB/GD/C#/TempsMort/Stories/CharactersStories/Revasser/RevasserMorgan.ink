@@ -1,5 +1,8 @@
 ->checkID
-
+=== function StartTM(name)
+EXTERNAL StartTM(name)
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 === function RetourAuTMAfterRevasser(name)
 EXTERNAL RetourAuTMAfterRevasser(name)
 VAR IDrevasser = 0
@@ -11,36 +14,37 @@ VAR IDrevasser = 0
 - else: ->END
 }
 ===Revasser0===
-
+~ Trigger("name")
 //blabla
 
-Les lumières vives des évènements -passés et à venir- de la journée flash devant tes yeux. #Bulle:MorganHautGauche
-Tu as besoin de temps. Pour digérer tes pensées. Pour te préparer.#Bulle:MorganHautGauche
-Tu fais quelques pas à l’écart des autres, tes yeux rivés vers le ciel. #Bulle:MorganHautGauche
-#Bulle:MorganHautGauche
-Ta main vient caresser le carnet de poésie logé dans ta poche. Tu souris. Tu ne sors jamais sans lui.#Bulle:MorganHautGauche
-Tu t’assois par terre et commence à mâchouiller ton stylo.#Bulle:MorganHautGauche
-En général, écrire t’aide à faire la paix avec tes émotions.#Bulle:MorganHautGauche
-Des gens ont déjà essayé de te guider vers la méditation ou l’exercice physique pour réussir à te sortir de ta tête.#Bulle:MorganHautGauche
-Mais rien n’a jamais aussi bien marché que l’art-thérapie.#Bulle:MorganHautGauche
-Tu commence à griffonner.#Bulle:MorganHautGauche
-De quoi tu as envie ? #Bulle:MorganHautGauche
-Tu te sens d’humeur haïku aujourd’hui.#Bulle:MorganHautGauche
-#Bulle:MorganHautGauche
-Depuis quelques semaines, c’est devenu ta marotte.#Bulle:MorganHautGauche
-#Bulle:MorganHautGauche
-5, 7, 5. #Bulle:MorganHautGauche
-La structure simple et stable des syllabes t’apporte du réconfort.#Bulle:MorganHautGauche
+Les lumières vives des évènements -passés et à venir- de la journée flash devant tes yeux. #Bulle:Narrateur
+Tu as besoin de temps. Pour digérer tes pensées. Pour te préparer.#Bulle:Narrateur
+~ Trigger("name")
+Tu fais quelques pas à l’écart, tes yeux rivés vers le ciel. #Bulle:Narrateur
+
+Ta main vient caresser le carnet de poésie logé dans ta poche. Tu souris. Tu le trimballe toujours avec toi.#Bulle:Narrateur
+Tu t’assois par terre et commence à mâchouiller ton stylo.#Bulle:Narrateur
+En général, écrire t’aide à faire la paix avec tes émotions.#Bulle:Narrateur
+Des gens ont déjà essayé de te guider vers la méditation ou l’exercice physique pour réussir à te sortir de ta tête.#Bulle:Narrateur
+Mais rien n’a jamais aussi bien marché que l’art-thérapie.#Bulle:Narrateur
+Tu commence à griffonner.#Bulle:Narrateur
+De quoi tu as envie ? #Bulle:Narrateur
+Tu te sens d’humeur haïku aujourd’hui.#Bulle:Narrateur
+
+Depuis quelques semaines, c’est devenu ta marotte.#Bulle:Narrateur
+
+5, 7, 5. #Bulle:Narrateur
+La structure simple et stable des syllabes t’apporte du réconfort.#Bulle:Narrateur
+5, 7, 5, #Bulle:Narrateur
+comme les secondes que tu compte pour mesurer tes respirations.#Bulle:Narrateur
+Tu te débarasse des rhymes.#Bulle:Narrateur
+Tu cherche quelque choses qui frappe sans avoir recours à de la phonétique aussi simple.#Bulle:Narrateur
 5, 7, 5, #Bulle:MorganHautGauche
-comme les secondes que tu compte pour mesurer tes respirations.#Bulle:MorganHautGauche
-Tu te débarasse des rhymes.#Bulle:MorganHautGauche
-Tu cherche quelque choses qui frappe sans avoir recours à de la phonétique aussi simple.#Bulle:MorganHautGauche
-5, 7, 5, #Bulle:MorganHautGauche
-Tu pense aux évènements de ce matin. A comment tu t’es réveillé à 4 heure#Bulle:MorganHautGauche
-. Tes ongles brûlent encore, rongés nerveusement, les yeux enfoncé dans les planches plafond. #Bulle:MorganHautGauche
-5, Pupilles fixes, 7, Insomnie amoureuse, 5, Jour fébrile.#Bulle:MorganHautGauche
-Hm.#Bulle:MorganHautGauche
-Peut mieux faire.#Bulle:MorganHautGauche
+Tu pense aux évènements de ce matin. A comment tu t’es réveillé à 4 heure. #Bulle:Narrateur
+. Tes ongles brûlent encore, rongés nerveusement, les yeux enfoncé dans les planches plafond.#Bulle:Narrateur
+5, Pupilles fixes, 7, Insomnie amoureuse, 5, Jour fébrile.#Bulle:Narrateur
+Hm.#Bulle:Narrateur
+Peut mieux faire.#Bulle:Narrateur
 
 Ton stylo griffe le papier quelques minutes. La réalité glisse autour de toi.#Bulle:MorganHautGauche
 Quand, au bout d’un moment, tu te relève pour rejoindre les autres, tu as un peu oublié ce qui te rendais inquiet. #Bulle:MorganHautGauche

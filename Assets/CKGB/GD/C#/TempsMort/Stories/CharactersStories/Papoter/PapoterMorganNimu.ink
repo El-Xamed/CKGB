@@ -1,5 +1,8 @@
 -> checkID
-
+=== function StartTM(name)
+EXTERNAL StartTM(name)
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 === function RetourAuTMAfterPapotage(name)
 EXTERNAL RetourAuTMAfterPapotage(name)
 VAR IdPapoter = 0
