@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -35,6 +36,11 @@ public class C_MainMenu : MonoBehaviour
         splashScreen.SetActive(false);
 
         boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
+    }
+    IEnumerator firstButton()
+    {
+        yield return new WaitForSeconds(1f);
+
     }
 
     public void NewParty()
@@ -81,7 +87,7 @@ public class C_MainMenu : MonoBehaviour
 
     public void LeaveGame()
     {
-
+        Application.Quit();
     }
 
     //Focntion à dev plus tard. Sert pour tous les menu.
