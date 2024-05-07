@@ -332,7 +332,7 @@ public class GameManager : MonoBehaviour
                     {
                         case "MorganHautGauche":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount==1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -340,14 +340,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }                           
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtHautGauche;
+                            textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtHautGauche;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganHautDroite":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -355,14 +355,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtHautDroite;
+                            textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtHautDroite;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganBasGauche":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -370,14 +370,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtBasGauche;
+                            textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
                             break;
                         case "MorganBasDroite":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -385,7 +385,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtBasDroite;
+                            textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtBasDroite;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
@@ -393,7 +393,7 @@ public class GameManager : MonoBehaviour
 
                         case "EsthelaHautGauche":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -408,7 +408,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "EsthelaHautDroite":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -416,14 +416,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautDroite;
+                            textToWriteIn = GameObject.Find("Esthela").GetComponent<C_Actor>().txtHautDroite;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "EsthelaBasGauche":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -431,14 +431,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtBasGauche;
+                            textToWriteIn = GameObject.Find("Esthela").GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "EsthelaBasDroite":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -446,7 +446,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtBasDroite;
+                            textToWriteIn = GameObject.Find("Esthela").GetComponent<C_Actor>().txtBasDroite;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
@@ -454,7 +454,7 @@ public class GameManager : MonoBehaviour
 
                         case "NimuHautGauche":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -462,14 +462,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtHautGauche;
+                            textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtHautGauche;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuHautDroite":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -477,14 +477,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtHautDroite;
+                            textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtHautDroite;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuBasGauche":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -492,14 +492,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtBasGauche;
+                            textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "NimuBasDroite":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -507,14 +507,14 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
-                            textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtBasDroite;
+                            textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtBasDroite;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "Narrateur":
                             textToWriteIn.text = "";
-                            if (textToWriteIn.transform.GetChild(0) != null)
+                            if (textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -529,7 +529,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "NarrateurC":
                             textToWriteIn.text = "";
-                            if(textToWriteIn.transform.GetChild(0)!=null)
+                            if(textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
@@ -614,10 +614,14 @@ public class GameManager : MonoBehaviour
 
             }
         }
-        if(textToWriteIn!=TM.naratteurText)
+        if(TM!=null)
         {
-            TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
+            if (textToWriteIn != TM.naratteurText)
+            {
+                TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
+            }
         }
+       
       textToWriteIn.text = text;       
     }
 
