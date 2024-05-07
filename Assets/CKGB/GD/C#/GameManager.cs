@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
         }
         if (InkJSON.name == "IntroC0" || InkJSON.name == "IntroC1" || InkJSON.name == "IntroC2" || InkJSON.name == "IntroC3")
         {
-            currentStory.BindExternalFunction("StartChallenge", (string name) => {StartChallenge(name); });
+            currentStory.BindExternalFunction("StartChallenge", (string name) => {C.StartChallenge(name); });
         }
         if (InkJSON.name == "OutroC0" || InkJSON.name == "OutroC1" || InkJSON.name == "OutroC2A" || InkJSON.name == "OutroC3")
         {
