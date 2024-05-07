@@ -15,7 +15,7 @@ public class C_Interface : MonoBehaviour
     C_Challenge myChallenge;
 
     public enum Interface {None ,Neutre, Logs, Actions, Traits, Back }
-    Interface currentInterface = Interface.None;
+    [SerializeField]Interface currentInterface = Interface.None;
 
     [Header("Logs")]
     [SerializeField] GameObject uiLogs;
@@ -38,7 +38,7 @@ public class C_Interface : MonoBehaviour
     {
         if (!GameManager.instance.isDialoguing)
         {
-            currentInterface = Interface.Neutre;
+            currentInterface = Interface.None;
         }
     }
 

@@ -298,6 +298,7 @@ public class GameManager : MonoBehaviour
 
         if (currentStory.canContinue)
         {
+            
             string Contenue = currentStory.Continue();
             Debug.Log(Contenue);
             Debug.Log(currentStory.currentTags);

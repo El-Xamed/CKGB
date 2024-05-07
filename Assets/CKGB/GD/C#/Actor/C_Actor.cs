@@ -139,7 +139,12 @@ public class C_Actor : C_Pion
         //Desactivation des child. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
         for (int i = 0; i < bulles.Count; i++)
         {
-            bulles[i].gameObject.SetActive(false);
+            //bulles[i].gameObject.SetActive(false);
+           BulleHautDroite.GetComponent<Image>().enabled = false;
+            BulleHautGauche.GetComponent<Image>().enabled = false;
+            BulleBasDroite.gameObject.SetActive(true);
+            BulleBasDroite.GetComponent<Image>().enabled = false;
+            BulleBasGauche.GetComponent<Image>().enabled = false;
         }
 
         //Active l'ombre du challenge.
