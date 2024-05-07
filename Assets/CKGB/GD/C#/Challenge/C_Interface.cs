@@ -1,3 +1,4 @@
+using Febucci.UI;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,11 +8,14 @@ using static C_Challenge;
 
 public class C_Interface : MonoBehaviour
 {
+    //Pour passer les dialogue.
+    public bool canContinue;
+
     //Récupération du script.
     C_Challenge myChallenge;
 
-    public enum Interface { Neutre, Logs, Actions, Traits, Back }
-    Interface currentInterface = Interface.Neutre;
+    public enum Interface {None ,Neutre, Logs, Actions, Traits, Back }
+    Interface currentInterface = Interface.None;
 
     [Header("Logs")]
     [SerializeField] GameObject uiLogs;
@@ -28,6 +32,14 @@ public class C_Interface : MonoBehaviour
         myChallenge = GetComponentInParent<C_Challenge>();
         uiLogs.SetActive(false);
         uiAction.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (!GameManager.instance.isDialoguing)
+        {
+            currentInterface = Interface.Neutre;
+        }
     }
 
     #region Racourcis
@@ -84,6 +96,25 @@ public class C_Interface : MonoBehaviour
         if (context.performed)
         {
             Vector2 input = context.ReadValue<Vector2>();
+
+            //Pour selectionner ses actions.
+            if (currentInterface == Interface.None)
+            {
+                if (input.y < 0)
+                {
+                    //check si l histoire continue ou pas
+                    Debug.Log("continue");
+                    if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
+                    {
+                        GameManager.instance.ContinueStory();
+                    }
+                    else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
+                    {
+                        GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+                    }
+                    return;
+                }
+            }
 
             //Check si l'interaction avec l'interface et possible => Phase du joueur.
             if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)

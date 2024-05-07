@@ -1,3 +1,4 @@
+using Febucci.UI;
 using Ink.Parsed;
 using System;
 using System.Collections.Generic;
@@ -162,6 +163,17 @@ public class C_Challenge : MonoBehaviour
 
     private void Start()
     {
+        uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+        uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
+        GameManager.instance.textToWriteIn = uiLogs;
+        GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
+    }
+
+    public void StartChallenge(string name)
+    {
+        GameManager.instance.ExitDialogueMode();
+
         #region Initialisation
 
         if (AudioManager.instance)
@@ -191,7 +203,7 @@ public class C_Challenge : MonoBehaviour
 
                 newUI.GetComponent<Image>().sprite = thisElement;
 
-                newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920,1080);
+                newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
 
                 newUI.GetComponent<RectTransform>().position = GameObject.Find("Element").transform.position;
 
@@ -224,7 +236,7 @@ public class C_Challenge : MonoBehaviour
             myChallenge.listEtape[i].actions.Add(SO_ActionClass.Instantiate(Resources.Load<SO_ActionClass>("Attendre")));
         }
         #endregion
-        
+
         //Apparition des cases
         SpawnCases();
 
@@ -246,6 +258,15 @@ public class C_Challenge : MonoBehaviour
         //Lance directement le tour du joueur
         uiGameOver.SetActive(false);
         #endregion
+    }
+
+    public void SetCanContinueToYes()
+    {
+        myInterface.canContinue = true;
+    }
+    public void SetCanContinueToNo()
+    {
+        myInterface.canContinue = false;
     }
 
     #region Mes fonctions

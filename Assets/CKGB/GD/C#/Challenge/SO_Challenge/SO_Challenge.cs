@@ -1,16 +1,15 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
+using Ink.Runtime;
 
 [CreateAssetMenu(fileName = "New Challenge", menuName = "ScriptableObjects/Challenge/Challenge", order = 1)]
 public class SO_Challenge : ScriptableObject
 {
     #region Mes variables
+
+    [Header("Intro/Outro")]
+    public TextAsset introChallenge;
+    public TextAsset outroChallenge;
 
     [Header("Paramètre du challenge")]
     public Sprite background;
