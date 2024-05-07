@@ -117,7 +117,7 @@ public class C_Interface : MonoBehaviour
             }
 
             //Check si l'interaction avec l'interface et possible => Phase du joueur.
-            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
+            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun && currentInterface != Interface.None)
             {
                 //Pour la navigation dans l'interface "Neutre"
                 if (currentInterface == Interface.Neutre)
@@ -167,13 +167,13 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour passer à la suite du jeu.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && currentInterface != Interface.None)
             {
                 myChallenge.EndChallenge();
             }
 
             //Pour Update CataTurn.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn && currentInterface != Interface.None)
             {
                 myChallenge.PlayerTurn();
                 myChallenge.SetAnimFinish(false);
@@ -182,7 +182,7 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour Update ResoTrun.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn && currentInterface != Interface.None)
             {
                 myChallenge.NextResolution();
             }
