@@ -185,6 +185,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8e7c72f6-f590-4985-894e-92b3c6f19460
     m_ActionName: MenuPrincipale/Submit[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 376e22fc-53c9-48ef-974a-e22ae9cc5d5e
+    m_ActionName: MenuPrincipale/pause/options[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 165282498}
+        m_TargetAssemblyTypeName: C_MainMenu, Assembly-CSharp
+        m_MethodName: BackOnTrack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5a9daf07-2e42-4670-9d96-183b98957ccb
+    m_ActionName: MenuPrincipale/backOnTrack[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: MenuPrincipale

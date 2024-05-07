@@ -1,23 +1,23 @@
 ->Outro
-=== function StartChallenge(name)
+=== function FinishChallenge(name)
 
-EXTERNAL StartChallenge(name)
+EXTERNAL FinishChallenge(name)
 
 ===Outro===
 Bon, suffit les bêtises !#Bulle:MorganHautGauche
 
 //[écran du combat sans le Coolkid, problablement après une transition noir et un bruit]
 
-Dans un nuage de couverture, tu <bounce>bondis</bounce> sur l’echelle descendant ton lit, puis te laisse tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:Narrateur
+Dans un nuage de couverture, tu <bounce>bondis</bounce> sur l’echelle descendant ton lit, puis te laisse tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:NarrateurC
 
-Tes vêtements sont prêts sur une chaise, soigneusement préparé la veille.#Bulle:Narrateur
-<i>L’avant veille.</i>#Bulle:Narrateur
-Bon, il y a une <b>semaine</b>, en vrai. Comme dit précédement, tu as <i>un peu</i> perdu les pédales ces derniers jours.#Bulle:Narrateur
+Tes vêtements sont prêts sur une chaise, soigneusement préparé la veille.#Bulle:NarrateurC
+<i>L’avant veille.</i>#Bulle:NarrateurC
+Bon, il y a une <b>semaine</b>, en vrai. Comme dit précédement, tu as <i>un peu</i> perdu les pédales ces derniers jours.#Bulle:NarrateurC
 
-Tu te demande si ce sera un élément <wave>récurrent</wave> de ton aventure.#Bulle:Narrateur
+Tu te demande si ce sera un élément <wave>récurrent</wave> de ton aventure.#Bulle:NarrateurC
 
-Tu empoches le reste de tes effets personnels, eux seulement préparé la veille -<i>tu en as besoin au quotidien</i>-.#Bulle:Narrateur
-Tu t’arrête sur ton <wave>carnet de poésie</wave>, mais décide finalement de ne <b>pas</b> écrire dedans. C’est un coup à perdre <slide>plusieurs heures</slide> en un battement de cil.#Bulle:Narrateur
-Tu fais un crochet par ta salle de bain, et, fin prêt, passe la porte de ton salon en toussant parce que tu as mit trop de parfum.#Bulle:Narrateur
-//Go to TM1
+Tu empoches le reste de tes effets personnels, eux seulement préparé la veille -<i>tu en as besoin au quotidien</i>-.#Bulle:NarrateurC
+Tu t’arrête sur ton <wave>carnet de poésie</wave>, mais décide finalement de ne <b>pas</b> écrire dedans. C’est un coup à perdre <slide>plusieurs heures</slide> en un battement de cil.#Bulle:NarrateurC
+Tu fais un crochet par ta salle de bain, et, fin prêt, passe la porte de ton salon en toussant parce que tu as mit trop de parfum.#Bulle:NarrateurC
+~ FinishChallenge("name")
 ->END

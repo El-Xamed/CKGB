@@ -77,6 +77,7 @@ public class C_MainMenu : MonoBehaviour
             GameManager.instance.pauseMenu.SetActive(false);
             GameManager.instance.optionsMenu.SetActive(false);
             boutonsGroupe.SetActive(true);
+            boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
         }
     }
