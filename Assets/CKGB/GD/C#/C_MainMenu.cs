@@ -16,6 +16,7 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject optionsParent;
     [SerializeField] SO_Challenge firthChallenge;
     [SerializeField] GameObject playButton;
+    [SerializeField] GameObject optionsButton;
     bool caMarche = true;
 
     [SerializeField] GameObject eventSystem;
@@ -77,8 +78,12 @@ public class C_MainMenu : MonoBehaviour
             GameManager.instance.pauseMenu.SetActive(false);
             GameManager.instance.optionsMenu.SetActive(false);
             boutonsGroupe.SetActive(true);
+            logoJeu.SetActive(true);
+            logoJeu.GetComponent<Animator>().SetTrigger("trigger");
             boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
-            eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
+            optionsButton.GetComponent<Animator>().SetTrigger("unselected");
+            eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(optionsButton);
+            
         }
     }
         public void OpenOptions()
@@ -91,6 +96,7 @@ public class C_MainMenu : MonoBehaviour
             //logoEart.SetActive(false);
             //logoJeu.SetActive(false);
             boutonsGroupe.SetActive(false);
+            logoJeu.SetActive(false);
             GameManager.instance.pauseBackground.SetActive(true);
             GameManager.instance.optionsMenu.SetActive(true);
             //optionsParent.SetActive(true);
