@@ -220,10 +220,68 @@ public class GameManager : MonoBehaviour
         currentStory = new Story(InkJSON.text);
         currentStory.BindExternalFunction("Trigger", (string name) => { TM.Trigger(name); });
         isDialoguing = true;
-        if (InkJSON.name == "OutroTM2A" || InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3")
+        if(TM!=null)
         {
-            currentStory.BindExternalFunction("StartChallenge", (string name) => { TM.GoChallenge(name); });
-        }
+            if (InkJSON.name == "OutroTM2A" || InkJSON.name == "OutroTM2B" || InkJSON.name == "OutroTM1" || InkJSON.name == "OutroTM3")
+            {
+                currentStory.BindExternalFunction("StartChallenge", (string name) => { TM.GoChallenge(name); });
+            }
+            if (InkJSON.name == "IntroTM2A" || InkJSON.name == "IntroTM2B" || InkJSON.name == "IntroTM1" || InkJSON.name == "IntroTM3")
+            {
+                currentStory.BindExternalFunction("StartTM", (string name) => { TM.StartTempsMort(name); });
+            }
+            if (InkJSON.name == "RevasserEsthela" || InkJSON.name == "RevasserMorgan" || InkJSON.name == "RevasserNimu")
+            {
+                currentStory.BindExternalFunction("RetourAuTMAfterRevasser", (string name) => { TM.RetourAuTMAfterRevasser(name); });
+                if (TM.actorActif == TM.Morgan)
+                {
+                    currentStory.variablesState["IDrevasser"] = RevasserID[0];
+                }
+                else if (TM.actorActif == TM.Esthela)
+                {
+                    currentStory.variablesState["IDrevasser"] = RevasserID[1];
+                }
+                else if (TM.actorActif == TM.Nimu)
+                {
+                    currentStory.variablesState["IDrevasser"] = RevasserID[2];
+                }
+
+            }
+            if (InkJSON.name == TM.Observage.name)
+            {
+                currentStory.variablesState["IDobserver"] = RespirerID;
+                currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
+            }
+            if (InkJSON.name == "PapoterMorganEsthela" || InkJSON.name == "PapoterMorganNimu" || InkJSON.name == "PapoterNimuEsthela")
+            {
+                currentStory.BindExternalFunction("RetourAuTMAfterPapotage", (string name) => { TM.RetourAuTMAfterPapotage(name); });
+                if (TM.actorActif.name == "Morgan" && TM.Papote.name == "Esthela")
+                {
+                    currentStory.variablesState["IdPapoter"] = PapoterID[0];
+                }
+                else if (TM.actorActif.name == "Morgan" && TM.Papote.name == "Nimu")
+                {
+                    currentStory.variablesState["IdPapoter"] = PapoterID[1];
+                }
+                else if (TM.actorActif.name == "Esthela" && TM.Papote.name == "Morgan")
+                {
+                    currentStory.variablesState["IdPapoter"] = PapoterID[0];
+                }
+                else if (TM.actorActif.name == "Esthela" && TM.Papote.name == "Nimu")
+                {
+                    currentStory.variablesState["IdPapoter"] = PapoterID[2];
+                }
+                else if (TM.actorActif.name == "Nimu" && TM.Papote.name == "Morgan")
+                {
+                    currentStory.variablesState["IdPapoter"] = PapoterID[1];
+                }
+                else if (TM.actorActif.name == "Nimu" && TM.Papote.name == "Esthela")
+                {
+                    currentStory.variablesState["IdPapoter"] = PapoterID[2];
+                }
+            }
+         }
+       
         if (InkJSON.name == "IntroC0" || InkJSON.name == "IntroC1" || InkJSON.name == "IntroC2" || InkJSON.name == "IntroC3")
         {
             currentStory.BindExternalFunction("StartChallenge", (string name) => {C.StartChallenge(name); });
@@ -231,60 +289,7 @@ public class GameManager : MonoBehaviour
         if (InkJSON.name == "OutroC0" || InkJSON.name == "OutroC1" || InkJSON.name == "OutroC2A" || InkJSON.name == "OutroC3")
         {
 
-        }
-        if (InkJSON.name == "IntroTM2A" || InkJSON.name == "IntroTM2B" || InkJSON.name == "IntroTM1" || InkJSON.name == "IntroTM3")
-        {
-           currentStory.BindExternalFunction("StartTM", (string name) => { TM.StartTempsMort(name);});
-        }
-        if (InkJSON.name == "RevasserEsthela" || InkJSON.name == "RevasserMorgan" || InkJSON.name == "RevasserNimu")
-        {
-            currentStory.BindExternalFunction("RetourAuTMAfterRevasser", (string name) => { TM.RetourAuTMAfterRevasser(name); });
-            if(TM.actorActif==TM.Morgan)
-            {
-                currentStory.variablesState["IDrevasser"] = RevasserID[0];
-            }
-            else if (TM.actorActif == TM.Esthela)
-            {
-                currentStory.variablesState["IDrevasser"] = RevasserID[1];
-            }
-            else if (TM.actorActif == TM.Nimu)
-            {
-                currentStory.variablesState["IDrevasser"] = RevasserID[2];
-            }
-
-        }
-        if (InkJSON.name == TM.Observage.name)
-        {
-            currentStory.variablesState["IDobserver"] = RespirerID;
-            currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
-        }
-        if (InkJSON.name == "PapoterMorganEsthela" || InkJSON.name == "PapoterMorganNimu" || InkJSON.name == "PapoterNimuEsthela")
-        {
-            currentStory.BindExternalFunction("RetourAuTMAfterPapotage", (string name) => { TM.RetourAuTMAfterPapotage(name); });
-            if (TM.actorActif.name == "Morgan"&&TM.Papote.name=="Esthela")
-            {
-                currentStory.variablesState["IdPapoter"] = PapoterID[0];
-            }
-            else if (TM.actorActif.name =="Morgan" && TM.Papote.name == "Nimu")
-            {
-                currentStory.variablesState["IdPapoter"] = PapoterID[1];
-            }
-            else if (TM.actorActif.name == "Esthela" && TM.Papote.name == "Morgan")
-            {
-                currentStory.variablesState["IdPapoter"] = PapoterID[0];
-            }
-            else if (TM.actorActif.name == "Esthela" && TM.Papote.name == "Nimu")
-            {
-                currentStory.variablesState["IdPapoter"] = PapoterID[2];
-            }
-            else if (TM.actorActif.name == "Nimu" && TM.Papote.name == "Morgan")
-            {
-                currentStory.variablesState["IdPapoter"] = PapoterID[1];
-            }
-            else if (TM.actorActif.name == "Nimu" && TM.Papote.name == "Esthela")
-            {
-                currentStory.variablesState["IdPapoter"] = PapoterID[2];
-            }
+        
         }
         ContinueStory();
     }
