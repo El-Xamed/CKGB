@@ -327,160 +327,214 @@ public class GameManager : MonoBehaviour
                     {
                         case "MorganHautGauche":
                             textToWriteIn.text = "";
-                            
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
-                            if(textToWriteIn.GetComponentInParent<Image>()!=null)
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
+                            if (textToWriteIn.GetComponentInParent<Image>()!=null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }                           
                             textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtHautGauche;
-                            TM.Morgan.GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Morgan").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganHautDroite":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtHautDroite;
-                            TM.Morgan.GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Morgan").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganBasGauche":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtBasGauche;
-                            TM.Morgan.GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Morgan").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
                             break;
                         case "MorganBasDroite":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Morgan.GetComponent<C_Actor>().txtBasDroite;
-                            TM.Morgan.GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Morgan").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
 
                         case "EsthelaHautGauche":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautGauche;
-                            TM.Esthela.GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "EsthelaHautDroite":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautDroite;
-                            TM.Esthela.GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "EsthelaBasGauche":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtBasGauche;
-                            TM.Esthela.GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Esthela").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "EsthelaBasDroite":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtBasDroite;
-                            TM.Esthela.GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Esthela").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
 
                         case "NimuHautGauche":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtHautGauche;
-                            TM.Nimu.GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Nimu").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuHautDroite":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtHautDroite;
-                            TM.Nimu.GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Nimu").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuBasGauche":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtBasGauche;
-                            TM.Nimu.GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Nimu").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "NimuBasDroite":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.Nimu.GetComponent<C_Actor>().txtBasDroite;
-                            TM.Nimu.GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
+                            GameObject.Find("Nimu").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "Narrateur":
                             textToWriteIn.text = "";
-                            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            if (textToWriteIn.transform.GetChild(0) != null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
                             if (textToWriteIn.GetComponentInParent<Image>() != null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             textToWriteIn = TM.naratteurText;
                             TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
+                            Debug.Log(textToWriteIn.name);
+                            //textToWriteIn.text = text;
+                            break;
+                        case "NarrateurC":
+                            textToWriteIn.text = "";
+                            if(textToWriteIn.transform.GetChild(0)!=null)
+                            {
+                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }
+                            
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                            }
+                            textToWriteIn = C.GetuiLogs();
+                            
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
