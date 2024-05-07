@@ -1,5 +1,6 @@
 ->checkID
-
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 === function RetourAuTMAfterRevasser(name)
 EXTERNAL RetourAuTMAfterRevasser(name)
 VAR IDrevasser = 0

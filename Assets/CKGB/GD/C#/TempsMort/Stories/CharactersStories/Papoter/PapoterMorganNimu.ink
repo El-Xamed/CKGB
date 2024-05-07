@@ -17,12 +17,15 @@ VAR IdPapoter = 0
 ->END
 }
 ===Papoter0===
- …#Bulle:NimuBasDroite
+
+…#Bulle:NimuBasDroite
+~ Trigger("name")
 Tu te ronges les ongles. <br>Le bout de tes doigts te brûle #Bulle:Narrateur
 Ta grand mère commences à fredonner une chanson #Bulle:Narrateur
- …"#Bulle:MorganHautGauche #emot:Dots
+…#Bulle:MorganHautGauche #emot:Dots
 <wave>Alors...</wave>#Bulle:NimuBasDroite
 Pas trop nerveux ?#Bulle:NimuBasDroite
+~ Trigger("name")
 Hm ?#Bulle:MorganHautGauche #emot:!
 …‘Nah.#Bulle:MorganHautGauche
 Bah tu vas dead ça alors.#Bulle:NimuBasDroite

@@ -1,4 +1,6 @@
 -> checkID
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 
 === function RetourAuTMAfterPapotage(name)
 EXTERNAL RetourAuTMAfterPapotage(name)
