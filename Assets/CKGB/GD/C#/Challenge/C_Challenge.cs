@@ -1402,6 +1402,9 @@ public class C_Challenge : MonoBehaviour
     //Fin du challenge.
     public void EndChallenge()
     {
+        GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+
+        return;
         if (canGoNext)
         {
             foreach (C_Actor thisActor in myTeam)
@@ -1433,6 +1436,11 @@ public class C_Challenge : MonoBehaviour
         uiVictoire.SetActive(true);
 
         Debug.Log("Fin du challenge");
+    }
+
+    public void FinishChallenge(string name)
+    {
+
     }
     #endregion
 
