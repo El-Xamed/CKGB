@@ -163,8 +163,17 @@ public class C_Challenge : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.C = this;
+
         uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
         uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
+        //Apparition des cases
+        SpawnCases();
+
+        //Place les acteurs sur les cases.
+        InitialiseAllPosition();
+
         foreach (var item in myTeam)
         {
             item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
@@ -177,12 +186,6 @@ public class C_Challenge : MonoBehaviour
             item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
             item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
         }
-
-        //Apparition des cases
-        SpawnCases();
-
-        //Place les acteurs sur les cases.
-        InitialiseAllPosition();
 
         GameManager.instance.textToWriteIn = uiLogs;
         GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);

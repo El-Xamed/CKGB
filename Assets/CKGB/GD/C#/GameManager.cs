@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public C_TempsLibre TM;
     public C_Worldmap W;
-     C_Challenge C;
+    public C_Challenge C;
     #endregion
     #region MenuPauseOptions
     [SerializeField] public GameObject pauseBackground;
@@ -539,6 +539,7 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            
                             textToWriteIn = C.GetuiLogs();
                             
                             Debug.Log(textToWriteIn.name);
