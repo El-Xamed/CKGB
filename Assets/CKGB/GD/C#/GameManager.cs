@@ -529,19 +529,20 @@ public class GameManager : MonoBehaviour
                             //textToWriteIn.text = text;
                             break;
                         case "NarrateurC":
+                            //
                             textToWriteIn.text = "";
+
+                            //
                             if(textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             }
-                            
-                            if (textToWriteIn.GetComponentInParent<Image>() != null)
-                            {
-                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
-                            }
-                            
+
+                            //Pour faire apparaitre le fond de texte.
+
+                            //Pour préciser la zone de texte.
                             textToWriteIn = C.GetuiLogs();
-                            
+
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;

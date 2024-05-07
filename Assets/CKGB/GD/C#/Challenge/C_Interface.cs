@@ -36,10 +36,13 @@ public class C_Interface : MonoBehaviour
 
     private void Start()
     {
+        /*INUTILE SUREMENT
         if (!GameManager.instance.isDialoguing)
         {
             currentInterface = Interface.None;
-        }
+        }*/
+
+        currentInterface = Interface.None;
     }
 
     #region Racourcis

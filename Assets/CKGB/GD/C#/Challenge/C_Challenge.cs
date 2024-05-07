@@ -163,13 +163,28 @@ public class C_Challenge : MonoBehaviour
 
     private void Start()
     {
+        startGame.gameObject.SetActive(false);
+
+        StartIntroChallenge();
+    }
+
+    void StartIntroChallenge()
+    {
+        //Pour renseigner le challenge dans le GameManager.
         GameManager.instance.C = this;
 
+        //Ajoute les fonction pour permettre la navigation dans les dialogues.
         uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
         uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
+        //Set les element en plus.
+        SpawnElement();
+
         //Apparition des cases
         SpawnCases();
+
+        //Cache toute l'Ui pour les dialogue.
+        ShowUiChallenge(false);
 
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
@@ -193,6 +208,11 @@ public class C_Challenge : MonoBehaviour
 
     public void StartChallenge(string name)
     {
+        //Pour afficher l'Ui.
+        ShowUiChallenge(true);
+
+        myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
+
         GameManager.instance.ExitDialogueMode();
 
         #region Initialisation
@@ -207,30 +227,6 @@ public class C_Challenge : MonoBehaviour
 
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
-
-        //Set les element en plus. ICI UN GAMEOBJECT SPAWN AU PIFF SANS NOM
-        if (myChallenge.element.Count != 0)
-        {
-            foreach (var thisElement in myChallenge.element)
-            {
-
-                GameObject newUI = new GameObject();
-
-                newUI.transform.parent = GameObject.Find("Element").transform;
-
-                newUI.name = thisElement.name;
-
-                newUI.AddComponent<Image>();
-
-                newUI.GetComponent<Image>().sprite = thisElement;
-
-                newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
-
-                newUI.GetComponent<RectTransform>().position = GameObject.Find("Element").transform.position;
-
-                newUI.GetComponent<RectTransform>().localScale = Vector3.one;
-            }
-        }
 
         #region Instance des data challenge.
         //Instancie le challenge
@@ -286,7 +282,55 @@ public class C_Challenge : MonoBehaviour
 
     #region Mes fonctions
 
+    #region Dialogue
+    void ShowUiChallenge(bool active)
+    {
+        Debug.Log("UI : " + active);
+        //Pour l'énoncé.
+        uiEtape.SetActive(active);
+
+        //Pour l'Ui des actor.
+        uiStats.SetActive(active);
+
+        //Pour l'interface.
+        myInterface.gameObject.SetActive(active);
+
+        //Pour le plateau.
+        foreach (C_Case thisCase in plateau)
+        {
+            thisCase.gameObject.SetActive(active);
+        }
+    }
+    #endregion
+
     #region Début de partie
+    void SpawnElement()
+    {
+        //Set les element en plus.
+        if (myChallenge.element.Count != 0)
+        {
+            foreach (var thisElement in myChallenge.element)
+            {
+
+                GameObject newUI = new GameObject();
+
+                newUI.transform.parent = GameObject.Find("Element").transform;
+
+                newUI.name = thisElement.name;
+
+                newUI.AddComponent<Image>();
+
+                newUI.GetComponent<Image>().sprite = thisElement;
+
+                newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
+
+                newUI.GetComponent<RectTransform>().position = GameObject.Find("Element").transform.position;
+
+                newUI.GetComponent<RectTransform>().localScale = Vector3.one;
+            }
+        }
+    }
+
     void SpawnCases()
     {
         //Spawn toutes les cases.
