@@ -4,7 +4,7 @@
 EXTERNAL StartChallenge(name)
 
 ===Outro===
-“Bon, suffit les bêtises !”#Bulle:MorganHautGauche
+Bon, suffit les bêtises !#Bulle:MorganHautGauche
 
 //[écran du combat sans le Coolkid, problablement après une transition noir et un bruit]
 
