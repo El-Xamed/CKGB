@@ -629,9 +629,17 @@ public class GameManager : MonoBehaviour
 
     public void ExitDialogueMode()
     {
-        TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
+        if (TM != null)
+        {
+            TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
+        }
+        
         textToWriteIn.text = "";
-        textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+        if (textToWriteIn.transform.childCount == 1)
+        {
+            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        
         isDialoguing = false;
         if (textToWriteIn.GetComponentInParent<Image>() != null)
         {
