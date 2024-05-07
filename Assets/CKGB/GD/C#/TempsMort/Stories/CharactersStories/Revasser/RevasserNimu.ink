@@ -1,5 +1,6 @@
 ->checkID
-
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 === function RetourAuTMAfterRevasser(name)
 EXTERNAL RetourAuTMAfterRevasser(name)
 VAR IDrevasser = 0
@@ -13,29 +14,31 @@ VAR IDrevasser = 0
 ===Revasser0===
 
 //blabla
-
-Tu prends un moment pour fermer les yeux.#Bulle:NimuHautDroite
-C’est quelque chose que tu fais de plus en plus souvent. #Bulle:NimuHautDroite
-Tu ne ressens plus vraiment le besoin de bouger. #Bulle:NimuHautDroite
-Est-ce que c’est un signe ?#Bulle:NimuHautDroite
-Être là ou tu es te suffit.#Bulle:NimuHautDroite
-Depuis plusieurs années tu te sens… Accomplie.#Bulle:NimuHautDroite
+Tu prends un moment pour fermer les yeux.#Bulle:Narrateur
+C’est quelque chose que tu fais de plus en plus souvent. #Bulle:Narrateur
+Tu ne ressens plus vraiment le besoin de bouger. #Bulle:Narrateur
+Est-ce que c’est un signe ?#Bulle:Narrateur
+Être là ou tu es te suffit.#Bulle:Narrateur
+Depuis plusieurs années tu te sens… Accomplie.#Bulle:Narrateur
 Fière. 
-Ton ptit gars à pas toujours les idées bien alignées, #Bulle:NimuHautDroite
-mais il est sur la bonne voie.#Bulle:NimuHautDroite
-Ses adelphes et ses cousins sont pas pires.#Bulle:NimuHautDroite
-Tu as vraiment fais un bon travail.#Bulle:NimuHautDroite
-Enfin, pas que tu aies grands choses à voir avec le faits qu’ils soient géniaux.#Bulle:NimuHautDroite
-Il se débrouille très bien tout seul pour ça.#Bulle:NimuHautDroite
-A chaque fois que tu pense à eux, il y a une image qui te reviens.#Bulle:NimuHautDroite
-Le visage de leur mère et ses frères quand tu les as vue la première fois.#Bulle:NimuHautDroite
 
-Tu n’as pas choisit de devenir mère.#Bulle:NimuHautDroite
-Il y avait juste des enfants sur une banquette de camionnette, avec des yeux grand comme ceux d’un matou.#Bulle:NimuHautDroite
+<i>(Bon, mon ptit gars à pas toujours les idées bien alignées,)</i>#Bulle:NimuHautGauche
+<i>(mais il est sur la bonne voie.)</i>#Bulle:NimuHautGauche
+<i>(Ses adelphes et ses cousins sont pas pires.)</i>#Bulle:NimuHautGauche
+
+Tu as vraiment fais un bon travail.#Bulle:Narrateur
+
+<i>(Enfin, pas que jai grands choses à voir avec le fait qu’ils soient géniaux.)</i>#Bulle:NimuHautDroite
+<i>(Ils se débrouille très bien tout seul pour ça.)</i>#Bulle:NimuHautDroite
+A chaque fois que tu pense à eux, il y a une image qui te reviens.#Bulle:Narrateur
+Le visage de leur mère et ses frères quand tu les as vue la première fois.#Bulle:Narrateur
+Tu n’as pas choisit de devenir mère.#Bulle:Narrateur
+Il y avait juste des enfants avec des yeux grand comme ceux d’un matou.#Bulle:Narrateur
 Et ta détermination,#Bulle:NimuHautDroite
-alors que tu t’es jurée qu’ils ne grandiraient pas orphelin.#Bulle:NimuHautDroite
-Ouai.#Bulle:NimuHautDroite
-Tu as vraiment fais un bon travail. #Bulle:NimuHautDroite
+alors que tu t’es jurée qu’ils ne grandiraient pas orphelins.#Bulle:NimuHautDroite
+
+<i>(Ouai.)</i>#Bulle:NimuHautDroite
+<i>(J'ai vraiment fais un bon travail.)</i> #Bulle:NimuHautDroite
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE

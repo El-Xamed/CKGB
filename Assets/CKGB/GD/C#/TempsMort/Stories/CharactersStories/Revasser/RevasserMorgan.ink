@@ -23,7 +23,7 @@ Tu as besoin de temps. Pour digérer tes pensées. Pour te préparer.#Bulle:Narr
 Tu fais quelques pas à l’écart, tes yeux rivés vers le ciel. #Bulle:Narrateur
 
 Ta main vient caresser le carnet de poésie logé dans ta poche. Tu souris. Tu le trimballe toujours avec toi.#Bulle:Narrateur
-Tu t’assois par terre et commence à mâchouiller ton stylo.#Bulle:Narrateur
+Tu sors ton stylo et commence à le mâchouiller.#Bulle:Narrateur
 En général, écrire t’aide à faire la paix avec tes émotions.#Bulle:Narrateur
 Des gens ont déjà essayé de te guider vers la méditation ou l’exercice physique pour réussir à te sortir de ta tête.#Bulle:Narrateur
 Mais rien n’a jamais aussi bien marché que l’art-thérapie.#Bulle:Narrateur
@@ -33,27 +33,32 @@ Tu te sens d’humeur haïku aujourd’hui.#Bulle:Narrateur
 
 Depuis quelques semaines, c’est devenu ta marotte.#Bulle:Narrateur
 
-5, 7, 5. #Bulle:Narrateur
+<i>(5, 7, 5.)</i> #Bulle:MorganHautGauche 
 La structure simple et stable des syllabes t’apporte du réconfort.#Bulle:Narrateur
-5, 7, 5, #Bulle:Narrateur
+<i>(5, 7, 5,)</i> #Bulle:MorganHautGauche 
 comme les secondes que tu compte pour mesurer tes respirations.#Bulle:Narrateur
 Tu te débarasse des rhymes.#Bulle:Narrateur
 Tu cherche quelque choses qui frappe sans avoir recours à de la phonétique aussi simple.#Bulle:Narrateur
-5, 7, 5, #Bulle:MorganHautGauche
+<i>(5, 7, 5,)</i> #Bulle:MorganHautGauche
 Tu pense aux évènements de ce matin. A comment tu t’es réveillé à 4 heure. #Bulle:Narrateur
 . Tes ongles brûlent encore, rongés nerveusement, les yeux enfoncé dans les planches plafond.#Bulle:Narrateur
-5, Pupilles fixes, 7, Insomnie amoureuse, 5, Jour fébrile.#Bulle:Narrateur
-Hm.#Bulle:Narrateur
-Peut mieux faire.#Bulle:Narrateur
+<i>(5)</i>,#Bulle:MorganHautGauche
+Pupilles fixes,#Bulle:Narrateur
+<i>(7,)</i> #Bulle:MorganHautGauche
+Insomnie amoureuse,#Bulle:Narrateur
+<i>(5,)</i>, #Bulle:MorganHautGauche
+Jour fébrile.#Bulle:Narrateur
 
-Ton stylo griffe le papier quelques minutes. La réalité glisse autour de toi.#Bulle:MorganHautGauche
-Quand, au bout d’un moment, tu te relève pour rejoindre les autres, tu as un peu oublié ce qui te rendais inquiet. #Bulle:MorganHautGauche
+<i>(Hm.)</i>#Bulle:MorganHautGauche
+<i>(Peut mieux faire.)</i>#Bulle:MorganHautGauche
+
+~ Trigger("name")
+Ton stylo griffe le papier quelques minutes. La réalité glisse autour de toi.#Bulle:Narrateur
+Quand, au bout d’un moment, tu te relève pour rejoindre les autres, tu as un peu oublié ce qui te rendais inquiet. #Bulle:Narrateur
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
 ===Revasser1===
-
-//blabla
 
 Tes yeux cligne.#Bulle:MorganBasGauche
 Dans cet instant de relâche, tu prends conscience de la tension de tes muscles. #Bulle:MorganBasGauche
