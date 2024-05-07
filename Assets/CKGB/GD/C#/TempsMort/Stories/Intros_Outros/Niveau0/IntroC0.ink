@@ -26,7 +26,7 @@ Allez, 3<bounce> …</bounce>#Bulle:MorganHautGauche
 
 2<bounce> …</bounce>#Bulle:MorganHautGauche
 
-<incr>BRUIT DE CARILLON</incr>. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:Narrateur
+<incr>BRUIT DE CARILLON</incr>. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:NarrateurC
 
 <bounce> u sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:NarrateurC
 
