@@ -28,7 +28,7 @@ public class C_Actor : C_Pion
 
     //Character.
     [SerializeField] Image character;
-    [SerializeField] Image chains;
+    [SerializeField] GameObject chains;
     [SerializeField] Image ombre;
     [SerializeField]public GameObject sweats;
 
