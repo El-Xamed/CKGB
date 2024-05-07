@@ -288,8 +288,8 @@ public class GameManager : MonoBehaviour
         }
         if (InkJSON.name == "OutroC0" || InkJSON.name == "OutroC1" || InkJSON.name == "OutroC2A" || InkJSON.name == "OutroC3")
         {
+            currentStory.BindExternalFunction("FinishChallenge", (string name) => { C.FinishChallenge(name); });
 
-        
         }
         ContinueStory();
     }
