@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public C_TempsLibre TM;
     public C_Worldmap W;
+     C_Challenge C;
     #endregion
     #region MenuPauseOptions
     [SerializeField] public GameObject pauseBackground;
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject recommencerButton;
     [SerializeField] public Toggle baseToggle;
     [SerializeField] public GameObject reprendre;
+
+    
 
     #endregion
 
@@ -100,6 +103,10 @@ public class GameManager : MonoBehaviour
         if (FindObjectOfType<C_TempsLibre>() != null)
         {
             TM = FindObjectOfType<C_TempsLibre>();
+        }
+        if (FindObjectOfType<C_Challenge>() != null)
+        {
+            C = FindObjectOfType<C_Challenge>();
         }
         SetUpTeam();
     }
@@ -217,6 +224,14 @@ public class GameManager : MonoBehaviour
         {
             currentStory.BindExternalFunction("StartChallenge", (string name) => { TM.GoChallenge(name); });
         }
+        if (InkJSON.name == "IntroC0" || InkJSON.name == "IntroC1" || InkJSON.name == "IntroC2" || InkJSON.name == "IntroC3")
+        {
+            currentStory.BindExternalFunction("StartChallenge", (string name) => {StartChallenge(name); });
+        }
+        if (InkJSON.name == "OutroC0" || InkJSON.name == "OutroC1" || InkJSON.name == "OutroC2A" || InkJSON.name == "OutroC3")
+        {
+
+        }
         if (InkJSON.name == "IntroTM2A" || InkJSON.name == "IntroTM2B" || InkJSON.name == "IntroTM1" || InkJSON.name == "IntroTM3")
         {
            currentStory.BindExternalFunction("StartTM", (string name) => { TM.StartTempsMort(name);});
@@ -312,6 +327,7 @@ public class GameManager : MonoBehaviour
                     {
                         case "MorganHautGauche":
                             textToWriteIn.text = "";
+                            
                             textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
                             if(textToWriteIn.GetComponentInParent<Image>()!=null)
                             {

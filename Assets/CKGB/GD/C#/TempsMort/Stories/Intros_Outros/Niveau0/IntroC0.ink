@@ -1,6 +1,6 @@
 ->Intro
-=== function StartTM(name)
-EXTERNAL StartTM(name)
+=== function StartChallenge(name)
+EXTERNAL StartChallenge(name)
 
 ===Intro===
 <size=60%>…Okay.</size=60%>#Bulle:MorganHautGauche
@@ -45,5 +45,5 @@ Allez.#Bulle:MorganHautGauche
 
 Va falloir bouger mon popotin si je veux vraiment arriver à l’heure.#Bulle:MorganHautGauche
 
-//[C0 begins] (inserer le START quelquechose)
+~ StartChallenge("name")
 ->END
