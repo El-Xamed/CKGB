@@ -97,7 +97,7 @@ public class C_Interface : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>();
 
-            //Pour selectionner ses actions.
+            //Pour passer au dialogue suivant.
             if (currentInterface == Interface.None)
             {
                 if (input.y < 0)

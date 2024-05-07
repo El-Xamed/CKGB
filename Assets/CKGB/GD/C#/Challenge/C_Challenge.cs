@@ -1477,4 +1477,9 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
     #endregion
+
+    public TMP_Text GetuiLogs()
+    {
+        return uiLogs;
+    }
 }
