@@ -166,6 +166,12 @@ public class C_Challenge : MonoBehaviour
         uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
         uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
+        //Apparition des cases
+        SpawnCases();
+
+        //Place les acteurs sur les cases.
+        InitialiseAllPosition();
+
         GameManager.instance.textToWriteIn = uiLogs;
         GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
     }
@@ -236,12 +242,6 @@ public class C_Challenge : MonoBehaviour
             myChallenge.listEtape[i].actions.Add(SO_ActionClass.Instantiate(Resources.Load<SO_ActionClass>("Attendre")));
         }
         #endregion
-
-        //Apparition des cases
-        SpawnCases();
-
-        //Place les acteurs sur les cases.
-        InitialiseAllPosition();
 
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
