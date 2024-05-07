@@ -28,15 +28,15 @@ Allez, 3<bounce> …</bounce>#Bulle:MorganHautGauche
 
 <incr>BRUIT DE CARILLON</incr>. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:NarrateurC
 
-<bounce> u sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:NarrateurC
+<bounce> Tu sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:NarrateurC
 
 //[Écran du C0 sans l’UI. La caméra est au dessus du Coolkid, dans une position d’attente dans son lit.][Musique commence) #Bulle:NarrateurC
 
 <bounce>…</bounce> #Bulle:MorganHautGauche
 
 9H. #Bulle:NarrateurC
-Comme tu l’avais programmé la semaine dernière. C’est la première chose que tu as faites après avoir confirmé ton <rainb>rencard</rainb> .#Bulle:NarrateurC
-Tu es habitué à avoir de <shake a=0.5>l’anxiété</shake a=0.5>, mais même à ton échelle, tu dois te l’admettre :#Bulle:NarrateurC
+Comme tu l’avais programmé la semaine dernière. C’est la première chose que tu as faites après avoir confirmé ton <rainb>rencard</rainb>.#Bulle:NarrateurC
+Tu es habitué à avoir de <shake a=0.5>l’anxiété</shake>, mais même à ton échelle, tu dois te l’admettre :#Bulle:NarrateurC
 Tu es devenu <i>un peu<i> fou ces derniers jours.#Bulle:NarrateurC
 
 <bounce> …</bounce>#Bulle:MorganHautGauche
