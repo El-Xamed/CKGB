@@ -36,10 +36,13 @@ Tu es prêt.e à repartir. #Bulle:Narrateur
 
 //blabla
 
+~ Trigger("name")
 Nerveusement, presque comme un automatisme, tu entretient les plantes devant lesquelles tu passes.#Bulle:Narrateur
 Un coup d’arrosoirs ici, retirer des galets là,#Bulle:Narrateur
+~ Trigger("name")
 arracher quelques pousses qui risquent de gêner les autres. #Bulle:Narrateur
 C’est un travail sans fin. #Bulle:Narrateur
+~ Trigger("name")
 Tes yeux se lève vers le ciel alors qu’une ombre fend les buissons.#Bulle:Narrateur
 Elle se pose sur un arbre. Une pie des sables. #Bulle:Narrateur
 Ses serres s’agrippe à une branche. Ta nuque conteste le mouvement que tu lui demande pour garder l’oiseau sous les yeux.#Bulle:Narrateur
@@ -50,12 +53,13 @@ Malgré un climat théoriquement de plus en plus favorable à sa prospérité, l
 Ces problèmes ont étés réglés par la soudaine pénuries d’humain #Bulle:Narrateur
 et abondance de nature provoqué par la singularité. #Bulle:Narrateur
 
+~ Trigger("name")
 On ne peut pas se réjouir de catastrophes naturelles qui ont mis fins aux jours de milliards de personnes.#Bulle:Narrateur
 Mais en voyant la manière dont la pie des sables bouge sa tête par à-coups#Bulle:Narrateur
 et abrite ses petits sous son aile,#Bulle:Narrateur
 tu ne peux t’empêcher de penser que,#Bulle:Narrateur
 peut-être,#Bulle:Narrateur
-le bilan n’est pas que négatif.#Bulle:Narrateur
+de belles choses en sont aussi nées.#Bulle:Narrateur
 ~ IDobserver++
 ~ RetourAuTMAfterRespirer("")
 ->DONE
