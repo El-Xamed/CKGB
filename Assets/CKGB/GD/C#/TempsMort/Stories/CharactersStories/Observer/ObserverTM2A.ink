@@ -1,5 +1,6 @@
 ->checkID
-
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 === function RetourAuTMAfterRespirer(name)
 EXTERNAL RetourAuTMAfterRespirer(name)
 VAR IDobserver = 0
@@ -11,18 +12,20 @@ VAR IDobserver = 0
 - else: ->END
 }
 ===observer0===
-
-//blabla
+~ Trigger("name")
 
 Tu t’écarte un peu du groupe pour absorber le décors.#Bulle:Narrateur
+~ Trigger("name")
 Dans tes oreilles coulent les roulis des rivières et les gazouillis des oiseaux.#Bulle:Narrateur
 Ce sont des sons que tu entends presque tous les jours.#Bulle:Narrateur
 Étrangement, ils ne cessent jamais de te faire sourire pour autant.#Bulle:Narrateur
+~ Trigger("name")
 Il y a quelque chose de simple,#Bulle:Narrateur
 d’instinctif dans le fait de te tenir ici,#Bulle:Narrateur
 le visage constellé par les rayons de soleil qui s’infiltre au travers de la canopé.#Bulle:Narrateur
 
 Tu prends une grande respiration,#Bulle:Narrateur
+~ Trigger("name")
 et tu croque dans une tomate que tu as arraché de son pied. #Bulle:Narrateur
 Tu t’es un peu taché avec le jus, mais ça en valait la peine. #Bulle:Narrateur
 Tu es prêt.e à repartir. #Bulle:Narrateur

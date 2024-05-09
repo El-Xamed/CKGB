@@ -25,10 +25,13 @@ MonoBehaviour:
   - position: {x: -575, y: -632, z: 0}
     perso: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
   - position: {x: -395, y: -672, z: 0}
-    perso: {fileID: 3561831080530771210, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
-  - position: {x: 418, y: -30, z: 0}
     perso: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
-  defautpos: []
+  - position: {x: 418, y: -30, z: 0}
+    perso: {fileID: 3561831080530771210, guid: 9a62680e450367e46a551a8e716bcd32, type: 3}
+  defautpos:
+  - {x: 301, y: 129, z: 0}
+  - {x: -581, y: -226, z: 0}
+  - {x: 432, y: 77, z: 0}
   introAnimPatern: {fileID: 9100000, guid: c8da4c6df10174d44a40b7bf15f49944, type: 2}
   outroAnimPatern: {fileID: 9100000, guid: 0432e325fcb4f0dfda6e896da31375ae, type: 2}
   observageAnimPatern: {fileID: 9100000, guid: 7e451f99a4842ee4a9c279cf7ed97fc0, type: 2}
