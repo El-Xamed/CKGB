@@ -170,6 +170,9 @@ public class C_Challenge : MonoBehaviour
 
     void StartIntroChallenge()
     {
+        //Set le background
+        background.GetComponent<Image>().sprite = myChallenge.background;
+
         //Vérifie si il y a un GameManager
         if (GameManager.instance)
         {
@@ -188,11 +191,11 @@ public class C_Challenge : MonoBehaviour
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
-        Debug.Log(myChallenge.introChallenge);
-
         //Vérifie si il y a du dialogue.
-        if (myChallenge.introChallenge != null)
+        if (myChallenge.introChallenge)
         {
+            Debug.Log(myChallenge.introChallenge);
+
             //Ajoute les fonction pour permettre la navigation dans les dialogues.
             uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
             uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
@@ -236,9 +239,6 @@ public class C_Challenge : MonoBehaviour
 
         //Transition
         C_Transition.instance.OpenTransFlannel();
-
-        //Set le background
-        background.GetComponent<Image>().sprite = myChallenge.background;
 
         #region Instance des data challenge.
         //Instancie le challenge
