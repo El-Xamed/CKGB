@@ -594,14 +594,21 @@ public class C_TempsLibre : MonoBehaviour
         {
             SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
         }
-        for (int y = 0;y<characters.Count;y++)
+        /*switch (TM.name)
         {
-            if (actorActif == characters[y])
-            {
-                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
-            }
-        }
+            case "SO_TempsMort1":
+                SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                break;
+            case "SO_TempsMort2A":
+                SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                break;
+            case "SO_TempsMort3":
+                SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                break;
+
+        }*/
         string tl = GameManager.instance.currentTM.TLname;
+        Debug.Log(tl);
         SpawnParent.GetComponent<Animator>().SetTrigger(tl);
        
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");

@@ -42,7 +42,7 @@ public class C_destination : MonoBehaviour
     #endregion
     public void Start()
     {
-        leveltextprovenance.text = UiLevelName.text;
+        leveltextprovenance.text = leveltext;
         levelUI.GetComponent<levelUI>().leveltext.text = "???";
     }
     public string sceneGet()

@@ -25206,6 +25206,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: leveltextprovenance
+      value: 
+      objectReference: {fileID: 933880314}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: rightPath.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -35415,6 +35419,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: leveltextprovenance
+      value: 
+      objectReference: {fileID: 943783629}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: downPath.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -40344,6 +40352,17 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &933880314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6449292602187934606, guid: e2e14c96613d99d4fb24700a1dd38a84, type: 3}
+  m_PrefabInstance: {fileID: 2147176397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &938239104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40410,6 +40429,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7785787516576098935, guid: 9815121384584be4d8b7b7662376c9bc, type: 3}
   m_PrefabInstance: {fileID: 938239104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &943783629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6449292602187934606, guid: e2e14c96613d99d4fb24700a1dd38a84, type: 3}
+  m_PrefabInstance: {fileID: 2105896079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969094562
 GameObject:
   m_ObjectHideFlags: 0
@@ -55323,6 +55353,17 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1229258645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6449292602187934606, guid: e2e14c96613d99d4fb24700a1dd38a84, type: 3}
+  m_PrefabInstance: {fileID: 6204398831011526750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1324028208
 GameObject:
   m_ObjectHideFlags: 0
@@ -75097,6 +75138,10 @@ PrefabInstance:
       propertyPath: upPath.Array.size
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
+      propertyPath: leveltextprovenance
+      value: 
+      objectReference: {fileID: 1229258645}
     - target: {fileID: 7245227357856813141, guid: 4fa3dfa2dd05543468ea98ac70fbed43, type: 3}
       propertyPath: rightPath.Array.size
       value: 7
