@@ -170,12 +170,14 @@ public class C_Challenge : MonoBehaviour
 
     void StartIntroChallenge()
     {
-        //Pour renseigner le challenge dans le GameManager.
-        GameManager.instance.C = this;
+        //Vérifie si il y a un GameManager
+        if (GameManager.instance)
+        {
+            //Pour renseigner le challenge dans le GameManager.
+            GameManager.instance.C = this;
 
-        //Ajoute les fonction pour permettre la navigation dans les dialogues.
-        uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-        uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            GameManager.instance.textToWriteIn = uiLogs;
+        }
 
         //Set les element en plus.
         SpawnElement();
@@ -183,27 +185,37 @@ public class C_Challenge : MonoBehaviour
         //Apparition des cases
         SpawnCases();
 
-        //Cache toute l'Ui pour les dialogue.
-        ShowUiChallenge(false);
-
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
-        foreach (var item in myTeam)
+        Debug.Log(myChallenge.introChallenge);
+
+        //Vérifie si il y a du dialogue.
+        if (myChallenge.introChallenge != null)
         {
-            item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            //Ajoute les fonction pour permettre la navigation dans les dialogues.
+            uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
-            item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
+            foreach (var item in myTeam)
+            {
+                item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
+                item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            }
+
+            //Cache toute l'Ui pour les dialogue.
+            ShowUiChallenge(false);
+
+            GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
         }
-
-        GameManager.instance.textToWriteIn = uiLogs;
-        GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
     }
 
     public void StartChallenge(string name)
@@ -689,22 +701,14 @@ public class C_Challenge : MonoBehaviour
                     if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
                     {
                         //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
-                        C_PreviewAction.onPreview += TextPreview;
+                        //C_PreviewAction.onPreview += TextPreview;
                     }
 
                     if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
                         Debug.Log(thisActionClass.name + " : " + thisTargetStats.whatStatsTarget);
                         //Inscrit la preview de movement. (C_Challenge)
-                        C_PreviewAction.onPreview += MovementPreview;
-                    }
-                    else
-                    {
-                        //Supprime toutes les preview.
-                        foreach (Image thisPreview in plateauPreview)
-                        {
-                            Destroy(thisPreview.gameObject);
-                        }
+                        //C_PreviewAction.onPreview += MovementPreview;
                     }
                 }
             }
@@ -1446,9 +1450,20 @@ public class C_Challenge : MonoBehaviour
     //Fin du challenge.
     public void EndChallenge()
     {
-        GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+        //Check si il y a un outro de challenge.
+        if (myChallenge.outroChallenge)
+        {
+            GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+        }
+        else
+        {
+            Debug.Log("Pas d'outro de challenge");
+            FinishChallenge(null);
+        }
+    }
 
-        return;
+    public void FinishChallenge(string name)
+    {
         if (canGoNext)
         {
             foreach (C_Actor thisActor in myTeam)
@@ -1470,7 +1485,7 @@ public class C_Challenge : MonoBehaviour
             {
                 SceneManager.LoadScene("S_WorldMap");
             }
-              
+
         }
         else
         {
@@ -1480,11 +1495,6 @@ public class C_Challenge : MonoBehaviour
         uiVictoire.SetActive(true);
 
         Debug.Log("Fin du challenge");
-    }
-
-    public void FinishChallenge(string name)
-    {
-
     }
     #endregion
 

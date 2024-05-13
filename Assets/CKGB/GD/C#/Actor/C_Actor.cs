@@ -36,8 +36,8 @@ public class C_Actor : C_Pion
     //Animation Stats
     [SerializeField] Animator sfxAnimator;
     [SerializeField] Image currentStats;
-    [SerializeField] Sprite sfxWaveCalm;
-    [SerializeField] Sprite sfxWaveEnergy;
+    [SerializeField] Sprite vfxWaveCalm;
+    [SerializeField] Sprite vfxWaveEnergy;
 
     #endregion
 
@@ -173,24 +173,52 @@ public class C_Actor : C_Pion
             //Change la valeur de calm
             currentStress += value;
 
-            currentStats.sprite = sfxWaveCalm;
+            if (vfxWaveCalm)
+            {
+                currentStats.sprite = vfxWaveCalm;
+            }
+            else
+            {
+                Debug.LogWarning("Pas de vfx de Wave calm !");
+            }
         }
         else if (onWhatStats == TargetStats_NewInspector.ETypeStats.Energy)
         {
             //Change la valeur d'energie.
             currentEnergy += value;
 
-            currentStats.sprite = sfxWaveEnergy;
+            if (vfxWaveEnergy)
+            {
+                currentStats.sprite = vfxWaveEnergy;
+            }
+            else
+            {
+                Debug.LogWarning("Pas de vfx de Wave energy !");
+            }
         }
 
         //Lance l'animation du sfx.
         if (value < 0)
         {
-            sfxAnimator.SetTrigger("statsDown");
+            if (sfxAnimator)
+            {
+                sfxAnimator.SetTrigger("statsDown");
+            }
+            else
+            {
+                Debug.LogWarning("Pas d'animator pour les vfx de Wave !");
+            }
         }
         else if (value > 0)
         {
-            sfxAnimator.SetTrigger("statsUp");
+            if (sfxAnimator)
+            {
+                sfxAnimator.SetTrigger("statsUp");
+            }
+            else
+            {
+                Debug.LogWarning("Pas d'animator pour les vfx de Wave !");
+            }
         }
         
 
