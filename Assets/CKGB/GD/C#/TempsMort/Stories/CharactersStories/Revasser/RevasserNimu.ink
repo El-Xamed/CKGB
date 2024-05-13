@@ -1,4 +1,6 @@
 ->checkID
+=== function StartTM(name)
+EXTERNAL StartTM(name)
 === function Trigger(name)
 EXTERNAL Trigger(name)
 === function RetourAuTMAfterRevasser(name)

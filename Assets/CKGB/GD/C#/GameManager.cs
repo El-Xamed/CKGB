@@ -237,11 +237,11 @@ public class GameManager : MonoBehaviour
                 {
                     currentStory.variablesState["IDrevasser"] = RevasserID[0];
                 }
-                else if (TM.actorActif == TM.Esthela)
+                else if (TM.actorActif == TM.Nimu)
                 {
                     currentStory.variablesState["IDrevasser"] = RevasserID[1];
                 }
-                else if (TM.actorActif == TM.Nimu)
+                else if (TM.actorActif == TM.Esthela)
                 {
                     currentStory.variablesState["IDrevasser"] = RevasserID[2];
                 }
