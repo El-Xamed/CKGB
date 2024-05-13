@@ -106,7 +106,21 @@ public class C_MainMenu : MonoBehaviour
 
 
     }
+    public void updateCurrentButton()
+    {
+        //currentButton.GetComponent<Animator>().SetTrigger("unselected");
+        currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
+       // currentButton.GetComponent<Animator>().SetTrigger("Selected");
+    }
+    public void Naviguate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
 
+        if (context.performed)
+        {
+            updateCurrentButton();
+        }
+    }
 
     public void OpenCredits()
     {
@@ -123,7 +137,7 @@ public class C_MainMenu : MonoBehaviour
     {
         
     }
-    public void Naviguate(InputAction.CallbackContext context)
+    /*public void Naviguate(InputAction.CallbackContext context)
     {
         
         if (!context.performed) { return; }
@@ -142,5 +156,5 @@ public class C_MainMenu : MonoBehaviour
         else if (!context.canceled) { caMarche = true; return; }
         
         
-    }
+    }*/
 }
