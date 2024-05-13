@@ -75,31 +75,38 @@ public class C_Worldmap : MonoBehaviour
 
         startPoint = allMapPoints[GameManager.instance.WorldstartPoint];
         currentPoint = startPoint;
+        
+     
             transform.position = currentPoint.transform.position;
         switch (currentPoint.name)
         {
             case "lvl1":
-                currentPoint.IsDone = true;currentPoint.Islocked = true;
+                currentPoint.IsDone = true;//currentPoint.Islocked = true;
                 
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
                 currentPoint.up.GetComponent<C_destination>().Islocked = false;
-                currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+               
                 break;
             case "lvl2":
-                currentPoint.IsDone = true; currentPoint.Islocked = true;
-
+                currentPoint.IsDone = true; //currentPoint.Islocked = true;
+                currentPoint.left.GetComponent<C_destination>().Islocked = true;
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
-                currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+                //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;           
             case "lvl3":
-                currentPoint.IsDone = true; currentPoint.Islocked = true;
-                currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+                currentPoint.left.GetComponent<C_destination>().Islocked = true;
+                currentPoint.IsDone = true; //currentPoint.Islocked = true;
+                //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;
             default:
                 break;
         }
 
-
+        if (currentPoint.GetComponent<C_destination>().IsDone)
+        {
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
+            currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+        }
 
         //sets up the destinations
         Leftlevel = currentPoint.left;
@@ -173,8 +180,8 @@ public class C_Worldmap : MonoBehaviour
 
             currentPoint.GetComponent<C_destination>().IsDone = true;
             currentPoint.GetComponent<C_destination>().Islocked = true;
-            currentPoint.GetComponent<C_destination>().flag.SetActive(true);
-            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
+            //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+            //currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
 
             //Set Les data du TM et C dans le GameManager.
             GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
@@ -258,6 +265,8 @@ public class C_Worldmap : MonoBehaviour
     void updateDestinations()
     {
         currentSetup.GetComponent<Animator>().SetBool("move", false);
+        currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
+        currentPoint.GetComponent<C_destination>().leveltextprovenance.text = currentPoint.leveltext;
         if (currentPoint.left != null)
             Leftlevel = currentPoint.left;
         else Leftlevel = null;
