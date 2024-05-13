@@ -121,9 +121,9 @@ public class C_TempsLibre : MonoBehaviour
         for (int i = 0; i < characters.Count; i++)
         {
             characters[i].transform.GetComponent<C_Actor>().mainchild.GetComponent<Image>().sprite = characters[i].GetComponent<C_Actor>().GetDataActor().MapTmSprite;
-            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(0).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).GetComponent<Image>().enabled = false;
-            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().enabled = false;
+            characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(0).gameObject.SetActive(false);
+            //characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).GetComponent<Image>().enabled = false;
+            //characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().enabled = false;
 
                 characters[i].GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = false;
                 characters[i].GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = false;
