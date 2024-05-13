@@ -1,19 +1,25 @@
 using Febucci.UI;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static C_Challenge;
 
 public class C_Interface : MonoBehaviour
 {
+    #region Dialogue
     //Pour passer les dialogue.
     public bool canContinue;
+    #endregion
 
     //Récupération du script.
     C_Challenge myChallenge;
 
+    #region Interface data
+    bool onLogs = false;
     public enum Interface {None ,Neutre, Logs, Actions, Traits, Back }
     [SerializeField]Interface currentInterface = Interface.None;
 
@@ -26,23 +32,22 @@ public class C_Interface : MonoBehaviour
 
     //Listes d'actions / traits
     List<GameObject> listCurrentButton = new List<GameObject>();
+    #endregion
+
+    #region vfx
+    Image targetbutton;
+
+    [SerializeField] Image buttonLogsBackground;
+    [SerializeField] Image buttonBackBackground;
+    [SerializeField] Image buttonActionsBackground;
+    [SerializeField] Image buttonTraitsBackground;
+    #endregion
 
     private void Awake()
     {
         myChallenge = GetComponentInParent<C_Challenge>();
         uiLogs.SetActive(false);
         uiAction.SetActive(false);
-    }
-
-    private void Start()
-    {
-        /*INUTILE SUREMENT
-        if (!GameManager.instance.isDialoguing)
-        {
-            currentInterface = Interface.None;
-        }*/
-
-        currentInterface = Interface.None;
     }
 
     #region Racourcis
@@ -199,26 +204,27 @@ public class C_Interface : MonoBehaviour
     public void GoAction()
     {
         //Animation.
-        GetComponent<Animator>().SetTrigger("OpenInterface");
+        targetbutton = buttonActionsBackground;
+        GetComponent<Animator>().SetTrigger("Open");
 
         //Spawn actions
         SpawnActions(GetListActorAction());
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Actions;
-
-        if (AudioManager.instance)
-        {
-            AudioManager.instance.Play("SfxSonDeConfirmation");
-        }
     }
 
     //Pour accéder au logs.
     public void GoLogs()
     {
+        //Animation.
+        targetbutton = buttonLogsBackground;
+        GetComponent<Animator>().SetTrigger("Open");
+
         //Modifie l'état de navigation.
         currentInterface = Interface.Logs;
         uiLogs.SetActive(true);
+        onLogs = true;
         myChallenge.GetEventSystem().SetSelectedGameObject(uiLogsScrollbar);
     }
 
@@ -226,41 +232,33 @@ public class C_Interface : MonoBehaviour
     public void GoTraits()
     {
         //Animation.
-        GetComponent<Animator>().SetTrigger("OpenInterface");
+        targetbutton = buttonTraitsBackground;
+        GetComponent<Animator>().SetTrigger("Open");
 
         //Spawn actions
         SpawnActions(GetListTrait());
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Traits;
-
-        if (AudioManager.instance)
-        {
-            AudioManager.instance.Play("SfxSonDeConfirmation");
-        }
     }
 
     //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
-
-        if (AudioManager.instance)
-        {
-            AudioManager.instance.Play("SfxRetourArriere");
-        }
+        //Animation
+        targetbutton = buttonBackBackground;
+        GetComponent<Animator>().SetTrigger("Close");
 
         switch (currentInterface)
         {
             case Interface.Actions:
-                GetComponent<Animator>().SetTrigger("CloseInterface");
                 uiAction.SetActive(false);
                 break;
             case Interface.Traits:
-                GetComponent<Animator>().SetTrigger("CloseInterface");
                 uiAction.SetActive(false);
                 break;
             case Interface.Logs:
-                GetComponent<Animator>().SetTrigger("CloseInterface");
+                onLogs = false;
                 uiLogs.SetActive(false);
                 break;
         }
@@ -330,6 +328,9 @@ public class C_Interface : MonoBehaviour
 
             //Vise le premier bouton.
             myChallenge.GetEventSystem().SetSelectedGameObject(listCurrentButton[0]);
+
+            //Lance la preview
+            GetComponentInParent<C_PreviewAction>().ShowPreview(myChallenge.GetEventSystem().currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), myChallenge.GetCurrentActor());
         }
         else
         {
@@ -360,12 +361,49 @@ public class C_Interface : MonoBehaviour
     {
         return uiAction;
     }
+
+    public bool GetOnLogs()
+    {
+        return onLogs;
+    }
     #endregion
 
     #region Animation Event
     public void SetPositionInHiearchie(GameObject thisButton)
     {
         thisButton.transform.parent = transform;
+    }
+
+    public void SetPressedButton()
+    {
+        if (targetbutton)
+        {
+            targetbutton.color = UnityEngine.Color.HSVToRGB(0, 0, 0.35f);
+
+            //Ajouter un parametre pour reconnaitre si c'est un retour en arrière ou non.
+            /*if (AudioManager.instance && currentInterface == Interface.Back)
+            {
+                AudioManager.instance.Play("SfxSonDeConfirmation");
+            }*/
+
+            if (AudioManager.instance)
+            {
+                AudioManager.instance.Play("SfxRetourArriere");
+            }
+        }
+    }
+
+    public void SetUnPressedButton()
+    {
+        if (targetbutton)
+        {
+            targetbutton.color = UnityEngine.Color.HSVToRGB(0, 0, 1);
+        }
+    }
+
+    public void ResetTargetButton()
+    {
+        targetbutton = null;
     }
     #endregion
 }

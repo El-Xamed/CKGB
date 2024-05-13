@@ -12,8 +12,6 @@ using static SO_Challenge;
 
 public class C_Challenge : MonoBehaviour
 {
-    [SerializeField] GameObject startGame;
-
     #region Mes variables
 
     #region De base
@@ -39,9 +37,9 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiGameOver;
 
     [Header("UI (VFX)")]
-    [SerializeField] GameObject vfxPlayerTurn;
-    [SerializeField] GameObject vfxResoTurn;
-    [SerializeField] GameObject vfxCataTurn;
+    [SerializeField] Animator vfxPlayerTurn;
+    [SerializeField] Animator vfxResoTurn;
+    [SerializeField] Animator vfxCataTurn;
     #endregion
 
     [Header("Data")]
@@ -116,15 +114,12 @@ public class C_Challenge : MonoBehaviour
 
         if (context.performed /*&& context.ReadValue<Vector2>().x > 0.5f || context.performed && context.ReadValue<Vector2>().y > 0.5f*/)
         {
-            //BESOIN DE TRAVAILLER DESSUS POUR L'ALPHA !!!!!!!
-            //Cache tout les autres preview.
-            //eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().HideUiStatsPreview(myTeam);
             //Active une fonction qui affiche toutes les preview de stats sur les actor.
-            //eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowUiStatsPreview(myTeam, currentActor);
-
-            //Ecrit dans les logs le résultat de l'action.
-            //Ecrit directement dans les logs via à une fonction du "SO_ActionClass".
-            WriteStatsPreview();
+            //Check si il n'est pas dans les logs.
+            if (!myInterface.GetOnLogs())
+            {
+                WriteStatsPreview();
+            }
         }
     }
     #endregion
@@ -133,8 +128,6 @@ public class C_Challenge : MonoBehaviour
 
     private void Awake()
     {
-        startGame.SetActive(true);
-
         #region Racourcis
         canva = transform.GetChild(0).gameObject;
 
@@ -163,16 +156,24 @@ public class C_Challenge : MonoBehaviour
 
     private void Start()
     {
-        startGame.gameObject.SetActive(false);
-
-        StartIntroChallenge();
-    }
-
-    void StartIntroChallenge()
-    {
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
 
+        //Apparition des cases
+        SpawnCases();
+
+        //Place les acteurs sur les cases.
+        InitialiseAllPosition();
+
+        //Set les element en plus.
+        SpawnElement();
+
+        //Cache toute l'Ui pour les dialogue.
+        ShowUiChallenge(false);
+    }
+
+    public void StartIntroChallenge()
+    {
         //Vérifie si il y a un GameManager
         if (GameManager.instance)
         {
@@ -181,15 +182,6 @@ public class C_Challenge : MonoBehaviour
 
             GameManager.instance.textToWriteIn = uiLogs;
         }
-
-        //Set les element en plus.
-        SpawnElement();
-
-        //Apparition des cases
-        SpawnCases();
-
-        //Place les acteurs sur les cases.
-        InitialiseAllPosition();
 
         //Vérifie si il y a du dialogue.
         if (myChallenge.introChallenge)
@@ -214,15 +206,19 @@ public class C_Challenge : MonoBehaviour
                 item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
             }
 
-            //Cache toute l'Ui pour les dialogue.
-            ShowUiChallenge(false);
-
             GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
+        }
+        else
+        {
+            StartChallenge(null);
         }
     }
 
     public void StartChallenge(string name)
     {
+        //Lance l'animation de la phase.
+        LunchPlayerPhase();
+
         //Pour afficher l'Ui.
         ShowUiChallenge(true);
 
@@ -236,9 +232,6 @@ public class C_Challenge : MonoBehaviour
         {
             //AudioManager.instance.Play("MusiqueTuto");
         }
-
-        //Transition
-        C_Transition.instance.OpenTransFlannel();
 
         #region Instance des data challenge.
         //Instancie le challenge
@@ -297,7 +290,6 @@ public class C_Challenge : MonoBehaviour
     #region Dialogue
     void ShowUiChallenge(bool active)
     {
-        Debug.Log("UI : " + active);
         //Pour l'énoncé.
         uiEtape.SetActive(active);
 
@@ -572,10 +564,6 @@ public class C_Challenge : MonoBehaviour
             #endregion
 
             //Affiche la preview.
-            //old
-            //uiLogs.text = eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetLogsPreview(myTeam, currentActor, plateau);
-
-            //New version de la preview.
             GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
         }
     }
@@ -585,6 +573,9 @@ public class C_Challenge : MonoBehaviour
     {
         //FeedBack
         currentActor.PlayAnimSelectAction();
+
+        //Desactive la preview de l'actor.
+        currentActor.GetUiStats().ResetUiPreview();
 
         if (AudioManager.instance)
         {
@@ -617,7 +608,9 @@ public class C_Challenge : MonoBehaviour
             currentResolution = listRes[0];
 
             //Cache les boutons + ferme l'interface. CHANGER ÇA POUR AVOIR L'INTERFACE SANS LES TEXT A COTE.
-            myInterface.GetComponent<Animator>().SetTrigger("CloseAll");
+            //Animation.
+            myInterface.ResetTargetButton();
+            myInterface.GetComponent<Animator>().SetTrigger("Close");
             myInterface.GetUiAction().SetActive(false);
             myInterface.GetUiTrait().SetActive(false);
 
@@ -1258,8 +1251,6 @@ public class C_Challenge : MonoBehaviour
 
     public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase, bool isTp)
     {
-        Debug.Log(thisCase);
-
         //Supprime la dernière position.
         plateau[thisPion.GetPosition()].ResetPion();
 
@@ -1504,6 +1495,11 @@ public class C_Challenge : MonoBehaviour
     public void SetAnimFinish(bool value)
     {
         animFinish = value;
+    }
+
+    void LunchPlayerPhase()
+    {
+        vfxPlayerTurn.SetTrigger("PlayerTurn");
     }
     #endregion
 

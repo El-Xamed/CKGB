@@ -15,13 +15,9 @@ public class C_PreviewAction : MonoBehaviour
     //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
-        Debug.Log("Début de preview !");
-
         //Check si la liste n'est pas vide
         if (thisActionClass.newListInteractions.Count != 0)
         {
-            Debug.Log("La liste n'est pas vide !");
-
             //Faut qu'il envoie l'actionClass au script qui vont gerer la preview et ensuite c'est eux qui décide de s'inscrir ou non.
 
             //Pour "Self".
@@ -31,13 +27,10 @@ public class C_PreviewAction : MonoBehaviour
             SetupPreview(Interaction_NewInspector.ETypeTarget.Other, thisActor);
         }
 
-        Debug.Log("Tentative");
         onPreview?.Invoke(thisActionClass);
 
         void SetupPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
         {
-            Debug.Log("Preview pour " + thisActor);
-
             foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
             {
                 //Check si c'est égale à "actorTarget".
@@ -50,16 +43,5 @@ public class C_PreviewAction : MonoBehaviour
                 }
             }
         }
-    }
-
-    //A placer ailleur.
-    void TextPreview()
-    {
-
-    }
-    
-    void MovePreview()
-    {
-
     }
 }

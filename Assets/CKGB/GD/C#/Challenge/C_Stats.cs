@@ -184,75 +184,13 @@ public class C_Stats : MonoBehaviour
 
 
     #region Preview
-    //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
-    /*Old
-    public void UiPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
+    public void ResetUiPreview()
     {
-        //Check si la liste n'est pas vide
-        if (thisActionClass.newListInteractions.Count != 0)
-        {
-            Debug.Log("La liste n'est pas vide !");
+        //Stop toutes les preview. AJOUTER LE DEV POUR L'ENERGIE.
+        animatorUiCalmPreview.SetBool("isPreview", false);
+    }
 
-            //Pour "Self".
-            SetupUiStatsPreview(Interaction_NewInspector.ETypeTarget.Self, thisActor);
-
-            //Pour "Other".
-            SetupUiStatsPreview(Interaction_NewInspector.ETypeTarget.Other, thisActor);
-        }
-
-        void SetupUiStatsPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
-        {
-            Debug.Log("Preview pour " + thisActor);
-
-            foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
-            {
-                //Check si c'est égale à "actorTarget".
-                if (thisInteraction.whatTarget == target)
-                {
-                    //Applique à l'actor SEULEMENT LES STATS les stats.
-                    foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
-                    {
-                        //Check si c'est des stats ou un Mouvement.
-                        if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
-                        {
-                            int value = 0;
-
-                            if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
-                            {
-                                //Retourne une valeur négative.
-                                value = -thisTargetStats.value;
-                            }
-                            else if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Gain)
-                            {
-                                //Retourne une valeur positive.
-                                value = thisTargetStats.value;
-                            }
-
-                            //Check si c'est pour le calm ou l'energie.
-                            if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Calm)
-                            {
-                                //Applique une preview sur le calm.
-                                PreviewCalm(value, thisActor);
-                            }
-                            else if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Energy)
-                            {
-                                //Applique une preview sur l'enrgie.
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        void PreviewCalm(int value, C_Actor thisActor)
-        {
-            //Update le calm.
-            uiCalmPreview.fillAmount = CalculJauge(value, thisActor.GetDataActor().stressMax);
-
-            GetComponent<Animator>().SetBool("isPreview", true);
-        }
-    }*/
-
+    //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
     public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction_NewInspector.ETypeTarget target)
     {
         foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
