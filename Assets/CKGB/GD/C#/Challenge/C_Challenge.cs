@@ -1,5 +1,4 @@
 using Febucci.UI;
-using Ink.Parsed;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -13,20 +12,40 @@ using static SO_Challenge;
 public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
+    [Header("Interface")]
+    [SerializeField] C_Interface myInterface;
 
-    #region De base
+    [Header("Data Challenge")]
+    [SerializeField] SO_Challenge myChallenge;
+
     //Pour connaitre la phasse de jeu.
-    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn , EndGame}
+    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame }
     [Header("Phase de jeu")]
-    [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+    PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
+    [SerializeField] GameObject plateauGameObject;
+    [SerializeField] GameObject uiLogs;
+
+    List<C_Actor> myTeam = new List<C_Actor>();
+    List<C_Accessories> listAcc = new List<C_Accessories>();
+
+    C_Actor currentActor;
+    SO_Etape currentStep;
+    SO_Catastrophy currentCata;
+
+    bool canIniCata = false;
+
+    [Tooltip("Case")]
+    [SerializeField] C_Case myCase;
+    List<C_Case> plateau = new List<C_Case>();
+    List<Image> plateauPreview = new List<Image>();
 
     [SerializeField] EventSystem eventSystem;
 
+    #region De base
     bool canGoNext = false;
 
     #region UI
-    GameObject canva;
-    GameObject uiCases;
     [Header("UI")]
     [SerializeField] GameObject background;
     [SerializeField] C_Stats uiStatsPrefab;
@@ -36,57 +55,29 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiVictoire;
     [SerializeField] GameObject uiGameOver;
 
-    [Header("UI (VFX)")]
-    [SerializeField] Animator vfxPlayerTurn;
-    [SerializeField] Animator vfxResoTurn;
-    [SerializeField] Animator vfxCataTurn;
     #endregion
 
-    [Header("Data")]
-    [SerializeField] SO_Challenge myChallenge;
-
-    [SerializeField] GameObject plateauGameObject;
-
-    List<C_Actor> myTeam = new List<C_Actor>();
-    List<C_Accessories> listAcc = new List<C_Accessories>();
-
-    bool canIniCata = false;
-
-    [Tooltip("Case")]
-    [SerializeField] C_Case myCase;
-    List<C_Case> plateau = new List<C_Case>();
-    List<Image> plateauPreview = new List<Image>();
-    #endregion
-
-    #region Interface
-    [Header ("UI (Interface)")] // A VOIR POUR FAIRE UN SCRIPT A PART
-    [SerializeField] C_Interface myInterface;
-    #endregion
-
-    #region Challenge
-    [Space(50)]
-    [SerializeField] C_Actor currentActor;
-
-    //D�finis l'�tape actuel. RETIRER LE PUBLIC
-    [SerializeField] SO_Etape currentStep;
-
-    [SerializeField] SO_Catastrophy currentCata;
     #endregion
 
     #region Résolution
     [Header("Resolution")]
     List<ActorResolution> listRes = new List<ActorResolution>();
-    [SerializeField] ActorResolution currentResolution;
+    ActorResolution currentResolution;
 
-    //RANGER CETTE VARIABLE
-    [SerializeField] TMP_Text uiLogs;
+    
     #endregion
 
     [SerializeField] SO_TempsMort tm1;
     [SerializeField] SO_Challenge c1;
 
     //VFX
+    #region Vfx
+    [Header("UI (VFX)")]
+    [SerializeField] Animator vfxStartChallenge;
+    [SerializeField] Animator vfxPlayerTurn;
+    [SerializeField] Animator vfxResoTurn;
     bool animFinish;
+    #endregion
     #endregion
 
     //------------------------------------------------------------------------------------------------------------------------
@@ -128,12 +119,6 @@ public class C_Challenge : MonoBehaviour
 
     private void Awake()
     {
-        #region Racourcis
-        canva = transform.GetChild(0).gameObject;
-
-
-        #endregion
-
         if (GameManager.instance)
         {
             //GameManager.instance.ChangeActionMap("Challenge");
@@ -180,7 +165,7 @@ public class C_Challenge : MonoBehaviour
             //Pour renseigner le challenge dans le GameManager.
             GameManager.instance.C = this;
 
-            GameManager.instance.textToWriteIn = uiLogs;
+            GameManager.instance.textToWriteIn = uiLogs.GetComponentInChildren<TMP_Text>();
         }
 
         //Vérifie si il y a du dialogue.
@@ -189,8 +174,8 @@ public class C_Challenge : MonoBehaviour
             Debug.Log(myChallenge.introChallenge);
 
             //Ajoute les fonction pour permettre la navigation dans les dialogues.
-            uiLogs.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            uiLogs.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
             //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
             foreach (var item in myTeam)
@@ -219,12 +204,12 @@ public class C_Challenge : MonoBehaviour
         //Lance l'animation de la phase.
         LunchPlayerPhase();
 
-        //Pour afficher l'Ui.
-        ShowUiChallenge(true);
-
         myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
         GameManager.instance.ExitDialogueMode();
+
+        //Re-active le fond des logs.
+        GetuiLogs().GetComponentInChildren<Image>().enabled = true;
 
         #region Initialisation
 
@@ -288,7 +273,7 @@ public class C_Challenge : MonoBehaviour
     #region Mes fonctions
 
     #region Dialogue
-    void ShowUiChallenge(bool active)
+    public void ShowUiChallenge(bool active)
     {
         //Pour l'énoncé.
         uiEtape.SetActive(active);
@@ -304,6 +289,9 @@ public class C_Challenge : MonoBehaviour
         {
             thisCase.gameObject.SetActive(active);
         }
+
+        //Pour activer l'Ui des logs.
+        uiLogs.SetActive(active);
     }
     #endregion
 
@@ -325,6 +313,8 @@ public class C_Challenge : MonoBehaviour
                 newUI.AddComponent<Image>();
 
                 newUI.GetComponent<Image>().sprite = thisElement;
+
+                newUI.GetComponent<Image>().material = Resources.Load<Material>("MatImageLit");
 
                 newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
 
@@ -627,6 +617,9 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
+        //Efface les logs.
+        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+
         Debug.Log("Player turn !");
 
         //Défini la phase de jeu.
@@ -661,7 +654,7 @@ public class C_Challenge : MonoBehaviour
             if (!currentActor.GetIsOut())
             {
                 //Pour effacer le texte de la cata.
-                uiLogs.text = "";
+                uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
                 //Update le contour blanc
                 UpdateActorSelected();
@@ -859,7 +852,7 @@ public class C_Challenge : MonoBehaviour
         string nextLogs = currentResolution.button.GetActionClass().GetListLogs();
         if (!string.IsNullOrEmpty(nextLogs))
         {
-            uiLogs.text = nextLogs;
+            uiLogs.GetComponentInChildren<TMP_Text>().text = nextLogs;
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
         {
@@ -968,7 +961,7 @@ public class C_Challenge : MonoBehaviour
             #region Logs
             //Ecrit dans les logs le résultat de l'action.
             currentResolution.button.GetActionClass().ResetLogs();
-            uiLogs.text = currentResolution.button.GetActionClass().GetListLogs();
+            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.button.GetActionClass().GetListLogs();
             #endregion
         }
         else
@@ -1332,7 +1325,7 @@ public class C_Challenge : MonoBehaviour
         myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
         //Ecrit dans les logs le résultat de l'action.
-        uiLogs.text = currentCata.catastrophyLog;
+        uiLogs.GetComponentInChildren<TMP_Text>().text = currentCata.catastrophyLog;
 
         //Applique la catastrophe.
         ApplyCatastrophy();
@@ -1499,7 +1492,8 @@ public class C_Challenge : MonoBehaviour
 
     void LunchPlayerPhase()
     {
-        vfxPlayerTurn.SetTrigger("PlayerTurn");
+        //Lance le Vfx de l'annonce du problème.
+        vfxStartChallenge.SetTrigger("start");
     }
     #endregion
 
@@ -1551,7 +1545,7 @@ public class C_Challenge : MonoBehaviour
     #endregion
     #endregion
 
-    public TMP_Text GetuiLogs()
+    public GameObject GetuiLogs()
     {
         return uiLogs;
     }

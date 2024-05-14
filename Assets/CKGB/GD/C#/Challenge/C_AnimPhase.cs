@@ -15,6 +15,9 @@ public class C_AnimPhase : MonoBehaviour
     public void StartChallenge()
     {
         challenge.PlayerTurn();
+
+        //Pour afficher l'Ui.
+        challenge.ShowUiChallenge(true);
     }
 
     public void EnableControl()

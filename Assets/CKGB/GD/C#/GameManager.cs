@@ -529,22 +529,27 @@ public class GameManager : MonoBehaviour
                             //textToWriteIn.text = text;
                             break;
                         case "NarrateurC":
-                            //
+                            //Vide le dialogue du narrateur.
                             textToWriteIn.text = "";
 
-                            //
-                            if(textToWriteIn.transform.childCount == 1)
+                            //Pour la petite flèche. A VOIR SI IL MARCHE BIEN.
+                            /*if(textToWriteIn.transform.childCount == 1)
                             {
                                 textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                            }*/
+                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            {
+                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
 
-                            //Pour faire apparaitre le fond de texte.
+                            //Pour re-préciser l'endroit ou il faut écrire.
+                            textToWriteIn = C.GetuiLogs().GetComponentInChildren<TMP_Text>();
 
-                            //Pour préciser la zone de texte.
-                            textToWriteIn = C.GetuiLogs();
+                            //Pour faire apparaitre le fond de texte.
+                            C.GetuiLogs().SetActive(true);
+                            C.GetuiLogs().GetComponentInChildren<Image>().enabled = true;
 
                             Debug.Log(textToWriteIn.name);
-                            //textToWriteIn.text = text;
                             break;
                         default:
                             //textToWriteIn.text = text;
