@@ -194,7 +194,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4750931871225931864}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -178.346}
 --- !u!114 &5346943833505945530
 MonoBehaviour:
@@ -280,7 +280,6 @@ Transform:
   - {fileID: 4750931871913999231}
   - {fileID: 2393298593852879752}
   - {fileID: 8870266260509016412}
-  - {fileID: 6691179472962608233}
   - {fileID: 1550670076142950594}
   - {fileID: 6650873015173054808}
   m_Father: {fileID: 0}
@@ -589,7 +588,8 @@ Transform:
   m_LocalPosition: {x: -11.687802, y: -1.4170489, z: 0.1310645}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6691179472962608233}
   m_Father: {fileID: 4750931871225931864}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 6691179472962608233}
   - component: {fileID: 6220847183639517065}
   m_Layer: 0
-  m_Name: Tram (1)
+  m_Name: LightBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,12 +754,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6079751952013973542}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.687802, y: -1.4170489, z: 0.1310645}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0061514163, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4750931871225931864}
-  m_RootOrder: 5
+  m_Father: {fileID: 4750931872272564877}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6220847183639517065
 SpriteRenderer:
@@ -952,7 +952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1655407810688140899, guid: 6bebd47874f3937a6ac4b329d5aa762a, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1655407810688140899, guid: 6bebd47874f3937a6ac4b329d5aa762a, type: 3}
       propertyPath: m_LocalPosition.x
