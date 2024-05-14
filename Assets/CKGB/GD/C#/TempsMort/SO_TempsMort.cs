@@ -4,6 +4,7 @@ using UnityEngine;
 using Ink.Runtime;
 using UnityEditor.Animations;
 
+
 [CreateAssetMenu(fileName = "New TM", menuName = "ScriptableObjects/TempsMort", order = 1)]
 
 public class SO_TempsMort : ScriptableObject
