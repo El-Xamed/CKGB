@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static C_Interface;
 
 public class C_AnimPhase : MonoBehaviour
 {

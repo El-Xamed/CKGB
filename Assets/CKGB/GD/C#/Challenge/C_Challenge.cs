@@ -157,119 +157,6 @@ public class C_Challenge : MonoBehaviour
         ShowUiChallenge(false);
     }
 
-    public void StartIntroChallenge()
-    {
-        //Vérifie si il y a un GameManager
-        if (GameManager.instance)
-        {
-            //Pour renseigner le challenge dans le GameManager.
-            GameManager.instance.C = this;
-
-            GameManager.instance.textToWriteIn = uiLogs.GetComponentInChildren<TMP_Text>();
-        }
-
-        //Vérifie si il y a du dialogue.
-        if (myChallenge.introChallenge)
-        {
-            Debug.Log(myChallenge.introChallenge);
-
-            //Ajoute les fonction pour permettre la navigation dans les dialogues.
-            uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-
-            //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
-            foreach (var item in myTeam)
-            {
-                item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-
-                item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            }
-
-            GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
-        }
-        else
-        {
-            StartChallenge(null);
-        }
-    }
-
-    public void StartChallenge(string name)
-    {
-        //Lance l'animation de la phase.
-        LunchPlayerPhase();
-
-        myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
-
-        GameManager.instance.ExitDialogueMode();
-
-        //Re-active le fond des logs.
-        GetuiLogs().GetComponentInChildren<Image>().enabled = true;
-
-        #region Initialisation
-
-        if (AudioManager.instance)
-        {
-            //AudioManager.instance.Play("MusiqueTuto");
-        }
-
-        #region Instance des data challenge.
-        //Instancie le challenge
-        myChallenge = SO_Challenge.Instantiate(myChallenge);
-
-        for (int i = 0; i < myChallenge.listEtape.Count; i++)
-        {
-            myChallenge.listEtape[i] = SO_Etape.Instantiate(myChallenge.listEtape[i]);
-
-            myChallenge.listEtape[i].rightAnswer = SO_ActionClass.Instantiate(myChallenge.listEtape[i].rightAnswer);
-
-            for (int j = 0; j < myChallenge.listEtape[i].actions.Count; j++)
-            {
-                myChallenge.listEtape[i].actions[j].Convert();
-                myChallenge.listEtape[i].actions[j] = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j]);
-
-                if (myChallenge.listEtape[i].actions[j].nextAction != null)
-                {
-                    myChallenge.listEtape[i].actions[j].nextAction = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j].nextAction);
-                }
-            }
-
-            //Pour ajouter l'action attendre dans toutes les étapes.
-            myChallenge.listEtape[i].actions.Add(SO_ActionClass.Instantiate(Resources.Load<SO_ActionClass>("Attendre")));
-        }
-        #endregion
-
-        //Set l'étape en question.
-        currentStep = myChallenge.listEtape[0];
-
-        if (currentStep.useCata)
-        {
-            currentCata = myChallenge.listCatastrophy[0];
-        }
-
-        currentActor = myTeam[0];
-
-        UpdateUi();
-
-        //Lance directement le tour du joueur
-        uiGameOver.SetActive(false);
-        #endregion
-    }
-
-    public void SetCanContinueToYes()
-    {
-        myInterface.canContinue = true;
-    }
-    public void SetCanContinueToNo()
-    {
-        myInterface.canContinue = false;
-    }
-
     #region Mes fonctions
 
     #region Dialogue
@@ -292,6 +179,15 @@ public class C_Challenge : MonoBehaviour
 
         //Pour activer l'Ui des logs.
         uiLogs.SetActive(active);
+    }
+
+    public void SetCanContinueToYes()
+    {
+        myInterface.canContinue = true;
+    }
+    public void SetCanContinueToNo()
+    {
+        myInterface.canContinue = false;
     }
     #endregion
 
@@ -483,6 +379,106 @@ public class C_Challenge : MonoBehaviour
             }
         }
     }
+
+    public void StartIntroChallenge()
+    {
+        //Vérifie si il y a un GameManager
+        if (GameManager.instance)
+        {
+            //Pour renseigner le challenge dans le GameManager.
+            GameManager.instance.C = this;
+
+            GameManager.instance.textToWriteIn = uiLogs.GetComponentInChildren<TMP_Text>();
+        }
+
+        //Vérifie si il y a du dialogue.
+        if (myChallenge.introChallenge)
+        {
+            //Ajoute les fonction pour permettre la navigation dans les dialogues.
+            uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
+            //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
+            foreach (var item in myTeam)
+            {
+                item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+
+                item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+            }
+
+            GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
+        }
+        else
+        {
+            StartChallenge(null);
+        }
+    }
+
+    public void StartChallenge(string name)
+    {
+        //Lance l'animation de la phase.
+        LunchPlayerPhase();
+
+        GameManager.instance.ExitDialogueMode();
+
+        //Re-active le fond des logs.
+        GetuiLogs().GetComponentInChildren<Image>().enabled = true;
+
+        #region Initialisation
+
+        if (AudioManager.instance)
+        {
+            //AudioManager.instance.Play("MusiqueTuto");
+        }
+
+        #region Instance des data challenge.
+        //Instancie le challenge
+        myChallenge = SO_Challenge.Instantiate(myChallenge);
+
+        for (int i = 0; i < myChallenge.listEtape.Count; i++)
+        {
+            myChallenge.listEtape[i] = SO_Etape.Instantiate(myChallenge.listEtape[i]);
+
+            myChallenge.listEtape[i].rightAnswer = SO_ActionClass.Instantiate(myChallenge.listEtape[i].rightAnswer);
+
+            for (int j = 0; j < myChallenge.listEtape[i].actions.Count; j++)
+            {
+                myChallenge.listEtape[i].actions[j].Convert();
+                myChallenge.listEtape[i].actions[j] = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j]);
+
+                if (myChallenge.listEtape[i].actions[j].nextAction != null)
+                {
+                    myChallenge.listEtape[i].actions[j].nextAction = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j].nextAction);
+                }
+            }
+
+            //Pour ajouter l'action attendre dans toutes les étapes.
+            myChallenge.listEtape[i].actions.Add(SO_ActionClass.Instantiate(Resources.Load<SO_ActionClass>("Attendre")));
+        }
+        #endregion
+
+        //Set l'étape en question.
+        currentStep = myChallenge.listEtape[0];
+
+        if (currentStep.useCata)
+        {
+            currentCata = myChallenge.listCatastrophy[0];
+        }
+
+        currentActor = myTeam[0];
+
+        UpdateUi();
+
+        //Lance directement le tour du joueur
+        uiGameOver.SetActive(false);
+        #endregion
+    }
     #endregion
 
     #region Tour du joueur
@@ -494,8 +490,6 @@ public class C_Challenge : MonoBehaviour
         {
             thisCase.DestroyVfxCata();
         }
-
-        Debug.Log("Les cases ont été sup.");
 
         //Initialise la cata (Random avec 1 valeur).
         if (currentCata.modeAttack == SO_Catastrophy.EModeAttack.Random)
@@ -602,7 +596,12 @@ public class C_Challenge : MonoBehaviour
             myInterface.ResetTargetButton();
             myInterface.GetComponent<Animator>().SetTrigger("Close");
             myInterface.GetUiAction().SetActive(false);
-            myInterface.GetUiTrait().SetActive(false);
+
+            //Rend les couleurs sur tous les actor.
+            foreach (C_Actor thisActor in myTeam)
+            {
+                thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
+            }
 
             animFinish = false;
             ResolutionTurn();
@@ -994,32 +993,41 @@ public class C_Challenge : MonoBehaviour
         if (action.CheckOtherInAction())
         {
             //Boucle avec la range.
-            for (int i = 1; i < action.GetRange(); i++)
+            for (int i = 0; i < action.GetRange(); i++)
             {
-                //Boucle pour check sur tout les actor du challenge.
-                foreach (C_Actor thisOtherActor in myTeam)
+                Debug.Log("Je cherche sur la case " + i);
+
+                if (action.GetTypeDirectionRange() != Interaction_NewInspector.ETypeDirectionTarget.None)
                 {
-                    //Check quel direction la range va faire effet.
-                    switch (action.GetTypeDirectionRange())
+                    //Boucle pour check sur tout les actor du challenge.
+                    foreach (C_Actor thisOtherActor in myTeam)
                     {
-                        //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                        case Interaction_NewInspector.ETypeDirectionTarget.Right:
-                            //Calcul vers la droite.
-                            CheckPositionOther(actor, i, thisOtherActor);
-                            Debug.Log("Direction Range = droite.");
-                            break;
-                        case Interaction_NewInspector.ETypeDirectionTarget.Left:
-                            //Calcul vers la gauche.
-                            CheckPositionOther(actor, -i, thisOtherActor);
-                            Debug.Log("Direction Range = Gauche.");
-                            break;
-                        case Interaction_NewInspector.ETypeDirectionTarget.RightAndLeft:
-                            //Calcul vers la droite + gauche.
-                            CheckPositionOther(actor, i, thisOtherActor);
-                            CheckPositionOther(actor, -i, thisOtherActor);
-                            Debug.Log("Direction Range = droite + gauche.");
-                            break;
+                        //Check quel direction la range va faire effet.
+                        switch (action.GetTypeDirectionRange())
+                        {
+                            //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                            case Interaction_NewInspector.ETypeDirectionTarget.Right:
+                                //Calcul vers la droite.
+                                CheckPositionOther(actor, i, thisOtherActor);
+                                Debug.Log("Direction Range = droite.");
+                                break;
+                            case Interaction_NewInspector.ETypeDirectionTarget.Left:
+                                //Calcul vers la gauche.
+                                CheckPositionOther(actor, -i, thisOtherActor);
+                                Debug.Log("Direction Range = Gauche.");
+                                break;
+                            case Interaction_NewInspector.ETypeDirectionTarget.RightAndLeft:
+                                //Calcul vers la droite + gauche.
+                                CheckPositionOther(actor, i, thisOtherActor);
+                                CheckPositionOther(actor, -i, thisOtherActor);
+                                Debug.Log("Direction Range = droite + gauche.");
+                                break;
+                        }
                     }
+                }
+                else
+                {
+                    Debug.LogWarning("AUCUNE DIRECTION DE MOUVEMENT EST ENTRE !");
                 }
             }
 
@@ -1087,6 +1095,8 @@ public class C_Challenge : MonoBehaviour
             //Regarde d'abord c'est quoi comme type de déplacement.
             if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
             {
+                Debug.Log("Pas ciblé par un actor ou acc.");
+
                 //Check si un mouvement existe.
                 if (action.GetValue(target, TargetStats_NewInspector.ETypeStatsTarget.Movement) != 0)
                 {
@@ -1096,6 +1106,8 @@ public class C_Challenge : MonoBehaviour
             }
             else //Ciblé par un actor ou acc.
             {
+                Debug.Log("Ciblé par un actor ou acc.");
+
                 //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
                 if (action.GetTarget().GetComponent<C_Actor>())
                 {

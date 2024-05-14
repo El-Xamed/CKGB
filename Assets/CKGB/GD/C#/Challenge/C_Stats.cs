@@ -212,12 +212,11 @@ public class C_Stats : MonoBehaviour
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewCalm;
                         }
-
                         //Check si c'est pour l'energie.
                         else if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Energy)
                         {
                             //Inscrit la preview de calm.
-                            C_PreviewAction.onPreview += UiPreviewEnergy;
+                            //C_PreviewAction.onPreview += UiPreviewEnergy;
                         }
                     }
                 }

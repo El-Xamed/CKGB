@@ -164,7 +164,6 @@ public class C_Actor : C_Pion
     }
 
     //Cette partie du dev va etre optimisé ! les 2 fonctions réunis en 1.
-    //New version
     public void SetCurrentStats(int value, TargetStats_NewInspector.ETypeStats onWhatStats)
     {
         //Check quelle stats changer.

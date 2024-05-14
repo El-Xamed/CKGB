@@ -50,11 +50,15 @@ public class C_Case : MonoBehaviour
                 if (vfxCata != null)
                 {
                     myPion.SetInDanger(true);
+                    Debug.Log(myPion.name + "est en dangé !");
                 }
                 else
                 {
                     myPion.SetInDanger(false);
+                    Debug.Log(myPion.name + "n'est pas en dangé");
                 }
+
+                myPion.GetComponent<C_Actor>().CheckInDanger();
             }
         }
     }

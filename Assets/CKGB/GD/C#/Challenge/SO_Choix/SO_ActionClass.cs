@@ -111,10 +111,10 @@ public class SO_ActionClass : ScriptableObject
     public int GetRange()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
             {
                 return thisInteraction.range;
             }
@@ -144,10 +144,10 @@ public class SO_ActionClass : ScriptableObject
     public GameObject GetTarget()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
             {
                 if (thisInteraction.selectTarget)
                 {
@@ -181,18 +181,18 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIfSwitchOrNot()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Self)
             {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
+                    if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
                     {
-                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
+                        if (thisTargetStats.whatMove == TargetStats_NewInspector.ETypeMove.SwitchWithAcc)
                         {
-                            thisTargetStats.move.accessories = GameObject.Find(GetSwitchGameObject().GetDataAcc().name).GetComponent<C_Accessories>();
+                            //thisTargetStats. = GameObject.Find(GetSwitchGameObject().GetDataAcc().name).GetComponent<C_Accessories>();
                             return true;
                         }
                     }
@@ -298,10 +298,10 @@ public class SO_ActionClass : ScriptableObject
     public bool CheckOtherInAction()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
+        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
             {
                 Debug.Log("D'autres actor peuvent etre impacté !");
                 return true;
@@ -375,11 +375,10 @@ public class SO_ActionClass : ScriptableObject
     public void SetStatsTarget(Interaction_NewInspector.ETypeTarget target, C_Pion thisActor)
     {
         //Avoir à la place une detection de l'enum du si c'est un prix (-x) ou un gain (+x). Necessaire pour l'outil de preview.
-        //New version
         if (thisActor.GetComponent<C_Actor>())
         {
             //Check si la liste n'est pas vide
-            if (listInteraction.Count != 0)
+            if (newListInteractions.Count != 0)
             {
                 //Fait toute la liste des cible.
                 foreach (Interaction_NewInspector thisInteraction in newListInteractions)
@@ -398,11 +397,13 @@ public class SO_ActionClass : ScriptableObject
                                 {
                                     //Retourne une valeur négative.
                                     value = -thisTargetStats.value;
+                                    Debug.Log("La valeur est negatif");
                                 }
                                 else
                                 {
                                     //Retourne une valeur positive.
                                     value = thisTargetStats.value;
+                                    Debug.Log("La valeur est positif");
                                 }
 
                                 //Envoie les nouvelles information a l'actor.

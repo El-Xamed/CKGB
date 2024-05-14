@@ -17,11 +17,12 @@ public class C_Interface : MonoBehaviour
 
     //Récupération du script.
     C_Challenge myChallenge;
+    bool canPlay;
 
     #region Interface data
     bool onLogs = false;
-    public enum Interface {None ,Neutre, Logs, Actions, Traits, Back }
-    [SerializeField]Interface currentInterface = Interface.None;
+    public enum Interface {Neutre, Logs, Actions, Traits, Back }
+    [SerializeField]Interface currentInterface = Interface.Neutre;
 
     [Header("Logs")]
     [SerializeField] GameObject uiLogs;
@@ -48,6 +49,7 @@ public class C_Interface : MonoBehaviour
         myChallenge = GetComponentInParent<C_Challenge>();
         uiLogs.SetActive(false);
         uiAction.SetActive(false);
+        canPlay = false;
     }
 
     #region Racourcis
@@ -106,7 +108,7 @@ public class C_Interface : MonoBehaviour
             Vector2 input = context.ReadValue<Vector2>();
 
             //Pour passer au dialogue suivant.
-            if (currentInterface == Interface.None)
+            if (!canPlay)
             {
                 if (input.y < 0)
                 {
@@ -125,10 +127,10 @@ public class C_Interface : MonoBehaviour
             }
 
             //Check si l'interaction avec l'interface et possible => Phase du joueur.
-            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun && currentInterface != Interface.None)
+            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun && canPlay)
             {
                 //Pour la navigation dans l'interface "Neutre"
-                if (currentInterface == Interface.Neutre)
+                if (currentInterface == Interface.Neutre && canPlay)
                 {
                     if (input.x > 0)
                     {
@@ -175,13 +177,13 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour passer à la suite du jeu.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && currentInterface != Interface.None)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && canPlay)
             {
                 myChallenge.FinishChallenge(null);
             }
 
             //Pour Update CataTurn.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn && currentInterface != Interface.None)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn && canPlay)
             {
                 myChallenge.PlayerTurn();
                 myChallenge.SetAnimFinish(false);
@@ -190,7 +192,7 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour Update ResoTrun.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn && currentInterface != Interface.None)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn && canPlay)
             {
                 myChallenge.NextResolution();
             }
@@ -342,6 +344,11 @@ public class C_Interface : MonoBehaviour
     #endregion
 
     #region Partage de donné
+    public void SetCanPlay()
+    {
+        canPlay = true;
+    }
+
     public void SetCurrentInterface(Interface newCurrentInterface)
     {
         currentInterface = newCurrentInterface;
@@ -353,11 +360,6 @@ public class C_Interface : MonoBehaviour
     }
 
     public GameObject GetUiAction()
-    {
-        return uiAction;
-    }
-
-    public GameObject GetUiTrait()
     {
         return uiAction;
     }
