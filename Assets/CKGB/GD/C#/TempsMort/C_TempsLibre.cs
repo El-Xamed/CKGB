@@ -1055,18 +1055,18 @@ public class C_TempsLibre : MonoBehaviour
                     LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
                     LastCharacterThatPlayed.RemoveAt(charactertoaddID);
                     charactertoaddID--;
-                    ActionsParents.SetActive(false);
-                    AfficherFichereduite();
+                    ActivateTreeCharacterChoice();
                 }
                 else if (!ActionsParents.activeSelf && actiontoaddID != -1)
                 {
                     for (int i = 0; i < characters.Count; i++)
                     {
-                        if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
+                        /*if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
                         {
                             for (int y = 0; y < characters.Count; y++)
                             {
                                 TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
+                            
                             }
                             //TreeParent.SetActive(false);
                             ActionsParents.SetActive(true);
@@ -1077,12 +1077,11 @@ public class C_TempsLibre : MonoBehaviour
                             LastAction.RemoveAt(actiontoaddID);
                             actiontoaddID--;
                         }
-                        else if(TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
+                        else*/ if(TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
                         {
                             for (int y = 0; y < characters.Count; y++)
                             {
-                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(1).gameObject.SetActive(false);
-                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                                ActivateTreeCharacterChoice();
                                 TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
                             }
                             //TreeParent.SetActive(false);
