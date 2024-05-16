@@ -13,6 +13,9 @@ public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
     [Header("Interface")]
+    bool onDialogue = false;
+
+    [Header("Interface")]
     [SerializeField] C_Interface myInterface;
 
     [Header("Data Challenge")]
@@ -160,8 +163,8 @@ public class C_Challenge : MonoBehaviour
             ShowUiChallenge(false);
         }
 
-        //Lance l'animation qui présente le challenge après la transition
-        vfxStartChallenge.SetTrigger("start");
+        //Lance l'intro.
+        StartIntroChallenge();
     }
 
     #region Mes fonctions
@@ -392,6 +395,10 @@ public class C_Challenge : MonoBehaviour
         //Vérifie si il y a un GameManager
         if (GameManager.instance)
         {
+            Debug.Log("Lancement de la transition");
+
+            onDialogue = true;
+
             //Pour renseigner le challenge dans le GameManager.
             GameManager.instance.C = this;
 
@@ -423,14 +430,18 @@ public class C_Challenge : MonoBehaviour
         }
         else
         {
+            Debug.Log("Lancement direct du challenge");
             StartChallenge(null);
+            onDialogue = false;
         }
     }
 
     public void StartChallenge(string name)
     {
-        //Lance l'animation de la phase.
-        LunchPlayerPhase();
+        onDialogue = false;
+
+        //Lance l'animation qui présente le challenge après la transition
+        vfxStartChallenge.SetTrigger("start");
 
         if (GameManager.instance)
         {
@@ -488,6 +499,9 @@ public class C_Challenge : MonoBehaviour
         //Lance directement le tour du joueur
         uiGameOver.SetActive(false);
         #endregion
+
+        //Change l'état du challenge.
+        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
     }
     #endregion
 
@@ -553,8 +567,12 @@ public class C_Challenge : MonoBehaviour
                 thisActionButton.GetComponent<C_ActionButton>().HideCurseur();
             }
 
-            //Fait apparaitre le curseur.
-            eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
+            //Chech si il possède un bouton pour la gestion de curseur.
+            if (eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>())
+            {
+                //Fait apparaitre le curseur.
+                eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
+            }
             #endregion
 
             //Affiche la preview.
@@ -1511,12 +1529,6 @@ public class C_Challenge : MonoBehaviour
     {
         animFinish = value;
     }
-
-    void LunchPlayerPhase()
-    {
-        //Lance le Vfx de l'annonce du problème.
-        vfxStartChallenge.SetTrigger("start");
-    }
     #endregion
 
     #region Data Interface
@@ -1548,6 +1560,11 @@ public class C_Challenge : MonoBehaviour
     public List<C_Case> GetListCases() { return plateau; }
 
     public EventSystem GetEventSystem() { return eventSystem; }
+
+    public bool GetOnDialogue()
+    {
+        return onDialogue;
+    }
 
     #region Phase de résolution
     public List<ActorResolution> GetListResolutions()

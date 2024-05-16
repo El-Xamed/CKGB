@@ -1,6 +1,6 @@
 ->Intro
-=== function StartTM(name)
-EXTERNAL StartTM(name)
+=== function StartChallenge(name)
+EXTERNAL StartChallenge(name)
 
 ===Intro===
 
@@ -48,5 +48,5 @@ Hm. J'ai encore de l'avance.#Bulle:MorganHautDroite
 
 //C1 commence pour de vrai, l’UI apparait et tout.
 
-~ StartTM("TM")
+~ StartChallenge("name")
 ->END

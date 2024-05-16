@@ -107,21 +107,28 @@ public class C_Interface : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>();
 
+            #region Dialogue
             //Pour passer au dialogue suivant.
-            if (input.y < 0)
+            if (input.y < 0 && myChallenge.GetOnDialogue())
             {
                 //check si l histoire continue ou pas
                 Debug.Log("continue");
-                if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
+
+                //Check si il y a le GameManager.
+                if (GameManager.instance)
                 {
-                    GameManager.instance.ContinueStory();
-                }
-                else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
-                {
-                    GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+                    if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
+                    {
+                        GameManager.instance.ContinueStory();
+                    }
+                    else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
+                    {
+                        GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+                    }
                 }
                 return;
             }
+            #endregion
 
             //Check si l'interaction avec l'interface et possible => Phase du joueur.
             if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)

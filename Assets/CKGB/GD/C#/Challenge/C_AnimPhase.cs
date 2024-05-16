@@ -14,7 +14,7 @@ public class C_AnimPhase : MonoBehaviour
     #region Animation
     public void StartChallenge()
     {
-        challenge.StartIntroChallenge();
+        EnableControl();
 
         //Pour afficher l'Ui.
         challenge.ShowUiChallenge(true);

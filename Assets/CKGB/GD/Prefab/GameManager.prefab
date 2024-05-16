@@ -81,6 +81,9 @@ MonoBehaviour:
   TM: {fileID: 0}
   W: {fileID: 0}
   C: {fileID: 0}
+  flanel: {fileID: 778992816161912326}
+  maskRond: {fileID: 0}
+  softBlackSwipe: {fileID: 0}
   pauseBackground: {fileID: 6628724171132522897}
   optionsMenu: {fileID: 6628724170008810444}
   pauseMenu: {fileID: 6628724170129358882}
@@ -806,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5830666820850183979, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8553281364477429429, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
       propertyPath: m_IsActive
@@ -817,6 +820,11 @@ PrefabInstance:
 --- !u!1 &778992816161912320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5830666820850183979, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
+  m_PrefabInstance: {fileID: 6495660993677826347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &778992816161912326 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5830666820850183981, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
   m_PrefabInstance: {fileID: 6495660993677826347}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &778992816460874816 stripped
