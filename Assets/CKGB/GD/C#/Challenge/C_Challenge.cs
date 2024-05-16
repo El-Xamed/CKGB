@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static SO_Challenge;
 
@@ -151,11 +152,11 @@ public class C_Challenge : MonoBehaviour
         //Apparition des cases
         SpawnCases();
 
-        //Place les acteurs sur les cases.
-        InitialiseAllPosition();
-
         //Set les element en plus.
         SpawnElement();
+
+        //Place les acteurs sur les cases.
+        InitialiseAllPosition();
 
         if (GameManager.instance)
         {
@@ -1494,6 +1495,7 @@ public class C_Challenge : MonoBehaviour
             {
                 thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
                 thisActor.transform.parent = GameManager.instance.transform;
+                thisActor.GetImageActor().enabled = false;
             }
 
             if (GameManager.instance.currentC.name == "SO_lvl3")

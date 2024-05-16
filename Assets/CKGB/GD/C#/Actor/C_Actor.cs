@@ -86,6 +86,8 @@ public class C_Actor : C_Pion
 
     private void Start()
     {
+        character.enabled = false;
+
         //Setup le contoure blanc.
         mainchild.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
         IsSelected(false);
@@ -94,6 +96,12 @@ public class C_Actor : C_Pion
         bulles.Add(BulleHautDroite);
         bulles.Add(BulleBasGauche);
         bulles.Add(BulleBasDroite);
+
+        foreach (var thisBulle in bulles)
+        {
+            thisBulle.GetComponent<Image>().enabled = false;
+            Debug.Log(thisBulle.name);
+        }
     }
 
     #region Mes fonctions
@@ -130,22 +138,11 @@ public class C_Actor : C_Pion
     public void IniChallenge()
     {
         //dataActor.energyMax;
+        character.enabled = true;
 
         //Stats
         currentStress = dataActor.stressMax;
         currentEnergy = dataActor.energyMax;
-
-        //Sprite
-        //Desactivation des child. A RETIRER PLUS TARD + FAIRE SPAWN LES BULLE DE DIALOGUE DU TM AU LIEUX DE LES AVOIR CONSTAMENT DANS LE GAMEOBJECT.
-        for (int i = 0; i < bulles.Count; i++)
-        {
-            //bulles[i].gameObject.SetActive(false);
-           BulleHautDroite.GetComponent<Image>().enabled = false;
-            BulleHautGauche.GetComponent<Image>().enabled = false;
-            BulleBasDroite.gameObject.SetActive(true);
-            BulleBasDroite.GetComponent<Image>().enabled = false;
-            BulleBasGauche.GetComponent<Image>().enabled = false;
-        }
 
         //Active l'ombre du challenge.
         ombre.gameObject.SetActive(true);
@@ -336,6 +333,7 @@ public class C_Actor : C_Pion
     public void IniTempsMort()
     {
         mainchild.GetComponent<Image>().sprite = dataActor.MapTmSprite;
+        character.enabled = true;
         //Active l'ombre du challenge.
         ombre.gameObject.SetActive(false);
     }
