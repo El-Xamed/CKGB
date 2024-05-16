@@ -1033,263 +1033,302 @@ public class C_TempsLibre : MonoBehaviour
     {
         if (!context.performed)
         { return; }
-        if (context.performed && GameManager.instance.isDialoguing == false)
+
+        if (context.performed )
         {
-            Debug.Log("going backward");
-            if(GameManager.instance.isDialoguing!=true)
+            if(GameManager.instance.isDialoguing == false)
             {
-                if(ChallengeButton.activeSelf==true)
+                Debug.Log("going backward");
+                if (GameManager.instance.isDialoguing != true)
                 {
-                    ChallengeButton.SetActive(false);
-                }
-                if (ActionsParents.activeSelf == true)
-                {
-                    for (int i = 0; i < characters.Count; i++)
+                    if (ChallengeButton.activeSelf == true)
                     {
-                        TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Button>().enabled = true;
-                        if (LastCharacterThatPlayed[charactertoaddID] == characters[i])
-                        {
-                            Es.SetSelectedGameObject(TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).gameObject);
-                            updateButton();
-                        
-                        }
+                        ChallengeButton.SetActive(false);
                     }
-                    ActionsParents.SetActive(false);
-                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasPlayed = false;
-                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.white;
-                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
-                    LastCharacterThatPlayed.RemoveAt(charactertoaddID);
-                    charactertoaddID--;
-                    ActivateTreeCharacterChoice();
-                }
-                else if (!ActionsParents.activeSelf && actiontoaddID != -1)
-                {
-                    for (int i = 0; i < characters.Count; i++)
+                    if (ActionsParents.activeSelf == true)
                     {
-                        if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
+                        for (int i = 0; i < characters.Count; i++)
                         {
-                            for (int y = 0; y < characters.Count; y++)
+                            TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Button>().enabled = true;
+                            if (LastCharacterThatPlayed[charactertoaddID] == characters[i])
                             {
-                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
-                            
-                            }
-                            //TreeParent.SetActive(false);
-                            ActionsParents.SetActive(true);
+                                Es.SetSelectedGameObject(TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).gameObject);
+                                updateButton();
 
-                            Debug.Log(LastAction[actiontoaddID]);
-                            Es.SetSelectedGameObject(LastAction[actiontoaddID]);
-                            updateButton();
-                            LastAction.RemoveAt(actiontoaddID);
-                            actiontoaddID--;
-                        }
-                        else if(TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
-                        {
-                            for (int y = 0; y < characters.Count; y++)
-                            {
-                                ActivateTreeCharacterChoice();
-                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
                             }
-                            //TreeParent.SetActive(false);
-                            ActionsParents.SetActive(true);
-
-                            Debug.Log(LastAction[actiontoaddID]);
-                            Es.SetSelectedGameObject(LastAction[actiontoaddID]);
-                            updateButton();
-                            LastAction.RemoveAt(actiontoaddID);
-                            actiontoaddID--;
                         }
-                        else
+                        ActionsParents.SetActive(false);
+                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasPlayed = false;
+                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
+                        LastCharacterThatPlayed.RemoveAt(charactertoaddID);
+                        charactertoaddID--;
+                        ActivateTreeCharacterChoice();
+                    }
+                    else if (!ActionsParents.activeSelf && actiontoaddID != -1)
+                    {
+                        for (int i = 0; i < characters.Count; i++)
                         {
-                            if(LastAction[actiontoaddID]==RevasserButton)
+                            if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
                             {
                                 for (int y = 0; y < characters.Count; y++)
                                 {
-                                    if (LastCharacterThatPlayed[charactertoaddID] == characters[y])
-                                    {
-                                        GameManager.instance.RevasserID[y]--;
-                                    }
+                                    TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
+
                                 }
-                                LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().stressMax--;
+                                //TreeParent.SetActive(false);
+                                ActionsParents.SetActive(true);
+
+                                Debug.Log(LastAction[actiontoaddID]);
+                                Es.SetSelectedGameObject(LastAction[actiontoaddID]);
+                                updateButton();
+                                LastAction.RemoveAt(actiontoaddID);
+                                actiontoaddID--;
                             }
-                            if (LastAction[actiontoaddID] == ObserverButton)
+                            else if (TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
                             {
-                                GameManager.instance.RespirerID--;
-                               LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().energyMax--;
+                                for (int y = 0; y < characters.Count; y++)
+                                {
+                                    ActivateTreeCharacterChoice();
+                                    TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
+                                }
+                                //TreeParent.SetActive(false);
+                                ActionsParents.SetActive(true);
+
+                                Debug.Log(LastAction[actiontoaddID]);
+                                Es.SetSelectedGameObject(LastAction[actiontoaddID]);
+                                updateButton();
+                                LastAction.RemoveAt(actiontoaddID);
+                                actiontoaddID--;
                             }
-                            if (LastAction[actiontoaddID] == PapoterButton)
+                            else
                             {
-                                if (LastCharacterThatPlayed[charactertoaddID] == Morgan && Papote == Esthela)
-                                {                                   
-                                    if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0&& LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours!=-1)
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait=0.5f;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        Papote.GetComponent<C_Actor>().HasTraited = false;
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    GameManager.instance.PapoterID[0]--;  
-                                    MorganAPapoteAvecEsthela = false;
-                                }
-                                else if (LastCharacterThatPlayed[charactertoaddID] == Morgan && Papote == Nimu && MorganAPapoteAvecNimu == false)
+                                if (LastAction[actiontoaddID] == RevasserButton)
                                 {
-                                    if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                    for (int y = 0; y < characters.Count; y++)
                                     {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        if (LastCharacterThatPlayed[charactertoaddID] == characters[y])
+                                        {
+                                            GameManager.instance.RevasserID[y]--;
+                                        }
                                     }
-                                    else
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        Papote.GetComponent<C_Actor>().HasTraited = false;
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    GameManager.instance.PapoterID[1]--;
-                                    MorganAPapoteAvecNimu = false;
+                                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().stressMax--;
                                 }
-                                else if (LastCharacterThatPlayed[charactertoaddID] == Esthela && Papote == Morgan && MorganAPapoteAvecEsthela == false)
+                                if (LastAction[actiontoaddID] == ObserverButton)
                                 {
-                                    if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        Papote.GetComponent<C_Actor>().HasTraited = false;
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    GameManager.instance.PapoterID[0]--;
-                                    MorganAPapoteAvecEsthela = false;
+                                    GameManager.instance.RespirerID--;
+                                    LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().energyMax--;
                                 }
-                                else if (LastCharacterThatPlayed[charactertoaddID] == Esthela && Papote == Nimu && NimuAPapoteAvecEsthela == false)
+                                if (LastAction[actiontoaddID] == PapoterButton)
                                 {
-                                    if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                    if (LastCharacterThatPlayed[charactertoaddID] == Morgan && Papote == Esthela)
                                     {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            Papote.GetComponent<C_Actor>().HasTraited = false;
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        GameManager.instance.PapoterID[0]--;
+                                        MorganAPapoteAvecEsthela = false;
                                     }
-                                    else
+                                    else if (LastCharacterThatPlayed[charactertoaddID] == Morgan && Papote == Nimu && MorganAPapoteAvecNimu == false)
                                     {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            Papote.GetComponent<C_Actor>().HasTraited = false;
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        GameManager.instance.PapoterID[1]--;
+                                        MorganAPapoteAvecNimu = false;
                                     }
-                                    if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                    else if (LastCharacterThatPlayed[charactertoaddID] == Esthela && Papote == Morgan && MorganAPapoteAvecEsthela == false)
                                     {
-                                        Papote.GetComponent<C_Actor>().HasTraited = false;
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            Papote.GetComponent<C_Actor>().HasTraited = false;
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        GameManager.instance.PapoterID[0]--;
+                                        MorganAPapoteAvecEsthela = false;
                                     }
-                                    else
+                                    else if (LastCharacterThatPlayed[charactertoaddID] == Esthela && Papote == Nimu && NimuAPapoteAvecEsthela == false)
                                     {
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            Papote.GetComponent<C_Actor>().HasTraited = false;
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        GameManager.instance.PapoterID[2]--;
+                                        NimuAPapoteAvecEsthela = false;
                                     }
-                                    GameManager.instance.PapoterID[2]--;
-                                    NimuAPapoteAvecEsthela = false;
+                                    else if (LastCharacterThatPlayed[charactertoaddID] == Nimu && Papote == Morgan && MorganAPapoteAvecNimu == false)
+                                    {
+                                        if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            Papote.GetComponent<C_Actor>().HasTraited = false;
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        GameManager.instance.PapoterID[1]--;
+                                        MorganAPapoteAvecNimu = false;
+                                    }
+                                    else if (LastCharacterThatPlayed[charactertoaddID] == Nimu && Papote == Esthela && NimuAPapoteAvecEsthela == false)
+                                    {
+                                        if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
+                                        {
+                                            Papote.GetComponent<C_Actor>().HasTraited = false;
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
+                                            Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
+                                        }
+                                        else
+                                        {
+                                            Papote.GetComponent<C_Actor>().currentPointTrait = 0;
+                                        }
+                                        GameManager.instance.PapoterID[2]--;
+                                        NimuAPapoteAvecEsthela = false;
+                                    }
                                 }
-                                else if (LastCharacterThatPlayed[charactertoaddID] == Nimu && Papote == Morgan && MorganAPapoteAvecNimu == false)
+                                ActivateTreeCharacterChoice();
+                                for (int y = 0; y < characters.Count; y++)
                                 {
-                                    if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        Papote.GetComponent<C_Actor>().HasTraited = false;
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    GameManager.instance.PapoterID[1]--;
-                                    MorganAPapoteAvecNimu = false;
+                                    TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
                                 }
-                                else if (LastCharacterThatPlayed[charactertoaddID] == Nimu && Papote == Esthela && NimuAPapoteAvecEsthela == false)
-                                {
-                                    if (LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasTraited = false;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 0 && Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours != -1)
-                                    {
-                                        Papote.GetComponent<C_Actor>().HasTraited = false;
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0.5f;
-                                        Papote.GetComponent<C_Actor>().GetDataActor().listNewTraits.RemoveAt(Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                                    }
-                                    else
-                                    {
-                                        Papote.GetComponent<C_Actor>().currentPointTrait = 0;
-                                    }
-                                    GameManager.instance.PapoterID[2]--;
-                                    NimuAPapoteAvecEsthela = false;
-                                }
-                            }
-                            ActivateTreeCharacterChoice();
-                            for (int y = 0; y < characters.Count; y++)
-                            {
-                                TreeParent.transform.GetChild(y).GetChild(0).GetChild(0).GetComponent<Button>().enabled = false;
-                            }
-                            //TreeParent.SetActive(false);
-                            ActionsParents.SetActive(true);
+                                //TreeParent.SetActive(false);
+                                ActionsParents.SetActive(true);
 
 
-                            Es.SetSelectedGameObject(LastAction[actiontoaddID]);
-                            updateButton();
-                     
-                            LastAction.RemoveAt(actiontoaddID);
-                            actiontoaddID--;
+                                Es.SetSelectedGameObject(LastAction[actiontoaddID]);
+                                updateButton();
+
+                                LastAction.RemoveAt(actiontoaddID);
+                                actiontoaddID--;
+                            }
                         }
                     }
                 }
             }
-           
+            else if(GameManager.instance.optionsMenu.activeSelf==true)
+            {
+                GameManager.instance.optionsMenu.SetActive(false);
+                GameManager.instance.pauseMenu.SetActive(true);
+                Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+                updateButton();
+            }
+            else if (GameManager.instance.pauseMenu.activeSelf == true)
+            {
+                GameManager.instance.pauseMenu.SetActive(false);
+                GameManager.instance.pauseBackground.SetActive(false);
+                BACK(context);
+                updateButton();
+            }
+
+
         }
     }
 
-    
+    public void OpenPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.instance.pauseBackground.SetActive(true);
+            GameManager.instance.pauseMenu.SetActive(true);
+            Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+            updateButton();
+            //optionsParent.SetActive(true);
+            Debug.Log("Pause");
+        }
+    }
+    public void OpenOptions()
+    {
+            GameManager.instance.pauseBackground.SetActive(true);
+            GameManager.instance.pauseMenu.SetActive(true);
+            Es.SetSelectedGameObject(GameManager.instance.optionsMenu.transform.GetChild(2).gameObject);
+            updateButton();
+            //optionsParent.SetActive(true);
+            Debug.Log("Options"); 
+    }
 }
