@@ -286,6 +286,8 @@ public class C_Challenge : MonoBehaviour
         {
             if (GameManager.instance)
             {
+                Debug.LogWarning("GameManager détecté ! Spawn des actor en cours...");
+
                 //Récupère les info du GameManager
                 foreach (GameObject thisActor in GameManager.instance.GetTeam())
                 {
@@ -341,6 +343,8 @@ public class C_Challenge : MonoBehaviour
             }
             else
             {
+                Debug.LogWarning("Pas de GameManager détecté ! Spawn de nouvel actor en cours...");
+
                 foreach (InitialActorPosition position in listPosition)
                 {
                     //New actor

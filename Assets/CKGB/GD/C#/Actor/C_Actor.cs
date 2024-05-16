@@ -68,7 +68,9 @@ public class C_Actor : C_Pion
 
     private void Awake()
     {
-        gameObject.name = dataActor.name; 
+        gameObject.name = dataActor.name;
+
+        character.enabled = false;
 
         dataActor = ScriptableObject.Instantiate(dataActor);
 
@@ -86,8 +88,6 @@ public class C_Actor : C_Pion
 
     private void Start()
     {
-        character.enabled = false;
-
         //Setup le contoure blanc.
         mainchild.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = dataActor.challengeSpriteSlected;
         IsSelected(false);
@@ -137,7 +137,6 @@ public class C_Actor : C_Pion
 
     public void IniChallenge()
     {
-        //dataActor.energyMax;
         character.enabled = true;
 
         //Stats

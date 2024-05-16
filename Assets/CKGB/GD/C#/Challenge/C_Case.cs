@@ -25,7 +25,7 @@ public class C_Case : MonoBehaviour
     public void PlacePion(C_Pion thisPion)
     {
         Debug.Log(thisPion + " est placé sur la case " + number + " soit la position " + thisPion.transform.localPosition);
-        Debug.Log(transform.position.x + " " + transform.position.z);
+        Debug.Log(transform.position.x);
         //Place l'actor et change sa valeur de position.
         thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
