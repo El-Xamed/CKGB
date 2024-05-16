@@ -7,6 +7,7 @@ using Ink.Runtime;
 using System;
 using UnityEngine.UI;
 using UnityEditor.Animations;
+using UnityEngine.SceneManagement;
 
 public enum EActorClass
 {
@@ -521,7 +522,7 @@ public class GameManager : MonoBehaviour
                             break;
                         case "Narrateur":
                             //Pour savoir dans quelle scene on est pour le narrateur.
-                            if (TM.NarrateurParent.GetComponent<Animator>())
+                            if (SceneManager.GetActiveScene().name=="S_TempsLibre")
                             {
                                 textToWriteIn.text = "";
                                 if (textToWriteIn.transform.childCount == 1)
