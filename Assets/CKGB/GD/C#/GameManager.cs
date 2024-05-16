@@ -520,42 +520,47 @@ public class GameManager : MonoBehaviour
                             //textToWriteIn.text = text;
                             break;
                         case "Narrateur":
-                            textToWriteIn.text = "";
-                            if (textToWriteIn.transform.childCount == 1)
+                            //Pour savoir dans quelle scene on est pour le narrateur.
+                            if (TM.NarrateurParent.GetComponent<Animator>())
                             {
-                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                                textToWriteIn.text = "";
+                                if (textToWriteIn.transform.childCount == 1)
+                                {
+                                    textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                                }
+                                if (textToWriteIn.GetComponentInParent<Image>() != null)
+                                {
+                                    textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                                }
+                                textToWriteIn = TM.naratteurText;
+                                TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
+                                Debug.Log(textToWriteIn.name);
+                                //textToWriteIn.text = text;
                             }
-                            if (textToWriteIn.GetComponentInParent<Image>() != null)
+                            else
                             {
-                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                                //Vide le dialogue du narrateur.
+                                textToWriteIn.text = "";
+
+                                //Pour la petite flèche. A VOIR SI IL MARCHE BIEN.
+                                /*if(textToWriteIn.transform.childCount == 1)
+                                {
+                                    textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+                                }*/
+                                if (textToWriteIn.GetComponentInParent<Image>() != null)
+                                {
+                                    textToWriteIn.GetComponentInParent<Image>().enabled = false;
+                                }
+
+                                //Pour re-préciser l'endroit ou il faut écrire.
+                                textToWriteIn = C.GetuiLogs().GetComponentInChildren<TMP_Text>();
+
+                                //Pour faire apparaitre le fond de texte.
+                                C.GetuiLogs().SetActive(true);
+                                C.GetuiLogs().GetComponentInChildren<Image>().enabled = true;
+
+                                Debug.Log(textToWriteIn.name);
                             }
-                            textToWriteIn = TM.naratteurText;
-                            TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
-                            Debug.Log(textToWriteIn.name);
-                            //textToWriteIn.text = text;
-                            break;
-                        case "NarrateurC":
-                            //Vide le dialogue du narrateur.
-                            textToWriteIn.text = "";
-
-                            //Pour la petite flèche. A VOIR SI IL MARCHE BIEN.
-                            /*if(textToWriteIn.transform.childCount == 1)
-                            {
-                                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
-                            }*/
-                            if (textToWriteIn.GetComponentInParent<Image>() != null)
-                            {
-                                textToWriteIn.GetComponentInParent<Image>().enabled = false;
-                            }
-
-                            //Pour re-préciser l'endroit ou il faut écrire.
-                            textToWriteIn = C.GetuiLogs().GetComponentInChildren<TMP_Text>();
-
-                            //Pour faire apparaitre le fond de texte.
-                            C.GetuiLogs().SetActive(true);
-                            C.GetuiLogs().GetComponentInChildren<Image>().enabled = true;
-
-                            Debug.Log(textToWriteIn.name);
                             break;
                         default:
                             //textToWriteIn.text = text;
