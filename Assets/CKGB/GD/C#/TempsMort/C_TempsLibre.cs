@@ -1053,6 +1053,7 @@ public class C_TempsLibre : MonoBehaviour
                         
                         }
                     }
+                    ActionsParents.SetActive(true);
                     LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().HasPlayed = false;
                     LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetComponent<Image>().color = Color.white;
                     LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().charaTree.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);

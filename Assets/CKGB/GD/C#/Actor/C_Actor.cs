@@ -315,12 +315,12 @@ public class C_Actor : C_Pion
         if (inDanger)
         {
             GetImageActor().sprite = GetDataActor().challengeSpriteOnCata;
-            transform.GetChild(5).gameObject.SetActive(true);
+            transform.GetChild(3).gameObject.SetActive(true);
         }
         else
         {
             GetImageActor().sprite = GetDataActor().challengeSprite;
-            transform.GetChild(5).gameObject.SetActive(false);
+            transform.GetChild(3).gameObject.SetActive(false);
         }
 
         GetComponent<Animator>().SetBool("isInDanger", GetInDanger());
