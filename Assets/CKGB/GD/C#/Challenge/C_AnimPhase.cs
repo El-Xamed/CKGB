@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static C_Interface;
 
 public class C_AnimPhase : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class C_AnimPhase : MonoBehaviour
     #region Animation
     public void StartChallenge()
     {
-        challenge.PlayerTurn();
+        challenge.StartIntroChallenge();
 
         //Pour afficher l'Ui.
         challenge.ShowUiChallenge(true);

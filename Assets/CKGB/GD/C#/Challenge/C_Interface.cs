@@ -17,12 +17,13 @@ public class C_Interface : MonoBehaviour
 
     //Récupération du script.
     C_Challenge myChallenge;
-    bool canPlay;
 
     #region Interface data
     bool onLogs = false;
     public enum Interface {Neutre, Logs, Actions, Traits, Back }
     [SerializeField]Interface currentInterface = Interface.Neutre;
+
+    bool dialogueMode;
 
     [Header("Logs")]
     [SerializeField] GameObject uiLogs;
@@ -49,7 +50,6 @@ public class C_Interface : MonoBehaviour
         myChallenge = GetComponentInParent<C_Challenge>();
         uiLogs.SetActive(false);
         uiAction.SetActive(false);
-        canPlay = false;
     }
 
     #region Racourcis
@@ -108,29 +108,26 @@ public class C_Interface : MonoBehaviour
             Vector2 input = context.ReadValue<Vector2>();
 
             //Pour passer au dialogue suivant.
-            if (!canPlay)
+            if (input.y < 0)
             {
-                if (input.y < 0)
+                //check si l histoire continue ou pas
+                Debug.Log("continue");
+                if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
                 {
-                    //check si l histoire continue ou pas
-                    Debug.Log("continue");
-                    if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
-                    {
-                        GameManager.instance.ContinueStory();
-                    }
-                    else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
-                    {
-                        GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
-                    }
-                    return;
+                    GameManager.instance.ContinueStory();
                 }
+                else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
+                {
+                    GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+                }
+                return;
             }
 
             //Check si l'interaction avec l'interface et possible => Phase du joueur.
-            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun && canPlay)
+            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
             {
                 //Pour la navigation dans l'interface "Neutre"
-                if (currentInterface == Interface.Neutre && canPlay)
+                if (currentInterface == Interface.Neutre)
                 {
                     if (input.x > 0)
                     {
@@ -177,13 +174,13 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour passer à la suite du jeu.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && canPlay)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame)
             {
                 myChallenge.FinishChallenge(null);
             }
 
             //Pour Update CataTurn.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn && canPlay)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
             {
                 myChallenge.PlayerTurn();
                 myChallenge.SetAnimFinish(false);
@@ -192,7 +189,7 @@ public class C_Interface : MonoBehaviour
             }
 
             //Pour Update ResoTrun.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn && canPlay)
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
             {
                 myChallenge.NextResolution();
             }
@@ -344,10 +341,6 @@ public class C_Interface : MonoBehaviour
     #endregion
 
     #region Partage de donné
-    public void SetCanPlay()
-    {
-        canPlay = true;
-    }
 
     public void SetCurrentInterface(Interface newCurrentInterface)
     {

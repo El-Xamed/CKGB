@@ -2392,7 +2392,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5830666820850183978}
   - component: {fileID: 5830666820850183981}
-  - component: {fileID: 1646281219605154206}
   m_Layer: 0
   m_Name: Transition_Flanel
   m_TagString: Untagged
@@ -2474,21 +2473,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1646281219605154206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5830666820850183979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2583a4e2616784b9c4a70fabc4ca58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flanel: {fileID: 5830666820850183981}
-  maskRond: {fileID: 0}
-  softBlackSwipe: {fileID: 0}
 --- !u!1 &5830666820884421728
 GameObject:
   m_ObjectHideFlags: 0

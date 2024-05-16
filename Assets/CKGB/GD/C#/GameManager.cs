@@ -72,6 +72,12 @@ public class GameManager : MonoBehaviour
     public C_TempsLibre TM;
     public C_Worldmap W;
     public C_Challenge C;
+
+    [Header("Transition")]
+    [SerializeField] Animator flanel;
+    [SerializeField] Animator maskRond;
+    [SerializeField] Animator softBlackSwipe;
+
     #endregion
     #region MenuPauseOptions
     [SerializeField] public GameObject pauseBackground;
@@ -653,5 +659,12 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+    #endregion
+
+    #region Transition
+    public void OpenTransitionFlannel()
+    {
+        flanel.SetTrigger("Open");
+    }
     #endregion
 }
