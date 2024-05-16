@@ -939,16 +939,10 @@ MonoBehaviour:
   myMixer: {fileID: 24100000, guid: a235190621d5da049a56600163b7c9bf, type: 2}
   musicSlider: {fileID: 5102577142700557909}
   sfxSlider: {fileID: 5102577142331559629}
-  voiceSlider: {fileID: 5102577140900021808}
   generalSlider: {fileID: 7573385993567516637}
   musicToggle: {fileID: 7335732102413624982}
   sfxToggle: {fileID: 6623023461654479582}
-  voiceToggle: {fileID: 5235626834484391294}
   generalToggle: {fileID: 1823834912555695922}
-  general: {fileID: 0}
-  voix: []
-  sfx: []
-  music: []
 --- !u!1 &5102577141306270389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,7 +3261,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5102577141220478815}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: MuteGeneral
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

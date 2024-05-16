@@ -3,6 +3,8 @@ using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEditor.Build.Reporting;
 
 
 
@@ -12,17 +14,33 @@ public class AudioManager : MonoBehaviour
     public AudioSource source;
     public static AudioManager instance;
     public Sound[] sounds;
+    public AudioMixerGroup SoundMixer;
+    public AudioMixerGroup MusicMixer;
+    
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
+       
         
         foreach (Sound s in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
+            if (s.loop == false && s.group == SoundMixer)
+            {
+                s.source = source;
+            }
+            else
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+            }
+
             s.source.clip = null;
             s.source.outputAudioMixerGroup = s.group;
 
@@ -36,15 +54,25 @@ public class AudioManager : MonoBehaviour
     
     private void Start()
     {
-        instance = this;
-        Play("");
-
+      
     } 
     public void PlayOnce(AudioClip mp3name)
     {
-        AudioManager.instance.GetComponent<AudioSource>().PlayOneShot(mp3name);
+        source.PlayOneShot(mp3name);
     }
+    public void PlayOnce(string mp3name)
+    {
+        Sound p = System.Array.Find(sounds, sound => sound.name == mp3name);
+        AudioClip clip = p.clip[Random.Range(0, p.clip.Length)];
+        if (p == null)
+        {
+            Debug.LogWarning("Sound:" + mp3name + "not found!");
+            return;
 
+
+        }
+        source.PlayOneShot(clip, p.volume);
+    }
         public void Play(string name)
         {
 
