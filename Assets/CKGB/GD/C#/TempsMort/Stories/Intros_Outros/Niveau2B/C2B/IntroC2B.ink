@@ -1,7 +1,6 @@
 ->Intro
-=== function StartTM(name)
-EXTERNAL StartTM(name)
-
+=== function StartChallenge(name)
+EXTERNAL StartChallenge(name)
 ===Intro===
 "Okay, je crois qu’on a tout sorti !"#Bulle:EsthelaHautGauche
 Esthéla se frotte les mains comme pour les débarasser de poussière.
@@ -48,5 +47,5 @@ Elle inspire profondément.#Bulle:Narrateur
 
 "NON VOUS ME FAITES VRAIMENT PEUR."#Bulle:BordDroite
 Elle entame immédiatement une perilleuse marche arrière avec ses chevaux, vous laissant en paix.#Bulle:Narrateur
-~ StartTM("TM")
+~ StartChallenge("name")
 ->END

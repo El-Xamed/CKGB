@@ -1,7 +1,7 @@
 ->Outro
-=== function StartChallenge(name)
+=== function FinishChallenge(name)
 
-EXTERNAL StartChallenge(name)
+EXTERNAL FinishChallenge(name)
 
 ===Outro===
 
@@ -80,4 +80,5 @@ Tu as mal à la gorge à force d’avoir pleuré.#Bulle:Narrateur
 
 Tu monte la rampe qui mène sur la terrasse. D’un geste sec, tu tire un mouchoir de ta poche pour t’essuyer.#Bulle:Narrateur
 Et tu salue ton crush à la vitre du salon de thé.#Bulle:Narrateur
+~ FinishChallenge("name")
 ->END

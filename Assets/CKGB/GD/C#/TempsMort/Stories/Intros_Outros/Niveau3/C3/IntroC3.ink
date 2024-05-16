@@ -1,6 +1,6 @@
 ->Intro
-=== function StartTM(name)
-EXTERNAL StartTM(name)
+=== function StartChallenge(name)
+EXTERNAL StartChallenge(name)
 
 ===Intro===
 //L’écran du combat sans l’UI de combat apparait. 
@@ -64,6 +64,6 @@ On peut attendre un peu avant d'y aller. Est-ce que... Ca t'aiderait ?#Bulle:Nim
 
 …#Bulle:Morgan
 
-//CHALLENGE 3 COMMENCE
+~ StartChallenge("name")
 
 ->END

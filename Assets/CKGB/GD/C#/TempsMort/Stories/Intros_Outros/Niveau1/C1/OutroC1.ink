@@ -1,7 +1,7 @@
 ->Outro
-=== function StartChallenge(name)
+=== function FinishChallenge(name)
 
-EXTERNAL StartChallenge(name)
+EXTERNAL FinishChallenge(name)
 
 ===Outro===
 Un éclair d'endorphine secoue ton système nerveux alors que tu lance la clef en l'air dans un élan victorieux.#BulleNarrateur
@@ -52,5 +52,5 @@ Vous sortez. La clef tintinnabule avant que tu la fasse tourner dans la serrure 
 
 //La world map souvre avec un rond qui s’agrandit en aprtant des personnages.
 
-//Start challenge
+~ FinishChallenge("name")
 ->END

@@ -1,6 +1,6 @@
 ->Intro
-=== function StartTM(name)
-EXTERNAL StartTM(name)
+=== function StartChallenge(name)
+EXTERNAL StartChallenge(name)
 
 ===Intro===
 Un craquement brutal, puis un petit "splosh" humide retentissent à quelques pas de toi.#Bulle:Narrateur
@@ -47,5 +47,5 @@ Esthéla s’essuie les yeux dramatiquement, puis relève la tête, le regard re
 "POUR LES BÉBÉS LÉZARDS."#Bulle:MorganHautGauche
 
 
-~ StartTM("TM")
+~ StartChallenge("name")
 ->END

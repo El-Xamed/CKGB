@@ -1,7 +1,7 @@
 ->Outro
-=== function StartChallenge(name)
+=== function FinishChallenge(name)
 
-EXTERNAL StartChallenge(name)
+EXTERNAL FinishChallenge(name)
 
 ===Outro===
 "Mission accomplie."#Bulle:CoolkidHautGauche
@@ -26,5 +26,5 @@ A la grande surprise de toutes les entitées concernées, Esthéla émets un fur
 Elle prend ton visage entre ses mains, te regarde droit dans les yeux, et avec une gravité que tu ne lui as jamais connue, elle prend la parole.#Bulle:Narrateur
 
 CW: **COURS**.
-//Retour à la carte du monde
+~ FinishChallenge("name")
 ->END

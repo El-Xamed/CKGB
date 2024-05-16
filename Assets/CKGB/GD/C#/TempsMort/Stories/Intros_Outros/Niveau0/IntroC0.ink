@@ -7,37 +7,37 @@ EXTERNAL StartChallenge(name)
 
 3, 2, 1, <pend>maintenant !</pend> #Bulle:MorganHautGauche
 
-Rien ne se passe. #Bulle:NarrateurC
+Rien ne se passe. #Bulle:Narrateur
 
 <shake a=0.5>Urg</shake>. #Bulle:MorganHautGauche
 
-De déception, tu tort brièvement ta bouche. #Bulle:NarrateurC
+De déception, tu tort brièvement ta bouche. #Bulle:Narrateur
 
 Hm.#Bulle:MorganHautGauche
 Trop tôt. Ca doit faire bientot <incr> 4 heures</incr> pourtant.#Bulle:MorganHautGauche
 
-L’ombre d’un doute survole ton esprit.#Bulle:NarrateurC 
-Et si tu avais largement surestimé le passage du temps ? Et si tu avais encore <incr>plusieurs heures</incr> à poirauter ici ?#Bulle:NarrateurC
+L’ombre d’un doute survole ton esprit.#Bulle:Narrateur 
+Et si tu avais largement surestimé le passage du temps ? Et si tu avais encore <incr>plusieurs heures</incr> à poirauter ici ?#Bulle:Narrateur
 
-Pour te rassurer, tu relance un pari avec toi même.#Bulle:NarrateurC
-Ce foutu réveil est condamné à sonner un moment ou un autre.#Bulle:NarrateurC
+Pour te rassurer, tu relance un pari avec toi même.#Bulle:Narrateur
+Ce foutu réveil est condamné à sonner un moment ou un autre.#Bulle:Narrateur
 
 Allez, 3<bounce> …</bounce>#Bulle:MorganHautGauche
 
 2<bounce> …</bounce>#Bulle:MorganHautGauche
 
-<incr>BRUIT DE CARILLON</incr>. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:NarrateurC
+<incr>BRUIT DE CARILLON</incr>. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:Narrateur
 
-<bounce> Tu sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:NarrateurC
+<bounce> Tu sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:Narrateur
 
-//[Écran du C0 sans l’UI. La caméra est au dessus du Coolkid, dans une position d’attente dans son lit.][Musique commence) #Bulle:NarrateurC
+//[Écran du C0 sans l’UI. La caméra est au dessus du Coolkid, dans une position d’attente dans son lit.][Musique commence) #Bulle:Narrateur
 
 <bounce>…</bounce> #Bulle:MorganHautGauche
 
-9H. #Bulle:NarrateurC
-Comme tu l’avais programmé la semaine dernière. C’est la première chose que tu as faites après avoir confirmé ton <rainb>rencard</rainb>.#Bulle:NarrateurC
-Tu es habitué à avoir de <shake a=0.5>l’anxiété</shake>, mais même à ton échelle, tu dois te l’admettre :#Bulle:NarrateurC
-Tu es devenu <i>un peu<i> fou ces derniers jours.#Bulle:NarrateurC
+9H. #Bulle:Narrateur
+Comme tu l’avais programmé la semaine dernière. C’est la première chose que tu as faites après avoir confirmé ton <rainb>rencard</rainb>.#Bulle:Narrateur
+Tu es habitué à avoir de <shake a=0.5>l’anxiété</shake>, mais même à ton échelle, tu dois te l’admettre :#Bulle:Narrateur
+Tu es devenu <i>un peu<i> fou ces derniers jours.#Bulle:Narrateur
 
 <bounce> …</bounce>#Bulle:MorganHautGauche
 
