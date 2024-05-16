@@ -1010,6 +1010,7 @@ public class C_TempsLibre : MonoBehaviour
 
             Debug.Log(c.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction);
             c.transform.parent = GameManager.instance.transform;
+            c.GetComponent<C_Actor>().GetImageActor().enabled = false;
             c.GetComponent<C_Actor>().HasObserved = false;
             c.GetComponent<C_Actor>().HasPapoted = false;
             c.GetComponent<C_Actor>().HasPlayed = false;
@@ -1065,7 +1066,7 @@ public class C_TempsLibre : MonoBehaviour
                 {
                     for (int i = 0; i < characters.Count; i++)
                     {
-                        /*if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
+                        if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
                         {
                             for (int y = 0; y < characters.Count; y++)
                             {
@@ -1081,7 +1082,7 @@ public class C_TempsLibre : MonoBehaviour
                             LastAction.RemoveAt(actiontoaddID);
                             actiontoaddID--;
                         }
-                        else*/ if(TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
+                        else if(TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
                         {
                             for (int y = 0; y < characters.Count; y++)
                             {
