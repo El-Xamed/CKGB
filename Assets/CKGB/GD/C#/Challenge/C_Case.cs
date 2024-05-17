@@ -24,17 +24,25 @@ public class C_Case : MonoBehaviour
 
     public void PlacePion(C_Pion thisPion)
     {
-        Debug.Log(thisPion + " est placé sur la case " + number + " soit la position " + thisPion.transform.localPosition);
-        Debug.Log(transform.position.x);
         //Place l'actor et change sa valeur de position.
-        thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        //thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        thisPion.GetComponent<RectTransform>().position = new Vector3(transform.position.x, 0, transform.position.z);
 
+        LayoutRebuilder.ForceRebuildLayoutImmediate(thisPion.GetComponent<RectTransform>());
         //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
         thisPion.SetPosition(number - 1);
 
         myPion = thisPion;
 
         CheckIsInDanger();
+    }
+
+    private void Update()
+    {
+        if(myPion != null)
+        {
+            PlacePion(myPion);
+        }
     }
 
     public void ResetPion()

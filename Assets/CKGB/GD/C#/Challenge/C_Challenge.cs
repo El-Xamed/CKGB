@@ -242,8 +242,14 @@ public class C_Challenge : MonoBehaviour
 
             newCase.AddNumber(i + 1);
 
+            newCase.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+            Debug.Log("ICI : " + newCase.GetComponent<RectTransform>().rect.position.ToString());
+
             plateau.Add(newCase);
         }
+
+        //Pour setup l'info car il s'update pas tout seul.
+        LayoutRebuilder.ForceRebuildLayoutImmediate(plateauGameObject.GetComponent<RectTransform>());
     }
 
     //Set la position de tous les acteurs sur les cases.
