@@ -33,7 +33,7 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] GameObject FichePersoParent;
 
     [Header("Character Tree")]
-    [SerializeField] GameObject TreeParent;
+    [SerializeField] public GameObject TreeParent;
 
     [Header("Actions")]
     [SerializeField] GameObject ActionsParents;
@@ -80,7 +80,7 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] public Animator nimuxesthelaAnimator;
 
     [Header("Eventsystem and Selected Gameobjects")]
-    [SerializeField] EventSystem Es;
+    [SerializeField] public EventSystem Es;
     [SerializeField] GameObject currentButton;
 
     #region variables de retour en arrière
@@ -374,13 +374,16 @@ public class C_TempsLibre : MonoBehaviour
         return;
 
     }
-    private void updateButton()
+    public void updateButton()
     {
         //desactive si il existe le curseur du bouton precedent avant de le changer
         if (currentButton.transform.GetChild(0) != null)
         {
-            currentButton.transform.GetChild(0).gameObject.SetActive(false);
+            if(currentButton.transform.GetChild(0).name == "child")
+                currentButton.transform.GetChild(0).gameObject.SetActive(false);
         }
+            
+        
         //enleve l animation de hover sur l arbre de choix de perso
         for(int i=0;i<characters.Count;i++)
         {
@@ -388,6 +391,11 @@ public class C_TempsLibre : MonoBehaviour
         }
         //check la nouvelle valeur du bouton en hover
         currentButton = Es.currentSelectedGameObject;
+        if(GameManager.instance.pauseBackground.activeSelf==false)
+        {
+            GameManager.instance.lastButton = currentButton;
+        }
+     
         if (currentButton.transform.GetChild(0) != null)
         {
             currentButton.transform.GetChild(0).gameObject.SetActive(true);
@@ -1036,7 +1044,7 @@ public class C_TempsLibre : MonoBehaviour
 
         if (context.performed )
         {
-            if(GameManager.instance.isDialoguing == false)
+            if(GameManager.instance.isDialoguing == false&& GameManager.instance.pauseBackground.activeSelf==false)
             {
                 Debug.Log("going backward");
                 if (GameManager.instance.isDialoguing != true)
@@ -1293,16 +1301,16 @@ public class C_TempsLibre : MonoBehaviour
             }
             else if(GameManager.instance.optionsMenu.activeSelf==true)
             {
-                GameManager.instance.optionsMenu.SetActive(false);
-                GameManager.instance.pauseMenu.SetActive(true);
-                Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+                Debug.Log("back from options");
+                GameManager.instance.BackFromPause();
+                
                 updateButton();
             }
             else if (GameManager.instance.pauseMenu.activeSelf == true)
             {
-                GameManager.instance.pauseMenu.SetActive(false);
-                GameManager.instance.pauseBackground.SetActive(false);
-                BACK(context);
+                Debug.Log("back from pause");
+                GameManager.instance.BackFromPause();
+                //BACK(context);
                 updateButton();
             }
 
@@ -1314,12 +1322,21 @@ public class C_TempsLibre : MonoBehaviour
     {
         if (context.performed)
         {
-            GameManager.instance.pauseBackground.SetActive(true);
-            GameManager.instance.pauseMenu.SetActive(true);
-            Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
-            updateButton();
-            //optionsParent.SetActive(true);
-            Debug.Log("Pause");
+            if(GameManager.instance.pauseBackground.activeSelf==false)
+            {
+                GameManager.instance.pauseBackground.SetActive(true);
+                GameManager.instance.pauseMenu.SetActive(true);
+                GameManager.instance.recommencerButton.SetActive(false);
+                Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+                updateButton();
+                //optionsParent.SetActive(true);
+                Debug.Log("Pause");
+            }
+            else
+            {
+                GameManager.instance.BackFromPause();
+            }
+            
         }
     }
     public void OpenOptions()

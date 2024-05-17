@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     public C_TempsLibre TM;
     public C_Worldmap W;
     public C_Challenge C;
+    public GameObject lastButton;
 
     [Header("Transition")]
     [SerializeField] Animator flanel;
@@ -666,7 +667,56 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #endregion
-
+    public void OpenOptions()
+    {
+        pauseBackground.SetActive(true);
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+        TM.Es.SetSelectedGameObject(GameManager.instance.optionsMenu.transform.GetChild(2).gameObject);
+        TM.updateButton();
+        //optionsParent.SetActive(true);
+        Debug.Log("Options");
+    }
+    public void BackFromPause()
+    {
+        if(optionsMenu.activeSelf)
+        {
+            optionsMenu.SetActive(false);
+            pauseMenu.SetActive(true);
+            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+            {
+                recommencerButton.SetActive(false);
+                TM.Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+                TM.updateButton();
+            }
+            else if (SceneManager.GetActiveScene().name == "")
+            {
+                //ajouter la selection du dernier boutton dans le challenge
+            }
+           
+        }
+        else
+        {
+            pauseBackground.SetActive(false);
+            pauseMenu.SetActive(false);
+            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+            {
+                if (lastButton != null)
+                {
+                    TM.Es.SetSelectedGameObject(lastButton.gameObject);
+                    TM.updateButton();
+                }
+                else
+                    TM.Es.SetSelectedGameObject(TM.TreeParent.transform.GetChild(0).GetChild(0).GetChild(0).gameObject);
+                
+            }
+            else if (SceneManager.GetActiveScene().name == "")
+            {
+                //ajouter la selection du dernier boutton dans le challenge
+            }
+        }
+        
+    }
     #region Transition
     public void OpenTransitionFlannel()
     {
