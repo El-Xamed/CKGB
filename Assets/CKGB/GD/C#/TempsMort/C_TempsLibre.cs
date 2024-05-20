@@ -1325,6 +1325,7 @@ public class C_TempsLibre : MonoBehaviour
             if(GameManager.instance.pauseBackground.activeSelf==false)
             {
                 GameManager.instance.pauseBackground.SetActive(true);
+                GameManager.instance.PauseParent.GetComponent<Animator>().SetTrigger("trigger");
                 GameManager.instance.pauseMenu.SetActive(true);
                 GameManager.instance.recommencerButton.SetActive(false);
                 Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);

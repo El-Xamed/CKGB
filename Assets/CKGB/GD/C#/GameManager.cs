@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Toggle baseToggle;
     [SerializeField] public GameObject reprendre;
 
+    [SerializeField] public GameObject PauseParent;
+
     
 
     #endregion

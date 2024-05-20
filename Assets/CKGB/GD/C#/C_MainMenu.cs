@@ -98,6 +98,7 @@ public class C_MainMenu : MonoBehaviour
             boutonsGroupe.SetActive(false);
             logoJeu.SetActive(false);
             GameManager.instance.pauseBackground.SetActive(true);
+            GameManager.instance.PauseParent.GetComponent<Animator>().SetTrigger("trigger");
             GameManager.instance.optionsMenu.SetActive(true);
             //optionsParent.SetActive(true);
             Debug.Log("Options");
