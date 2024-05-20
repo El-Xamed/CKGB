@@ -26,8 +26,7 @@ public class C_Interface : MonoBehaviour
     bool dialogueMode;
 
     [Header("Logs")]
-    [SerializeField] GameObject uiLogs;
-    [SerializeField] GameObject uiLogsScrollbar;
+    [SerializeField] GameObject uiLogsTimeline;
 
     [Header("Actions / Traits")]
     [SerializeField] GameObject uiAction;
@@ -48,7 +47,6 @@ public class C_Interface : MonoBehaviour
     private void Awake()
     {
         myChallenge = GetComponentInParent<C_Challenge>();
-        uiLogs.SetActive(false);
         uiAction.SetActive(false);
     }
 
@@ -223,15 +221,17 @@ public class C_Interface : MonoBehaviour
     //Pour accéder au logs.
     public void GoLogs()
     {
-        //Animation.
+        //Animation interface.
         targetbutton = buttonLogsBackground;
         GetComponent<Animator>().SetTrigger("Open");
 
+        //Animation Logs.
+        myChallenge.GetuiLogs().SetTrigger("Open");
+
         //Modifie l'état de navigation.
         currentInterface = Interface.Logs;
-        uiLogs.SetActive(true);
         onLogs = true;
-        myChallenge.GetEventSystem().SetSelectedGameObject(uiLogsScrollbar);
+        myChallenge.GetEventSystem().SetSelectedGameObject(uiLogsTimeline.GetComponentInChildren<Scrollbar>().gameObject);
     }
 
     //Pour accéder au traits.
@@ -265,7 +265,8 @@ public class C_Interface : MonoBehaviour
                 break;
             case Interface.Logs:
                 onLogs = false;
-                uiLogs.SetActive(false);
+                //Animation Logs.
+                myChallenge.GetuiLogs().SetTrigger("Close");
                 break;
         }
 

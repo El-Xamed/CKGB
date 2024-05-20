@@ -37,14 +37,21 @@ public class C_Case : MonoBehaviour
         CheckIsInDanger();
     }
 
-    private void Update()
+    /*private void Update()
     {
         if(myPion != null)
         {
             PlacePion(myPion);
         }
-    }
+    }*/
 
+    public void DebugPlacePion()
+    {
+        if (myPion != null)
+        {
+            PlacePion(myPion);
+        }
+    }
     public void ResetPion()
     {
         myPion = null;

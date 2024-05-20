@@ -558,7 +558,7 @@ public class GameManager : MonoBehaviour
                                 textToWriteIn = C.GetuiLogs().GetComponentInChildren<TMP_Text>();
 
                                 //Pour faire apparaitre le fond de texte.
-                                C.GetuiLogs().SetActive(true);
+                                C.GetuiLogs().gameObject.SetActive(true);
                                 C.GetuiLogs().GetComponentInChildren<Image>().enabled = true;
 
                                 Debug.Log(textToWriteIn.name);

@@ -28,7 +28,11 @@ public class C_Challenge : MonoBehaviour
     PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
     [SerializeField] GameObject plateauGameObject;
+
+    [Header("Logs")]
+    [SerializeField] Animator uiLogsAnimator;
     [SerializeField] GameObject uiLogs;
+    [SerializeField] GameObject uiLogsTimeline;
 
     List<C_Actor> myTeam = new List<C_Actor>();
     List<C_Accessories> listAcc = new List<C_Accessories>();
@@ -149,6 +153,9 @@ public class C_Challenge : MonoBehaviour
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
 
+        //Desactive par default les logs timeleine.
+        uiLogsTimeline.SetActive(false);
+
         //Apparition des cases
         SpawnCases();
 
@@ -189,7 +196,7 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Pour activer l'Ui des logs.
-        uiLogs.SetActive(active);
+        uiLogsAnimator.gameObject.SetActive(active);
     }
 
     public void SetCanContinueToYes()
@@ -242,19 +249,18 @@ public class C_Challenge : MonoBehaviour
 
             newCase.AddNumber(i + 1);
 
-            newCase.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             Debug.Log("ICI : " + newCase.GetComponent<RectTransform>().rect.position.ToString());
 
             plateau.Add(newCase);
         }
-
-        //Pour setup l'info car il s'update pas tout seul.
-        LayoutRebuilder.ForceRebuildLayoutImmediate(plateauGameObject.GetComponent<RectTransform>());
     }
 
     //Set la position de tous les acteurs sur les cases.
     void InitialiseAllPosition()
     {
+        //Force update sur le parent canva. A LE PLACER AVANT LE SPAWN DES PERSO.
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponentInChildren<RectTransform>());
+
         ActorPosition();
 
         AccPosition();
@@ -443,6 +449,7 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Lancement direct du challenge");
             StartChallenge(null);
+            ShowUiChallenge(true);
             onDialogue = false;
         }
     }
@@ -460,7 +467,6 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Re-active le fond des logs.
-        GetuiLogs().GetComponentInChildren<Image>().enabled = true;
 
         #region Initialisation
 
@@ -586,8 +592,11 @@ public class C_Challenge : MonoBehaviour
             }
             #endregion
 
-            //Affiche la preview.
-            GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
+            if (eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>())
+            {
+                //Affiche la preview.
+                GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
+            }
         }
     }
 
@@ -655,6 +664,12 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
+        //FIX TEMPORAIRE !!!
+        foreach (var thisCase in plateau)
+        {
+            thisCase.DebugPlacePion();
+        }
+
         //Efface les logs.
         uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
@@ -1596,8 +1611,8 @@ public class C_Challenge : MonoBehaviour
     #endregion
     #endregion
 
-    public GameObject GetuiLogs()
+    public Animator GetuiLogs()
     {
-        return uiLogs;
+        return uiLogsAnimator;
     }
 }
