@@ -50,7 +50,6 @@ public class VolumeSettings : MonoBehaviour
         float volume = generalSlider.value;
         myMixer.SetFloat("general",Mathf.Log10(volume) * 20);
         myMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
-        myMixer.SetFloat("voice", Mathf.Log10(volume) * 20);
         myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
 
     }
