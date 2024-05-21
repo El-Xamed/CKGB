@@ -159,7 +159,6 @@ public class C_Actor : C_Pion
         Debug.Log("Init challenge : " + name);
     }
 
-    //Cette partie du dev va etre optimisé ! les 2 fonctions réunis en 1.
     public void SetCurrentStats(int value, TargetStats_NewInspector.ETypeStats onWhatStats)
     {
         //Check quelle stats changer.

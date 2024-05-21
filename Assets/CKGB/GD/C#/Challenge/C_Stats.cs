@@ -9,8 +9,12 @@ public class C_Stats : MonoBehaviour
     #region data
     [Header("Stats PDP")]
     [SerializeField] Image PDP;
+    [SerializeField] Image cadenas;
     [SerializeField] GameObject borderPrefab;
     [SerializeField] Image calmJaugePreview;
+
+    [Header("Stats PDP")]
+    [SerializeField] Image heart;
 
     [Header("Stats (Text)")]
     [SerializeField] TMP_Text textCalm;
@@ -22,7 +26,6 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Sprite uiPvJaugeGreen;
     [SerializeField] Sprite uiPvJaugeOrange;
     [SerializeField] Sprite uiPvJaugeRed;
-    [SerializeField] Sprite uiPvJaugeTetanise;
 
     [Header("Background")]
     [SerializeField] Image uiPvBackground;
@@ -31,6 +34,7 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Sprite uiPvRedBackground;
 
     [Header("Points")]
+    [SerializeField] Image eclair;
     [SerializeField] RectTransform uiEnergie;
     [SerializeField] GameObject prefabEnergie;
     List<GameObject> listEnergie = new List<GameObject>();
@@ -50,6 +54,12 @@ public class C_Stats : MonoBehaviour
     {
         //Setup le PDP.
         PDP.sprite = thisActor.GetDataActor().challengeSpriteUi;
+
+        //Cache l'Ui de mort.
+        cadenas.enabled = false;
+
+        //Ini la petite éclair.
+        eclair.enabled = false;
 
         //Place les bordures par rapport au nombres de calm que poss�de le personnage.
         SpawnBorderCalm(thisActor.GetComponent<C_Actor>().GetMaxStress());
@@ -91,8 +101,8 @@ public class C_Stats : MonoBehaviour
     {
         #region Text
         //Update le text.
-        textCalm.text = myActor.GetComponent<C_Actor>().GetCurrentStress() + " / " + myActor.GetDataActor().stressMax;
-        textEnergie.text = myActor.GetComponent<C_Actor>().GetcurrentEnergy() + " / " + myActor.GetDataActor().energyMax;
+        textCalm.text = myActor.GetComponent<C_Actor>().GetCurrentStress() + "/" + myActor.GetDataActor().stressMax;
+        textEnergie.text = myActor.GetComponent<C_Actor>().GetcurrentEnergy() + "/" + myActor.GetDataActor().energyMax;
         #endregion
 
         #region Jauge
@@ -106,16 +116,24 @@ public class C_Stats : MonoBehaviour
         {
             uiCalm.sprite = uiPvJaugeGreen;
             uiPvBackground.sprite = uiPvGreenBackground;
+            heart.color = Color.HSVToRGB(0.233f, 1, 1);
         }
         else if((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 2 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont au dessus des 1/3.
         {
             uiCalm.sprite = uiPvJaugeOrange;
             uiPvBackground.sprite = uiPvOrangeBackground;
+            heart.color = Color.HSVToRGB(0.133f, 1, 1);
         }
         else if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 1 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont inf�rieur des 1/3.
         {
             uiCalm.sprite = uiPvJaugeRed;
             uiPvBackground.sprite = uiPvRedBackground;
+            heart.color = Color.HSVToRGB(0, 1, 1);
+        }
+
+        if (myActor.GetComponent<C_Actor>().GetCurrentStress() == 0)
+        {
+            IsOut();
         }
         #endregion
 
@@ -144,44 +162,27 @@ public class C_Stats : MonoBehaviour
         }
 
         //Active les points necessaire.
+        if (myActor.GetcurrentEnergy() == 0)
+        {
+            eclair.enabled = true;
+        }
+        else
+        {
+            eclair.enabled = false;
+        }
+
         for (int i = 0; i < myActor.GetcurrentEnergy(); i++)
         {
             listEnergie[i].SetActive(true);
         }
-
-        /*Old
-        //Check si le nombre est bon
-        if (listEnergie.Count -1 < myActor.GetComponent<C_Actor>().GetcurrentEnergy())
-        {
-            //Regarde combien de points il manque.
-            for (int i = listEnergie.Count; i < myActor.GetComponent<C_Actor>().GetcurrentEnergy(); i++)
-            {
-                //Cr�ation d'un nouvel GameObject.
-                GameObject newEnergieGameObject = new GameObject();
-                newEnergieGameObject.name = "UI_Stats_" + myActor.name + "_Energie_Pastille_ " + (i + 1);
-                newEnergieGameObject.AddComponent<Image>();
-                newEnergieGameObject.GetComponent<Image>().sprite = spriteEnergie;
-                newEnergieGameObject.transform.parent = uiEnergie.transform;
-                newEnergieGameObject.transform.localScale = Vector3.one;
-                newEnergieGameObject.transform.localPosition = Vector3.zero;
-
-                //Ajoute dans la liste.
-                listEnergie.Add(newEnergieGameObject);
-            }
-        }
-        else if (listEnergie.Count > myActor.GetComponent<C_Actor>().GetcurrentEnergy())
-        {
-            //Regarde si il y a pas trop de points d'energie.
-            for (int i = listEnergie.Count; i > myActor.GetComponent<C_Actor>().GetcurrentEnergy(); i--)
-            {
-                //Detruit les points en trop.
-                Debug.Log(i);
-                Destroy(listEnergie[i -1]);
-            }
-        }*/
         #endregion
     }
 
+    void IsOut()
+    {
+        //Cache l'Ui de mort.
+        cadenas.enabled = true;
+    }
 
     #region Preview
     public void ResetUiPreview()
