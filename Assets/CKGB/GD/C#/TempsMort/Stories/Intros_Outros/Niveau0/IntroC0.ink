@@ -13,7 +13,8 @@ Rien ne se passe. #Bulle:Narrateur
 
 De déception, tu tort brièvement ta bouche. #Bulle:Narrateur
 
-Hm.#Bulle:MorganHautGauche
+Hm.#Bulle:MorganHautGauche 
+
 Trop tôt. Ca doit faire bientot <incr> 4 heures</incr> pourtant.#Bulle:MorganHautGauche
 
 L’ombre d’un doute survole ton esprit.#Bulle:Narrateur 

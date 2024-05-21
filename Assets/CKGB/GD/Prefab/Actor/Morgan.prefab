@@ -540,6 +540,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1489036344525030663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7252901496192460747}
+  m_Layer: 0
+  m_Name: EmotContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7252901496192460747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489036344525030663}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3085631622730366072}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001414241361520775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1305,7 @@ RectTransform:
   - {fileID: 3111099932773774232}
   - {fileID: 4470508695539745047}
   - {fileID: 1015348477022848812}
+  - {fileID: 7252901496192460747}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1324,6 +1356,17 @@ MonoBehaviour:
   HasPapoted: 0
   HasTraited: 0
   charaTree: {fileID: 0}
+  emotContainer: {fileID: 1489036344525030663}
+  surprise: {fileID: 89352017136285502, guid: f231a8367d5687cda9bf21d3083bb70c, type: 3}
+  question: {fileID: 6897501006089863754, guid: 9d69f22548397376fb4e9b944520ac71, type: 3}
+  Dots: {fileID: 3607751616240141781, guid: 12776854e91a87507a10528471a062de, type: 3}
+  Drops: {fileID: 9041837202030392391, guid: 2d7dfa90eba61ba1d8f837f93e9543aa, type: 3}
+  Sparkles: {fileID: 4725252439901288737, guid: 337c17684d15264208c93cfc8b97e19b, type: 3}
+  Deception: {fileID: 2510133554203532696, guid: 055d41d01ddce8bf5b4531e6d2fafcbe, type: 3}
+  Anger: {fileID: 3635309475387935808, guid: 7f4cde820ecdd1c0da4ba69c63db6f8f, type: 3}
+  JoyLeft: {fileID: 8584284711140087731, guid: b348a660f163b174aae83db22ef0b0e6, type: 3}
+  Heart: {fileID: 7095522063686756432, guid: 1bf941bb3ec2056b79d385a80f00932f, type: 3}
+  Rainbow: {fileID: 3133079908873411369, guid: 53ebc4038fae71bc380ed4cbecb87f66, type: 3}
 --- !u!95 &31738878363605539
 Animator:
   serializedVersion: 5

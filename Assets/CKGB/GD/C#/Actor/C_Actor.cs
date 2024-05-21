@@ -63,7 +63,19 @@ public class C_Actor : C_Pion
     [SerializeField] public bool HasTraited = false;
     [SerializeField] public C_Tree charaTree;
     #endregion
-
+    #region emots
+    [SerializeField] public GameObject emotContainer;
+    [SerializeField] public GameObject surprise;
+    [SerializeField] public GameObject question;
+    [SerializeField] public GameObject Dots;
+    [SerializeField] public GameObject Drops;
+    [SerializeField] public GameObject Sparkles;
+    [SerializeField] public GameObject Deception;
+    [SerializeField] public GameObject Anger;
+    [SerializeField] public GameObject JoyLeft;
+    [SerializeField] public GameObject Heart;
+    [SerializeField] public GameObject Rainbow;
+    #endregion
     #endregion
 
     private void Awake()

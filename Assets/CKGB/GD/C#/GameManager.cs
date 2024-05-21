@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     //zone d�di�e aux  dialogues
     [SerializeField] public Story currentStory;
+    [SerializeField] public GameObject currentTalkingCharacter;
     [SerializeField] public int[] RevasserID;
     [SerializeField] public int RespirerID;
     [SerializeField] public int[] PapoterID;
@@ -350,9 +351,14 @@ public class GameManager : MonoBehaviour
                             if (textToWriteIn.GetComponentInParent<Image>()!=null)
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
-                            }                           
+                            }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtHautGauche;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
+                            if(SceneManager.GetActiveScene().name== "S_TempsLibre")
+                            {
+                                currentTalkingCharacter =TM.Morgan;
+                            }
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -366,8 +372,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtHautDroite;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Morgan;
+                            }
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -381,8 +392,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Morgan;
+                            }
                             Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
                             break;
@@ -396,8 +412,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Morgan").GetComponent<C_Actor>().txtBasDroite;
                             GameObject.Find("Morgan").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Morgan;
+                            }
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -412,8 +433,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautGauche;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Esthela;
+                            }
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -427,8 +453,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Esthela").GetComponent<C_Actor>().txtHautDroite;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Esthela;
+                            }
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -442,8 +473,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Esthela").GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Esthela;
+                            }
                             Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
@@ -457,8 +493,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Esthela").GetComponent<C_Actor>().txtBasDroite;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Esthela;
+                            }
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -473,8 +514,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtHautGauche;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Nimu;
+                            }
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -488,8 +534,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtHautDroite;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Nimu;
+                            }
                             Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
@@ -503,8 +554,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Nimu;
+                            }
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -518,8 +574,13 @@ public class GameManager : MonoBehaviour
                             {
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
+                            CleanEmot();
                             textToWriteIn = GameObject.Find("Nimu").GetComponent<C_Actor>().txtBasDroite;
                             GameObject.Find("Nimu").GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = true;
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                currentTalkingCharacter = TM.Nimu;
+                            }
                             Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
@@ -536,6 +597,7 @@ public class GameManager : MonoBehaviour
                                 {
                                     textToWriteIn.GetComponentInParent<Image>().enabled = false;
                                 }
+                                CleanEmot();
                                 textToWriteIn = TM.naratteurText;
                                 TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
                                 Debug.Log(textToWriteIn.name);
@@ -576,38 +638,104 @@ public class GameManager : MonoBehaviour
                 case emotion_Tag:
                     switch(tagValue)
                     {
-                        case "!":
-
+                        case "surprise":
+                          
+                                if(currentTalkingCharacter!=null)
+                                {
+                                    GameObject surprise = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().surprise, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    surprise.GetComponent<RectTransform>().anchoredPosition = new Vector3(-84, 111, 0);
+                                } 
+                            
                             break;
-                        case "?":
-
+                        case "question":
+                           
+                                if (currentTalkingCharacter != null)
+                                {
+                                    Debug.Log("questionMark");
+                                    GameObject question = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().question, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    question.GetComponent<RectTransform>().anchoredPosition = new Vector3(-65, 136, 0);
+                                }
+                            
                             break;
                         case "Dots":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Dots = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Dots, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Dots.GetComponent<RectTransform>().anchoredPosition = new Vector3(-5.44f, 75, 0);
+                                }
+                            }
                             break;
                         case "Drop":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Drop = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Drops, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Drop.GetComponent<RectTransform>().anchoredPosition = new Vector3(88, 280, 0);
+                                }
+                            }
                             break;
                         case "Sparkles":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Sparkles = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Sparkles, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Sparkles.GetComponent<RectTransform>().anchoredPosition = new Vector3(88, 135, 0);
+                                }
+                            }
                             break;
                         case "Deception":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Deception = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Deception, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Deception.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, 190, 0);
+                                }
+                            }
                             break;
                         case "Anger":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Anger = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Anger, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Anger.GetComponent<RectTransform>().anchoredPosition = new Vector3(63, 121, 0);
+                                }
+                            }
                             break;
                         case "JoyLeft":
-
-                            break;
-                        case "JoyRight":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject JoyLeft = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().JoyLeft, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    JoyLeft.GetComponent<RectTransform>().anchoredPosition = new Vector3(-148, 114, 0);
+                                }
+                            }
                             break;
                         case "Heart":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Heart = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Heart, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Heart.GetComponent<RectTransform>().anchoredPosition = new Vector3(47, -58, 0);
+                                }
+                            }
                             break;
                         case "Rainbow":
-
+                            if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                            {
+                                if (currentTalkingCharacter != null)
+                                {
+                                    GameObject Rainbow = Instantiate(currentTalkingCharacter.GetComponent<C_Actor>().Rainbow, currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform);
+                                    Rainbow.GetComponent<RectTransform>().anchoredPosition = new Vector3(-6.42f, 16, 0);
+                                }
+                            }
                             break;
                     }
                     break;
@@ -647,7 +775,21 @@ public class GameManager : MonoBehaviour
        
       textToWriteIn.text = text;       
     }
+    public void CleanEmot()
+    {
+        if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+        {
+            if (currentTalkingCharacter != null)
+            {
+                for (int i = 0; i < currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform.childCount; i++)
+                {
+                    Destroy(currentTalkingCharacter.GetComponent<C_Actor>().emotContainer.transform.GetChild(i).gameObject);
+                }
 
+            }
+
+        }
+    }
     public void ExitDialogueMode()
     {
         if (TM != null)

@@ -17,7 +17,7 @@ Yo BG. Bien dormi ?#Bulle:NimuHautDroite
 
 Super. #Bulle:NimuHautGauche
 Juste, d’un POV pratique,#Bulle:NimuHautGauche
-Est-ce que dire des moitiés de mots<br>c’est un plan à long terme ?”#Bulle:NimuHautGauche
+Est-ce que dire des moitiés de mots<br>c’est un plan à long terme ?”#Bulle:NimuHautGauche #emot:question
 
 ’tetre.#Bulle:MorganHautGauche
 
