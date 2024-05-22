@@ -16,12 +16,54 @@ public class TestSoundAnimation : MonoBehaviour
 
     public void AnimAngerEsthelaNimu()
     {
-        AudioManager.instance.PlayOnce("Anger");  
+        A.PlayOnce("Anger");  
     }
 
     public void AnimAngerMorgan()
     {
-        AudioManager.instance.PlayOnce("Anger2");
+        A.PlayOnce("Anger2");
     }
+
+    public void SfxPowerUp()
+    {
+        A.PlayOnce("SfxPowerUp");
+    }
+
+    public void SfxPowerDown()
+    {
+        A.PlayOnce("SfxPowerDown");
+    }
+
+    public void Rainbow()
+    {
+        A.PlayOnce("Rainbow");
+    }
+
+    public void Interrogation()
+    {
+        A.PlayOnce("Interrogation");
+    }
+
+    public void Hearts()
+    {
+        A.PlayOnce("Hearts");
+    }
+
+    public void Deception()
+    {
+        A.PlayOnce("Deception");
+    }
+
+    public void Exclamation()
+    {
+        A.PlayOnce("Exclamation");
+    }
+
+    public void Dots()
+    {
+        A.PlayOnce("Dots");
+    }
+
+
 }
 
