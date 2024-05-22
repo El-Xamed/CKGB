@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static Interaction;
 
 [CustomPropertyDrawer(typeof(Interaction))]
@@ -139,7 +136,7 @@ public class InteractionDrawer : PropertyDrawer
 
         if (target == ETypeTarget.Self)
         {
-            return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + statsHeight;
+            return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + statsHeight;
         }
         else if (target == ETypeTarget.Other)
         {
@@ -163,6 +160,6 @@ public class InteractionDrawer : PropertyDrawer
             }
         }
 
-        return EditorGUIUtility.singleLineHeight *2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + rangeHeight;
+        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + statsHeight + rangeHeight;
     }
 }

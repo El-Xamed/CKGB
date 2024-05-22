@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static Interaction_NewInspector;
+using static Interaction;
 
 [CustomPropertyDrawer(typeof(Interaction_NewInspector))]
 public class InteractionDrawer_NewInspector : PropertyDrawer

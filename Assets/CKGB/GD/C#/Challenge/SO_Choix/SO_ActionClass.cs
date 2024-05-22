@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static TargetStats;
 
@@ -31,34 +32,34 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("List d'action")]
     public List<Interaction> listInteraction = new List<Interaction>();
-    public List<Interaction_NewInspector> newListInteractions;
+    public List<Interaction> newListInteractions;
     #endregion
 
     #region Récupération de stats
     //Fonction qui renvoie la valeur d'un des stats. RETIRER "TARGET STATS" CAR IL EST INUTILE.
-    public int GetValue(Interaction_NewInspector.ETypeTarget actorTarget, TargetStats_NewInspector.ETypeStatsTarget targetStats)
+    public int GetValue(Interaction.ETypeTarget actorTarget, TargetStats.ETypeStatsTarget targetStats)
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "actorTarget".
             if (thisInteraction.whatTarget == actorTarget)
             {
                 //Pour toutes les list de TargetStats.
-                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    if (targetStats == TargetStats_NewInspector.ETypeStatsTarget.Stats)
+                    if (targetStats == TargetStats.ETypeStatsTarget.Stats)
                     {
-                        if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
+                        if (thisTargetStats.whatCost == TargetStats.ETypeCost.Price)
                         {
                             return -thisTargetStats.value;
                         }
-                        else if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Gain)
+                        else if (thisTargetStats.whatCost == TargetStats.ETypeCost.Gain)
                         {
                             return thisTargetStats.value;
                         }
                     }
-                    else if (targetStats == TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                    else if (targetStats == TargetStats.ETypeStatsTarget.Movement)
                     {
                         return thisTargetStats.value;
                     }
@@ -69,16 +70,16 @@ public class SO_ActionClass : ScriptableObject
         return 0;
     }
 
-    public TargetStats_NewInspector.ETypeMove GetWhatMove(Interaction_NewInspector.ETypeTarget actorTarget)
+    public TargetStats.ETypeMove GetWhatMove(Interaction.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "actorTarget".
             if (thisInteraction.whatTarget == actorTarget)
             {
                 //Pour toutes les list de TargetStats.
-                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
                     return thisTargetStats.whatMove;
                 }
@@ -88,16 +89,16 @@ public class SO_ActionClass : ScriptableObject
         return 0;
     }
 
-    public bool GetIsTp(Interaction_NewInspector.ETypeTarget actorTarget)
+    public bool GetIsTp(Interaction.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "actorTarget".
             if (thisInteraction.whatTarget == actorTarget)
             {
                 //Pour toutes les list de TargetStats.
-                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
                     return thisTargetStats.isTp;
                 }
@@ -111,10 +112,10 @@ public class SO_ActionClass : ScriptableObject
     public int GetRange()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
                 return thisInteraction.range;
             }
@@ -126,10 +127,10 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIfTargetOrNot()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
                 if (thisInteraction.selectTarget)
                 {
@@ -144,10 +145,10 @@ public class SO_ActionClass : ScriptableObject
     public GameObject GetTarget()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
                 if (thisInteraction.selectTarget)
                 {
@@ -160,13 +161,13 @@ public class SO_ActionClass : ScriptableObject
     }
 
     //Fonction qui renvoie le parametre de mouvement.
-    public Interaction_NewInspector.ETypeDirectionTarget GetTypeDirectionRange()
+    public Interaction.ETypeDirectionTarget GetTypeDirectionRange()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "other".
-            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
                 return thisInteraction.whatDirectionTarget;
             }
@@ -181,16 +182,16 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIfSwitchOrNot()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Self)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
             {
-                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                     {
-                        if (thisTargetStats.whatMove == TargetStats_NewInspector.ETypeMove.SwitchWithAcc)
+                        if (thisTargetStats.whatMove == TargetStats.ETypeMove.SwitchWithAcc)
                         {
                             //thisTargetStats. = GameObject.Find(GetSwitchGameObject().GetDataAcc().name).GetComponent<C_Accessories>();
                             return true;
@@ -201,30 +202,6 @@ public class SO_ActionClass : ScriptableObject
         }
 
         return false;
-    }
-
-    public C_Accessories GetSwitchGameObject()
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
-            {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    if (thisTargetStats.whatStatsTarget == ETypeStatsTarget.Movement)
-                    {
-                        if (thisTargetStats.move.whatMove == Move.ETypeMove.SwitchWithAcc)
-                        {
-                            return thisTargetStats.move.accessories;
-                        }
-                    }
-                }
-            }
-        }
-
-        return null;
     }
 
     public void SetTarget(GameObject thisTarget)
@@ -243,31 +220,6 @@ public class SO_ActionClass : ScriptableObject
         }
     }
 
-    public C_Actor GetSwitchActor(Interaction.ETypeTarget actorTarget)
-    {
-        //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in listInteraction)
-        {
-            //Check si sont enum est égale à "actorTarget".
-            if (thisInteraction.whatTarget == actorTarget)
-            {
-                //Pour toutes les list de stats.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si sont enum est égale à "statsTarget".
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
-                    {
-                        return thisTargetStats.move.actor;
-                    }
-                }
-            }
-        }
-
-        Debug.Log("ATTENTION : Cette action ne possède de switch avec un autre actor !");
-
-        return null;
-    }
-
     public C_Accessories GetSwitchAcc(Interaction.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
@@ -282,7 +234,7 @@ public class SO_ActionClass : ScriptableObject
                     //Check si sont enum est égale à "statsTarget".
                     if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                     {
-                        return thisTargetStats.move.accessories;
+                        return thisTargetStats.accessoriesSwitch;
                     }
                 }
             }
@@ -298,10 +250,10 @@ public class SO_ActionClass : ScriptableObject
     public bool CheckOtherInAction()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in newListInteractions)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction_NewInspector.ETypeTarget.Other)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
                 Debug.Log("D'autres actor peuvent etre impacté !");
                 return true;
@@ -372,7 +324,7 @@ public class SO_ActionClass : ScriptableObject
         return true;
     }
 
-    public void SetStatsTarget(Interaction_NewInspector.ETypeTarget target, C_Pion thisActor)
+    public void SetStatsTarget(Interaction.ETypeTarget target, C_Pion thisActor)
     {
         //Avoir à la place une detection de l'enum du si c'est un prix (-x) ou un gain (+x). Necessaire pour l'outil de preview.
         if (thisActor.GetComponent<C_Actor>())
@@ -381,19 +333,19 @@ public class SO_ActionClass : ScriptableObject
             if (newListInteractions.Count != 0)
             {
                 //Fait toute la liste des cible.
-                foreach (Interaction_NewInspector thisInteraction in newListInteractions)
+                foreach (Interaction thisInteraction in newListInteractions)
                 {
                     //Check si c'est égale à "actorTarget".
                     if (thisInteraction.whatTarget == target)
                     {
                         //Applique à l'actor SEULEMENT LES STATS les stats.
-                        foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                        foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                         {
-                            if (thisTargetStats.whatStatsTarget != TargetStats_NewInspector.ETypeStatsTarget.Movement)
+                            if (thisTargetStats.whatStatsTarget != TargetStats.ETypeStatsTarget.Movement)
                             {
                                 int value;
 
-                                if (thisTargetStats.whatCost == TargetStats_NewInspector.ETypeCost.Price)
+                                if (thisTargetStats.whatCost == TargetStats.ETypeCost.Price)
                                 {
                                     //Retourne une valeur négative.
                                     value = -thisTargetStats.value;
@@ -419,13 +371,16 @@ public class SO_ActionClass : ScriptableObject
 
     public void Convert()
     {
-        //Création d'un nouvelle liste qui va remplacer l'ancien interface.
-        newListInteractions = new List<Interaction_NewInspector>();
+        Debug.Log("Convert en cours...");
+
+        //Ici new dev pour convertir pour le nettoyage.
+        //Version 2
+        listInteraction = new List<Interaction>();
 
         //Pour toutes les interaction dans l'ancien interface.
-        foreach (Interaction item in listInteraction)
+        foreach (Interaction item in newListInteractions)
         {
-            Interaction_NewInspector newInteraction_NewInspector = new Interaction_NewInspector();
+            Interaction interaction = new Interaction();
 
             //Convertisseur pour la liste 1.
 
@@ -434,157 +389,127 @@ public class SO_ActionClass : ScriptableObject
             switch (item.whatTarget)
             {
                 case Interaction.ETypeTarget.Self:
-                    newInteraction_NewInspector.whatTarget = Interaction_NewInspector.ETypeTarget.Self;
+                    interaction.whatTarget = Interaction.ETypeTarget.Self;
                     break;
                 case Interaction.ETypeTarget.Other:
-                    newInteraction_NewInspector.whatTarget = Interaction_NewInspector.ETypeTarget.Other;
+                    interaction.whatTarget = Interaction.ETypeTarget.Other;
                     break;
             }
             #endregion
 
-            newInteraction_NewInspector.selectTarget = item.selectTarget;
+            interaction.selectTarget = item.selectTarget;
 
             #region whatTypeTarget
             //Pour Convertir le type de cible.
             switch (item.whatTypeTarget)
             {
                 case Interaction.EType.Actor:
-                    newInteraction_NewInspector.whatTypeTarget = Interaction_NewInspector.EType.Actor;
+                    interaction.whatTypeTarget = Interaction.EType.Actor;
                     break;
                 case Interaction.EType.Acc:
-                    newInteraction_NewInspector.whatTypeTarget = Interaction_NewInspector.EType.Acc;
+                    interaction.whatTypeTarget = Interaction.EType.Acc;
                     break;
             }
             #endregion
 
-            newInteraction_NewInspector.target = item.target;
+            interaction.target = item.target;
 
             #region whatDirectionTarget
             //Pour Convertir la direction.
             switch (item.whatDirectionTarget)
             {
                 case Interaction.ETypeDirectionTarget.Right:
-                    newInteraction_NewInspector.whatDirectionTarget = Interaction_NewInspector.ETypeDirectionTarget.Right;
+                    interaction.whatDirectionTarget = Interaction.ETypeDirectionTarget.Right;
                     break;
                 case Interaction.ETypeDirectionTarget.Left:
-                    newInteraction_NewInspector.whatDirectionTarget = Interaction_NewInspector.ETypeDirectionTarget.Left;
+                    interaction.whatDirectionTarget = Interaction.ETypeDirectionTarget.Left;
                     break;
                 case Interaction.ETypeDirectionTarget.RightAndLeft:
-                    newInteraction_NewInspector.whatDirectionTarget = Interaction_NewInspector.ETypeDirectionTarget.RightAndLeft;
+                    interaction.whatDirectionTarget = Interaction.ETypeDirectionTarget.RightAndLeft;
                     break;
             }
             #endregion
 
-            newInteraction_NewInspector.range = item.range;
-
+            interaction.range = item.range;
 
             //Check dans l'ancienne version la liste de stats.
             foreach (TargetStats thisListTargetStats in item.listTargetStats)
             {
-                //On récupère si c'est un prix ou un gain
-                //Check si c'est pas un prix.
-                if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Price)
+                //Nouvelle variable.
+                TargetStats targetStats = new TargetStats();
+
+                #region ETypeStatsTarget
+                //Pour Convertir la direction.
+                switch (thisListTargetStats.whatStatsTarget)
                 {
-                    //Regarde dans la liste si la TargetStats est égale au prix pour ajouter dans la nouvelle version.
-                    foreach (Stats thisStats in thisListTargetStats.listStats)
-                    {
-                        if (thisStats.whatStats == Stats.ETypeStats.Energy)
+                    case TargetStats.ETypeStatsTarget.Stats:
+                        targetStats.whatStatsTarget = TargetStats.ETypeStatsTarget.Stats;
+
+                        #region ETypeCost
+                        //Pour Convertir la direction.
+                        switch (thisListTargetStats.whatCost)
                         {
-                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, TargetStats_NewInspector.ETypeCost.Price, TargetStats_NewInspector.ETypeStats.Energy, thisStats.value);
+                            case TargetStats.ETypeCost.Price:
+                                targetStats.whatCost = TargetStats.ETypeCost.Price;
+                                break;
+                            case TargetStats.ETypeCost.Gain:
+                                targetStats.whatCost = TargetStats.ETypeCost.Gain;
+                                break;
                         }
-                        else if (thisStats.whatStats == Stats.ETypeStats.Calm)
+                        #endregion
+
+                        #region ETypeStats
+                        //Pour Convertir la direction.
+                        switch (thisListTargetStats.whatStats)
                         {
-                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, TargetStats_NewInspector.ETypeCost.Price, TargetStats_NewInspector.ETypeStats.Calm, thisStats.value);
+                            case TargetStats.ETypeStats.Calm:
+                                targetStats.whatStats = TargetStats.ETypeStats.Calm;
+                                break;
+                            case TargetStats.ETypeStats.Energy:
+                                targetStats.whatStats = TargetStats.ETypeStats.Energy;
+                                break;
                         }
-                    }
-                }
-                else if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Gain) //Check si c'est pas un gain.
-                {
-                    //Regarde dans la liste si la TargetStats est égale au prix pour ajouter dans la nouvelle version.
-                    foreach (Stats thisStats in thisListTargetStats.listStats)
-                    {
-                        if (thisStats.whatStats == Stats.ETypeStats.Energy)
+                        #endregion
+                        break;
+                    case TargetStats.ETypeStatsTarget.Movement:
+                        targetStats.whatStatsTarget = TargetStats.ETypeStatsTarget.Movement;
+
+                        #region ETypeMovement
+                        //Pour Convertir la direction.
+                        switch (thisListTargetStats.whatMove)
                         {
-                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, TargetStats_NewInspector.ETypeCost.Gain, TargetStats_NewInspector.ETypeStats.Energy, thisStats.value);
+                            case TargetStats.ETypeMove.None:
+                                targetStats.whatMove = TargetStats.ETypeMove.None;
+                                break;
+                            case TargetStats.ETypeMove.Right:
+                                targetStats.whatMove = TargetStats.ETypeMove.Right;
+                                break;
+                            case TargetStats.ETypeMove.Left:
+                                targetStats.whatMove = TargetStats.ETypeMove.Left;
+                                break;
+                            case TargetStats.ETypeMove.OnTargetCase:
+                                targetStats.whatMove = TargetStats.ETypeMove.OnTargetCase;
+                                break;
+                            case TargetStats.ETypeMove.SwitchWithAcc:
+                                targetStats.whatMove = TargetStats.ETypeMove.SwitchWithAcc;
+                                break;
+                            case TargetStats.ETypeMove.SwitchWithActor:
+                                targetStats.whatMove = TargetStats.ETypeMove.SwitchWithActor;
+                                break;
                         }
-                        else if (thisStats.whatStats == Stats.ETypeStats.Calm)
-                        {
-                            ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget.Stats, TargetStats_NewInspector.ETypeCost.Gain, TargetStats_NewInspector.ETypeStats.Calm, thisStats.value);
-                        }
-                    }
+                        #endregion
+
+                        targetStats.isTp = thisListTargetStats.isTp;
+                        break;
                 }
-                else if (thisListTargetStats.whatStatsTarget == ETypeStatsTarget.Movement) //Si c'est un mouvement alors il donne les info de mouvement.
-                {
-                    //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
-                    TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
+                #endregion
 
-                    //Récupère l'info que c'est une stats.
-                    newListTargetStats.whatStatsTarget = TargetStats_NewInspector.ETypeStatsTarget.Movement;
+                targetStats.value = thisListTargetStats.value;
 
-                    #region whatMove
-                    //Pour Convertir la direction.
-                    switch (thisListTargetStats.move.whatMove)
-                    {
-                        case Move.ETypeMove.Right:
-                            newListTargetStats.whatMove = TargetStats_NewInspector.ETypeMove.Right;
-                            break;
-                        case Move.ETypeMove.Left:
-                            newListTargetStats.whatMove = TargetStats_NewInspector.ETypeMove.Left;
-                            break;
-                        case Move.ETypeMove.OnTargetCase:
-                            newListTargetStats.whatMove = TargetStats_NewInspector.ETypeMove.OnTargetCase;
-                            break;
-                        case Move.ETypeMove.SwitchWithActor:
-                            newListTargetStats.whatMove = TargetStats_NewInspector.ETypeMove.SwitchWithActor;
-                            break;
-                        case Move.ETypeMove.SwitchWithAcc:
-                            newListTargetStats.whatMove = TargetStats_NewInspector.ETypeMove.SwitchWithAcc;
-                            break;
-                    }
-                    #endregion
-
-                    //Récupère l'info sur quelle stats ça va se jouer.
-                    newListTargetStats.isTp = thisListTargetStats.move.isTp;
-                    newListTargetStats.value = thisListTargetStats.move.nbMove;
-                    newListTargetStats.actorSwitch = thisListTargetStats.move.actor;
-                    newListTargetStats.accessoriesSwitch = thisListTargetStats.move.accessories;
-
-                    //Ajoute "newListTargetStats" dans la nouvelle version.
-                    newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
-                }
-
-                void ConvertForTargetStats(TargetStats_NewInspector.ETypeStatsTarget whatTypeStats, TargetStats_NewInspector.ETypeCost whatCost, TargetStats_NewInspector.ETypeStats whatStats, int valeur)
-                {
-                    //Création d'une nouvelle "TargetStats_NewInspector" avec les info de price/gain + energy/calm à entrer.
-                    TargetStats_NewInspector newListTargetStats = new TargetStats_NewInspector();
-                    //Récupère l'info que c'est une stats.
-                    newListTargetStats.whatStatsTarget = whatTypeStats;
-
-                    //Si c'est une stats lance alors le script pour setup les stats
-                    if (whatTypeStats == TargetStats_NewInspector.ETypeStatsTarget.Stats)
-                    {
-                        //Création d'une nouvelle "Stats_NewInspector" avec les info de price/gain + energy/calm à entrer pour ajouter dans le nouveau "TargetStats_NewInspector" pour pas qu'il soit null.
-                        TargetStats_NewInspector newStats_NewInspector = new TargetStats_NewInspector();
-                        //Récupère l'info que c'est un prix.
-                        newStats_NewInspector.whatCost = whatCost;
-                        //Récupère l'info sur quelle stats ça va se jouer.
-                        newStats_NewInspector.whatStats = whatStats;
-
-                        //Récupère l'info de la valeur.
-                        newStats_NewInspector.value = valeur;
-
-                        //Ajouter "newStats_NewInspector" dans "TargetStats_NewInspector".
-                        newListTargetStats = newStats_NewInspector;
-                        //Ajoute "newListTargetStats" dans la nouvelle version.
-                        newInteraction_NewInspector.listTargetStats.Add(newListTargetStats);
-                    }
-                }
+                interaction.listTargetStats.Add(targetStats);
             }
 
-            //newInteraction_NewInspector.listTargetStats = newListTargetStats;
-
-            //Ajoute à la nouvelle liste d'interaction.
-            newListInteractions.Add(newInteraction_NewInspector);
+            listInteraction.Add(interaction);
         }
     }
 
@@ -627,7 +552,7 @@ public class Interaction
     #endregion
 
     public ETypeDirectionTarget whatDirectionTarget;
-    public enum ETypeDirectionTarget {None, Right, Left, RightAndLeft };
+    public enum ETypeDirectionTarget { None, Right, Left, RightAndLeft };
     public int range;
 
     public List<TargetStats> listTargetStats = new List<TargetStats>();
@@ -636,37 +561,34 @@ public class Interaction
 [Serializable]
 public class TargetStats
 {
-    #region Stats
+    #region Data
     //Cible qu'on souhaite viser.
     public ETypeStatsTarget whatStatsTarget;
-    public enum ETypeStatsTarget { Price, Gain, Movement };
+    public enum ETypeStatsTarget { Stats, Movement };
     #endregion
 
-    public List<Stats> listStats = new List<Stats>();
-    public Move move;
-}
+    #region Stats
+    //Pour les stats
+    public ETypeCost whatCost;
+    public enum ETypeCost { Price, Gain };
 
-[Serializable]
-public class Stats
-{
     public ETypeStats whatStats;
     public enum ETypeStats { Energy, Calm };
+    #endregion
 
-    public int value;
-}
-
-[Serializable]
-public class Move
-{
-    public ETypeMove whatMove;
+    #region Movement
+    //pour le mouvement
+    public ETypeMove whatMove = ETypeMove.None;
     public enum ETypeMove { None, Right, Left, OnTargetCase, SwitchWithActor, SwitchWithAcc };
 
+    //Si c'est une tp ou non
     public bool isTp;
 
-    public int nbMove;
-
     //Pour echanger de place.
-    public C_Actor actor;
-    public C_Accessories accessories;
+    public C_Actor actorSwitch;
+    public C_Accessories accessoriesSwitch;
+    #endregion
+
+    public int value;
 }
 #endregion

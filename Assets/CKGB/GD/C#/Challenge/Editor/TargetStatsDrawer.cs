@@ -1,6 +1,3 @@
-using Ink;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static TargetStats;
@@ -11,39 +8,71 @@ public class TargetStatsDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         //Récupération des info.
-        SerializedProperty stats = property.FindPropertyRelative("whatStatsTarget");
-        SerializedProperty listTargetStats = property.FindPropertyRelative("listStats");
-        SerializedProperty move = property.FindPropertyRelative("move");
+        SerializedProperty statsTarget = property.FindPropertyRelative("whatStatsTarget");
 
-        //Rect
-        float listPriceHeight = EditorGUI.GetPropertyHeight(stats, stats.isExpanded);
-        float listGainHeight = EditorGUI.GetPropertyHeight(listTargetStats, listTargetStats.isExpanded);
+        #region Stats
+        SerializedProperty cost = property.FindPropertyRelative("whatCost");
+        SerializedProperty stats = property.FindPropertyRelative("whatStats");
+        #endregion
+
+        #region Movement
+        SerializedProperty move = property.FindPropertyRelative("whatMove");
+        SerializedProperty tp = property.FindPropertyRelative("isTp");
+        SerializedProperty actorSwitch = property.FindPropertyRelative("actorSwitch");
+        SerializedProperty accSwitch = property.FindPropertyRelative("accessoriesSwitch");
+        #endregion
+
+        SerializedProperty value = property.FindPropertyRelative("value");
 
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
         Rect statsRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-
-        Rect targetRect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect pos2Rect = new Rect(position.x, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect pos3Rect = new Rect(position.x, position.y + (fieldHeight * 2), position.width, EditorGUIUtility.singleLineHeight);
+        Rect pos4Rect = new Rect(position.x, position.y + (fieldHeight * 3), position.width, EditorGUIUtility.singleLineHeight);
+        Rect pos5Rect = new Rect(position.x, position.y + (fieldHeight * 4), position.width, EditorGUIUtility.singleLineHeight);
 
         //Début du dessin.
         EditorGUI.BeginProperty(position, label, property);
 
-        //Dessin
-        EditorGUI.PropertyField(statsRect, stats, new GUIContent("Stats Target"));
+        //Place en premier l'enum pour connaitre si les info à afficher sont des stats ou un movement.
+        EditorGUI.PropertyField(statsRect, statsTarget, new GUIContent("Stats / Move"));
 
-        ETypeStatsTarget statsTarget = (ETypeStatsTarget)stats.enumValueIndex;
+        //Bool
+        ETypeStatsTarget statsEnum = (ETypeStatsTarget)statsTarget.enumValueIndex;
 
-        if (statsTarget == ETypeStatsTarget.Price)
+        if (statsEnum == ETypeStatsTarget.Stats)
         {
-            EditorGUI.PropertyField(targetRect, listTargetStats, new GUIContent("Price"));
+            EditorGUI.PropertyField(pos2Rect, cost, new GUIContent("Price / Gain"));
+            EditorGUI.PropertyField(pos3Rect, stats, new GUIContent("Energy / calm"));
+            EditorGUI.PropertyField(pos4Rect, value, new GUIContent("Value"));
         }
-        else if (statsTarget == ETypeStatsTarget.Gain)
+
+        if (statsEnum == ETypeStatsTarget.Movement)
         {
-            EditorGUI.PropertyField(targetRect, listTargetStats, new GUIContent("Gain"));
-        }
-        else if (statsTarget == ETypeStatsTarget.Movement)
-        {
-            EditorGUI.PropertyField(targetRect, move, new GUIContent("Movement"));
+            EditorGUI.PropertyField(pos2Rect, move, new GUIContent("What movement ?"));
+
+            //Check si c'est un déplacemement normal ou alors un switch
+            ETypeMove moveEnum = (ETypeMove)move.enumValueIndex;
+
+            if (moveEnum == ETypeMove.SwitchWithAcc || moveEnum == ETypeMove.SwitchWithActor)
+            {
+                if (moveEnum == ETypeMove.SwitchWithActor)
+                {
+                    EditorGUI.PropertyField(pos4Rect, actorSwitch, new GUIContent("With what Actor ?"));
+                }
+                else if (moveEnum == ETypeMove.SwitchWithAcc)
+                {
+                    EditorGUI.PropertyField(pos4Rect, accSwitch, new GUIContent("With what Acc ?"));
+                }
+
+                EditorGUI.PropertyField(pos5Rect, value, new GUIContent("Value"));
+            }
+            else
+            {
+                EditorGUI.PropertyField(pos3Rect, tp, new GUIContent("Is tp ?"));
+                EditorGUI.PropertyField(pos4Rect, value, new GUIContent("Value"));
+            }
         }
 
         EditorGUI.EndProperty();
@@ -51,22 +80,43 @@ public class TargetStatsDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        //Récupération des info.
         SerializedProperty statsTarget = property.FindPropertyRelative("whatStatsTarget");
-        SerializedProperty listTargetStats = property.FindPropertyRelative("listStats");
-        SerializedProperty move = property.FindPropertyRelative("move");
 
-        float priceHeight = EditorGUI.GetPropertyHeight(listTargetStats, listTargetStats.isExpanded);
+        #region Stats
+        SerializedProperty cost = property.FindPropertyRelative("whatCost");
+        SerializedProperty stats = property.FindPropertyRelative("whatStats");
+        #endregion
+
+        #region Movement
+        SerializedProperty move = property.FindPropertyRelative("whatMove");
+        SerializedProperty tp = property.FindPropertyRelative("isTp");
+        SerializedProperty actorSwitch = property.FindPropertyRelative("actorSwitch");
+        #endregion
+
+        SerializedProperty value = property.FindPropertyRelative("value");
+
+        float statsTargetHeight = EditorGUI.GetPropertyHeight(statsTarget);
+
+        float costHeight = EditorGUI.GetPropertyHeight(cost);
+        float statsHeight = EditorGUI.GetPropertyHeight(stats);
+
         float moveHeight = EditorGUI.GetPropertyHeight(move);
+        float tpHeight = EditorGUI.GetPropertyHeight(tp);
+        float actorOrAccSwitchHeight = EditorGUI.GetPropertyHeight(actorSwitch);
 
-        ETypeStatsTarget stats = (ETypeStatsTarget)statsTarget.enumValueIndex;
+        float valueHeight = EditorGUI.GetPropertyHeight(value);
 
-        if (stats == ETypeStatsTarget.Price || stats == ETypeStatsTarget.Gain)
+        ETypeStatsTarget statsEnum = (ETypeStatsTarget)statsTarget.enumValueIndex;
+
+        if (statsEnum == ETypeStatsTarget.Stats)
         {
-            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + priceHeight;
+            return EditorGUIUtility.singleLineHeight + statsTargetHeight + costHeight + statsHeight + valueHeight;
         }
-        else if (stats == ETypeStatsTarget.Movement)
+
+        if (statsEnum == ETypeStatsTarget.Movement)
         {
-            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + moveHeight;
+            return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + statsTargetHeight + moveHeight + tpHeight + actorOrAccSwitchHeight + valueHeight;
         }
 
         return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;

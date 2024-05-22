@@ -192,29 +192,29 @@ public class C_Stats : MonoBehaviour
     }
 
     //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
-    public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction_NewInspector.ETypeTarget target)
+    public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
-        foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
+        foreach (Interaction thisInteraction in thisActionClass.newListInteractions)
         {
             //Check si c'est égale à "actorTarget".
             if (thisInteraction.whatTarget == target)
             {
-                foreach (TargetStats_NewInspector thisTargetStats in thisInteraction.listTargetStats)
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
                     //Check si c'est des stats ou un Mouvement.
-                    if (thisTargetStats.whatStatsTarget == TargetStats_NewInspector.ETypeStatsTarget.Stats)
+                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats)
                     {
                         //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
                         //onPreview += TextPreview;
 
                         //Check si c'est pour le calm.
-                        if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Calm)
+                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm)
                         {
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewCalm;
                         }
                         //Check si c'est pour l'energie.
-                        else if (thisTargetStats.whatStats == TargetStats_NewInspector.ETypeStats.Energy)
+                        else if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy)
                         {
                             //Inscrit la preview de calm.
                             //C_PreviewAction.onPreview += UiPreviewEnergy;
@@ -231,7 +231,7 @@ public class C_Stats : MonoBehaviour
         animatorUiCalmPreview.SetBool("isPreview", true);
 
         //Caclul pour la preview du calm actuel + de l'action.
-        calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats), myActor.GetMaxStress());
+        calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats), myActor.GetMaxStress());
     }
 
     //PAS FINI ! + BUG INCONNUE, SA JOUE L'ANIMATION MAIS RIEN SE PASSE.
@@ -239,10 +239,10 @@ public class C_Stats : MonoBehaviour
     {
         //Caclul pour la preview de l'energy actuel + de l'action. 
         //Pour la perte d'energy.
-        if (thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats) < 0)
+        if (thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats) < 0)
         {
             //Commence par le nombre actuel d'energy.
-            for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
+            for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
             {
                 //Active la preview.
                 listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);

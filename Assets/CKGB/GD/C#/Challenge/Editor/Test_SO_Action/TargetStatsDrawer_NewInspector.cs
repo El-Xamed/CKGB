@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static TargetStats_NewInspector;
+using static TargetStats;
 
 [CustomPropertyDrawer(typeof(TargetStats_NewInspector))]
 public class TargetStatsDrawer_NewInspector : PropertyDrawer

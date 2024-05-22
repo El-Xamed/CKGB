@@ -171,10 +171,10 @@ public class C_Actor : C_Pion
         Debug.Log("Init challenge : " + name);
     }
 
-    public void SetCurrentStats(int value, TargetStats_NewInspector.ETypeStats onWhatStats)
+    public void SetCurrentStats(int value, TargetStats.ETypeStats onWhatStats)
     {
         //Check quelle stats changer.
-        if (onWhatStats == TargetStats_NewInspector.ETypeStats.Calm)
+        if (onWhatStats == TargetStats.ETypeStats.Calm)
         {
             //Change la valeur de calm
             currentStress += value;
@@ -188,7 +188,7 @@ public class C_Actor : C_Pion
                 Debug.LogWarning("Pas de vfx de Wave calm !");
             }
         }
-        else if (onWhatStats == TargetStats_NewInspector.ETypeStats.Energy)
+        else if (onWhatStats == TargetStats.ETypeStats.Energy)
         {
             //Change la valeur d'energie.
             currentEnergy += value;

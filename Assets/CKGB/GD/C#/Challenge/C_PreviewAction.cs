@@ -21,17 +21,17 @@ public class C_PreviewAction : MonoBehaviour
             //Faut qu'il envoie l'actionClass au script qui vont gerer la preview et ensuite c'est eux qui décide de s'inscrir ou non.
 
             //Pour "Self".
-            SetupPreview(Interaction_NewInspector.ETypeTarget.Self, thisActor);
+            SetupPreview(Interaction.ETypeTarget.Self, thisActor);
 
             //Pour "Other".
-            SetupPreview(Interaction_NewInspector.ETypeTarget.Other, thisActor);
+            SetupPreview(Interaction.ETypeTarget.Other, thisActor);
         }
 
         onPreview?.Invoke(thisActionClass);
 
-        void SetupPreview(Interaction_NewInspector.ETypeTarget target, C_Actor thisActor)
+        void SetupPreview(Interaction.ETypeTarget target, C_Actor thisActor)
         {
-            foreach (Interaction_NewInspector thisInteraction in thisActionClass.newListInteractions)
+            foreach (Interaction thisInteraction in thisActionClass.newListInteractions)
             {
                 //Check si c'est égale à "actorTarget".
                 if (thisInteraction.whatTarget == target)

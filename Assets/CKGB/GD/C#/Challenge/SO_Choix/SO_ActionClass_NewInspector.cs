@@ -32,7 +32,7 @@ public class SO_ActionClass_NewInspector : ScriptableObject
     public SO_ActionClass nextAction;
 
     [Header("List d'action")]
-    public List<Interaction_NewInspector> listInteraction = new List<Interaction_NewInspector>();
+    public List<Interaction> listInteraction = new List<Interaction>();
     #endregion
 
     #region Partage de données
@@ -73,12 +73,12 @@ public class Interaction_NewInspector
     public enum EType { None, Actor, Acc };
     public GameObject target;
     #endregion
-
+    
     public ETypeDirectionTarget whatDirectionTarget;
     public enum ETypeDirectionTarget {None, Right, Left, RightAndLeft };
     public int range;
 
-    public List<TargetStats_NewInspector> listTargetStats = new List<TargetStats_NewInspector>();
+    public List<TargetStats> listTargetStats = new List<TargetStats>();
 }
 
 [Serializable]
