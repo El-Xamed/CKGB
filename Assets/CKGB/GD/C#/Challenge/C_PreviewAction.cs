@@ -16,7 +16,7 @@ public class C_PreviewAction : MonoBehaviour
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
         //Check si la liste n'est pas vide
-        if (thisActionClass.newListInteractions.Count != 0)
+        if (thisActionClass.listInteraction.Count != 0)
         {
             //Faut qu'il envoie l'actionClass au script qui vont gerer la preview et ensuite c'est eux qui décide de s'inscrir ou non.
 
@@ -31,7 +31,7 @@ public class C_PreviewAction : MonoBehaviour
 
         void SetupPreview(Interaction.ETypeTarget target, C_Actor thisActor)
         {
-            foreach (Interaction thisInteraction in thisActionClass.newListInteractions)
+            foreach (Interaction thisInteraction in thisActionClass.listInteraction)
             {
                 //Check si c'est égale à "actorTarget".
                 if (thisInteraction.whatTarget == target)

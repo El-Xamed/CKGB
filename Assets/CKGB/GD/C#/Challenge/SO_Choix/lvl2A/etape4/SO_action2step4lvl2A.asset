@@ -36,25 +36,21 @@ MonoBehaviour:
     range: 0
     listTargetStats:
     - whatStatsTarget: 0
-      listStats:
-      - whatStats: 0
-        value: 1
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-    - whatStatsTarget: 1
-      listStats:
-      - whatStats: 1
-        value: 2
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+      whatCost: 0
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 2
   - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 0
@@ -62,16 +58,14 @@ MonoBehaviour:
     whatDirectionTarget: 3
     range: 2
     listTargetStats:
-    - whatStatsTarget: 1
-      listStats:
-      - whatStats: 1
-        value: 2
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 2
   newListInteractions:
   - whatTarget: 0
     selectTarget: 0

@@ -43,14 +43,14 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 2
-      listStats: []
-      move:
-        whatMove: 1
-        isTp: 0
-        nbMove: 1
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+    - whatStatsTarget: 1
+      whatCost: 0
+      whatStats: 0
+      whatMove: 1
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
   newListInteractions:
   - whatTarget: 1
     selectTarget: 1

@@ -32,7 +32,6 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("List d'action")]
     public List<Interaction> listInteraction = new List<Interaction>();
-    public List<Interaction> newListInteractions;
     #endregion
 
     #region Récupération de stats
@@ -92,7 +91,7 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIsTp(Interaction.ETypeTarget actorTarget)
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "actorTarget".
             if (thisInteraction.whatTarget == actorTarget)
@@ -112,7 +111,7 @@ public class SO_ActionClass : ScriptableObject
     public int GetRange()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "Other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
@@ -127,7 +126,7 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIfTargetOrNot()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "Other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
@@ -145,7 +144,7 @@ public class SO_ActionClass : ScriptableObject
     public GameObject GetTarget()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "Other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
@@ -164,7 +163,7 @@ public class SO_ActionClass : ScriptableObject
     public Interaction.ETypeDirectionTarget GetTypeDirectionRange()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
@@ -182,7 +181,7 @@ public class SO_ActionClass : ScriptableObject
     public bool GetIfSwitchOrNot()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "Other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
@@ -250,7 +249,7 @@ public class SO_ActionClass : ScriptableObject
     public bool CheckOtherInAction()
     {
         //Pour toutes les liste d'action.
-        foreach (Interaction thisInteraction in newListInteractions)
+        foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "Other".
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
@@ -330,10 +329,10 @@ public class SO_ActionClass : ScriptableObject
         if (thisActor.GetComponent<C_Actor>())
         {
             //Check si la liste n'est pas vide
-            if (newListInteractions.Count != 0)
+            if (listInteraction.Count != 0)
             {
                 //Fait toute la liste des cible.
-                foreach (Interaction thisInteraction in newListInteractions)
+                foreach (Interaction thisInteraction in listInteraction)
                 {
                     //Check si c'est égale à "actorTarget".
                     if (thisInteraction.whatTarget == target)
@@ -378,7 +377,7 @@ public class SO_ActionClass : ScriptableObject
         listInteraction = new List<Interaction>();
 
         //Pour toutes les interaction dans l'ancien interface.
-        foreach (Interaction item in newListInteractions)
+        foreach (Interaction item in listInteraction)
         {
             Interaction interaction = new Interaction();
 

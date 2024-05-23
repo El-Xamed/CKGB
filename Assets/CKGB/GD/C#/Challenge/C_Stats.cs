@@ -194,7 +194,7 @@ public class C_Stats : MonoBehaviour
     //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
     public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
-        foreach (Interaction thisInteraction in thisActionClass.newListInteractions)
+        foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
             //Check si c'est égale à "actorTarget".
             if (thisInteraction.whatTarget == target)

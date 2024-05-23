@@ -729,7 +729,7 @@ public class C_Challenge : MonoBehaviour
     //Pour afficher toutes les preview du challenge.
     public void CheckPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
-        foreach (Interaction thisInteraction in thisActionClass.newListInteractions)
+        foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
             //Check si c'est égale à "actorTarget".
             if (thisInteraction.whatTarget == target)
