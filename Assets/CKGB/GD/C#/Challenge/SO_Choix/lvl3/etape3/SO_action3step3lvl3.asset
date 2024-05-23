@@ -20,6 +20,9 @@ MonoBehaviour:
     yeux, et contre tout ce qui cherche \xE0 te mettre \xE0 genoux, tu UTILISE LA
     VIOLENCE. Tout le monde autour de toi \xE0 l\u2019air inspir\xE9 par cette nouvelle
     aura."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -72,3 +75,42 @@ MonoBehaviour:
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 3
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 2
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 3
+    range: 1
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1

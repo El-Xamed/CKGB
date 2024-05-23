@@ -15,6 +15,9 @@ MonoBehaviour:
   buttonText: Regarder le ciel
   LogsMakeAction: "Le ciel est d\u2019un bleu crayon de couleur, avec des nuages
     d\u2019aquarel qui flottent \xE0 sa surface. Tu te sens fatigu\xE9."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -42,3 +45,27 @@ MonoBehaviour:
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1

@@ -17,6 +17,9 @@ MonoBehaviour:
     contre leur \xE9paule. Tu veux faire savoir a tes compagnons que tu es l\xE0,
     avec eux. Et que tu ne les laisse pas tomber. Et essuyer tes larmes sur leur
     v\xEAtement, un peu."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -59,3 +62,34 @@ MonoBehaviour:
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 3
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 1
+    range: 1
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 3

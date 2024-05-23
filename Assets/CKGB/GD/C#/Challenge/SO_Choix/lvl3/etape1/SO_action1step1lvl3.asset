@@ -16,6 +16,9 @@ MonoBehaviour:
   LogsMakeAction: "Tu t\u2019approche de la fontaine la plus proche pour t\u2019abreuver.
     Son bassin scintillant te renvoie brievement ta propre image. L\u2019eau fraiche
     coule sur ton menton. Tu te sens un peu rafraichi.e."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -49,3 +52,27 @@ MonoBehaviour:
         nbMove: 2
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      whatCost: 0
+      whatStats: 0
+      whatMove: 2
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 2
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1

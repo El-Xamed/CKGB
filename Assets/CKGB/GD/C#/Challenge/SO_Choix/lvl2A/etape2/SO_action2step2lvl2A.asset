@@ -16,6 +16,9 @@ MonoBehaviour:
   LogsMakeAction: "Quoi ? T\u2019as le droit de prendre une pause. Tu navigue entre
     les plants \xE0 la recherche de quoi te sustenter, malheureusement il semblerait
     que toutes les tomates mures aient \xE9t\xE9 r\xE9colt\xE9es ce matin."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -39,3 +42,19 @@ MonoBehaviour:
         nbMove: 2
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      whatCost: 0
+      whatStats: 0
+      whatMove: 2
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 2

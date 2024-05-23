@@ -19,6 +19,9 @@ MonoBehaviour:
     Tu sens quelque chose c\xE9der en toi. Tu fonds en larmes \xE9paisses et sal\xE9es.
     Tu deviens plus l\xE9ger maintenant que tu n\u2019as plus \xE0 faire l\u2019effort
     de retenir ta d\xE9tresse. Tu as le sentiment que ton coeur coule par tes yeux."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 1
     needAcc: 0
@@ -44,3 +47,19 @@ MonoBehaviour:
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 1
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 4

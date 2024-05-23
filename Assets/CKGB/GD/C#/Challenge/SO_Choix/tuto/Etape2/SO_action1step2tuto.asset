@@ -17,6 +17,9 @@ MonoBehaviour:
     durs. Comme une machine rouill\xE9e, tes muscles se remettent en mouvement en
     grin\xE7ant presque. Tu t\u2019\xE9tire comme un f\xE9lin et sens un frisson
     te parcours alors que ton corps se rappelle qu\u2019il est en vie."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -42,3 +45,19 @@ MonoBehaviour:
         nbMove: 0
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 2

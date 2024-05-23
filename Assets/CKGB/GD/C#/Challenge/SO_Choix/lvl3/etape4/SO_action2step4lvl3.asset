@@ -15,6 +15,9 @@ MonoBehaviour:
   buttonText: "Sentir la pens\xE9e \xE9clore"
   LogsMakeAction: "Quelle pens\xE9e ? Tu es vraiment concentr\xE9 sur autre chose
     l\xE0, Morgan a besoin de ton aide."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 1
     needAcc: 0
@@ -23,3 +26,4 @@ MonoBehaviour:
     whatActor: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
   nextAction: {fileID: 0}
   listInteraction: []
+  newListInteractions: []

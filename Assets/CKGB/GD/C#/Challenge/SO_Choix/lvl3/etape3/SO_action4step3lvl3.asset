@@ -16,6 +16,9 @@ MonoBehaviour:
   LogsMakeAction: "Tu as peur de juste empirer les choses si tu essaye. Quelqu\u2019un
     d\u2019experiment\xE9 et de confiant aurait s\xFBrement bien plus de chance de
     r\xE9ussir. "
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 1
     needAcc: 0
@@ -24,3 +27,4 @@ MonoBehaviour:
     whatActor: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
   nextAction: {fileID: 0}
   listInteraction: []
+  newListInteractions: []

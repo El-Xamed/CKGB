@@ -16,6 +16,9 @@ MonoBehaviour:
   LogsMakeAction: "Chaque seconde que tu passes a regarder l\u2019horloge te fais
     prendre un peu plus conscience de toutes les secondes que tu perds \xE0 regarder
     l\u2019horloge."
+  logsCantMakeAction: 
+  listLogsAction: []
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
     needAcc: 0
@@ -39,3 +42,19 @@ MonoBehaviour:
         nbMove: 1
         actor: {fileID: 0}
         accessories: {fileID: 0}
+  newListInteractions:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      whatCost: 0
+      whatStats: 0
+      whatMove: 2
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
