@@ -292,33 +292,50 @@ public class SO_ActionClass : ScriptableObject
     }
 
     //vérifie la condition si l'action fonctionne.
-    public bool CanUse(C_Actor thisActor)
+    public bool CanUse(C_Challenge.ActorResolution thisReso, List<C_Challenge.ActorResolution> listReso)
     {
-        //AJOUTER LA CONDITION DES ACTIONS FAIT A 2.
-
         //Check si les codition bonus sont activé.
         if (advancedCondition.advancedCondition)
         {
             //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
-            if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor != thisActor)
+            if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor == thisReso.actor)
             {
-                return false;
+                return true;
             }
 
             //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
-            if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() != thisActor.GetPosition())
+            if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() == thisReso.actor.GetPosition())
             {
-                return false;
+                return true;
+            }
+
+            //Check si la condition de faire l'action à 2 est activé.
+            if (advancedCondition.needTwoActor)
+            {
+                //Chec ksi dans toute les réso un autre actor à fait aussi la meme action.
+                foreach (var thisResoInList in listReso)
+                {
+                    //Pour éviter qu'il se compte lui meme.
+                    if (thisResoInList != thisReso)
+                    {
+                        //Check si dans la reso en cours et égale à une autre reso qui possède la meme action.
+                        if (thisResoInList.action == thisReso.action)
+                        {
+                            //Desactive l'autre actor qui à fait la meme action pour éviter que l'action se joue 2 fois. A VOIR OU PLACER SE BOUT DE CODE.
+                            //TESTER EN SUPPRIMANT L'AUTRE ACTOR QUI A FAIT LA MEME ACTION.
+                            listReso.Remove(thisResoInList);
+                            return true;
+                        }
+                    }
+                }
             }
         }
 
-        /*Retravaille la condition de si l'actor possède l'energie pour faire l'action.
-        if (thisActor.GetcurrentEnergy() < GetValue(Interaction_NewInspector.ETypeTarget.Self, TargetStats_NewInspector.ETypeStatsTarget.Stats) && GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Price, Stats.ETypeStats.Energy) != 0)
+        //Retravaille la condition de si l'actor possède l'energie pour faire l'action.
+        if (thisReso.actor.GetcurrentEnergy() < GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats) && GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats) != 0)
         {
             return false;
         }
-
-        return true;*/
 
         return true;
     }
@@ -381,6 +398,8 @@ public class SO_ActionClass : ScriptableObject
 public class AdvancedCondition
 {
     public bool advancedCondition = false;
+
+    public bool needTwoActor;
 
     public bool needAcc = false; 
     public C_Accessories whatAcc;

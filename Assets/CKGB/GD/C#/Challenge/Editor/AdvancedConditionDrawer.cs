@@ -11,9 +11,9 @@ public class AdvancedDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         #region Variables
-
         #region Condition avancé
         SerializedProperty advancedCondition = property.FindPropertyRelative("advancedCondition");
+        SerializedProperty needTwoActor = property.FindPropertyRelative("needTwoActor");
         SerializedProperty needAcc = property.FindPropertyRelative("needAcc");
         SerializedProperty needActor = property.FindPropertyRelative("canMakeByOneActor");
         SerializedProperty whatAcc = property.FindPropertyRelative("whatAcc");
@@ -22,11 +22,12 @@ public class AdvancedDrawer : PropertyDrawer
         #endregion
         #endregion
 
-
         #region Rect
         //Calcul de la hauteur pour bien séparer les variables dans l'inspector.
         float fieldHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
+        //Calcul de la hauteur de "needTwoActor".
+        float needTwoActorHeight = EditorGUI.GetPropertyHeight(needTwoActor);
         //Calcul de la hauteur de "needAcc".
         float needAccHeight = EditorGUI.GetPropertyHeight(needAcc);
         //Calcul de la hauteur de "whatAcc".
@@ -36,10 +37,12 @@ public class AdvancedDrawer : PropertyDrawer
 
         //Rect pour placer "AdvancedCondition".
         Rect advancedConditionRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        //Rect pour placer "needTwoActor".
+        Rect needTwoActorRect = new Rect(position.x + 50, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
         //Rect pour placer "needAcc".
-        Rect needAccRect = new Rect(position.x +50, position.y + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect needAccRect = new Rect(position.x +50, position.y + fieldHeight + needTwoActorHeight, position.width, EditorGUIUtility.singleLineHeight);
         //Rect pour placer "needActor".
-        Rect needActorRect = new Rect(position.x +50, position.y + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect needActorRect = new Rect(position.x +50, position.y + needTwoActorHeight + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         #endregion
 
@@ -55,37 +58,44 @@ public class AdvancedDrawer : PropertyDrawer
 
         if (boolAdvancedCondition)
         {
-            bool boolneedAcc = needAcc.boolValue;
-            bool boolneedActor = needActor.boolValue;
-            
-            //Check si on souhaite utiliser needAcc ou needActor.
-            if (boolneedAcc)
+            bool boolneedTwoActor = needTwoActor.boolValue;
+
+            EditorGUI.PropertyField(needTwoActorRect, needTwoActor, new GUIContent("Need Two Actor ?"));
+
+            if (!boolneedTwoActor)
             {
-                //Rect pour placer "whatAcc".
-                Rect whatAccRect = new Rect(position.x + 75, position.y + needAccHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
-                EditorGUI.PropertyField(whatAccRect, whatAcc);
-                needActorRect = new Rect(position.x +50, position.y + whatAccHeight + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
-            }
-            if (boolneedActor)
-            {
-                Rect whatActorRect;
+                bool boolneedAcc = needAcc.boolValue;
+                bool boolneedActor = needActor.boolValue;
+
+                //Check si on souhaite utiliser needAcc ou needActor.
                 if (boolneedAcc)
                 {
-                    //Rect pour placer "whatActor".
-                    whatActorRect = new Rect(position.x + 75, position.y + needAccHeight + whatAccHeight + needActorHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
+                    //Rect pour placer "whatAcc".
+                    Rect whatAccRect = new Rect(position.x + 75, position.y + needTwoActorHeight + needAccHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
+                    EditorGUI.PropertyField(whatAccRect, whatAcc);
+                    needActorRect = new Rect(position.x + 50, position.y + needTwoActorHeight + whatAccHeight + needAccHeight + fieldHeight, position.width, EditorGUIUtility.singleLineHeight);
                 }
-                else
+                if (boolneedActor)
                 {
-                    //Rect pour placer "whatActor".
-                    whatActorRect = new Rect(position.x + 75, position.y + needAccHeight + needActorHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
+                    Rect whatActorRect;
+                    if (boolneedAcc)
+                    {
+                        //Rect pour placer "whatActor".
+                        whatActorRect = new Rect(position.x + 75, position.y + needTwoActorHeight + needAccHeight + whatAccHeight + needActorHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
+                    }
+                    else
+                    {
+                        //Rect pour placer "whatActor".
+                        whatActorRect = new Rect(position.x + 75, position.y + needTwoActorHeight + needAccHeight + needActorHeight + fieldHeight, position.width / 1.5f, EditorGUIUtility.singleLineHeight);
+                    }
+
+                    EditorGUI.PropertyField(whatActorRect, whatActor);
                 }
 
-                EditorGUI.PropertyField(whatActorRect, whatActor);
+                //Place mes bool
+                EditorGUI.PropertyField(needAccRect, needAcc);
+                EditorGUI.PropertyField(needActorRect, needActor);
             }
-
-            //Place mes bool
-            EditorGUI.PropertyField(needAccRect, needAcc);
-            EditorGUI.PropertyField(needActorRect, needActor);
         }
 
 
@@ -97,6 +107,7 @@ public class AdvancedDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         SerializedProperty advancedCondition = property.FindPropertyRelative("advancedCondition");
+        SerializedProperty needTwoActor = property.FindPropertyRelative("needTwoActor");
         SerializedProperty needAcc = property.FindPropertyRelative("needAcc");
         SerializedProperty needActor = property.FindPropertyRelative("canMakeByOneActor");
         SerializedProperty whatAcc = property.FindPropertyRelative("whatAcc");
@@ -104,6 +115,8 @@ public class AdvancedDrawer : PropertyDrawer
 
         //Calcul de la hauteur de "advancedCondition".
         float advancedConditionHeight = EditorGUI.GetPropertyHeight(advancedCondition);
+        //Calcul de la hauteur de "needTwaoActor".
+        float needneedTwoActorHeight = EditorGUI.GetPropertyHeight(needTwoActor);
         //Calcul de la hauteur de "needAcc".
         float needAccHeight = EditorGUI.GetPropertyHeight(needAcc);
         //Calcul de la hauteur de "needActor".
@@ -117,25 +130,30 @@ public class AdvancedDrawer : PropertyDrawer
 
         if (boolAdvancedCondition)
         {
-            bool boolneedAcc = needAcc.boolValue;
-            bool boolneedActor = needActor.boolValue;
+            bool boolneedTwoActor = needTwoActor.boolValue;
 
-            //Check si on souhaite utiliser needAcc ou needActor.
-            if (boolneedAcc || boolneedActor)
+            if (!boolneedTwoActor)
             {
-                if (boolneedActor && boolneedAcc)
+                bool boolneedAcc = needAcc.boolValue;
+                bool boolneedActor = needActor.boolValue;
+
+                //Check si on souhaite utiliser needAcc ou needActor.
+                if (boolneedAcc || boolneedActor)
                 {
-                    return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needAccHeight + needActorHeight + whatAccHeight + whatActorHeight;
-                }
+                    if (boolneedActor && boolneedAcc)
+                    {
+                        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needneedTwoActorHeight + needAccHeight + needActorHeight + whatAccHeight + whatActorHeight;
+                    }
 
-                return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needAccHeight + needActorHeight;
-            }
-            else
-            {
-                return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + advancedConditionHeight;
+                    return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needneedTwoActorHeight + needAccHeight + needActorHeight;
+                }
+                else
+                {
+                    return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needneedTwoActorHeight + advancedConditionHeight;
+                }
             }
         }
 
-        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing;
+        return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + needneedTwoActorHeight;
     }
 }

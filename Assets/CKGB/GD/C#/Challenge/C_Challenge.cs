@@ -600,7 +600,7 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
-    public void ConfirmAction(C_ActionButton thisActionButton)
+    public void ConfirmAction(SO_ActionClass thisAction)
     {
         //FeedBack
         currentActor.PlayAnimSelectAction();
@@ -618,7 +618,7 @@ public class C_Challenge : MonoBehaviour
 
         //Renseigne l'actor actuel + l'action.
         actorResolution.actor = currentActor;
-        actorResolution.button = thisActionButton;
+        actorResolution.action = thisAction;
 
         //Ajoute à la liste.
         listRes.Add(actorResolution);
@@ -894,21 +894,20 @@ public class C_Challenge : MonoBehaviour
     //Création d'une class pour rassembler l'acteur et l'action.
     [Serializable] public class ActorResolution
     {
-        public C_ActionButton button;
+        public SO_ActionClass action;
         public C_Actor actor;
     }
 
     //Fonction appelé par "C_Interface" pour passer à la résolution suivante.
     public void NextResolution()
     {
-        string nextLogs = currentResolution.button.GetActionClass().GetListLogs();
+        string nextLogs = currentResolution.action.GetListLogs();
         if (!string.IsNullOrEmpty(nextLogs))
         {
             uiLogs.GetComponentInChildren<TMP_Text>().text = nextLogs;
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
         {
-            //Reféfinis "currentResolution" avec 'index de base + 1.
             currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
 
             ResolutionTurn();
@@ -977,7 +976,7 @@ public class C_Challenge : MonoBehaviour
 
             #region Check si c'est la bonne action
             //Check si c'est la bonne action.
-            if (currentResolution.button.GetActionClass().name == currentStep.rightAnswer.name)
+            if (currentResolution.action.name == currentStep.rightAnswer.name)
             {
                 Debug.Log("Bonne action");
 
@@ -995,14 +994,14 @@ public class C_Challenge : MonoBehaviour
             {
                 foreach (ActorResolution thisReso in listRes)
                 {
-                    if (thisReso.button.GetActionClass().nextAction != null)
+                    if (thisReso.action.nextAction != null)
                     {
                         for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
                         {
-                            if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.button.GetActionClass())
+                            if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.action)
                             {
                                 Debug.Log("Update next action");
-                                myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.button.GetActionClass().nextAction;
+                                myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.action.nextAction;
                             }
                         }
                     }
@@ -1012,8 +1011,8 @@ public class C_Challenge : MonoBehaviour
 
             #region Logs
             //Ecrit dans les logs le résultat de l'action.
-            currentResolution.button.GetActionClass().ResetLogs();
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.button.GetActionClass().GetListLogs();
+            currentResolution.action.ResetLogs();
+            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
             #endregion
         }
         else
@@ -1026,10 +1025,10 @@ public class C_Challenge : MonoBehaviour
     //Utilise l'action. VOIR POUR RETIRE LE PUBLIC.
     public void UseAction(ActorResolution thisActorResolution)
     {
-        Debug.Log("Use this actionClass : " + thisActorResolution.button.GetActionClass().buttonText);
+        Debug.Log("Use this actionClass : " + thisActorResolution.action.buttonText);
 
         //Raccourcis.
-        SO_ActionClass action = thisActorResolution.button.GetActionClass();
+        SO_ActionClass action = thisActorResolution.action;
         C_Actor actor = thisActorResolution.actor;
 
         //Applique les conséquences de stats peut importe si c'est réusi ou non.
@@ -1131,7 +1130,7 @@ public class C_Challenge : MonoBehaviour
 
         #region Logs
         //Check dans les data de cette action si la condition est bonne.
-        if (action.CanUse(actor))
+        if (action.CanUse(thisActorResolution, listRes))
         {
             //Renvoie un texte de condition réussite.
         }
@@ -1500,7 +1499,7 @@ public class C_Challenge : MonoBehaviour
     public void EndChallenge()
     {
         //Check si il y a un outro de challenge.
-        if (myChallenge.outroChallenge)
+        if (myChallenge.outroChallenge && GameManager.instance)
         {
             GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
         }
@@ -1515,27 +1514,33 @@ public class C_Challenge : MonoBehaviour
     {
         if (canGoNext)
         {
-            foreach (C_Actor thisActor in myTeam)
+            if (GameManager.instance)
             {
-                thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
-                thisActor.transform.parent = GameManager.instance.transform;
-                thisActor.GetImageActor().enabled = false;
-            }
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+                    thisActor.transform.parent = GameManager.instance.transform;
+                    thisActor.GetImageActor().enabled = false;
+                }
 
-            if (GameManager.instance.currentC.name == "SO_lvl3")
-            {
-                SceneManager.LoadScene("S_MainMenu");
-            }
-            if (GameManager.instance.currentC.name == "SO_Tuto")
-            {
-                GameManager.instance.SetDataLevel(tm1, c1);
-                SceneManager.LoadScene("S_TempsLibre");
+                if (GameManager.instance.currentC.name == "SO_lvl3")
+                {
+                    SceneManager.LoadScene("S_MainMenu");
+                }
+                if (GameManager.instance.currentC.name == "SO_Tuto")
+                {
+                    GameManager.instance.SetDataLevel(tm1, c1);
+                    SceneManager.LoadScene("S_TempsLibre");
+                }
+                else
+                {
+                    SceneManager.LoadScene("S_WorldMap");
+                }
             }
             else
             {
-                SceneManager.LoadScene("S_WorldMap");
+                UnityEditor.EditorApplication.isPlaying = false;
             }
-
         }
         else
         {

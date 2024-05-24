@@ -18,68 +18,14 @@ MonoBehaviour:
   listLogsAction: []
   logsCursor: 0
   advancedCondition:
-    advancedCondition: 0
+    advancedCondition: 1
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 5
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 1
-      isTp: 1
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 10
-  - whatTarget: 1
-    selectTarget: 1
-    whatTypeTarget: 1
-    target: {fileID: 0}
-    whatDirectionTarget: 2
-    range: 67
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 3
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 3
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
