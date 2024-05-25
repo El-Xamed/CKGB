@@ -69,6 +69,7 @@ public class C_Challenge : MonoBehaviour
 
     #region Résolution
     [Header("Resolution")]
+    bool twoActor = false;
     List<ActorResolution> listRes = new List<ActorResolution>();
     ActorResolution currentResolution;
 
@@ -155,6 +156,7 @@ public class C_Challenge : MonoBehaviour
 
         //Desactive par default les logs timeleine.
         uiLogsTimeline.SetActive(false);
+        uiVictoire.SetActive(false);
 
         //Apparition des cases
         SpawnCases();
@@ -197,6 +199,7 @@ public class C_Challenge : MonoBehaviour
 
         //Pour activer l'Ui des logs.
         uiLogsAnimator.gameObject.SetActive(active);
+        uiLogsAnimator.gameObject.GetComponentInChildren<Image>().enabled = active;
     }
 
     public void SetCanContinueToYes()
@@ -970,8 +973,10 @@ public class C_Challenge : MonoBehaviour
         //Ajout d'un bool pour executer le dev en dessosu après l'animation.
         if (animFinish)
         {
+            //Reset le bool pour detecter si il y a une action à 2.
+            twoActor = false;
+
             //Applique toutes les actions. 1 par 1.
-            //New : Utilise l'action directement dans le challenge.
             UseAction(currentResolution);
 
             #region Check si c'est la bonne action
@@ -1022,157 +1027,216 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    //Utilise l'action. VOIR POUR RETIRE LE PUBLIC.
-    public void UseAction(ActorResolution thisActorResolution)
+    //Utilise l'action.
+    bool UseAction(ActorResolution thisActorResolution)
     {
         Debug.Log("Use this actionClass : " + thisActorResolution.action.buttonText);
 
+        #region Raccourcis
         //Raccourcis.
         SO_ActionClass action = thisActorResolution.action;
         C_Actor actor = thisActorResolution.actor;
-
-        //Applique les conséquences de stats peut importe si c'est réusi ou non.
-        #region Self
-        //Créer la liste pour "self"
-        action.SetStatsTarget(Interaction.ETypeTarget.Self, actor);
-
-        //Check si un mouvement pour "self" existe.
-        CheckIfTargetMove(Interaction.ETypeTarget.Self, actor);
         #endregion
 
-        #region Other
-        //Créer la liste pour "other"
-        if (action.CheckOtherInAction())
+        //Check dans les data de cette action si la condition est bonne.
+        if (CanUse(thisActorResolution))
         {
-            //Boucle avec la range.
-            for (int i = 0; i < action.GetRange(); i++)
-            {
-                Debug.Log("Je cherche sur la case " + i);
+            //Applique les conséquences de stats.
+            #region Self
+            //Créer la liste pour "self"
+            action.SetStatsTarget(Interaction.ETypeTarget.Self, actor);
 
-                if (action.GetTypeDirectionRange() != Interaction.ETypeDirectionTarget.None)
+            //Check si un mouvement pour "self" existe.
+            CheckIfTargetMove(Interaction.ETypeTarget.Self, actor);
+            #endregion
+
+            #region Other
+            //Créer la liste pour "other"
+            if (action.CheckOtherInAction())
+            {
+                //Boucle avec la range.
+                for (int i = 0; i < action.GetRange(); i++)
                 {
-                    //Boucle pour check sur tout les actor du challenge.
-                    foreach (C_Actor thisOtherActor in myTeam)
+                    Debug.Log("Je cherche sur la case " + i);
+
+                    if (action.GetTypeDirectionRange() != Interaction.ETypeDirectionTarget.None)
                     {
-                        //Check quel direction la range va faire effet.
-                        switch (action.GetTypeDirectionRange())
+                        //Boucle pour check sur tout les actor du challenge.
+                        foreach (C_Actor thisOtherActor in myTeam)
                         {
-                            //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                            case Interaction.ETypeDirectionTarget.Right:
-                                //Calcul vers la droite.
-                                CheckPositionOther(actor, i, thisOtherActor);
-                                Debug.Log("Direction Range = droite.");
-                                break;
-                            case Interaction.ETypeDirectionTarget.Left:
-                                //Calcul vers la gauche.
-                                CheckPositionOther(actor, -i, thisOtherActor);
-                                Debug.Log("Direction Range = Gauche.");
-                                break;
-                            case Interaction.ETypeDirectionTarget.RightAndLeft:
-                                //Calcul vers la droite + gauche.
-                                CheckPositionOther(actor, i, thisOtherActor);
-                                CheckPositionOther(actor, -i, thisOtherActor);
-                                Debug.Log("Direction Range = droite + gauche.");
-                                break;
+                            //Check quel direction la range va faire effet.
+                            switch (action.GetTypeDirectionRange())
+                            {
+                                //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                                case Interaction.ETypeDirectionTarget.Right:
+                                    //Calcul vers la droite.
+                                    CheckPositionOther(actor, i, thisOtherActor);
+                                    Debug.Log("Direction Range = droite.");
+                                    break;
+                                case Interaction.ETypeDirectionTarget.Left:
+                                    //Calcul vers la gauche.
+                                    CheckPositionOther(actor, -i, thisOtherActor);
+                                    Debug.Log("Direction Range = Gauche.");
+                                    break;
+                                case Interaction.ETypeDirectionTarget.RightAndLeft:
+                                    //Calcul vers la droite + gauche.
+                                    CheckPositionOther(actor, i, thisOtherActor);
+                                    CheckPositionOther(actor, -i, thisOtherActor);
+                                    Debug.Log("Direction Range = droite + gauche.");
+                                    break;
+                            }
                         }
                     }
+                    else
+                    {
+                        Debug.LogWarning("AUCUNE DIRECTION DE MOUVEMENT EST ENTRE !");
+                    }
                 }
-                else
+
+                //Fonction pour check si il y a des acteurs dans la range.
+                bool CheckPositionOther(C_Actor thisActor, int position, C_Actor target)
                 {
-                    Debug.LogWarning("AUCUNE DIRECTION DE MOUVEMENT EST ENTRE !");
+                    if (thisActor.GetPosition() + position >= plateau.Count - 1)
+                    {
+                        if (0 + position == target.GetPosition() && target != thisActor)
+                        {
+                            Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+
+                            action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+
+                            //Check si un mouvement pour "other" existe.
+                            CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                            return true;
+                        }
+                    }
+                    else if (thisActor.GetPosition() + position <= 0)
+                    {
+                        if (0 + position == target.GetPosition() && target != thisActor)
+                        {
+                            Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+
+                            action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+
+                            //Check si un mouvement pour "other" existe.
+                            CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                            return true;
+                        }
+                    }
+                    else if (thisActor.GetPosition() + position == target.GetPosition() && target != thisActor)
+                    {
+                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+
+                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+
+                        //Check si un mouvement pour "other" existe.
+                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
+                        return true;
+                    }
+
+                    return false;
                 }
             }
+            #endregion
 
-            //Fonction pour check si il y a des acteurs dans la range.
-            bool CheckPositionOther(C_Actor thisActor, int position, C_Actor target)
+            //Fonction pour vérifier si un mouvement est nessecaire.
+            void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
             {
-                if (thisActor.GetPosition() + position >= plateau.Count - 1)
+                //Regarde d'abord c'est quoi comme type de déplacement.
+                if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
                 {
-                    if (0 + position == target.GetPosition() && target != thisActor)
+                    Debug.Log("Pas ciblé par un actor ou acc.");
+
+                    //Check si un mouvement existe.
+                    if (action.GetValue(target, TargetStats.ETypeStatsTarget.Movement) != 0)
                     {
-                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-
-                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
-
-                        //Check si un mouvement pour "other" existe.
-                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
-                        return true;
+                        //Deplace l'actor avec l'info de déplacement + type de déplacement.
+                        MoveActorInBoard(thisActor, action.GetValue(target, TargetStats.ETypeStatsTarget.Movement), action.GetWhatMove(target), action.GetIsTp(target));
                     }
                 }
-                else if (thisActor.GetPosition() + position <= 0)
+                else //Ciblé par un actor ou acc.
                 {
-                    if (0 + position == target.GetPosition() && target != thisActor)
+                    Debug.Log("Ciblé par un actor ou acc.");
+
+                    //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
+                    if (action.GetTarget().GetComponent<C_Actor>())
                     {
-                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+                        action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Actor>());
+                    }
+                    else if (action.GetTarget().GetComponent<C_Accessories>())
+                    {
+                        action.SetTarget(GameObject.Find(action.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
 
-                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
-
-                        //Check si un mouvement pour "other" existe.
-                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
-                        return true;
+                        action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Accessories>());
                     }
                 }
-                else if (thisActor.GetPosition() + position == target.GetPosition() && target != thisActor)
-                {
-                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-
-                    action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
-
-                    //Check si un mouvement pour "other" existe.
-                    CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
-                    return true;
-                }
-
-                return false;
             }
-        }
-        #endregion
 
-        #region Logs
-        //Check dans les data de cette action si la condition est bonne.
-        if (action.CanUse(thisActorResolution, listRes))
-        {
-            //Renvoie un texte de condition réussite.
+            return true;
         }
         else
         {
-            //Renvoie un texte de condition de non réussite.
-            return;
+            return false;
         }
-        #endregion
+    }
 
-        //Fonction pour vérifier si un mouvement est nessecaire.
-        void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
+    //vérifie la condition si l'action fonctionne. A DEPLACER DANS LE CHALLENGE POUR APPLIQUER LES CONEQUENCE DE L'ACTION SUR LE DEUXIEME ACTOR.
+    bool CanUse(ActorResolution thisReso)
+    {
+        AdvancedCondition advancedCondition = thisReso.action.advancedCondition;
+
+        //Check si l'actor en question possède assez d'energie.
+        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats))
         {
-            //Regarde d'abord c'est quoi comme type de déplacement.
-            if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
+            //Check si les codition bonus sont activé.
+            if (advancedCondition.advancedCondition)
             {
-                Debug.Log("Pas ciblé par un actor ou acc.");
-
-                //Check si un mouvement existe.
-                if (action.GetValue(target, TargetStats.ETypeStatsTarget.Movement) != 0)
+                //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
+                if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor == thisReso.actor)
                 {
-                    //Deplace l'actor avec l'info de déplacement + type de déplacement.
-                    MoveActorInBoard(thisActor, action.GetValue(target, TargetStats.ETypeStatsTarget.Movement), action.GetWhatMove(target), action.GetIsTp(target));
+                    return true;
                 }
-            }
-            else //Ciblé par un actor ou acc.
-            {
-                Debug.Log("Ciblé par un actor ou acc.");
 
-                //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
-                if (action.GetTarget().GetComponent<C_Actor>())
+                //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
+                if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() == thisReso.actor.GetPosition())
                 {
-                    action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Actor>());
+                    return true;
                 }
-                else if (action.GetTarget().GetComponent<C_Accessories>())
-                {
-                    action.SetTarget(GameObject.Find(action.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
 
-                    action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Accessories>());
+                //Check si la condition de faire l'action à 2 est activé.
+                if (advancedCondition.needTwoActor && twoActor != true)
+                {
+                    //Chec ksi dans toute les réso un autre actor à fait aussi la meme action.
+                    foreach (var thisResoInList in listRes)
+                    {
+                        //Pour éviter qu'il se compte lui meme.
+                        if (thisResoInList != thisReso)
+                        {
+                            //Check si dans la reso en cours et égale à une autre reso qui possède la meme action.
+                            if (thisResoInList.action == thisReso.action)
+                            {
+                                //Active la detection de l'action à 2.
+                                twoActor = true;
+
+                                //Check si l'autre actor peut aussi faire l'action.
+                                if (UseAction(thisResoInList))
+                                {
+                                    if (twoActor)
+                                    {
+                                        //Desactive l'autre actor qui à fait la meme action pour éviter que l'action se joue 2 fois. A VOIR OU PLACER SE BOUT DE CODE.
+                                        //TESTER EN SUPPRIMANT L'AUTRE ACTOR QUI A FAIT LA MEME ACTION.
+                                        listRes.Remove(thisResoInList);
+                                    }
+
+                                    return true;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+
+        return false;
     }
 
     #region Deplace les actor
