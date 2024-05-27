@@ -78,23 +78,39 @@ public class C_Worldmap : MonoBehaviour
         
      
             transform.position = currentPoint.transform.position;
+        if(currentPoint.name=="lvl1")
+        {
+            currentPoint.IsDone = true;
+        }
+        if (currentPoint.GetComponent<C_destination>().IsDone)
+        {
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsDone", true);
+            currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+
+        }
         switch (currentPoint.name)
         {
             case "lvl1":
                 currentPoint.IsDone = true;//currentPoint.Islocked = true;
-                
+                currentPoint.GetComponent<Animator>().SetBool("IsDone", true);
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
                 currentPoint.up.GetComponent<C_destination>().Islocked = false;
                
                 break;
             case "lvl2":
                 currentPoint.IsDone = true; //currentPoint.Islocked = true;
+                currentPoint.GetComponent<Animator>().SetBool("IsDone", true);
+                currentPoint.left.GetComponent<Animator>().SetBool("IsDone", true);
                 currentPoint.left.GetComponent<C_destination>().Islocked = true;
                 currentPoint.right.GetComponent<C_destination>().Islocked = false;
                 //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;           
             case "lvl3":
                 currentPoint.left.GetComponent<C_destination>().Islocked = true;
+                currentPoint.GetComponent<Animator>().SetBool("IsDone", true);
+                currentPoint.left.GetComponent<Animator>().SetBool("IsDone", true);
+                currentPoint.left.left.GetComponent<Animator>().SetBool("IsDone", true);
                 currentPoint.IsDone = true; //currentPoint.Islocked = true;
                 //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
                 break;
@@ -102,11 +118,8 @@ public class C_Worldmap : MonoBehaviour
                 break;
         }
 
-        if (currentPoint.GetComponent<C_destination>().IsDone)
-        {
-            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
-            currentPoint.GetComponent<C_destination>().flag.SetActive(true);
-        }
+       
+   
 
         //sets up the destinations
         Leftlevel = currentPoint.left;
@@ -146,7 +159,7 @@ public class C_Worldmap : MonoBehaviour
             //GameManager.instance.ChangeActionMap("TempsMort");
             SetGameManagerWorldData();
 
-            currentPoint.GetComponent<C_destination>().IsDone = true;
+          
                 switch (currentPoint.name)
                 {
                     case "lvl1":
@@ -178,16 +191,21 @@ public class C_Worldmap : MonoBehaviour
                 }
             
 
-            currentPoint.GetComponent<C_destination>().IsDone = true;
-            currentPoint.GetComponent<C_destination>().Islocked = true;
+            if(!currentPoint.GetComponent<C_destination>().IsDone)
+            {
+                currentPoint.GetComponent<C_destination>().IsDone = true;
+                currentPoint.GetComponent<C_destination>().Islocked = true;
+                GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
+                AddActorInTeam();
+                Debug.Log("Load Scene...");
+                SceneManager.LoadScene("S_TempsLibre");
+            }
+       
             //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
             //currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
 
             //Set Les data du TM et C dans le GameManager.
-            GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
-            AddActorInTeam();
-            Debug.Log("Load Scene...");
-            SceneManager.LoadScene("S_TempsLibre");
+           
             //Lance la scene avec les info qu'il récupère.
         }
     }
@@ -266,6 +284,15 @@ public class C_Worldmap : MonoBehaviour
     {
         currentSetup.GetComponent<Animator>().SetBool("move", false);
         currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
+        currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("ActivateLevel");
+        if (currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().TwoSlot.activeSelf)
+        {
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("two");
+        }
+        else
+        {
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("three");
+        }
         currentPoint.GetComponent<C_destination>().leveltextprovenance.text = currentPoint.leveltext;
         if (currentPoint.left != null)
             Leftlevel = currentPoint.left;

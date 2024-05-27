@@ -603,7 +603,11 @@ public class C_TempsLibre : MonoBehaviour
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = actorActif.GetComponent<C_Actor>().GetDataActor().RevasserAnimPatern;
         for (int y = 0; y < characters.Count; y++)
         {
-            SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
+            if(actorActif==characters[y])
+            {
+                SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RevasserID[y]);
+            }
+           
         }
         /*switch (TM.name)
         {
@@ -1029,6 +1033,7 @@ public class C_TempsLibre : MonoBehaviour
     }
     IEnumerator Challenge(string scenename)
     {
+        GameManager.instance.ExitDialogueMode();
         Debug.Log(scenename);
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
