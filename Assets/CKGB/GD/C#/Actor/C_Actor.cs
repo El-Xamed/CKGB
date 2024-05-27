@@ -165,6 +165,11 @@ public class C_Actor : C_Pion
         mainchild.GetComponent<Image>().preserveAspect = true;
         mainchild.GetComponent<Image>().useSpriteMesh = true;
 
+        //Debug.Log(BulleHautGauche.GetComponent<RectTransform>().rect.position);
+
+        //FIX TEMPO ? Déplace la bulle pour que ça colle bien dans les challenge.
+        //BulleHautGauche.GetComponent<RectTransform>().position = new Vector3(-18, 43, BulleHautGauche.transform.position.z);
+
 
         CheckIsOut();
 
@@ -346,6 +351,11 @@ public class C_Actor : C_Pion
         character.enabled = true;
         //Active l'ombre du challenge.
         ombre.gameObject.SetActive(false);
+
+        //Debug.Log(BulleHautGauche.GetComponent<RectTransform>().localPosition);
+
+        //FIX TEMPO ? Déplace la bulle pour que ça colle bien dans les challenge.
+        //BulleHautGauche.GetComponent<RectTransform>().position = new Vector3(-18, 43, BulleHautGauche.transform.position.z);
     }
 
     #endregion
