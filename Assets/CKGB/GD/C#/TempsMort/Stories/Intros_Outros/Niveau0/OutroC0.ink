@@ -4,15 +4,15 @@
 EXTERNAL FinishChallenge(name)
 
 ===Outro===
-Bon, suffit les bêtises !#Bulle:MorganHautGauche
+Bon, céssons les bêtises !#Bulle:MorganHautGauche
 
 //[écran du combat sans le Coolkid, problablement après une transition noir et un bruit]
 
-Dans un nuage de couverture, tu <bounce>bondis</bounce> sur l’echelle descendant ton lit, puis te laisse tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:Narrateur
+Dans un nuage de couverture, tu <bounce>bondis</bounce> sur l’echelle qui descend de ton lit, puis te laisse tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:Narrateur
 
 Tes vêtements sont prêts sur une chaise, soigneusement préparé la veille.#Bulle:NarrateurC
-<i>L’avant veille.</i>#Bulle:Narrateur
-Bon, il y a une <b>semaine</b>, en vrai. Comme dit précédement, tu as <i>un peu</i> perdu les pédales ces derniers jours.#Bulle:Narrateur
+<i>Enfin, l’avant veille.</i>#Bulle:Narrateur
+Bon, il y a une <b>semaine</b>, en vérité. Comme dit précédement, tu as <i>un peu</i> perdu les pédales ces derniers jours.#Bulle:Narrateur
 
 Tu te demande si ce sera un élément <wave>récurrent</wave> de ton aventure.#Bulle:Narrateur
 

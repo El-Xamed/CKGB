@@ -5,13 +5,13 @@ EXTERNAL StartChallenge(name)
 ===Intro===
 <size=60%>…Okay.</size=60%>#Bulle:MorganHautGauche
 
-3, 2, 1, <pend>maintenant !</pend> #Bulle:MorganHautGauche
+3. 2. 1. <pend>maintenant !</pend> #Bulle:MorganHautGauche
 
 Rien ne se passe. #Bulle:Narrateur
 
-<shake a=0.5>Urg</shake>. #Bulle:MorganHautGauche
+<shake a=0.5>Errrk</shake>. #Bulle:MorganHautGauche
 
-De déception, tu tort brièvement ta bouche. #Bulle:Narrateur
+Tu torts brièvement ta bouche, déçu. #Bulle:Narrateur
 
 Hm.#Bulle:MorganHautGauche 
 
@@ -21,15 +21,15 @@ L’ombre d’un doute survole ton esprit.#Bulle:Narrateur
 Et si tu avais largement surestimé le passage du temps ? Et si tu avais encore <incr>plusieurs heures</incr> à poirauter ici ?#Bulle:Narrateur
 
 Pour te rassurer, tu relance un pari avec toi même.#Bulle:Narrateur
-Ce foutu réveil est condamné à sonner un moment ou un autre.#Bulle:Narrateur
+Ce drame de réveil est condamné à sonner un moment ou un autre.#Bulle:Narrateur
 
 Allez, 3<bounce> …</bounce>#Bulle:MorganHautGauche
 
 2<bounce> …</bounce>#Bulle:MorganHautGauche
 
-<incr>BRUIT DE CARILLON</incr>. ca c'est du sound design je peux pas le faire moi-même les frères.#Bulle:Narrateur
+<incr>ton réveil sonnes.</incr>#Bulle:Narrateur
 
-<bounce> Tu sursaute</bounce> . Ta mémoire musculaire éteint la sonnerie brutalement.#Bulle:Narrateur
+<bounce> Tu sursaute</bounce>. Ta mémoire musculaire éteint la sonnerie d'elle-même.#Bulle:Narrateur
 
 //[Écran du C0 sans l’UI. La caméra est au dessus du Coolkid, dans une position d’attente dans son lit.][Musique commence) #Bulle:Narrateur
 
