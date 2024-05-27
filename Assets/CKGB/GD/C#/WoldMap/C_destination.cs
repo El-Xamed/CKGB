@@ -21,6 +21,7 @@ public class C_destination : MonoBehaviour
     public bool IsCorner;
     public bool Islocked;
     public bool IsDone;
+    public bool BeenRevealed=false;
     public GameObject flag;
     public GameObject levelUI;
     public TMP_Text leveltextprovenance;

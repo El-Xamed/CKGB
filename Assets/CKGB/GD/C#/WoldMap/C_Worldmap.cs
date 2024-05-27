@@ -378,6 +378,10 @@ public class C_Worldmap : MonoBehaviour
         }
             
     }
+    public void RevealLevel()
+    {
+
+    }
 
     #endregion
 }
