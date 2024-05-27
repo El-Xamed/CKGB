@@ -7186,7 +7186,7 @@ PrefabInstance:
     - target: {fileID: 5102577141220478815, guid: da89ac1e1cbbd324682b52cbb9fa28bc, type: 3}
       propertyPath: general
       value: 
-      objectReference: {fileID: 1440442257}
+      objectReference: {fileID: 0}
     - target: {fileID: 5102577141578726745, guid: da89ac1e1cbbd324682b52cbb9fa28bc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -12519,6 +12519,22 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    - target: {fileID: 3406533251147678271, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: MusicMixer
+      value: 
+      objectReference: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: SoundMixer
+      value: 
+      objectReference: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[7].clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f2f8b399e5fff94eb29089a099f0bd8, type: 3}
     - target: {fileID: 9134160646922677116, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: sounds.Array.data[0].clip.Array.size
       value: 1
@@ -12664,11 +12680,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359568334}
   m_CullTransparentMesh: 1
---- !u!82 &1440442257 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3349084912311305322, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-  m_PrefabInstance: {fileID: 1357275503}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1454670452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12915,7 +12926,7 @@ PrefabInstance:
     - target: {fileID: 6628724171374017306, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: general
       value: 
-      objectReference: {fileID: 1440442257}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
 --- !u!1 &1593598298

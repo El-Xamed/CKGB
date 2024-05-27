@@ -13,7 +13,7 @@ public class C_UIButton : MonoBehaviour
     {
         button = GetComponent<Button>();
 
-
+        
     }
 
 

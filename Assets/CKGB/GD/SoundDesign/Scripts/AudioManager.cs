@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public AudioMixerGroup SoundMixer;
     public AudioMixerGroup MusicMixer;
+
     
     void Awake()
     {
@@ -89,6 +90,11 @@ public class AudioManager : MonoBehaviour
         p.source.Play();
         Debug.Log("re,h");
         }
+
+    public void Stop (string name)
+    {
+        AudioManager.instance.Stop(name);
+    }
 
     public void MuteMusic(string name)
     {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2929715506357219768
+--- !u!1 &5311499211411066973
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2929715506357219770}
-  - component: {fileID: 9134160646922677116}
-  - component: {fileID: 3349084912311305322}
+  - component: {fileID: 3406533251147678271}
+  - component: {fileID: 4402718835987732175}
+  - component: {fileID: 440091079429689959}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2929715506357219770
+--- !u!4 &3406533251147678271
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2929715506357219768}
+  m_GameObject: {fileID: 5311499211411066973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,25 +33,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9134160646922677116
+--- !u!114 &4402718835987732175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2929715506357219768}
+  m_GameObject: {fileID: 5311499211411066973}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd38bd26e829a1543a80663c7e5b9c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 3349084912311305322}
+  source: {fileID: 440091079429689959}
   sounds:
   - name: SfxHover
     clip:
     - {fileID: 8300000, guid: ff99311be79959b41a567d6a809de67e, type: 3}
-    - {fileID: 8300000, guid: 093a97231fe5b4a48a5f6fa73320cb23, type: 3}
-    - {fileID: 8300000, guid: 3381113d140b8e4419708fcd7ba32727, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
@@ -111,6 +109,14 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MusiqueWorldMap
+    clip:
+    - {fileID: 0}
+    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: MusiqueTuto
@@ -119,7 +125,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueTempsMort1
     clip:
@@ -127,7 +133,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueChallenge1
     clip:
@@ -135,7 +141,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueTempsMort2.A
     clip:
@@ -143,7 +149,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueChallenge2.A
     clip:
@@ -151,7 +157,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueTempsMort2.B
     clip:
@@ -159,7 +165,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueChallenge2.B
     clip:
@@ -167,7 +173,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueTempsMort3
     clip:
@@ -175,7 +181,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: MusiqueChallenge3
     clip:
@@ -183,7 +189,7 @@ MonoBehaviour:
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: Voix_NIMU
     clip:
@@ -209,13 +215,79 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
---- !u!82 &3349084912311305322
+  - name: Anger
+    clip:
+    - {fileID: 8300000, guid: 7d878509c57527f4c9e65f760c4a987f, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Anger2
+    clip:
+    - {fileID: 8300000, guid: 54af938c6d623e245af86c27f6033170, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Raimbow
+    clip:
+    - {fileID: 8300000, guid: 90eb4600efaf3c440a8044d8fa47e064, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Interrogation
+    clip:
+    - {fileID: 8300000, guid: bf7b539da2b44e346980fe8421289c6e, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hearts
+    clip:
+    - {fileID: 8300000, guid: 52d73d955527021459b4925b795e95b6, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Deception
+    clip:
+    - {fileID: 8300000, guid: 0b8e48c2a71ca5f4cb60e516d3bc400d, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Exclamation
+    clip:
+    - {fileID: 8300000, guid: 6e1ecc7217012fe42a1274d7a339cfe8, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dots
+    clip:
+    - {fileID: 8300000, guid: 910da7adf2bc55945b23849f57e49163, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  SoundMixer: {fileID: 0}
+  MusicMixer: {fileID: 0}
+--- !u!82 &440091079429689959
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2929715506357219768}
+  m_GameObject: {fileID: 5311499211411066973}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
