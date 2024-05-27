@@ -13,7 +13,7 @@ C’est juste après ces buttes !<br> On va y être en 5 minutes. #Bulle:MorganH
 
 H-hm."#Bulle:NimuHautGauche
 
-'fais gaffe à la lavande."#Bulle:MorganHautGauche
+'fais gaffe à la lavande. On a galéré à les faire survivre après la dernière sècheresse.#Bulle:MorganHautGauche
 
 De fou, de fou.#Bulle:NimuHautGauche
 ~ Trigger("name")
@@ -42,7 +42,7 @@ Une créature dort à l'ombre des branches.#Bulle:Narrateur
 
 Ia un clown qui dort sous cet arbe.<br> On va essayer de le contourner.#Bulle:MorganHautGauche
 
-Ta grand-mère s'arrête un instant comme pour y penser, puis hausse les épaules avec une moue qui trahit un "pourquoi pas".#Bulle:Narrateur
+Ta grand-mère s'arrête un instant comme pour y penser, puis hausse les épaules avec une moue qui trahit une attitude d'exaspération général.#Bulle:Narrateur
 ~ Trigger("name")
 Après quelques pas cependant, le clown en question lève sa tête pour vous regarder.#Bulle:Narrateur
 ~ Trigger("name")
