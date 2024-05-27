@@ -796,18 +796,23 @@ public class GameManager : MonoBehaviour
         {
             TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", false);
         }
-        
-        textToWriteIn.text = "";
-        if (textToWriteIn.transform.childCount == 1)
+
+        if (textToWriteIn)
         {
-            textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+            textToWriteIn.text = "";
+
+            if (textToWriteIn.transform.childCount == 1)
+            {
+                textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
+            }
+
+            if (textToWriteIn.GetComponentInParent<Image>() != null)
+            {
+                textToWriteIn.GetComponentInParent<Image>().enabled = false;
+            }
         }
-        
+
         isDialoguing = false;
-        if (textToWriteIn.GetComponentInParent<Image>() != null)
-        {
-            textToWriteIn.GetComponentInParent<Image>().enabled = false;
-        }
     }
     #endregion
     #endregion

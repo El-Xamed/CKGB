@@ -1,17 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class C_Console : MonoBehaviour
 {
     bool isOpen = false;
     [SerializeField] GameObject console;
     GameObject lastButton;
+
+    [SerializeField] List<DataChallenge> listDataChallenge;
 
     private void Start()
     {
@@ -24,21 +29,79 @@ public class C_Console : MonoBehaviour
 
         if (context.performed)
         {
-            if (isOpen)
-            {
-                isOpen = false;
-                EventSystem.current.SetSelectedGameObject(lastButton);
-            }
-            else
-            {
-                isOpen = true;
-                lastButton = EventSystem.current.currentSelectedGameObject;
-                Debug.Log(GetComponentInChildren<TMP_InputField>().gameObject.name);
-                EventSystem.current.SetSelectedGameObject(GetComponentInChildren<TMP_InputField>().gameObject);
-            }
-
-            console.SetActive(isOpen);
+            OpenConsole();
         }
+    }
+
+    void OpenConsole()
+    {
+        if (isOpen)
+        {
+            isOpen = false;
+            EventSystem.current.SetSelectedGameObject(lastButton);
+        }
+        else
+        {
+            isOpen = true;
+            lastButton = EventSystem.current.currentSelectedGameObject;
+            EventSystem.current.SetSelectedGameObject(console);
+            StartCoroutine(SelectInputField());
+        }
+
+        console.SetActive(isOpen);
+    }
+
+    public void ConfirmCommand()
+    {
+        switch (EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>().text)
+        {
+            case "lunch_lvl_tuto":
+                MoveAllAcctorInGameManager();
+                GameManager.instance.currentC = listDataChallenge[0].GetDataChallenge();
+                GameManager.instance.ExitDialogueMode();
+                SceneManager.LoadScene("S_Challenge");
+                break;
+            case "lunch_lvl_1":
+                MoveAllAcctorInGameManager();
+                GameManager.instance.currentC = listDataChallenge[1].GetDataChallenge();
+                GameManager.instance.ExitDialogueMode();
+                SceneManager.LoadScene("S_Challenge");
+                break;
+            case "lunch_lvl_2":
+                MoveAllAcctorInGameManager();
+                GameManager.instance.currentC = listDataChallenge[2].GetDataChallenge();
+                GameManager.instance.ExitDialogueMode();
+                SceneManager.LoadScene("S_Challenge");
+                break;
+            case "lunch_lvl_3":
+                MoveAllAcctorInGameManager();
+                GameManager.instance.currentC = listDataChallenge[3].GetDataChallenge();
+                GameManager.instance.ExitDialogueMode();
+                SceneManager.LoadScene("S_Challenge");
+                break;
+            case "reset_challenge":
+                GameManager.instance.ExitDialogueMode();
+                SceneManager.LoadScene("S_Challenge");
+                break;
+        }
+
+        OpenConsole();
+    }
+
+    IEnumerator SelectInputField()
+    {
+        yield return new WaitForEndOfFrame();
+        EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>().ActivateInputField();
+    }
+
+    void MoveAllAcctorInGameManager()
+    {
+        foreach (var thisActor in GameManager.instance.GetTeam())
+                {
+                    thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+                    thisActor.transform.parent = GameManager.instance.transform;
+                    thisActor.GetComponent<C_Actor>().GetImageActor().enabled = false;
+                }
     }
 
     public void LoadScene(InputAction.CallbackContext context)
@@ -49,5 +112,16 @@ public class C_Console : MonoBehaviour
         {
             
         }
+    }
+}
+
+[Serializable]
+public class DataChallenge
+{
+    [SerializeField] SO_Challenge data;
+
+    public SO_Challenge GetDataChallenge()
+    {
+        return data;
     }
 }
