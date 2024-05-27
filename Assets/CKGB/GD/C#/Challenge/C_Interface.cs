@@ -181,7 +181,7 @@ public class C_Interface : MonoBehaviour
             //Pour passer à la suite du jeu.
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame)
             {
-                myChallenge.EndChallenge();
+                myChallenge.FinishChallenge(null);
             }
 
             //Pour Update CataTurn.

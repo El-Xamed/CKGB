@@ -1527,6 +1527,7 @@ public class C_Challenge : MonoBehaviour
         {
             //Fin du challenge.
             myPhaseDeJeu = PhaseDeJeu.EndGame;
+            EndChallenge();
 
             Debug.Log("Fin du niveau");
         }
@@ -1610,6 +1611,8 @@ public class C_Challenge : MonoBehaviour
         {
             canGoNext = true;
         }
+
+        GameManager.instance.ExitDialogueMode();
 
         uiVictoire.SetActive(true);
 
