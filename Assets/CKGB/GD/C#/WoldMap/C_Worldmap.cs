@@ -85,7 +85,7 @@ public class C_Worldmap : MonoBehaviour
         if (currentPoint.GetComponent<C_destination>().IsDone)
         {
             currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
-            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsDone", true);
+            //currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsDone", true);
             currentPoint.GetComponent<C_destination>().flag.SetActive(true);
 
         }
@@ -223,7 +223,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Uplevel;
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
-                updateDestinations();            
+              //  updateDestinations();            
             Debug.Log("Uplevel");
             canMove = true;          
         }
@@ -239,7 +239,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Leftlevel;
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
-            updateDestinations();           
+            //updateDestinations();           
             Debug.Log("Leftlevel");
             canMove = true;          
         }
@@ -255,7 +255,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Rightlevel;
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
-            updateDestinations();
+            //updateDestinations();
             Debug.Log("Rightlevel");
             canMove = true;      
         }
@@ -271,7 +271,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Downlevel;
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
-            updateDestinations();            
+            //updateDestinations();            
             Debug.Log("Down");
             canMove = true;         
         }
@@ -380,8 +380,13 @@ public class C_Worldmap : MonoBehaviour
     }
     public void RevealLevel()
     {
-
+        currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
     }
-
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.name);
+        updateDestinations();
+        RevealLevel();
+    }
     #endregion
 }

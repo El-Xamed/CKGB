@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4520018203753582467}
   - component: {fileID: 7245227357856813141}
   - component: {fileID: 3098452605640620740}
+  - component: {fileID: 1980701673577103300}
   m_Layer: 0
   m_Name: MapPoint
-  m_TagString: Untagged
+  m_TagString: mappoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &7245227357856813141
 MonoBehaviour:
@@ -139,6 +140,7 @@ MonoBehaviour:
   IsCorner: 0
   Islocked: 0
   IsDone: 0
+  BeenRevealed: 0
   flag: {fileID: 0}
   levelUI: {fileID: 0}
   leveltextprovenance: {fileID: 0}
@@ -169,6 +171,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &1980701673577103300
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187586841891620570}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &6744599584333833791
 PrefabInstance:
   m_ObjectHideFlags: 0
