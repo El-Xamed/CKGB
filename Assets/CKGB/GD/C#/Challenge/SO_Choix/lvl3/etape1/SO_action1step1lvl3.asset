@@ -14,43 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: Boire de l'eau
   LogsMakeAction: "Tu t\u2019approche de la fontaine la plus proche pour t\u2019abreuver.
-    Son bassin scintillant te renvoie brievement ta propre image. L\u2019eau fraiche
-    coule sur ton menton. Tu te sens un peu rafraichi.e."
+    Son bassin scintillant te renvoie brievement ta propre image. "
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "L\u2019eau fraiche coule sur ton menton. Tu te sens un peu rafraichi.e."
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 2
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

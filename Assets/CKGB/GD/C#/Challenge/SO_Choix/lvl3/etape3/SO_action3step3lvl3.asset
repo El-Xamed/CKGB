@@ -13,63 +13,36 @@ MonoBehaviour:
   m_Name: SO_action3step3lvl3
   m_EditorClassIdentifier: 
   buttonText: Utiliser la violence
-  LogsMakeAction: "Vivre est par nature un acte violent. Nous luttons contre la gravit\xE9
-    pour rester debout. Nous devons prendre d\u2019autre vies pour nous nourir.  
-    Tu tremble sous le poids de tes propres \xE9motions. Mais tu ne te laissera pas
-    \xE9craser par le poids du monde. Tu prends une grande respiration, ferme les
-    yeux, et contre tout ce qui cherche \xE0 te mettre \xE0 genoux, tu UTILISE LA
-    VIOLENCE. Tout le monde autour de toi \xE0 l\u2019air inspir\xE9 par cette nouvelle
-    aura."
+  LogsMakeAction: "Cette pens\xE9e est revenue si souvent pendant ce trajet. Mais
+    a chaque fois, tu n\u2019as jamais vraiment compris comment elle aurait put \xEAtre
+    utile."
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Tu as commenc\xE9 \xE0 \xEAtre intimemement convaincu.e que on ne peut rien
+    r\xE9soudre avec la violence. Que prendre soin de ce qui est autour de nous est
+    la seule chose qui est r\xE9ellement utile. "
+  - Mais...
+  - "Ne devons nous pas lutter contre la gravit\xE9 pour rester debout ? "
+  - "Ne devons nous pas briser le silence pour \xEAtre entendu ? "
+  - "Dans cet instant, tu sens une nouvelle r\xE9solution s\u2019emparer de toi. "
+  - "Et si\u2026 Ce n\u2019\xE9tait pas incomptatible ? "
+  - "Apr\xE8s tout\u2026"
+  - "Si vivre n\u2019\xE9tait pas un acte violent par nature, pourquoi utilisons
+    nous le verbe \u201Cbattre\u201D pour d\xE9signer le mouvement du coeur ?"
+  - "Tu perds toute la honte qui pesait sur tes \xE9paules \xE0 cause de toute les
+    choses que tu as put briser, casser, ou blesser dans ta vie."
+  - "Tout le monde autour de toi \xE0 l\u2019air inspir\xE9 par ce soudain changement
+    d\u2019aura."
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 3
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 3
-    range: 1
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

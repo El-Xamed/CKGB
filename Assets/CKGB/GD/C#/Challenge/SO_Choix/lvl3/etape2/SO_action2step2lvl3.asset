@@ -15,44 +15,22 @@ MonoBehaviour:
   buttonText: Hurler
   LogsMakeAction: "Vous savez quoi ? Que le monde aille se faire voir ! Toute cette
     histoire \xE9tait sur le point de se finir. Pourquoi est-ce que tout doit devenir
-    aussi compliqu\xE9 au dernier moment ?! Tu t\u2019avance au bord de la grande
-    terrasse sur laquelle vous \xEAtre, saisis la barri\xE8res entre tes doigts crisp\xE9s,
-    contemple le ciel grand ouvert, et tu hurle jusqu\u2019\xE0 vider tes poumons."
+    aussi compliqu\xE9 au dernier moment ?!"
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Tu t\u2019avance au bord de la grande terrasse sur laquelle vous \xEAtre, "
+  - "saisis la barri\xE8res entre tes doigts crisp\xE9s, "
+  - "contemple le ciel grand ouvert, et tu hurle jusqu\u2019\xE0 vider tes poumons."
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 3
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

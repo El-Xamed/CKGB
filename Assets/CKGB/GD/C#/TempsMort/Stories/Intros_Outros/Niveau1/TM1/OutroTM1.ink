@@ -15,7 +15,7 @@ Mes cheveux.#Bulle:MorganHautDroite
 ~ Trigger("name")
 Ils étaient sur ta tête,<br> la dernière fois que j'ai check.#Bulle:NimuHautGauche
 
-Ils sont bien comme ça ?#Bulle:MorganHautDroite
+Ils sont assez cool comme ça ?#Bulle:MorganHautDroite
 ~ Trigger("name")
 Sur ta tête ?#Bulle:NimuHautGauche
 ~ Trigger("name")
@@ -50,7 +50,7 @@ Je vais te prêter les miennes, t'inquiète.#Bulle:NimuHautGauche
 
 Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses clés.#Bulle:Narrateur
 ~ Trigger("name")
-Hm#Bulle:NimuHautDroite
+Eeet galère.#Bulle:NimuHautDroite
 
 <bounce>…</bounce> #Bulle:NimuHautDroite
 Je les retrouve pas non plus.#Bulle:NimuHautDroite

@@ -15,50 +15,21 @@ MonoBehaviour:
   buttonText: Calin
   LogsMakeAction: "Tu cherche quelqu\u2019un autour de toi pour mettre ta t\xEAte
     contre leur \xE9paule. Tu veux faire savoir a tes compagnons que tu es l\xE0,
-    avec eux. Et que tu ne les laisse pas tomber. Et essuyer tes larmes sur leur
-    v\xEAtement, un peu."
+    avec eux."
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Et que tu ne les laisse pas tomber. Et essuyer tes larmes sur leur v\xEAtement,
+    un peu."
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 3
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 1
-    range: 1
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 3
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

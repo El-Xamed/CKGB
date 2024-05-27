@@ -15,51 +15,22 @@ MonoBehaviour:
   buttonText: Pousser le meuble
   LogsMakeAction: "Vous additionnez vos forces pour d\xE9placer le meuble sur le
     cot\xE9 ! vous le glissez sur la droite. Oh ! Une cl\xE9 \xE9tait vraiment coinc\xE9
-    en dessous ! Mais\u2026 On dirait pas celle de la porte ? A quoi est-ce qu\u2019elle
-    peut correspondre ?"
+    en dessous ! "
   logsCantMakeAction: "Tu essaies de pousser le meuble, mais on dirait qu\u2019il
     est trop lourd pour \xEAtre pouss\xE9 tout.e seul.e."
-  listLogsAction: []
+  listLogsAction:
+  - "Mais\u2026 On dirait pas celle de la porte ? A quoi est-ce qu\u2019elle peut
+    correspondre ?"
   logsCursor: 0
   advancedCondition:
     advancedCondition: 1
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 3
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 4
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

@@ -17,9 +17,10 @@ Oui madaaaame !#Bulle:EsthelaHautGauche
 ~ Trigger("name")
 C’est bon je crois qu’on l’a définitement perdu, elle commence à dire n'importe quoi.#Bulle:MorganHautGauche
 
-Tu m’as quand même pris la main !#Bulle:EsthelaHautGauche
+Hé !<br>
+Mais tu m’as quand même pris la main !#Bulle:EsthelaHautGauche
 
-Ouai, deal with it.#Bulle:MorganHautGauche
+Ouai. Et ?#Bulle:MorganHautGauche
 ~ Trigger("name")
 Ha! Tu seras crevé avant que j’devienne sénile mon gaillard.#Bulle:NimuHautGauche
 

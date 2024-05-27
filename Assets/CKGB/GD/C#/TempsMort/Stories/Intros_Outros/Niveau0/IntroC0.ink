@@ -9,11 +9,11 @@ EXTERNAL StartChallenge(name)
 
 Rien ne se passe. #Bulle:Narrateur
 
-<shake a=0.5>Errrk</shake>. #Bulle:MorganHautGauche
+<shake a=0.5>Errrk</shake>. J'aurai eut l'air tellement cool si ça avait marché.#Bulle:MorganHautGauche
 
 Tu torts brièvement ta bouche, déçu. #Bulle:Narrateur
 
-Hm.#Bulle:MorganHautGauche 
+Hm.#Bulle:MorganHautGauche
 
 Trop tôt. Ca doit faire bientot <incr> 4 heures</incr> pourtant.#Bulle:MorganHautGauche
 

@@ -74,7 +74,7 @@ Non pas du tout.#Bulle:NimuHautGauche
 Il y en a trois qui sont pour toi.#Bulle:NimuHautGauche
 
 <b>Echec et mat.</b>#Bulle:Narrateur
-Tu fronces les sourcils et te prépare à répondre que tu es parfaitement capable de te nourir seul, mais elle reprends la parole aussitôt.#Bulle:Narrateur
+Tu fronces les sourcils et te prépare à répondre qu'un Coolkid est parfaitement capable de se nourir seul, mais elle reprend la parole aussitôt.#Bulle:Narrateur
 
 Après, J’ai assez la dalle<br> pour tout manger si tu préfères.#Bulle:NimuHautGauche
 
@@ -86,10 +86,7 @@ Après, J’ai assez la dalle<br> pour tout manger si tu préfères.#Bulle:NimuH
 
 Je vais avoir besoin de force.#Bulle:MorganHautGauche
 
-Tu prends une franche bouchée de pain.#Bulle:Narrateur
-
-Tu as encore bien <incr>4 heures</incr> avant ton rendez-vous.#Bulle:Narrateur
-Tu as besoin de prendre des forces.#Bulle:Narrateur
+Tu prends une franche bouchée de pain recouvert de confiture.#Bulle:Narrateur
 
 ~ StartTM("TM")
 ->END

@@ -15,9 +15,9 @@ VAR IDrevasser = 0
 }
 ===Revasser0===
 ~ Trigger("name")
-//blabla
 
-Les lumières vives des évènements -passés et à venir- de la journée flash devant tes yeux. #Bulle:Narrateur
+Les lumières vives des évènements -passés et à venir- de la journée flash devant tes yeux.#Bulle:Narrateur
+Elles submerge ton crâne comme les inondations de l'hiver dernier.#Bulle:Narrateur
 Tu as besoin de temps. Pour digérer tes pensées. Pour te préparer.#Bulle:Narrateur
 ~ Trigger("name")
 Tu fais quelques pas à l’écart, tes yeux rivés vers le ciel. #Bulle:Narrateur
@@ -86,26 +86,35 @@ tu referme le stylo plume. #Bulle:MorganBasGauche
 ->DONE
 ===Revasser2===
 
+Ca a commencé comme une musique dans ta tête.#Bulle:Narrateur
+Comme une pensée, quelques mots, des phrases que tu étais incapable de te sortir de la tête.#Bulle:Narrateur
+C’est plus comme une démangeaison maintenant. Cela DEMANDE ton attention. Tu saisis de cet instant pour t’en débarasser.#Bulle:Narrateur
+Impulsivement, tu débouche ton stylo avec les dents, et commence a griffoner, assis sur ton siège de train. #Bulle:Narrateur
 
-//blabla
+Tu ne sais peut-être pas grand chose sur toi-même.#Bulle:Narrateur
+Ou sur quel genre de personne tu veux devenir. Mais dans cette océan d’incertitude, tu sens un prise à laquelle te raccrocher.#Bulle:Narrateur
+Écrire n’est pas une manie.#Bulle:Narrateur
+Ce n’est pas un simple système d’auto-défense.#Bulle:Narrateur
+C’est ta vocation. #Bulle:Narrateur
 
-Ca a commencé comme une musique dans ta tête.#Bulle:MorganBasGauche
-Comme une pensée, quelques mots, des phrases que tu étais incapable de te sortir de la tête.#Bulle:MorganBasGauche
-C’est plus comme une démangeaison maintenant. Cela DEMANDE ton attention. Tu saisis de cet instant pour t’en débarasser.#Bulle:MorganBasGauche
-Impulsivement, tu débouche ton stylo avec les dents, et commence a griffoner accroupie, ton cahier sur tes genoux. #Bulle:MorganBasGauche
+<i>"Organes papier
+Se faire un sang d’encre
+Un contrat de chair"</i>#Bulle:MorganBasGauche
 
-Tu ne sais peut-être pas grand chose sur toi-même.#Bulle:MorganBasGauche
-Ou sur quel genre de personne tu veux devenir. Mais dans cette océan d’incertitude, tu sens un prise à laquelle te raccrocher.#Bulle:MorganBasGauche
-Écrire n’est pas une manie.#Bulle:MorganBasGauche
-Ce n’est pas un simple système d’auto-défense.#Bulle:MorganBasGauche
-C’est ta vocation. #Bulle:MorganBasGauche
+<i>"Tous les tatouages
+peuvent s’effacer, mais pas 
+les poème apprit."</i>#Bulle:MorganBasGauche
 
-C’est ridicule.#Bulle:MorganBasGauche
-Ca te rends évidement vulnérable.#Bulle:MorganBasGauche
-Peut-être que ça t’empêchera toute ta vie d’enfin devenir le Coolkid que tu rêve d’être.#Bulle:MorganBasGauche
-Et tu n’es pas sûr de pouvoir faire la paix avec ça. #Bulle:MorganBasGauche
-Mais si c’est le prix pour continuer de faire la chose la plus importe de ta vie...#Bulle:MorganBasGauche 
-Alors tu es fier de le payer.#Bulle:MorganBasGauche #Bulle:MorganBasDroite
+<i>"Aucune lentille
+Ne peux me protéger du
+Soleil en mon sein"</i>#Bulle:MorganBasGauche
+
+C’est ridicule.#Bulle:Narrateur
+Tu te sens tellement futile et vulnérable.#Bulle:Narrateur
+Peut-être que ça t’empêchera toute ta vie d’enfin devenir le Coolkid que tu rêve d’être.#Bulle:Narrateur
+Et tu n’es pas sûr de pouvoir faire la paix avec cela un jour.#Bulle:Narrateur
+Mais si c’est le prix pour continuer de faire la chose la plus importe de ta vie...#Bulle:Narrateur
+Alors tu es fier de le payer.#Bulle:Narrateur
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE

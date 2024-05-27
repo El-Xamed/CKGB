@@ -23,7 +23,7 @@ Négligement, sa chaussure écrase une partie du buisson de lavande.#Bulle:Narra
 
 ~ Trigger("name")
 
-Oh mon dieu regarde !<br> Un alien qui joue du trombone !#Bulle:MorganHautGauche #emot:!
+Oh je n'en crois pas mes yeux !<br> Un alien qui joue du trombone !#Bulle:MorganHautGauche #emot:!
 
 C'est bien Morgan, c'est bien...#Bulle:NimuHautGauche #emot:Dots
 
@@ -36,15 +36,11 @@ Quoi ? Heu si tu, erm.#Bulle:NimuHautGauche
 Parlais de lavande qui jouait du trombone ?#Bulle:NimuHautGauche
 C'était ridicule d'ailleurs#Bulle:NimuHautGauche
 
-Attends.#Bulle:MorganHautGauche
+Un clown semble dormir à l'ombre des branches.#Bulle:Narrateur
 
-Une créature dort à l'ombre des branches.#Bulle:Narrateur
-
-Ia un clown qui dort sous cet arbe.<br> On va essayer de le contourner.#Bulle:MorganHautGauche
-
-Ta grand-mère s'arrête un instant comme pour y penser, puis hausse les épaules avec une moue qui trahit une attitude d'exaspération général.#Bulle:Narrateur
+Ta grand-mère s'arrête un instant comme pour y penser, puis hausse les épaules avec une moue qui trahit une attitude de "pourquoi pas" généralisée.#Bulle:Narrateur
 ~ Trigger("name")
-Après quelques pas cependant, le clown en question lève sa tête pour vous regarder.#Bulle:Narrateur
+Après quelques pas cependant, le personnage en question lève sa tête pour vous regarder.#Bulle:Narrateur
 ~ Trigger("name")
 Et, à la grande surprise de l'ensemble du publique (c'est là que vous dites "ooooooh"), elle semble vous reconnaitre.#Bulle:Narrateur
 
@@ -54,19 +50,19 @@ Omg !!! Morgan !!!#Bulle:EsthelaHautGauche
 
 Tu la reconnais à ton tour avec un mélange de joie et d'amertume.#Bulle:Narrateur
 
-<i>(...merde.)</i>#Bulle:MorganHautGauche
+<i>(...eet peste.)</i>#Bulle:MorganHautGauche
 
-Comment ça va ? <br><size=120%>J'ADORE</size=120%> ton nouveau style !!<br> Ou tu vas comme ça ?<br> Il fait beau aujourd'hui non ???<br> Je peux essayer tes lunettes de soleil ?<br> Oh c'est ta grand-mère avec toi ?"#Bulle:EsthelaHautGauche
+Comment ça va ? <br><size=120%>J'ADORE</size=120%> ton nouveau style !!<br> Ou tu vas comme ça ?<br> Il fait beau aujourd'hui non ???<br> Je peux essayer tes lunettes de soleil ?<br> Oh c'est ta grand-mère avec toi ?#Bulle:EsthelaHautGauche
 
-Heyyyy ça va. Merci.#Bulle:MorganHautGauche
-J’aime aussi beaucoup ta nouvelle esthétique,<br> très fantaisiste.#Bulle:MorganHautGauche
+Heyyyy,'a va. Merci.#Bulle:MorganHautGauche
+J’aime également beaucoup ta nouvelle esthétique,<br> très fantaisiste.#Bulle:MorganHautGauche
 Je te dirai pas.<br> C'est vrai.<br> Non. Effectivement.
 Tu remontes tes lunettes sur l'arête de ton nez.#Bulle:Narrateur
 Dans cet ordre.#Bulle:MorganHautGauche #emot:Sparkles
-Ca t'as pris du temps et beaucoup d'efforts,<br> mais tu as fini par apprendre comment intéragir avec Ésthela.#Bulle:Narrateur
+Cela t'as pris plusieurs années et beaucoup d'efforts,<br> mais tu as fini par apprendre comment intéragir avec Ésthela.#Bulle:Narrateur
 Une manoeuvre qui s'est revélé plutôt fructueuse, étant donné que tu l'as considère maintenant comme une des tes meilleures amies.#Bulle:Narrateur
 
-A mon tour maintenant.<br> Depuis quand t’es dans le coin ?#Bulle:MorganHautGauche #emot:?
+'mon tour maintenant.<br> Depuis quand t’es dans le coin ?#Bulle:MorganHautGauche #emot:?
 
 Oh, je suis que de passage.#Bulle:EsthelaHautGauche
 J’aide des amis à escorter<br> un convoi le long de la ligne 4 ce matin.#Bulle:EsthelaHautGauche
@@ -83,37 +79,40 @@ Je pense bien que c’est la première fois<br> que j’ai envie d’escorter <b
 
 Hehe, t'as vu, t'as vu?#Bulle:EsthelaHautGauche #emot:JoyRight
 On s'imagine que c'est plutôt physique,<br> mais en fait je passe plus de temps à attendre les trains<br> qu'à porter des caisses.#Bulle:EsthelaHautGauche
-Quand on connait les meilleurs spots à sieste,<br> c'est plutot un bon plan ehehe !!#Bulle:EsthelaHautGauche #emot:Sparkles
+Quand on connait les meilleurs spots à sieste,<br> c'est un plan plutot foudroyant ehehe !!#Bulle:EsthelaHautGauche #emot:Sparkles
 
 'Hm. J'vois. Cela semble 'ffectivement être une position relativ'ment aventageuse.#Bulle:MorganBasGauche
-Maint'nant, Mémé ? pte'tre devrions-nous procéder ? J'crois qu'nous avons nous même un train à attraper.#Bulle:MorganBasGauche
+Maint'nant, Mémé ? ptê'tre devrions-nous procéder ? J'crois qu'nous avons un train à attraper.#Bulle:MorganBasGauche
 ~ Trigger("name")
 Attends un instant. Elle a raison ta pote. #Bulle:NimuHautDroite #emot:!
 
 A quel sujet ?#Bulle:MorganHautDroite #emot:?
-
-On est à quoi, <br>dix-quinze minutes de la gare d'ici ?#Bulle:NimuHautGauche
-
-Ouai ?#Bulle:MorganBasDroite
-
-Et bah elle a raison, <size=120>C'EST un super spot à sieste !</size=120%>#Bulle:NimuHautGauche
+<size=120>C'EST un super spot à sieste !</size=120%>#Bulle:NimuHautGauche
 Et on est à quoi, dix-quinze minutes de la gare ?#Bulle:NimuHautGauche
-Sachant que tu veux prendre le train qui<br>arrive dans vingt minutes environ#Bulle:NimuHautGauche
-Et qu'il reste toujours un bon quart d'heure à quai.#Bulle:NimuHautGauche
+Tu m'as dit que le prochain train<br>arrive dans vingt minutes environ#Bulle:NimuHautGauche
 
-Tu n'aimes pas la direction que ces calculs prennent.#Bulle:Narrateur
+Ah, donc tu m'écoute des fois.#Bulle:MorganHautDroite
+Fais pas l'malin sinon j'tabandonne là. #Bulle:NimuHautGauche
+Pas de soucis.#Bulle:MorganHautDroite
+Si elle te laisse tout seul, tu fais demi-tour.#Bulle:Narrateur
+Tu as besoin d'une distraction pour ne pas commencer à trembler. #Bulle:Narrateur
+Et tu vas tomber à court d'ongle à ronger au bout d'un moment.#Bulle:Narrateur
+J'me débrouille très bien seul.#Bulle:MorganHautDroite
 
-On peut largement se permettre d'attendre ici dans l'herbe, plutôt qu'à la gare ou il y aura du monde.#Bulle:NimuBAsGauche
+BREF,#Bulle:NimuHautGauche
+avec les trains qui restent toujours bien 15 minutes à quais,#Bulle:NimuHautGauche
+on peut largement se permettre de profiter un peu d'être ici !<br> Ca nous avancera pas plus d'attendre à la gare.#Bulle:NimuBAsGauche
 ~ Trigger("name")
-Tu aurais du mal à contredire des mathématiques aussi élémentaires.#Bulle:Narrateur
-Et, à vrai dire, même si ca te stress un peu de ne pas déjà être à la gare, c'est vrai que tu te sens bien ici.#Bulle:Narrateur
+Tu prends plusieurs inspirations et expirations pour essayer de formuler réponse raisonnable.#Bulle:Narrateur
+A vrai dire, même si ca te stress un peu de ne pas déjà être à la gare, c'est vrai que tu te sens bien ici.#Bulle:Narrateur
+Et ca t'avais manqué de parler avec Esthéla.#Bulle:Narrateur
 
 ...#Bulle:Narrateur
 
 Il semblerait que ta grand-mère soit déjà partie se mettre à l'ombre de toute façon.#Bulle:Narrateur
 Tu te tournes vers Esthela.#Bulle:Narrateur
 ~ Trigger("name")
-Bon,<br> bah il semblerait que<br> tu sois bloqué avec nous, alors.#Bulle:MorganHautGauche
+Il semblerait bien que<br> tu sois bloqué avec nous, alors.#Bulle:MorganHautGauche
 
 ~ StartTM("TM")
 ->END
