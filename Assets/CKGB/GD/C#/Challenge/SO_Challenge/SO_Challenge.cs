@@ -19,6 +19,7 @@ public class SO_Challenge : ScriptableObject
     public string objectif;
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
     public int nbCase;
+    public float spaceCase;
     [Space]
     [Tooltip("Information SECONDAIRE pour faire spawn les personnages et Acc sur la scene")]
     public List<InitialAccPosition> listStartPosAcc;

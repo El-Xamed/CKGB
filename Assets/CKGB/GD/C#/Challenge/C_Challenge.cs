@@ -252,6 +252,8 @@ public class C_Challenge : MonoBehaviour
 
     void SpawnCases()
     {
+        plateauGameObject.GetComponent<HorizontalLayoutGroup>().spacing = myChallenge.spaceCase;
+
         //Spawn toutes les cases.
         for (int i = 0; i < myChallenge.nbCase; i++)
         {

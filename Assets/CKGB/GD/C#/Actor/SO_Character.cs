@@ -19,6 +19,11 @@ public class SO_Character : ScriptableObject
     public SO_ActionClass traitToWrite;
     public int idTraitEnCours=0;
 
+    #region Challenge Data
+    [Header("Challenge data")]
+    public float widthChallenge;
+    public float heightChallenge;
+
     [Header("Challenge (Sprite)")]
     public Sprite challengeSprite;
     public Sprite challengeSpriteBlackAndWhite;
@@ -42,6 +47,7 @@ public class SO_Character : ScriptableObject
     public Sprite NormalBulle;
     public Sprite ThinkBulle;
     public GameObject characterTree;
+    #endregion
 
     //A VOIR AVEC MAX
     [Header("Tempsmort (Stats)")]   

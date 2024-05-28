@@ -165,6 +165,8 @@ public class C_Actor : C_Pion
         mainchild.GetComponent<Image>().preserveAspect = true;
         mainchild.GetComponent<Image>().useSpriteMesh = true;
 
+        //mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(GetDataActor().widthChallenge, GetDataActor().heightChallenge);
+
         //Debug.Log(BulleHautGauche.GetComponent<RectTransform>().rect.position);
 
         //FIX TEMPO ? Déplace la bulle pour que ça colle bien dans les challenge.
@@ -345,6 +347,9 @@ public class C_Actor : C_Pion
         //Sprite
        mainchild.GetComponent<SpriteRenderer>().sprite = dataActor.MapTmSprite;
     }
+    #endregion
+
+    #region Temps Mort
     public void IniTempsMort()
     {
         mainchild.GetComponent<Image>().sprite = dataActor.MapTmSprite;
@@ -352,10 +357,10 @@ public class C_Actor : C_Pion
         //Active l'ombre du challenge.
         ombre.gameObject.SetActive(false);
 
-        //Debug.Log(BulleHautGauche.GetComponent<RectTransform>().localPosition);
+        //Bricolage pour max. Permet d'avoir la bonne taille pour les temps mort.
+        mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 700);
 
-        //FIX TEMPO ? Déplace la bulle pour que ça colle bien dans les challenge.
-        //BulleHautGauche.GetComponent<RectTransform>().position = new Vector3(-18, 43, BulleHautGauche.transform.position.z);
+        Debug.Log(mainchild.GetComponent<Image>().sprite.rect.size);
     }
 
     #endregion
