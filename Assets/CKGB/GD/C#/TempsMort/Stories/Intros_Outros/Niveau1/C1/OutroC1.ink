@@ -4,7 +4,7 @@
 EXTERNAL FinishChallenge(name)
 
 ===Outro===
-Un éclair d'endorphine secoue ton système nerveux alors que tu lance la clef en l'air dans un élan victorieux.#BulleNarrateur
+Un éclair d'endorphine secoue ton système nerveux alors que tu lance la clef en l'air dans un élan victorieux.#Bulle:Narrateur
 Tu les rattrapes et mets tes chaussures pour sortir.#Bulle:Narrateur
 
 Cette journée est déjà un peu trop alambiquée à mon goût.#Bulle:MorganHautGauche
