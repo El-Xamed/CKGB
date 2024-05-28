@@ -1165,6 +1165,7 @@ public class C_TempsLibre : MonoBehaviour
                                 {
                                     GameManager.instance.RespirerID--;
                                     LastCharacterThatPlayed[charactertoaddID].GetComponent<C_Actor>().GetDataActor().energyMax--;
+                                    DisplayFicheInfos();
                                 }
                                 if (LastAction[actiontoaddID] == PapoterButton)
                                 {
@@ -1192,6 +1193,7 @@ public class C_TempsLibre : MonoBehaviour
                                         }
                                         GameManager.instance.PapoterID[0]--;
                                         MorganAPapoteAvecEsthela = false;
+                                        DisplayFicheInfos();
                                     }
                                     else if (LastCharacterThatPlayed[charactertoaddID] == Morgan && Papote == Nimu && MorganAPapoteAvecNimu == false)
                                     {
@@ -1217,6 +1219,7 @@ public class C_TempsLibre : MonoBehaviour
                                         }
                                         GameManager.instance.PapoterID[1]--;
                                         MorganAPapoteAvecNimu = false;
+                                        DisplayFicheInfos();
                                     }
                                     else if (LastCharacterThatPlayed[charactertoaddID] == Esthela && Papote == Morgan && MorganAPapoteAvecEsthela == false)
                                     {
@@ -1242,6 +1245,7 @@ public class C_TempsLibre : MonoBehaviour
                                         }
                                         GameManager.instance.PapoterID[0]--;
                                         MorganAPapoteAvecEsthela = false;
+                                        DisplayFicheInfos();
                                     }
                                     else if (LastCharacterThatPlayed[charactertoaddID] == Esthela && Papote == Nimu && NimuAPapoteAvecEsthela == false)
                                     {
@@ -1267,6 +1271,7 @@ public class C_TempsLibre : MonoBehaviour
                                         }
                                         GameManager.instance.PapoterID[2]--;
                                         NimuAPapoteAvecEsthela = false;
+                                        DisplayFicheInfos();
                                     }
                                     else if (LastCharacterThatPlayed[charactertoaddID] == Nimu && Papote == Morgan && MorganAPapoteAvecNimu == false)
                                     {
@@ -1292,6 +1297,7 @@ public class C_TempsLibre : MonoBehaviour
                                         }
                                         GameManager.instance.PapoterID[1]--;
                                         MorganAPapoteAvecNimu = false;
+                                        DisplayFicheInfos();
                                     }
                                     else if (LastCharacterThatPlayed[charactertoaddID] == Nimu && Papote == Esthela && NimuAPapoteAvecEsthela == false)
                                     {
@@ -1317,6 +1323,7 @@ public class C_TempsLibre : MonoBehaviour
                                         }
                                         GameManager.instance.PapoterID[2]--;
                                         NimuAPapoteAvecEsthela = false;
+                                        DisplayFicheInfos();
                                     }
                                 }
                                 ActivateTreeCharacterChoice();
