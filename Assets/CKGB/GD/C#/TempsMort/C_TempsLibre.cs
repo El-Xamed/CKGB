@@ -10,7 +10,7 @@ using static SO_TempsMort;
 using Ink.Runtime;
 using Febucci.UI;
 using System;
-using UnityEditor.Animations;
+
 
 
 
@@ -76,7 +76,7 @@ public class C_TempsLibre : MonoBehaviour
 
     [SerializeField] public Animator introAnimator;
     [SerializeField] public Animator outroAnimator;
-    [SerializeField] public AnimatorController[] observerAnimList;
+    [SerializeField] public RuntimeAnimatorController[] observerAnimList;
     [SerializeField] public Animator observerAnimator;
     [SerializeField] public Animator revasserAnimator;
     [SerializeField] public Animator morganxesthelaAnimator;

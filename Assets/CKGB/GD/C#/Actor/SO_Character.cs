@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
-using UnityEditor.Animations;
+
 
 [CreateAssetMenu(fileName = "New Actor", menuName = "ScriptableObjects/Personne")]
 public class SO_Character : ScriptableObject
@@ -63,6 +63,6 @@ public class SO_Character : ScriptableObject
     [SerializeField] public TextAsset PapoterAvecNimu;
     [SerializeField] public TextAsset PapoterAvecMorgan;
     [Header("Animations")]
-    public AnimatorController RevasserAnimPatern;
+    public RuntimeAnimatorController RevasserAnimPatern;
     #endregion
 }

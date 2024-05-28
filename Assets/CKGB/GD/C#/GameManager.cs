@@ -6,8 +6,9 @@ using TMPro;
 using Ink.Runtime;
 using System;
 using UnityEngine.UI;
-using UnityEditor.Animations;
+
 using UnityEngine.SceneManagement;
+
 
 public enum EActorClass
 {
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TMP_Text textToWriteIn;
     [SerializeField] public TextAsset[]papotage;
     public TextAsset currentTextAsset;
-    public AnimatorController[] PapotageAnimPatern;
+    public RuntimeAnimatorController[] PapotageAnimPatern;
     [SerializeField] public bool isDialoguing = false;
     [SerializeField] GameObject CharacterTalking;
 
