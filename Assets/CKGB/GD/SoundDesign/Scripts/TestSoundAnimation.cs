@@ -64,6 +64,9 @@ public class TestSoundAnimation : MonoBehaviour
         A.PlayOnce("Dots");
     }
 
-
+    public void BruitDePas()
+    {
+        A.PlayOnce("BruitDePas");
+    }
 }
 
