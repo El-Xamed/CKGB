@@ -1149,32 +1149,36 @@ public class C_Challenge : MonoBehaviour
             //Fonction pour vérifier si un mouvement est nessecaire.
             void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
             {
-                //Regarde d'abord c'est quoi comme type de déplacement.
-                if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
+                //Check si il y a un movement.
+                if (action.GetWhatMove(target) != TargetStats.ETypeMove.None)
                 {
-                    Debug.Log("Pas ciblé par un actor ou acc.");
-
-                    //Check si un mouvement existe.
-                    if (action.GetValue(target, TargetStats.ETypeStatsTarget.Movement) != 0)
+                    //Regarde d'abord c'est quoi comme type de déplacement.
+                    if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
                     {
-                        //Deplace l'actor avec l'info de déplacement + type de déplacement.
-                        MoveActorInBoard(thisActor, action.GetValue(target, TargetStats.ETypeStatsTarget.Movement), action.GetWhatMove(target), action.GetIsTp(target));
+                        Debug.Log("Pas ciblé par un actor ou acc.");
+
+                        //Check si un mouvement existe.
+                        if (action.GetValue(target, TargetStats.ETypeStatsTarget.Movement) != 0)
+                        {
+                            //Deplace l'actor avec l'info de déplacement + type de déplacement.
+                            MoveActorInBoard(thisActor, action.GetValue(target, TargetStats.ETypeStatsTarget.Movement), action.GetWhatMove(target), action.GetIsTp(target));
+                        }
                     }
-                }
-                else //Ciblé par un actor ou acc.
-                {
-                    Debug.Log("Ciblé par un actor ou acc.");
-
-                    //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
-                    if (action.GetTarget().GetComponent<C_Actor>())
+                    else //Ciblé par un actor ou acc.
                     {
-                        action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Actor>());
-                    }
-                    else if (action.GetTarget().GetComponent<C_Accessories>())
-                    {
-                        action.SetTarget(GameObject.Find(action.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
+                        Debug.Log("Ciblé par un actor ou acc.");
 
-                        action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Accessories>());
+                        //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
+                        if (action.GetTarget().GetComponent<C_Actor>())
+                        {
+                            action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Actor>());
+                        }
+                        else if (action.GetTarget().GetComponent<C_Accessories>())
+                        {
+                            action.SetTarget(GameObject.Find(action.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
+
+                            action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Accessories>());
+                        }
                     }
                 }
             }
