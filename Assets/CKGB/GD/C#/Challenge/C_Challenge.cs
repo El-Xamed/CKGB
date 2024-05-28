@@ -26,7 +26,7 @@ public class C_Challenge : MonoBehaviour
     //Pour connaitre la phasse de jeu.
     public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame }
     [Header("Phase de jeu")]
-    PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+    [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
     [SerializeField] GameObject plateauGameObject;
 
@@ -669,7 +669,9 @@ public class C_Challenge : MonoBehaviour
             }
 
             animFinish = false;
-            ResolutionTurn();
+
+            myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+            vfxResoTurn.SetTrigger("PlayerTurn");
 
             //Supprime toutes les preview.
             foreach (Image thisPreview in plateauPreview)
@@ -953,7 +955,7 @@ public class C_Challenge : MonoBehaviour
 
     public void ResolutionTurn()
     {
-        Debug.Log("Resolution trun !");
+        Debug.Log("Resolution turn !");
 
         if (AudioManager.instance)
         {
