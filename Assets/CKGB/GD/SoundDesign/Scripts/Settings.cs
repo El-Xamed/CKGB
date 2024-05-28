@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using TMPro;
 
-public class VolumeSettings : MonoBehaviour
+public class Settings : MonoBehaviour
 {
 
     // permets l acess aux differents slider
@@ -18,6 +19,14 @@ public class VolumeSettings : MonoBehaviour
     bool Generalmute = true;
     bool MusiqueMute = true;
     bool EffetsSonoresMute = true;
+
+    [SerializeField] private TMP_Dropdown resolutionDropDown;
+
+    private Resolution[] resolutions;
+    private List<Resolution> filteredResolutions;
+
+    private float currentrefreshRate;
+    private int currentResolutionindex = 0;
     
     // recupere les valeurs de audio mixer
     public void Start()
@@ -26,11 +35,36 @@ public class VolumeSettings : MonoBehaviour
         SetMusicVolume();
         SetGeneralVolume();
         SetSFXVolume();
-       
-    
-       
-       
+        resolutions = Screen.resolutions;
+        filteredResolutions = new List<Resolution>();
 
+        resolutionDropDown.ClearOptions();
+        currentrefreshRate = Screen.currentResolution.refreshRate;
+
+        Debug.Log("refresh rate : " + currentrefreshRate);
+        for(int i = 0;i<resolutions.Length;i++)
+        {
+            Debug.Log("Resolution: " + resolutions[i]);
+            if(resolutions[i].refreshRate==currentrefreshRate)
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
+        }
+
+        List<string> options = new List<string>();
+        for(int i = 0;i<filteredResolutions.Count;i++)
+        {
+            string resolutionsOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRate + "Hz";
+            options.Add(resolutionsOption);
+            if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
+            {
+                currentResolutionindex = i;
+            }
+        }
+
+        resolutionDropDown.AddOptions(options);
+        resolutionDropDown.value = currentResolutionindex;
+        resolutionDropDown.RefreshShownValue();
     }
 
     // convertie les valeurs du slider a laudio mixer
@@ -112,6 +146,17 @@ public class VolumeSettings : MonoBehaviour
 
         sfxSlider.enabled = EffetsSonoresMute;
 
+
+    }
+    public void TogleFullScreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+        Debug.Log("fullScreenChanged");
+    }
+    public void setResolution(int resolutionIndex)
+    {
+        Resolution resolution = filteredResolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, true);
 
     }
    
