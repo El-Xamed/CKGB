@@ -48,6 +48,8 @@ public class C_Interface : MonoBehaviour
     {
         myChallenge = GetComponentInParent<C_Challenge>();
         uiAction.SetActive(false);
+
+        canContinue = true;
     }
 
     #region Racourcis

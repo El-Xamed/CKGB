@@ -7,6 +7,7 @@ public class C_Case : MonoBehaviour
     #region Mes variables
     [SerializeField] TextMeshProUGUI textNumber;
     GameObject vfxCata;
+    [SerializeField] Transform positionCata;
     [SerializeField] C_Pion myPion;
 
     [SerializeField] Sprite addNumberSprite;
@@ -20,6 +21,10 @@ public class C_Case : MonoBehaviour
         //Si une cata à deja spaw.
         if (vfxCata != null) { return; }
         vfxCata = Instantiate(newVfxCata, transform);
+
+        //Place la cata.
+        vfxCata.transform.position = positionCata.position;
+
     }
 
     public void PlacePion(C_Pion thisPion)
