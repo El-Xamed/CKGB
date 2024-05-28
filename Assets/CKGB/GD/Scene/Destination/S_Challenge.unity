@@ -449,6 +449,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -60.000076
       objectReference: {fileID: 0}
+    - target: {fileID: 4426946741574835285, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946741574835285, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946741574835285, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946741574835285, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946741574835285, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946741574835285, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -57.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4426946742398521745, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -476,6 +500,18 @@ PrefabInstance:
     - target: {fileID: 4426946742398521745, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946742400087162, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946742400087162, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426946742400087162, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -57.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
@@ -1222,6 +1258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myInterface: {fileID: 404572936}
   myChallenge: {fileID: 11400000, guid: 3717d10933abcfa47b6cb682f2e40576, type: 2}
+  myPhaseDeJeu: 0
   plateauGameObject: {fileID: 1665274490}
   uiLogsAnimator: {fileID: 1059408875}
   uiLogs: {fileID: 530368891}
