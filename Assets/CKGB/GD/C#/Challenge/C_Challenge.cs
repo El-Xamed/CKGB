@@ -1625,7 +1625,7 @@ public class C_Challenge : MonoBehaviour
             }
             else
             {
-                UnityEditor.EditorApplication.isPlaying = false;
+                //UnityEditor.EditorApplication.isPlaying = false;
             }
         }
         else
