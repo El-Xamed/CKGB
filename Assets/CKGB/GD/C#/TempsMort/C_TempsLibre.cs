@@ -43,6 +43,10 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] GameObject PapoterButton;
     [SerializeField] GameObject ChallengeButton;
 
+    [SerializeField] GameObject expliCalme;
+    [SerializeField] GameObject expliEner;
+    [SerializeField] GameObject expliTrait;
+
     [SerializeField] bool MorganAPapoteAvecEsthela = false;
     [SerializeField] bool MorganAPapoteAvecNimu = false;
     [SerializeField] bool NimuAPapoteAvecEsthela = false;
@@ -423,8 +427,38 @@ public class C_TempsLibre : MonoBehaviour
             {
                 AfficherGrandeFiche();
             }
+           
         }
         DisplayFicheInfos();
+        DisplayInformations();
+    }
+    public void DisplayInformations()
+    {
+        switch (currentButton.name)
+        {
+            case "ExpliactionEnergie":
+                expliEner.SetActive(true);
+                expliCalme.SetActive(false);
+                expliTrait.SetActive(false);
+                break;
+            case "ExpliactionCalme":
+                expliEner.SetActive(false);
+                expliCalme.SetActive(true);
+                expliTrait.SetActive(false);
+                break;
+            case "ExpliactionTrait":
+                expliEner.SetActive(false);
+                expliCalme.SetActive(false);
+                expliTrait.SetActive(true);
+                break;
+            default:
+                expliEner.SetActive(false);
+                expliCalme.SetActive(false);
+                expliTrait.SetActive(false);
+                break;
+
+        }
+            
     }
     public void Naviguate(InputAction.CallbackContext context)
     {

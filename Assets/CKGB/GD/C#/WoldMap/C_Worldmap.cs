@@ -85,8 +85,9 @@ public class C_Worldmap : MonoBehaviour
         if (currentPoint.GetComponent<C_destination>().IsDone)
         {
             currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.SetActive(true);
-            //currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsDone", true);
-            currentPoint.GetComponent<C_destination>().flag.SetActive(true);
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().Tampon.GetComponent<Animator>().SetBool("IsDone", true);
+           //currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsDone", true);
+           currentPoint.GetComponent<C_destination>().flag.SetActive(true);
 
         }
         switch (currentPoint.name)
@@ -225,7 +226,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
               //  updateDestinations();            
             Debug.Log("Uplevel");
-            canMove = true;          
+                
         }
     }
     public void moveLeft(InputAction.CallbackContext context)
@@ -241,7 +242,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
             //updateDestinations();           
             Debug.Log("Leftlevel");
-            canMove = true;          
+             
         }
     }
     public void moveRight(InputAction.CallbackContext context)
@@ -257,7 +258,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
             //updateDestinations();
             Debug.Log("Rightlevel");
-            canMove = true;      
+               
         }
     }
     public void moveDown(InputAction.CallbackContext context)
@@ -273,7 +274,7 @@ public class C_Worldmap : MonoBehaviour
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
             //updateDestinations();            
             Debug.Log("Down");
-            canMove = true;         
+               
         }
     }
     void AddActorInTeam()
@@ -285,6 +286,7 @@ public class C_Worldmap : MonoBehaviour
         currentSetup.GetComponent<Animator>().SetBool("move", false);
         currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
         currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("ActivateLevel");
+        currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsRevealed",true);
         if (currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().TwoSlot.activeSelf)
         {
             currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("two");
@@ -293,7 +295,7 @@ public class C_Worldmap : MonoBehaviour
         {
             currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("three");
         }
-        currentPoint.GetComponent<C_destination>().leveltextprovenance.text = currentPoint.leveltext;
+       
         if (currentPoint.left != null)
             Leftlevel = currentPoint.left;
         else Leftlevel = null;
@@ -381,12 +383,18 @@ public class C_Worldmap : MonoBehaviour
     public void RevealLevel()
     {
         currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
+        currentPoint.GetComponent<C_destination>().leveltextprovenance.text = currentPoint.leveltext;
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.name);
         updateDestinations();
-        RevealLevel();
+        canMove = true;
+        if (!collision.GetComponent<C_destination>().BeenRevealed)
+        {
+            RevealLevel();
+        }
+       
     }
     #endregion
 }
