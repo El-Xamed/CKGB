@@ -44,6 +44,7 @@ public class C_MainMenu : MonoBehaviour
        // splashScreen.SetActive(false);
 
         boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
+        AudioManager.instance.PlayOnce("SfxSplashScreen");
     }
     IEnumerator firstButton()
     {
@@ -60,7 +61,8 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
         StartCoroutine("loadFirstGame");
-        AudioManager.instance.Stop("MusiqueSplashScreen");
+        AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
+
     }
     IEnumerator loadFirstGame()
     {
@@ -105,6 +107,7 @@ public class C_MainMenu : MonoBehaviour
             //optionsParent.SetActive(true);
             Debug.Log("Options");
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(GameManager.instance.baseToggle.gameObject);
+            AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
         }
 
 
@@ -115,6 +118,7 @@ public class C_MainMenu : MonoBehaviour
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
         // currentButton.GetComponent<Animator>().SetTrigger("Selected");
         AudioManager.instance.PlayOnce("SfxHover");
+
     }
     public void Naviguate(InputAction.CallbackContext context)
     {
@@ -125,16 +129,18 @@ public class C_MainMenu : MonoBehaviour
             updateCurrentButton();
             
         }
+        
     }
 
     public void OpenCredits()
     {
-
+        AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
     }
 
     public void LeaveGame()
     {
         Application.Quit();
+        AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
     }
 
     //Focntion à dev plus tard. Sert pour tous les menu.
