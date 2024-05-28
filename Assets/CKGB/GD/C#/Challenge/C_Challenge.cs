@@ -473,6 +473,9 @@ public class C_Challenge : MonoBehaviour
     {
         onDialogue = false;
 
+        //Desactive les input.
+        GetComponent<PlayerInput>().enabled = false;
+
         //Lance l'animation qui présente le challenge après la transition
         vfxStartChallenge.SetTrigger("start");
 
