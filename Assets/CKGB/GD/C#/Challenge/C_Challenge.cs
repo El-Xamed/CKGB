@@ -1,5 +1,6 @@
 using Febucci.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -151,6 +152,11 @@ public class C_Challenge : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LunchChallenge());
+    }
+
+    IEnumerator LunchChallenge()
+    {
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
 
@@ -160,6 +166,8 @@ public class C_Challenge : MonoBehaviour
 
         //Apparition des cases
         SpawnCases();
+
+        yield return new WaitForEndOfFrame();
 
         //Set les element en plus.
         SpawnElement();
@@ -1510,7 +1518,7 @@ public class C_Challenge : MonoBehaviour
     #region Fin de partie
 
     #region GameOver
-    //Bool pour check si le vhallenge est fini.
+    //Bool pour check si le challenge est fini.
     void UpdateEtape()
     {
         Debug.Log("Update etape");
