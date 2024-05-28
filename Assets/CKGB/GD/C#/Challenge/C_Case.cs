@@ -28,7 +28,6 @@ public class C_Case : MonoBehaviour
         //thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         thisPion.GetComponent<RectTransform>().position = new Vector3(transform.position.x, 0, transform.position.z);
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(thisPion.GetComponent<RectTransform>());
         //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
         thisPion.SetPosition(number - 1);
 
@@ -37,21 +36,6 @@ public class C_Case : MonoBehaviour
         CheckIsInDanger();
     }
 
-    /*private void Update()
-    {
-        if(myPion != null)
-        {
-            PlacePion(myPion);
-        }
-    }*/
-
-    public void DebugPlacePion()
-    {
-        if (myPion != null)
-        {
-            PlacePion(myPion);
-        }
-    }
     public void ResetPion()
     {
         myPion = null;

@@ -175,6 +175,8 @@ public class C_Challenge : MonoBehaviour
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
+        yield return new WaitForEndOfFrame();
+
         if (GameManager.instance)
         {
             //Cache toute l'Ui pour les dialogue.
@@ -676,12 +678,6 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
-        //FIX TEMPORAIRE !!!
-        foreach (var thisCase in plateau)
-        {
-            thisCase.DebugPlacePion();
-        }
-
         //Efface les logs.
         uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
@@ -1051,6 +1047,8 @@ public class C_Challenge : MonoBehaviour
         //Check dans les data de cette action si la condition est bonne.
         if (CanUse(thisActorResolution))
         {
+            Debug.Log("Peut faire l'action");
+
             //Applique les conséquences de stats.
             #region Self
             //Créer la liste pour "self"
@@ -1147,7 +1145,7 @@ public class C_Challenge : MonoBehaviour
                 }
             }
             #endregion
-
+            
             //Fonction pour vérifier si un mouvement est nessecaire.
             void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
             {
@@ -1244,6 +1242,8 @@ public class C_Challenge : MonoBehaviour
                     }
                 }
             }
+
+            return true;
         }
 
         return false;
@@ -1597,6 +1597,8 @@ public class C_Challenge : MonoBehaviour
                     thisActor.transform.parent = GameManager.instance.transform;
                     thisActor.GetImageActor().enabled = false;
                 }
+
+                GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
 
                 if (GameManager.instance.currentC.name == "SO_lvl3")
                 {
