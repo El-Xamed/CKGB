@@ -119,8 +119,8 @@ public class C_Worldmap : MonoBehaviour
                 break;
         }
 
-       
-   
+
+        RevealLevel();
 
         //sets up the destinations
         Leftlevel = currentPoint.left;
