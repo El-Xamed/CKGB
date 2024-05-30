@@ -48,7 +48,7 @@ Il fait genre. 22 degrés.#Bulle:Narrateur
 Mais néanmoins, tu te sens doucement basculer... #Bulle:Narrateur
 Puis tu <i>cèdes</i>, incapable de lui résister.#Bulle:Narrateur
 ~ Trigger("name")
-<bounce>…</bounce> Nah mais j’peux prendre cinq minutes si c’est important pour toi.#Bulle:MorganHautDroite #emot:Dots
+<bounce>…</bounce> Nah mais j’peux prendre cinq minutes<br> si c’est important pour toi.#Bulle:MorganHautDroite #emot:Dots
 
 Elle sourit d’un air satisfait.#Bulle:Narrateur
 ~ Trigger("name")

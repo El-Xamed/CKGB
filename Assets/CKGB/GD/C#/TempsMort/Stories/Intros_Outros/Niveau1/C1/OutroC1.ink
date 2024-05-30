@@ -4,20 +4,22 @@
 EXTERNAL FinishChallenge(name)
 
 ===Outro===
-Un éclair d'endorphine secoue ton système nerveux alors que tu lances la clef en l'air dans un élan victorieux.#Bulle:Narrateur
+Un éclair d'endorphine secoue ton système nerveux alors que tu lances la clé en l'air dans un élan victorieux.#Bulle:Narrateur
 Tu les rattrapes et mets tes chaussures pour sortir.#Bulle:Narrateur
 
-Cette journée est déjà un peu trop alambiquée à mon goût.#Bulle:MorganHautGauche
+Cette journée est déjà <br>un peu trop alambiquée à mon goût.#Bulle:MorganHautGauche
 
-T’as l’air bien exigeant pour un gars qui vesqui l’école.#Bulle:NimuHautGauche
+T’as l’air bien exigeant <br>pour un gars qui vesqui l’école.#Bulle:NimuHautDroite
 
-J'suis dans mon droit. J’ai posé un jour de congé.#Bulle:MorganHautDroite
+J'suis dans mon droit.<br> J’ai posé un jour de congé.#Bulle:MorganHautDroite
 
-Pfff, haha ! Je sais, je sais. Tu m’apprendras pas les règles, bonhomme. T’avais pas encore l’âge de les suivre que j’étais en train de les écrire.
+Pfff, haha !<br> Je sais, je sais.#Bulle:NimuHautDroite
+Tu m’apprendras pas les règles,<br> bonhomme.
+T’avais pas encore l’âge<br> de les suivre que j’étais <br>en train de les écrire.
 
 Un silence passe.#Bulle:Narrateur
 
-Quand j‘t’écoute, ça m’rappelle parfois que mon intérêt pour la poésie n’est pas sorti de nulle part.#Bulle:MorganHautDroite
+Quand j‘t’écoute,<br> ça m’rappelle parfois que mon intérêt<br> pour la poésie n’est pas sorti de nulle part.#Bulle:MorganHautDroite
 
 Tu te relèves, sur le point de sortir.#Bulle:Narrateur
 
@@ -29,11 +31,13 @@ Tu baisses brièvement les yeux, et les relèves avec un froncement de sourcil.#
 
 T’as aussi mis des chaussures ?#Bulle:MorganHautGauche
 
-Bien vu pour un pelo qui porte des lunettes de soleil en intérieur.#Bulle:NimuHautGauche
+Bien vu pour un pelo<br> qui porte des lunettes de soleil<br> en intérieur.#Bulle:NimuHautDroite
 
 J’t’ai posé une question implicite.#Bulle:MorganHautGauche
 
-H-hm. Ouais, vu que tu sors, j'vais en profiter pour faire une 'tite course. Comme ça je serai pas seule en chemin.#Bulle:NimuHautGauche
+H-hm.#Bulle:NimuHautDroite
+Ouais, vu que tu sors,<br> j'vais en profiter pour faire <br>une 'tite course.
+Comme ça je serai pas seule en chemin.#Bulle:NimuHautDroite
 
 Elle s’assure d’avoir ton attention et te fait un clin d’oeil exagéré.#Bulle:Narrateur
 Une chaleur monte brièvement dans tes joues alors que tu te sens un peu embarrassé, mais tu remarques que tous tes muscles se détendent de soulagement.#Bulle:Narrateur
