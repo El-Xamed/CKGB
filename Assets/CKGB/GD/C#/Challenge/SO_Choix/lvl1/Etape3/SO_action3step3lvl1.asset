@@ -13,49 +13,26 @@ MonoBehaviour:
   m_Name: SO_action3step3lvl1
   m_EditorClassIdentifier: 
   buttonText: Essayer la clef sur la porte
-  LogsMakeAction: "Vous remettez le meuble \xE0 la place, voila c'est tout"
+  LogsMakeAction: "Tu glisse la clef dans la serrure de la porte d\u2019entr\xE9e,
+    juste pour \xEAtre s\xFBr. "
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Elle rentre, mais rien ne suit quand tu la tourne, et le m\xE9canisme se bloque.
+    Ce ne serait pas la bonne clef ? "
+  - "Mais de quoi est-ce que \xE7a pourrait \xEAtre la clef alors ?"
+  - "Tu regarde ton partenaire et hausse les \xE9paules. L\u2019autre hausse les
+    \xE9paules en retour."
+  - "Vous trouvez du r\xE9confort dans votre ignorance mutuelle."
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 1
-    range: 2
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
