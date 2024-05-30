@@ -608,7 +608,7 @@ public class C_Challenge : MonoBehaviour
             if (eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>())
             {
                 //Affiche la preview.
-                GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
+                //GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
             }
         }
     }
@@ -1243,6 +1243,9 @@ public class C_Challenge : MonoBehaviour
 
                 //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
                 canIniCata = true;
+
+                //
+                myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
                 //Check si c'est la fin.
                 UpdateEtape();
