@@ -94,7 +94,15 @@ public class AudioManager : MonoBehaviour
 
     public void Stop (string name)
     {
-        AudioManager.instance.Stop(name);
+        Sound p = System.Array.Find(sounds, sound => sound.name == name);
+        if (p == null)
+        {
+            Debug.LogWarning("Sound:" + name + "not found!");
+            return;
+
+
+        }
+        source.Stop();
     }
 
     public void MuteMusic(string name)

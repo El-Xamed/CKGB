@@ -25,7 +25,7 @@ public class C_MainMenu : MonoBehaviour
     private void Start()
     {
         IniSplashScreen();
-        AudioManager.instance.Play("MusiqueSplashScreen");
+        AudioManager.instance.PlayOnce("MusiqueSplashScreen");
     }
 
     private void IniSplashScreen()
@@ -61,7 +61,11 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
         StartCoroutine("loadFirstGame");
+       
+        AudioManager.instance.Stop("MusiqueSplashScreen");
         AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
+
+        
 
     }
     IEnumerator loadFirstGame()
@@ -117,7 +121,7 @@ public class C_MainMenu : MonoBehaviour
         //currentButton.GetComponent<Animator>().SetTrigger("unselected");
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
         // currentButton.GetComponent<Animator>().SetTrigger("Selected");
-        AudioManager.instance.PlayOnce("SfxHover");
+        
 
     }
     public void Naviguate(InputAction.CallbackContext context)
