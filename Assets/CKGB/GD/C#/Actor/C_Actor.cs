@@ -165,7 +165,7 @@ public class C_Actor : C_Pion
         mainchild.GetComponent<Image>().preserveAspect = true;
         mainchild.GetComponent<Image>().useSpriteMesh = true;
 
-        //mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(GetDataActor().widthChallenge, GetDataActor().heightChallenge);
+        mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(GetDataActor().widthChallenge, GetDataActor().heightChallenge);
 
         //Debug.Log(BulleHautGauche.GetComponent<RectTransform>().rect.position);
 

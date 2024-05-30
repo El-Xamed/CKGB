@@ -19,6 +19,7 @@ MonoBehaviour:
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
@@ -32,39 +33,8 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 2
-      listStats: []
-      move:
-        whatMove: 1
-        isTp: 0
-        nbMove: 4
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
-  newListInteractions:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
     - whatStatsTarget: 1
       whatCost: 0
-      whatStats: 0
-      whatMove: 1
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 4
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
       whatStats: 0
       whatMove: 1
       isTp: 0

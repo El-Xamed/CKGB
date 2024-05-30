@@ -151,12 +151,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        StartCoroutine(LunchChallenge());
-    }
-
-    IEnumerator LunchChallenge()
+    IEnumerator Start()
     {
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
@@ -1511,6 +1506,9 @@ public class C_Challenge : MonoBehaviour
         //Setup la position de départ.
         thisPion.GetComponent<C_Actor>().SetStartPosition(plateau[thisPion.GetPosition()].GetComponentInParent<Transform>());
 
+        Debug.Log(whatMove);
+        Debug.Log(nbMove);
+
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == TargetStats.ETypeMove.Right || whatMove == TargetStats.ETypeMove.Left) //Normal move mode.
         {
@@ -1522,7 +1520,7 @@ public class C_Challenge : MonoBehaviour
 
             CheckIfNotExceed();
         }
-        else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
+        else if (whatMove == TargetStats.ETypeMove.OnTargetCase) //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
         {
             //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
             if (nbMove > plateau.Count - 1)
@@ -1533,21 +1531,21 @@ public class C_Challenge : MonoBehaviour
             }
         }
 
-        //Check si un autre membre de l'équipe occupe deja a place. A voir pour le déplacer après que l'actor ai bougé.
+        //Check si un autre membre de l'équipe occupe deja a place. A voir pour le déplacer après que l'actor ait bougé.
         foreach (C_Actor thisOtherActor in myTeam)
         {
             //Si dans la list de l'équipe c'est pas égale à l'actor qui joue. Et si "i" est égale à "newPosition" pour décaler seulement l'actor qui occupe la case ou on souhaite ce déplacer.
             if (thisPion != thisOtherActor)
             {
                 //Détection de si il y a un autres actor.
-                if (thisPion.GetPosition() + nbMove == thisOtherActor.GetPosition())
+                if (nbMove == thisOtherActor.GetPosition())
                 {
                     //Check si c'est une Tp ou non.
                     if (isTp)
                     {
                         //Place l'autre actor à la position de notre actor.
                         Debug.Log(TextUtils.GetColorText(thisPion.name, Color.cyan) + " a échangé sa place avec " + TextUtils.GetColorText(thisOtherActor.name, Color.green) + ".");
-                        PlacePionOnBoard(thisOtherActor, thisPion.GetPosition(),isTp);
+                        PlacePionOnBoard(thisOtherActor, thisPion.GetPosition(), isTp);
                     }
                     else
                     {
@@ -1565,9 +1563,6 @@ public class C_Challenge : MonoBehaviour
         //Permet de réduire/augmenter la valeur pour placer l'actor sur le plateau.
         void CheckIfNotExceed()
         {
-            Debug.Log(thisPion.GetPosition());
-            Debug.Log(nbMove);
-
             //Si la valeur ne dépasse pas la plateau alors pas besoin de modification de valeur.
             if (thisPion.GetPosition() + nbMove < plateau.Count && thisPion.GetPosition() + nbMove > -1)
             {
@@ -1637,6 +1632,8 @@ public class C_Challenge : MonoBehaviour
 
     public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase, bool isTp)
     {
+        Debug.Log(thisPion.name + " : " + thisCase);
+
         //Supprime la dernière position.
         plateau[thisPion.GetPosition()].ResetPion();
 

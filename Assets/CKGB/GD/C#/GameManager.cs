@@ -1,12 +1,8 @@
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using TMPro;
 using Ink.Runtime;
-using System;
 using UnityEngine.UI;
-
 using UnityEngine.SceneManagement;
 
 
@@ -18,7 +14,7 @@ public enum EActorClass
 public class GameManager : MonoBehaviour
 {
     //Pour le dev.
-    [Header("Param�tre de dev")]
+    [Header("Parametre de dev")]
     [Tooltip("Ceci est un param�tre de dev (Paul) ce dernier � pour objectif de rediriger correctement les object en question pour la cr�ation de l'�quipe.")]
     [SerializeField]
     List<GameObject> ressourceActor = new List<GameObject>();
