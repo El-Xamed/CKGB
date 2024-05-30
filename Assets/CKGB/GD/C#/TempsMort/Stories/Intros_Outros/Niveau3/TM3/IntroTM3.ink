@@ -11,7 +11,7 @@ EXTERNAL StartTM(name)
 ~ Trigger("name")
 Ton amie bondit énergiquement pour célébrer l'occasion.#Bulle:Narrateur
 
-Je suis vraiment désolé.#Bulle:MorganHauitDroit
+Je suis vraiment désolé.#Bulle:MorganHautDroite
 Je me suis encore <br>laissé distraire par quelque chose, #Bulle:MorganHautGauche
 et j'ai failli tous nous faire rater ce train.#Bulle:MorganHautGauche #emot:Deception
 
@@ -19,27 +19,27 @@ Wow, le code des Coolkids vous autorise à vous excuser ?<br> Je pensais que c'�
 
 Je suis plus cool que le code des Coolkids.#Bulle:MorganHautGauche #emot:Rainbow
 ~ Trigger("name")
-Tu remontes tes lunettes de soleil sur ton nez avec ton index et ton majeur.
+Tu remontes tes lunettes de soleil sur ton nez avec ton index et ton majeur.#Bulle:Narrateur
 
 Bon, c’est quand qu’on <wave>arriiiiiiiive</wave> ?#Bulle:EsthelaHautGauche 
 
 On vient à peine de partir, Esthé.#Bulle:MorganHautGauche
 Mémé ? Est-ce que ça va ?#Bulle:MorganHautGauche
 
-<wave>Hm</wave> ? Oui pardon chouchou. <br>J’étais dans la lune. Tu as besoin de quelque chose ?#Bulle:NimuHautGauche
+<wave>Hm</wave> ? Oui pardon chouchou. <br>J’étais dans la lune.<br> Tu as besoin de quelque chose ?#Bulle:NimuHautGauche
 Je me demandais juste si tu allais bien.#Bulle:MorganHautGauche
 C’est gentil de ta part.<br> Hm, Esthéla ?#Bulle:NimuBasGauche
 À quel arrêt tu descends, toi ?#Bulle:NimuBasGauche #emot:?
 
-Oh, j'en ai encore pour un moment, je m'arrête quasiment à la fin de la ligne.#Bulle:EsthelaHautGauche
-Mais... Si vous êtes d'accord pour m'aider à décharger les deux trois caisses que j'accompagne,#Bulle:EsthelaHautGauche
-je me disais que je m'arrêterais sûrement aux Marches pour casser la croûte !#Bulle:EsthelaHautGauche 
+Oh, j'en ai encore pour un moment,<br> je m'arrête quasiment à la fin de la ligne.#Bulle:EsthelaHautGauche
+Mais... Si vous êtes d'accord <br>pour m'aider à décharger <br>les deux trois caisses que j'accompagne,#Bulle:EsthelaHautGauche
+je me disais que je m'arrêterais <br>sûrement aux Marches pour <br>casser la croûte !#Bulle:EsthelaHautGauche 
 
 Le sourire moqueur et complice caractéristique de ta grand-mère vient éclairer son visage ridé.#Bulle:Narrateur
 
 Tiens donc, <wave>comme par hasard</wave>.#Bulle:NimuHautGauche #emot:Sparkles
 
-T'as vu un peu ? Sacrée coïncidence.#Bulle:EsthelaHautGauche #emot:Sparkles
+T'as vu un peu ?<br> Sacrée coïncidence.#Bulle:EsthelaHautGauche #emot:Sparkles
 
 Tu savais que moi aussi<br> je m'y rendais à cause d'une sacrée coïncidence ?#Bulle:NimuHautGauche #emot:Sparkles
 
@@ -49,12 +49,12 @@ Ouais, et des mugs !#Bulle:NimuHautGauche #emot:Rainbow
 
 Encore un jour <br>où ma horde de fans m'espionne <br>pour découvrir le secret de mes légendaires techniques de dragues.#Bulle:MorganHautGauche
 
-Vous auriez pu juste me demander, vous savez ?#Bulle:MorganHautGauche
+Vous auriez pu juste me demander,<br> vous savez ?#Bulle:MorganHautGauche
 
 <size=120%><incr>OLALA, J'AI L'IMPRESSION QUE QUELQU'UN A ESSAYÉ DE FAIRE UN COMEBACK <br> AVEC UNE RÉPLIQUE BIEN TROUVÉE </incr>!</size=120%>#Bulle:EsthelaHautGauche
 
 <size=120%>QUEL DOMMAGE QUE JE N'ENTENDE RIEN À CAUSE DU BRUIT DU TRAIN.</size=120%>#Bulle:EsthelaHautGauche
-Morgan ? Est-ce que tu m'entends ? C’est quand <wave>qu’on arriiiiiiiiiiiiiiiiiiive</wave> ?#Bulle:EsthelaHautGauche
+Morgan ? <br>Est-ce que tu m'entends ?<br> C’est quand <wave>qu’on arriiiiiiiiiiiiiiiiiiive</wave> ?#Bulle:EsthelaHautGauche
 
 <b>Ma vengeance sera terrible</b>.#Bulle:MorganHautGauche
 

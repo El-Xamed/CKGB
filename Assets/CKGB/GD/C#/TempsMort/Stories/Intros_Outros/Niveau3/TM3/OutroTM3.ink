@@ -13,11 +13,11 @@ Vous vous pressez sur la banquette pour essayer de distinguer votre destination 
 ~ Trigger("name")
 Le quartier vertical composé de petits modules encastrés diagonalement les uns des autres projette une ombre sur toute la station.#Bulle:Narrateur
 
-Esthéla a l'air de remarquer l'expression sur ton visage.#Bulle:EsthelaHautGauche
+Esthéla a l'air de remarquer l'expression sur ton visage.
 ~ Trigger("name")
 Ça va Morgan ?<br> T'as peur de la grimpette ?#Bulle:EsthelaHautGauche #emot:?
 
-Je… Non. Je suis juste… <size=40%>nerveux pour <rainb>mon rencard</rainb>.</size=40%>#Bulle:MorganHautGauche 
+Je… Non.<br> Je suis juste…<br> <size=40%>nerveux pour <rainb>mon rencard</rainb>.</size=40%>#Bulle:MorganHautGauche 
 
 De quoi ?#Bulle:EsthelaHautGauche
 

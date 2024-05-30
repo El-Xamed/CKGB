@@ -7,34 +7,37 @@ EXTERNAL StartChallenge(name)
 
 Vous franchissez un par un, essouflés, le seuil de la terrasse surélevée où se trouve le café.#Bulle:Narrateur
 
-Woooou... Et bah... C'était...wooow... Vraiment <shake>beaucoup</shake> de marches.#Bulle:MorganHautGauche
+Woooou...<br> Et bah...<br> C'était...wooow...#Bulle:MorganHautGauche
+Vraiment <shake>beaucoup</shake> de marches.#Bulle:MorganHautGauche
 
-Ouais.. Uff... Ufff... Ils devraient vraiment prévenir les gens à l'avance. Le mettre dans le nom du quartier ou un truc dans le genre.#Bulle:NimuHautGauche
+Ouais.. Uff... Ufff...<br> Ils devraient vraiment <br>prévenir les gens à l'avance.#Bulle:NimuHautGauche
+Le mettre dans le nom du quartier<br> ou un truc dans le genre.#Bulle:NimuHautGauche
 
-Exactement, c'est c'que j'ai toujours dit.#Bulle:MorganHautGauche
+Exactement,<br> c'est c'que j'ai toujours dit.#Bulle:MorganHautGauche
 
-C'est ici que tu as <rainb>ton rencard</rainb>. L'<i>autre</i> est probablement à quelques dizaines de mètres de toi actuellement.#Bulle:Narrateur
+C'est ici que tu as <rainb>ton rencard</rainb>.#Bulle:Narrateur
+L'<i>autre</i> est probablement<br> à quelques dizaines de mètres de toi actuellement.#Bulle:Narrateur
 Tu sens quelque chose <shake>t'aggripper le coeur</shake>.#Bulle:Narrateur
 
-Bon. J’suppose qu’on t’accompagne pas plus loin ?#Bulle:NimuHautGauche
+Bon.<br> J’suppose qu’on t’accompagne pas plus loin ?#Bulle:NimuHautGauche
 
 Ah bon ?#BulleEsthelaHautGauche #emot:Deception
 
-Tu recules contre le muret pour t'appuyer dessus.#Bulle:Narrateur
+Tu recules contre le muret<br> pour t'appuyer dessus.#Bulle:Narrateur
 
-Ouais. Le boug aura sûrement du mal à se trouver "cool" s'il y va avec son fan club.#Bulle:NimuHautGauche
+Ouais. Le boug aura sûrement du mal à se trouver "cool"<br> s'il y va avec son fan club.#Bulle:NimuHautGauche
 
 Il aurait <incr>HONTE</incr> de nous ???#Bulle:EsthelaHautGauche
 
-J'ai élevé un ingrat, je sais.#Bulle:NimuHautGauche
+J'ai élevé un ingrat,<br> je sais.#Bulle:NimuHautGauche
 
 Est-ce que... vous <i>la</i> voyez ?#Bulle:MorganHautGauche
 
-Je sais pas attends, elle ressemble à quoi déjà ?#Bulle:EsthelaHautGauche
+Je sais pas attends,<br> elle ressemble à quoi déjà ?#Bulle:EsthelaHautGauche
 
 Elle s'accroupit et lève la tête pour poser son nez de clown sur le rebord du muret et scruter la vitrine du café.#Bulle:Narrateur
 
-Ça devient franchement ridicule. Esthéla, on va se trouver un truc à graille plus bas ?"#Bulle:NimuHautGauche
+Ça devient franchement ridicule. <br>Esthéla, on va se trouver <br>un truc à graille plus bas ?"#Bulle:NimuHautGauche
 
 Elle semble oublier instantanément son envie de perturber ta vie privée.#Bulle:Narrateur
 Tu ne sauras jamais si c'était par décence humain ou simplement parce qu'elle avait vraiment trop la dalle.#Bulle:Narrateur

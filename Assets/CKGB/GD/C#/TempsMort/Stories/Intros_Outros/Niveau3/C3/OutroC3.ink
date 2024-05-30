@@ -34,11 +34,11 @@ Un parangon de charisme.#Bulle:Narrateur
 
 Tu t’approches de tes amies pour les prendre dans tes bras.
 
-Je suis un abruti qui a monopolisé la matinée de deux personnes parce que j'étais trop anxieux pour sortir voir quelqu'un.#Bulle:MorganHautGauche
+Je suis un abruti <br>qui a monopolisé la matinée<br> de deux personnes parce que j'étais trop anxieux pour sortir voir quelqu'un.#Bulle:MorganHautGauche
 
-Et c'est la meilleure chose que j'aurais pu faire de ma matinée.#Bulle:NimuHautGauche
+Et c'est la meilleure chose<br> que j'aurais pu faire de ma matinée.#Bulle:NimuHautGauche
 
-Je suis SÛRE que tu peux réussir à formuler ça sans te déprécier en passant.#Bulle:EsthelaHautGauche
+Je suis SÛRE que tu peux <br>réussir à formuler ça sans te déprécier en passant.#Bulle:EsthelaHautGauche
 
  …#Bulle:MorganHautGauche
 
@@ -66,9 +66,9 @@ Moi ? Sage ? Hahaha.#Bulle:EsthelaHautGauche
 HahahAHAHA#Bulle:EsthelaHautGauche
 BWAHHAHHAHAHAHAHAHAHAHHA !#Bulle:EsthelaHautGauche
 
-Allez cassez-vous, vous m’foutez la honte.#Bulle:MorganHautGauche
+Allez cassez-vous,<br> vous m’foutez la honte.#Bulle:MorganHautGauche
 
-Essuie-toi avant d’y aller, t’as encore d’la morve sur la bouche.#Bulle:NimuHautGauche
+Essuie-toi avant d’y aller,<br> t’as encore d’la morve sur la bouche.#Bulle:NimuHautGauche
 
 J’essaie d’lancer une mode.#Bulle:MorganHautGauche
 
