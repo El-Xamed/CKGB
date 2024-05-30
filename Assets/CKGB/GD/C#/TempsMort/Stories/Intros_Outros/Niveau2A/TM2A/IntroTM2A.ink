@@ -13,11 +13,11 @@ C’est juste après ces buttes !<br> On va y être en 5 minutes. #Bulle:MorganH
 
 H-hm.#Bulle:NimuHautGauche
 
-Fais gaffe à la lavande. On a galéré à la faire survivre après la dernière sècheresse.#Bulle:MorganHautGauche
+Fais gaffe à la lavande.<br> On a galéré à la faire survivre <br>après la dernière sècheresse.#Bulle:MorganHautGauche
 
 De fou, de fou.#Bulle:NimuHautGauche
 ~ Trigger("name")
-Négligement, sa chaussure écrase une partie du buisson de lavande.#Bulle:Narrateur
+Négligement,<br> sa chaussure écrase une partie du buisson de lavande.#Bulle:Narrateur
 
 …#Bulle:MorganHautGauche #emot:Dots
 
@@ -25,7 +25,7 @@ Négligement, sa chaussure écrase une partie du buisson de lavande.#Bulle:Narra
 
 Oh, je n'en crois pas mes yeux !<br> Un alien qui joue du trombone !#Bulle:MorganHautGauche #emot:!
 
-C'est bien Morgan, c'est bien...#Bulle:NimuHautGauche #emot:Dots
+C'est bien Morgan,<br> c'est bien...#Bulle:NimuHautGauche #emot:Dots
 
 ~ Trigger("name")
 
@@ -55,7 +55,7 @@ Tu la reconnais à ton tour avec un mélange de joie et d'amertume...#Bulle:Narr
 Comment ça va ? <br><size=120%>J'ADORE</size=120%> ton nouveau style !!<br> Où tu vas comme ça ?<br> Il fait beau aujourd'hui non ???<br> Je peux essayer tes lunettes de soleil ?<br> Oh c'est ta grand-mère avec toi ?#Bulle:EsthelaHautGauche
 
 Heyyyy, 'a va. Merci.#Bulle:MorganHautGauche
-J’aime également beaucoup ta nouvelle esthétique,<br> très fantaisiste.#Bulle:MorganHautGauche
+J’aime également beaucoup <br>ta nouvelle esthétique,<br> très fantaisiste.#Bulle:MorganHautGauche
 Je te dirai pas.<br> C'est vrai.<br> Non. Effectivement.
 Tu remontes tes lunettes sur l'arête de ton nez.#Bulle:Narrateur
 Dans cet ordre.#Bulle:MorganHautGauche #emot:Sparkles
@@ -81,18 +81,18 @@ Hehe, t'as vu, t'as vu ?#Bulle:EsthelaHautGauche #emot:JoyRight
 On s'imagine que c'est plutôt physique,<br> mais en fait je passe plus de temps à attendre les trains<br> qu'à porter des caisses.#Bulle:EsthelaHautGauche
 Quand on connaît les meilleurs spots à sieste,<br> c'est un plan plutôt foudroyant ehehe !!#Bulle:EsthelaHautGauche #emot:Sparkles
 
-Hm. J'vois. Cela semble 'ffectivement être une position relativ'ment aventageuse.#Bulle:MorganBasGauche
-Maint'nant, Mémé ? Ptê'tre devrions-nous procéder ? J'crois qu'nous avons un train à attraper.#Bulle:MorganBasGauche
+Hm. J'vois.<br> Cela semble 'ffectivement être une position <br>relativ'ment aventageuse.#Bulle:MorganBasGauche
+Maint'nant, Mémé ? <br>Ptê'tre devrions-nous procéder ?<br> J'crois qu'nous avons un train à attraper.#Bulle:MorganBasGauche
 ~ Trigger("name")
-Attends un instant. Elle a raison ta pote. #Bulle:NimuHautDroite #emot:!
+Attends un instant.<br> Elle a raison ta pote. #Bulle:NimuHautDroite #emot:!
 
 À quel sujet ?#Bulle:MorganHautDroite #emot:?
 <size=120>C'EST un super spot à sieste !</size=120%>#Bulle:NimuHautGauche
-Et on est à quoi, dix-quinze minutes de la gare ?#Bulle:NimuHautGauche
+<br>Et on est à quoi,<br> dix-quinze minutes de la gare ?#Bulle:NimuHautGauche
 Tu m'as dit que le prochain train<br>arrivait dans vingt minutes environ.#Bulle:NimuHautGauche
 
 Ah, donc tu m'écoutes des fois.#Bulle:MorganHautDroite
-Fais pas l'malin sinon j't'abandonne là. #Bulle:NimuHautGauche
+Fais pas l'malin<br> sinon j't'abandonne là. #Bulle:NimuHautGauche
 Pas de soucis.#Bulle:MorganHautDroite
 Si elle te laisse tout seul, tu fais demi-tour.#Bulle:Narrateur
 Tu as besoin d'une distraction pour ne pas commencer à trembler. #Bulle:Narrateur
@@ -100,8 +100,8 @@ Et tu vas tomber à court d'ongles à ronger au bout d'un moment.#Bulle:Narrateu
 J'me débrouille très bien seul.#Bulle:MorganHautDroite
 
 BREF,#Bulle:NimuHautGauche
-avec les trains qui restent toujours bien 15 minutes à quais,#Bulle:NimuHautGauche
-on peut large se permettre de profiter un peu d'être ici !<br> Ça nous avancera pas plus d'attendre à la gare.#Bulle:NimuBAsGauche
+avec les trains qui restent<br> toujours bien 15 minutes à quais,#Bulle:NimuHautGauche
+on peut large se permettre<br> de profiter un peu d'être ici !<br> Ça nous avancera pas plus<br> d'attendre à la gare.#Bulle:NimuBAsGauche
 ~ Trigger("name")
 Tu prends plusieurs inspirations et expirations pour essayer de formuler une réponse raisonnable.#Bulle:Narrateur
 À vrai dire, même si ça te stresse un peu de ne pas déjà être à la gare, c'est vrai que tu te sens bien ici.#Bulle:Narrateur
