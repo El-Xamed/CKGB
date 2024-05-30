@@ -27,9 +27,9 @@ Ok bah <i>gucchi</i>.#Bulle:NimuBasDroite
 
 Tu as l’air pressé de partir ?#Bulle:NimuHautGauche
 
-H-hm, j’vais prendre le train.#Bulle:MorganHautGauche
+H-hm, j’vais prendre le train.#Bulle:MorganHautDroite
 ~ Trigger("name")
-J’ai… <rainb>Un truc</rainb>. Aux marches.#Bulle:MorganHautGauche
+J’ai… <rainb>Un truc</rainb>. Aux marches.#Bulle:MorganHautDroite
 
 Ah.#Bulle:NimuHautGauche
 Elle marque une pause.#Bulle:Narrateur
