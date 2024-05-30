@@ -921,8 +921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -674.99994, y: 390}
-  m_SizeDelta: {x: -1450, y: -820}
+  m_AnchoredPosition: {x: -675, y: 340}
+  m_SizeDelta: {x: -1450, y: -720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503554412
 MonoBehaviour:
@@ -1256,6 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0512023a1e54dd24895740d3ce6a3a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tuto: {fileID: 0}
   onDialogue: 0
   myInterface: {fileID: 404572936}
   myChallenge: {fileID: 11400000, guid: ec5173695574d434c8ab78cd7a121e5e, type: 2}
@@ -1626,7 +1627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &790869693
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3274,6 +3275,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 32261c2a-85bf-4f4b-b024-877a865ed29f
     m_ActionName: Challenge/EndChallenge[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c25f7d14-0e1c-428c-91d1-35a5efefea01
+    m_ActionName: Console/Open/Close Console[/Keyboard/backquote]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge

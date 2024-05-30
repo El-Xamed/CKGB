@@ -1,9 +1,6 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using static TargetStats;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "ScriptableObjects/Challenge/Action", order = 1)]
 public class SO_ActionClass : ScriptableObject

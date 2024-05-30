@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using static C_Challenge;
 
 public class C_PreviewAction : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class C_PreviewAction : MonoBehaviour
             SetupPreview(Interaction.ETypeTarget.Self, thisActor);
 
             //Pour "Other".
-            SetupPreview(Interaction.ETypeTarget.Other, thisActor);
+            //SetupPreview(Interaction.ETypeTarget.Other, thisActor);
         }
 
         onPreview?.Invoke(thisActionClass);

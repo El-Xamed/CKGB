@@ -55,25 +55,25 @@ public class C_Console : MonoBehaviour
     {
         switch (EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>().text)
         {
-            case "lunch_lvl_tuto":
+            case "launch_lvl_tuto":
                 MoveAllAcctorInGameManager();
                 GameManager.instance.currentC = listDataChallenge[0].GetDataChallenge();
                 GameManager.instance.ExitDialogueMode();
                 SceneManager.LoadScene("S_Challenge");
                 break;
-            case "lunch_lvl_1":
+            case "launch_lvl_1":
                 MoveAllAcctorInGameManager();
                 GameManager.instance.currentC = listDataChallenge[1].GetDataChallenge();
                 GameManager.instance.ExitDialogueMode();
                 SceneManager.LoadScene("S_Challenge");
                 break;
-            case "lunch_lvl_2":
+            case "launch_lvl_2":
                 MoveAllAcctorInGameManager();
                 GameManager.instance.currentC = listDataChallenge[2].GetDataChallenge();
                 GameManager.instance.ExitDialogueMode();
                 SceneManager.LoadScene("S_Challenge");
                 break;
-            case "lunch_lvl_3":
+            case "launch_lvl_3":
                 MoveAllAcctorInGameManager();
                 GameManager.instance.currentC = listDataChallenge[3].GetDataChallenge();
                 GameManager.instance.ExitDialogueMode();
@@ -82,6 +82,10 @@ public class C_Console : MonoBehaviour
             case "reset_challenge":
                 GameManager.instance.ExitDialogueMode();
                 SceneManager.LoadScene("S_Challenge");
+                break;
+            case "launch_Tuto":
+                Debug.Log("Tuto pas encore pret");
+                //GameObject.Find("Interface").GetComponent<C_Challenge>().LaunchTuto();
                 break;
         }
 

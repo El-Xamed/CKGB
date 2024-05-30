@@ -21,7 +21,7 @@ public class C_Interface : MonoBehaviour
 
     #region Interface data
     bool onLogs = false;
-    public enum Interface {Neutre, Logs, Actions, Traits, Back }
+    public enum Interface {Neutre, Logs, Actions, Traits, Back}
     [SerializeField]Interface currentInterface = Interface.Neutre;
 
     bool dialogueMode;
@@ -107,6 +107,12 @@ public class C_Interface : MonoBehaviour
         if (context.performed)
         {
             Vector2 input = context.ReadValue<Vector2>();
+
+            //Pour le tuto.
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.Tuto)
+            {
+                myChallenge.GetTuto().SetTrigger("Trigger");
+            }
 
             #region Dialogue
             //Pour passer au dialogue suivant.
