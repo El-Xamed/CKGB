@@ -659,7 +659,9 @@ public class C_TempsLibre : MonoBehaviour
         string tl = GameManager.instance.currentTM.TLname;
         Debug.Log(tl);
         SpawnParent.GetComponent<Animator>().SetTrigger(tl);
-       
+        expliEner.SetActive(false);
+        expliCalme.SetActive(false);
+        expliTrait.SetActive(false);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
 
@@ -724,6 +726,9 @@ public class C_TempsLibre : MonoBehaviour
         {
             SpawnParent.GetComponent<Animator>().SetTrigger("nimu");
         }
+        expliEner.SetActive(false);
+        expliCalme.SetActive(false);
+        expliTrait.SetActive(false);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         GameManager.instance.EnterDialogueMode(Observage);
     }
@@ -784,6 +789,9 @@ public class C_TempsLibre : MonoBehaviour
             //traitpoint
             actiontoaddID++;
             LastAction.Add(PapoterButton);
+            expliEner.SetActive(false);
+            expliCalme.SetActive(false);
+            expliTrait.SetActive(false);
         }
        
     }
