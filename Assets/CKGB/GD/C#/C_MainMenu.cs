@@ -59,7 +59,7 @@ public class C_MainMenu : MonoBehaviour
             GameManager.instance.SetDataLevel(null, firthChallenge);
         }
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
-        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
+        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
         StartCoroutine("loadFirstGame");
         AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
 

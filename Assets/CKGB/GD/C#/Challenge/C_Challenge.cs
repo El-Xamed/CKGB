@@ -1,5 +1,4 @@
 using Febucci.UI;
-using Ink;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static SO_Challenge;
 
@@ -25,7 +23,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] SO_Challenge myChallenge;
 
     //Pour connaitre la phasse de jeu.
-    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame }
+    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame, GameOver }
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
 
@@ -151,7 +149,28 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    IEnumerator Start()
+    void Start()
+    {
+        if (GameManager.instance)
+        {
+            //Appel la transition.
+            GameManager.instance.OpenTransitionFlannel();
+
+            //SOLUTION TEMPO !!!
+            Invoke("This", 0.5f);
+        }
+        else
+        {
+            StartCoroutine(StartChallenge());
+        }
+    }
+
+    void This()
+    {
+        StartCoroutine(StartChallenge());
+    }
+
+    public IEnumerator StartChallenge()
     {
         //Set le background
         background.GetComponent<Image>().sprite = myChallenge.background;
@@ -1509,9 +1528,6 @@ public class C_Challenge : MonoBehaviour
         //Setup la position de départ.
         thisPion.GetComponent<C_Actor>().SetStartPosition(plateau[thisPion.GetPosition()].GetComponentInParent<Transform>());
 
-        Debug.Log(thisPion.name + " " + whatMove);
-        Debug.Log(thisPion.name + " " + nbMove);
-
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == TargetStats.ETypeMove.Right || whatMove == TargetStats.ETypeMove.Left) //Normal move mode.
         {
@@ -1525,11 +1541,18 @@ public class C_Challenge : MonoBehaviour
         }
         else if (whatMove == TargetStats.ETypeMove.OnTargetCase) //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
         {
-            //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
-            if (nbMove > plateau.Count - 1)
-            {
-                Debug.LogWarning("La valeur de déplacement et trop élevé par rapport au nombre de cases sur le plateau la valeur sera donc égale à 0.");
+            nbMove -= 1;
 
+            //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
+            if (nbMove > plateau.Count -1)
+            {
+                Debug.LogWarning("La valeur de déplacement est trop élevé par rapport au nombre de cases sur le plateau la valeur sera donc égale à 0.");
+
+                nbMove = 0;
+            }
+            else if (nbMove < 0)
+            {
+                Debug.LogWarning("La valeur de déplacement est inférieur à 0, la valeur sera donc égale à 0.");
                 nbMove = 0;
             }
         }
@@ -1786,6 +1809,7 @@ public class C_Challenge : MonoBehaviour
         else
         {
             //Fin du challenge.
+            GetEventSystem().SetSelectedGameObject(null);
             myPhaseDeJeu = PhaseDeJeu.EndGame;
             EndChallenge();
 
@@ -1805,18 +1829,39 @@ public class C_Challenge : MonoBehaviour
         if (nbActorOut == myTeam.Count)
         {
             GameOver();
+            myPhaseDeJeu = PhaseDeJeu.GameOver;
+            canGoNext = false;
             return true;
         }
 
         return false;
     }
 
-    void GameOver()
+    public void GameOver()
     {
         Debug.Log("GameOver");
+        
         uiGameOver.SetActive(true);
         uiGameOver.GetComponent<Image>().sprite = myChallenge.ecranDefaite;
-        return;
+
+        if (canGoNext)
+        {
+            if (GameManager.instance)
+            {
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+                    thisActor.transform.parent = GameManager.instance.transform;
+                    thisActor.GetImageActor().enabled = false;
+                }
+            }
+
+            SceneManager.LoadScene("S_Challenge");
+        }
+        else
+        {
+            canGoNext = true;
+        }
     }
     #endregion
 

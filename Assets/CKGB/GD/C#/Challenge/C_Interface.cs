@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static C_Challenge;
 
@@ -184,6 +185,11 @@ public class C_Interface : MonoBehaviour
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && !myChallenge.GetOnDialogue())
             {
                 myChallenge.FinishChallenge(null);
+            }
+
+            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.GameOver)
+            {
+                myChallenge.GameOver();
             }
 
             //Pour Update CataTurn.
