@@ -1506,8 +1506,8 @@ public class C_Challenge : MonoBehaviour
         //Setup la position de départ.
         thisPion.GetComponent<C_Actor>().SetStartPosition(plateau[thisPion.GetPosition()].GetComponentInParent<Transform>());
 
-        Debug.Log(whatMove);
-        Debug.Log(nbMove);
+        Debug.Log(thisPion.name + " " + whatMove);
+        Debug.Log(thisPion.name + " " + nbMove);
 
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == TargetStats.ETypeMove.Right || whatMove == TargetStats.ETypeMove.Left) //Normal move mode.
@@ -1583,28 +1583,23 @@ public class C_Challenge : MonoBehaviour
                         PlacePionOnBoard(thisPion, 0, isTp);
 
                         //On retire le nombre de déplacement fait.
-                        nbMove = thisPion.GetPosition() + nbMove - i;
-                        Debug.Log(nbMove);
+                        nbMove -= i;
                     }
                 }
             }
             else if (nbMove < 0)
             {
-                Debug.Log(nbMove);
                 //Vers la gauche.
                 for (int i = 0; i >= nbMove; i--)
                 {
-                    Debug.Log(i);
                     if (thisPion.GetPosition() + i < 0)
                     {
+                        Debug.Log(nbMove);
                         //Replace le pion sur la case sur la case la plus à droite.
                         PlacePionOnBoard(thisPion, plateau.Count - 1, isTp);
 
                         //On retire le nombre de déplacement fait.
-                        Debug.Log(nbMove);
-                        Debug.Log(i);
-                        Debug.Log(nbMove - i);
-                        nbMove = thisPion.GetPosition() + nbMove - i;
+                        nbMove -= i;
                         Debug.Log(nbMove);
                     }
                 }
