@@ -14,13 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: Attendre
   LogsMakeAction: Tu attends.
+  logsCantMakeAction: 
   listLogsAction: []
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
-  listInteraction: []
+  listInteraction:
+  - whatTarget: 0
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats: []

@@ -789,7 +789,7 @@ public class C_Challenge : MonoBehaviour
                     {
                         Debug.Log(thisActionClass.name + " : " + thisTargetStats.whatStatsTarget);
                         //Inscrit la preview de movement. (C_Challenge)
-                        C_PreviewAction.onPreview += MovementPreview;
+                        //C_PreviewAction.onPreview += MovementPreview;
                         Debug.Log("UI Preview Movement");
                     }
                 }
@@ -1763,6 +1763,14 @@ public class C_Challenge : MonoBehaviour
     //Fin du challenge.
     public void EndChallenge()
     {
+        foreach (C_Actor thisActor in myTeam)
+        {
+            if (thisActor != currentResolution.actor)
+            {
+                thisActor.SetSpriteChallenge();
+            }
+        }
+
         //Check si il y a un outro de challenge.
         if (myChallenge.outroChallenge && GameManager.instance)
         {
@@ -1791,6 +1799,16 @@ public class C_Challenge : MonoBehaviour
                     thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
                     thisActor.transform.parent = GameManager.instance.transform;
                     thisActor.GetImageActor().enabled = false;
+                }
+
+                if (plateauPreview.Count - 1 != 0)
+                {
+                    foreach (Image ThisActorPreview in plateauPreview)
+                    {
+                        Destroy(ThisActorPreview.gameObject);
+                    }
+
+                    plateauPreview.Clear();
                 }
 
                 GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
