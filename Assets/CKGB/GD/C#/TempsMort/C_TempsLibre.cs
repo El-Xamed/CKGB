@@ -462,9 +462,9 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void Naviguate(InputAction.CallbackContext context)
     {
-        if (!context.canceled) { return; }
+        if (!context.performed) { return; }
 
-        if (context.canceled && TMhasStarted)
+        if (context.performed && TMhasStarted)
         {
             updateButton();
         }
