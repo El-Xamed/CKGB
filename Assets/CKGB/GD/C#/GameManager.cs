@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     public SO_TempsMort currentTM = null;
     public SO_Challenge currentC = null;
 
+    public SO_TempsMort TM1;
+    public SO_Challenge Tuto;
+
     //zone d�di�e aux  dialogues
     [SerializeField] public Story currentStory;
     [SerializeField] public GameObject currentTalkingCharacter;
@@ -843,7 +846,11 @@ public class GameManager : MonoBehaviour
             {
                 //ajouter la selection du dernier boutton dans le challenge
             }
-           
+            else if (SceneManager.GetActiveScene().name == "S_MainMenu")
+            {
+               
+            }
+
         }
         else
         {
@@ -866,6 +873,26 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+    public void GoToMainMenuALERT()
+    {
+        GameManager.instance.team.Clear();
+        GameManager.instance.WorldstartPoint = 0;
+        GameManager.instance.currentC = Tuto;
+        GameManager.instance.currentTM = TM1;
+        for(int i =0;i<RevasserID.Length;i++)
+        {
+            RevasserID[i] = 0;
+        }
+        RespirerID = 0;
+        for (int i = 0; i < PapoterID.Length; i++)
+        {
+            PapoterID[i] = 0;
+        }
+        SetUpTeam();
+        pauseMenu.SetActive(false);
+        pauseBackground.SetActive(false);
+        SceneManager.LoadScene("S_MainMenu");
     }
     #region Transition
     public void OpenTransitionFlannel()
