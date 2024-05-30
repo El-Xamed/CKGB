@@ -16,7 +16,7 @@ public class C_Challenge : MonoBehaviour
 {
     #region Mes variables
     [Header("Interface")]
-    bool onDialogue = false;
+    [SerializeField] bool onDialogue = false;
 
     [Header("Interface")]
     [SerializeField] C_Interface myInterface;
@@ -1827,6 +1827,7 @@ public class C_Challenge : MonoBehaviour
         if (myChallenge.outroChallenge && GameManager.instance)
         {
             GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+            onDialogue = true;
         }
         else
         {
@@ -1837,6 +1838,10 @@ public class C_Challenge : MonoBehaviour
 
     public void FinishChallenge(string name)
     {
+        onDialogue = false;
+
+        ShowUiChallenge(false);
+
         if (canGoNext)
         {
             if (GameManager.instance)
