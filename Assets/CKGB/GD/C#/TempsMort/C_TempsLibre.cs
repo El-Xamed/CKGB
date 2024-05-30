@@ -436,17 +436,17 @@ public class C_TempsLibre : MonoBehaviour
     {
         switch (currentButton.name)
         {
-            case "ExpliactionEnergie":
+            case "Observer":
                 expliEner.SetActive(true);
                 expliCalme.SetActive(false);
                 expliTrait.SetActive(false);
                 break;
-            case "ExpliactionCalme":
+            case "Révasser":
                 expliEner.SetActive(false);
                 expliCalme.SetActive(true);
                 expliTrait.SetActive(false);
                 break;
-            case "ExpliactionTrait":
+            case "Papoter":
                 expliEner.SetActive(false);
                 expliCalme.SetActive(false);
                 expliTrait.SetActive(true);
