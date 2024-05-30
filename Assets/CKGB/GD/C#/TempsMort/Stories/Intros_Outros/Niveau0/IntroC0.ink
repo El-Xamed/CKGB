@@ -9,7 +9,7 @@ EXTERNAL StartChallenge(name)
 
 Rien ne se passe. #Bulle:Narrateur
 
-<shake a=0.5>Errrk</shake>. J'aurais eu l'air tellement cool si ça avait marché.#Bulle:MorganHautGauche
+<shake a=0.5>Errrk</shake>. J'aurais eu l'air tellement cool <br>si ça avait marché.#Bulle:MorganHautGauche
 
 Tu tords brièvement ta bouche, déçu. #Bulle:Narrateur
 
@@ -44,7 +44,7 @@ Tu es devenu <i>un peu</i> fou ces derniers jours.#Bulle:Narrateur
 
 Allez.#Bulle:MorganHautGauche
 
-Va falloir bouger mon popotin si je veux vraiment arriver à l’heure.#Bulle:MorganHautGauche
+Va falloir bouger mon popotin <br>si je veux vraiment arriver à l’heure.#Bulle:MorganHautGauche
 
 ~ StartChallenge("name")
 ->END
