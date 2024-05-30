@@ -16,7 +16,7 @@ Yo BG. Bien dormi ?#Bulle:NimuHautDroite
 ’uai. ’va ?#Bulle:MorganHautGauche
 
 Super. #Bulle:NimuHautGauche
-Juste, d’un POV pratique,#Bulle:NimuHautGauche
+Juste, d’un POV pratique…#Bulle:NimuHautGauche
 Est-ce que dire des moitiés de mots<br>c’est un plan à long terme pour toi ?#Bulle:NimuHautGauche #emot:question
 
 ’tetre.#Bulle:MorganHautGauche
@@ -29,7 +29,7 @@ Tu as l’air pressé de partir ?#Bulle:NimuHautGauche
 
 H-hm, j’vais prendre le train.#Bulle:MorganHautDroite
 ~ Trigger("name")
-J’ai… <rainb>Un truc</rainb>. Aux marches.#Bulle:MorganHautDroite
+J’ai… <rainb>un truc</rainb>. Aux marches.#Bulle:MorganHautDroite
 
 Ah.#Bulle:NimuHautGauche
 Elle marque une pause.#Bulle:Narrateur
@@ -40,21 +40,21 @@ Elle sourit.
 Tu réalises que tu n'as absolument aucune chance de la mener en bateau.#Bulle:Narrateur
 
 Alors je suppose<br> que je vais manger <br>toute seule ce matin…#Bulle:NimuHautGauche
-Dans cette grande maison #Bulle:NimuHautDroite
-Toute vide... #Bulle:NimuBasDroite
+dans cette grande maison #Bulle:NimuHautDroite
+toute vide... #Bulle:NimuBasDroite
 et froide. #Bulle:NimuBasGauche
 
-Il fait genre. 22 degrès.#Bulle:Narrateur
+Il fait genre. 22 degrés.#Bulle:Narrateur
 Mais néanmoins, tu te sens doucement basculer... #Bulle:Narrateur
-Puis tu <i>cèdes</i>, incapable de lui resister.#Bulle:Narrateur
+Puis tu <i>cèdes</i>, incapable de lui résister.#Bulle:Narrateur
 ~ Trigger("name")
 <bounce>…</bounce> Nah mais j’peux prendre cinq minutes si c’est important pour toi.#Bulle:MorganHautDroite #emot:Dots
 
 Elle sourit d’un air satisfait.#Bulle:Narrateur
 ~ Trigger("name")
-<i>Bueño</i>, tu me referas six tartines de confiture<br> avec du beurre s’il te plait.#Bulle:NimuHautGauche
+<i>Bueño</i>, tu me referas six tartines de confiture<br> avec du beurre s’il te plaît.#Bulle:NimuHautGauche
 
-<i>ARG, LA TRAITRESSE.</i> #Bulle:MorganHautDroite 
+<i>ARG, LA TRAÎTRESSE.</i> #Bulle:MorganHautDroite 
 Tu <fade>soupires</fade> lourdement#Bulle:Narrateur
 
 Brillant.#Bulle:MorganHautDroite
@@ -63,7 +63,7 @@ Brillant.#Bulle:MorganHautDroite
 Je pensais <i>chill</i> à la maison. <br>Et aller chercher les jeunes à l’école vers 15h.#Bulle:NimuHautGauche
 Et toi ?#Bulle:NimuHautGauche
 
-Un piège évident. Elle essaies de te faire parler de ton <rainb>rencard</rainb>. Vite. Contre-attaque avant qu'elle ne te tire les vers du nez.#Bulle:Narrateur
+Un piège évident. Elle essaie de te faire parler de ton <rainb>rencard</rainb>. Vite. Contre-attaque avant qu'elle ne te tire les vers du nez.#Bulle:Narrateur
 
 Est-c’que tu vas vraiment manger<br> <size=120%>SIX<size=/120%> tartines de plus ?#Bulle:MorganHautDroite
 
@@ -73,10 +73,10 @@ Elle lève à peine les yeux de son livre.#Bulle:Narrateur
 Non pas du tout.#Bulle:NimuHautGauche
 Il y en a trois qui sont pour toi.#Bulle:NimuHautGauche
 
-<b>Echec et mat.</b>#Bulle:Narrateur
-Tu fronces les sourcils et te prépare à répondre qu'un Coolkid est parfaitement capable de se nourir seul, mais elle reprend la parole aussitôt.#Bulle:Narrateur
+<b>Échec et mat.</b>#Bulle:Narrateur
+Tu fronces les sourcils et te prépare à répondre qu'un Coolkid est parfaitement capable de se nourrir seul, mais elle reprend la parole aussitôt.#Bulle:Narrateur
 
-Après, J’ai assez la dalle<br> pour tout manger si tu préfères.#Bulle:NimuHautGauche
+Après, j’ai assez la dalle<br> pour tout manger si tu préfères.#Bulle:NimuHautGauche
 
 <i>(ARG, LA TRAITRESSE.)</i> #Bulle:MorganHautGauche
 
@@ -84,7 +84,7 @@ Après, J’ai assez la dalle<br> pour tout manger si tu préfères.#Bulle:NimuH
 
 <wave>H-hm</wave> ?#Bulle:NimuHautGauche
 
-Je vais avoir besoin de force.#Bulle:MorganHautGauche
+Je vais avoir besoin de forces.#Bulle:MorganHautGauche
 
 Tu prends une franche bouchée de pain recouvert de confiture.#Bulle:Narrateur
 
