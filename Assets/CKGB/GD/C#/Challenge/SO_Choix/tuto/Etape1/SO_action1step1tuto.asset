@@ -21,6 +21,7 @@ MonoBehaviour:
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
@@ -38,23 +39,7 @@ MonoBehaviour:
       whatCost: 0
       whatStats: 0
       whatMove: 3
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 3
-  newListInteractions:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 3
-      isTp: 0
+      isTp: 1
       actorSwitch: {fileID: 0}
       accessoriesSwitch: {fileID: 0}
       value: 3
