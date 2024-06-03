@@ -10,4 +10,7 @@ public class C_Tree : MonoBehaviour
     public GameObject p_button;
     public GameObject p_cursor;
 
+    public Sprite normalTree;
+    public Sprite hoverTree;
+
 }
