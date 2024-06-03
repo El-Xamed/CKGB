@@ -87,6 +87,9 @@ public class C_Console : MonoBehaviour
                 Debug.Log("Tuto pas encore pret");
                 //GameObject.Find("Interface").GetComponent<C_Challenge>().LaunchTuto();
                 break;
+            case "endChallenge":
+                GameObject.Find("Challenge").GetComponent<C_Challenge>().EndChallenge();
+                break;
         }
 
         OpenConsole();

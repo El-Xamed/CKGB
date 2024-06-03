@@ -12,6 +12,9 @@ public class SO_Character : ScriptableObject
     [Header("Nom")]
     public new string name;
 
+    [Header("UI (Général)")]
+    public Sprite headButton;
+
     [Header("Traits")]
     public List<SO_ActionClass> listTraits = new List<SO_ActionClass>();
     public List<SO_ActionClass> listNewTraits = new List<SO_ActionClass>();

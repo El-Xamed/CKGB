@@ -630,7 +630,7 @@ public class C_Challenge : MonoBehaviour
             if (eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>())
             {
                 //Fait apparaitre le curseur.
-                eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur();
+                eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().ShowCurseur(currentActor.GetDataActor().headButton);
             }
             #endregion
 
@@ -1172,7 +1172,7 @@ public class C_Challenge : MonoBehaviour
                 //
                 myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
 
-                //Check si c'est la fin.
+                //Check si c'est la fin. AJOUTER DU DELAY POUR VOIR D'ABORD L'ANIM DE LA BONNE ACTION ENSUITE UPDATE.
                 UpdateEtape();
             }
             else
@@ -1718,6 +1718,7 @@ public class C_Challenge : MonoBehaviour
             //Fin du challenge.
             GetEventSystem().SetSelectedGameObject(null);
             myPhaseDeJeu = PhaseDeJeu.EndGame;
+            canGoNext = false;
             EndChallenge();
 
             Debug.Log("Fin du niveau");
@@ -1775,12 +1776,12 @@ public class C_Challenge : MonoBehaviour
     //Fin du challenge.
     public void EndChallenge()
     {
+        Debug.Log(canGoNext);
+
+        //Redonne leur couleur.
         foreach (C_Actor thisActor in myTeam)
         {
-            if (thisActor != currentResolution.actor)
-            {
-                thisActor.SetSpriteChallenge();
-            }
+            thisActor.SetSpriteChallenge();
         }
 
         if (canGoNext)
@@ -1788,6 +1789,10 @@ public class C_Challenge : MonoBehaviour
             //Check si il y a un outro de challenge.
             if (myChallenge.outroChallenge && GameManager.instance)
             {
+                //Cache l'ui du probleme résolue.
+                uiVictoire.SetActive(false);
+                
+                //Entre en mode dialogue.
                 GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
                 ShowUiChallenge(false);
                 onDialogue = true;
@@ -1801,9 +1806,8 @@ public class C_Challenge : MonoBehaviour
         else
         {
             canGoNext = true;
+            uiVictoire.SetActive(true);
         }
-
-        uiVictoire.SetActive(true);
 
         Debug.Log("Fin du challenge");
     }

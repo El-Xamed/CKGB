@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class C_ActionButton : MonoBehaviour
 {
@@ -317,9 +318,10 @@ public class C_ActionButton : MonoBehaviour
         curseur.SetActive(false);
     }
 
-    public void ShowCurseur()
+    public void ShowCurseur(Sprite currentActor)
     {
         curseur.SetActive(true);
+        curseur.GetComponent<Image>().sprite = currentActor;
     }
 
     public void SetActionClass(SO_ActionClass thisActionClass)
