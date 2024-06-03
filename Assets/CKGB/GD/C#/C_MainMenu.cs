@@ -65,6 +65,7 @@ public class C_MainMenu : MonoBehaviour
        
         AudioManager.instance.Stop("MusiqueSplashScreen");
         AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
+        AudioManager.instance.PlayOnce("MusiqueTuto");
 
         
 
@@ -122,7 +123,7 @@ public class C_MainMenu : MonoBehaviour
         //currentButton.GetComponent<Animator>().SetTrigger("unselected");
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
         // currentButton.GetComponent<Animator>().SetTrigger("Selected");
-        
+        AudioManager.instance.PlayOnce("SfxHover");
 
     }
     public void Naviguate(InputAction.CallbackContext context)
