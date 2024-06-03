@@ -220,7 +220,6 @@ public class C_Stats : MonoBehaviour
                         {
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewCalm;
-                            Debug.Log("UI Preview Calm");
                         }
 
                         //Check si c'est pour l'energie.
@@ -228,10 +227,7 @@ public class C_Stats : MonoBehaviour
                         {
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewEnergy;
-                            Debug.Log("UI Preview Energy");
                         }
-
-                        Debug.Log(thisTargetStats.whatStats);
                     }
                 }
             }

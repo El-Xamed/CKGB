@@ -175,7 +175,15 @@ public class C_Challenge : MonoBehaviour
     public IEnumerator StartChallenge()
     {
         //Set le background
-        background.GetComponent<Image>().sprite = myChallenge.background;
+        //Check si le background n'est pas vide.
+        if (myChallenge.background)
+        {
+            Instantiate(myChallenge.background, this.transform);
+        }
+        else
+        {
+            Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
+        }
 
         //Desactive par default les logs timeleine.
         uiLogsTimeline.SetActive(false);
@@ -629,7 +637,7 @@ public class C_Challenge : MonoBehaviour
             if (eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>())
             {
                 //Affiche la preview.
-                GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
+                //GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
             }
         }
     }
@@ -657,6 +665,9 @@ public class C_Challenge : MonoBehaviour
 
         //Ajoute à la liste.
         listRes.Add(actorResolution);
+
+        //Ferme l'interface.
+        myInterface.GoBack();
 
         //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
         if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
@@ -1366,17 +1377,20 @@ public class C_Challenge : MonoBehaviour
             if (advancedCondition.advancedCondition)
             {
                 //Check si l'action doit etre fait par un actor en particulier + Si "whatActor" n'est pas null + si "whatActor" est égal à "thisActor".
-                if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor == thisReso.actor)
+                if (advancedCondition.canMakeByOneActor && advancedCondition.whatActor && advancedCondition.whatActor != thisReso.actor)
                 {
-                    return true;
+                    Debug.Log("L'action n'est pas fait par la bonne personne");
+                    return false;
                 }
 
                 //Check si l'action doit etre fait par un acc en particulier + Si "whatAcc" n'est pas null + si "whatAcc" est égal à "thisActor".
-                if (advancedCondition.needAcc && advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() == thisReso.actor.GetPosition())
+                if (advancedCondition.needAcc && advancedCondition.whatAcc.GetPosition() != thisReso.actor.GetPosition())
                 {
-                    return true;
+                    Debug.Log("N'est pas sur la meme case que l'acc");
+                    return false;
                 }
 
+                //CHANGER CETTE PARTIE CAR IL APPLIQUE TOUTES LES ACTION AU DEUXIEME ACTOR MEME LE DEPLACEMENT !!!!!!!!
                 //Check si la condition de faire l'action à 2 est activé.
                 if (advancedCondition.needTwoActor && twoActor != true)
                 {
@@ -1409,11 +1423,9 @@ public class C_Challenge : MonoBehaviour
                     }
                 }
             }
-
-            return true;
         }
 
-        return false;
+        return true;
     }
 
     #region Deplace les actor
@@ -1771,65 +1783,19 @@ public class C_Challenge : MonoBehaviour
             }
         }
 
-        //Check si il y a un outro de challenge.
-        if (myChallenge.outroChallenge && GameManager.instance)
-        {
-            GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
-            onDialogue = true;
-        }
-        else
-        {
-            Debug.Log("Pas d'outro de challenge");
-            FinishChallenge(null);
-        }
-    }
-
-    public void FinishChallenge(string name)
-    {
-        onDialogue = false;
-
-        ShowUiChallenge(false);
-
         if (canGoNext)
         {
-            if (GameManager.instance)
+            //Check si il y a un outro de challenge.
+            if (myChallenge.outroChallenge && GameManager.instance)
             {
-                foreach (C_Actor thisActor in myTeam)
-                {
-                    thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
-                    thisActor.transform.parent = GameManager.instance.transform;
-                    thisActor.GetImageActor().enabled = false;
-                }
-
-                if (plateauPreview.Count - 1 != 0)
-                {
-                    foreach (Image ThisActorPreview in plateauPreview)
-                    {
-                        Destroy(ThisActorPreview.gameObject);
-                    }
-
-                    plateauPreview.Clear();
-                }
-
-                GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
-
-                if (GameManager.instance.currentC.name == "SO_lvl3")
-                {
-                    SceneManager.LoadScene("S_MainMenu");
-                }
-                if (GameManager.instance.currentC.name == "SO_Tuto")
-                {
-                    GameManager.instance.SetDataLevel(tm1, c1);
-                    SceneManager.LoadScene("S_TempsLibre");
-                }
-                else
-                {
-                    SceneManager.LoadScene("S_WorldMap");
-                }
+                GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+                ShowUiChallenge(false);
+                onDialogue = true;
             }
             else
             {
-                //UnityEditor.EditorApplication.isPlaying = false;
+                Debug.Log("Pas d'outro de challenge");
+                FinishChallenge(null);
             }
         }
         else
@@ -1837,11 +1803,52 @@ public class C_Challenge : MonoBehaviour
             canGoNext = true;
         }
 
-        GameManager.instance.ExitDialogueMode();
-
         uiVictoire.SetActive(true);
 
         Debug.Log("Fin du challenge");
+    }
+
+    public void FinishChallenge(string name)
+    {
+        onDialogue = false;
+
+        if (GameManager.instance)
+        {
+            GameManager.instance.ExitDialogueMode();
+
+            foreach (C_Actor thisActor in myTeam)
+            {
+                thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+                thisActor.transform.parent = GameManager.instance.transform;
+                thisActor.GetImageActor().enabled = false;
+            }
+
+            if (plateauPreview.Count - 1 != 0)
+            {
+                foreach (Image ThisActorPreview in plateauPreview)
+                {
+                    Destroy(ThisActorPreview.gameObject);
+                }
+
+                plateauPreview.Clear();
+            }
+
+            GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
+
+            if (GameManager.instance.currentC.name == "SO_lvl3")
+            {
+                SceneManager.LoadScene("S_MainMenu");
+            }
+            if (GameManager.instance.currentC.name == "SO_Tuto")
+            {
+                GameManager.instance.SetDataLevel(tm1, c1);
+                SceneManager.LoadScene("S_TempsLibre");
+            }
+            else
+            {
+                SceneManager.LoadScene("S_WorldMap");
+            }
+        }
     }
     #endregion
 

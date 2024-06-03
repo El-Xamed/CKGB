@@ -313,13 +313,11 @@ public class SO_ActionClass : ScriptableObject
                                 {
                                     //Retourne une valeur négative.
                                     value = -thisTargetStats.value;
-                                    Debug.Log("La valeur est negatif");
                                 }
                                 else
                                 {
                                     //Retourne une valeur positive.
                                     value = thisTargetStats.value;
-                                    Debug.Log("La valeur est positif");
                                 }
 
                                 //Envoie les nouvelles information a l'actor.

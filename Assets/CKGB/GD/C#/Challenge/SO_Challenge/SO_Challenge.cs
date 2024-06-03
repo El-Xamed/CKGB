@@ -12,7 +12,7 @@ public class SO_Challenge : ScriptableObject
     public TextAsset outroChallenge;
 
     [Header("Paramètre du challenge")]
-    public Sprite background;
+    public GameObject background;
     public List<Sprite> element;
     public Sprite ecranDefaite;
     public int mapPointID;
