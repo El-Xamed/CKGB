@@ -1119,6 +1119,8 @@ public class C_TempsLibre : MonoBehaviour
                         LastCharacterThatPlayed.RemoveAt(charactertoaddID);
                         charactertoaddID--;
                         ActivateTreeCharacterChoice();
+                        AfficherFichereduite();
+                        DisplayFicheInfos();
                     }
                     else if (!ActionsParents.activeSelf && actiontoaddID != -1)
                     {
@@ -1341,7 +1343,8 @@ public class C_TempsLibre : MonoBehaviour
                                 }
                                 //TreeParent.SetActive(false);
                                 ActionsParents.SetActive(true);
-
+                                AfficherGrandeFiche();
+                                DisplayFicheInfos();
 
                                 Es.SetSelectedGameObject(LastAction[actiontoaddID]);
                                 updateButton();
