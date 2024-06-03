@@ -13,53 +13,21 @@ MonoBehaviour:
   m_Name: SO_action1step3lvl1
   m_EditorClassIdentifier: 
   buttonText: 'Fouiller les tiroirs '
-  LogsMakeAction: "Tu ouvre le premier tiroir. Chouette, des biscuits, comme d\u2019hab,
-    et le deuxi\xE8me\u2026"
+  LogsMakeAction: "La clef s\u2019enfonce dans le tiroir. Tu la tourne."
   logsCantMakeAction: 
   listLogsAction:
-  - "La clef s\u2019enfonce dans le tiroir. Tu la tourne."
   - "Tu entends un \u201Cclic\u201D. Victoire ! AH-AH !! Tes clefs de porte \xE9taient
-    bien \xE0 l\u2019int\xE9rieur ! Mais qui les a mit l\xE0 ??"
+    bien \xE0 l\u2019int\xE9rieur ! Mais qui les a mises l\xE0 ??"
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 3
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 4
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
