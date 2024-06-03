@@ -470,6 +470,10 @@ public class C_TempsLibre : MonoBehaviour
         {
             updateButton();
         }
+        if (context.started && TMhasStarted)
+        {
+            updateButton();
+        }
     }
     public void SetCanContinueToYes()
     {
