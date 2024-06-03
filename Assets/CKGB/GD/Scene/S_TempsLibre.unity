@@ -7090,7 +7090,7 @@ RectTransform:
   m_GameObject: {fileID: 320708362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.80625004, y: 1.2375, z: 1}
+  m_LocalScale: {x: 0.8163282, y: 1.2375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 882510182}
@@ -7099,8 +7099,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -338.73, y: 293.54}
-  m_SizeDelta: {x: 555.56, y: 147.53}
+  m_AnchoredPosition: {x: -261, y: -108}
+  m_SizeDelta: {x: 487.56, y: 116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320708364
 MonoBehaviour:
@@ -7122,7 +7122,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28d7a3dcbb9aa40409c4c1cd349648eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4569f133224d7846be5fdf702ab700a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24961,7 +24961,7 @@ RectTransform:
   m_GameObject: {fileID: 882510181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1.1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 320708363}
@@ -24969,8 +24969,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -72, y: 19}
-  m_SizeDelta: {x: 423.94, y: 71.06}
+  m_AnchoredPosition: {x: -0.00001049, y: -8.26}
+  m_SizeDelta: {x: 464.62, y: 99.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882510183
 MonoBehaviour:
@@ -24992,8 +24992,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Additionnez des points de traits \npour d\xE9bloquer de nouvelles comp\xE9tences
-    ... \nA quoi servent-t-elle ? D\xE9couvrez leur effets dans les challenges !"
+  m_text: "Additionnez des demi-ampoules de \"Traits\" \npour d\xE9bloquer de nouvelles
+    comp\xE9tences ... \nA quoi servent-elle ? D\xE9couvrez leur effets dans les
+    challenges !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -25020,8 +25021,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.19
-  m_fontSizeBase: 17.19
+  m_fontSize: 19.4
+  m_fontSizeBase: 19.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -25056,7 +25057,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -43.47444, y: 0, z: 47.160557, w: -69.65374}
+  m_margin: {x: 1.9982151, y: 0, z: -0.70544046, w: 0.6012497}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -25435,7 +25436,7 @@ RectTransform:
   m_GameObject: {fileID: 996314486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1.1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1437737515}
@@ -25443,8 +25444,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26, y: 15}
-  m_SizeDelta: {x: 591.62, y: 41.02}
+  m_AnchoredPosition: {x: 0.000017166, y: -4.965}
+  m_SizeDelta: {x: 398.62, y: 61.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &996314488
 MonoBehaviour:
@@ -25466,8 +25467,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Votre \xE9nergie vous permet d'utiliser des actions \npendant les challenges
-    \xE0 venir !"
+  m_text: "Augmentez votre \xE9nergie qui vous permet d'utiliser des actions \npendant
+    les challenges \xE0 venir !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -25501,7 +25502,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -25530,7 +25531,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 47.160557, w: -69.65374}
+  m_margin: {x: 0, y: 0, z: 3.2327461, w: -0.17586522}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -25983,7 +25984,7 @@ RectTransform:
   m_GameObject: {fileID: 1205641758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1.1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1607952073}
@@ -25991,8 +25992,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26, y: 15}
-  m_SizeDelta: {x: 591.62, y: 41.02}
+  m_AnchoredPosition: {x: 32, y: 5}
+  m_SizeDelta: {x: 407.93, y: 57.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1205641760
 MonoBehaviour:
@@ -26014,8 +26015,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ne perdez pas tout votre calme en challenge\n ou vous perdrez tout court
-    !"
+  m_text: "Augmentez votre calme Maximum !\nNe le perdez pas en challenge,\n ou vous
+    rendrez le personnage t\xE9tanis\xE9 et Inutilisable !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -26049,7 +26050,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -26078,7 +26079,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 47.160557, w: -69.65374}
+  m_margin: {x: 0, y: 0, z: -0.77993387, w: -0.17595336}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -37009,7 +37010,7 @@ RectTransform:
   m_GameObject: {fileID: 1437737514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.80625004, y: 1.2375, z: 1}
+  m_LocalScale: {x: 0.82640624, y: 1.2375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 996314487}
@@ -37018,8 +37019,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304, y: -198}
-  m_SizeDelta: {x: 403.56, y: 124.16}
+  m_AnchoredPosition: {x: -250.68, y: -240}
+  m_SizeDelta: {x: 419.33, y: 71.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1437737516
 MonoBehaviour:
@@ -37041,7 +37042,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28d7a3dcbb9aa40409c4c1cd349648eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4569f133224d7846be5fdf702ab700a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -42736,7 +42737,7 @@ RectTransform:
   m_GameObject: {fileID: 1607952072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.80625004, y: 1.2375, z: 1}
+  m_LocalScale: {x: 0.8767969, y: 1.2375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1205641759}
@@ -42745,8 +42746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -271, y: -294}
-  m_SizeDelta: {x: 403.56, y: 124.16}
+  m_AnchoredPosition: {x: -225.24, y: -338.76}
+  m_SizeDelta: {x: 374.77, y: 75.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607952074
 MonoBehaviour:
@@ -42768,7 +42769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28d7a3dcbb9aa40409c4c1cd349648eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4569f133224d7846be5fdf702ab700a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
