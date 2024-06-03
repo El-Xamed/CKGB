@@ -633,6 +633,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         actiontoaddID++;
         LastAction.Add(RevasserButton);
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = actorActif.GetComponent<C_Actor>().GetDataActor().RevasserAnimPatern;
         for (int y = 0; y < characters.Count; y++)
@@ -662,7 +663,7 @@ public class C_TempsLibre : MonoBehaviour
         expliEner.SetActive(false);
         expliCalme.SetActive(false);
         expliTrait.SetActive(false);
-        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+       
         GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
 
     }
@@ -711,6 +712,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         actiontoaddID++;
         LastAction.Add(ObserverButton);
+        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().observageAnimPatern;
         SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RespirerID);
@@ -729,7 +731,7 @@ public class C_TempsLibre : MonoBehaviour
         expliEner.SetActive(false);
         expliCalme.SetActive(false);
         expliTrait.SetActive(false);
-        GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+       
         GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
@@ -828,10 +830,11 @@ public class C_TempsLibre : MonoBehaviour
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }               
                 GameManager.instance.PapoterID[0]++;
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
-                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+              
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -857,10 +860,11 @@ public class C_TempsLibre : MonoBehaviour
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }             
                 GameManager.instance.PapoterID[1]++;
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
-                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+               
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -886,10 +890,11 @@ public class C_TempsLibre : MonoBehaviour
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }               
                 GameManager.instance.PapoterID[0]++;
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
-                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+                
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -915,10 +920,11 @@ public class C_TempsLibre : MonoBehaviour
                     Debug.Log("Trait de " + Papote.name + " numéro " + Papote.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }                
                 GameManager.instance.PapoterID[2]++;
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
-                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+              
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -946,10 +952,11 @@ public class C_TempsLibre : MonoBehaviour
                
                 GameManager.instance.PapoterID[1]++;
                 Debug.Log("Nimu papot avec Morgan valeur : " + GameManager.instance.PapoterID[1]);
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
-                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+               
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -976,10 +983,11 @@ public class C_TempsLibre : MonoBehaviour
 
                 }               
                 GameManager.instance.PapoterID[2]++;
+                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
-                GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+               
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
