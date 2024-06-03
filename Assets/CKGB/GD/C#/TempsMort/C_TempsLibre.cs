@@ -392,7 +392,7 @@ public class C_TempsLibre : MonoBehaviour
         for(int i=0;i<characters.Count;i++)
         {
             TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", false);
-            TreeParent.transform.GetChild(i).GetComponent<Image>().sprite = TreeParent.transform.GetChild(i).GetComponent<C_Tree>().normalTree;
+            TreeParent.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = TreeParent.transform.GetChild(i).GetChild(0).GetComponent<C_Tree>().normalTree;
         }
         //check la nouvelle valeur du bouton en hover
         currentButton = Es.currentSelectedGameObject;
@@ -415,7 +415,7 @@ public class C_TempsLibre : MonoBehaviour
                 ObserverButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
                 RevasserButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
                 TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", true);
-                TreeParent.transform.GetChild(i).GetComponent<Image>().sprite = TreeParent.transform.GetChild(i).GetComponent<C_Tree>().hoverTree;
+                TreeParent.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = TreeParent.transform.GetChild(i).GetChild(0).GetComponent<C_Tree>().hoverTree;
             }
             if (currentButton.name == characters[i].name + "PapotageChoice")
             {
