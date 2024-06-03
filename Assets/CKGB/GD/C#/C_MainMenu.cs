@@ -50,6 +50,7 @@ public class C_MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(1.8f);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
+        splashScreen.SetActive(false);
     }
 
     public void NewParty()

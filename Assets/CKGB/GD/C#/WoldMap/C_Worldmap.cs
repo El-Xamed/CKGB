@@ -223,7 +223,7 @@ public class C_Worldmap : MonoBehaviour
             //transform.position = Vector2.Lerp(transform.position, Up.transform.position, moveSpeed);
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Uplevel;
-            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+            //currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
               //  updateDestinations();            
             Debug.Log("Uplevel");
                 
@@ -239,7 +239,7 @@ public class C_Worldmap : MonoBehaviour
             //transform.position = Vector2.Lerp(transform.position, Left.transform.position, moveSpeed);
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Leftlevel;
-            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+            //currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
             //updateDestinations();           
             Debug.Log("Leftlevel");
              
@@ -255,7 +255,7 @@ public class C_Worldmap : MonoBehaviour
             //transform.position = Vector2.Lerp(transform.position, Right.transform.position, moveSpeed);
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Rightlevel;
-            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+            //currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
             //updateDestinations();
             Debug.Log("Rightlevel");
                
@@ -271,7 +271,7 @@ public class C_Worldmap : MonoBehaviour
             //transform.position = Vector2.Lerp(transform.position, Down.transform.position, moveSpeed);
             currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(false);
             currentPoint = Downlevel;
-            currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+           
             //updateDestinations();            
             Debug.Log("Down");
                
@@ -286,15 +286,10 @@ public class C_Worldmap : MonoBehaviour
         currentSetup.GetComponent<Animator>().SetBool("move", false);
         currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Image>().color = Color.white;
         currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("ActivateLevel");
-        currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsRevealed",true);
-        if (currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().TwoSlot.activeSelf)
-        {
-            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("two");
-        }
-        else
-        {
-            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("three");
-        }
+        currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetBool("IsRevealed", true);
+       
+        StartCoroutine("LevelUiAnim1");
+        
        
         if (currentPoint.left != null)
             Leftlevel = currentPoint.left;
@@ -322,6 +317,19 @@ public class C_Worldmap : MonoBehaviour
             downpath = currentPoint.downPath;
         else downpath = null;
    
+    }
+    IEnumerator LevelUiAnim1()
+    {
+        yield return new WaitForSeconds(1.2f);
+        currentPoint.GetComponent<C_destination>().charactersToShow.SetActive(true);
+        if (currentPoint.GetComponent<C_destination>().levelUI.GetComponent<levelUI>().TwoSlot.activeSelf)
+        {
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("two");
+        }
+        else
+        {
+            currentPoint.GetComponent<C_destination>().levelUI.GetComponent<Animator>().SetTrigger("three");
+        }
     }
     IEnumerator UpdatepointPosition(Transform[]point)
     {
