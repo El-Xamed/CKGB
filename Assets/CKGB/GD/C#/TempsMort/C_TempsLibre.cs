@@ -415,7 +415,11 @@ public class C_TempsLibre : MonoBehaviour
                 ObserverButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
                 RevasserButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().smaller;
                 TreeParent.transform.GetChild(i).GetComponent<Animator>().SetBool("IsHover", true);
-                TreeParent.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = TreeParent.transform.GetChild(i).GetChild(0).GetComponent<C_Tree>().hoverTree;
+                if(!characters[i].GetComponent<C_Actor>().HasPlayed)
+                {
+                    TreeParent.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = TreeParent.transform.GetChild(i).GetChild(0).GetComponent<C_Tree>().hoverTree;
+                }
+                
             }
             if (currentButton.name == characters[i].name + "PapotageChoice")
             {
