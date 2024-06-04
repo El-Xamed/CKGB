@@ -25,34 +25,23 @@ MonoBehaviour:
     appuie et tombe lourdement sur la terre. Trop facile. Vous descendez comme vous
     pouvez. "
   - "Vous trouvez facilement \xE0 l\u2019int\xE9rieur un marteau, des clous, et des
-    pinceaux. Avec l\u2019aide de la peinture du cabanon, vous r\xE9ussissez \xE0
-    faire une petite pancarte \u201CPont \xE0 L\xE9zards\u201D que vous clouer \xE0
-    un arbre juste \xE0 cot\xE9 de votre planche. Tadaaaa."
+    pinceaux. "
+  - " Avec l\u2019aide de la peinture du cabanon, vous r\xE9ussissez \xE0 faire une
+    petite pancarte \u201CPont \xE0 L\xE9zards\u201D que vous clouer \xE0 un arbre
+    juste \xE0 cot\xE9 de votre planche. Tadaaaa."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
-    advancedCondition: 0
+    advancedCondition: 1
+    needTwoActor: 1
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

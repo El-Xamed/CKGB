@@ -27,6 +27,9 @@ MonoBehaviour:
   - "Oh, la bo\xEEte \xE0 outil. "
   - "Qu\u2019est-ce qu\u2019elle fait accroch\xE9 dans cette arbre ? Elle au moins
     \xE0 4 m\xE8tres du sol."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 1
@@ -34,7 +37,7 @@ MonoBehaviour:
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 1
-    whatActor: {fileID: 5199208835674813160, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
+    whatActor: {fileID: 11400000, guid: f815fa2680ca4bc4ea731ad99aab2325, type: 2}
   nextAction: {fileID: 0}
   listInteraction:
   - whatTarget: 0

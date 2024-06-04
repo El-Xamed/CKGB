@@ -19,9 +19,9 @@ MonoBehaviour:
   listLogsAction:
   - "Tu viens te mettre devant le pont, saluant la foule des reptiles. Tu tapote
     dans ta poche le discours que tu avais \xE9crits \xE0 l\u2019avance au cas ou
-    l\u2019occasion se pr\xE9senterai. \xC7a va aller. Tu commence \xE0 parler :
-    \u201C"
-  - "Amis reptiles, bonjour. Depuis de nombreuse minutes maintenant, une \xE9quipe
+    cette exacte occasion se pr\xE9senterai. \xC7a va aller. Tu commence \xE0 parler
+    : "
+  - "\"Ami.es reptiles, bonjour. Depuis de nombreuse minutes maintenant, une \xE9quipe
     de professionnel (ton partenaire adresse un signe \xE0 la foule) et moi-m\xEAme
     se sont battus corps et \xE2me pour votre libert\xE9 et votre patrimoine. Aujourd\u2019hui,
     je vous annonce que la bataille a \xE9t\xE9 gagn\xE9. Et que pour vous, j\u2019inaugure
@@ -30,13 +30,16 @@ MonoBehaviour:
   - "Tu coupe c\xE9r\xE9monieusement un ruban m\xE9taphorique \xE0 l\u2019aide des
     ciseaux que tu mime avec tes doigts. L\u2019assembl\xE9 des l\xE9zard applaudit
     avec ses petites pattes \xE9cailleuses. Tu as accomplit ta mission."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction: []
-  newListInteractions: []
