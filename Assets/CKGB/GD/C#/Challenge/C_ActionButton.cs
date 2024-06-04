@@ -8,19 +8,7 @@ public class C_ActionButton : MonoBehaviour
     [SerializeField]
     GameObject curseur;
 
-    [SerializeField]
     SO_ActionClass actionClass;
-
-    private void Awake()
-    {
-        curseur.SetActive(false);
-
-        //Check si la condition avancé est activé
-        if (GetActionClass().advancedCondition.canMakeByOneActor)
-        {
-            GetActionClass().advancedCondition.whatActor = GameObject.Find(GetActionClass().advancedCondition.whatActor.name).GetComponent<C_Actor>();
-        }
-    }
 
     #region DataPreview
     //Liste de string pour écrire le texte.
@@ -318,6 +306,7 @@ public class C_ActionButton : MonoBehaviour
         curseur.SetActive(false);
     }
 
+    //Pour afficher la tete de l'actor en cours.
     public void ShowCurseur(Sprite currentActor)
     {
         curseur.SetActive(true);

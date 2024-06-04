@@ -210,6 +210,7 @@ public class C_Interface : MonoBehaviour
             //Pour Update ResoTrun.
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
             {
+                Debug.Log("Next Réso !");
                 myChallenge.NextResolution();
             }
         }

@@ -29,7 +29,8 @@ public class SO_Challenge : ScriptableObject
     public List<SO_Catastrophy> listCatastrophy;
     public List<SO_Etape> listEtape;
 
-    
+    [Header("SFX")]
+    [SerializeField] AudioClip musiqueChallenge;
 
     #endregion
 

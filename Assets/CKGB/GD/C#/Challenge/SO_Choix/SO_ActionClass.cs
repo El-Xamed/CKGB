@@ -270,10 +270,12 @@ public class SO_ActionClass : ScriptableObject
         {
             logsCursor++;
 
+            //Retourne le premier element de la liste.
             return listCurrentLogs[0];
         }
         if (logsCursor >= listCurrentLogs.Count)
         {
+            //Retourne une valeur null.
             return null;
         }
         else
@@ -282,6 +284,7 @@ public class SO_ActionClass : ScriptableObject
 
             logsCursor++;
 
+            //Retourne un element ciblé avant d'augmenter le curseur.
             return logs;
         }
     }
@@ -359,7 +362,7 @@ public class AdvancedCondition
     public C_Accessories whatAcc;
 
     public bool canMakeByOneActor = false;
-    public C_Actor whatActor;
+    public SO_Character whatActor;
 }
 #endregion
 

@@ -11,7 +11,19 @@ public class SO_Etape : ScriptableObject
     public SO_ActionClass rightAnswer;
 
     #endregion
-    private void Awake()
+
+    #region Mes fonctions
+    public void CheckAction()
+    {
+
+    }
+
+    public void CheckCanNext()
+    {
+
+    }
+
+    public void CheckIfWeCanWinThisEtape()
     {
         //Check si la bonne réponse et dans la list.  CHANGER LE SYST7ME POUR QUE LE DEV DOIT JUSTE RENTRER UNE VALEUR POUR D2F2NIR AUTOMATIQUEMENT QUEL SERA LA BONNE REPONSE ?
         foreach (var myAction in actions)
@@ -26,7 +38,7 @@ public class SO_Etape : ScriptableObject
             else
             {
                 nombreErreurs++;
-                if (nombreErreurs == actions.Count -1)
+                if (nombreErreurs == actions.Count - 1)
                 {
                     Debug.LogError("ERREUR : La bonne réponse n'est pas dans la liste des actions, veuillez rensegner la bonne réponse par un élément de la liste");
                 }
@@ -34,17 +46,5 @@ public class SO_Etape : ScriptableObject
         }
     }
 
-    #region Mes fonctions
-    public void CheckAction()
-    {
-
-    }
-
-    public void CheckCanNext()
-    {
-
-    }
-
-   
     #endregion
 }
