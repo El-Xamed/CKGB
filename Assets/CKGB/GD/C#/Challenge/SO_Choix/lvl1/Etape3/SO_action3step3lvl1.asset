@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: SO_action3step3lvl1
   m_EditorClassIdentifier: 
   buttonText: Essayer la clef sur la porte
-  LogsMakeAction: "Tu glisse la clef dans la serrure de la porte d\u2019entr\xE9e,
-    juste pour \xEAtre s\xFBr. "
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Elle rentre, mais rien ne suit quand tu la tourne, et le m\xE9canisme se bloque.
+  - "Tu glisses la clef dans la serrure de la porte d\u2019entr\xE9e, juste pour
+    \xEAtre s\xFBr.e. "
+  - "Elle rentre, mais rien ne suit quand tu la tournes, et le m\xE9canisme se bloque.
     Ce ne serait pas la bonne clef ? "
-  - "Mais de quoi est-ce que \xE7a pourrait \xEAtre la clef alors ?"
-  - "Tu regarde ton partenaire et hausse les \xE9paules. L\u2019autre hausse les
+  - "Mais de quoi est-ce que \xE7a pourrait \xEAtre la clef, alors ?"
+  - "Tu regardes ton partenaire et hausse les \xE9paules. L\u2019autre hausse les
     \xE9paules en retour."
   - "Vous trouvez du r\xE9confort dans votre ignorance mutuelle."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

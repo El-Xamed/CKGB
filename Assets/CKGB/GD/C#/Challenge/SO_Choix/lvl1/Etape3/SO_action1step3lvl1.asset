@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: SO_action1step3lvl1
   m_EditorClassIdentifier: 
   buttonText: 'Fouiller les tiroirs '
-  LogsMakeAction: "La clef s\u2019enfonce dans le tiroir. Tu la tourne."
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
+  - "La clef s\u2019enfonce dans la serrure du tiroir. Tu la tournes."
   - "Tu entends un \u201Cclic\u201D. Victoire ! AH-AH !! Tes clefs de porte \xE9taient
     bien \xE0 l\u2019int\xE9rieur ! Mais qui les a mises l\xE0 ??"
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

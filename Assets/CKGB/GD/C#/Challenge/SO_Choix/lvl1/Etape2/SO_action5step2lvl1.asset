@@ -18,34 +18,22 @@ MonoBehaviour:
   logsCantMakeAction: 
   listLogsAction:
   - 'Tu retiens ta respiration. '
-  - "Il vacille, tremble, puis retombe doucement sur son socle. Ouf. Tu trouve des
-    biscuit \xE0 l\u2019int\xE9rieur. Par politesse, tu les proppose \xE0 l\u2019autre
-    avant de taper dedans."
+  - Il vacille, tremble...
+  - "...puis retombe doucement sur son socle. Ouf. Tu trouves des biscuits \xE0 l\u2019int\xE9rieur.
+    Par politesse, tu les proposes \xE0 l\u2019autre avant de taper dedans."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 1
-    target: {fileID: 0}
-    whatDirectionTarget: 1
-    range: 2
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 1

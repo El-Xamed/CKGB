@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: SO_action1step2lvl1
   m_EditorClassIdentifier: 
   buttonText: Pousser le meuble
-  LogsMakeAction: "Vous additionnez vos forces pour d\xE9placer le meuble sur le
-    cot\xE9 ! vous le glissez sur la droite. Oh ! Une cl\xE9 \xE9tait vraiment coinc\xE9
-    en dessous ! "
-  logsCantMakeAction: "Tu essaies de pousser le meuble, mais on dirait qu\u2019il
-    est trop lourd pour \xEAtre pouss\xE9 tout.e seul.e."
+  LogsMakeAction: 
+  logsCantMakeAction: 
   listLogsAction:
-  - "Mais\u2026 On dirait pas celle de la porte ? A quoi est-ce qu\u2019elle peut
+  - "Vous additionnez vos forces pour d\xE9placer le meuble sur le cot\xE9 ! Vous
+    le glissez sur la droite. Oh ! Une clef \xE9tait vraiment coinc\xE9e en dessous
+    !"
+  - "Mais\u2026 On dirait pas celle de la porte ? \xC0 quoi est-ce qu\u2019elle peut
     correspondre ?"
+  listLogsCantMakeAction:
+  - "Tu essaies de pousser le meuble, mais on dirait qu\u2019il est trop lourd pour
+    \xEAtre pouss\xE9 tout.e seul.e."
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 1

@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action4step1lvl1
   m_EditorClassIdentifier: 
-  buttonText: Appeller la clef
-  LogsMakeAction: "Le coeur embras\xE9, tu d\xE9ambule dans le salon en criant son
-    nom v\xE9ritable : "
+  buttonText: Appeler la clef
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "\"Titou Elvira J\xE9rome-Ga\xEFa le neuvieme !!!\u201D, cassant les oreilles
-    de toute personne \xE0 port\xE9 dans le processus."
-  - "RIen ne te r\xE9ponds."
+  - "Le coeur embras\xE9, tu d\xE9ambules dans le salon en criant son nom v\xE9ritable
+    :"
+  - "\"Titou Elvira J\xE9rome-Ga\xEFa le Neuvieme !!!\u201D, cassant les oreilles
+    de toute personne \xE0 port\xE9e dans le processus."
+  - "Rien ne te r\xE9pond."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: SO_action3step1lvl1
   m_EditorClassIdentifier: 
   buttonText: Fouiller les tiroirs
-  LogsMakeAction: 'Fouiller les tiroirs ? Mais ien a bien une bonne quinzaine ! Tu
-    les tires tous energiquement, manquant dans sortir certains de leur rail. Rien,
-    rien, rien, rien, clac ! '
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
+  - "Fouiller les tiroirs ? Mais y'en a bien une quinzaine ! Tu les tires tous \xE9nergiquement,
+    manquant d'en sortir certains de leur rail. Rien, rien, rien, rien, clac ! "
   - 'Quoi ? '
   - "Hm, on dirait qu\u2019il y en a un qui soit ferm\xE9 \xE0 clef ! Rolala, tu
-    esp\xE8re vraiment que la clef que tu cherche est pas coinc\xE9e dedans\u2026"
+    esp\xE8res vraiment que la clef que tu cherches est pas coinc\xE9e dedans\u2026"
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: SO_action4step2lvl1
   m_EditorClassIdentifier: 
   buttonText: Fouiller les tiroirs
-  LogsMakeAction: "Tu fouille de toute tes forces la quinzaine de tiroirs du meuble
-    mentionn\xE9 dans le message de ton p\xE8re. Tu ne trouve rien."
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "A moins que\u2026"
-  - "Il y a un des tiroirs qui est ferm\xE9 \xE0 clef. Rolala, tu esp\xE8re vraiment
-    que la clef que tu cherche est pas coinc\xE9e dedans\u2026"
+  - "Tu fouilles de toutes tes forces la quinzaine de tiroirs du meuble mentionn\xE9
+    dans le message de ton parent. Tu ne trouves rien."
+  - "\xC0 moins que\u2026"
+  - "Il y a un des tiroirs qui est ferm\xE9 \xE0 clef. Rolala, tu esp\xE8res vraiment
+    que la clef que tu cherches est pas coinc\xE9e dedans\u2026"
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

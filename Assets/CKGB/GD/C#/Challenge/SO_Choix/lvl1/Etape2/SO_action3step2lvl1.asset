@@ -13,46 +13,34 @@ MonoBehaviour:
   m_Name: SO_action3step2lvl1
   m_EditorClassIdentifier: 
   buttonText: Faire un tableau conspirationniste
-  LogsMakeAction: "Tu sors un tableau de li\xE8ge et commence \xE0 faire les cents
-    pas devant."
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Au centre du tableau, tu \xE9pingle le mot que vous avez trouv\xE9."
-  - "A cot\xE9, un selfie de la clef disparue."
-  - "Tu le relie avec un fil rouge \xE0 un selfie de M. Dos-fin, que tu relie \xE0
-    une photo de M\xE9m\xE9 L\xE9on,"
-  - "que tu relie aux r\xE9ptiliens, que tu relis aux pyramides, que tu que tu relie
-    \xE0 un point d\u2019interrogation avec \xE9crit \u201CColin\u201D en dessous."
-  - "Tu es pas encore vraiment s\xFBr de qui est ce Colin exactement, mais tu es
-    s\xFBre que \xE7a deviendra bientot un \xE9l\xE9ment capitale de l\u2019enqu\xEAte."
-  - "u recule pour regarder l\u2019ensemble, et tu te sens frapper par une r\xE9alisation
-    gla\xE7ante."
-  - "T\u2019es vraiment pas plus avanc\xE9."
+  - "Tu sors un tableau de li\xE8ge et commence \xE0 faire les cents pas devant."
+  - "Au centre du tableau, tu \xE9pingles le mot que vous avez trouv\xE9."
+  - "\xC0 cot\xE9, un selfie de la clef disparue."
+  - "Tu le relies avec un fil rouge \xE0 un clich\xE9 de M. Dos-fin, lui-m\xEAme
+    reli\xE9 \xE0 une photo de M\xE9m\xE9 L\xE9on,"
+  - "que tu relies aux reptiliens, que tu relies aux pyramides, que tu relies \xE0
+    un point d\u2019interrogation avec \xE9crit \u201CColin\u201D en dessous."
+  - "Tu es pas encore vraiment s\xFBr.e de qui est ce Colin exactement, mais tu es
+    s\xFBr.e que \xE7a deviendra bient\xF4t un \xE9l\xE9ment capital de l\u2019enqu\xEAte."
+  - "Tu recules pour regarder l\u2019ensemble, et tu te sens frapp\xE9 par une r\xE9alisation
+    gla\xE7ante :"
+  - "T\u2019es vraiment pas plus avanc\xE9.e."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 2
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

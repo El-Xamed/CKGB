@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: SO_action1step1lvl1
   m_EditorClassIdentifier: 
   buttonText: "Faire du th\xE9"
-  LogsMakeAction: "Tu mets de l\u2019eau \xE0 bouillir, et proppose du th\xE9 autour
-    de toi. La douce saveur de l\u2019eau chaude calme toutes les personnes qui en
-    boivent."
+  LogsMakeAction: 
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Tu mets de l\u2019eau \xE0 bouillir, et propose du th\xE9 autour de toi. La
+    douce saveur de l'infusion calme toutes les personnes qui en boivent."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

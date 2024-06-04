@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: SO_action1Etape4
   m_EditorClassIdentifier: 
   buttonText: Sortir de la maison
-  LogsMakeAction: "Tu as la clef ! Tu peux maintenant sortir sans t\u2019inqui\xE8ter."
+  LogsMakeAction: 
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Tu as la clef ! Tu peux maintenant sortir sans t\u2019inqui\xE9ter."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction: []
-  newListInteractions: []
