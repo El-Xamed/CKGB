@@ -1,5 +1,6 @@
 -> checkID
-
+=== function Trigger(name)
+EXTERNAL Trigger(name)
 === function RetourAuTMAfterPapotage(name)
 EXTERNAL RetourAuTMAfterPapotage(name)
 VAR IdPapoter = 0
@@ -12,6 +13,7 @@ VAR IdPapoter = 0
 - else: ->END
 }
 ===Papoter0===
+~ Trigger("name")
 Hey, tu pense qu’il faut<br> combien de fourmis pour déplacer un tram ?#Bulle:EsthelaBasDroite
 
 857 143.#Bulle:MorganHautGauche
@@ -20,9 +22,13 @@ Mais t’as répondu <shake>SUPER VITE</shake> ?!#Bulle:EsthelaBasDroite #emot:!
 
 A toi.<br> Si un cheval qui court à 50 hm/h.#Bulle:MorganHautGauche
 
+~ Trigger("name")
+
 Q-Quoi mais Morgan-#Bulle:EsthelaBasDroite
 
 Prend la route Ruche-Terrier.#Bulle:MorganHautGauche
+
+~ Trigger("name")
 
 C’était pas un concours !!#Bulle:EsthelaBasDroite #emot:Drop
 
@@ -37,7 +43,9 @@ De quel couleur est le cheval ?#Bulle:EsthelaBasDroite
 
 <i>Rose</i>.<br>A pois bleus.<br> Et le merle porte un chapeau.#Bulle:MorganHautGauche
 
-Quoi ? Mais il doit s’envoler tout le temps !!#Bulle:EsthelaBasDroite
+~ Trigger("name")
+
+Quoi ? Mais il doit s’envoler tout le temps !!#Bulle:EsthelaBasDroite #emot:!
 
 Non. Il l’a attaché avec un elastique.#Bulle:MorganHautGauche
 
@@ -50,7 +58,7 @@ Tu m’as toujours posé<br> <incr>aucune question</incr> sur le<br> fait que je
 Oh..#Bulle:MorganHautGauche #emot:Dots
 J'avais peur d'être indiscret.#Bulle:MorganHautGauche
 Mais c'est vrai que ça a éveillé ma curiosité.#Bulle:MorganHautGauche
-Ca t'vas vraiment bien, pour être honnête.#Bulle:MorganHautGauche
+Ca t'vas vraiment bien, pour être honnête.#Bulle:MorganHautGauche 
 
 Pff, <wave>charmeur</wave>. #Bulle:EsthelaHautDroite #emot:JoyLeft
 Sois indiscret !! <br> Immédiatement !! #Bulle:EsthelaHautDroite
