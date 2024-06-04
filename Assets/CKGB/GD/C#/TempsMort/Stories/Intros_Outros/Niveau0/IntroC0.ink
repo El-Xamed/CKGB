@@ -3,6 +3,7 @@
 EXTERNAL StartChallenge(name)
 
 ===Intro===
+#emot:BlackIn
 <size=60%>…Okay.</size=60%>#Bulle:MorganHautGauche
 
 3. 2. 1... <pend>Maintenant !</pend> #Bulle:MorganHautGauche
@@ -32,7 +33,7 @@ Allez, 3<bounce>…</bounce>#Bulle:MorganHautGauche
 <bounce> Tu sursautes</bounce>. Ta mémoire musculaire éteint la sonnerie d'elle-même.#Bulle:Narrateur
 
 //[Écran du C0 sans l’UI. La caméra est au dessus du Coolkid, dans une position d’attente dans son lit.][Musique commence) #Bulle:Narrateur
-
+#emot:BlackOut
 <bounce>…</bounce> #Bulle:MorganHautGauche
 
 9H. #Bulle:Narrateur

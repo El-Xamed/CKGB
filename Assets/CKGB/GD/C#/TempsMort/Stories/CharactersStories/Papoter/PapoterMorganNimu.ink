@@ -34,7 +34,7 @@ Je suis vraiment fière de toi,<br> tu sais ?#Bulle:NimuBasDroite
 Tu es pris au dépourvu.<br> Tu ne le laisses pas paraitre.#Bulle:Narrateur
 A-ah oui ?#Bulle:MorganHautGauche #emot:!
 De fou !<br> ça demande vlà du courage <br>d'être aussi calme dans cette situation.#Bulle:NimuBasDroite
-…#Bulle:MorganHautGauche#emot:Dots
+…#Bulle:MorganHautGauche #emot:Dots
 Ca me rappelle mon premier<br> rendez-vous amoureux.<br> Haha, comment c’était claquée au sol.#Bulle:NimuBasGauche #emot:Drop
 J’ai mis <incr>des années</incr> <br>avant de trouver des techniques<br> pour garder mon sang froid.#Bulle:NimuBasGauche 
 Tu m’impressiones vraiment.#Bulle:NimuBasDroite #emot:Sparkles
