@@ -29,7 +29,7 @@ Tu as l’air pressé de partir ?#Bulle:NimuHautGauche
 
 H-hm, j’vais prendre le train.#Bulle:MorganHautDroite
 ~ Trigger("name")
-J’ai… <rainb>un truc</rainb>. Aux marches.#Bulle:MorganHautDroite
+J’ai… <rainb>un truc</rainb>. Aux Marches.#Bulle:MorganHautDroite
 
 Ah.#Bulle:NimuHautGauche
 Elle marque une pause.#Bulle:Narrateur
