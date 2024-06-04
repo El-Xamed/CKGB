@@ -4,7 +4,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System.Collections;
 
 public enum EActorClass
 {
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public SO_Challenge Tuto;
 
     //zone d�di�e aux  dialogues
+    [SerializeField] public GameObject blackscreen;
     [SerializeField] public Story currentStory;
     [SerializeField] public GameObject currentTalkingCharacter;
     [SerializeField] public int[] RevasserID;
@@ -737,6 +738,17 @@ public class GameManager : MonoBehaviour
                                 }
                             }
                             break;
+                        case "BlackIn":
+                            {
+                                blackscreen.SetActive(true);
+                                break;
+                            }
+                        case "BlackOut":
+                            {
+                                blackscreen.GetComponent<Animator>().SetTrigger("Go");
+                                StartCoroutine("hideBlackScreen");
+                                break;
+                            }
                     }
                     break;
                 case Type_Tag:
@@ -774,6 +786,11 @@ public class GameManager : MonoBehaviour
         }
        
       textToWriteIn.text = text;       
+    }
+    IEnumerator hideBlackScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        blackscreen.SetActive(false);
     }
     public void CleanEmot()
     {
