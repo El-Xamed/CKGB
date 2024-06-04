@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693c9ad26591724d90d6f851b799902, type: 3}
   m_Name: SO_step1lvl2A
   m_EditorClassIdentifier: 
-  titre: 
-  "\xE9nonc\xE9": "Fais traverser les l\xE9zards !"
+  useCata: 1
   actions:
   - {fileID: 11400000, guid: dd651adfd55d0cb47bfe30033e3184a7, type: 2}
   - {fileID: 11400000, guid: 38c38132d678faf42a5239de10aec9d3, type: 2}
   - {fileID: 11400000, guid: e38ed5331a26a8046b6021169dab0154, type: 2}
   - {fileID: 11400000, guid: 7f5adc0f98a8ee24fa16f595124fc518, type: 2}
-  rightAnswer: {fileID: 11400000, guid: a9b673b4a8cfb394bbd28e1206a2fdff, type: 2}
+  rightAnswer: {fileID: 11400000, guid: 38c38132d678faf42a5239de10aec9d3, type: 2}

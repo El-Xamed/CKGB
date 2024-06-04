@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584344001059844695, guid: 454ee76c3d30eb2809ddee3c2a3b1235, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7585133936195194073, guid: 454ee76c3d30eb2809ddee3c2a3b1235, type: 3}
       propertyPath: m_RootOrder
@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &198988018
 Animator:
   serializedVersion: 5
@@ -377,7 +377,7 @@ Animator:
   m_GameObject: {fileID: 198988017}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ca9d4b3fe8709c94ea2d1f8b91f392a9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 20cfddcd320cdfa4989169c9e123d96b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
