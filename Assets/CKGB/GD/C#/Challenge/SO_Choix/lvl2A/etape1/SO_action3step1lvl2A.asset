@@ -13,45 +13,35 @@ MonoBehaviour:
   m_Name: SO_action3step1lvl2A
   m_EditorClassIdentifier: 
   buttonText: "Apprendre aux l\xE9zards \xE0 nager"
-  LogsMakeAction: "\"Donne \xE0 quelqu\u2019un un poisson, et il pourra manger pendant
-    un jour. Mais apprend lui \xE0 p\xE9cher, et alors il mangera des p\xEAches.\""
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Bon, tu es presque s\xFBr que c\u2019est pas \xE7a le dicton de base, mais ce
-    qui est important, c\u2019est que tu sera pas toujours l\xE0 pour faire des ponts
-    \xE0 ces l\xE9zards."
-  - "Il faut que tu les aide de mani\xE8re p\xE9rennes. "
-  - "Tu gesticule devant eux jusqu\u2019\xE0 \xEAtre s\xFBr d\u2019avoir leur attention.
-    Leur petites s\u2019alignent peu \xE0 peu dans ta vague direction. Avec toute
-    la p\xE9dagogie du monde, tu commence \xE0 leur montrer le mouvement de la brasse,
-    en \xE9quilibre sur un pied. L\u2019un d\u2019eux l\xE8che son \u0153il vitreux.
-    Tu n\u2019es pas s\xFBr qu\u2019il aient tout compris."
-  - "C\u2019\xE9tait un peu technique et tu es presque s\xFBr d\u2019avoir \xE9chou\xE9.e."
+  - "\"Donne \xE0 quelqu\u2019un un poisson, et il pourra manger pendant un jour.
+    Mais apprends-lui \xE0 p\xEAcher, et il mangera des p\xEAches.\""
+  - "Bon, tu es presque s\xFBr.e que c\u2019est pas \xE7a le dicton de base, mais
+    ce qui est important, c\u2019est que tu seras pas toujours l\xE0 pour faire des
+    ponts \xE0 ces l\xE9zards."
+  - "Il faut que tu les aides de mani\xE8re p\xE9renne."
+  - "Tu gesticules devant eux jusqu\u2019\xE0 \xEAtre s\xFBr.e d\u2019avoir leur
+    attention. Leurs petites t\xEAtes s\u2019alignent peu \xE0 peu dans ta vague
+    direction. "
+  - "Avec toute la p\xE9dagogie du monde, tu commences \xE0 leur montrer le mouvement
+    de la brasse, en \xE9quilibre sur un pied. L\u2019un d\u2019eux l\xE8che son
+    \u0153il vitreux. Tu n\u2019es pas s\xFBr.e qu\u2019ils aient tout compris."
+  - "C\u2019\xE9tait un peu technique et tu es presque s\xFBr d\u2019avoir \xE9chou\xE9."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 1
-    selectTarget: 1
-    whatTypeTarget: 2
-    target: {fileID: 1604187264348684230, guid: b9111873b30f5c94ba6873a2b2789bea, type: 3}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 1
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 1
     selectTarget: 1
     whatTypeTarget: 2

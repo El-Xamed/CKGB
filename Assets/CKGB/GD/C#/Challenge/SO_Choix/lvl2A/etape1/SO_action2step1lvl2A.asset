@@ -13,51 +13,32 @@ MonoBehaviour:
   m_Name: SO_action2step1lvl2A
   m_EditorClassIdentifier: 
   buttonText: Fouiller le cabanon
-  LogsMakeAction: "Tu remarques l\u2019immensit\xE9 de ton erreur. Ce n\u2019est
-    pas un cabanon. C\u2019est bien plus que \xE7a. Quelque chose de bien plus\u2026
-    positif. "
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Tu caresse du regard la plaque de bois ou le nom du local a \xE9tait \xE9crit
+  - "Tu remarques l\u2019immensit\xE9 de ton erreur. Ce n\u2019est pas un cabanon.
+    C\u2019est bien plus que \xE7a. Quelque chose de bien plus\u2026 positif."
+  - "Tu caresses du regard la plaque de bois o\xF9 le nom du local a \xE9t\xE9 \xE9crit
     au marqueur."
-  - "C\u2019est un caba-oui. En dehors de \xE7a, tu trouve des snack, des planches
-    de bois et des seaux de peinture \xE0 l\u2019int\xE9rieur. \xC7a devrait \xEAtre
-    suffisant pour faire un pont. "
-  - "En revanche, la caisse \xE0 outil est introuvable. Ou est-ce qu\u2019elle peut
-    \xEAtre ?"
+  - "C\u2019est un caba-oui."
+  - "En dehors de \xE7a, tu trouves des snacks, des planches de bois et des seaux
+    de peinture \xE0 l\u2019int\xE9rieur. \xC7a devrait \xEAtre suffisant pour faire
+    un pont. "
+  - "En revanche, la caisse \xE0 outils est introuvable. O\xF9 est-ce qu\u2019elle
+    peut \xEAtre ?"
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 11400000, guid: a9b673b4a8cfb394bbd28e1206a2fdff, type: 2}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
