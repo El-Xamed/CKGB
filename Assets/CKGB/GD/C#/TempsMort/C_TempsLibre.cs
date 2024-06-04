@@ -844,7 +844,18 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
-              
+                switch (GameManager.instance.currentTM.name)
+                {
+                    case "SO_TempsMort1":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                        break;
+                    case "SO_TempsMort2A":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                        break;
+                    case "SO_TempsMort3":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                        break;
+                }
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -874,7 +885,18 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
-               
+                switch (GameManager.instance.currentTM.name)
+                {
+                    case "SO_TempsMort1":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                        break;
+                    case "SO_TempsMort2A":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                        break;
+                    case "SO_TempsMort3":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                        break;
+                }
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -904,7 +926,18 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[0];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[0]);
-                
+                switch (GameManager.instance.currentTM.name)
+                {
+                    case "SO_TempsMort1":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                        break;
+                    case "SO_TempsMort2A":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                        break;
+                    case "SO_TempsMort3":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                        break;
+                }
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[0]);
                 MorganAPapoteAvecEsthela = true;
             }
@@ -934,7 +967,18 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
-              
+                switch (GameManager.instance.currentTM.name)
+                {
+                    case "SO_TempsMort1":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                        break;
+                    case "SO_TempsMort2A":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                        break;
+                    case "SO_TempsMort3":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                        break;
+                }
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
@@ -966,7 +1010,18 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[1];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[1]);
-               
+                switch (GameManager.instance.currentTM.name)
+                {
+                    case "SO_TempsMort1":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                        break;
+                    case "SO_TempsMort2A":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                        break;
+                    case "SO_TempsMort3":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                        break;
+                }
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[1]);
                 MorganAPapoteAvecNimu = true;
             }
@@ -997,7 +1052,18 @@ public class C_TempsLibre : MonoBehaviour
                 Cine.GetComponent<Animator>().SetBool("IsCinema", true);
                 SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.PapotageAnimPatern[2];
                 SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.PapoterID[2]);
-               
+                switch (GameManager.instance.currentTM.name)
+                {
+                    case "SO_TempsMort1":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("salon");
+                        break;
+                    case "SO_TempsMort2A":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("champs");
+                        break;
+                    case "SO_TempsMort3":
+                        SpawnParent.GetComponent<Animator>().SetTrigger("tram");
+                        break;
+                }
                 GameManager.instance.EnterDialogueMode(GameManager.instance.papotage[2]);
                 NimuAPapoteAvecEsthela = true;
             }
