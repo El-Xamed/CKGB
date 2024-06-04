@@ -13,36 +13,25 @@ MonoBehaviour:
   m_Name: SO_action2step2lvl2A
   m_EditorClassIdentifier: 
   buttonText: Aller cueillir des tomates
-  LogsMakeAction: "Quoi ? T\u2019as le droit de prendre une pause. Tu navigue entre
-    les plants \xE0 la recherche de quoi te sustenter, malheureusement il semblerait
-    que toutes les tomates mures aient \xE9t\xE9 r\xE9colt\xE9es ce matin."
+  LogsMakeAction: 
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Quoi ? T\u2019as le droit de prendre une pause. Tu navigues entre les plants
+    \xE0 la recherche de quoi te sustenter, malheureusement il semblerait que toutes
+    les tomates m\xFBres aient \xE9t\xE9 r\xE9colt\xE9es ce matin."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      whatCost: 0
-      whatStats: 0
-      whatMove: 2
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
