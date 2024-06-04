@@ -88,7 +88,15 @@ public class C_Console : MonoBehaviour
                 //GameObject.Find("Interface").GetComponent<C_Challenge>().LaunchTuto();
                 break;
             case "endChallenge":
-                GameObject.Find("Challenge").GetComponent<C_Challenge>().EndChallenge();
+                if (GetComponentInParent<GameManager>().C)
+                {
+                    GetComponentInParent<GameManager>().C.SetOnDialogue(false);
+                    GetComponentInParent<GameManager>().C.EndChallenge();
+                }
+                else
+                {
+                    Debug.LogWarning("Impossible d'exécuter la commande car nous ne somme pas dans un challenge");
+                }
                 break;
         }
 

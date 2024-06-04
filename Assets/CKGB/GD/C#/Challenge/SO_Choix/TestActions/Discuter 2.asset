@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: Discuter 2
   m_EditorClassIdentifier: 
   buttonText: Action a 2
-  LogsMakeAction: 
-  logsCantMakeAction: 
-  listLogsAction: []
+  LogsMakeAction: GG
+  logsCantMakeAction: Pas GG
+  listLogsAction:
+  - Bien blabla 1
+  - Bien blabla 2
+  - Bien blabla 3
+  listLogsCantMakeAction:
+  - Pas bien blabla 1
+  - Pas bien blabla 2
+  - Pas bien blabla 3
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 1

@@ -7,8 +7,6 @@ public class SO_ActionClass : ScriptableObject
 {
     #region Data
     #region Texte
-    C_Challenge challenge;
-
     [Header("Text (Button)")]
     public string buttonText;
 
@@ -18,6 +16,11 @@ public class SO_ActionClass : ScriptableObject
     public string logsCantMakeAction;
 
     public List<string> listLogsAction;
+    public List<string> listLogsCantMakeAction;
+
+    [HideInInspector] public List<string> listCurrentLogs;
+    [HideInInspector] public string currentLogs;
+
     [HideInInspector] public int logsCursor;
     #endregion
 
@@ -263,23 +266,35 @@ public class SO_ActionClass : ScriptableObject
     #region Résolution
     public string GetListLogs()
     {
-        if (listLogsAction.Count == 0 && logsCursor == 0)
+        if (listCurrentLogs.Count == 0 && logsCursor == 0)
         {
             logsCursor++;
 
-            return LogsMakeAction;
+            return listCurrentLogs[0];
         }
-        if (logsCursor >= listLogsAction.Count)
+        if (logsCursor >= listCurrentLogs.Count)
         {
             return null;
         }
         else
         {
-            string logs = listLogsAction[logsCursor];
+            string logs = listCurrentLogs[logsCursor];
 
             logsCursor++;
 
             return logs;
+        }
+    }
+
+    public void SetListLogs(bool canMakeAction)
+    {
+        if (canMakeAction)
+        {
+            listCurrentLogs = listLogsAction;
+        }
+        else
+        {
+            listCurrentLogs = listLogsCantMakeAction;
         }
     }
 
@@ -328,13 +343,6 @@ public class SO_ActionClass : ScriptableObject
                 }
             }
         }
-    }
-    #endregion
-
-    #region Partage de données
-    public void SetChallengeData(C_Challenge thisChallenge)
-    {
-        challenge = thisChallenge;
     }
     #endregion
 }

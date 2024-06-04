@@ -1081,10 +1081,12 @@ public class C_Challenge : MonoBehaviour
     //Fonction appelé par "C_Interface" pour passer à la résolution suivante.
     public void NextResolution()
     {
-        string nextLogs = currentResolution.action.GetListLogs();
-        if (!string.IsNullOrEmpty(nextLogs))
+        //string nextLogs = currentResolution.action.GetListLogs();
+
+        if (/*!string.IsNullOrEmpty(nextLogs)*/ !string.IsNullOrEmpty(currentResolution.action.GetListLogs()))
         {
-            uiLogs.GetComponentInChildren<TMP_Text>().text = nextLogs;
+            //uiLogs.GetComponentInChildren<TMP_Text>().text = nextLogs;
+            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1)
         {
@@ -1147,18 +1149,16 @@ public class C_Challenge : MonoBehaviour
 
         currentResolution.actor.SetSpriteChallenge();
 
-        //Ajout d'un bool pour executer le dev en dessosu après l'animation.
+        //Ajout d'un bool pour executer le dev en dessous après l'animation.
         if (animFinish)
         {
             //Reset le bool pour detecter si il y a une action à 2.
             twoActor = false;
 
             //Applique toutes les actions. 1 par 1.
-            UseAction(currentResolution);
-
             #region Check si c'est la bonne action
             //Check si c'est la bonne action.
-            if (currentResolution.action.name == currentStep.rightAnswer.name)
+            if (UseAction(currentResolution) && currentResolution.action.name == currentStep.rightAnswer.name)
             {
                 Debug.Log("Bonne action");
 
@@ -1174,8 +1174,20 @@ public class C_Challenge : MonoBehaviour
 
                 //Check si c'est la fin. AJOUTER DU DELAY POUR VOIR D'ABORD L'ANIM DE LA BONNE ACTION ENSUITE UPDATE.
                 UpdateEtape();
+
+                //Set les logs de la bonne action.
+                currentResolution.action.SetListLogs(true);
             }
             else
+            {
+                Debug.Log("Mauvaise action");
+
+                //Set les logs de la mauvaise action.
+                currentResolution.action.SetListLogs(false);
+            }
+
+            /*Pour les actions secondaire
+            else //Check si c'est pas une action secondaire.
             {
                 foreach (ActorResolution thisReso in listRes)
                 {
@@ -1191,7 +1203,8 @@ public class C_Challenge : MonoBehaviour
                         }
                     }
                 }
-            }
+            }*/
+
             #endregion
 
             #region Logs
@@ -1361,6 +1374,7 @@ public class C_Challenge : MonoBehaviour
         }
         else
         {
+            Debug.Log("Peut pas faire l'action");
             return false;
         }
     }
@@ -1394,7 +1408,11 @@ public class C_Challenge : MonoBehaviour
                 //Check si la condition de faire l'action à 2 est activé.
                 if (advancedCondition.needTwoActor && twoActor != true)
                 {
-                    //Chec ksi dans toute les réso un autre actor à fait aussi la meme action.
+                    Debug.Log("Mode action à 2 activé");
+
+                    int nbEchec = 0;
+
+                    //Check si dans toute les réso un autre actor à fait aussi la meme action.
                     foreach (var thisResoInList in listRes)
                     {
                         //Pour éviter qu'il se compte lui meme.
@@ -1403,6 +1421,8 @@ public class C_Challenge : MonoBehaviour
                             //Check si dans la reso en cours et égale à une autre reso qui possède la meme action.
                             if (thisResoInList.action == thisReso.action)
                             {
+                                Debug.Log(thisResoInList.actor.name + " utilise aussi l'action !");
+
                                 //Active la detection de l'action à 2.
                                 twoActor = true;
 
@@ -1417,6 +1437,17 @@ public class C_Challenge : MonoBehaviour
                                     }
 
                                     return true;
+                                }
+                            }
+                            else
+                            {
+                                nbEchec++;
+
+                                if (nbEchec == listRes.Count -1)
+                                {
+                                    Debug.Log("Aucun autre actor ne fait l'action");
+
+                                    return false;
                                 }
                             }
                         }
@@ -1717,7 +1748,6 @@ public class C_Challenge : MonoBehaviour
         {
             //Fin du challenge.
             GetEventSystem().SetSelectedGameObject(null);
-            myPhaseDeJeu = PhaseDeJeu.EndGame;
             canGoNext = false;
             EndChallenge();
 
@@ -1776,19 +1806,25 @@ public class C_Challenge : MonoBehaviour
     //Fin du challenge.
     public void EndChallenge()
     {
-        Debug.Log(canGoNext);
+        if (myPhaseDeJeu != PhaseDeJeu.EndGame)
+        {
+            myPhaseDeJeu = PhaseDeJeu.EndGame;
+        }
 
         //Redonne leur couleur.
         foreach (C_Actor thisActor in myTeam)
         {
             thisActor.SetSpriteChallenge();
+            thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
         }
 
         if (canGoNext)
         {
+            Debug.Log("CanGoNext");
             //Check si il y a un outro de challenge.
             if (myChallenge.outroChallenge && GameManager.instance)
             {
+                Debug.Log("Dialogue outro");
                 //Cache l'ui du probleme résolue.
                 uiVictoire.SetActive(false);
                 
@@ -1802,6 +1838,8 @@ public class C_Challenge : MonoBehaviour
                 Debug.Log("Pas d'outro de challenge");
                 FinishChallenge(null);
             }
+
+            canGoNext = false;
         }
         else
         {
@@ -1818,39 +1856,48 @@ public class C_Challenge : MonoBehaviour
 
         if (GameManager.instance)
         {
-            GameManager.instance.ExitDialogueMode();
+            //Lance l'animation de transition.
+            GameManager.instance.ClosseTransitionFlannel();
 
-            foreach (C_Actor thisActor in myTeam)
+            if (canGoNext)
             {
-                thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
-                thisActor.transform.parent = GameManager.instance.transform;
-                thisActor.GetImageActor().enabled = false;
-            }
+                GameManager.instance.ExitDialogueMode();
 
-            if (plateauPreview.Count - 1 != 0)
-            {
-                foreach (Image ThisActorPreview in plateauPreview)
+                foreach (C_Actor thisActor in myTeam)
                 {
-                    Destroy(ThisActorPreview.gameObject);
+                    thisActor.transform.parent = GameManager.instance.transform;
+                    thisActor.GetImageActor().enabled = false;
                 }
 
-                plateauPreview.Clear();
-            }
+                if (plateauPreview.Count - 1 != 0)
+                {
+                    foreach (Image ThisActorPreview in plateauPreview)
+                    {
+                        Destroy(ThisActorPreview.gameObject);
+                    }
 
-            GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
+                    plateauPreview.Clear();
+                }
 
-            if (GameManager.instance.currentC.name == "SO_lvl3")
-            {
-                SceneManager.LoadScene("S_MainMenu");
-            }
-            if (GameManager.instance.currentC.name == "SO_Tuto")
-            {
-                GameManager.instance.SetDataLevel(tm1, c1);
-                SceneManager.LoadScene("S_TempsLibre");
+                GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
+
+                if (GameManager.instance.currentC.name == "SO_lvl3")
+                {
+                    SceneManager.LoadScene("S_MainMenu");
+                }
+                if (GameManager.instance.currentC.name == "SO_Tuto")
+                {
+                    GameManager.instance.SetDataLevel(tm1, c1);
+                    SceneManager.LoadScene("S_TempsLibre");
+                }
+                else
+                {
+                    SceneManager.LoadScene("S_WorldMap");
+                }
             }
             else
             {
-                SceneManager.LoadScene("S_WorldMap");
+                canGoNext = true;
             }
         }
     }
@@ -1939,5 +1986,10 @@ public class C_Challenge : MonoBehaviour
     public Animator GetuiLogs()
     {
         return uiLogsAnimator;
+    }
+
+    public void SetOnDialogue(bool value)
+    {
+        onDialogue = value;
     }
 }

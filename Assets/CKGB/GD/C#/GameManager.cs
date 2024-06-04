@@ -890,10 +890,30 @@ public class GameManager : MonoBehaviour
         pauseBackground.SetActive(false);
         SceneManager.LoadScene("S_MainMenu");
     }
+
     #region Transition
     public void OpenTransitionFlannel()
     {
         flanel.SetTrigger("Open");
+    }
+    public void ClosseTransitionFlannel()
+    {
+        flanel.SetTrigger("Close");
+    }
+
+    public void EndAnimation()
+    {
+        //Check si on est dans un challenge.
+        if (SceneManager.GetActiveScene().name == "S_Challenge")
+        {
+            C.FinishChallenge(null);
+        }
+
+        //Check si on est dans temps libre (POUR TOI MAX)
+        if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+        {
+            
+        }
     }
     #endregion
 }

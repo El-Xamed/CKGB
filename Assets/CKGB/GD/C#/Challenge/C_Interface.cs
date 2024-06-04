@@ -141,7 +141,7 @@ public class C_Interface : MonoBehaviour
             if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
             {
                 //Pour la navigation dans l'interface "Neutre"
-                if (currentInterface == Interface.Neutre)
+                if (currentInterface == Interface.Neutre && !myChallenge.GetOnDialogue())
                 {
                     if (input.x > 0)
                     {
