@@ -923,7 +923,15 @@ public class GameManager : MonoBehaviour
         //Check si on est dans un challenge.
         if (SceneManager.GetActiveScene().name == "S_Challenge")
         {
-            C.FinishChallenge(null);
+            //Check si c'est le debut du challenge ou non.
+            if (GameObject.Find("Challenge").GetComponent<C_Challenge>().GetPhaseDeJeu() != C_Challenge.PhaseDeJeu.EndGame)
+            {
+                StartCoroutine(GameObject.Find("Challenge").GetComponent<C_Challenge>().StartChallenge());
+            }
+            else
+            {
+                GameObject.Find("Challenge").GetComponent<C_Challenge>().FinishChallenge(null);
+            }
         }
 
         //Check si on est dans temps libre (POUR TOI MAX)

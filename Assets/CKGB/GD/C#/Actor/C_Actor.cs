@@ -30,14 +30,11 @@ public class C_Actor : C_Pion
     [SerializeField] Image character;
     [SerializeField] GameObject chains;
     [SerializeField] Image ombre;
-    [SerializeField]public GameObject sweats;
+    [SerializeField] public GameObject sweats;
 
     [Space]
     //Animation Stats
-    [SerializeField] Animator sfxAnimator;
-    [SerializeField] Image currentStats;
-    [SerializeField] Sprite vfxWaveCalm;
-    [SerializeField] Sprite vfxWaveEnergy;
+    [SerializeField] Animator vfxStatsAnimator;
 
     #endregion
 
@@ -186,13 +183,14 @@ public class C_Actor : C_Pion
             //Change la valeur de calm
             currentStress += value;
 
-            if (vfxWaveCalm)
+            //Lance l'animation du vfx calm.
+            if (value > 0)
             {
-                currentStats.sprite = vfxWaveCalm;
+                vfxStatsAnimator.SetTrigger("Wave_Red_Up");
             }
-            else
+            else if (value < 0)
             {
-                Debug.LogWarning("Pas de vfx de Wave calm !");
+                vfxStatsAnimator.SetTrigger("Wave_Red_Down");
             }
         }
         else if (onWhatStats == TargetStats.ETypeStats.Energy)
@@ -200,40 +198,16 @@ public class C_Actor : C_Pion
             //Change la valeur d'energie.
             currentEnergy += value;
 
-            if (vfxWaveEnergy)
+            //Lance l'animation du vfx d'energie.
+            if (value > 0)
             {
-                currentStats.sprite = vfxWaveEnergy;
+                vfxStatsAnimator.SetTrigger("Wave_Blue_Up");
             }
-            else
+            else if (value < 0)
             {
-                Debug.LogWarning("Pas de vfx de Wave energy !");
-            }
-        }
-
-        //Lance l'animation du sfx.
-        if (value < 0)
-        {
-            if (sfxAnimator)
-            {
-                sfxAnimator.SetTrigger("statsDown");
-            }
-            else
-            {
-                Debug.LogWarning("Pas d'animator pour les vfx de Wave !");
+                vfxStatsAnimator.SetTrigger("Wave_Blue_Down");
             }
         }
-        else if (value > 0)
-        {
-            if (sfxAnimator)
-            {
-                sfxAnimator.SetTrigger("statsUp");
-            }
-            else
-            {
-                Debug.LogWarning("Pas d'animator pour les vfx de Wave !");
-            }
-        }
-        
 
         #region Check si il ne dépasse pas la limite
         //Check si il ne dépasse pas la limite.
@@ -308,7 +282,11 @@ public class C_Actor : C_Pion
 
             character.sprite = dataActor.challengeSpriteIsOut;
 
-            chains.gameObject.SetActive(true);
+            //Lance ls vfx.
+            GetComponent<Animator>().SetBool("isDead", true);
+            
+            //Desactive le tremblement.
+            GetComponent<Animator>().SetBool("isInDanger", false);
         }
         else
         {
@@ -320,7 +298,8 @@ public class C_Actor : C_Pion
                 character.sprite = dataActor.challengeSprite;
             }
 
-            chains.gameObject.SetActive(false);
+            //Lance ls vfx.
+            GetComponent<Animator>().SetBool("isDead", false);
         }
     }
 

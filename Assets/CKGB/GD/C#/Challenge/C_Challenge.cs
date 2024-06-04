@@ -172,13 +172,13 @@ public class C_Challenge : MonoBehaviour
 
     void Start()
     {
+        //Récupère les data du challenge.
+        //myChallenge = GameManager.instance.C;
+
         if (GameManager.instance)
         {
             //Appel la transition.
             GameManager.instance.OpenTransitionFlannel();
-
-            //SOLUTION TEMPO !!!
-            Invoke("This", 0.5f);
         }
         else
         {
@@ -186,13 +186,23 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    void This()
-    {
-        StartCoroutine(StartChallenge());
-    }
-
     public IEnumerator StartChallenge()
     {
+        //Check si c'est le premier niveau.
+        if (myChallenge.name == "So_Tuto")
+        {
+            Debug.Log("Lancement du tuto");
+
+            myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+
+            //Lance l'animation.
+            GetComponent<C_Tuto>().LaunchTuto();
+        }
+        //Si oui on bloque le dev en dessous.
+        //Passen mode mode tuto.
+        //Check si c'étais la dernière anim.
+        //Relance la fonction.
+
         //Set le background
         //Check si le background n'est pas vide.
         if (myChallenge.background)
@@ -1104,6 +1114,7 @@ public class C_Challenge : MonoBehaviour
         if (!string.IsNullOrEmpty(currentResolution.action.GetListLogs()))
         {
             uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.currentLogs;
+            Debug.Log(currentResolution.action.currentLogs);
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1) //Check si on n'est pas arr au dernier reso.
         {
@@ -1123,7 +1134,7 @@ public class C_Challenge : MonoBehaviour
                 {
                     //Lance la phase "Cata".
                     canGoNext = false;
-                    CataTrun();
+                    CataTurn();
                 }
             }
             else //Lance la phase du joueur.
@@ -1399,6 +1410,7 @@ public class C_Challenge : MonoBehaviour
         //Check si l'actor en question possède assez d'energie.
         if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats))
         {
+            #region Condition avancé.
             //Check si les conditions bonus sont activé.
             if (advancedCondition.advancedCondition)
             {
@@ -1443,7 +1455,7 @@ public class C_Challenge : MonoBehaviour
                 }
                 #endregion
 
-                //CHANGER CETTE PARTIE CAR IL APPLIQUE TOUTES LES ACTION AU DEUXIEME ACTOR MEME LE DEPLACEMENT !!!!!!!!
+                #region Pour les action à 2.
                 if (advancedCondition.needTwoActor)
                 {
                     int nbEchec = 0;
@@ -1484,62 +1496,9 @@ public class C_Challenge : MonoBehaviour
                         }
                     }
                 }
-
-
-
-
-
-
-
-
-                /*if (advancedCondition.needTwoActor && twoActor != true)
-                {
-                    Debug.Log("Mode action à 2 activé");
-
-                    int nbEchec = 0;
-
-                    //Check si dans toute les réso un autre actor à fait aussi la meme action.
-                    foreach (var thisResoInList in listRes)
-                    {
-                        //Pour éviter qu'il se compte lui meme.
-                        if (thisResoInList != currentResolution)
-                        {
-                            //Check si dans la reso en cours et égale à une autre reso qui possède la meme action.
-                            if (thisResoInList.action == currentResolution.action)
-                            {
-                                Debug.Log(thisResoInList.actor.name + " utilise aussi l'action !");
-
-                                //Active la detection de l'action à 2.
-                                twoActor = true;
-
-                                //Check si l'autre actor peut aussi faire l'action.
-                                if (UseAction(thisResoInList))
-                                {
-                                    if (twoActor)
-                                    {
-                                        //Desactive l'autre actor qui à fait la meme action pour éviter que l'action se joue 2 fois. A VOIR OU PLACER SE BOUT DE CODE.
-                                        //TESTER EN SUPPRIMANT L'AUTRE ACTOR QUI A FAIT LA MEME ACTION.
-                                        listRes.Remove(thisResoInList);
-                                    }
-
-                                    return true;
-                                }
-                            }
-                            else
-                            {
-                                nbEchec++;
-
-                                if (nbEchec == listRes.Count -1)
-                                {
-                                    Debug.Log("Aucun autre actor ne fait l'action");
-
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }*/
+                #endregion
             }
+            #endregion
         }
         else
         {
@@ -1718,13 +1677,16 @@ public class C_Challenge : MonoBehaviour
         //Pour tous les nombre dans la liste dela cata.
         foreach (var thisCase in currentCata.targetCase)
         {
+            #region VFX Cata
             //Check si la case possède un vfx.
             if (plateau[thisCase].GetVfxCata() != null)
             {
                 //VFX de la cata qui s'applique.
                 plateau[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
             }
+            #endregion
 
+            //Check si c'est des dégats qui s'applique à tout le monde.
             if (currentCata.applyForAll)
             {
                 //Pour tous les actor.
@@ -1738,17 +1700,42 @@ public class C_Challenge : MonoBehaviour
             }
             else
             {
-                //Pour tous les actor.
-                foreach (C_Actor thisActor in myTeam)
+                bool accIsHit = false;
+
+                //Check d'abord dans un premier temps si il a touché un acc.
+                foreach (C_Accessories thisAcc in listAcc)
                 {
-                    if (thisCase == thisActor.GetPosition())
+                    //Check si la position est égale à celui du joueur.
+                    if (thisCase == thisAcc.GetPosition())
                     {
-                        Debug.Log("La case " + thisCase + " est attaqué !");
+                        accIsHit = true;
 
-                        //Applique des conséquence grace au finction de actionClass.
-                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+                        //Pour tous les actor.
+                        foreach (C_Actor thisActor in myTeam)
+                        {
+                            //Applique des conséquence grace au fonction de actionClass.
+                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
 
-                        thisActor.CheckIsOut();
+                            thisActor.CheckIsOut();
+                        }
+                    }
+                }
+
+                if (accIsHit)
+                {
+                    //Pour tous les actor.
+                    foreach (C_Actor thisActor in myTeam)
+                    {
+                        //Check si la position est égale à celui du joueur.
+                        if (thisCase == thisActor.GetPosition())
+                        {
+                            Debug.Log(thisActor.name + " est attaqué !");
+
+                            //Applique des conséquence grace au fonction de actionClass.
+                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+
+                            thisActor.CheckIsOut();
+                        }
                     }
                 }
             }
@@ -1756,9 +1743,15 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Pour lancer la cata.
-    public void CataTrun()
+    public void CataTurn()
     {
         Debug.Log("CataTurn");
+
+        //Redonne les couleurs au actor.
+        foreach (var thisActor in myTeam)
+        {
+            thisActor.SetSpriteChallenge();
+        }
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.CataTurn;
@@ -1790,9 +1783,6 @@ public class C_Challenge : MonoBehaviour
                 Debug.Log("Next Cata");
                 currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
             }
-
-            //Active la passage CataTurn -> PlayerTurn.
-
         }
     }
 

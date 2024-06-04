@@ -35,7 +35,7 @@ public class C_AnimPhase : MonoBehaviour
                 challenge.ResolutionTurn();
                 break;
             case C_Challenge.PhaseDeJeu.CataTurn:
-                challenge.CataTrun();
+                challenge.CataTurn();
                 break;
         }
     }

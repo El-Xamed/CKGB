@@ -1550,10 +1550,7 @@ MonoBehaviour:
   chains: {fileID: 117514582100596084}
   ombre: {fileID: 896199686658792894}
   sweats: {fileID: 2933726435119723915}
-  sfxAnimator: {fileID: 0}
-  currentStats: {fileID: 0}
-  vfxWaveCalm: {fileID: 0}
-  vfxWaveEnergy: {fileID: 0}
+  vfxStatsAnimator: {fileID: 1757901819783869821}
   bulles: []
   BulleHautGauche: {fileID: 3465118084754806766}
   txtHautGauche: {fileID: 1260884621944680045}
@@ -2345,7 +2342,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -14,7 +14,6 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject logoEart;
     [SerializeField] GameObject boutonsGroupe;
     [SerializeField] GameObject optionsParent;
-    [SerializeField] SO_Challenge firthChallenge;
     [SerializeField] GameObject playButton;
     [SerializeField] GameObject optionsButton;
     bool caMarche = true;
@@ -53,16 +52,23 @@ public class C_MainMenu : MonoBehaviour
         splashScreen.SetActive(false);
     }
 
-    public void NewParty()
+    public void NewParty(SO_Challenge firthChallenge)
     {
+        //Setup le niveau.
         if (GameManager.instance)
         {
             GameManager.instance.SetDataLevel(null, firthChallenge);
         }
+
+        //???
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
+
+        //Transition.
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
+
         StartCoroutine("loadFirstGame");
        
+        //Stop les sons.
         AudioManager.instance.Stop("MusiqueSplashScreen");
         AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
         AudioManager.instance.PlayOnce("MusiqueTuto");
