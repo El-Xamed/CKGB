@@ -284,6 +284,7 @@ public class SO_ActionClass : ScriptableObject
             }
             else
             {
+                Debug.LogWarning("La liste est vide");
                 return null;
             }
         }
@@ -307,26 +308,11 @@ public class SO_ActionClass : ScriptableObject
     {
         if (canMakeAction)
         {
-            //Chech si la liste n'est pas vide
-            if (listLogsAction != null)
-            {
-                listCurrentLogs = listLogsAction;
-            }
-            else
-            {
-                Debug.LogWarning("La liste est vide");
-            }
+            listCurrentLogs = listLogsAction;
         }
         else
         {
-            if (listLogsCantMakeAction != null)
-            {
-                listCurrentLogs = listLogsCantMakeAction;
-            }
-            else
-            {
-                Debug.LogWarning("La liste est vide");
-            }
+            listCurrentLogs = listLogsCantMakeAction;
         }
     }
 

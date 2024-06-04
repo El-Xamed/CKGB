@@ -12,17 +12,6 @@ public class SO_Etape : ScriptableObject
 
     #endregion
 
-    #region Mes fonctions
-    public void CheckAction()
-    {
-
-    }
-
-    public void CheckCanNext()
-    {
-
-    }
-
     public void CheckIfWeCanWinThisEtape()
     {
         //Check si la bonne réponse et dans la list.  CHANGER LE SYST7ME POUR QUE LE DEV DOIT JUSTE RENTRER UNE VALEUR POUR D2F2NIR AUTOMATIQUEMENT QUEL SERA LA BONNE REPONSE ?
@@ -45,6 +34,4 @@ public class SO_Etape : ScriptableObject
             }
         }
     }
-
-    #endregion
 }
