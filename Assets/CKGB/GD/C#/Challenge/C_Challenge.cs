@@ -1103,7 +1103,7 @@ public class C_Challenge : MonoBehaviour
         //Check si l'element de la liste n'est pas null. Si ce dernier est null il passera à la reso suivante.
         if (!string.IsNullOrEmpty(currentResolution.action.GetListLogs()))
         {
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
+            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.currentLogs;
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1) //Check si on n'est pas arr au dernier reso.
         {

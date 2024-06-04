@@ -12,7 +12,6 @@ public class SO_ActionClass : ScriptableObject
 
     [Header("Text (Logs)")]
     public string LogsMakeAction;
-
     public string logsCantMakeAction;
 
     public List<string> listLogsAction;
@@ -266,26 +265,41 @@ public class SO_ActionClass : ScriptableObject
     #region Résolution
     public string GetListLogs()
     {
+        Debug.Log("Curseur = " + logsCursor);
+        Debug.Log(currentLogs);
+        Debug.Log(listCurrentLogs.Count);
+        Debug.Log(listCurrentLogs.Count != 0);
+
         if (listCurrentLogs.Count == 0 && logsCursor == 0)
         {
-            logsCursor++;
+            //Check si c'est pas null
+            if (listCurrentLogs.Count != 0)
+            {
+                logsCursor++;
 
-            //Retourne le premier element de la liste.
-            return listCurrentLogs[0];
+                currentLogs = listCurrentLogs[0];
+
+                //Retourne le premier element de la liste.
+                return currentLogs;
+            }
+            else
+            {
+                return null;
+            }
         }
-        if (logsCursor >= listCurrentLogs.Count)
+        if (logsCursor > listCurrentLogs.Count - 1)
         {
             //Retourne une valeur null.
             return null;
         }
         else
         {
-            string logs = listCurrentLogs[logsCursor];
+            currentLogs = listCurrentLogs[logsCursor];
 
             logsCursor++;
 
             //Retourne un element ciblé avant d'augmenter le curseur.
-            return logs;
+            return currentLogs;
         }
     }
 
@@ -293,11 +307,26 @@ public class SO_ActionClass : ScriptableObject
     {
         if (canMakeAction)
         {
-            listCurrentLogs = listLogsAction;
+            //Chech si la liste n'est pas vide
+            if (listLogsAction != null)
+            {
+                listCurrentLogs = listLogsAction;
+            }
+            else
+            {
+                Debug.LogWarning("La liste est vide");
+            }
         }
         else
         {
-            listCurrentLogs = listLogsCantMakeAction;
+            if (listLogsCantMakeAction != null)
+            {
+                listCurrentLogs = listLogsCantMakeAction;
+            }
+            else
+            {
+                Debug.LogWarning("La liste est vide");
+            }
         }
     }
 
