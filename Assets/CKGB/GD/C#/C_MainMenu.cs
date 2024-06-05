@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 
 public class C_MainMenu : MonoBehaviour
 {
+    [SerializeField] SceneAsset firthScene;
+
     [SerializeField] GameObject splashScreen;
     [SerializeField] GameObject bouttonSplashScreen;
     [SerializeField] GameObject logoJeu;
@@ -63,10 +66,11 @@ public class C_MainMenu : MonoBehaviour
         //???
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
 
+        //Setup dans quelle scene on souhaite aller.
+        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(firthScene);
+
         //Transition.
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
-
-        StartCoroutine("loadFirstGame");
        
         //Stop les sons.
         AudioManager.instance.Stop("MusiqueSplashScreen");
@@ -76,16 +80,7 @@ public class C_MainMenu : MonoBehaviour
         
 
     }
-    IEnumerator loadFirstGame()
-    {
-        yield return new WaitForSeconds(0.8f);
 
-        SceneManager.LoadScene("S_Challenge");
-    }
-    public void OpenSave()
-    {
-
-    }
     public void BackOnTrack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -102,7 +97,7 @@ public class C_MainMenu : MonoBehaviour
             
         }
     }
-        public void OpenOptions()
+    public void OpenOptions()
     {
 
 
@@ -121,8 +116,6 @@ public class C_MainMenu : MonoBehaviour
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(GameManager.instance.baseToggle.gameObject);
             AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
         }
-
-
     }
     public void updateCurrentButton()
     {

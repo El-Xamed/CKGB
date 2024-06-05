@@ -1400,6 +1400,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6628724171374017306}
@@ -1408,11 +1412,19 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TogleFullScreen
       objectReference: {fileID: 0}
     - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Settings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Settings, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7622135165799314140, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
@@ -2279,18 +2291,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5830666820850183979, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}
   m_PrefabInstance: {fileID: 6495660993677826347}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7103839265439987820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778992816161912320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 030f4fe36d3d693448159301f610c21e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &778992816161912326 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5830666820850183981, guid: c7f5fcccbed9437498fba8e444c9021d, type: 3}

@@ -5,6 +5,7 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Events;
 
 public enum EActorClass
 {
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator softBlackSwipe;
 
     #endregion
+
     #region MenuPauseOptions
     [SerializeField] public GameObject pauseBackground;
     [SerializeField] public GameObject optionsMenu;
@@ -93,25 +95,22 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GameObject PauseParent;
 
-    
+
 
     #endregion
 
     private void Awake()
     {
-        
         #region Singleton
         if (instance == null)
             instance = this;
         #endregion
 
         DontDestroyOnLoad(gameObject);
-
-        
     }
+
     private void Start()
     {
-        
         if (FindObjectOfType<C_TempsLibre>() != null)
         {
             TM = FindObjectOfType<C_TempsLibre>();
@@ -120,6 +119,8 @@ public class GameManager : MonoBehaviour
         {
             C = FindObjectOfType<C_Challenge>();
         }
+
+        //Pour créer l'équipe.
         SetUpTeam();
     }
 
@@ -908,7 +909,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("S_MainMenu");
     }
 
+
+
     #region Transition
+
+    //Lance l'anim d'ouvertur + enregistrer la première fonction qui va etre utilisé.
     public void OpenTransitionFlannel()
     {
         flanel.SetTrigger("Open");
@@ -918,8 +923,16 @@ public class GameManager : MonoBehaviour
         flanel.SetTrigger("Close");
     }
 
-    public void EndAnimation()
+    //A VOIR SI JE SUPP PAS.
+    public void EndAnimation(UnityEvent thisEvent)
     {
+        //Check si l'event est vide.
+        if (thisEvent != null)
+        {
+            //Pour lancer la fonction.
+            thisEvent.Invoke();
+        }
+
         //Check si on est dans un challenge.
         if (SceneManager.GetActiveScene().name == "S_Challenge")
         {

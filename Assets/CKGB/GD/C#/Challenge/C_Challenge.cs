@@ -151,8 +151,9 @@ public class C_Challenge : MonoBehaviour
     {
         if (GameManager.instance)
         {
-            //Pour lier la transition au challenge.
+            //Appel la transition.
             GameManager.instance.OpenTransitionFlannel();
+            GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupFirthEvent(LaunchIChallenge);
 
             //Check si le GameManager possède bien l'info de la Worldmap.
             if (GameManager.instance.GetDataChallenge() != null)
@@ -167,6 +168,7 @@ public class C_Challenge : MonoBehaviour
         else
         {
             Debug.LogWarning("AUCUN GAMEMANAGER DETECTE");
+            StartCoroutine(StartChallenge());
         }
     }
 
@@ -175,15 +177,28 @@ public class C_Challenge : MonoBehaviour
         //Récupère les data du challenge.
         //myChallenge = GameManager.instance.C;
 
-        if (GameManager.instance)
+        //Set le background
+        //Check si le background n'est pas vide.
+        if (myChallenge.background)
         {
-            //Appel la transition.
-            GameManager.instance.OpenTransitionFlannel();
+            Instantiate(myChallenge.background, this.transform);
         }
         else
         {
-            StartCoroutine(StartChallenge());
+            Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
         }
+
+        //Set les element en plus.
+        SpawnElement();
+
+        //Desactive par default les logs timeleine.
+        uiLogsTimeline.SetActive(false);
+        uiVictoire.SetActive(false);
+    }
+
+    public void LaunchIChallenge()
+    {
+        StartCoroutine(StartChallenge());
     }
 
     public IEnumerator StartChallenge()
@@ -203,28 +218,10 @@ public class C_Challenge : MonoBehaviour
         //Check si c'étais la dernière anim.
         //Relance la fonction.
 
-        //Set le background
-        //Check si le background n'est pas vide.
-        if (myChallenge.background)
-        {
-            Instantiate(myChallenge.background, this.transform);
-        }
-        else
-        {
-            Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
-        }
-
-        //Desactive par default les logs timeleine.
-        uiLogsTimeline.SetActive(false);
-        uiVictoire.SetActive(false);
-
         //Apparition des cases
         SpawnCases();
 
         yield return new WaitForEndOfFrame();
-
-        //Set les element en plus.
-        SpawnElement();
 
         //Place les acteurs sur les cases.
         InitialiseAllPosition();

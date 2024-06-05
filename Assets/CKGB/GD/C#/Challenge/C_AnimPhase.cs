@@ -44,10 +44,5 @@ public class C_AnimPhase : MonoBehaviour
     {
         GetComponentInParent<PlayerInput>().enabled = false;
     }
-
-    public void GetEndTransition()
-    {
-        GetComponentInParent<GameManager>().EndAnimation();
-    }
     #endregion
 }
