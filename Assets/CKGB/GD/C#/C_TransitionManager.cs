@@ -16,22 +16,34 @@ public class C_TransitionManager : MonoBehaviour
     public void SetupNextScene(SceneAsset thisScene)
     {
         nextScene = thisScene;
+
+        //Retire toutes les fonctions stocké dans l'event.
+        currentEvent.RemoveAllListeners();
+
+        //Setup automatiquement l'event de transition.
+        currentEvent.AddListener(TransiScene);
     }
 
     public void SetupFirthEvent(UnityAction thisUnityAction)
     {
+        //Retire toutes les fonctions stocké dans l'event.
+        currentEvent.RemoveAllListeners();
+
         currentEvent.AddListener(thisUnityAction);
     }
 
     //Fonction placé à la fin des animation de transition.
-    public void TransiScene()
+    void TransiScene()
     {
         Debug.Log("Launch -> " + nextScene.name);
         SceneManager.LoadScene(nextScene.name);
     }
 
+    //Event d'animation.
     public void EndTransition()
     {
-        GetComponentInParent<GameManager>().EndAnimation(currentEvent);
+        //GetComponentInParent<GameManager>().EndAnimation(currentEvent);
+
+        currentEvent.Invoke();
     }
 }

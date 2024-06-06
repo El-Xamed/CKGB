@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0512023a1e54dd24895740d3ce6a3a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tuto: {fileID: 0}
+  tuto: {fileID: 1780696627}
   onDialogue: 0
   myInterface: {fileID: 404572936}
   myChallenge: {fileID: 11400000, guid: e017fc6468b182f4593106daa8049e34, type: 2}
@@ -2979,6 +2979,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2797796859730989199, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 406577452}
     - target: {fileID: 2797796859730989236, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_Name
       value: Canva_Tuto
@@ -2990,23 +2994,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2797796859730989195, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
   m_PrefabInstance: {fileID: 1780696625}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1780696627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2797796859730989236, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
+--- !u!95 &1780696627 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2797796859730989194, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
   m_PrefabInstance: {fileID: 1780696625}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1780696628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780696627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d87bbb4998ab224eafd282a2942fe3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1802485748
 PrefabInstance:
   m_ObjectHideFlags: 0

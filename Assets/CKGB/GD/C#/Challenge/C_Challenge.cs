@@ -22,6 +22,7 @@ public class C_Challenge : MonoBehaviour
     #region Tuto
     [Header("Tuto")]
     [SerializeField] Animator tuto;
+    bool canMakeTuto = true;
     #endregion
 
     #region Dialogue
@@ -45,7 +46,7 @@ public class C_Challenge : MonoBehaviour
 
     #region Phase de jeu
     //Pour connaitre la phasse de jeu.
-    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame, GameOver, Tuto }
+    public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame, GameOver}
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
     bool canUpdate = false;
@@ -214,21 +215,6 @@ public class C_Challenge : MonoBehaviour
 
     public IEnumerator StartChallenge()
     {
-        //Check si c'est le premier niveau.
-        if (myChallenge.name == "So_Tuto")
-        {
-            Debug.Log("Lancement du tuto");
-
-            myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
-
-            //Lance l'animation.
-            GetComponent<C_Tuto>().LaunchTuto();
-        }
-        //Si oui on bloque le dev en dessous.
-        //Passen mode mode tuto.
-        //Check si c'étais la dernière anim.
-        //Relance la fonction.
-
         //Apparition des cases
         SpawnCases();
 
@@ -749,23 +735,37 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
+        //Check si c'est le premier niveau.
+        if (myChallenge.name == "SO_Tuto(Clone)" && canMakeTuto)
+        {
+            Debug.Log("Lancement du tuto");
+
+            myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+
+            //Lance l'animation.
+            GetComponentInChildren<C_Tuto>().LaunchTuto();
+            canMakeTuto = false;
+            return;
+        }
+        //Si oui on bloque le dev en dessous.
+        //Passen mode mode tuto.
+        //Check si c'étais la dernière anim.
+        //Relance la fonction.
+
         Debug.Log("Player turn !");
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+        //Efface les logs.
+        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
         //Check si il peut update l'etape pour passer à la suivante.
         if (canUpdate)
         {
             UpdateEtape();
             canUpdate = false;
+            return;
         }
-
-        //Efface les logs.
-        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
-        //Ini l'interface.
-        myInterface.GetComponent<Animator>().SetTrigger("CloseAll");
 
         UpdateUi();
 
@@ -1155,8 +1155,6 @@ public class C_Challenge : MonoBehaviour
             {
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
-                //Ouvre l'interface.
-                OpenInterface();
                 canGoNext = false;
                 PlayerTurn();
             }
@@ -1796,12 +1794,6 @@ public class C_Challenge : MonoBehaviour
             }
         }
     }
-
-    public void OpenInterface()
-    {
-        myInterface.GetComponent<Animator>().SetTrigger("OpenAll");
-    }
-
     #endregion
 
     #endregion
@@ -1911,7 +1903,25 @@ public class C_Challenge : MonoBehaviour
             thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
         }
 
-        if (canGoNext)
+        //Check si il y a un outro de challenge.
+        if (myChallenge.outroChallenge && GameManager.instance)
+        {
+            Debug.Log("Dialogue outro");
+            //Cache l'ui du probleme résolue.
+            uiVictoire.SetActive(false);
+
+            //Entre en mode dialogue.
+            GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+            ShowUiChallenge(false);
+            onDialogue = true;
+        }
+        else
+        {
+            Debug.Log("Pas d'outro de challenge");
+            FinishChallenge(null);
+        }
+
+        /*if (canGoNext)
         {
             Debug.Log("CanGoNext");
             //Check si il y a un outro de challenge.
@@ -1938,13 +1948,14 @@ public class C_Challenge : MonoBehaviour
         {
             canGoNext = true;
             uiVictoire.SetActive(true);
-        }
+        }*/
 
         Debug.Log("Fin du challenge");
     }
 
     public void FinishChallenge(string name)
     {
+        Debug.Log("Go au niveau suivant !");
         onDialogue = false;
 
         if (GameManager.instance)
@@ -1994,6 +2005,8 @@ public class C_Challenge : MonoBehaviour
 
                 if (nextScene != null)
                 {
+                    Debug.Log("Transition vers la scene " + nextScene.name);
+
                     //Setup dans quelle scene on souhaite aller.
                     GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene);
 
@@ -2077,7 +2090,7 @@ public class C_Challenge : MonoBehaviour
     #region Tuto
     public void LaunchTuto()
     {
-        myPhaseDeJeu = PhaseDeJeu.Tuto;
+        myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
 
         //Ferme tout.
         myInterface.GoBack();
@@ -2085,12 +2098,17 @@ public class C_Challenge : MonoBehaviour
 
     public void EndTuto()
     {
-        myPhaseDeJeu = PhaseDeJeu.Tuto;
+        myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
     }
 
     public Animator GetTuto()
     {
         return tuto;
+    }
+
+    public C_Interface GetInterface()
+    {
+        return myInterface;
     }
     #endregion
 

@@ -109,8 +109,9 @@ public class C_Interface : MonoBehaviour
             Vector2 input = context.ReadValue<Vector2>();
 
             //Pour le tuto.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.Tuto)
+            if (input.y < 0 && currentInterface == Interface.Tuto)
             {
+                Debug.Log("Next tuto");
                 myChallenge.GetTuto().SetTrigger("next");
             }
 
@@ -203,8 +204,6 @@ public class C_Interface : MonoBehaviour
             {
                 myChallenge.PlayerTurn();
                 myChallenge.SetAnimFinish(false);
-                //Ouvre l'interface.
-                myChallenge.OpenInterface();
             }
 
             //Pour Update ResoTrun.

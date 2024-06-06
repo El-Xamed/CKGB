@@ -923,7 +923,7 @@ public class GameManager : MonoBehaviour
     }
 
     //A VOIR SI JE SUPP PAS.
-    public void EndAnimation(UnityEvent thisEvent)
+    /*public void EndAnimation(UnityEvent thisEvent)
     {
         //Check si l'event est vide.
         if (thisEvent != null)
@@ -951,7 +951,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "S_TempsLibre")
         {
             
-        }*/
-    }
+        }
+    }*/
     #endregion
 }
