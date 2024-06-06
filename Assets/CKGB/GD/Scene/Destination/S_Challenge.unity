@@ -765,11 +765,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -818,6 +826,14 @@ PrefabInstance:
     - target: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283267918893608904, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283267918893608904, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
