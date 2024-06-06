@@ -1894,108 +1894,79 @@ public class C_Challenge : MonoBehaviour
             FinishChallenge(null);
         }
 
-        /*if (canGoNext)
-        {
-            Debug.Log("CanGoNext");
-            //Check si il y a un outro de challenge.
-            if (myChallenge.outroChallenge && GameManager.instance)
-            {
-                Debug.Log("Dialogue outro");
-                //Cache l'ui du probleme résolue.
-                uiVictoire.SetActive(false);
-                
-                //Entre en mode dialogue.
-                GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
-                ShowUiChallenge(false);
-                onDialogue = true;
-            }
-            else
-            {
-                Debug.Log("Pas d'outro de challenge");
-                FinishChallenge(null);
-            }
-
-            canGoNext = false;
-        }
-        else
-        {
-            canGoNext = true;
-            uiVictoire.SetActive(true);
-        }*/
-
         Debug.Log("Fin du challenge");
     }
 
     public void FinishChallenge(string name)
+    {
+        StartCoroutine(FinishChallenge());
+    }
+
+    IEnumerator FinishChallenge()
     {
         Debug.Log("Go au niveau suivant !");
         onDialogue = false;
 
         if (GameManager.instance)
         {
+            GameManager.instance.ExitDialogueMode();
+
+            foreach (C_Actor thisActor in myTeam)
+            {
+                thisActor.transform.parent = GameManager.instance.transform;
+                thisActor.GetImageActor().enabled = false;
+            }
+
+            yield return new WaitForEndOfFrame();
+
+            if (plateauPreview.Count - 1 != 0)
+            {
+                foreach (Image ThisActorPreview in plateauPreview)
+                {
+                    Destroy(ThisActorPreview.gameObject);
+                }
+
+                plateauPreview.Clear();
+            }
+
+            GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
+
+            #region Transition
             //Lance l'animation de transition.
             GameManager.instance.ClosseTransitionFlannel();
 
-            if (canGoNext)
+            SceneAsset nextScene = null;
+
+            if (GameManager.instance.currentC.name == "SO_lvl3")
             {
-                GameManager.instance.ExitDialogueMode();
+                nextScene = sceneMenu;
+            }
+            if (GameManager.instance.currentC.name == "SO_Tuto")
+            {
+                GameManager.instance.SetDataLevel(tm1, c1);
 
-                foreach (C_Actor thisActor in myTeam)
-                {
-                    thisActor.transform.parent = GameManager.instance.transform;
-                    thisActor.GetImageActor().enabled = false;
-                }
-
-                if (plateauPreview.Count - 1 != 0)
-                {
-                    foreach (Image ThisActorPreview in plateauPreview)
-                    {
-                        Destroy(ThisActorPreview.gameObject);
-                    }
-
-                    plateauPreview.Clear();
-                }
-
-                GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
-
-                #region Transition
-                SceneAsset nextScene = null;
-
-                if (GameManager.instance.currentC.name == "SO_lvl3")
-                {
-                    nextScene = sceneMenu;
-                }
-                if (GameManager.instance.currentC.name == "SO_Tuto")
-                {
-                    GameManager.instance.SetDataLevel(tm1, c1);
-
-                    nextScene = sceneTM;
-                }
-                else
-                {
-                    nextScene = sceneWM;
-                }
-
-                if (nextScene != null)
-                {
-                    Debug.Log("Transition vers la scene " + nextScene.name);
-
-                    //Setup dans quelle scene on souhaite aller.
-                    GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene);
-
-                    //Transition.
-                    GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
-                }
-                else
-                {
-                    Debug.LogError("Il manque des info dans les transition de scene !!!");
-                }
-                #endregion
+                nextScene = sceneTM;
             }
             else
             {
-                canGoNext = true;
+                nextScene = sceneWM;
             }
+
+            if (nextScene != null)
+            {
+                Debug.Log("Transition vers la scene " + nextScene.name);
+
+                //Setup dans quelle scene on souhaite aller.
+                GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene);
+
+                //Transition.
+                GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
+            }
+            else
+            {
+                Debug.LogError("Il manque des info dans les transition de scene !!!");
+            }
+            #endregion
         }
     }
     #endregion

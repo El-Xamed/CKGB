@@ -114,9 +114,10 @@ public class C_TempsLibre : MonoBehaviour
         {
             Nimu = GameObject.Find("Nimu");
         }
+        
         //lance l'intro dialogue
         GameManager.instance.textToWriteIn = naratteurText;
-        StartCoroutine(StartIntro());
+        StartIntro();
         GameManager.instance.TS_softblackswipe.SetActive(true);
     }
 
@@ -318,19 +319,24 @@ public class C_TempsLibre : MonoBehaviour
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().introAnimPatern;
 
     }
-    IEnumerator StartIntro()
+    public void StartIntro()
     {
-        GameManager.instance.transform.GetChild(1).gameObject.SetActive(true); 
-        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open"); 
-        yield return new WaitForSeconds(1f);
-        GameManager.instance.TS_flanel.SetActive(false);
-        GameManager.instance.TL_anim.GetComponentInChildren<Animator>().SetTrigger("triggerTL");
-        yield return new WaitForSeconds(2f);
-        Cine.GetComponent<Animator>().SetBool("IsCinema", true);
-        yield return new WaitForSeconds(0.8f);
-        GameManager.instance.EnterDialogueMode(_intro);
-        GameManager.instance.TL_anim.GetComponentInChildren<Animator>().ResetTrigger("triggerTL");
+        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
+        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupFirthEvent(LaunchIntro);
     }
+
+    public void LaunchIntro()
+    {
+        GameManager.instance.TL_anim.GetComponentInChildren<Animator>().SetTrigger("triggerTL");
+        GameManager.instance.TL_anim.GetComponentInChildren<C_TransitionManager>().SetupFirthEvent(LaunchCine);
+    }
+
+    public void LaunchCine()
+    {
+        Cine.GetComponent<Animator>().SetBool("IsCinema", true);
+        GameManager.instance.EnterDialogueMode(_intro);
+    }
+
     public void StartTempsMort(string name)
     {
         StartCoroutine(TempsMortUnleashed());
