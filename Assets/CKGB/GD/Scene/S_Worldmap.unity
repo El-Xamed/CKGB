@@ -29670,6 +29670,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 703730de-b34c-4b00-8dae-9f37c177e5a5
     m_ActionName: TempsMort/Pause[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50e6e287-69a4-4a2c-882f-ae7dda209c93
+    m_ActionName: WorldMap/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8f9cd448-5236-4a28-8a1e-0894bb2fcf33
+    m_ActionName: WorldMap/Back[/Keyboard/b,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: WorldMap
@@ -80278,6 +80286,17 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1600685793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4530900822922147818, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+  m_PrefabInstance: {fileID: 4530900822505718545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fd3a92467a29e4092219bbc5ac0188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1707691185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80985,6 +81004,74 @@ PrefabInstance:
     - target: {fileID: 4530900822922147820, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
+      value: 8f9cd448-5236-4a28-8a1e-0894bb2fcf33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
+      value: WorldMap/Back[/Keyboard/b,/XInputControllerWindows/buttonEast]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1600685793}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1600685793}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BACK
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: C_Worldmap, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: C_Worldmap, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530900822922147823, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1874b7ae53301924ebcd06a74adbbef3, type: 3}
