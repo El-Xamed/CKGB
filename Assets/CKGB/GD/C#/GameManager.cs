@@ -749,6 +749,84 @@ public class GameManager : MonoBehaviour
                                 StartCoroutine("hideBlackScreen");
                                 break;
                             }
+                        case "walkMorgan":
+                            {
+                                if(SceneManager.GetActiveScene().name=="S_TempsLibre")
+                                {
+                                    TM.Morgan.GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled=true;
+                                }
+
+                                break;
+                            }
+                        case "walkNimu":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    TM.Nimu.GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = true;
+                                }
+
+                                break;
+                            }
+                        case "walkEsthela":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    TM.Esthela.GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = true;
+                                }
+
+                                break;
+                            }
+                        case "StopWalkMorgan":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    TM.Morgan.GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = false;
+                                }
+
+                                break;
+                            }
+                        case "StopWalkNimu":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    TM.Nimu.GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = false;
+                                }
+
+                                break;
+                            }
+                        case "StopWalkEsthela":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    TM.Esthela.GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = false;
+                                }
+
+                                break;
+                            }
+                        case "WalkAll":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    for(int i=0;i<TM.characters.Count;i++)
+                                    {
+                                        TM.characters[i].GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = true;
+                                    }
+
+                                }
+                                    break;
+                            }
+                        case "StopAll":
+                            {
+                                if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                                {
+                                    for (int i = 0; i < TM.characters.Count; i++)
+                                    {
+                                        TM.characters[i].GetComponent<C_Actor>().mainchild.GetComponent<Animator>().enabled = false;
+                                    }
+
+                                }
+                                break; 
+                            }
                     }
                     break;
                 case Type_Tag:
