@@ -738,6 +738,8 @@ public class GameManager : MonoBehaviour
                             break;
                         case "BlackIn":
                             {
+                                blackscreen = GameObject.Find("BlackScreenDialogue");
+                                blackscreen.GetComponent<Animator>().SetTrigger("Go");
                                 blackscreen.SetActive(true);
                                 break;
                             }
