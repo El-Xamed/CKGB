@@ -44,7 +44,6 @@ public class Settings : MonoBehaviour
         Debug.Log("refresh rate : " + currentrefreshRate);
         for(int i = 0;i<resolutions.Length;i++)
         {
-            Debug.Log("Resolution: " + resolutions[i]);
             if(resolutions[i].refreshRate==currentrefreshRate)
             {
                 filteredResolutions.Add(resolutions[i]);

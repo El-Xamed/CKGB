@@ -19,7 +19,6 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject optionsParent;
     [SerializeField] GameObject playButton;
     [SerializeField] GameObject optionsButton;
-    bool caMarche = true;
 
     [SerializeField] GameObject eventSystem;
     [SerializeField] GameObject currentButton;

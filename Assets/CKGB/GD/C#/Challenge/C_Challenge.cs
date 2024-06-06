@@ -96,7 +96,6 @@ public class C_Challenge : MonoBehaviour
 
     #region Résolution
     [Header("Resolution")]
-    bool twoActor = false;
     List<ActorResolution> listRes = new List<ActorResolution>();
     #endregion
 
@@ -1188,9 +1187,6 @@ public class C_Challenge : MonoBehaviour
         //Ajout d'un bool pour executer le dev en dessous après l'animation. REWORK !!!
         if (canGoNext)
         {
-            //Reset le bool pour detecter si il y a une action à 2.
-            twoActor = false;
-
             //Applique toutes les actions. 1 par 1.
             //Check si l'action peut etre effectue.
             if (CanUse(currentResolution))

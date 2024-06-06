@@ -92,7 +92,6 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] List<GameObject> LastCharacterThatPlayed = new List<GameObject>();
     public int actiontoaddID = -1;
     public int charactertoaddID = -1;
-    [SerializeField] bool nobodyHasPlayed = true;
     #endregion
     // Start is called before the first frame update
     void Start()
