@@ -1,11 +1,8 @@
 using Febucci.UI;
 using System.Collections.Generic;
-using System.Drawing;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static C_Challenge;
 
@@ -108,12 +105,14 @@ public class C_Interface : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>();
 
+            #region Tuto
             //Pour le tuto.
             if (input.y < 0 && currentInterface == Interface.Tuto)
             {
                 Debug.Log("Next tuto");
                 myChallenge.GetTuto().SetTrigger("next");
             }
+            #endregion
 
             #region Dialogue
             //Pour passer au dialogue suivant.
@@ -202,8 +201,7 @@ public class C_Interface : MonoBehaviour
             //Pour Update CataTurn.
             if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
             {
-                myChallenge.PlayerTurn();
-                myChallenge.SetAnimFinish(false);
+                myChallenge.NextCata();
             }
 
             //Pour Update ResoTrun.

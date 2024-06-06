@@ -50,6 +50,7 @@ public class C_Challenge : MonoBehaviour
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
     bool canUpdate = false;
+    bool canGoNext = false;
     #endregion
 
     #region Plateau
@@ -104,7 +105,6 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] Animator vfxStartChallenge;
     [SerializeField] Animator vfxPlayerTurn;
     [SerializeField] Animator vfxResoTurn;
-    bool canGoNext = false;
     #endregion
 
     #region SFX
@@ -399,7 +399,6 @@ public class C_Challenge : MonoBehaviour
                             if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
                             {
                                 GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
-                                //thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
                             }
                             else
                             {
@@ -524,6 +523,9 @@ public class C_Challenge : MonoBehaviour
         //Desactive les input.
         GetComponent<PlayerInput>().enabled = false;
 
+        //Change l'état du challenge.
+        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
         //Lance l'animation qui présente le challenge après la transition
         vfxStartChallenge.SetTrigger("start");
 
@@ -581,9 +583,6 @@ public class C_Challenge : MonoBehaviour
         //Lance directement le tour du joueur
         uiGameOver.SetActive(false);
         #endregion
-
-        //Change l'état du challenge.
-        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
     }
     #endregion
 
@@ -707,22 +706,23 @@ public class C_Challenge : MonoBehaviour
             //Début de la list de la phase de réso.
             currentResolution = listRes[0];
 
-            //Cache les boutons + ferme l'interface. CHANGER ÇA POUR AVOIR L'INTERFACE SANS LES TEXT A COTE.
+            //Cache les boutons + ferme l'interface.
             //Animation.
             myInterface.ResetTargetButton();
             myInterface.GetComponent<Animator>().SetTrigger("Close");
-            myInterface.GetUiAction().SetActive(false);
 
             //Rend les couleurs sur tous les actor.
             foreach (C_Actor thisActor in myTeam)
             {
                 thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
+                thisActor.CheckInDanger();
             }
-
-            canGoNext = false;
 
             myPhaseDeJeu = PhaseDeJeu.ResoTurn;
             vfxResoTurn.SetTrigger("PlayerTurn");
+
+            //Deselct le dernier bouton.
+            eventSystem.SetSelectedGameObject(null);
 
             //Supprime toutes les preview.
             foreach (Image thisPreview in plateauPreview)
@@ -753,8 +753,6 @@ public class C_Challenge : MonoBehaviour
 
         Debug.Log("Player turn !");
 
-        //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
         //Efface les logs.
         uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
@@ -770,44 +768,33 @@ public class C_Challenge : MonoBehaviour
         //Vide la listeReso
         listRes = new List<ActorResolution>();
 
-        Debug.Log("ICICICICI : " + canGoNext);
-
-        //Ajout d'un bool pour executer le dev en dessosu après l'animation.
-        if (canGoNext)
+        //Initialise la prochaine cata.
+        if (currentStep.useCata)
         {
-            //Initialise la prochaine cata.
-            if (currentStep.useCata)
+            //Check si il n'est pas null.
+            if (currentCata == null)
             {
-                //Check si il n'est pas null.
-                if (currentCata == null)
-                {
-                    currentCata = myChallenge.listCatastrophy[0];
-                }
-
-                InitialiseCata();
-
-                canIniCata = false;
+                currentCata = myChallenge.listCatastrophy[0];
             }
 
-            //Check si le perso est jouable
-            if (!currentActor.GetIsOut())
-            {
-                //Pour effacer le texte de la cata.
-                uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+            InitialiseCata();
 
-                //Update le contour blanc
-                UpdateActorSelected();
-            }
-            else
-            {
-                NextActor();
-                PlayerTurn();
-            }
+            canIniCata = false;
+        }
+
+        //Check si le perso est jouable
+        if (!currentActor.GetIsOut())
+        {
+            //Pour effacer le texte de la cata.
+            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+
+            //Update le contour blanc
+            UpdateActorSelected();
         }
         else
         {
-            //VFX
-            vfxPlayerTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
+            NextActor();
+            PlayerTurn();
         }
     }
 
@@ -1146,8 +1133,9 @@ public class C_Challenge : MonoBehaviour
                 //Check si après la phase de réso, tous les perso sont vivant.
                 if (!CheckGameOver())
                 {
+                    myPhaseDeJeu = PhaseDeJeu.CataTurn;
+
                     //Lance la phase "Cata".
-                    canGoNext = false;
                     CataTurn();
                 }
             }
@@ -1155,8 +1143,10 @@ public class C_Challenge : MonoBehaviour
             {
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
-                canGoNext = false;
                 PlayerTurn();
+
+                myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+                vfxPlayerTurn.SetTrigger("PlayerTurn");
             }
         }
     }
@@ -1171,10 +1161,7 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Deselct le dernier bouton.
-        eventSystem.SetSelectedGameObject(null);
-
-        //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.ResoTurn;
+        //eventSystem.SetSelectedGameObject(null);
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
@@ -1185,42 +1172,33 @@ public class C_Challenge : MonoBehaviour
             }
         }
 
-        //Ajout d'un bool pour executer le dev en dessous après l'animation. REWORK !!!
-        if (canGoNext)
+        //Applique toutes les actions. 1 par 1.
+        //Check si l'action peut etre effectue. 
+        if (CanUse(currentResolution))
         {
-            //Applique toutes les actions. 1 par 1.
-            //Check si l'action peut etre effectue.
-            if (CanUse(currentResolution))
-            {
-                Debug.Log("Peut faire l'action");
+            Debug.Log("Peut faire l'action");
 
-                //Utilise l'action.
-                UseAction();
+            //Utilise l'action.
+            UseAction();
 
-                //Set les logs de la bonne action.
-                currentResolution.action.ResetLogs();
-                currentResolution.action.SetListLogs(true);
-            }
-            else
-            {
-                Debug.Log("Peut pas faire l'action");
-
-                //Set les logs de la mauvaise action.
-                currentResolution.action.ResetLogs();
-                currentResolution.action.SetListLogs(false);
-            }
-
-            #region Logs
-            //Ecrit dans les logs le résultat de l'action.
+            //Set les logs de la bonne action.
             currentResolution.action.ResetLogs();
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
-            #endregion
+            currentResolution.action.SetListLogs(true);
         }
         else
         {
-            //VFX
-            vfxResoTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
+            Debug.Log("Peut pas faire l'action");
+
+            //Set les logs de la mauvaise action.
+            currentResolution.action.ResetLogs();
+            currentResolution.action.SetListLogs(false);
         }
+
+        #region Logs
+        //Ecrit dans les logs le résultat de l'action.
+        currentResolution.action.ResetLogs();
+        uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
+        #endregion
     }
 
     //Utilise l'action.
@@ -1240,10 +1218,7 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Bonne action pour passer à l'étape suivante");
 
-            //Setup la phase à lancer après l'animation.
-            //GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<C_AnimPhase>().;
-
-            //Vfx de bonna action.
+            //Vfx de bonne action.
             GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
 
             //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
@@ -1748,6 +1723,12 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    public void NextCata()
+    {
+        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+        vfxPlayerTurn.SetTrigger("PlayerTurn");
+    }
+
     //Pour lancer la cata.
     public void CataTurn()
     {
@@ -1758,13 +1739,6 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
         }
-
-        Debug.Log(currentActor);
-        Debug.Log(currentCata);
-        Debug.Log(currentStep);
-
-        //Défini la phase de jeu.
-        myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
         //Ecrit dans les logs le résultat de l'action.
         uiLogs.GetComponentInChildren<TMP_Text>().text = currentCata.catastrophyLog;
@@ -1834,7 +1808,6 @@ public class C_Challenge : MonoBehaviour
         {
             //Fin du challenge.
             GetEventSystem().SetSelectedGameObject(null);
-            canGoNext = false;
             EndChallenge();
 
             Debug.Log("Fin du niveau");
@@ -1854,7 +1827,6 @@ public class C_Challenge : MonoBehaviour
         {
             GameOver();
             myPhaseDeJeu = PhaseDeJeu.GameOver;
-            canGoNext = false;
             return true;
         }
 
@@ -2025,13 +1997,6 @@ public class C_Challenge : MonoBehaviour
                 canGoNext = true;
             }
         }
-    }
-    #endregion
-
-    #region Data Vfx
-    public void SetAnimFinish(bool value)
-    {
-        canGoNext = value;
     }
     #endregion
 

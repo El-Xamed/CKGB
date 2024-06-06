@@ -23,7 +23,6 @@ public class C_AnimPhase : MonoBehaviour
     public void EnableControl()
     {
         GetComponentInParent<PlayerInput>().enabled = true;
-        challenge.SetAnimFinish(true);
 
         //Relance la phase de jeu.
         switch (challenge.GetPhaseDeJeu())
@@ -32,6 +31,7 @@ public class C_AnimPhase : MonoBehaviour
                 challenge.PlayerTurn();
                 break;
             case C_Challenge.PhaseDeJeu.ResoTurn:
+                Debug.Log("rtrhrthritbrhitbrit");
                 challenge.ResolutionTurn();
                 break;
             case C_Challenge.PhaseDeJeu.CataTurn:
