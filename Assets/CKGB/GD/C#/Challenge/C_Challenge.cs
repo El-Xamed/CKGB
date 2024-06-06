@@ -5,12 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using UnityEditor.VersionControl;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SO_Challenge;
+using UnityEditor.SearchService;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -109,6 +112,12 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] AudioClip apparitionCataClip;
     [SerializeField] AudioClip applicationCataClip;
     [SerializeField] AudioClip resoTurnClip;
+    #endregion
+
+    #region Transition
+    SceneAsset sceneMenu;
+    SceneAsset sceneTM;
+    SceneAsset sceneWM;
     #endregion
     #endregion
 
@@ -1959,19 +1968,37 @@ public class C_Challenge : MonoBehaviour
 
                 GameManager.instance.WorldstartPoint = myChallenge.mapPointID;
 
+                #region Transition
+                SceneAsset nextScene = null;
+
                 if (GameManager.instance.currentC.name == "SO_lvl3")
                 {
-                    SceneManager.LoadScene("S_MainMenu");
+                    nextScene = sceneMenu;
                 }
                 if (GameManager.instance.currentC.name == "SO_Tuto")
                 {
                     GameManager.instance.SetDataLevel(tm1, c1);
-                    SceneManager.LoadScene("S_TempsLibre");
+
+                    nextScene = sceneTM;
                 }
                 else
                 {
-                    SceneManager.LoadScene("S_WorldMap");
+                    nextScene = sceneWM;
                 }
+
+                if (nextScene != null)
+                {
+                    //Setup dans quelle scene on souhaite aller.
+                    GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene);
+
+                    //Transition.
+                    GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
+                }
+                else
+                {
+                    Debug.LogError("Il manque des info dans les transition de scene !!!");
+                }
+                #endregion
             }
             else
             {
