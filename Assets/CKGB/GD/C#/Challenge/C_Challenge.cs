@@ -763,13 +763,14 @@ public class C_Challenge : MonoBehaviour
         {
             UpdateEtape();
             canUpdate = false;
-            return;
         }
 
         UpdateUi();
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
+
+        Debug.Log("ICICICICI : " + canGoNext);
 
         //Ajout d'un bool pour executer le dev en dessosu après l'animation.
         if (canGoNext)
@@ -1757,6 +1758,10 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
         }
+
+        Debug.Log(currentActor);
+        Debug.Log(currentCata);
+        Debug.Log(currentStep);
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.CataTurn;
