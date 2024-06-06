@@ -138,7 +138,6 @@ public class GameManager : MonoBehaviour
                     {
                         GameObject newActor = Instantiate(ressourceActor[0], transform);
                         team.Add(newActor);
-                        Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
                     }
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
@@ -147,7 +146,6 @@ public class GameManager : MonoBehaviour
                     {
                         GameObject newActor = Instantiate(ressourceActor[1], transform);
                         team.Add(newActor);
-                        Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
                     }
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
@@ -156,7 +154,6 @@ public class GameManager : MonoBehaviour
                     {
                         GameObject newActor = Instantiate(ressourceActor[2], transform);
                         team.Add(newActor);
-                        Debug.Log(newActor.GetComponent<C_Actor>().GetDataActor());
                     }
                     else Debug.LogWarning("Il n'y a pas de redirection pour cette objet.");
                     break;
@@ -933,7 +930,8 @@ public class GameManager : MonoBehaviour
             thisEvent.Invoke();
         }
 
-        //Check si on est dans un challenge.
+        //Old Version.
+        /*Check si on est dans un challenge.
         if (SceneManager.GetActiveScene().name == "S_Challenge")
         {
             //Check si c'est le debut du challenge ou non.
@@ -951,7 +949,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "S_TempsLibre")
         {
             
-        }
+        }*/
     }
     #endregion
 }
