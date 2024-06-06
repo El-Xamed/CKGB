@@ -265,11 +265,6 @@ public class SO_ActionClass : ScriptableObject
     #region Résolution
     public string GetListLogs()
     {
-        Debug.Log("Curseur = " + logsCursor);
-        Debug.Log(currentLogs);
-        Debug.Log(listCurrentLogs.Count);
-        Debug.Log(listCurrentLogs.Count != 0);
-
         if (listCurrentLogs.Count == 0 && logsCursor == 0)
         {
             //Check si c'est pas null

@@ -1178,9 +1178,6 @@ public class C_Challenge : MonoBehaviour
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.ResoTurn;
 
-        //Passe l'interface en neutre.
-        myInterface.GoBack();
-
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
         {
