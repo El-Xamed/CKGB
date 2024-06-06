@@ -436,6 +436,8 @@ public class C_TempsLibre : MonoBehaviour
         }
         DisplayFicheInfos();
         DisplayInformations();
+
+        AudioManager.instance.PlayOnce("SfxHover");
     }
     public void DisplayInformations()
     {

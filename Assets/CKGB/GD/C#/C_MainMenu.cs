@@ -26,7 +26,7 @@ public class C_MainMenu : MonoBehaviour
     private void Start()
     {
         IniSplashScreen();
-        AudioManager.instance.PlayOnce("MusiqueSplashScreen");
+        AudioManager.instance.Play("MusiqueSplashScreen");
     }
 
     private void IniSplashScreen()
@@ -74,7 +74,7 @@ public class C_MainMenu : MonoBehaviour
         //Stop les sons.
         AudioManager.instance.Stop("MusiqueSplashScreen");
         AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
-        AudioManager.instance.PlayOnce("MusiqueTuto");
+        AudioManager.instance.Play("MusiqueTuto");
 
         
 
@@ -128,7 +128,7 @@ public class C_MainMenu : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed)
+        if (context.performed && context.ReadValue<Vector2>()!=Vector2.zero)
         {
             updateCurrentButton();
             

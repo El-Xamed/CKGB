@@ -102,14 +102,14 @@ public class AudioManager : MonoBehaviour
 
 
         }
-        source.Stop();
+        p.source.Stop();
     }
 
     public void MuteMusic(string name)
     {
         Sound p = System.Array.Find(sounds, sound => sound.name == name);
 
-        p.source.volume = 0;
+        p.source.mute = true;
 
         /*
         if (p.source.volume == 0)
