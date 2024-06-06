@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: SO_action1step2tuto
   m_EditorClassIdentifier: 
   buttonText: "T\u2019\xE9tirer"
-  LogsMakeAction: "Les premieres efforts de la journ\xE9e sont toujours les plus
-    durs. Comme une machine rouill\xE9e, tes muscles se remettent en mouvement en
-    grin\xE7ant presque. Tu t\u2019\xE9tire comme un f\xE9lin et sens un frisson
-    te parcours alors que ton corps se rappelle qu\u2019il est en vie."
+  LogsMakeAction: 
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Les premieres efforts de la journ\xE9e sont toujours les plus durs. Comme une
+    machine rouill\xE9e, tes muscles se remettent en mouvement en grin\xE7ant presque.
+    Tu t\u2019\xE9tire comme un f\xE9lin et sens un frisson te parcours alors que
+    ton corps se rappelle qu\u2019il est en vie."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

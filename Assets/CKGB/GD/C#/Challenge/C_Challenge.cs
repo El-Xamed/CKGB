@@ -48,6 +48,7 @@ public class C_Challenge : MonoBehaviour
     public enum PhaseDeJeu { PlayerTrun, ResoTurn, CataTurn, EndGame, GameOver, Tuto }
     [Header("Phase de jeu")]
     [SerializeField] PhaseDeJeu myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+    bool canUpdate = false;
     #endregion
 
     #region Plateau
@@ -115,9 +116,10 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Transition
-    SceneAsset sceneMenu;
-    SceneAsset sceneTM;
-    SceneAsset sceneWM;
+    [Header("Scene")]
+    [SerializeField] SceneAsset sceneMenu;
+    [SerializeField] SceneAsset sceneTM;
+    [SerializeField] SceneAsset sceneWM;
     #endregion
     #endregion
 
@@ -747,13 +749,20 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
-        //Efface les logs.
-        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
         Debug.Log("Player turn !");
 
         //Défini la phase de jeu.
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+
+        //Check si il peut update l'etape pour passer à la suivante.
+        if (canUpdate)
+        {
+            UpdateEtape();
+            canUpdate = false;
+        }
+
+        //Efface les logs.
+        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
         //Ini l'interface.
         myInterface.GetComponent<Animator>().SetTrigger("CloseAll");
@@ -799,6 +808,20 @@ public class C_Challenge : MonoBehaviour
         {
             //VFX
             vfxPlayerTurn.GetComponent<Animator>().SetTrigger("PlayerTurn");
+        }
+    }
+
+    //Passe à l'acteur suivant.
+    void NextActor()
+    {
+        currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
+
+        UpdateActorSelected();
+
+        //Check si l'actor en question est ko.
+        if (currentActor.GetIsOut())
+        {
+            NextActor();
         }
     }
 
@@ -1090,22 +1113,6 @@ public class C_Challenge : MonoBehaviour
     }
     #endregion
 
-    //Passe à l'acteur suivant.
-    void NextActor()
-    {
-        currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
-
-        UpdateActorSelected();
-
-        //Check si l'actor en question est ko.
-        if (currentActor.GetIsOut())
-        {
-            NextActor();
-        }
-    }
-
-    #endregion
-
     #region  Phase de résolution
     //Création d'une class pour rassembler l'acteur et l'action.
     [Serializable] public class ActorResolution
@@ -1241,17 +1248,17 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Bonne action pour passer à l'étape suivante");
 
+            //Setup la phase à lancer après l'animation.
+            //GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<C_AnimPhase>().;
+
             //Vfx de bonna action.
             GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
 
             //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
-            canIniCata = true;
+            //canIniCata = true;
 
-            //
-            myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
-
-            //Check si c'est la fin. AJOUTER DU DELAY POUR VOIR D'ABORD L'ANIM DE LA BONNE ACTION ENSUITE UPDATE.
-            UpdateEtape();
+            //Active l'update pour le prochain tour du joueur (C'est un trigger).
+            canUpdate = true;
         }
         else //Check si c'est pas une action secondaire.
         {
@@ -1797,7 +1804,9 @@ public class C_Challenge : MonoBehaviour
     {
         myInterface.GetComponent<Animator>().SetTrigger("OpenAll");
     }
-    
+
+    #endregion
+
     #endregion
 
     void UpdateActorSelected()

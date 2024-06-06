@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SO_action3step2tuto
   m_EditorClassIdentifier: 
   buttonText: Utiliser la violence
-  LogsMakeAction: 'Tu ne vas pas te laisser faire ! Aller !! '
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
+  - 'Tu ne vas pas te laisser faire ! Aller !! '
   - 'Tu vas sortir de ce lit, et maintenant ! Tu plonge sous la couverture pour rassembler
     tes forces, et envoyer le drap voler dramatiquement ! '
   - "Attends, je crois que ton pied emm\xEAl\xE9. C\u2019est compliqu\xE9 de respirer
@@ -23,31 +24,19 @@ MonoBehaviour:
   - "Et elle est ou la sortie ? Tu te d\xE9bat dans la couverture sans r\xE9ussir
     \xE0 te d\xE9patouiller. "
   - Tu finit par ressortir sur ton oreiller, vaincu.
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
