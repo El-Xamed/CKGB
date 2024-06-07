@@ -19,6 +19,7 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject optionsParent;
     [SerializeField] GameObject playButton;
     [SerializeField] GameObject optionsButton;
+    [SerializeField] GameObject ChapterImage;
 
     [SerializeField] GameObject eventSystem;
     [SerializeField] GameObject currentButton;
@@ -53,7 +54,12 @@ public class C_MainMenu : MonoBehaviour
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
         splashScreen.SetActive(false);
     }
+    public void ShowChapterPicture()
+    {
+        ChapterImage.SetActive(true);
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(ChapterImage.transform.GetChild(0).GetChild(0).gameObject);
 
+    }
     public void NewParty(SO_Challenge firthChallenge)
     {
         //Setup le niveau.
@@ -75,8 +81,6 @@ public class C_MainMenu : MonoBehaviour
         AudioManager.instance.Stop("MusiqueSplashScreen");
         AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
         AudioManager.instance.Play("MusiqueTuto");
-
-        
 
     }
 
