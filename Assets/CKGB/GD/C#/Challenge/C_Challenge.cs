@@ -659,7 +659,7 @@ public class C_Challenge : MonoBehaviour
             if (eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>())
             {
                 //Affiche la preview.
-                //GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
+                GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
             }
         }
     }
@@ -816,18 +816,6 @@ public class C_Challenge : MonoBehaviour
     //Pour afficher toutes les preview du challenge.
     public void CheckPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
-        C_PreviewAction.onPreview -= MovementPreview;
-
-        if (plateauPreview.Count -1 != 0)
-        {
-            foreach (Image ThisActorPreview in plateauPreview)
-            {
-                Destroy(ThisActorPreview.gameObject);
-            }
-
-            plateauPreview.Clear();
-        }
-
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
             //Check si c'est égale à "actorTarget".
@@ -848,6 +836,10 @@ public class C_Challenge : MonoBehaviour
                         //Inscrit la preview de movement. (C_Challenge)
                         //C_PreviewAction.onPreview += MovementPreview;
                         Debug.Log("UI Preview Movement");
+                    }
+                    else
+                    {
+                        C_PreviewAction.onPreview -= MovementPreview;
                     }
                 }
             }

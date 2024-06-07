@@ -194,14 +194,6 @@ public class C_Stats : MonoBehaviour
     //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
     public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
-        C_PreviewAction.onPreview -= UiPreviewCalm;
-        C_PreviewAction.onPreview -= UiPreviewEnergy;
-
-        foreach (GameObject thisEnergie in listEnergie)
-        {
-            thisEnergie.GetComponent<Animator>().SetBool("isPreview", false);
-        }
-
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
             //Check si c'est égale à "actorTarget".
@@ -221,12 +213,20 @@ public class C_Stats : MonoBehaviour
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewCalm;
                         }
+                        else
+                        {
+                            C_PreviewAction.onPreview -= UiPreviewCalm;
+                        }
 
                         //Check si c'est pour l'energie.
                         if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy)
                         {
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewEnergy;
+                        }
+                        else
+                        {
+                            C_PreviewAction.onPreview -= UiPreviewEnergy;
                         }
                     }
                 }
