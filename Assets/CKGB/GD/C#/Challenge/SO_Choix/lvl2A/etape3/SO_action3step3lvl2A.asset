@@ -13,54 +13,27 @@ MonoBehaviour:
   m_Name: SO_action3step3lvl2A
   m_EditorClassIdentifier: 
   buttonText: Escalade
-  LogsMakeAction: "Tes doigts caressent l\u2019\xE9corce \xE0 la recherche d\u2019une
-    prise. Tes ongles s\u2019enfoncent doucement entre les plaque, mais rien n\u2019y
-    fait. "
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Aucune prise ne s\u2019offre \xE0 toi. Tu ne pense pas pouvoir escalader l\u2019arbre.
-    Pour faire comme si tout \xE9tais calcul\xE9, tu fais un grand thumb up aux deux
+  - "Tes doigts caressent l\u2019\xE9corce \xE0 la recherche d\u2019une prise. Tes
+    ongles s\u2019enfoncent doucement entre les plaques, mais rien n\u2019y fait."
+  - "Aucune prise ne s\u2019offre \xE0 toi. Tu ne penses pas pouvoir escalader l\u2019arbre.
+    Pour faire comme si tout \xE9tait calcul\xE9, tu fais un grand thumb up aux deux
     cases \xE0 ta droite."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 1
-    range: 2
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

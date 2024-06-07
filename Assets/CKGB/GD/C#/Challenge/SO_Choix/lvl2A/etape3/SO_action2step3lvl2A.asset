@@ -13,52 +13,42 @@ MonoBehaviour:
   m_Name: SO_action2step3lvl2A
   m_EditorClassIdentifier: 
   buttonText: "T\xE9l\xE9kin\xE9sie : ACTIVATION"
-  LogsMakeAction: " Tu t\u2019es entrain\xE9 toute ta vie pour \xE7a. C\u2019est
-    le moment. "
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Les yeux riv\xE9s sur le m\xE9tal rouges d\xE9lav\xE9s, tu prends la pose de
+  - "Tu t\u2019es entrain\xE9.e toute ta vie pour \xE7a. C\u2019est le moment. "
+  - "Les yeux riv\xE9s sur le m\xE9tal rouges d\xE9lav\xE9, tu prends la pose de
     Pers\xE9vo, ton personnage de bande dessin\xE9 pr\xE9f\xE9r\xE9, les cuisses
     gain\xE9es, les tempes contract\xE9s et les doigts formants des figures \xE9sot\xE9riques. "
-  - "Rassemblant toute ta conviction, tu compte \xE0 voix haute."
+  - "Rassemblant toute ta conviction, tu comptes \xE0 voix haute."
   - 3.
   - 2.
   - 1.
-  - 0.5
-  - 0.3
-  - 0
-  - .000000002
-  - 0
+  - 0.5.
+  - 0.3.
+  - 0.
+  - .000000002.
+  - 0.
   - Puis, tu rugis.
   - "\u201CACTIVATIOOOOOOON.\u201D"
+  - ...
+  - Rien.
   - "Mais peut-\xEAtre que ce miracle est possible."
   - "Peut-\xEAtre que tout ce dont tu as besoin, c\u2019est de l\u2019\xE9nergie
-    psychique DEUX personnes en m\xEAme temps ! "
+    psychique DEUX personnes en m\xEAme temps !"
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 0
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

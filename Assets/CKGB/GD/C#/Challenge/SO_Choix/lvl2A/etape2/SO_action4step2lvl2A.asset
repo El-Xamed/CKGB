@@ -13,53 +13,27 @@ MonoBehaviour:
   m_Name: SO_action4step2lvl2A
   m_EditorClassIdentifier: 
   buttonText: "Regarder derri\xE8re le caba-oui"
-  LogsMakeAction: "\xC9coutes, on t'aime bien, mais tr\xE9s sinc\xE8rement tu nous
-    fait courir dans tous les sens depuis tout  \xE0 l'heure sans vraiment faire
-    grand chose de ton cot\xE9."
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "On veut bien faire beaucoup de chose mais l\xE0 on commence  avoir un peu la
-    flemme, donc on va probablement juste rester la et bronzer un peu."
+  - "\xC9coute, on t'aime bien, mais tr\xE8s sinc\xE8rement tu nous fais courir dans
+    tous les sens depuis tout \xE0 l'heure sans vraiment faire grand chose de ton
+    c\xF4t\xE9."
+  - "On veut bien faire beaucoup de choses mais l\xE0 on commence \xE0 avoir un peu
+    la flemme, donc on va probablement juste rester l\xE0 et bronzer un peu."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 3
-    range: 1
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 1
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
