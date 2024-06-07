@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: La pyramide humaine !
   LogsMakeAction: 
-  logsCantMakeAction: "Tu essaies de te faire la courte \xE9chelle \xE0 toi-m\xEAme,
-    et malgr\xE9 l\u2019\xE9tendu consid\xE9rable de ton inventivit\xE9, les lois
-    de la physique te rattrape. Tu t\u2019\xE9crase, soulevant de la poussi\xE8re
-    et effrayant tes amis reptiles."
+  logsCantMakeAction: 
   listLogsAction:
   - "Vous jouez \xE0 pierre-feuille-ciseaux qui montera sur les \xE9paules de qui.
     Morgan gagne trois fois d\u2019affil\xE9e, mais vous n\u2019aviez pas d\xE9fini
@@ -27,13 +24,16 @@ MonoBehaviour:
   - "L\u2019op\xE9ration est p\xE9rilleuse, mais Esthela r\xE9ussit \xE0 attraper
     une branche contre laquelle la caisse reposait pour l\u2019agiter. Elle perd
     son appui et tombe lourdement sur la terre. Trop facile. Vous descendez comme
-    vous pouvez. "
+    vous pouvez."
   - "Vous trouvez facilement \xE0 l\u2019int\xE9rieur un marteau, des clous, et des
     pinceaux. "
-  - " Avec l\u2019aide de la peinture du cabanon, vous r\xE9ussissez \xE0 faire une
-    petite pancarte \u201CPont \xE0 L\xE9zards\u201D que vous clouer \xE0 un arbre
-    juste \xE0 cot\xE9 de votre planche. Tadaaaa."
-  listLogsCantMakeAction: []
+  - "Avec l\u2019aide de la peinture du cabanon, vous r\xE9ussissez \xE0 faire une
+    petite pancarte \u201CPont \xE0 L\xE9zards\u201D que vous clouez \xE0 un arbre
+    juste \xE0 cot\xE9 de votre planche. Tadaaaa !"
+  listLogsCantMakeAction:
+  - "Tu essaies de te faire la courte \xE9chelle \xE0 toi-m\xEAme, et malgr\xE9 l\u2019\xE9tendu
+    consid\xE9rable de ton inventivit\xE9, les lois de la physique te rattrape. Tu
+    t\u2019\xE9crase, soulevant de la poussi\xE8re et effrayant tes amis reptiles."
   listCurrentLogs: []
   currentLogs: 
   logsCursor: 0
