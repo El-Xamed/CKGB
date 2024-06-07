@@ -831,6 +831,7 @@ public class C_Challenge : MonoBehaviour
     }
 
     #region Preview
+    /*A SUPP
     //Pour afficher toutes les preview du challenge.
     public void CheckPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
@@ -869,7 +870,7 @@ public class C_Challenge : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     void TextPreview(SO_ActionClass thisActionClass)
     {
@@ -1010,7 +1011,7 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
-    void MovementPreview(SO_ActionClass thisActionClass)
+    public void MovementPreview(SO_ActionClass thisActionClass)
     {
         Debug.Log("Launch preview movement");
         Image thisPreview = new GameObject().AddComponent<Image>();

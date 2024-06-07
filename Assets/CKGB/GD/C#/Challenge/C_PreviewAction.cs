@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class C_PreviewAction : MonoBehaviour
 {
@@ -16,6 +18,84 @@ public class C_PreviewAction : MonoBehaviour
     {
         Debug.Log("ShowPreview");
 
+        //Desactive par default les preview de l'actor selectionne.
+        thisActor.GetUiStats().ResetUiPreview();
+
+        //Supprime tout les texte dans les logs de preview.
+        //FAIRE LE DEV !!!
+
+        //Création d'une liste d'info qui va etre affiché dans les logs de preview.
+        List<string> listTextPreview = new List<string>();
+
+        //Check si dans l'action il y a des info. Si oui, avoir un sytem qui prépar le texte.
+        foreach (Interaction thisInteraction in thisActionClass.listInteraction)
+        {
+            //Check si il y a des info pour "self".
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            {
+                //Check dans toute la liste.
+                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+                {
+                    //Check si c'est des stats ou un Mouvement.
+                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats) //Check si il a des info de stats.
+                    {
+                        //Check si c'est pour le calm.
+                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm)
+                        {
+                            //Inscrit la preview de calm.
+                            onPreview += thisActor.GetUiStats().UiPreviewCalm;
+                            Debug.Log("Add UiPreviewCalm");
+
+                            //Ajoute du texte dans la liste de "listTextPreview".
+                            listTextPreview.Add(thisActor.name + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats)) + "de calme.");
+                        }
+
+                        //Check si c'est pour l'energie.
+                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy)
+                        {
+                            //Inscrit la preview de calm.
+                            onPreview += thisActor.GetUiStats().UiPreviewEnergy;
+                            Debug.Log("Add UiPreviewEnergy");
+                        }
+                    }
+                    else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement) //Check si il a des info de movement.
+                    {
+                        onPreview += GetComponent<C_Challenge>().MovementPreview;
+                    }
+                }
+            }
+
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+            {
+                //Cherche les autre perso à proximité.
+
+            }
+        }
+
+        //Pour toutes les variables stocké dans "listTextPreview", l'afficher dans les logs.
+        foreach (string thisTextPreview in listTextPreview)
+        {
+            //Créer un nouveau texte dans les logs de preview.
+
+            //Check si les info dépasse pas
+                //Si les info dépasse, ouvrir la feuille qui pourra etre fermé pour un input (BESOIN DE LE SETUP DANS L'INTERFACE !).
+        }
+
+
+
+
+        //Check si il y a des info pour "other".
+        //Check si il a des info de stats.
+        //Check si il a des info de movement.
+
+        //Appelle l'action event pour tous afficher.
+
+
+
+
+
+
+        /* A SUPP
         //Pour "Self". FAIRE EN SORTE QUE CA LE FAIT POUR LES 2.
         SetupPreview(Interaction.ETypeTarget.Self, thisActor);
 
@@ -40,6 +120,22 @@ public class C_PreviewAction : MonoBehaviour
                     GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
                 }
             }
+        }*/
+    }
+
+    string GetIfPriceOrGain(int value)
+    {
+        string newString = "";
+
+        if (value < 0)
+        {
+            newString += " va perdre ";
         }
+        else if (value > 0)
+        {
+            newString += " va ganger ";
+        }
+
+        return newString += value;
     }
 }

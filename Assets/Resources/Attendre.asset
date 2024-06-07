@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Attendre
   m_EditorClassIdentifier: 
   buttonText: Attendre
-  LogsMakeAction: Tu attends.
+  LogsMakeAction: 
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - Tu attends.
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

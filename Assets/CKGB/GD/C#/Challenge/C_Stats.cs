@@ -189,6 +189,10 @@ public class C_Stats : MonoBehaviour
     {
         Debug.Log("Reset");
 
+        //Désinscrit les fonction.
+        C_PreviewAction.onPreview -= UiPreviewCalm;
+        C_PreviewAction.onPreview -= UiPreviewEnergy;
+
         //Par default desactive les anim de jauge.
         animatorUiCalmPreview.SetBool("isPreview", false);
 
@@ -201,7 +205,8 @@ public class C_Stats : MonoBehaviour
         }
     }
 
-    //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
+    //A SUPP.
+    /*Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
     public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
         Debug.Log("CheckUiPreview");
@@ -242,7 +247,7 @@ public class C_Stats : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void UiPreviewCalm(SO_ActionClass thisActionClass)
     {
