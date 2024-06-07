@@ -16,36 +16,24 @@ MonoBehaviour:
   LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Tu sens une boule de tissu au bout de ton pied. Tu l\u2019as p\xEAche d\u2019un
-    mouvement de jambe, te penche et l\u2019attrape dans tes bras. C\u2019est M\xE9m\xE9-L\xE9on
+  - "Tu sens une boule de tissu au bout de ton pied. Tu la p\xEAche d\u2019un mouvement
+    de jambe, te penche et l\u2019attrape dans tes bras. C\u2019est M\xE9m\xE9-L\xE9on
     ! La peluche de cam\xE9l\xE9on que tu as depuis que tu es tout petit."
-  - "Qu\u2019est-ce que tu ferai sans elle ? La serrant contre ta poitrine, tu sens
+  - "Qu\u2019est-ce que tu ferais sans elle ? La serrant contre ta poitrine, tu sens
     une vague d\u2019apaisement te parcourir."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 1
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0
