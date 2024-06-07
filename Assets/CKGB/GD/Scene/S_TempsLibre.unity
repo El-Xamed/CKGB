@@ -1657,7 +1657,6 @@ GameObject:
   - component: {fileID: 188115334}
   - component: {fileID: 188115336}
   - component: {fileID: 188115335}
-  - component: {fileID: 188115337}
   m_Layer: 5
   m_Name: FicheReduite
   m_TagString: Untagged
@@ -1742,27 +1741,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188115333}
   m_CullTransparentMesh: 1
---- !u!95 &188115337
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188115333}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1464febfc2da87ed0aace7abc1c64fdf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &210445599
 GameObject:
   m_ObjectHideFlags: 0
