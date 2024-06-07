@@ -187,14 +187,8 @@ public class C_Stats : MonoBehaviour
     #region Preview
     public void ResetUiPreview()
     {
-        //Stop toutes les preview. AJOUTER LE DEV POUR L'ENERGIE.
-        animatorUiCalmPreview.SetBool("isPreview", false);
-    }
+        Debug.Log("Reset");
 
-    //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
-    public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
-    {
-        Debug.Log("CheckUiPreview");
         //Par default desactive les anim de jauge.
         animatorUiCalmPreview.SetBool("isPreview", false);
 
@@ -205,6 +199,16 @@ public class C_Stats : MonoBehaviour
             thisEnergy.GetComponent<Animator>().SetBool("isPreview", false);
             Debug.Log(thisEnergy.name + " is desactivate");
         }
+    }
+
+    //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
+    public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
+    {
+        Debug.Log("CheckUiPreview");
+
+        //Désinscrit les fonction.
+        C_PreviewAction.onPreview -= UiPreviewCalm;
+        C_PreviewAction.onPreview -= UiPreviewEnergy;
 
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
@@ -226,11 +230,6 @@ public class C_Stats : MonoBehaviour
                             C_PreviewAction.onPreview += UiPreviewCalm;
                             Debug.Log("Add UiPreviewCalm");
                         }
-                        else
-                        {
-                            C_PreviewAction.onPreview -= UiPreviewCalm;
-                            Debug.Log("Remove UiPreviewCalm");
-                        }
 
                         //Check si c'est pour l'energie.
                         if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy)
@@ -238,11 +237,6 @@ public class C_Stats : MonoBehaviour
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewEnergy;
                             Debug.Log("Add UiPreviewEnergy");
-                        }
-                        else
-                        {
-                            C_PreviewAction.onPreview -= UiPreviewEnergy;
-                            Debug.Log("Remove UiPreviewEnergy");
                         }
                     }
                 }

@@ -200,7 +200,7 @@ public class C_Challenge : MonoBehaviour
         }
 
         //Set les element en plus.
-        SpawnElement();
+        //SpawnElement();
 
         //Desactive par default les logs timeleine.
         uiLogsTimeline.SetActive(false);
@@ -1012,6 +1012,7 @@ public class C_Challenge : MonoBehaviour
 
     void MovementPreview(SO_ActionClass thisActionClass)
     {
+        Debug.Log("Launch preview movement");
         Image thisPreview = new GameObject().AddComponent<Image>();
 
         //Création du pion preview.

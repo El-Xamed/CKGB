@@ -15,22 +15,20 @@ public class C_PreviewAction : MonoBehaviour
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
         Debug.Log("ShowPreview");
-        //Check si la liste n'est pas vide
-        if (thisActionClass.listInteraction.Count != 0)
-        {
-            //Faut qu'il envoie l'actionClass au script qui vont gerer la preview et ensuite c'est eux qui décide de s'inscrir ou non.
 
-            //Pour "Self".
-            SetupPreview(Interaction.ETypeTarget.Self, thisActor);
+        //Pour "Self". FAIRE EN SORTE QUE CA LE FAIT POUR LES 2.
+        SetupPreview(Interaction.ETypeTarget.Self, thisActor);
 
-            //Pour "Other".
-            //SetupPreview(Interaction.ETypeTarget.Other, thisActor);
-        }
+        //Pour "Other".
+        //SetupPreview(Interaction.ETypeTarget.Other, thisActor);
 
         onPreview?.Invoke(thisActionClass);
 
         void SetupPreview(Interaction.ETypeTarget target, C_Actor thisActor)
         {
+            //Reset les preview des stats.
+            thisActor.GetUiStats().ResetUiPreview();
+
             foreach (Interaction thisInteraction in thisActionClass.listInteraction)
             {
                 //Check si c'est égale à "actorTarget".
