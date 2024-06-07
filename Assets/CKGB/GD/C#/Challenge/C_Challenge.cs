@@ -667,17 +667,29 @@ public class C_Challenge : MonoBehaviour
     //Fonction qui est stocké dans les button action donné par l'interface + permet de passer à l'acteur suivant ou alors de lancer la phase de résolution.
     public void ConfirmAction(SO_ActionClass thisAction)
     {
-        //FeedBack
-        currentActor.PlayAnimSelectAction();
+        #region Desactive toutes les preview
+        //Desactive la preview du plateau.
+        //Retire toute la preview.
+        if (plateauPreview.Count > 0)
+        {
+            foreach (var item in plateauPreview)
+            {
+                Debug.Log(item.name + " is destroy");
+                Destroy(item);
+            }
+        }
 
         //Desactive la preview de l'actor.
         currentActor.GetUiStats().ResetUiPreview();
+
+        #endregion
 
         if (AudioManager.instance)
         {
             AudioManager.instance.Play("SfxSonDeConfirmation");
         }
 
+        #region Création d'une nouvelle class de reso
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
         ActorResolution actorResolution = new ActorResolution();
 
@@ -687,9 +699,15 @@ public class C_Challenge : MonoBehaviour
 
         //Ajoute à la liste.
         listRes.Add(actorResolution);
+        #endregion
+
+        #region Feedback
+        //FeedBack sur l'actor.
+        currentActor.PlayAnimSelectAction();
 
         //Ferme l'interface.
         myInterface.GoBack();
+        #endregion
 
         //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
         if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
@@ -839,6 +857,13 @@ public class C_Challenge : MonoBehaviour
                     }
                     else
                     {
+                        //Retire toute la preview.
+                        foreach (var item in plateauPreview)
+                        {
+                            Debug.Log(item.name + " is destroy");
+                            Destroy(item);
+                        }
+
                         C_PreviewAction.onPreview -= MovementPreview;
                     }
                 }

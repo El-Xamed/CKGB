@@ -39,7 +39,7 @@ public class C_PreviewAction : MonoBehaviour
                     //Envoie l'action au script de stats.
                     thisActor.GetUiStats().CheckUiPreview(thisActionClass, target);
 
-                    //GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
+                    GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
                 }
             }
         }
