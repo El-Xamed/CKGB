@@ -14,6 +14,7 @@ public class C_PreviewAction : MonoBehaviour
     //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
+        Debug.Log("ShowPreview");
         //Check si la liste n'est pas vide
         if (thisActionClass.listInteraction.Count != 0)
         {
@@ -38,7 +39,7 @@ public class C_PreviewAction : MonoBehaviour
                     //Envoie l'action au script de stats.
                     thisActor.GetUiStats().CheckUiPreview(thisActionClass, target);
 
-                    GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
+                    //GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
                 }
             }
         }

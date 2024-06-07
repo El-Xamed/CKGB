@@ -194,6 +194,18 @@ public class C_Stats : MonoBehaviour
     //Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
     public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
     {
+        Debug.Log("CheckUiPreview");
+        //Par default desactive les anim de jauge.
+        animatorUiCalmPreview.SetBool("isPreview", false);
+
+        //Par default desactive les anim d'energie.
+        foreach (var thisEnergy in listEnergie)
+        {
+            //Desactive la preview.
+            thisEnergy.GetComponent<Animator>().SetBool("isPreview", false);
+            Debug.Log(thisEnergy.name + " is desactivate");
+        }
+
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
             //Check si c'est égale à "actorTarget".
@@ -212,10 +224,12 @@ public class C_Stats : MonoBehaviour
                         {
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewCalm;
+                            Debug.Log("Add UiPreviewCalm");
                         }
                         else
                         {
                             C_PreviewAction.onPreview -= UiPreviewCalm;
+                            Debug.Log("Remove UiPreviewCalm");
                         }
 
                         //Check si c'est pour l'energie.
@@ -223,10 +237,12 @@ public class C_Stats : MonoBehaviour
                         {
                             //Inscrit la preview de calm.
                             C_PreviewAction.onPreview += UiPreviewEnergy;
+                            Debug.Log("Add UiPreviewEnergy");
                         }
                         else
                         {
                             C_PreviewAction.onPreview -= UiPreviewEnergy;
+                            Debug.Log("Remove UiPreviewEnergy");
                         }
                     }
                 }
@@ -255,6 +271,7 @@ public class C_Stats : MonoBehaviour
             {
                 //Active la preview.
                 listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);
+                Debug.Log(listEnergie[i].name + " is activate");
             }
         }
     }
