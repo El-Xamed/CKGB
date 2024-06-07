@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: SO_action2step2lvl3
   m_EditorClassIdentifier: 
   buttonText: Hurler
-  LogsMakeAction: "Vous savez quoi ? Que le monde aille se faire voir ! Toute cette
-    histoire \xE9tait sur le point de se finir. Pourquoi est-ce que tout doit devenir
-    aussi compliqu\xE9 au dernier moment ?!"
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Tu t\u2019avance au bord de la grande terrasse sur laquelle vous \xEAtre, "
-  - "saisis la barri\xE8res entre tes doigts crisp\xE9s, "
-  - "contemple le ciel grand ouvert, et tu hurle jusqu\u2019\xE0 vider tes poumons."
+  - "Vous savez quoi ? Que le monde aille se faire voir ! Toute cette histoire \xE9tait
+    sur le point de se finir. Pourquoi est-ce que tout doit devenir aussi compliqu\xE9
+    au dernier moment ?!"
+  - "Tu t\u2019avances au bord de la grande terrasse sur laquelle vous \xEAtes,"
+  - "saisis la barri\xE8re entre tes doigts crisp\xE9s, "
+  - 'contemple le ciel grand ouvert... '
+  - "et hurles jusqu\u2019\xE0 vider tes poumons."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

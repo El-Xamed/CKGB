@@ -13,26 +13,29 @@ MonoBehaviour:
   m_Name: SO_action3step3lvl3
   m_EditorClassIdentifier: 
   buttonText: Utiliser la violence
-  LogsMakeAction: "Cette pens\xE9e est revenue si souvent pendant ce trajet. Mais
-    a chaque fois, tu n\u2019as jamais vraiment compris comment elle aurait put \xEAtre
-    utile."
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Tu as commenc\xE9 \xE0 \xEAtre intimemement convaincu.e que on ne peut rien
-    r\xE9soudre avec la violence. Que prendre soin de ce qui est autour de nous est
-    la seule chose qui est r\xE9ellement utile. "
+  - "Cette pens\xE9e est revenue si souvent pendant ce trajet. Mais \xE0 chaque fois,
+    tu n\u2019as pas vraiment compris comment elle aurait put \xEAtre utile."
+  - "Tu as commenc\xE9 \xE0 \xEAtre intimemement convaincu.e qu'on ne peut rien r\xE9soudre
+    par la violence. Que prendre soin de ce qui est autour de toi est la seule chose
+    qui soit r\xE9ellement utile."
   - Mais...
-  - "Ne devons nous pas lutter contre la gravit\xE9 pour rester debout ? "
-  - "Ne devons nous pas briser le silence pour \xEAtre entendu ? "
-  - "Dans cet instant, tu sens une nouvelle r\xE9solution s\u2019emparer de toi. "
-  - "Et si\u2026 Ce n\u2019\xE9tait pas incomptatible ? "
+  - "Ne devons-nous pas lutter contre la gravit\xE9 pour rester debout ? "
+  - "Ne devons-nous pas briser le silence pour \xEAtre entendu ? "
+  - "En cet instant, tu sens une nouvelle r\xE9solution s\u2019emparer de toi. "
+  - "Et si\u2026 ce n\u2019\xE9tait pas incomptatible ? "
   - "Apr\xE8s tout\u2026"
-  - "Si vivre n\u2019\xE9tait pas un acte violent par nature, pourquoi utilisons
-    nous le verbe \u201Cbattre\u201D pour d\xE9signer le mouvement du coeur ?"
-  - "Tu perds toute la honte qui pesait sur tes \xE9paules \xE0 cause de toute les
-    choses que tu as put briser, casser, ou blesser dans ta vie."
-  - "Tout le monde autour de toi \xE0 l\u2019air inspir\xE9 par ce soudain changement
+  - "Si vivre n\u2019\xE9tait pas un acte violent par nature, pourquoi utilisons-nous
+    le verbe \u201Cbattre\u201D pour d\xE9signer le mouvement du coeur ?"
+  - "Tu perds toute la honte qui pesait sur tes \xE9paules \xE0 cause de toutes les
+    choses que tu as pu briser, casser, ou blesser dans ta vie."
+  - "Tout le monde autour de toi a l\u2019air inspir\xE9 par ce soudain changement
     d\u2019aura."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

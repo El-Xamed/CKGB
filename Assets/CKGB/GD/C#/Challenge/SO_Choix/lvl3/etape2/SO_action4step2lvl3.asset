@@ -14,20 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: "Demander \xE0 Morgan s\u2019il a besoin de quelque chose"
   LogsMakeAction: 
-  logsCantMakeAction: "Je vais pas te mentir, je suis plutot CERTAIN.E que Morgan
-    a besoin d\u2019un truc ouai. Il a m\xEAme pas l\u2019air de vraiment entendre
-    tout ce qui se passe \xE0 l\u2019exterieur de sa t\xEAte. Il faudrait quelqu\u2019un
-    qui soit vraiment TRES DOU\xC9E  pour se faire remarquer pour r\xE9ussir \xE0
-    le faire r\xE9pondre."
+  logsCantMakeAction: 
   listLogsAction:
-  - "\u201CHey, est-ce qu\u2019il y a quelque chose qu\u2019on put faire pour t\u2019aider
+  - "Je vais pas te mentir, je suis plut\xF4t CERTAIN.E que Morgan a besoin d\u2019un
+    truc ouais."
+  - "Il a m\xEAme pas l\u2019air de vraiment entendre tout ce qu'il se passe \xE0
+    l\u2019ext\xE9rieur de sa t\xEAte, et il peut pas g\xE9rer \xE7a tout seul."
+  - "Il faudrait une personne qui soit vraiment TR\xC8S DOU\xC9E pour se faire remarquer
+    pour r\xE9ussir \xE0 le faire r\xE9pondre."
+  - "\u201CHey, est-ce qu\u2019il y a quelque chose qu\u2019on peut faire pour t\u2019aider
     ?\u201D "
-  - "Tu r\xE9fl\xE9chis un instant. \u201CEst-ce qu\u2019on peut aller marche un
+  - "Tu r\xE9fl\xE9chis un instant. \u201CEst-ce qu\u2019on peut aller marcher un
     peu \xE0 l\u2019ombre ?\u201D"
   - "Esth\xE9la hoche la t\xEAte avec entrain."
-  - "\u201CSuis moi.\u201D"
+  - "\u201CSuis-moi.\u201D"
   - "Vous avancez de quelques pas pour vous mettre l\xE0 o\xF9 le mur grandit jusqu'\xE0
     tout engloutir dans son ombre."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

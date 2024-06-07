@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_action1step2lvl3
   m_EditorClassIdentifier: 
-  buttonText: Calin
-  LogsMakeAction: "Tu cherche quelqu\u2019un autour de toi pour mettre ta t\xEAte
-    contre leur \xE9paule. Tu veux faire savoir a tes compagnons que tu es l\xE0,
-    avec eux."
+  buttonText: "C\xE2lin"
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "Et que tu ne les laisse pas tomber. Et essuyer tes larmes sur leur v\xEAtement,
+  - "Tu cherches quelqu\u2019un autour de toi pour mettre ta t\xEAte contre leur
+    \xE9paule. Tu veux faire savoir \xE0 tes compagnons que tu es l\xE0, avec eux."
+  - "Et que tu ne les laisses pas tomber. Et essuyer tes larmes sur leurs v\xEAtements,
     un peu."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

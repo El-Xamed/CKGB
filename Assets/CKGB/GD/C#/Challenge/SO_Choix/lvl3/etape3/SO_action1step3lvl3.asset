@@ -13,51 +13,25 @@ MonoBehaviour:
   m_Name: SO_action1step3lvl3
   m_EditorClassIdentifier: 
   buttonText: Se rouler par terre
-  LogsMakeAction: "Vous savez tous pertinement qu\u2019il n\u2019y a aucune chance
-    que cela fasse avancer la situation d\u2019une quelconque mani\xE8re, mais tu
-    en avait vraiment tr\xE8s envie."
+  LogsMakeAction: 
   logsCantMakeAction: 
-  listLogsAction: []
+  listLogsAction:
+  - "Tout le monde sait pertinement qu\u2019il n\u2019y a aucune chance que cela
+    fasse avancer la situation d\u2019une quelconque mani\xE8re, mais tu en avais
+    vraiment tr\xE8s envie."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  - whatTarget: 1
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 3
-    range: 5
-    listTargetStats:
-    - whatStatsTarget: 0
-      whatCost: 0
-      whatStats: 1
-      whatMove: 0
-      isTp: 0
-      actorSwitch: {fileID: 0}
-      accessoriesSwitch: {fileID: 0}
-      value: 2
-  newListInteractions:
   - whatTarget: 0
     selectTarget: 0
     whatTypeTarget: 0

@@ -13,27 +13,31 @@ MonoBehaviour:
   m_Name: SO_action4step3lvl3
   m_EditorClassIdentifier: 
   buttonText: Rassurer Morgan
-  LogsMakeAction: "\u201CPrends tout le temps dont tu as besoin. On est avec toi
-    quoi qu\u2019il arrive pour te soutenir. "
-  logsCantMakeAction: "Tu as peur de juste empirer les choses si tu essaye. Quelqu\u2019un
-    d\u2019experiment\xE9 et de confiant aurait s\xFBrement bien plus de chance de
-    r\xE9ussir. "
+  LogsMakeAction: 
+  logsCantMakeAction: 
   listLogsAction:
-  - "Est-ce que ca t\u2019aide que je te parle ? Est-ce tu pr\xE9f\xE8re que je me
-    taise ?\u201D"
-  - "Tu fais oui de la t\xEAte \xE0 la premi\xE8re question, et non de la t\xEAte
-    \xE0 la deuxi\xE8me."
+  - "\u201CPrends tout le temps dont tu as besoin. On est avec toi quoi qu\u2019il
+    arrive pour te soutenir.\""
+  - "\"Est-ce que ca t\u2019aide que je te parle ? Est-ce que tu pr\xE9f\xE8res que
+    je me taise ?\u201D"
+  - "Tu fais oui de la t\xEAte \xE0 la premi\xE8re question, et non \xE0 la deuxi\xE8me."
   - "\u201DD\u2019accord. Bien. Je veux que tu saches que je sais que tu vas surmonter
-    \xE7a, d\u2019accord ?"
-  - "Je suis super fiere de toi et je pense que tu as aucune honte \xE0 avoir. Aujourd\u2019hui,
-    je t\u2019ai vu agir de nombreuses fois d\u2019une mani\xE8re qui m\u2019a rendu
-    tr\xE8s fier."
-  - "u es une jeune personne qui fait profond\xE9ment attention aux bien \xEAtre
-    de son entourage."
-  - "M\xEAme si on rebrousse chemin maintenant, tu aura au moins pass\xE9 ta matin\xE9e
-    \xE0 aider les gens autour de toi sur le chemin. Et rien n\u2019est plus important. "
-  - "Maintenant, on va juste attendre que ton corps se calme, et on va prendre soin
-    de toi, d\u2019accord ?\u201D"
+    \xE7a, d\u2019accord ?\""
+  - "\"Je suis super fi\xE8re de toi et je pense que tu as aucune honte \xE0 avoir.
+    Aujourd\u2019hui, je t\u2019ai vu agir de nombreuses fois d\u2019une mani\xE8re
+    qui m\u2019a fait chaud au coeur.\""
+  - "\"Tu es un jeune homme qui fait profond\xE9ment attention au bien-\xEAtre de
+    son entourage.\""
+  - "\"M\xEAme si on rebrousse chemin maintenant, tu auras au moins pass\xE9 ta matin\xE9e
+    \xE0 aider les gens autour de toi. Et rien n\u2019est plus important.\""
+  - "\"Maintenant, on va juste attendre que ton corps se calme, et on va prendre
+    soin de toi, d\u2019accord ?\u201D"
+  listLogsCantMakeAction:
+  - "Tu as peur de juste empirer les choses si tu essaies toi-m\xEAme. Quelqu\u2019un
+    d\u2019experiment\xE9 et de confiant aurait s\xFBrement bien plus de chances
+    de r\xE9ussir."
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 1
@@ -41,6 +45,6 @@ MonoBehaviour:
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 1
-    whatActor: {fileID: 3566547770443611642, guid: 84caaca737f388f48ba0942ae476c5ef, type: 3}
+    whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction: []
