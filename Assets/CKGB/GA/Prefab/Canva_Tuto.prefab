@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2797796859113639644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -800,8 +800,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Attention, un personnage T\xE9tanis\xE9 ne peut plus prendre d'action
-    ! Et en plus..."
+  m_text: "Attention, un personnage T\xE9tanis\xE9 ne peut plus faire d'action !
+    Et en plus..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -4362,8 +4362,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Si tous tes personnages sont T\xE9tanis\xE9s, tu sera renvoy\xE9.e au
-    d\xE9but du challenge, alors garde un oeil dessus !"
+  m_text: "Si tous tes personnages sont T\xE9tanis\xE9s, tu devra recommencer le
+    challenge depuis le d\xE9but, alors garde un oeil dessus !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -4426,7 +4426,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -23.901245, y: -10.56106, z: -196.2313, w: -48.358364}
+  m_margin: {x: -31.507652, y: -10.56106, z: -202.56992, w: -119.35127}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
