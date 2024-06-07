@@ -16,7 +16,7 @@ using System;
 
 public class C_TempsLibre : MonoBehaviour
 {
-
+    #region Personnages
     [Header("Personnages")]
     [SerializeField] public GameObject SpawnParent;
     [SerializeField] List<Transform> listCharactersPositions;
@@ -34,7 +34,9 @@ public class C_TempsLibre : MonoBehaviour
 
     [Header("Character Tree")]
     [SerializeField] public GameObject TreeParent;
+    #endregion
 
+    #region Action
     [Header("Actions")]
     [SerializeField] GameObject ActionsParents;
     [SerializeField] public List<GameObject> actions = new List<GameObject>();
@@ -53,8 +55,9 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] bool canTalk=true;
     [SerializeField] List<string> allTalk = new List<string>();
     [SerializeField]int nbActort = 0;
+    #endregion
 
-
+    #region Histoire
     [Header("Histoires")]
 
     [SerializeField] public GameObject NarrateurParent;
@@ -67,8 +70,9 @@ public class C_TempsLibre : MonoBehaviour
 
     [SerializeField] bool TMhasStarted = false;
     [SerializeField] public bool canContinue = false;
+    #endregion
 
-
+    #region Else
     [Header("Else")]
     [SerializeField] public SO_TempsMort TM;
     [SerializeField] public GameObject background;
@@ -82,10 +86,13 @@ public class C_TempsLibre : MonoBehaviour
     [SerializeField] public Animator morganxesthelaAnimator;
     [SerializeField] public Animator morganxnimuAnimator;
     [SerializeField] public Animator nimuxesthelaAnimator;
+    #endregion
 
+    #region Eventsystem
     [Header("Eventsystem and Selected Gameobjects")]
     [SerializeField] public EventSystem Es;
     [SerializeField] GameObject currentButton;
+    #endregion
 
     #region variables de retour en arrière
     [SerializeField] List<GameObject> LastAction = new List<GameObject>();
@@ -93,6 +100,7 @@ public class C_TempsLibre : MonoBehaviour
     public int actiontoaddID = -1;
     public int charactertoaddID = -1;
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -144,11 +152,6 @@ public class C_TempsLibre : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void HideUI()
     {
         //cache les parents d'ui principaux
@@ -161,6 +164,7 @@ public class C_TempsLibre : MonoBehaviour
     {
         SpawnParent.GetComponent<Animator>().SetTrigger("Trigger");
     }
+
     public void GoToActions()
     {
        //ouvre le menu de choix parmi les 3 actions
