@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: SO_action4step1lvl3
   m_EditorClassIdentifier: 
   buttonText: Faire une blague
-  LogsMakeAction: "Une id\xE9e ridicule agite ta poitrine. Elle se glisse de son
-    bourgeon c\xE9r\xE9brale pour venir \xE9clore sur ta langue. Tu t\u2019\xE9puise
-    \xE0 d\xE9battre int\xE9rieurement. Est-ce que tu devrai vraiment dire \xE7a
-    ? "
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
+  - "Une id\xE9e ridicule agite ta poitrine. Elle se glisse de son bourgeon c\xE9r\xE9bral
+    pour venir \xE9clore sur ta langue. Tu t\u2019\xE9puises \xE0 d\xE9battre int\xE9rieurement.
+    Est-ce que tu devrais vraiment dire \xE7a ?"
   - "Finalement, tu c\xE8des."
-  - "\u201CHey, vous trouvez pas que faire un rencard en HAUT des marches\u2026 "
-  - "C\u2019est une id\xE9e super PERCH\xC9E ????\u201D"
-  - "Les autres n\u2019ont pas l\u2019air de trouver cela aussi amusant que toi. "
+  - "\u201CHey, vous trouvez pas que faire un rencard en HAUT des Marches\u2026\""
+  - "\"C\u2019est une id\xE9e super PERCH\xC9E ????\u201D"
+  - "Les autres n\u2019ont pas l\u2019air de trouver cela aussi amusant que toi."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: SO_action3step1lvl3
   m_EditorClassIdentifier: 
   buttonText: Ralentir sa respiration
-  LogsMakeAction: "Tu ferme tes yeux, laissant le bruit de ton coeur battant s\u2019accaparer
-    ton attention."
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
+  - "Tu fermes les yeux, laissant le bruit de ton coeur battant s\u2019accaparer
+    ton attention."
   - "Inspire : 1\u2026 2\u2026 3\u2026 4\u2026 5\u2026 "
   - "Expire : 1\u2026 2\u2026 3\u2026 4\u2026 5\u2026 "
-  - Allez, encore une fois.
+  - "On continue comme \xE7a."
+  - ...
+  - " \xC7a va un peu mieux !"
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0

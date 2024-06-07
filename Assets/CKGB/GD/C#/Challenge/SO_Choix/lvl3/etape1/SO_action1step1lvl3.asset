@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: SO_action1step1lvl3
   m_EditorClassIdentifier: 
   buttonText: Boire de l'eau
-  LogsMakeAction: "Tu t\u2019approche de la fontaine la plus proche pour t\u2019abreuver.
-    Son bassin scintillant te renvoie brievement ta propre image. "
+  LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
-  - "L\u2019eau fraiche coule sur ton menton. Tu te sens un peu rafraichi.e."
+  - "Tu t\u2019approches de la fontaine la plus proche pour t\u2019abreuver. Son
+    bassin scintillant te renvoie brievement ta propre image."
+  - "L\u2019eau fra\xEEche coule sur ton menton. Tu te sens un peu rafraichi.e."
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
