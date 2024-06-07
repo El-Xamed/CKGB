@@ -2,6 +2,7 @@ using Febucci.UI;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static C_Challenge;
@@ -15,6 +16,9 @@ public class C_Interface : MonoBehaviour
 
     //Récupération du script.
     C_Challenge myChallenge;
+
+    //Le "new" permet de ne pas avoir une valeur null.
+    UnityEvent currentEvent = new UnityEvent();
 
     #region Interface data
     bool onLogs = false;
@@ -219,12 +223,19 @@ public class C_Interface : MonoBehaviour
     //Pour accéder au actions.
     public void GoAction()
     {
+        //Spawn actions
+        SpawnActions(GetListActorAction());
+
+        //Setup quelle fonction va etre lancé.
+        //Retire toutes les fonctions stocké dans l'event.
+        currentEvent.RemoveAllListeners();
+
+        //Setup automatiquement l'event de transition.
+        currentEvent.AddListener(ShowButton);
+
         //Animation.
         targetbutton = buttonActionsBackground;
         GetComponent<Animator>().SetTrigger("Open");
-
-        //Spawn actions
-        SpawnActions(GetListActorAction());
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Actions;
@@ -233,28 +244,33 @@ public class C_Interface : MonoBehaviour
     //Pour accéder au logs.
     public void GoLogs()
     {
+        //Setup quelle fonction va etre lancé.
+        //Retire toutes les fonctions stocké dans l'event.
+        currentEvent.RemoveAllListeners();
+
+        //Setup automatiquement l'event de transition.
+        currentEvent.AddListener(OpenLogs);
+
+        //Spawn actions
+        SpawnActions(GetListActorAction());
+
         //Animation interface.
         targetbutton = buttonLogsBackground;
         GetComponent<Animator>().SetTrigger("Open");
 
-        //Animation Logs.
-        myChallenge.GetuiLogs().SetTrigger("Open");
-
         //Modifie l'état de navigation.
         currentInterface = Interface.Logs;
-        onLogs = true;
-        myChallenge.GetEventSystem().SetSelectedGameObject(uiLogsTimeline.GetComponentInChildren<Scrollbar>().gameObject);
     }
 
     //Pour accéder au traits.
     public void GoTraits()
     {
+        //Spawn actions
+        SpawnActions(GetListTrait());
+
         //Animation.
         targetbutton = buttonTraitsBackground;
         GetComponent<Animator>().SetTrigger("Open");
-
-        //Spawn actions
-        SpawnActions(GetListTrait());
 
         //Modifie l'état de navigation.
         currentInterface = Interface.Traits;
@@ -289,8 +305,23 @@ public class C_Interface : MonoBehaviour
     #region Actions / Traits
 
     #region Spawn button
+    public void EndInterfaceAnimation()
+    {
+        currentEvent.Invoke();
+    }
+
+    //Affiche l'interface.
+    void OpenLogs()
+    {
+        //Animation Logs.
+        myChallenge.GetuiLogs().SetTrigger("Open");
+
+        onLogs = true;
+        myChallenge.GetEventSystem().SetSelectedGameObject(uiLogsTimeline.GetComponentInChildren<Scrollbar>().gameObject);
+    }
+
     //Affiche les boutons d'actions.
-    public void ShowButton()
+    void ShowButton()
     {
         uiAction.SetActive(true);
 
