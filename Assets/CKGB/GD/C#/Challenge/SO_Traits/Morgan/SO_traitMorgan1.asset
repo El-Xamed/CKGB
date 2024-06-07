@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: SO_traitMorgan1
   m_EditorClassIdentifier: 
-  buttonText: Overdose de CoolAttitude
-  LogsMakeAction: "Morgane poss\xE8de tellement de cool attitude qu\u2019il en partage."
+  buttonText: Overdose de Cool-Attitude
+  LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Morgan poss\xE8de tellement de cool-attitude qu\u2019il en partage."
+  - '"Merci, Morgan !"'
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
@@ -28,31 +37,11 @@ MonoBehaviour:
     target: {fileID: 0}
     whatDirectionTarget: 0
     range: 0
-    listTargetStats:
-    - whatStatsTarget: 1
-      listStats:
-      - whatStats: 0
-        value: 1
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+    listTargetStats: []
   - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 0
     target: {fileID: 0}
     whatDirectionTarget: 1
     range: 2
-    listTargetStats:
-    - whatStatsTarget: 1
-      listStats:
-      - whatStats: 0
-        value: 1
-      move:
-        whatMove: 0
-        isTp: 0
-        nbMove: 0
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+    listTargetStats: []

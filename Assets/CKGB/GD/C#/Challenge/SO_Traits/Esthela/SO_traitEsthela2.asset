@@ -13,17 +13,26 @@ MonoBehaviour:
   m_Name: SO_traitEsthela2
   m_EditorClassIdentifier: 
   buttonText: Divaguer
-  LogsCanMakeAction: 
-  LogsCantMakeAction: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: -1
-  leftRange: 0
-  rightRange: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
+  LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Esth\xE9la d\xE9ambule, dans ses pens\xE9es. Elle r\xE9fl\xE9chit \xE0 un moyen
+    de r\xE9parer sa super chaussure lumineuse pr\xE9-Singularit\xE9 qui ne fonctionne
+    pas."
+  - ...
+  - "Sortant de ses pens\xE9es et r\xE9alisant qu'elle ne sait plus o\xF9 elle \xE9tait
+    install\xE9e au d\xE9but, la clown reprend place au hasard."
+  - '"David Goodenough..."'
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
+  logsCursor: 0
+  advancedCondition:
+    advancedCondition: 0
+    needTwoActor: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

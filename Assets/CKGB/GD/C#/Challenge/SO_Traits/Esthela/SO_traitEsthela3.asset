@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: SO_traitEsthela3
   m_EditorClassIdentifier: 
   buttonText: Jonglage
-  LogsCanMakeAction: 
-  LogsCantMakeAction: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: -1
-  leftRange: 0
-  rightRange: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
+  LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Esth\xE9la se met \xE0 jongler, mais elle \xE9ternue et ses balles lui \xE9chappent.
+    Les personnes proches d'elle accourent pour les rattraper au vol."
+  - "\"C'est rattrap\xE9 !\""
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
+  logsCursor: 0
+  advancedCondition:
+    advancedCondition: 0
+    needTwoActor: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

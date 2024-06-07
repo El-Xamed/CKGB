@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: SO_traitEsthela1
   m_EditorClassIdentifier: 
   buttonText: Danse
-  LogsCanMakeAction: 
-  LogsCantMakeAction: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: -1
-  leftRange: 0
-  rightRange: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
+  LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction:
+  - "Esth\xE9la gesticule avec une gr\xE2ce clownesque. Ses amis sont forc\xE9s de
+    faire un pas de c\xF4t\xE9 pour \xE9viter de se prendre un pied dans la bouche."
+  - "\"H\xE9, attention !\""
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
+  logsCursor: 0
+  advancedCondition:
+    advancedCondition: 0
+    needTwoActor: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []

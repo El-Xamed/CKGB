@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: SO_traitNimu2
   m_EditorClassIdentifier: 
   buttonText: "Recette de grand-m\xE8re"
-  LogsCanMakeAction: 
-  LogsCantMakeAction: 
-  coutEnergy: 0
-  coutCalm: 0
-  gainEnergy: 0
-  gainCalm: 0
-  moveRight: 0
-  moveLeft: 0
-  caseToGo: -1
-  leftRange: 0
-  rightRange: 0
-  nextMiniStep: {fileID: 0}
-  needAcc: 0
-  acc: {fileID: 0}
+  LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction:
+  - Mmmh ! Nimu vient de faire sa meilleure recette et la partage aux personnes qui
+    sont dans le besoin.
+  - '"Merci Mamie !"'
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
+  logsCursor: 0
+  advancedCondition:
+    advancedCondition: 0
+    needTwoActor: 0
+    needAcc: 0
+    whatAcc: {fileID: 0}
+    canMakeByOneActor: 0
+    whatActor: {fileID: 0}
+  nextAction: {fileID: 0}
+  listInteraction: []
