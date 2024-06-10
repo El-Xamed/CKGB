@@ -114,7 +114,7 @@ public class C_Interface : MonoBehaviour
             if (input.y < 0 && currentInterface == Interface.Tuto)
             {
                 Debug.Log("Next tuto");
-                myChallenge.GetTuto().SetTrigger("next");
+                myChallenge.NextTuto();
             }
             #endregion
 

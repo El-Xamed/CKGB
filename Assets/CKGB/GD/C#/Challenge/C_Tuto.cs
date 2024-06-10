@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class C_Tuto : MonoBehaviour
 {
-    public void LaunchTuto()
+    public void NextTuto(int tutoIndex)
     {
-        GetComponent<Animator>().SetTrigger("next");
+        GetComponent<Animator>().SetTrigger("NextTutoEtape" + tutoIndex);
     }
 
     public void EndTuto()

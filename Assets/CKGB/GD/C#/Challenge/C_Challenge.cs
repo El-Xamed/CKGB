@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +12,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SO_Challenge;
-using UnityEditor.SearchService;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -22,7 +20,6 @@ public class C_Challenge : MonoBehaviour
     #region Tuto
     [Header("Tuto")]
     [SerializeField] Animator tuto;
-    bool canMakeTuto = true;
     #endregion
 
     #region Dialogue
@@ -752,18 +749,28 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
-        //Check si c'est le premier niveau.
-        if (myChallenge.name == "SO_Tuto(Clone)" && canMakeTuto)
+        //Check si il peut update l'etape pour passer à la suivante.
+        if (canUpdate)
         {
-            Debug.Log("Lancement du tuto");
-
-            myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
-
-            //Lance l'animation.
-            GetComponentInChildren<C_Tuto>().LaunchTuto();
-            canMakeTuto = false;
-            return;
+            UpdateEtape();
+            canUpdate = false;
         }
+
+        //Check si c'est le premier niveau.
+        if (myChallenge.name == "SO_Tuto(Clone)")
+        {
+            //ETAPE 1.
+            if (currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
+            {
+                Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
+
+                myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+
+                //Lance l'animation.
+                GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+            }
+        }
+        
         //Si oui on bloque le dev en dessous.
         //Passen mode mode tuto.
         //Check si c'étais la dernière anim.
@@ -773,13 +780,6 @@ public class C_Challenge : MonoBehaviour
 
         //Efface les logs.
         uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
-        //Check si il peut update l'etape pour passer à la suivante.
-        if (canUpdate)
-        {
-            UpdateEtape();
-            canUpdate = false;
-        }
 
         UpdateUi();
 
@@ -803,9 +803,6 @@ public class C_Challenge : MonoBehaviour
         //Check si le perso est jouable
         if (!currentActor.GetIsOut())
         {
-            //Pour effacer le texte de la cata.
-            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
             //Update le contour blanc
             UpdateActorSelected();
         }
@@ -1162,7 +1159,6 @@ public class C_Challenge : MonoBehaviour
             {
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
-                PlayerTurn();
 
                 myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
                 vfxPlayerTurn.SetTrigger("PlayerTurn");
@@ -2057,9 +2053,10 @@ public class C_Challenge : MonoBehaviour
         myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
     }
 
-    public Animator GetTuto()
+    public void NextTuto()
     {
-        return tuto;
+        //Lance l'animation d'après.
+        GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
     }
 
     public C_Interface GetInterface()
