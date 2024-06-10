@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -43,12 +44,20 @@ public class C_PreviewAction : MonoBehaviour
         //Check si dans l'action il y a des info. Si oui, avoir un sytem qui prépar le texte.
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
+            //Création d'un string pour appliquer la cible.
+            string whatTarget = "";
+
             //Check si il y a des info pour "self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
             {
+                //Setup le string de la target "(Soi)". A AJOUTER DANS LE DEV.
+                whatTarget = "(Soi)";
+                
                 //Check dans toute la liste.
                 foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
+                    string previewText = "";
+
                     //Check si c'est des stats ou un Mouvement.
                     if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats) //Check si il a des info de stats.
                     {
@@ -60,10 +69,12 @@ public class C_PreviewAction : MonoBehaviour
                             Debug.Log("Add UiPreviewCalm");
 
                             //Ajoute du texte dans la liste de "listTextPreview".
-                            //Version avec le nom de l'actor.
-                            //listTextPreview.Add(thisActor.name + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats)) + " de calme.");
-                            //Version Sans le nom du perso.
-                            listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats)) + " de calme.");
+                            //Pour la premiere ligne.
+                            //listTextPreview.Add(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) + " C (Soi)");
+                            //Pour la deuxième ligne
+                            //listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats)) + " de calme.");
+
+                            previewText = " de calme.";
                         }
 
                         //Check si c'est pour l'energie.
@@ -73,39 +84,88 @@ public class C_PreviewAction : MonoBehaviour
                             onPreview += thisActor.GetUiStats().UiPreviewEnergy;
                             Debug.Log("Add UiPreviewEnergy");
 
+                            //Pour la premiere ligne.
+                            //listTextPreview.Add(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) + " C (Soi)");
                             //Ajoute du texte dans la liste de "listTextPreview".
-                            listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats)) + " d'energie.");
+                            //listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats)) + " d'energie.");
+
+                            previewText = " d'énergie.";
                         }
+
+                        //Ajoute le premier texte.
+                        listTextPreview.Add(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) + " C (Soi)");
+                        //Ajoute le deuxième texte.
+                        listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats)) + previewText);
                     }
                     else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement) //Check si il a des info de movement.
                     {
                         //onPreview += GetComponent<C_Challenge>().MovementPreview;
+
+                        //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
+                        switch (thisTargetStats.whatMove)
+                        {
+                            case TargetStats.ETypeMove.Right:
+                                //Ajout la bonne flèche.
+                                // + le nombre de déplacement.
+                                // + L'icone de la case.
+                                listTextPreview.Add("<sprite index=[index] tint=9>" + " " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " " + "<sprite index=[index] tint=12>" + " (Soi)");
+                                listTextPreview.Add("L'utilisateur.ice se déplace de " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " sur la droite.");
+                                break;
+                            case TargetStats.ETypeMove.Left:
+                                // + L'icone de la case.
+                                listTextPreview.Add("<sprite index=[index] tint=8>" + " " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " " + "<sprite index=[index] tint=12>" + " (Soi)");
+                                listTextPreview.Add("L'utilisateur.ice se déplace de " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " sur la gauche.");
+                                break;
+                            case TargetStats.ETypeMove.OnTargetCase:
+                                
+                                break;
+                            case TargetStats.ETypeMove.SwitchWithActor:
+                                
+                                break;
+                            case TargetStats.ETypeMove.SwitchWithAcc:
+                                
+                                break;
+                        }
+
+                        //Ajoute le premier texte.
+                        listTextPreview.Add("Mouvement en construction !");
+                        //Ajoute le deuxième texte.
+                        listTextPreview.Add("Description mouvement en construction !");
                     }
                 }
             }
 
             if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
-                //Cherche les autre perso à proximité.
+                //Setup le string de la target "Other" qui sera représenté par des symboles. A AJOUTER DANS LE DEV.
 
+                //Cherche les autre perso à proximité.
             }
         }
 
         //Pour toutes les variables stocké dans "listTextPreview", l'afficher dans les logs.
-        for (int i = 0; i < listTextPreview.Count; i++)
+        for (int i = 0; i < listTextPreview.Count / 2; i++)
         {
             #region Raccourcis
             GameObject textPreview = GetComponent<C_Challenge>().GetTextPreviewPrefab();
             Transform transformPreview = GetComponent<C_Challenge>().GetTransformPreview();
+
+            string text1 = listTextPreview[i * 2];
+            string text2 = listTextPreview[1 + (i * 2)];
             #endregion
 
             //Créer un nouveau texte dans les logs de preview.
             GameObject newLogs = Instantiate(textPreview, transformPreview);
 
+            //Rename l'objet.
             newLogs.name = "Ui_Logs_Text_Custom_" + i;
 
-            newLogs.transform.GetChild(1).GetComponent<TMP_Text>().text = listTextPreview[0];
+            //Setup le text 1.
+            newLogs.transform.GetChild(0).GetComponent<TMP_Text>().text = text1;
+            //Setup le text 2.
+            newLogs.transform.GetChild(1).GetComponent<TMP_Text>().text = text2;
 
+            //Ajout à la liste de la preview.
             listLogsTextPreview.Add(newLogs);
 
             //Check si les info dépasse pas

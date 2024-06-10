@@ -201,7 +201,7 @@ public class C_Stats : MonoBehaviour
         {
             //Desactive la preview.
             thisEnergy.GetComponent<Animator>().SetBool("isPreview", false);
-            Debug.Log(thisEnergy.name + " is desactivate");
+            //Debug.Log(thisEnergy.name + " is desactivate");
         }
     }
 
@@ -255,7 +255,7 @@ public class C_Stats : MonoBehaviour
         animatorUiCalmPreview.SetBool("isPreview", true);
 
         //Caclul pour la preview du calm actuel + de l'action.
-        calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats), myActor.GetMaxStress());
+        calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats), myActor.GetMaxStress());
     }
 
     //PAS FINI ! + BUG INCONNUE, SA JOUE L'ANIMATION MAIS RIEN SE PASSE.
@@ -263,10 +263,10 @@ public class C_Stats : MonoBehaviour
     {
         //Caclul pour la preview de l'energy actuel + de l'action. 
         //Pour la perte d'energy.
-        if (thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats) < 0)
+        if (thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) < 0)
         {
             //Commence par le nombre actuel d'energy.
-            for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
+            for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
             {
                 //Active la preview.
                 listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);

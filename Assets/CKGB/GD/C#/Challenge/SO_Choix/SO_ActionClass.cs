@@ -183,7 +183,7 @@ public class SO_ActionClass : ScriptableObject
         foreach (Interaction thisInteraction in listInteraction)
         {
             //Check si sont enum est égale à "Other".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Self)
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
             {
                 foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
@@ -383,7 +383,7 @@ public class Interaction
     #region Cible
     //Cible qu'on souhaite viser.
     public ETypeTarget whatTarget;
-    public enum ETypeTarget { Self, Other };
+    public enum ETypeTarget { Soi, Other };
 
     //Pour un selection avancé des cibles.
     public bool selectTarget;

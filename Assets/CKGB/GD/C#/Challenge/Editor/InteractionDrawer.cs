@@ -67,7 +67,7 @@ public class InteractionDrawer : PropertyDrawer
 
         ETypeTarget target = (ETypeTarget)what.enumValueIndex;
 
-        if (target == ETypeTarget.Self)
+        if (target == ETypeTarget.Soi)
         {
             EditorGUI.PropertyField(statsRect, stats);
         }
@@ -134,7 +134,7 @@ public class InteractionDrawer : PropertyDrawer
 
         ETypeTarget target = (ETypeTarget)what.enumValueIndex;
 
-        if (target == ETypeTarget.Self)
+        if (target == ETypeTarget.Soi)
         {
             return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing + boolSelectTargetHeight + statsHeight;
         }

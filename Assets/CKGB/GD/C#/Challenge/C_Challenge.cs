@@ -878,7 +878,7 @@ public class C_Challenge : MonoBehaviour
         //Oui car le joueur a besoin de savoir toutes les conséquence de l'action, meme si ça ne touche pas les autres actor.
         
         //Créer la liste pour "self"
-        GetLogsPreviewTarget(Interaction.ETypeTarget.Self);
+        GetLogsPreviewTarget(Interaction.ETypeTarget.Soi);
 
         //Créer la liste pour "other"
         /*if (thisActionClass.CheckOtherInAction())
@@ -1033,10 +1033,10 @@ public class C_Challenge : MonoBehaviour
         //Création de sa position sur le plateau.
         int position = currentActor.GetPosition();
 
-        TargetStats.ETypeMove whatMove = thisActionClass.GetWhatMove(Interaction.ETypeTarget.Self);
-        int nbMove = thisActionClass.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Movement);
+        TargetStats.ETypeMove whatMove = thisActionClass.GetWhatMove(Interaction.ETypeTarget.Soi);
+        int nbMove = thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement);
         
-        bool isTp = thisActionClass.GetIsTp(Interaction.ETypeTarget.Self);
+        bool isTp = thisActionClass.GetIsTp(Interaction.ETypeTarget.Soi);
 
         //Check si c'est le mode normal de déplacement ou alors le mode target case.
         if (whatMove == TargetStats.ETypeMove.Right || whatMove == TargetStats.ETypeMove.Left) //Normal move mode.
@@ -1266,10 +1266,10 @@ public class C_Challenge : MonoBehaviour
         //Applique les conséquences de stats.
         #region Self
         //Créer la liste pour "self"
-        action.SetStatsTarget(Interaction.ETypeTarget.Self, actor);
+        action.SetStatsTarget(Interaction.ETypeTarget.Soi, actor);
 
         //Check si un mouvement pour "self" existe.
-        CheckIfTargetMove(Interaction.ETypeTarget.Self, actor);
+        CheckIfTargetMove(Interaction.ETypeTarget.Soi, actor);
         #endregion
 
         #region Other
@@ -1406,7 +1406,7 @@ public class C_Challenge : MonoBehaviour
         #endregion
 
         //Check si l'actor en question possède assez d'energie.
-        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Self, TargetStats.ETypeStatsTarget.Stats))
+        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats))
         {
             #region Condition avancé.
             //Check si les conditions bonus sont activé.
@@ -1691,7 +1691,7 @@ public class C_Challenge : MonoBehaviour
                 foreach (C_Actor thisActor in myTeam)
                 {
                     //Applique des conséquence grace au finction de actionClass.
-                    currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+                    currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
                     thisActor.CheckIsOut();
                 }
@@ -1712,7 +1712,7 @@ public class C_Challenge : MonoBehaviour
                         foreach (C_Actor thisActor in myTeam)
                         {
                             //Applique des conséquence grace au fonction de actionClass.
-                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
                             thisActor.CheckIsOut();
                         }
@@ -1730,7 +1730,7 @@ public class C_Challenge : MonoBehaviour
                             Debug.Log(thisActor.name + " est attaqué !");
 
                             //Applique des conséquence grace au fonction de actionClass.
-                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Self, thisActor);
+                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
                             thisActor.CheckIsOut();
                         }
