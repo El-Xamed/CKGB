@@ -69,7 +69,7 @@ de belles choses en sont aussi nées.#Bulle:Narrateur
 //blabla
 
 Tu gravis une des buttes agricoles pour avoir tout le panorama sous les yeux.#Bulle:Narrateur
-Des billes de terres sèches dégringolent alors que tu prends appui sur les planches qui ont été enfoncées dans la terre pour former des marches sur la colline.#Bulle:Narrateur
+Des billes de terre sèche dégringolent alors que tu prends appui sur les planches qui ont été enfoncées dans la terre pour former des marches sur la colline.#Bulle:Narrateur
 Parfois, cette vue te fait mal à la tête. #Bulle:Narrateur
 Enfin, non. #Bulle:Narrateur
 Le paysage en lui-même est apaisant. #Bulle:Narrateur
