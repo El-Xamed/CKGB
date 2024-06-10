@@ -31,17 +31,18 @@ MonoBehaviour:
     whatActor: {fileID: 0}
   nextAction: {fileID: 0}
   listInteraction:
-  - whatTarget: 0
-    selectTarget: 0
-    whatTypeTarget: 0
-    target: {fileID: 0}
-    whatDirectionTarget: 0
-    range: 0
-    listTargetStats: []
   - whatTarget: 1
     selectTarget: 0
     whatTypeTarget: 0
     target: {fileID: 0}
     whatDirectionTarget: 1
     range: 2
-    listTargetStats: []
+    listTargetStats:
+    - whatStatsTarget: 0
+      whatCost: 1
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
