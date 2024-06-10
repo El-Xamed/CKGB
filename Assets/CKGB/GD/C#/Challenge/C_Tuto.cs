@@ -13,4 +13,40 @@ public class C_Tuto : MonoBehaviour
     {
         GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface(C_Interface.Interface.Neutre);
     }
+
+     #J'aimerais que cette fonction fasse l'animation du menu de trait qui s'ouvre.
+    public void OpenTraits()
+    {
+        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
+    }
+
+    #J'aimerais que cette fonction fasse l'animation du menu d'action qui s'ouvre.
+    public void OpenActions()
+    {
+        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
+    }
+
+    #J'aimerais que cette fonction fasse l'animation du menu de trait qui se ferme.
+    public void CloseTraits()
+    {
+        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
+    }
+
+    #J'aimerais que cette fonction fasse l'animation du menu d'action qui se ferme.
+    public void CloseActions()
+    {
+        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
+    }
+
+    #J'aimerais que cette fonction fasse l'animation de la jauge de calme qui descend jusqu'au rouge.
+     public void CalmDown()
+    {
+        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
+    }
+
+    #J'aimerais que cette fonction fasse l'animation de la jauge de calme qui remonte full.
+     public void CalmUp()
+    {
+        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
+    }
 }
