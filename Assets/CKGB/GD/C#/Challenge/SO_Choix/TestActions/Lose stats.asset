@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: Lose stats
   m_EditorClassIdentifier: 
-  buttonText: Lose stats
+  buttonText: Lose stats calm -2
   LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction:
@@ -41,7 +41,7 @@ MonoBehaviour:
     listTargetStats:
     - whatStatsTarget: 0
       whatCost: 0
-      whatStats: 0
+      whatStats: 1
       whatMove: 0
       isTp: 0
       actorSwitch: {fileID: 0}

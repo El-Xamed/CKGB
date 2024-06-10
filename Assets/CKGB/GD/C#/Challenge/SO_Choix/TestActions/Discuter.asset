@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
   m_Name: Discuter
   m_EditorClassIdentifier: 
-  buttonText: "D\xE9placement droite (tp)"
+  buttonText: Lose stats calm -1
   LogsMakeAction: 
   logsCantMakeAction: 
   listLogsAction: []
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
@@ -33,9 +36,9 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 1
+    - whatStatsTarget: 0
       whatCost: 0
-      whatStats: 0
+      whatStats: 1
       whatMove: 1
       isTp: 0
       actorSwitch: {fileID: 0}

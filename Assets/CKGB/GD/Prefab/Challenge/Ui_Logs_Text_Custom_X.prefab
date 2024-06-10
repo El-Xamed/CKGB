@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Machin va perdre 1 d'enrgie.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b33390f46fcbf094fbf329b13dcb33f9, type: 2}
-  m_sharedMaterial: {fileID: -324944033251285996, guid: b33390f46fcbf094fbf329b13dcb33f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9fb699ce95d8d9d4992d8640a80402c7, type: 2}
+  m_sharedMaterial: {fileID: 3592023181260823278, guid: 9fb699ce95d8d9d4992d8640a80402c7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -203,8 +203,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: -1 E (Soi)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b33390f46fcbf094fbf329b13dcb33f9, type: 2}
-  m_sharedMaterial: {fileID: -324944033251285996, guid: b33390f46fcbf094fbf329b13dcb33f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9fb699ce95d8d9d4992d8640a80402c7, type: 2}
+  m_sharedMaterial: {fileID: 3592023181260823278, guid: 9fb699ce95d8d9d4992d8640a80402c7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -294,7 +294,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8215216427688094389}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
     m_Top: 0
     m_Bottom: 0

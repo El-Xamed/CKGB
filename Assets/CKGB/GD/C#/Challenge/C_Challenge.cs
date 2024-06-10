@@ -64,6 +64,8 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] Animator uiLogsAnimator;
     [SerializeField] GameObject uiLogs;
     [SerializeField] GameObject uiLogsTimeline;
+    [SerializeField] Transform uiLogsPreview;
+    [SerializeField] GameObject uiLogsTextPreviewPrefab;
     #endregion
 
     List<C_Actor> myTeam = new List<C_Actor>();
@@ -2062,6 +2064,17 @@ public class C_Challenge : MonoBehaviour
     public C_Interface GetInterface()
     {
         return myInterface;
+    }
+    #endregion
+
+    #region Preview
+    public GameObject GetTextPreviewPrefab()
+    {
+        return uiLogsTextPreviewPrefab;
+    }
+    public Transform GetTransformPreview()
+    {
+        return uiLogsPreview;
     }
     #endregion
 
