@@ -16,8 +16,8 @@ VAR IDrevasser = 0
 ===Revasser0===
 ~ Trigger("name")
 
-Les lumières vives des évènements -passés et à venir- de la journée flash devant tes yeux.#Bulle:Narrateur
-Elles submerge ton crâne comme les inondations de l'hiver dernier.#Bulle:Narrateur
+Les lumières vives des évènements - passés et à venir - de la journée flashent devant tes yeux.#Bulle:Narrateur
+Elles submergent ton crâne comme les inondations de l'hiver dernier.#Bulle:Narrateur
 Tu as besoin de temps. Pour digérer tes pensées. Pour te préparer.#Bulle:Narrateur
 ~ Trigger("name")
 Tu fais quelques pas à l’écart, tes yeux rivés vers le ciel. #Bulle:Narrateur
