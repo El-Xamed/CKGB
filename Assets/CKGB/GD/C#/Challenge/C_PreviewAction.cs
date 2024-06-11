@@ -23,15 +23,7 @@ public class C_PreviewAction : MonoBehaviour
     {
         Debug.Log("ShowPreview");
 
-        if (listLogsTextPreview.Count > -1)
-        {
-            foreach (GameObject thisLogs in listLogsTextPreview)
-            {
-                Destroy(thisLogs);
-            }
-
-            listLogsTextPreview.Clear();
-        }
+        DestroyAllPreview();
 
         //Desactive par default les preview de l'actor selectionne.
         thisActor.GetUiStats().ResetUiPreview();
@@ -256,6 +248,18 @@ public class C_PreviewAction : MonoBehaviour
     }
 
     #region Fonctions
+    public void DestroyAllPreview()
+    {
+        if (listLogsTextPreview.Count > -1)
+        {
+            foreach (GameObject thisLogs in listLogsTextPreview)
+            {
+                Destroy(thisLogs);
+            }
+
+            listLogsTextPreview.Clear();
+        }
+    }
 
     string GetValue(int value)
     {

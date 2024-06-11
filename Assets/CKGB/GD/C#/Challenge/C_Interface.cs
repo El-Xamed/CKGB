@@ -318,6 +318,10 @@ public class C_Interface : MonoBehaviour
         {
             currentInterface = Interface.Neutre;
         }
+        else
+        {
+            uiAction.SetActive(false);
+        }
     }
     #endregion
 

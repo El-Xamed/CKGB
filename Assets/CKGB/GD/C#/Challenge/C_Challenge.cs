@@ -681,6 +681,9 @@ public class C_Challenge : MonoBehaviour
         //Desactive la preview de l'actor.
         currentActor.GetUiStats().ResetUiPreview();
 
+        //Supprime les textes de preview + cache la barre.
+        GetComponent<C_PreviewAction>().DestroyAllPreview();
+        GetComponent<C_PreviewAction>().ActivePreviewBarre(false);
         #endregion
 
         if (AudioManager.instance)

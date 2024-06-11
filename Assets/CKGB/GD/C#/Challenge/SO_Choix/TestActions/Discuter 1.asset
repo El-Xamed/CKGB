@@ -19,6 +19,9 @@ MonoBehaviour:
   - Blablabla1
   - Blablabla2
   - Blablabla3
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
   logsCursor: 0
   advancedCondition:
     advancedCondition: 0
@@ -35,6 +38,21 @@ MonoBehaviour:
     target: {fileID: 0}
     whatDirectionTarget: 0
     range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      whatCost: 0
+      whatStats: 0
+      whatMove: 2
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
+  - whatTarget: 1
+    selectTarget: 0
+    whatTypeTarget: 0
+    target: {fileID: 0}
+    whatDirectionTarget: 3
+    range: 2
     listTargetStats:
     - whatStatsTarget: 1
       whatCost: 0
