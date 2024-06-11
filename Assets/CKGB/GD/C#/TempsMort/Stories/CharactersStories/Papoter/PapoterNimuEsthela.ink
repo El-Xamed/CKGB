@@ -91,8 +91,8 @@ Heeyyyyy Nimuuuuuu~#Bulle:EsthelaHautGauche
 
 T’as un truc derrière la tête toi.#Bulle:NimuHautDroite
 
-Ta grand-mère écarquille les yeux avant d'être térrassée par sa propre exaspération alors que #Bulle:Narrateur
-Esthéla mime le geste de frapper de toute ses forces l'arrière de son crâne avec sa main #Bulle:Narrateur
+Ta grand-mère écarquille les yeux avant d'être térrassée par sa propre exaspération alors #Bulle:Narrateur
+qu'Esthéla mime le geste de frapper de toute ses forces l'arrière de son crâne avec sa main #Bulle:Narrateur
 dans une (vaine ?) tentative de rappeller qu'elle se trouve trouve extrêmement drôle. #Bulle:Narrateur
 Pour notre audience à la maison, elle le fait bien évidemment avec un grand sourire. #Bulle:Narrateur
 
