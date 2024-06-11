@@ -18,12 +18,17 @@ public class C_Tuto : MonoBehaviour
     public void OpenTraits()
     {
         GetComponentInParent<C_Challenge>().GetInterface().GoTraits();
+
+        //Sup le premier bouton.
+        GetComponentInParent<C_Challenge>().GetEventSystem().SetSelectedGameObject(null);
     }
 
     //J'aimerais que cette fonction fasse l'animation du menu d'action qui s'ouvre.
     public void OpenActions()
     {
         GetComponentInParent<C_Challenge>().GetInterface().GoAction();
+        //Sup le premier bouton.
+        GetComponentInParent<C_Challenge>().GetEventSystem().SetSelectedGameObject(null);
     }
 
     //J'aimerais que cette fonction fasse l'animation du menu de trait qui se ferme.

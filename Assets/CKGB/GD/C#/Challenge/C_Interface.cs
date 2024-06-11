@@ -237,8 +237,11 @@ public class C_Interface : MonoBehaviour
         targetbutton = buttonActionsBackground;
         GetComponent<Animator>().SetTrigger("Open");
 
-        //Modifie l'état de navigation.
-        currentInterface = Interface.Actions;
+        if (currentInterface != Interface.Tuto)
+        {
+            //Modifie l'état de navigation.
+            currentInterface = Interface.Actions;
+        }
     }
 
     //Pour accéder au logs.
@@ -258,8 +261,11 @@ public class C_Interface : MonoBehaviour
         targetbutton = buttonLogsBackground;
         GetComponent<Animator>().SetTrigger("Open");
 
-        //Modifie l'état de navigation.
-        currentInterface = Interface.Logs;
+        if (currentInterface != Interface.Tuto)
+        {
+            //Modifie l'état de navigation.
+            currentInterface = Interface.Logs;
+        }
     }
 
     //Pour accéder au traits.
@@ -268,12 +274,22 @@ public class C_Interface : MonoBehaviour
         //Spawn actions
         SpawnActions(GetListTrait());
 
+        //Setup quelle fonction va etre lancé.
+        //Retire toutes les fonctions stocké dans l'event.
+        currentEvent.RemoveAllListeners();
+
+        //Setup automatiquement l'event de transition.
+        currentEvent.AddListener(ShowButton);
+
         //Animation.
         targetbutton = buttonTraitsBackground;
         GetComponent<Animator>().SetTrigger("Open");
 
-        //Modifie l'état de navigation.
-        currentInterface = Interface.Traits;
+        if (currentInterface != Interface.Tuto)
+        {
+            //Modifie l'état de navigation.
+            currentInterface = Interface.Traits;
+        }
     }
 
     //Pour revenir au temps mort. Et aussi au autres boutons
@@ -298,7 +314,10 @@ public class C_Interface : MonoBehaviour
                 break;
         }
 
-        currentInterface = Interface.Neutre;
+        if (currentInterface != Interface.Tuto)
+        {
+            currentInterface = Interface.Neutre;
+        }
     }
     #endregion
 
@@ -377,11 +396,15 @@ public class C_Interface : MonoBehaviour
                 listCurrentButton.Add(myButton);
             }
 
-            //Vise le premier bouton.
-            myChallenge.GetEventSystem().SetSelectedGameObject(listCurrentButton[0]);
+            //Check si il est pas en mode "Tuto".
+            if (currentInterface != Interface.Tuto)
+            {
+                //Vise le premier bouton.
+                myChallenge.GetEventSystem().SetSelectedGameObject(listCurrentButton[0]);
 
-            //Lance la preview
-            GetComponentInParent<C_PreviewAction>().ShowPreview(myChallenge.GetEventSystem().currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), myChallenge.GetCurrentActor());
+                //Lance la preview
+                GetComponentInParent<C_PreviewAction>().ShowPreview(myChallenge.GetEventSystem().currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), myChallenge.GetCurrentActor());
+            }
         }
         else
         {
