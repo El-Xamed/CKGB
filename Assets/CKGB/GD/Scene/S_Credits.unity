@@ -768,11 +768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426946741037680720, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -732
+      value: -1280
       objectReference: {fileID: 0}
     - target: {fileID: 4426946741037680720, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -377
+      value: -146
       objectReference: {fileID: 0}
     - target: {fileID: 4426946741037680720, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1734,7 +1734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8230270913768334443, guid: fbc5393b657cd6740ac0bdb3975ad7cf, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8230270913768334443, guid: fbc5393b657cd6740ac0bdb3975ad7cf, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1790,11 +1790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8230270913768334443, guid: fbc5393b657cd6740ac0bdb3975ad7cf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 8230270913768334443, guid: fbc5393b657cd6740ac0bdb3975ad7cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 8230270913768334443, guid: fbc5393b657cd6740ac0bdb3975ad7cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2292,7 +2292,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281209632
+    rgba: 3941168
   m_fontColor: {r: 0.1269329, g: 0.07355821, b: 0.1792453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2391,7 +2391,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1861733661}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2427,7 +2427,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4281209632
   m_fontColor: {r: 0.1269329, g: 0.07355821, b: 0.1792453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2898,7 +2898,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1861733661}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2934,7 +2934,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4281143840
   m_fontColor: {r: 0.1269329, g: 0.07355821, b: 0.1792453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3245,7 +3245,7 @@ RectTransform:
   m_Children:
   - {fileID: 1532706530}
   m_Father: {fileID: 1861733661}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3414,18 +3414,18 @@ RectTransform:
   - {fileID: 1454763980}
   - {fileID: 1411088288}
   - {fileID: 446067008}
+  - {fileID: 1678513799}
   - {fileID: 391980840}
   - {fileID: 678617944}
-  - {fileID: 1678513799}
   - {fileID: 1605512765}
   - {fileID: 546281932}
   - {fileID: 308900033}
-  - {fileID: 865326335}
   - {fileID: 1518034658}
+  - {fileID: 865326335}
   - {fileID: 1013871971}
   - {fileID: 433283733}
-  - {fileID: 786217578}
   - {fileID: 1050024897}
+  - {fileID: 786217578}
   - {fileID: 437050848}
   - {fileID: 231659510}
   - {fileID: 1384741822}
