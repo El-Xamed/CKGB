@@ -205,50 +205,6 @@ public class C_Stats : MonoBehaviour
         }
     }
 
-    //A SUPP.
-    /*Fonction pour afficher une preview d'une stats en particulier. BESOIN SUREMENT DE LE DECALER DANS L'ACTOR DIRECTEMENT.
-    public void CheckUiPreview(SO_ActionClass thisActionClass, Interaction.ETypeTarget target)
-    {
-        Debug.Log("CheckUiPreview");
-
-        //Désinscrit les fonction.
-        C_PreviewAction.onPreview -= UiPreviewCalm;
-        C_PreviewAction.onPreview -= UiPreviewEnergy;
-
-        foreach (Interaction thisInteraction in thisActionClass.listInteraction)
-        {
-            //Check si c'est égale à "actorTarget".
-            if (thisInteraction.whatTarget == target)
-            {
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    //Check si c'est des stats ou un Mouvement.
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats)
-                    {
-                        //Inscrit la preview de texte + ui. Avec les info de preview. (C_Challenge)
-                        //onPreview += TextPreview;
-
-                        //Check si c'est pour le calm.
-                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm)
-                        {
-                            //Inscrit la preview de calm.
-                            C_PreviewAction.onPreview += UiPreviewCalm;
-                            Debug.Log("Add UiPreviewCalm");
-                        }
-
-                        //Check si c'est pour l'energie.
-                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy)
-                        {
-                            //Inscrit la preview de calm.
-                            C_PreviewAction.onPreview += UiPreviewEnergy;
-                            Debug.Log("Add UiPreviewEnergy");
-                        }
-                    }
-                }
-            }
-        }
-    }*/
-
     public void UiPreviewCalm(SO_ActionClass thisActionClass)
     {
         //Lance l'animation de clignotoment.

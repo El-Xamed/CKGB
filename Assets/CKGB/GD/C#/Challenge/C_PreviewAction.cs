@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class C_PreviewAction : MonoBehaviour
@@ -17,41 +18,46 @@ public class C_PreviewAction : MonoBehaviour
     public static event Action<SO_ActionClass> onPreview;
 
     [SerializeField] List<GameObject> listLogsTextPreview = new List<GameObject>();
+    [SerializeField] Image previewBarre;
 
     //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
     public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
         Debug.Log("ShowPreview");
 
+        //Active l'image de la barre.
+        if (!previewBarre.IsActive())
+        {
+            ActivePreviewBarre(true);
+        }
+
+        //Détruit toutes les preview.
         DestroyAllPreview();
 
         //Desactive par default les preview de l'actor selectionne.
         thisActor.GetUiStats().ResetUiPreview();
 
-        //Supprime tout les texte dans les logs de preview.
-        //FAIRE LE DEV !!!
-
         //Création d'une liste d'info qui va etre affiché dans les logs de preview.
         List<string> listTextPreview = new List<string>();
+
+        #region Variable
+        //Pour le premier texte.
+        //Création du symbol qui va etre placé au début du texte.
+        string whatSigne = "";
+        string whatStats = "";
+        string whatValue = "";
+        //Création d'un string pour appliquer la cible.
+        string whatTarget = "";
+
+        //Pour le deuxième texte.
+        //Création d'un string pour connaitre quelle action va se dérouler.
+        string actorTarget = "";
+        string descriptionPreview = "";
+        #endregion
 
         //Check si dans l'action il y a des info. Si oui, avoir un system qui prépare le texte.
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
-            #region Variable
-            //Pour le premier texte.
-            //Création du symbol qui va etre placé au début du texte.
-            string whatSigne = "";
-            string whatStats = "";
-            string whatValue = "";
-            //Création d'un string pour appliquer la cible.
-            string whatTarget = "";
-
-            //Pour le deuxième texte.
-            //Création d'un string pour connaitre quelle action va se dérouler.
-            string actorTarget = "";
-            string descriptionPreview = "";
-            #endregion
-
             //Check dans toute la liste.
             foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
             {
@@ -162,6 +168,8 @@ public class C_PreviewAction : MonoBehaviour
 
                     descriptionPreview = " va se déplacer de ";
 
+                    //onPreview += thisActor.GetUiStats().GetComponent<C_Challenge>().MovementPreview;
+
                     //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
                     switch (thisTargetStats.whatMove)
                     {
@@ -239,10 +247,6 @@ public class C_PreviewAction : MonoBehaviour
         }
         #endregion
 
-        //Check si il y a des info pour "other".
-        //Check si il a des info de stats.
-        //Check si il a des info de movement.
-
         //Appelle l'action event pour tous afficher.
         onPreview?.Invoke(thisActionClass);
     }
@@ -259,6 +263,11 @@ public class C_PreviewAction : MonoBehaviour
 
             listLogsTextPreview.Clear();
         }
+    }
+
+    public void ActivePreviewBarre(bool value)
+    {
+        previewBarre.gameObject.SetActive(value);
     }
 
     string GetValue(int value)
