@@ -34,7 +34,7 @@ public class SO_ActionClass : ScriptableObject
     #endregion
 
     #region Récupération de stats
-    //Fonction qui renvoie la valeur d'un des stats. RETIRER "TARGET STATS" CAR IL EST INUTILE.
+    //Fonction qui renvoie la valeur d'un des stats. RETIRER "TARGET STATS" CAR IL EST INUTILE + actor target aussi.
     public int GetValue(Interaction.ETypeTarget actorTarget, TargetStats.ETypeStatsTarget targetStats)
     {
         //Pour toutes les liste d'action.

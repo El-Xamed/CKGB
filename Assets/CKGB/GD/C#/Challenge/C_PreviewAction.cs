@@ -41,108 +41,199 @@ public class C_PreviewAction : MonoBehaviour
         //Création d'une liste d'info qui va etre affiché dans les logs de preview.
         List<string> listTextPreview = new List<string>();
 
-        //Check si dans l'action il y a des info. Si oui, avoir un sytem qui prépar le texte.
+        //Check si dans l'action il y a des info. Si oui, avoir un system qui prépare le texte.
         foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
+            #region Variable
+            //Pour le premier texte.
+            //Création du symbol qui va etre placé au début du texte.
+            string whatSigne = "";
+            string whatValue = "";
             //Création d'un string pour appliquer la cible.
             string whatTarget = "";
 
-            //Check si il y a des info pour "self".
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
-            {
-                //Setup le string de la target "(Soi)". A AJOUTER DANS LE DEV.
-                whatTarget = "(Soi)";
-                
-                //Check dans toute la liste.
-                foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
-                {
-                    string previewText = "";
+            //Pour le deuxième texte.
+            //Création d'un string pour connaitre quelle action va se dérouler.
+            string whatAction = "";
+            #endregion
 
-                    //Check si c'est des stats ou un Mouvement.
-                    if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats) //Check si il a des info de stats.
+            //Check dans toute la liste.
+            foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
+            {
+                //Setup la target.
+                whatTarget = SetTarget(thisInteraction.whatTarget);
+
+                //Setup le signe et la valeur du premier texte.
+                whatSigne = GetSign(thisActionClass.GetValue(thisInteraction.whatTarget, thisTargetStats.whatStatsTarget));
+                //Setup la valeur du premier texte.
+                whatValue = GetValue(thisActionClass.GetValue(thisInteraction.whatTarget, thisTargetStats.whatStatsTarget));
+
+                //Setup la description de l'action du deuxième texte + la fin du texte.
+                whatAction = GetWhatAction(thisTargetStats.whatStatsTarget, thisActionClass.GetValue(thisInteraction.whatTarget, thisTargetStats.whatStatsTarget));
+
+                #region Fonction
+                //Fonction qui permet de setup l'action et la fin du deuxième texte.
+                string GetWhatAction(TargetStats.ETypeStatsTarget whatStatsTarget, int value)
+                {
+                    string descriptionPreview = "";
+
+                    //Création d'un string setup la fin de la phrase.
+                    string endPreviewText = "";
+
+                    //Check si c'est une stats ou un déplacement.
+                    if (whatStatsTarget == TargetStats.ETypeStatsTarget.Stats)
                     {
-                        //Check si c'est pour le calm.
-                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm)
+                        #region Setup string action
+                        if (value < 0)
+                        {
+                            descriptionPreview = " va perdre ";
+                        }
+                        else if (value > 0)
+                        {
+                            descriptionPreview = " va gagner ";
+                        }
+                        #endregion
+
+                        #region Inscription
+                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm) //Check si c'est pour le calm.
                         {
                             //Inscrit la preview de calm.
                             onPreview += thisActor.GetUiStats().UiPreviewCalm;
                             Debug.Log("Add UiPreviewCalm");
 
-                            //Ajoute du texte dans la liste de "listTextPreview".
-                            //Pour la premiere ligne.
-                            //listTextPreview.Add(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) + " C (Soi)");
-                            //Pour la deuxième ligne
-                            //listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats)) + " de calme.");
-
-                            previewText = " de calme.";
+                            endPreviewText = " de calme.";
                         }
-
-                        //Check si c'est pour l'energie.
-                        if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy)
+                        else if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy) //Check si c'est pour l'energie.
                         {
                             //Inscrit la preview de calm.
                             onPreview += thisActor.GetUiStats().UiPreviewEnergy;
                             Debug.Log("Add UiPreviewEnergy");
 
-                            //Pour la premiere ligne.
-                            //listTextPreview.Add(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) + " C (Soi)");
-                            //Ajoute du texte dans la liste de "listTextPreview".
-                            //listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats)) + " d'energie.");
-
-                            previewText = " d'énergie.";
+                            endPreviewText = " d'énergie.";
                         }
-
-                        //Ajoute le premier texte.
-                        listTextPreview.Add(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) + " C (Soi)");
-                        //Ajoute le deuxième texte.
-                        listTextPreview.Add("L'utilisateur.ice" + GetIfPriceOrGain(thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats)) + previewText);
+                        #endregion
                     }
-                    else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement) //Check si il a des info de movement.
+                    else if (whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                     {
-                        //onPreview += GetComponent<C_Challenge>().MovementPreview;
+                        #region Setup string Action
+                        descriptionPreview = " va se déplacer de ";
 
                         //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
                         switch (thisTargetStats.whatMove)
                         {
                             case TargetStats.ETypeMove.Right:
-                                //Ajout la bonne flèche.
-                                // + le nombre de déplacement.
-                                // + L'icone de la case.
-                                listTextPreview.Add("<sprite index=[index] tint=9>" + " " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " " + "<sprite index=[index] tint=12>" + " (Soi)");
-                                listTextPreview.Add("L'utilisateur.ice se déplace de " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " sur la droite.");
+                                //Setup le bon symbol (fleche droite).
+                                whatSigne = "<sprite index=[index] tint=9>";
+                                //Setup la fin de la phrase.
+                                endPreviewText = " vers la droite.";
                                 break;
                             case TargetStats.ETypeMove.Left:
-                                // + L'icone de la case.
-                                listTextPreview.Add("<sprite index=[index] tint=8>" + " " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " " + "<sprite index=[index] tint=12>" + " (Soi)");
-                                listTextPreview.Add("L'utilisateur.ice se déplace de " + thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement) + " sur la gauche.");
+                                //Setup le bon symbol (fleche gauche).
+                                whatSigne = "<sprite index=[index] tint=8>";
+                                //Setup la fin de la phrase.
+                                endPreviewText = " vers la gauche.";
                                 break;
                             case TargetStats.ETypeMove.OnTargetCase:
-                                
+                                //Setup le bon symbol (téléportation).
+                                whatSigne = "<sprite index=[index] tint=10>";
+
+                                //Check si il y a un autre actor.
+                                //Si oui alors le symbol sera diférrent.
+                                //Sinon il ne change pas.
                                 break;
                             case TargetStats.ETypeMove.SwitchWithActor:
-                                
+                                //Setup le bon symbol (échange de place).
+                                whatSigne = "<sprite index=[index] tint=1>";
                                 break;
                             case TargetStats.ETypeMove.SwitchWithAcc:
-                                
+                                //Setup le bon symbol (échange de place).
+                                whatSigne = "<sprite index=[index] tint=1>";
                                 break;
                         }
+                        #endregion
+                    }
 
-                        //Ajoute le premier texte.
-                        listTextPreview.Add("Mouvement en construction !");
-                        //Ajoute le deuxième texte.
-                        listTextPreview.Add("Description mouvement en construction !");
+                    //Check si la valeur est négative pour retirer le signe.
+                    if (value < 0)
+                    {
+                        value = -value;
+                    }
+
+                    descriptionPreview += value + endPreviewText;
+
+                    return descriptionPreview;
+                }
+                #endregion
+
+                /*ANCIEN DEV !!!
+                //Check si c'est des stats ou un Mouvement.
+                if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats) //Check si il a des info de stats.
+                {
+                    if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm) //Check si c'est pour le calm.
+                    {
+                        //Inscrit la preview de calm.
+                        onPreview += thisActor.GetUiStats().UiPreviewCalm;
+                        Debug.Log("Add UiPreviewCalm");
+
+                        endPreviewText = " de calme.";
+                    }
+                    else if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy) //Check si c'est pour l'energie.
+                    {
+                        //Inscrit la preview de calm.
+                        onPreview += thisActor.GetUiStats().UiPreviewEnergy;
+                        Debug.Log("Add UiPreviewEnergy");
+
+                        endPreviewText = " d'énergie.";
                     }
                 }
+                else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement) //Check si il a des info de movement.
+                {
+                    //onPreview += GetComponent<C_Challenge>().MovementPreview;
+
+                    //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
+                    switch (thisTargetStats.whatMove)
+                    {
+                        case TargetStats.ETypeMove.Right:
+                            //Setup le bon symbol (fleche droite).
+                            whatSigne = "<sprite index=[index] tint=9>";
+                            //Setup la fin de la phrase.
+                            endPreviewText = " vers la droite.";
+                            break;
+                        case TargetStats.ETypeMove.Left:
+                            //Setup le bon symbol (fleche gauche).
+                            whatSigne = "<sprite index=[index] tint=8>";
+                            //Setup la fin de la phrase.
+                            endPreviewText = " vers la gauche.";
+                            break;
+                        case TargetStats.ETypeMove.OnTargetCase:
+                            //Setup le bon symbol (téléportation).
+                            whatSigne = "<sprite index=[index] tint=10>";
+
+                            //Check si il y a un autre actor.
+                                //Si oui alors le symbol sera diférrent.
+                                //Sinon il ne change pas.
+                            break;
+                        case TargetStats.ETypeMove.SwitchWithActor:
+                            //Setup le bon symbol (échange de place).
+                            whatSigne = "<sprite index=[index] tint=1>";
+                            break;
+                        case TargetStats.ETypeMove.SwitchWithAcc:
+                            //Setup le bon symbol (échange de place).
+                            whatSigne = "<sprite index=[index] tint=1>";
+                            break;
+                    }
+                }*/
             }
 
-            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-            {
-                //Setup le string de la target "Other" qui sera représenté par des symboles. A AJOUTER DANS LE DEV.
-
-                //Cherche les autre perso à proximité.
-            }
+            #region Final Text
+            //Ajoute le premier texte.
+            listTextPreview.Add(whatSigne + whatValue + whatTarget);
+            //Ajoute le deuxième texte.
+            listTextPreview.Add("L'utilisateur.ice" + whatAction);
+            #endregion
         }
 
+        #region Création des textes dans l'Ui.
         //Pour toutes les variables stocké dans "listTextPreview", l'afficher dans les logs.
         for (int i = 0; i < listTextPreview.Count / 2; i++)
         {
@@ -171,26 +262,7 @@ public class C_PreviewAction : MonoBehaviour
             //Check si les info dépasse pas
             //Si les info dépasse, ouvrir la feuille qui pourra etre fermé pour un input (BESOIN DE LE SETUP DANS L'INTERFACE !).
         }
-
-        /*Meme chose mais avec une boucle foreach.
-        foreach (string thisTextPreview in listTextPreview)
-        {
-            #region Raccourcis
-            GameObject textPreview = GetComponent<C_Challenge>().GetTextPreviewPrefab();
-            Transform transformPreview = GetComponent<C_Challenge>().GetTransformPreview();
-            #endregion
-
-            //Créer un nouveau texte dans les logs de preview.
-            GameObject newLogs = Instantiate(textPreview, transformPreview);
-
-            newLogs.name = "Ui_Logs_Text_Custom_X";
-
-            //Check si les info dépasse pas
-            //Si les info dépasse, ouvrir la feuille qui pourra etre fermé pour un input (BESOIN DE LE SETUP DANS L'INTERFACE !).
-        }*/
-
-
-
+        #endregion
 
         //Check si il y a des info pour "other".
         //Check si il a des info de stats.
@@ -198,52 +270,51 @@ public class C_PreviewAction : MonoBehaviour
 
         //Appelle l'action event pour tous afficher.
         onPreview?.Invoke(thisActionClass);
-
-
-
-
-
-        /* A SUPP
-        //Pour "Self". FAIRE EN SORTE QUE CA LE FAIT POUR LES 2.
-        SetupPreview(Interaction.ETypeTarget.Self, thisActor);
-
-        //Pour "Other".
-        //SetupPreview(Interaction.ETypeTarget.Other, thisActor);
-
-        onPreview?.Invoke(thisActionClass);
-
-        void SetupPreview(Interaction.ETypeTarget target, C_Actor thisActor)
-        {
-            //Reset les preview des stats.
-            thisActor.GetUiStats().ResetUiPreview();
-
-            foreach (Interaction thisInteraction in thisActionClass.listInteraction)
-            {
-                //Check si c'est égale à "actorTarget".
-                if (thisInteraction.whatTarget == target)
-                {
-                    //Envoie l'action au script de stats.
-                    thisActor.GetUiStats().CheckUiPreview(thisActionClass, target);
-
-                    GetComponent<C_Challenge>().CheckPreview(thisActionClass, target);
-                }
-            }
-        }*/
     }
 
-    string GetIfPriceOrGain(int value)
+    #region Fonctions
+    //Fonction qui vient setup le texte de la target dans le premier texte.
+    string SetTarget(Interaction.ETypeTarget whatTarget)
     {
-        string newString = "";
+        if (whatTarget == Interaction.ETypeTarget.Soi)
+        {
+            //Setup le string de la target "(Soi)".
+            return " (Soi)";
+        }
+        else if (whatTarget == Interaction.ETypeTarget.Other)
+        {
 
+        }
+
+        return "X";
+    }
+
+    //Fonction quoi permet de setup le signe du premier texte.
+    string GetSign(int value)
+    {
         if (value < 0)
         {
-            newString += " va perdre ";
+            return "<sprite index=[index] tint=5>";
         }
         else if (value > 0)
         {
-            newString += " va gagner ";
+            return "<sprite index=[index] tint=4>";
         }
 
-        return newString += value;
+        return "X";
     }
+
+    string GetValue(int value)
+    {
+        //Check si la valeur est négative pour retirer son signe.
+        if (value < 0)
+        {
+            return (-value).ToString();
+        }
+        else
+        {
+            return value.ToString();
+        }
+    }
+    #endregion
 }
