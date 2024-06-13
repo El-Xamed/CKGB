@@ -711,6 +711,8 @@ public class C_Challenge : MonoBehaviour
         myInterface.GoBack();
         #endregion
 
+        //Remplace tout les sprite des preview de déplacement par une autre image (petite tete des perso)
+
         //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
         if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
         {
@@ -1000,8 +1002,8 @@ public class C_Challenge : MonoBehaviour
             AudioManager.instance.PlayOnce(resoTurnClip);
         }
 
-        //Deselct le dernier bouton.
-        //eventSystem.SetSelectedGameObject(null);
+        //Supprime toutes les preview de déplacement.
+        
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
@@ -1908,5 +1910,6 @@ public class C_Challenge : MonoBehaviour
     {
         onDialogue = value;
     }
+    #endregion
     #endregion
 }
