@@ -3,13 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 
 public class C_MainMenu : MonoBehaviour
 {
-    [SerializeField] SceneAsset firthScene;
+    [SerializeField] string firthScene = "S_challenge";
 
     [SerializeField] GameObject splashScreen;
     [SerializeField] GameObject bouttonSplashScreen;

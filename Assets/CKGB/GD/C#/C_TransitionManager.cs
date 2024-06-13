@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class C_TransitionManager : MonoBehaviour
 {
-    SceneAsset nextScene;
+    string nextScene;
 
     //Le "new" permet de ne pas avoir une valeur null.
     UnityEvent currentEvent = new UnityEvent();
 
     //Fonction public qui permet de setup correctement la transition entre les scene.
-    public void SetupNextScene(SceneAsset thisScene)
+    public void SetupNextScene(string thisScene)
     {
         nextScene = thisScene;
 
@@ -35,8 +35,8 @@ public class C_TransitionManager : MonoBehaviour
     //Fonction placé à la fin des animation de transition.
     void TransiScene()
     {
-        Debug.Log("Launch -> " + nextScene.name);
-        SceneManager.LoadScene(nextScene.name);
+        Debug.Log("Launch -> " + nextScene);
+        SceneManager.LoadScene(nextScene);
     }
 
     //Event d'animation.

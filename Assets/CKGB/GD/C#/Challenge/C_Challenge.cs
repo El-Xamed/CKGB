@@ -116,9 +116,10 @@ public class C_Challenge : MonoBehaviour
 
     #region Transition
     [Header("Scene")]
-    [SerializeField] SceneAsset sceneMenu;
-    [SerializeField] SceneAsset sceneTM;
-    [SerializeField] SceneAsset sceneWM;
+    [SerializeField] string sceneMenu = "S_MainMenu";
+    [SerializeField] string sceneTM = "S_TempsLibre";
+    [SerializeField] string sceneWM = "S_Worldmap";
+
     #endregion
     #endregion
 
@@ -1781,7 +1782,7 @@ public class C_Challenge : MonoBehaviour
             //Lance l'animation de transition.
             GameManager.instance.ClosseTransitionFlannel();
 
-            SceneAsset nextScene = null;
+            string nextScene = null;
 
             if (GameManager.instance.currentC.name == "SO_lvl3")
             {
@@ -1800,7 +1801,7 @@ public class C_Challenge : MonoBehaviour
 
             if (nextScene != null)
             {
-                Debug.Log("Transition vers la scene " + nextScene.name);
+                Debug.Log("Transition vers la scene " + nextScene);
 
                 //Setup dans quelle scene on souhaite aller.
                 GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene);
