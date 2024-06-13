@@ -681,6 +681,8 @@ public class C_Challenge : MonoBehaviour
         //Desactive la preview de l'actor.
         currentActor.GetUiStats().ResetUiPreview();
 
+        //Remplace les preview de mouvement par une autre image.
+
         //Supprime les textes de preview + cache la barre.
         GetComponent<C_PreviewAction>().DestroyAllPreview();
         GetComponent<C_PreviewAction>().ActivePreviewBarre(false);
@@ -739,6 +741,9 @@ public class C_Challenge : MonoBehaviour
                 thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
                 thisActor.CheckInDanger();
             }
+
+            //Supprime toutes les preview de mouvment.
+
 
             myPhaseDeJeu = PhaseDeJeu.ResoTurn;
             vfxResoTurn.SetTrigger("PlayerTurn");
@@ -850,8 +855,9 @@ public class C_Challenge : MonoBehaviour
         thisPreview.sprite = currentActor.GetDataActor().challengeSprite;
         //Change le nom
         thisPreview.name = currentActor.name + "_Preview";
-        //Change la couleur. (Assombri l'image) MARCHE PAS A CAUSE DE L'ANIMATION QUI TOURNE EN BOUCLE.
-        thisPreview.color = Color.HSVToRGB(0, 0, 0.35f);
+        //Change la couleur.
+        thisPreview.color = new Color32(255, 255, 255, 45);
+        //thisPreview.color = Color.HSVToRGB(0, 0, 0.35f);
         //Et ajouté dans la liste des preview de movement.
         plateauPreview.Add(thisPreview);
 

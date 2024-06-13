@@ -206,14 +206,14 @@ public class C_PreviewAction : MonoBehaviour
                 }
 
                 descriptionPreview += whatValue + endPreviewText;
-            }
 
-            #region Final Text
-            //Ajoute le premier texte.
-            listTextPreview.Add(whatSigne + whatValue + whatStats + whatTarget);
-            //Ajoute le deuxième texte.
-            listTextPreview.Add(actorTarget + descriptionPreview);
-            #endregion
+                #region Final Text
+                //Ajoute le premier texte.
+                listTextPreview.Add(whatSigne + whatValue + whatStats + whatTarget);
+                //Ajoute le deuxième texte.
+                listTextPreview.Add(actorTarget + descriptionPreview);
+                #endregion
+            }
         }
 
         #region Création des textes dans l'Ui.
