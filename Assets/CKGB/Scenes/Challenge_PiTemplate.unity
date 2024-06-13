@@ -1647,9 +1647,9 @@ MonoBehaviour:
   apparitionCataClip: {fileID: 0}
   applicationCataClip: {fileID: 0}
   resoTurnClip: {fileID: 0}
-  sceneMenu: {fileID: 0}
-  sceneTM: {fileID: 0}
-  sceneWM: {fileID: 0}
+  sceneMenu: 
+  sceneTM: 
+  sceneWM: 
 --- !u!114 &599995160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,6 +1737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listLogsTextPreview: []
+  previewBarre: {fileID: 0}
 --- !u!1 &605952334
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,27 +3221,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99820155
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.059947502
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -182
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3252,7 +3253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085631622730366072, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -6.874
       objectReference: {fileID: 0}
     - target: {fileID: 3296111126304466593, guid: c1830b99693ffa04a8d71b0500e90ddb, type: 3}
       propertyPath: m_SizeDelta.x
