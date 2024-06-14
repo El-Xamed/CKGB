@@ -14,7 +14,8 @@ public class C_Tuto : MonoBehaviour
         GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface(C_Interface.Interface.Neutre);
     }
 
-     //J'aimerais que cette fonction fasse l'animation du menu de trait qui s'ouvre.
+    #region anim interface
+    //J'aimerais que cette fonction fasse l'animation du menu de trait qui s'ouvre.
     public void OpenTraits()
     {
         GetComponentInParent<C_Challenge>().GetInterface().GoTraits();
@@ -36,9 +37,26 @@ public class C_Tuto : MonoBehaviour
     {
         GetComponentInParent<C_Challenge>().GetInterface().GoBack();
     }
+    #endregion
+
+    #region anim Ui stats
+    public void PlayAnimDeathUiStats()
+    {
+        foreach (C_Actor thisActor in GetComponentInParent<C_Challenge>().GetTeam())
+        {
+            //Joue sur tous les actor l'nim de "t'étanisation" sur l'ui des tats.
+            //thisActor.GetUiStats().
+        }
+    }
+
+    public void StopAnimDeathUiStats()
+    {
+        //Stop sur tous les actor l'nim de "t'étanisation" sur l'ui des tats.
+    }
+    #endregion
 
     //J'aimerais que cette fonction fasse l'animation de la jauge de calme qui descend jusqu'au rouge.
-     public void CalmDown()
+    public void CalmDown()
     {
         //GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface();
     }

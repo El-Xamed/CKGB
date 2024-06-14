@@ -323,8 +323,6 @@ public class C_Challenge : MonoBehaviour
 
             newCase.AddNumber(i + 1);
 
-            Debug.Log("ICI : " + newCase.GetComponent<RectTransform>().rect.position.ToString());
-
             plateau.Add(newCase);
         }
     }
@@ -838,6 +836,22 @@ public class C_Challenge : MonoBehaviour
         }
     }
 
+    void UpdateActorSelected()
+    {
+        //Retire sur tout les actor le contours blanc
+        foreach (var myActor in myTeam)
+        {
+            myActor.IsSelected(false);
+        }
+
+        if (currentActor != null)
+        {
+            //Fait apparaitre le contour blanc de l'actor selectionne.
+            currentActor.IsSelected(true);
+        }
+    }
+    #endregion
+
     #region Preview
     public void DestroyAllMovementPreview()
     {
@@ -929,8 +943,10 @@ public class C_Challenge : MonoBehaviour
             #region création d'une Preview.
             //Ajout d'un component d'image dans l'objet.
             Image thisPreview = new GameObject().AddComponent<Image>();
+            //Desactive le mask.
+            thisPreview.maskable = false;
             //Set le parent de l'image.
-            thisPreview.transform.parent = targetActor.transform;
+            thisPreview.transform.parent = targetActor.GetImageActor().transform;
             //Scale
             thisPreview.gameObject.transform.localScale = Vector3.one;
             //Taille
@@ -1649,7 +1665,8 @@ public class C_Challenge : MonoBehaviour
         }
         else //Sinon lancer l'animation de déplacement (translation entre les 2 position).
         {
-
+            //Lance alors l'animation de déplacement (Marche).
+            thisPion.GetComponent<Animator>().SetTrigger("Walking");
         }
         #endregion
     }
@@ -1776,21 +1793,6 @@ public class C_Challenge : MonoBehaviour
         }
     }
     #endregion
-
-    void UpdateActorSelected()
-    {
-        //Retire sur tout les actor le contours blanc
-        foreach (var myActor in myTeam)
-        {
-            myActor.IsSelected(false);
-        }
-
-        if (currentActor != null)
-        {
-            //Fait apparaitre le contour blanc de l'actor selectionne.
-            currentActor.IsSelected(true);
-        }
-    }
 
     #region Fin de partie
 
@@ -2052,6 +2054,11 @@ public class C_Challenge : MonoBehaviour
     {
         return myInterface;
     }
+
+    public List<C_Actor> GetTeam()
+    {
+        return myTeam;
+    }
     #endregion
 
     #region Preview
@@ -2074,6 +2081,5 @@ public class C_Challenge : MonoBehaviour
     {
         onDialogue = value;
     }
-    #endregion
     #endregion
 }
