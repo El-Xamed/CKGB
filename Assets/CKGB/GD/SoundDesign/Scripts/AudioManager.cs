@@ -30,7 +30,6 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
         
         foreach (Sound s in sounds)
         {
@@ -54,14 +53,11 @@ public class AudioManager : MonoBehaviour
     }
 
     
-    private void Start()
-    {
-      
-    } 
     public void PlayOnce(AudioClip mp3name)
     {
         source.PlayOneShot(mp3name);
     }
+
     public void PlayOnce(string mp3name)
     {
         Sound p = System.Array.Find(sounds, sound => sound.name == mp3name);
@@ -70,16 +66,12 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("Sound:" + mp3name + "not found!");
             return;
-
-
         }
         source.PlayOneShot(clip, p.volume);
     }
-        public void Play(string name)
-        {
 
-
-
+    public void Play(string name)
+    {
         Sound p = System.Array.Find(sounds, sound => sound.name == name);
         p.source.clip = p.clip[Random.Range(0, p.clip.Length)];
         if (p == null)
@@ -89,8 +81,7 @@ public class AudioManager : MonoBehaviour
 
         }
         p.source.Play();
-        Debug.Log("re,h");
-        }
+    }
 
     public void Stop (string name)
     {
@@ -149,8 +140,4 @@ public class AudioManager : MonoBehaviour
         [HideInInspector]
         public AudioSource source;
     }
-   
-
-
-   
 }

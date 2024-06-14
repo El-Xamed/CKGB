@@ -668,16 +668,6 @@ public class C_Challenge : MonoBehaviour
     public void ConfirmAction(SO_ActionClass thisAction)
     {
         #region Desactive toutes les preview
-        //Desactive la preview du plateau.
-        //Retire toute la preview.
-        if (plateauPreview.Count > 0)
-        {
-            foreach (var item in plateauPreview)
-            {
-                Debug.Log(item.name + " is destroy");
-                Destroy(item);
-            }
-        }
 
         //Desactive la preview de l'actor.
         currentActor.GetUiStats().ResetUiPreview();
@@ -753,10 +743,7 @@ public class C_Challenge : MonoBehaviour
             eventSystem.SetSelectedGameObject(null);
 
             //Supprime toutes les preview.
-            foreach (Image thisPreview in plateauPreview)
-            {
-                Destroy(thisPreview.gameObject);
-            }
+            //DestroyAllMovementPreview();
         }
     }
 
@@ -841,111 +828,271 @@ public class C_Challenge : MonoBehaviour
     }
 
     #region Preview
+    public void DestroyAllMovementPreview()
+    {
+        C_PreviewAction.onPreview -= GetComponent<C_Challenge>().MovementPreview;
+
+        if (plateauPreview.Count > -1)
+        {
+            foreach (Image thisMovementPreview in plateauPreview)
+            {
+                Destroy(thisMovementPreview.gameObject);
+            }
+
+            plateauPreview.Clear();
+        }
+    }
+
     public void MovementPreview(SO_ActionClass thisActionClass)
     {
         Debug.Log("Launch preview movement");
-        Image thisPreview = new GameObject().AddComponent<Image>();
-
-        //Création du pion preview.
-        thisPreview.transform.parent = currentActor.transform;
-        //Scale
-        thisPreview.gameObject.transform.localScale = Vector3.one;
-        //Taille
-        thisPreview.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(currentActor.GetComponent<RectTransform>().rect.width, currentActor.GetComponent<RectTransform>().rect.height);
-        //Set l'image
-        thisPreview.sprite = currentActor.GetDataActor().challengeSprite;
-        //Change le nom
-        thisPreview.name = currentActor.name + "_Preview";
-        //Change la couleur.
-        thisPreview.color = new Color32(255, 255, 255, 45);
-        //thisPreview.color = Color.HSVToRGB(0, 0, 0.35f);
-        //Et ajouté dans la liste des preview de movement.
-        plateauPreview.Add(thisPreview);
-
-        //Création de sa position sur le plateau.
-        int position = currentActor.GetPosition();
-
-        TargetStats.ETypeMove whatMove = thisActionClass.GetWhatMove(Interaction.ETypeTarget.Soi);
-        int nbMove = thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement);
         
-        bool isTp = thisActionClass.GetIsTp(Interaction.ETypeTarget.Soi);
+        DestroyAllMovementPreview();
 
-        //Check si c'est le mode normal de déplacement ou alors le mode target case.
-        if (whatMove == TargetStats.ETypeMove.Right || whatMove == TargetStats.ETypeMove.Left) //Normal move mode.
+        //Regarde dans toutes les actions combien de movement il y a.
+        foreach (Interaction thisInteraction in thisActionClass.listInteraction)
         {
-            //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
-            if (whatMove == TargetStats.ETypeMove.Left)
+            //Check si c'est "self" ou other.
+            if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
             {
-                nbMove = -nbMove;
+                //Place la preview par rapport au "self".
+                Debug.Log("Launch preview movement self");
+
+                #region  Création de data
+                //Création de sa position sur le plateau.
+                TargetStats.ETypeMove whatMove = thisActionClass.GetWhatMove(Interaction.ETypeTarget.Soi);
+                bool isTp = thisActionClass.GetIsTp(Interaction.ETypeTarget.Soi);
+                int position = currentActor.GetPosition();
+                int nbMove = thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Movement);
+                #endregion
+
+                PlacePreviewMovement(whatMove, currentActor, position, nbMove, isTp);
             }
-
-            CheckIfNotExceed();
-        }
-        else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
-        {
-            nbMove--;
-
-            //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
-            if (nbMove > plateau.Count - 1)
+            else if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
             {
-                Debug.LogWarning("La valeur de déplacement et trop élevé par rapport au nombre de cases sur le plateau la valeur sera donc égale à 0.");
+                //Place une preview de movement pour tous les autres actor.
+                Debug.Log("Launch preview movement other");
 
-                nbMove = 0;
-            }
-        }
-        
-        //Nouvelle position de l'actor visé sur une case visée.
-        thisPreview.transform.position = new Vector3(plateau[nbMove].transform.position.x, 0, plateau[nbMove].transform.position.z);
-
-        //Permet de réduire/augmenter la valeur pour placer l'actor sur le plateau.
-        void CheckIfNotExceed()
-        {
-            //Si la valeur ne dépasse pas la plateau alors pas besoin de modification de valeur.
-            if (position + nbMove < plateau.Count && position + nbMove > -1)
-            {
-                nbMove = position + nbMove;
-                return;
-            }
-
-            //Pour placer l'actor de l'autre coté du plateau correctement.
-            if (nbMove > 0)
-            {
-                //Vers la droite.
-                for (int i = 0; i <= nbMove; i++)
+                foreach (C_Actor thisOtherActor in myTeam)
                 {
-                    //Detection de si le perso est au bord (à droite).
-                    if (position + i > plateau.Count - 1)
+                    if (thisOtherActor != currentActor)
                     {
-                        //Replace le pion sur la case 0.
-                        thisPreview.transform.position = new Vector3(plateau[0].transform.position.x, 0, plateau[0].transform.position.z);
-                        position = 0;
+                        Debug.Log("C'est good pour :" + thisOtherActor.name);
+                        //Boucle avec la range.
+                        for (int i = 0; i < thisActionClass.GetRange(); i++)
+                        {
+                            Debug.Log("Je cherche sur la case " + i);
 
-                        //On retire le nombre de déplacement fait.
-                        nbMove = position + nbMove - i;
+                            if (thisActionClass.GetTypeDirectionRange() != Interaction.ETypeDirectionTarget.None)
+                            {
+                                //Check quel direction la range va faire effet.
+                                switch (thisActionClass.GetTypeDirectionRange())
+                                {
+                                    //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
+                                    case Interaction.ETypeDirectionTarget.Right:
+                                        //Calcul vers la droite.
+                                        CheckPositionOther(currentActor, i, thisOtherActor);
+                                        Debug.Log("Direction Range = droite.");
+                                        break;
+                                    case Interaction.ETypeDirectionTarget.Left:
+                                        //Calcul vers la gauche.
+                                        CheckPositionOther(currentActor, -i, thisOtherActor);
+                                        Debug.Log("Direction Range = Gauche.");
+                                        break;
+                                    case Interaction.ETypeDirectionTarget.RightAndLeft:
+                                        //Calcul vers la droite + gauche.
+                                        CheckPositionOther(currentActor, i, thisOtherActor);
+                                        CheckPositionOther(currentActor, -i, thisOtherActor);
+                                        Debug.Log("Direction Range = droite + gauche.");
+                                        break;
+                                }
+                            }
+                        }
                     }
                 }
             }
-            else if (nbMove < 0)
-            {
-                Debug.Log(nbMove);
-                //Vers la gauche.
-                for (int i = 0; i >= nbMove; i--)
-                {
-                    Debug.Log(i);
-                    if (position + i < 0)
-                    {
-                        //Replace le pion sur la case sur la case la plus à droite.
-                        thisPreview.transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, 0, plateau[plateau.Count - 1].transform.position.z);
-                        position = plateau.Count - 1;
+        }
 
-                        //On retire le nombre de déplacement fait.
-                        nbMove = position + nbMove - i;
+        void PlacePreviewMovement(TargetStats.ETypeMove whatMove, C_Actor targetActor, int position, int nbMove, bool isTp)
+        {
+            #region création d'une Preview.
+            //Ajout d'un component d'image dans l'objet.
+            Image thisPreview = new GameObject().AddComponent<Image>();
+            //Set le parent de l'image.
+            thisPreview.transform.parent = targetActor.transform;
+            //Scale
+            thisPreview.gameObject.transform.localScale = Vector3.one;
+            //Taille
+            thisPreview.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(targetActor.GetComponent<RectTransform>().rect.width, targetActor.GetComponent<RectTransform>().rect.height);
+            //Set l'image
+            thisPreview.sprite = targetActor.GetDataActor().challengeSprite;
+            //Change le nom
+            thisPreview.name = targetActor.name + "_Preview";
+            //Change la couleur.
+            thisPreview.color = new Color32(255, 255, 255, 150);
+            //Et ajouté dans la liste des preview de movement.
+            plateauPreview.Add(thisPreview);
+            #endregion
+
+            #region Check mode de déplacement
+            //Check si c'est le mode normal de déplacement ou alors le mode target case.
+            if (whatMove == TargetStats.ETypeMove.Right || whatMove == TargetStats.ETypeMove.Left) //Normal move mode.
+            {
+                //Check si cette valeur doit etre negative ou non pour setup correctement la direction.
+                if (whatMove == TargetStats.ETypeMove.Left)
+                {
+                    nbMove = -nbMove;
+                }
+
+                CheckIfNotExceed();
+            }
+            else //Passe en mode "targetCase". Pour permettre de bien setup le déplacement meme si la valeur est trop élevé par rapport au nombre de case dans la liste.
+            {
+                nbMove--;
+
+                //Check si le nombre de déplacement est trop élevé par rapport au nombre de case.
+                if (nbMove > plateau.Count - 1)
+                {
+                    Debug.LogWarning("La valeur de déplacement et trop élevé par rapport au nombre de cases sur le plateau la valeur sera donc égale à 0.");
+
+                    nbMove = 0;
+                }
+            }
+            #endregion
+
+            //Check si un autre membre de l'équipe occupe deja a place. A voir pour le déplacer après que l'actor ait bougé.
+            foreach (C_Actor thisOtherActor in myTeam)
+            {
+                //Si dans la liste de l'équipe c'est pas égale à l'actor qui joue.
+                if (currentActor != thisOtherActor)
+                {
+                    //Détection de si il y a un autres actor.
+                    if (nbMove == thisOtherActor.GetPosition())
+                    {
+                        //Check si c'est une Tp ou non.
+                        if (isTp)
+                        {
+                            Debug.Log("J'échange de place !");
+                            //Place l'autre actor à la position de notre actor.
+                            #region création d'une Preview.
+                            //Ajout d'un component d'image dans l'objet.
+                            Image thisOtherPreview = new GameObject().AddComponent<Image>();
+                            //Set le parent de l'image.
+                            thisOtherPreview.transform.parent = targetActor.transform;
+                            //Scale
+                            thisOtherPreview.gameObject.transform.localScale = Vector3.one;
+                            //Taille
+                            thisOtherPreview.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(targetActor.GetComponent<RectTransform>().rect.width, targetActor.GetComponent<RectTransform>().rect.height);
+                            //Set l'image
+                            thisOtherPreview.sprite = targetActor.GetDataActor().challengeSprite;
+                            //Change le nom
+                            thisOtherPreview.name = targetActor.name + "_Preview";
+                            //Change la couleur.
+                            thisOtherPreview.color = new Color32(255, 255, 255, 150);
+                            //Et ajouté dans la liste des preview de movement.
+                            plateauPreview.Add(thisOtherPreview);
+                            #endregion
+
+                            thisOtherPreview.transform.position = new Vector3(plateau[currentActor.GetPosition()].transform.position.x, 0, plateau[currentActor.GetPosition()].transform.position.z);
+                        }
+                        else
+                        {
+                            Debug.Log("Pousse toi !");
+                            //Le spawn de la preview sera décalé de 1 dans la direction du déplacement avec l'image de l'actor visé.
+                            PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition(), 1, isTp);
+                        }
                     }
                 }
             }
 
-            //Puis recheck si le calcul est bon.
-            CheckIfNotExceed();
+            //Nouvelle position de l'actor visé sur une case visée.
+            thisPreview.transform.position = new Vector3(plateau[nbMove].transform.position.x, 0, plateau[nbMove].transform.position.z);
+
+            //Permet de réduire/augmenter la valeur pour placer l'actor sur le plateau.
+            void CheckIfNotExceed()
+            {
+                //Si la valeur ne dépasse pas la plateau alors pas besoin de modification de valeur.
+                if (position + nbMove < plateau.Count && position + nbMove > -1)
+                {
+                    nbMove = position + nbMove;
+                    return;
+                }
+
+                //Pour placer l'actor de l'autre coté du plateau correctement.
+                if (nbMove > 0)
+                {
+                    //Vers la droite.
+                    for (int i = 0; i <= nbMove; i++)
+                    {
+                        //Detection de si le perso est au bord (à droite).
+                        if (position + i > plateau.Count - 1)
+                        {
+                            //Replace le pion sur la case 0.
+                            thisPreview.transform.position = new Vector3(plateau[0].transform.position.x, 0, plateau[0].transform.position.z);
+                            position = 0;
+
+                            nbMove -= i;
+                        }
+                    }
+                }
+                else if (nbMove < 0)
+                {
+                    //Vers la gauche.
+                    for (int i = 0; i >= nbMove; i--)
+                    {
+                        if (position + i < 0)
+                        {
+                            //Replace le pion sur la case sur la case la plus à droite.
+                            thisPreview.transform.position = new Vector3(plateau[plateau.Count - 1].transform.position.x, 0, plateau[plateau.Count - 1].transform.position.z);
+                            position = plateau.Count - 1;
+
+                            nbMove -= i;
+                        }
+                    }
+                }
+
+                //Puis recheck si le calcul est bon.
+                CheckIfNotExceed();
+            }
+        }
+
+        //Fonction pour check si il y a des acteurs dans la range.
+        bool CheckPositionOther(C_Actor thisActor, int newPosition, C_Actor target)
+        {
+            #region  Création de data
+            //Création de sa position sur le plateau.
+            TargetStats.ETypeMove whatMove = thisActionClass.GetWhatMove(Interaction.ETypeTarget.Other);
+            bool isTp = thisActionClass.GetIsTp(Interaction.ETypeTarget.Other);
+            int nbMove = thisActionClass.GetValue(Interaction.ETypeTarget.Other, TargetStats.ETypeStatsTarget.Movement);
+            int position = target.GetPosition();
+            #endregion
+
+            if (thisActor.GetPosition() + newPosition >= plateau.Count - 1)
+            {
+                if (0 + position == target.GetPosition() && target != thisActor)
+                {
+                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+                    PlacePreviewMovement(whatMove, target, position, nbMove, isTp);
+                    return true;
+                }
+            }
+            else if (thisActor.GetPosition() + newPosition <= 0)
+            {
+                if (0 + position == target.GetPosition() && target != thisActor)
+                {
+                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+                    PlacePreviewMovement(whatMove, target, position, nbMove, isTp);
+                    return true;
+                }
+            }
+            else if (thisActor.GetPosition() + newPosition == target.GetPosition() && target != thisActor)
+            {
+                Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
+                PlacePreviewMovement(whatMove, target, position, nbMove, isTp);
+                return true;
+            }
+
+            return false;
         }
     }
     #endregion
@@ -1443,7 +1590,6 @@ public class C_Challenge : MonoBehaviour
 
                         //On retire le nombre de déplacement fait.
                         nbMove -= i;
-                        Debug.Log(nbMove);
                     }
                 }
             }

@@ -163,12 +163,14 @@ public class C_PreviewAction : MonoBehaviour
                 }
                 else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                 {
+                    Debug.Log("Add Preview Movement");
+
                     #region Setup string Action
                     whatStats = "<sprite index=[index] tint=12>";
 
                     descriptionPreview = " va se déplacer de ";
 
-                    //onPreview += thisActor.GetUiStats().GetComponent<C_Challenge>().MovementPreview;
+                    onPreview += GetComponent<C_Challenge>().MovementPreview;
 
                     //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
                     switch (thisTargetStats.whatMove)
@@ -254,6 +256,8 @@ public class C_PreviewAction : MonoBehaviour
     #region Fonctions
     public void DestroyAllPreview()
     {
+        Debug.Log("Destruction des preview");
+
         if (listLogsTextPreview.Count > -1)
         {
             foreach (GameObject thisLogs in listLogsTextPreview)
@@ -263,6 +267,8 @@ public class C_PreviewAction : MonoBehaviour
 
             listLogsTextPreview.Clear();
         }
+
+        GetComponent<C_Challenge>().DestroyAllMovementPreview();
     }
 
     public void ActivePreviewBarre(bool value)
