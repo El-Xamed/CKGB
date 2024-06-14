@@ -107,7 +107,7 @@ public class C_Interface : MonoBehaviour
 
         if (context.performed)
         {
-            if(!GameManager.instance.pauseMenu.activeSelf|| !GameManager.instance.optionsMenu.activeSelf)
+            if(!GameManager.instance.pauseBackground.activeSelf)
             {
                 Vector2 input = context.ReadValue<Vector2>();
 
