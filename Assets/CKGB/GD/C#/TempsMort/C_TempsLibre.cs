@@ -138,8 +138,8 @@ public class C_TempsLibre : MonoBehaviour
             characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(0).gameObject.SetActive(false);
             //characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).GetComponent<Image>().enabled = false;
             //characters[i].transform.GetComponent<C_Actor>().mainchild.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().enabled = false;
-
-                characters[i].GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = false;
+            characters[i].GetComponent<Animator>().enabled = false;
+            characters[i].GetComponent<C_Actor>().BulleHautDroite.GetComponent<Image>().enabled = false;
                 characters[i].GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = false;
                 characters[i].GetComponent<C_Actor>().BulleBasDroite.GetComponent<Image>().enabled = false;
                 characters[i].GetComponent<C_Actor>().BulleBasGauche.GetComponent<Image>().enabled = false;
@@ -1165,6 +1165,7 @@ public class C_TempsLibre : MonoBehaviour
             c.GetComponent<C_Actor>().HasPlayed = false;
             c.GetComponent<C_Actor>().HasRevassed = false;
             c.GetComponent<C_Actor>().HasTraited = false;
+            c.GetComponent<Animator>().enabled = true;
         }
         StartCoroutine(Challenge(named));
     }
