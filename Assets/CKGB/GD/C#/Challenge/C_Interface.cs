@@ -107,113 +107,117 @@ public class C_Interface : MonoBehaviour
 
         if (context.performed)
         {
-            Vector2 input = context.ReadValue<Vector2>();
-
-            #region Tuto
-            //Pour le tuto.
-            if (input.y < 0 && currentInterface == Interface.Tuto)
+            if(!GameManager.instance.pauseMenu.activeSelf|| !GameManager.instance.optionsMenu.activeSelf)
             {
-                Debug.Log("Next tuto");
-                myChallenge.NextTuto();
-            }
-            #endregion
+                Vector2 input = context.ReadValue<Vector2>();
 
-            #region Dialogue
-            //Pour passer au dialogue suivant.
-            if (input.y < 0 && myChallenge.GetOnDialogue())
-            {
-                //check si l histoire continue ou pas
-                Debug.Log("continue");
-
-                //Check si il y a le GameManager.
-                if (GameManager.instance)
+                #region Tuto
+                //Pour le tuto.
+                if (input.y < 0 && currentInterface == Interface.Tuto)
                 {
-                    if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
+                    Debug.Log("Next tuto");
+                    myChallenge.NextTuto();
+                }
+                #endregion
+
+                #region Dialogue
+                //Pour passer au dialogue suivant.
+                if (input.y < 0 && myChallenge.GetOnDialogue())
+                {
+                    //check si l histoire continue ou pas
+                    Debug.Log("continue");
+
+                    //Check si il y a le GameManager.
+                    if (GameManager.instance)
                     {
-                        GameManager.instance.ContinueStory();
+                        if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
+                        {
+                            GameManager.instance.ContinueStory();
+                        }
+                        else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
+                        {
+                            GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+                        }
                     }
-                    else if (context.performed && GameManager.instance.isDialoguing == true && canContinue == false)
+                    return;
+                }
+                #endregion
+
+                //Check si l'interaction avec l'interface et possible => Phase du joueur.
+                if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
+                {
+                    //Pour la navigation dans l'interface "Neutre"
+                    if (currentInterface == Interface.Neutre && !myChallenge.GetOnDialogue())
                     {
-                        GameManager.instance.textToWriteIn.GetComponent<TextAnimatorPlayer>().SkipTypewriter();
+                        if (input.x > 0)
+                        {
+                            GoBack();
+                            return;
+                        }
+                        if (input.x < 0)
+                        {
+                            GoTraits();
+                            return;
+                        }
+
+                        if (input.y < 0)
+                        {
+                            GoAction();
+                            return;
+                        }
+                        if (input.y > 0)
+                        {
+                            GoLogs();
+                            return;
+                        }
+                    }
+
+                    //Pour selectionner ses actions.
+                    if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
+                    {
+                        if (input.x > 0)
+                        {
+                            GoBack();
+                            return;
+                        }
+                    }
+
+                    //Quand il est dans le logs.
+                    if (currentInterface == Interface.Logs)
+                    {
+                        if (input.x > 0)
+                        {
+                            GoBack();
+                            return;
+                        }
                     }
                 }
-                return;
-            }
-            #endregion
 
-            //Check si l'interaction avec l'interface et possible => Phase du joueur.
-            if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
-            {
-                //Pour la navigation dans l'interface "Neutre"
-                if (currentInterface == Interface.Neutre && !myChallenge.GetOnDialogue())
+                //Pour passer à la suite du jeu.
+                if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && !myChallenge.GetOnDialogue())
                 {
-                    if (input.x > 0)
-                    {
-                        GoBack();
-                        return;
-                    }
-                    if (input.x < 0)
-                    {
-                        GoTraits();
-                        return;
-                    }
-
-                    if (input.y < 0)
-                    {
-                        GoAction();
-                        return;
-                    }
-                    if (input.y > 0)
-                    {
-                        GoLogs();
-                        return;
-                    }
+                    myChallenge.EndChallenge();
                 }
 
-                //Pour selectionner ses actions.
-                if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
+                if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.GameOver)
                 {
-                    if (input.x > 0)
-                    {
-                        GoBack();
-                        return;
-                    }
+                    myChallenge.GameOver();
                 }
 
-                //Quand il est dans le logs.
-                if (currentInterface == Interface.Logs)
+                //Pour Update CataTurn.
+                if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
                 {
-                    if (input.x > 0)
-                    {
-                        GoBack();
-                        return;
-                    }
+                    myChallenge.NextCata();
+                }
+
+                //Pour Update ResoTrun.
+                if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
+                {
+                    Debug.Log("Next Réso !");
+                    myChallenge.NextResolution();
                 }
             }
-
-            //Pour passer à la suite du jeu.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.EndGame && !myChallenge.GetOnDialogue())
-            {
-                myChallenge.EndChallenge();
-            }
-
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.GameOver)
-            {
-                myChallenge.GameOver();
-            }
-
-            //Pour Update CataTurn.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.CataTurn)
-            {
-                myChallenge.NextCata();
-            }
-
-            //Pour Update ResoTrun.
-            if (input.y < 0 && GetPhaseDeJeu() == PhaseDeJeu.ResoTurn)
-            {
-                Debug.Log("Next Réso !");
-                myChallenge.NextResolution();
-            }
+            
         }
     }
     #endregion
@@ -298,30 +302,43 @@ public class C_Interface : MonoBehaviour
         //Animation
         targetbutton = buttonBackBackground;
         GetComponent<Animator>().SetTrigger("Close");
-
-        switch (currentInterface)
+        if (GameManager.instance.optionsMenu.activeSelf == true)
         {
-            case Interface.Actions:
-                uiAction.SetActive(false);
-                break;
-            case Interface.Traits:
-                uiAction.SetActive(false);
-                break;
-            case Interface.Logs:
-                onLogs = false;
-                //Animation Logs.
-                myChallenge.GetuiLogs().SetTrigger("Close");
-                break;
+            Debug.Log("back from options");
+            GameManager.instance.BackFromPause(); 
         }
-
-        if (currentInterface != Interface.Tuto)
+        else if (GameManager.instance.pauseMenu.activeSelf == true)
         {
-            currentInterface = Interface.Neutre;
+            Debug.Log("back from pause");
+            GameManager.instance.BackFromPause();
         }
         else
         {
-            uiAction.SetActive(false);
+            switch (currentInterface)
+            {
+                case Interface.Actions:
+                    uiAction.SetActive(false);
+                    break;
+                case Interface.Traits:
+                    uiAction.SetActive(false);
+                    break;
+                case Interface.Logs:
+                    onLogs = false;
+                    //Animation Logs.
+                    myChallenge.GetuiLogs().SetTrigger("Close");
+                    break;
+            }
+
+            if (currentInterface != Interface.Tuto)
+            {
+                currentInterface = Interface.Neutre;
+            }
+            else
+            {
+                uiAction.SetActive(false);
+            }
         }
+        
     }
     #endregion
 
@@ -424,6 +441,10 @@ public class C_Interface : MonoBehaviour
     public void SetCurrentInterface(Interface newCurrentInterface)
     {
         currentInterface = newCurrentInterface;
+    }
+    public Interface GetCurrentInterface()
+    {
+        return currentInterface;
     }
 
     public List<GameObject> GetListActionButton()

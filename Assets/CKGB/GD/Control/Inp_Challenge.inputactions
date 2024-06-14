@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "pause/options",
+                    "type": "Button",
+                    "id": "e2b18917-e76a-4811-a4b0-8b32e3e3383b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -535,6 +544,17 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9e9790d5-c1e8-416c-b22f-7721c4479f28",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "pause/options",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

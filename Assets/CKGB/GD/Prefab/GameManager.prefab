@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attention, la progression sera perdu
+  m_text: Attention, la progression sera perdue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -669,6 +669,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c25f7d14-0e1c-428c-91d1-35a5efefea01
     m_ActionName: Console/Open/Close Console[/Keyboard/backquote]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5978931268482471701}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OpenPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 889552c7-0a42-4c83-9bc3-203f23ffdfdf
+    m_ActionName: Console/pause/options
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Console
@@ -1812,7 +1828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8138984994058678051, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7622135166729355157, guid: 15422e0eb8114ca46a0a37b5f7af88d6, type: 3}

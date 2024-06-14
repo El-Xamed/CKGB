@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public enum EActorClass
 {
@@ -911,16 +912,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #endregion
-    public void OpenOptions()
-    {
-        pauseBackground.SetActive(true);
-        pauseMenu.SetActive(false);
-        optionsMenu.SetActive(true);
-        TM.Es.SetSelectedGameObject(GameManager.instance.optionsMenu.transform.GetChild(2).gameObject);
-        TM.updateButton();
-        //optionsParent.SetActive(true);
-        Debug.Log("Options");
-    }
+   
     public void BackFromPause()
     {
         if(optionsMenu.activeSelf)
@@ -933,9 +925,10 @@ public class GameManager : MonoBehaviour
                 TM.Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
                 TM.updateButton();
             }
-            else if (SceneManager.GetActiveScene().name == "")
+            else if (SceneManager.GetActiveScene().name == "S_Challenge")
             {
-                //ajouter la selection du dernier boutton dans le challenge
+                recommencerButton.SetActive(true);
+                C.GetEventSystem().SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
             }
             else if (SceneManager.GetActiveScene().name == "S_MainMenu")
             {
@@ -958,13 +951,75 @@ public class GameManager : MonoBehaviour
                     TM.Es.SetSelectedGameObject(TM.TreeParent.transform.GetChild(0).GetChild(0).GetChild(0).gameObject);
                 
             }
-            else if (SceneManager.GetActiveScene().name == "")
+            else if (SceneManager.GetActiveScene().name == "S_Challenge")
             {
-                //ajouter la selection du dernier boutton dans le challenge
+                if (lastButton != null)
+                {
+                    C.GetEventSystem().SetSelectedGameObject(lastButton.gameObject); 
+                }
             }
         }
         
     }
+    public void OpenPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (pauseBackground.activeSelf == false)
+            {
+                if(!isDialoguing)
+                {
+                    pauseBackground.SetActive(true);
+                    PauseParent.GetComponent<Animator>().SetTrigger("trigger");
+                    pauseMenu.SetActive(true);
+                    if (SceneManager.GetActiveScene().name == "S_Challenge")
+                    {
+                        if (C.GetInterface().GetCurrentInterface() != C_Interface.Interface.Neutre)
+                        {
+                            C.GetEventSystem().SetSelectedGameObject(null);
+                        }
+                        lastButton = C.GetEventSystem().currentSelectedGameObject;
+                        C.GetEventSystem().SetSelectedGameObject(pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+                        //recommencerButton.SetActive(false);
+                    }
+                    if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+                    {
+                        TM.Es.SetSelectedGameObject(pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
+                        TM.updateButton();
+                    }
+
+                    //optionsParent.SetActive(true);
+                    Debug.Log("Pause");
+                }
+                
+            }
+            else
+            {
+                BackFromPause();
+            }
+
+        }
+    }
+    public void OpenOptions()
+    {
+        pauseBackground.SetActive(true);
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "S_TempsLibre")
+        {
+            TM.Es.SetSelectedGameObject(optionsMenu.transform.GetChild(2).gameObject);
+            TM.updateButton();
+        }
+        if (SceneManager.GetActiveScene().name == "S_Challenge")
+        {
+            C.GetEventSystem().SetSelectedGameObject(optionsMenu.transform.GetChild(2).gameObject);
+    
+        }
+        //optionsParent.SetActive(true);
+        Debug.Log("Options");
+    }
+ 
+    
     public void GoToMainMenuALERT()
     {
         GameManager.instance.team.Clear();
