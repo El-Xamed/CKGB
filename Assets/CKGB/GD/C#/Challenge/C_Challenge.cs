@@ -140,6 +140,17 @@ public class C_Challenge : MonoBehaviour
             SceneManager.LoadScene("S_DestinationTest");
         }
     }
+    public void ResetChallengePause()
+    {
+        
+            foreach (GameObject c in GameManager.instance.GetTeam())
+            {
+                c.transform.parent = GameManager.instance.transform;
+            }
+            Debug.Log("Reload");
+            SceneManager.LoadScene("S_DestinationTest");
+        
+    }
 
     //Affiche les information de ce bouton dans la preview.
     public void Naviguate(InputAction.CallbackContext context)

@@ -961,6 +961,17 @@ public class GameManager : MonoBehaviour
         }
         
     }
+    public void ResetChallenge()
+    {
+       
+            foreach (GameObject c in GetTeam())
+            {
+                c.transform.parent = transform;
+            }
+            Debug.Log("Reload");
+            SceneManager.LoadScene("S_DestinationTest");
+        
+    }
     public void OpenPause(InputAction.CallbackContext context)
     {
         if (context.performed)
