@@ -16,11 +16,4 @@ public class C_Challenge_Debug : MonoBehaviour
         SceneManager.LoadScene("S_WorldMap");
     }
 
-    public void MuteMusic(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        if (context.performed)
-            AudioManager.instance.MuteMusic("MusiqueTuto");
-    }
 }

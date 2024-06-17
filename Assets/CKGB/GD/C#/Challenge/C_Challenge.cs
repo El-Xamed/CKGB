@@ -547,7 +547,7 @@ public class C_Challenge : MonoBehaviour
 
         #region Initialisation
 
-        if (AudioManager.instance)
+        if (AudioManager.instanceAM)
         {
             //AudioManager.instance.Play("MusiqueTuto");
         }
@@ -688,9 +688,9 @@ public class C_Challenge : MonoBehaviour
         GetComponent<C_PreviewAction>().ActivePreviewBarre(false);
         #endregion
 
-        if (AudioManager.instance)
+        if (AudioManager.instanceAM)
         {
-            AudioManager.instance.Play("SfxSonDeConfirmation");
+            AudioManager.instanceAM.Play("SfxSonDeConfirmation");
         }
 
         #region Création d'une nouvelle class de reso
@@ -1178,9 +1178,9 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("Resolution turn !");
 
-        if (AudioManager.instance)
+        if (AudioManager.instanceAM)
         {
-            AudioManager.instance.PlayOnce(resoTurnClip);
+            
         }
 
         //Supprime toutes les preview de déplacement.

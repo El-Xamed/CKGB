@@ -481,9 +481,9 @@ public class C_Interface : MonoBehaviour
                 AudioManager.instance.Play("SfxSonDeConfirmation");
             }*/
 
-            if (AudioManager.instance)
+            if (AudioManager.instanceAM)
             {
-                AudioManager.instance.Play("SfxRetourArriere");
+                AudioManager.instanceAM.Play("SfxRetourArriere");
             }
         }
     }

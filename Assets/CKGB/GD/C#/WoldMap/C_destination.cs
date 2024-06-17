@@ -45,7 +45,7 @@ public class C_destination : MonoBehaviour
     {
         //leveltextprovenance.text = leveltext;
         //levelUI.GetComponent<levelUI>().leveltext.text = "???"; 
-        AudioManager.instance.Play("MusiqueWorldMap");
+        AudioManager.instanceAM.Play("MusiqueWorldMap");
     }
     public string sceneGet()
     {

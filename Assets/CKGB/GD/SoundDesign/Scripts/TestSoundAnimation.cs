@@ -5,68 +5,61 @@ using UnityEngine.Audio;
 
 public class TestSoundAnimation : MonoBehaviour
 {
-    public AudioManager A;
-    public void Start()
-    {
-      if(AudioManager.instance)
-        {
-            A = AudioManager.instance;
-        }
-    }
+
 
     public void AnimAngerEsthelaNimu()
     {
-        A.PlayOnce("Anger");  
+       AudioManager.instanceAM.Play("Anger");  
     }
 
     public void AnimAngerMorgan()
     {
-        A.PlayOnce("Anger2");
+        AudioManager.instanceAM.Play("Anger2");
     }
 
     public void SfxPowerUp()
     {
-        A.PlayOnce("SfxPowerUp");
+        AudioManager.instanceAM.Play("SfxPowerUp");
     }
 
     public void SfxPowerDown()
     {
-        A.PlayOnce("SfxPowerDown");
+        AudioManager.instanceAM.Play("SfxPowerDown");
     }
 
     public void Rainbow()
     {
-        A.PlayOnce("Rainbow");
+        AudioManager.instanceAM.Play("Rainbow");
     }
 
     public void Interrogation()
     {
-        A.PlayOnce("Interrogation");
+        AudioManager.instanceAM.Play("Interrogation");
     }
 
     public void Hearts()
     {
-        A.PlayOnce("Hearts");
+       AudioManager.instanceAM.Play("Hearts");
     }
 
     public void Deception()
     {
-        A.PlayOnce("Deception");
+        AudioManager.instanceAM.Play("Deception");
     }
 
     public void Exclamation()
     {
-        A.PlayOnce("Exclamation");
+        AudioManager.instanceAM.Play("Exclamation");
     }
 
     public void Dots()
     {
-        A.PlayOnce("Dots");
+        AudioManager.instanceAM.Play("Dots");
     }
 
     public void BruitDePas()
     {
-        A.PlayOnce("BruitDePas");
+        AudioManager.instanceAM.Play("BruitDePas");
     }
 }
 

@@ -30,7 +30,7 @@ public class C_MainMenu : MonoBehaviour
 
     private void IniSplashScreen()
     {
-        AudioManager.instance.Play("MenuMusic");
+        AudioManager.instanceAM.Play("MenuMusic");
         splashScreen.SetActive(true);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(bouttonSplashScreen);
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
@@ -77,9 +77,9 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
        
         //Stop les sons.
-        AudioManager.instance.Stop("MusiqueSplashScreen");
-        AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
-        AudioManager.instance.Play("MusiqueTuto");
+        AudioManager.instanceAM.Stop("MusiqueSplashScreen");
+        AudioManager.instanceAM.Play("SfxSonDeConfirmation");
+        AudioManager.instanceAM.Play("MusiqueTuto");
 
     }
 
@@ -116,7 +116,7 @@ public class C_MainMenu : MonoBehaviour
             //optionsParent.SetActive(true);
             Debug.Log("Options");
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(GameManager.instance.baseToggle.gameObject);
-            AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
+            AudioManager.instanceAM.Play("SfxSonDeConfirmation");
         }
     }
     public void updateCurrentButton()
@@ -124,7 +124,7 @@ public class C_MainMenu : MonoBehaviour
         //currentButton.GetComponent<Animator>().SetTrigger("unselected");
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
         // currentButton.GetComponent<Animator>().SetTrigger("Selected");
-        AudioManager.instance.PlayOnce("SfxHover");
+        AudioManager.instanceAM.Play("SfxHover");
 
     }
     public void Naviguate(InputAction.CallbackContext context)
@@ -141,13 +141,13 @@ public class C_MainMenu : MonoBehaviour
 
     public void OpenCredits()
     {
-        AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
+        AudioManager.instanceAM.Play("SfxSonDeConfirmation");
     }
 
     public void LeaveGame()
     {
         Application.Quit();
-        AudioManager.instance.PlayOnce("SfxSonDeConfirmation");
+        AudioManager.instanceAM.Play("SfxSonDeConfirmation");
     }
 
     //Focntion à dev plus tard. Sert pour tous les menu.
