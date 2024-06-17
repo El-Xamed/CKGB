@@ -25,11 +25,12 @@ public class C_MainMenu : MonoBehaviour
     private void Start()
     {
         IniSplashScreen();
-        AudioManager.instance.Play("MusiqueSplashScreen");
+        
     }
 
     private void IniSplashScreen()
     {
+        AudioManager.instance.Play("MenuMusic");
         splashScreen.SetActive(true);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(bouttonSplashScreen);
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
@@ -44,7 +45,7 @@ public class C_MainMenu : MonoBehaviour
        // splashScreen.SetActive(false);
 
         boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
-        AudioManager.instance.PlayOnce("SfxSplashScreen");
+        
     }
     IEnumerator firstButton()
     {
