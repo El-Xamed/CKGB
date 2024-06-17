@@ -6,12 +6,12 @@ EXTERNAL Trigger(name)
 
 ===Intro===
 //Bruit de porte, l’écran du temps mort apparait. Morgan est près d’une porte, Sa grand-mère à table, en train de petit-déjeuner.
-
-’lut#Bulle:MorganBasGauche
+~ Trigger("name")
+’lut #Bulle:MorganBasGauche
 
 Yo BG. Bien dormi ?#Bulle:NimuHautDroite
 
-~ Trigger("name")
+
 
 ’uais. ’va ?#Bulle:MorganHautGauche
 
@@ -46,6 +46,7 @@ et froide. #Bulle:NimuBasGauche
 
 Il fait genre, 22 degrés.#Bulle:Narrateur
 Mais néanmoins, tu te sens doucement basculer... #Bulle:Narrateur
+~ Trigger("name")
 Puis tu <i>cèdes</i>, incapable de lui résister.#Bulle:Narrateur
 ~ Trigger("name")
 <bounce>…</bounce> Nah mais j’peux prendre cinq minutes<br> si c’est important pour toi.#Bulle:MorganHautDroite #emot:Dots
