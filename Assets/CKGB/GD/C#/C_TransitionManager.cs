@@ -8,14 +8,16 @@ using UnityEngine.SceneManagement;
 public class C_TransitionManager : MonoBehaviour
 {
     string nextScene;
+    string thisClip;
 
     //Le "new" permet de ne pas avoir une valeur null.
     UnityEvent currentEvent = new UnityEvent();
 
     //Fonction public qui permet de setup correctement la transition entre les scene.
-    public void SetupNextScene(string thisScene)
+    public void SetupNextScene(string thisScene, string cutClip)
     {
         nextScene = thisScene;
+        thisClip = cutClip;
 
         //Retire toutes les fonctions stocké dans l'event.
         currentEvent.RemoveAllListeners();
@@ -43,6 +45,11 @@ public class C_TransitionManager : MonoBehaviour
     public void EndTransition()
     {
         //GetComponentInParent<GameManager>().EndAnimation(currentEvent);
+
+        if (AudioManager.instanceAM && thisClip != "")
+        {
+            AudioManager.instanceAM.Stop(thisClip);
+        }
 
         currentEvent.Invoke();
     }

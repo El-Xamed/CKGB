@@ -73,7 +73,7 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.transform.GetChild(1).gameObject.SetActive(true);
 
         //Setup dans quelle scene on souhaite aller.
-        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(firthScene);
+        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(firthScene, "NewGameButton");
 
         //Transition.
         

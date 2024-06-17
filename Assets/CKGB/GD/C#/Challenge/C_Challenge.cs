@@ -194,7 +194,7 @@ public class C_Challenge : MonoBehaviour
             StartCoroutine(StartChallenge());
         }
 
-        if (AudioManager.instanceAM)
+        if (AudioManager.instanceAM && myChallenge.LevelChallenge != "")
         {
             AudioManager.instanceAM.Play(myChallenge.LevelChallenge);
         }
@@ -2002,7 +2002,7 @@ public class C_Challenge : MonoBehaviour
                 Debug.Log("Transition vers la scene " + nextScene);
 
                 //Setup dans quelle scene on souhaite aller.
-                GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene);
+                GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(nextScene, myChallenge.LevelChallenge);
 
                 //Transition.
                 GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
