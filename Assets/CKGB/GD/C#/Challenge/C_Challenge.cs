@@ -613,6 +613,7 @@ public class C_Challenge : MonoBehaviour
     //Fonction pour faire spawn les cata.
     void InitialiseCata()
     {
+        AudioManager.instanceAM.Play("Catastrophe");
         //Supprime toutes les catasur le plateau.
         foreach (var thisCase in plateau)
         {

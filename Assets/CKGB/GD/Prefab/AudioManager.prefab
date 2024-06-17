@@ -132,15 +132,23 @@ MonoBehaviour:
     group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: DialogueJoue
     clip:
-    - {fileID: 8300000, guid: d2bd2f5470eb91f459144133d02a9343, type: 3}
+    - {fileID: 8300000, guid: 863f13acfc6e3be498573294f257791a, type: 3}
     group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: DialogueStop
+    clip:
+    - {fileID: 8300000, guid: 863f13acfc6e3be498573294f257791a, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!82 &440091079429689959
 AudioSource:

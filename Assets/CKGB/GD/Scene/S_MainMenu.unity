@@ -12950,46 +12950,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: sounds.Array.size
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[10].loop
-      value: 0
+      propertyPath: sounds.Array.data[13].name
+      value: Catastrophe
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[11].loop
-      value: 0
+      propertyPath: sounds.Array.data[14].name
+      value: Catastrophe
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].name
-      value: DialogueStop
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].group
+      propertyPath: sounds.Array.data[13].group
       value: 
       objectReference: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].pitch
+      propertyPath: sounds.Array.data[13].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].volume
+      propertyPath: sounds.Array.data[14].group
+      value: 
+      objectReference: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[14].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[13].volume
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].clip.Array.size
+      propertyPath: sounds.Array.data[14].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[13].clip.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[11].clip.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 863f13acfc6e3be498573294f257791a, type: 3}
+      propertyPath: sounds.Array.data[14].clip.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[12].clip.Array.data[0]
+      propertyPath: sounds.Array.data[13].clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: de395f3b51598b742a9af0fbbefd6c4f, type: 3}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[13].clip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: de395f3b51598b742a9af0fbbefd6c4f, type: 3}
+    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
+      propertyPath: sounds.Array.data[14].clip.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 863f13acfc6e3be498573294f257791a, type: 3}
     - target: {fileID: 5311499211411066973, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
