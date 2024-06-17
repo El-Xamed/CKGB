@@ -1180,7 +1180,7 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.8f);
         GameManager.instance.TS_flanel.GetComponent<Animator>().ResetTrigger("Open");
-        GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
+        //GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
         SceneManager.LoadScene(scenename);
     }
     public void BACK(InputAction.CallbackContext context)
