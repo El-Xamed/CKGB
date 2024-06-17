@@ -196,9 +196,6 @@ public class C_Challenge : MonoBehaviour
 
     void Start()
     {
-        //Récupère les data du challenge.
-        //myChallenge = GameManager.instance.C;
-
         //Set le background
         //Check si le background n'est pas vide.
         if (myChallenge.background)
@@ -209,9 +206,6 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
         }
-
-        //Set les element en plus.
-        //SpawnElement();
 
         //Desactive par default les logs timeleine.
         uiLogsTimeline.SetActive(false);
@@ -232,6 +226,23 @@ public class C_Challenge : MonoBehaviour
 
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
+
+        #region Pour setup le sprite de Morgan en pyjama.
+        foreach (C_Actor thisActor in myTeam)
+        {
+            //Check si le challenge en question c'est le tuto.
+            if (myChallenge.name == "SO_Tuto")
+            {
+                if (thisActor.GetDataActor().name == "Morgan")
+                {
+                    thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
+                    thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
+
+                    thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
+                }
+            }
+        }
+        #endregion
 
         yield return new WaitForEndOfFrame();
 
@@ -500,17 +511,19 @@ public class C_Challenge : MonoBehaviour
                 uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
                 //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
-                foreach (var item in myTeam)
+                foreach (C_Actor thisActor in myTeam)
                 {
-                    item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                    #region Setup les dialogues dans les challenges
+                    thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                    thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                    thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+                    thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
-                    item.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    item.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    item.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    item.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    #endregion
                 }
 
                 GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
@@ -547,7 +560,7 @@ public class C_Challenge : MonoBehaviour
 
         #region Initialisation
 
-        if (AudioManager.instanceAM)
+        if (AudioManager.instance)
         {
             //AudioManager.instance.Play("MusiqueTuto");
         }
@@ -687,11 +700,6 @@ public class C_Challenge : MonoBehaviour
         GetComponent<C_PreviewAction>().DestroyAllPreview();
         GetComponent<C_PreviewAction>().ActivePreviewBarre(false);
         #endregion
-
-        if (AudioManager.instanceAM)
-        {
-            AudioManager.instanceAM.Play("SfxSonDeConfirmation");
-        }
 
         #region Création d'une nouvelle class de reso
         //Création d'une nouvelle class pour ensuite ajouter dans la liste qui va etre utilisé dans la phase de résolution.
@@ -1178,13 +1186,12 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("Resolution turn !");
 
-        if (AudioManager.instanceAM)
+        if (AudioManager.instance)
         {
-            
+            AudioManager.instance.PlayOnce(resoTurnClip);
         }
 
         //Supprime toutes les preview de déplacement.
-        
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
@@ -1203,6 +1210,24 @@ public class C_Challenge : MonoBehaviour
 
             //Utilise l'action.
             UseAction();
+
+            #region Pour le challenge "Tuto" redonne les bon sprite à Morgan.
+            if (currentResolution.action.buttonText == "Attraper tes lunettes")
+            {
+                //Detruit les lunettes.
+                Destroy(GameObject.Find("Glasses"));
+
+                //Change le sprite de Morgan.
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    if (thisActor.GetDataActor().name == "Morgan" && myChallenge.name == "SO_Tuto")
+                    {
+                        thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Chara_Challenge");
+                        thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Cata_Chara_Challenge");
+                    }
+                }
+            }
+            #endregion
 
             //Set les logs de la bonne action.
             currentResolution.action.ResetLogs();
