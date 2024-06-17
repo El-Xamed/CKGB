@@ -77,8 +77,11 @@ Ainsi soit-il.#Bulle:Morgan
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter1===
+~ Trigger("name")
 <shake>MORGAN !!</shake> #Bulle:EsthelaHautDroite
-Est-ce que <br>tu me caches <i>quelque chose</i> ???#Bulle:EsthelaHautDroite
+~ Trigger("name")
+!!#Bulle:MorganHautGauche #emot:!
+Est-ce que <br>tu me caches <i>quelque chose</i> ???#Bulle:EsthelaHautDroite #emot:?
 
 ...#Bulle:MorganHautDroite #emot:Dots
 'ffectivement, tu m'as percé à jour...#Bulle:MorganHautGauche emot:Deception
@@ -88,18 +91,17 @@ Mon caleçon est <wave>bleu</wave>.#Bulle:MorganHautGauche
 
 Et bien maintenant, si.#Bulle:MorganHautGauche
 
-<incr>MAIS STOOOOP !</incr>#Bulle:EsthelaHautDroite #emot:!
-Pour de vrai. #BulleEsthelaHautGauche
+<incr>MAIS STOOOOP !</incr>#Bulle:EsthelaHautDroite #emot:JoyRight
+<b>Pour de vrai.<b>#Bulle:EsthelaHautGauche
 Esthéla prend son visage (assez rare) des discussions sérieuses.#Bulle:Narrateur
 
 J'aimerais vraiment avoir ton attention.#Bulle:EsthelaHautGauche
 Je veux pas dire <i>“c’était mieux avant”</>.<br> Mais je vois très bien <br>que je suis pas la seule <br>qui a changé ces dernières semaines.#Bulle:EsthelaHautDroite
 
 H-Hm ?#Bulle:MorganHautGauche
-
+~ Trigger("name")
 Elle attrape tes lunettes d'un geste sec. Les branches te fouettent le nez au passage.#Bulle:Narrateur
-//Le sprite smol d’Esthela bump le sprite smol de Morgan. (Retirer les lunettes de Morgan si possible).
-
+~ Trigger("name")
 <incr>Hey !!</incr>#Bulle:MorganHautGauche emot:!
 
 Le Morgan que je connaissais <br>était moins… <i>Placide</i> ?#Bulle:EsthelaHautDroite
@@ -109,6 +111,7 @@ J’aimais bien ça.#Bulle:EsthelaHautDroite
 <wiggle>Rends</wiggle> !#Bulle:MorganHautGauche emot:anger
 
 <wave>Wooohohoo</wave> mon frère, tes ceeernes c’est un truc de <wave>diiiingue</wave> !#Bulle:EsthelaHautDroite emot:JoyRight
+
 
 //Le sprite de Morgan bump celui d’Esthéla et récupère ses lunettes.
 
