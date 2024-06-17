@@ -196,7 +196,7 @@ public class C_Challenge : MonoBehaviour
 
         if (AudioManager.instanceAM)
         {
-            AudioManager.instanceAM.Play(myChallenge.musiqueChallenge);
+            AudioManager.instanceAM.Play(myChallenge.LevelChallenge);
         }
     }
 
