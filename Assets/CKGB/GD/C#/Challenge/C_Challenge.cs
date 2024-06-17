@@ -193,6 +193,11 @@ public class C_Challenge : MonoBehaviour
             Debug.LogWarning("AUCUN GAMEMANAGER DETECTE");
             StartCoroutine(StartChallenge());
         }
+
+        if (AudioManager.instanceAM)
+        {
+            AudioManager.instanceAM.Play(myChallenge.musiqueChallenge);
+        }
     }
 
     void Start()
