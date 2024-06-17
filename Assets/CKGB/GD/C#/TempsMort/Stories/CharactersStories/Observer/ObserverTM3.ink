@@ -15,7 +15,7 @@ VAR IDobserver = 0
 ===observer0===
 
 Sur une table, des gens jouent aux cartes.#Bulle:Narrateur
-Il y a plus de personnes intéressées que de place,#Bulle:Narrateur
+Il y a plus de personnes intéressées que de places,#Bulle:Narrateur
 et les gens qui attendent leur tour forment un banc de poissons#Bulle:Narrateur
 en arc de cercle autour de l’espace de jeu.#Bulle:Narrateur
 ~ Trigger("name")
@@ -27,11 +27,11 @@ Les cartes qui s’échangent tacitement,#Bulle:Narrateur
 les gestes apparement anodins qui s’attirent les rires ou les insultes. #Bulle:Narrateur
 ~ Trigger("name")
 La tension de ceux qui pensent gagner mais essaient de ne pas paraître présomptueux.#Bulle:Narrateur
-L’attitude maussade de ceux qui pensent perdre sans solution.#Bulle:Narrateur
+L’attitude maussade de ceux qui pensent perdre, sans solution en vue.#Bulle:Narrateur
 Ton oreille est attirée par de la musique un peu plus loin.#Bulle:Narrateur
 ~ Trigger("name")
 Là, se balançant legèrement sur place,#Bulle:Narrateur
-Un joueur d’accordéon s’exerce à bas volume.#Bulle:Narrateur
+un joueur d’accordéon s’exerce à bas volume.#Bulle:Narrateur
 Une famille l’observe en silence. #Bulle:Narrateur
 L'enfant se penche, la bouche béante d’admiration.#Bulle:Narrateur
 Ses parents savourent ce moment passé avec lui, une main quelque part sur le dos de leur pitchoun.#Bulle:Narrateur
@@ -92,7 +92,7 @@ Le monde a pris fin.#Bulle:Narrateur
 Tu es dans les coulisses maintenant.#Bulle:Narrateur
 Et tout ce qu’il reste de la scène#Bulle:Narrateur
 sont des échos rebondissants sur les rideaux#Bulle:Narrateur
-et les tâches floues des projecteurs.#Bulle:Narrateur
+et les taches floues des projecteurs.#Bulle:Narrateur
 Tu es en train d’avancer.#Bulle:Narrateur
 Vite.#Bulle:Narrateur
 Plus vite, plus longtemps et plus régulièrement que n’importe quel humain peut avancer.#Bulle:Narrateur

@@ -24,7 +24,7 @@ Ah, tu as entendu ça ?#Bulle:NimuBasGauche
 ??#Bulle:EsthelaBasDroite #emot:?
 
 C’était le bruit de mon coeur qui s’arrête.<br> Tu viens de me faire faire un infarctus.#Bulle:NimuBasGauche
-Tu t'adresses maintenant à mon fantôme. Je te hanterais toute ta vie. Bon courage pour expliquer ça à Morgan. #Bulle:NimuBasGauche
+Tu t'adresses maintenant à mon fantôme. Je te hanterai toute ta vie. Bon courage pour expliquer ça à Morgan. #Bulle:NimuBasGauche
 
 <incr>Noooooooon</incr> !<br> Pardon !! Je promets que je vais être toooute <br><size=60%>calme et silencieuse</size=60%><br><size=40%>à partir de maintenant !!</size=60%>#Bulle:EsthelaBasDroite
 
@@ -115,7 +115,7 @@ Ton amie secoue la tête négativement.#Bulle:Narrateur
 
 Le FLNJ était l'un des partis politiques les plus populaires de la civilisation précédente.#Bulle:NimuHautGauche
 Son importance historique était telle qu'il y avait<br> des jours de fête nationale en lien avec son idéologie.#Bulle:NimuHautDroit
-Je me rappelle les parades, les statues...<br> mais aussi des conflits et des batailles…"#Bulle:NimuHautDroite
+Je me rappelle les parades, les statues...<br> mais aussi des conflits et des batailles…#Bulle:NimuHautDroite
 
 Attends, attends, mais il veut dire quoi cet acronyme ?#Bulle:EsthelaHautGauche
 
@@ -138,7 +138,7 @@ Le Listenbourg..? Je crois que j’ai déjà lu le nom quelque part. C’était 
 Le plus grand de tous. J'y ai vécu un moment. C'était au sud d’ici. Avec Lurenberg, sa capitale, le joyaux de la Baie Marcella.#Bulle:NimuHautDroite
 
 Ooookay.#Bulle:EsthelaHautGauche
-Ces informations l'ont, de toute évidence, désarçonnées.#Bulle:Narrateur
+Ces informations l'ont, de toute évidence, désarçonnée.#Bulle:Narrateur
 Hm, est-ce qu'on peut réorienter un peu la discussion ?#Bulle:EsthelaHautGauche
 Je pense que je vais peut-être avoir du mal à trier<br> les informations si je les ai dans n’importe quel ordre.#Bulle:EsthelaHautGauche
 Mes recherches portent avant tout sur la culture internet et les détails de l’ère digitale.#Bulle:EsthelaHautGauche
@@ -149,12 +149,12 @@ Hm… Pourquoi pas, mais je suis pas sûre de beaucoup m’y connaître.#Bulle:N
 Nimu affiche un sourire énigmatique et carnassier en prononçant ces paroles.#Bulle:Narrateur
 
 Hmpf, je vais rester simple alors...#Bulle:EsthelaHautGauche
-Est-ce que tu peux me parler de ce qui t’as semblé être le meme le plus culte ?#Bulle:EsthelaHautGauche
+Est-ce que tu peux me parler de ce qui t’a semblé être le meme le plus culte ?#Bulle:EsthelaHautGauche
 Je le connaîtrai certainement mais je suis curieuse d'avoir ton avis.#Bulle:EsthelaHautGauche
 
 La vieille femme s'arrête un instant, la main sur son menton.#Bulle:Narrateur
 
-Je dirais... Le Père noël, sûrement ?#Bulle:NimuHautDroite
+Je dirais... Le Père Noël, sûrement ?#Bulle:NimuHautDroite
 Il y avait toute une blague qui consistait à faire semblant que le Père Noël<br> était une invention et qu’il n’avait jamais existé.#Bulle:NimuHautDroite
 Les gens faisaient de longues discussions ironiques en racontant le jour<br> où ils avaient appris que le Père Noël n’existait pas. #Bulle:NimuHautDroite
 Hahaha. C'était le bon vieux temps.#Bulle:NimuHautDroite
@@ -167,7 +167,7 @@ Ta grand-mère émet un petit rire en voyant que le pot aux roses a été décou
 
 Tu as mis longtemps à t’en rendre compte.#Bulle:NimuHautGauche #emot:Sparkles
 
-Esthela se voûte visiblement, et pousse un gros soupir avant de retrouver son petit sourire.#Bulle:Narrateur
+Esthéla se voûte visiblement, et pousse un gros soupir avant de retrouver son petit sourire.#Bulle:Narrateur
 
 Est-ce que c’est trop tard pour annuler notre amitié ?#Bulle:EsthelaHautGauche
 

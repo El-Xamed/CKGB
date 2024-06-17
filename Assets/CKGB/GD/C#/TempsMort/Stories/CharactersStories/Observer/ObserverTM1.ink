@@ -16,9 +16,9 @@ VAR IDobserver = 0
 ~ Trigger("name")
 Tu tournes légèrement la tête.#Bulle:Narrateur
 ~ Trigger("name")
-Click.#Bulle:Narrateur
+Clic.#Bulle:Narrateur
 Comme la pellicule d’un appareil photo,<br> tu sens que ton cerveau capture l’instant.#Bulle:Narrateur
-L’odeur de cannelle et de menthe laissée par le thé. L’amertume d’un café oublié qui s’y emmèle.#Bulle:Narrateur
+L’odeur de cannelle et de menthe laissée par le thé. L’amertume d’un café oublié qui s’y emmêle.#Bulle:Narrateur
 ~ Trigger("name")
 La toile verte, débordante de taches multicolores au travers de la fenêtre.#Bulle:Narrateur
 Les rayons de soleil cristallins qui transpercent l’espace par l’immense baie vitrée.#Bulle:Narrateur
@@ -26,8 +26,8 @@ Les rayons de soleil cristallins qui transpercent l’espace par l’immense bai
 La sensation du papier quand tu déplaces machinalement les cahiers de cours oubliés sur la table afin d’éviter qu’ils ne se fassent tacher.#Bulle:Narrateur
 La chaleur des tasses. Le sucre de la confiture. Le petit choc sourd d’une cuillère en bois qui cogne contre l'un des récipients en céramique. #Bulle:Narrateur
 Tu apprécies ces matins tranquilles. Les jours sans école, vous vous retrouvez souvent tous les deux, comme ça. #Bulle:Narrateur
-Les autres se lèvent tôt. Ils vont explorer la ville, aider dans les champs, dessiner des insectes,#Bulle:Narrateur
-travailler dans un atelier, jouer à la salle d’arcade, nourrir des animaux.#Bulle:Narrateur
+Les autres se lèvent tôt. Ils vont explorer la ville, aider dans les champs, dessiner les insectes,#Bulle:Narrateur
+travailler à l'atelier, jouer à la salle d’arcade, nourrir les animaux.#Bulle:Narrateur
 Aux premières heures du jour, la maisonnée bourdonne d’une rimbambelle d’adelphes, de cousins, d’amis, de parents et de grands-parents en train de se préparer,#Bulle:Narrateur
 avant de les relâcher dans la nature et de se retrouver silencieuse. #Bulle:Narrateur
 Si l'on fait exception de vous,#Bulle:Narrateur

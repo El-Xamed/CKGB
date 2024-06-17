@@ -47,20 +47,20 @@ Ta grand-mère reprend son fredonnement.#Bulle:Narrateur
 
 Néanmoins.#Bulle:NimuHautDroite
 
-Sache que je ne serais<br> pas moins fière de toi <br>si jamais tu as besoin d'aide.#Bulle:NimuBasDroite
+Sache que je ne serais<br> pas moins fière de toi <br>si jamais tu avais besoin d'aide.#Bulle:NimuBasDroite
 Si jamais, <br>à n’importe quel moment,<br> tu sens que tu as besoin de soutien,<br> tu as juste à me demander.#Bulle:NimuBasDroite
 Ça ne demande pas moins de courage que d'avouer qu'on a un problème.<br> J'en sais quelque chose.#Bulle:NimuHautDroite
 Elle a un regard pour son bras.#Bulle:Narrateur
-On pourrait dire que peu importe ce que tu fais, je trouverai toujours une excuse pour être fiere de toi. #Bulle:NimuHautGauche
+On pourrait dire que peu importe ce que tu fais, je trouverai toujours une excuse pour être fière de toi. #Bulle:NimuHautGauche
 Hm.#Bulle:MorganHautGauche
 
 Wow. C'était un déclaration sacrément sentimentale et soudaine dans une journée déjà assez riche en rebondissements.#Bulle:Narrateur
 Tu sais pas vraiment comment réagir, tu vas probablement avoir besoin d'un peu de temps pour digérer tout ça.#Bulle:Narrateur
 
 Ta grand-mère commence à chantonner au milieu de ses fredonnement.#Bulle:Narrateur
--ark tutudulutu..Baby sh-#Bulle:NimuBasDroite
+-ark tutudulutu...Baby sh-#Bulle:NimuBasDroite
 
-<i>P'têtre.</i>#Bulle:MorganHautGauche
+<i>Pt'être.</i>#Bulle:MorganHautGauche
 
 Hm ?#Bulle:NimuBasDroite emot:?
 
@@ -89,7 +89,7 @@ J'vais retourner à la maison.
 J'lui ferai passer un message pour m'excuser.#Bulle:MorganHautDroite
 
 Ta grand-mère lève sa main dans ta direction, attendant ton signal. Tu lui fais non de la tête, et elle la ramène dans sa poche.#Bulle:Narrateur
-Elle fait toujours attention à ne pas te toucher sans t'avoir demandé avant. Cette attention t’as toujours bien plus réconforté que n’importe quelle caresse.#Bulle:Narrateur
+Elle fait toujours attention à ne pas te toucher sans t'avoir demandé avant. Cette attention t’a toujours bien plus réconforté que n’importe quelle caresse.#Bulle:Narrateur
 
 Si c’est vraiment ce que tu veux,<br> c’est ce qu’on fait.#Bulle:NimuHautGauche
 
@@ -112,7 +112,7 @@ J’ai confiance en toi.<br> Et puis, t’as fait le plus dur.#Bulle:NimuHautGau
 
 Je suis sorti de mon lit ?#Bulle:MorganHautDroite
 
-Tu l’as invité.e à ce rencard.<br> Et iel a accepté, en plus ! <br>Tu penses que s'iel ne t'apréciait pas déjà, iel aurait dit oui ?#Bulle:NimuHautGauche #emot:Sparkles
+Tu l’as invité.e à ce rencard.<br> Et elle a accepté, en plus ! <br>Tu penses que si elle ne t'apréciait pas déjà, elle aurait dit oui ?#Bulle:NimuHautGauche #emot:Sparkles
 
 Mais… Mais… C'est jamais trop tard<br> pour que je ruine tout.<br> Imagine qu’on trouve pas<br> d’quoi parler et qu’y ait juste<br> un gros blanc pendant une heure.#Bulle:MorganHautDroite #emot:Deception
 Imagine que le seul son qu’on entende<br> c’est le bruit bizarre que je fais<br> quand je bois du thé !#Bulle:MorganHautDroite #emot:Drop
@@ -143,7 +143,7 @@ Alors, pourquoi est-ce<br> que tu ne te sens pas comme ça ?#Bulle:NimuHautDroit
 ...#Bulle:MorganHautGauche #emot:Dots
 
 L'amour est une fleur.<br> Son terreau est la confiance.<br> Tu ne pourras sûrement jamais ressentir ce que tu cherches<br> si tu persistes à avoir peur<br> de l'autre.#Bulle:NimuHautDroite
-Maintenant, je veux que tu saches <br>que la peur est un adversaire <br>ancien et féroce."#Bulle:NimuHautDroite
+Maintenant, je veux que tu saches <br>que la peur est un adversaire <br>ancien et féroce.#Bulle:NimuHautDroite
 Certains d'entre nous partent<br> avant d'avoir réussi<br>à faire la paix avec.#Bulle:NimuHautDroite
 Même si c'est à toi<br> de faire le gros du travail,<br> je ne m'attends pas à<br> ce tu surmontes cette épreuve<br> du jour au lendemain.#Bulle:NimuHautDroite
 Est-ce que tu veux toujours faire demi-tour ? <br>Je suis sûre que l'autre comprendra.#Bulle:NimuHautDroite
@@ -169,7 +169,7 @@ Elle a l'air...<br> perturbée par ton intérêt.#Bulle:Narrateur
 
 Est-ce que quelque chose t’inquiète ?#Bulle:NimuHautDroit
 
-Tu mens#Bulle:MorganHautGauche
+Tu mens.#Bulle:MorganHautGauche
 
 Morgan ?
 
@@ -195,7 +195,7 @@ Tu ne nous laisses même pas<br> l’occasion d’écouter ton avis.#Bulle:Morga
 
 ...#Bulle:NimuHautDroit #emot:Dots
 C'est vrai.<br> Je suis dans une période un peu compliquée en ce moment.#Bulle:NimuHautDroit
-Je suis... agée, Morgan.<br> Je vois tout sous une perspective très différente de la tienne...#Bulle:NimuHautDroit
+Je suis... âgée, Morgan.<br> Je vois tout sous une perspective très différente de la tienne...#Bulle:NimuHautDroit
 Et je crois qu'elle me donne le vertige.#Bulle:NimuHautGauche
 J'ai beaucoup de mal à accorder de l'importance aux choses. <br> Tout a l'air si éphèmere vu d'ici.#Bulle:NimuBasGauche
 J'avoue que je ne me sens plus vraiment<br> concernée par ce qu'il se passe dans la maison. #Bulle:NimuBasDroite
@@ -206,7 +206,7 @@ OK.#Bulle:MorganHautGauche
 …#Bulle:NimuHautDroit
 
 J’voulais juste qu’t’en parle. <br>J’peux voir pourquoi tu ressens ça.#Bulle:MorganHautGauche
-Tes sourcils se froncent imperceptiblement#Bulle:Narrateur
+Tes sourcils se froncent imperceptiblement.#Bulle:Narrateur
 Tu vis un truc vraiment pas facile. <br>Ah, mais t’as encore menti.#Bulle:MorganHautGauche
 
 Ah ouais Sherlock,<br> et j’peux savoir sur quoi maintenant ?#Bulle:NimuHautDroit

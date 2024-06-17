@@ -20,7 +20,7 @@ Hey, tu penses qu’il faut<br> combien de fourmis pour déplacer un train ?#Bul
 
 Mais t’as répondu <shake>SUPER VITE</shake> ?!#Bulle:EsthelaBasDroite #emot:!
 
-À toi.<br> Si un cheval court à 50 hm/h...#Bulle:MorganHautGauche
+À toi.<br> Si un cheval court à 50 km/h...#Bulle:MorganHautGauche
 
 ~ Trigger("name")
 
@@ -36,7 +36,7 @@ C’était pas un concours !!#Bulle:EsthelaBasDroite #emot:Drop
 
 <wiggle>Mais-</wiggle>#Bulle:EsthelaBasDroite #emot:Deception
 
-Avec un vent Nord-Ouest de 15 Km/h,<br> qui arriv’rait en premier ?#Bulle:MorganHautGauche
+Avec un vent Nord-Ouest de 15 km/h,<br> qui arriv’rait en premier ?#Bulle:MorganHautGauche
 
 ...#Bulle:ESthelaHautDroit #emot:Dots
 De quelle couleur est le cheval ?#Bulle:EsthelaBasDroite
@@ -119,7 +119,7 @@ Tu récupères tes lunettes des mains de la créature pour les remettre sur l'ar
 
 J’ai des soucis d’insomnie en c'moment.#Bulle:MorganHautGauche 
 
-Est-ce queeee...<!>Tu veux m’en parler ?#Bulle:EsthelaHautDroite #emot:?
+Est-ce queeee...<!>tu veux m’en parler ?#Bulle:EsthelaHautDroite #emot:?
 
 Change pas de sujet. #Bulle:MorganHautGauche
 J’ai pas fait d’scène<br> parce que t’es arrivée en créature de cirque.#Bulle:MorganHautGauche
@@ -128,7 +128,7 @@ J’pensais pouvoir m’attendre à ce que tu acceptes aussi comment j'm’expri
 Hey, je te dois <b>rien</b><br> juste parce que tu agis<br> comme une personne décente.#Bulle:EsthelaHautDroite #emot:SpeakLeft
 Et j’ai pour devoir de rester honnête. <br>
 Je suis pas contre ton nouveau style.<br>
-Juste… Curieuse.#Bulle:EsthelaHautDroite #emot:?
+Juste… curieuse.#Bulle:EsthelaHautDroite #emot:?
 
 Pff, c’est quand ça t’arrange, hein ?#Bulle:MorganHautGauche #emot:Dots
 
