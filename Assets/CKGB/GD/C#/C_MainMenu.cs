@@ -131,12 +131,17 @@ public class C_MainMenu : MonoBehaviour
     {
         if (!context.performed) { return; }
 
-        if (context.performed && context.ReadValue<Vector2>()!=Vector2.zero)
+        if (context.performed)
         {
             updateCurrentButton();
             
         }
-        
+        if (context.started)
+        {
+            updateCurrentButton();
+
+        }
+
     }
 
     public void OpenCredits()

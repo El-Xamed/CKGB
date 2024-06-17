@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Navigate",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "6cc35362-29b2-40d8-b6c7-435f34fecf64",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
