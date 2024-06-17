@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class C_AnimPhase : MonoBehaviour
 {
     C_Challenge challenge;
+    public string PoPupChallenge;
 
     // Start is called before the first frame update
     void Start()
@@ -11,6 +12,7 @@ public class C_AnimPhase : MonoBehaviour
         challenge = GetComponentInParent<C_Challenge>();
     }
 
+    
     #region Animation
     public void StartChallenge()
     {
@@ -44,4 +46,10 @@ public class C_AnimPhase : MonoBehaviour
         GetComponentInParent<PlayerInput>().enabled = false;
     }
     #endregion
+ 
+    public void ChallengePopup()
+    {
+       
+    }
+
 }

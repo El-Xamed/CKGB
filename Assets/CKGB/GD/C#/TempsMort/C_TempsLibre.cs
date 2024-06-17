@@ -495,10 +495,12 @@ public class C_TempsLibre : MonoBehaviour
     {
         canContinue = true;
         GameManager.instance.textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
+        AudioManager.instanceAM.Stop("DialogueStop");
     }
     public void SetCanContinueToNo()
     {
         canContinue = false;
+        AudioManager.instanceAM.Play("DialogueJoue");
     }
     public void AfficherFichereduite()
     {

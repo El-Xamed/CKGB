@@ -45,242 +45,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd38bd26e829a1543a80663c7e5b9c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 440091079429689959}
   sounds:
-  - name: SfxHover
+  - name: MenuMusic
     clip:
-    - {fileID: 8300000, guid: ff99311be79959b41a567d6a809de67e, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: SfxSonDeConfirmation
-    clip:
-    - {fileID: 8300000, guid: 9a23645a760b55245b4103ba9a6a8b43, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: SfxRetourArriere
-    clip:
-    - {fileID: 8300000, guid: 7648708241ea6134682d8a278ec5e66c, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: SfxPowerUp
-    clip:
-    - {fileID: 8300000, guid: 20236117583f78f4cbef991304f9d11e, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: SfxPowerDown
-    clip:
-    - {fileID: 8300000, guid: f66607b0d05e2824c9a1f61a46067ce1, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: SfxDanger
-    clip:
-    - {fileID: 8300000, guid: f07c469eacbcb9f4f8dea1b8bf061443, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Sfxlogs
-    clip:
-    - {fileID: 8300000, guid: b89bb49b78bda9345b6262cc5cb336d1, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: MusiqueSplashScreen
-    clip:
-    - {fileID: 8300000, guid: 97f9cef01b42c954eb45e46d4685e04a, type: 3}
+    - {fileID: 8300000, guid: 4f67a2e34a45a364889d7796d5de4e0b, type: 3}
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: MusiqueWorldMap
+  - name: Introduction
     clip:
-    - {fileID: 0}
-    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: MusiqueTuto
-    clip:
-    - {fileID: 8300000, guid: 770109d58c1f61c4aa620d50af32a5da, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    - {fileID: 8300000, guid: 2f035b78959766046976dd83ea150480, type: 3}
+    group: {fileID: 751109128876612513, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: MusiqueTempsMort1
+  - name: NewGameButton
     clip:
-    - {fileID: 8300000, guid: e15f8f6a4bbf4da4fa5debbaa470016f, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueChallenge1
-    clip:
-    - {fileID: 0}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueTempsMort2.A
-    clip:
-    - {fileID: 8300000, guid: ebcc47e0ff8dac24ba364899f0dec8fe, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueChallenge2.A
-    clip:
-    - {fileID: 8300000, guid: 19b25e9f8ccf6cc489d7330aa93b345c, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueTempsMort2.B
-    clip:
-    - {fileID: 0}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueChallenge2.B
-    clip:
-    - {fileID: 8300000, guid: cb808d8d55074904898ad358ad78a60f, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueTempsMort3
-    clip:
-    - {fileID: 0}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusiqueChallenge3
-    clip:
-    - {fileID: 8300000, guid: 2975e06308e2a4641a11c5cbcf308b31, type: 3}
-    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: Voix_NIMU
-    clip:
-    - {fileID: 8300000, guid: 41ce2a650e05cdf4da8f8e1e61743207, type: 3}
-    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Voix_MORGAN
-    clip:
-    - {fileID: 8300000, guid: b30c4fef3fcc49f44882bc2f5c9bbd2a, type: 3}
-    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Voix_ESTHELA
-    clip:
-    - {fileID: 0}
-    group: {fileID: 4267456037291381565, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Anger
-    clip:
-    - {fileID: 8300000, guid: 7d878509c57527f4c9e65f760c4a987f, type: 3}
+    - {fileID: 8300000, guid: f39a136d1b555574cb11b4b8acd8cd56, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Anger2
+  - name: Selection
     clip:
-    - {fileID: 8300000, guid: 54af938c6d623e245af86c27f6033170, type: 3}
+    - {fileID: 8300000, guid: 3ba7791d716ac7249a61583fbdb3ca5e, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Raimbow
+  - name: ClickButton
     clip:
-    - {fileID: 8300000, guid: 90eb4600efaf3c440a8044d8fa47e064, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    - {fileID: 8300000, guid: 6b8bca9c5e90e664c959001216706e62, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Interrogation
+  - name: BackButton
     clip:
-    - {fileID: 8300000, guid: bf7b539da2b44e346980fe8421289c6e, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    - {fileID: 8300000, guid: 567b0df5db26a3341b1583812fae64cc, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Hearts
+  - name: MusicCredits
     clip:
-    - {fileID: 8300000, guid: 52d73d955527021459b4925b795e95b6, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    - {fileID: 8300000, guid: 04ed9d55ffafae0439b043af0c841bf9, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
-  - name: Deception
+  - name: TempsLibre
     clip:
-    - {fileID: 8300000, guid: 0b8e48c2a71ca5f4cb60e516d3bc400d, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    - {fileID: 8300000, guid: b3cc70d7afd3d1343b9bfbafb602fd86, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
-  - name: Exclamation
+  - name: Challenge
     clip:
-    - {fileID: 8300000, guid: 6e1ecc7217012fe42a1274d7a339cfe8, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    - {fileID: 8300000, guid: 504a2b06437f9f841b3cd5d03b42c93b, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
-  - name: Dots
+  - name: ChallengeFinal
     clip:
-    - {fileID: 8300000, guid: 910da7adf2bc55945b23849f57e49163, type: 3}
-    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    - {fileID: 8300000, guid: aa17db78042961147b4140be3fd7848c, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
-  SoundMixer: {fileID: 0}
-  MusicMixer: {fileID: 0}
+  - name: PoPupChallenge
+    clip:
+    - {fileID: 8300000, guid: d2bd2f5470eb91f459144133d02a9343, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: DialogueJoue
+    clip:
+    - {fileID: 8300000, guid: d2bd2f5470eb91f459144133d02a9343, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!82 &440091079429689959
 AudioSource:
   m_ObjectHideFlags: 0
