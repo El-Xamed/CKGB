@@ -225,6 +225,7 @@ public class C_Challenge : MonoBehaviour
 
     public IEnumerator StartChallenge()
     {
+        Debug.Log("Start Challenge !");
         //Apparition des cases
         SpawnCases();
 
