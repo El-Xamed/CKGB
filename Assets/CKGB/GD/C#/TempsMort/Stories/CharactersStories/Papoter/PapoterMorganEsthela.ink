@@ -112,30 +112,30 @@ J’aimais bien ça.#Bulle:EsthelaHautDroite
 
 <wave>Wooohohoo</wave> mon frère, tes ceeernes c’est un truc de <wave>diiiingue</wave> !#Bulle:EsthelaHautDroite emot:JoyRight
 
-
+~ Trigger("name")
 //Le sprite de Morgan bump celui d’Esthéla et récupère ses lunettes.
 
 Tu récupères tes lunettes des mains de la créature pour les remettre sur l'arête de ton nez.#Bulle:Narrateur
 
 J’ai des soucis d’insomnie en c'moment.#Bulle:MorganHautGauche 
 
-Est-ce queeee...<!>Tu veux m’en parler ?#Bulle:EsthelaHautDroite
+Est-ce queeee...<!>Tu veux m’en parler ?#Bulle:EsthelaHautDroite #emot:?
 
 Change pas de sujet. #Bulle:MorganHautGauche
 J’ai pas fait d’scène<br> parce que t’es arrivée en créature de cirque.#Bulle:MorganHautGauche
 J’pensais pouvoir m’attendre à ce que tu acceptes aussi comment j'm’exprime maintenant.#Bulle:MorganHautGauche
 
-Hey, je te dois <b>rien</b><br> juste parce que tu agis<br> comme une personne décente.#Bulle:EsthelaHautDroite
+Hey, je te dois <b>rien</b><br> juste parce que tu agis<br> comme une personne décente.#Bulle:EsthelaHautDroite #emot:SpeakLeft
 Et j’ai pour devoir de rester honnête. <br>
 Je suis pas contre ton nouveau style.<br>
-Juste… Curieuse.#Bulle:EsthelaHautDroite
+Juste… Curieuse.#Bulle:EsthelaHautDroite #emot:?
 
-Pff, c’est quand ça t’arrange, hein ?#Bulle:MorganHautGauche
+Pff, c’est quand ça t’arrange, hein ?#Bulle:MorganHautGauche #emot:Dots
 
 Non mais vraiement !<br> Est-ce que tu préférerais que j'me taise ?<br>Je vois bien que tu te fais du mal !#Bulle:EsthelaHautDroite emot:!
 Est-ce que je dois faire comme<br> si de rien était<br> alors tu passses clairement la moitié<br> de ton temps à ruminer ?#Bulle:EsthelaHautDroite #emot:anger
 Tu agis toujours<br> comme le Morgan que j’admire.
-Mais t’as l’air de plus<br> te prendre la tête en le faisant.#Bulle:EsthelaHautDroite
+Mais t’as l’air de plus<br> te prendre la tête en le faisant.#Bulle:EsthelaHautDroite #emot:SpeakLeft
 
 Hm. Est-ce que tu veux qu’moi<br>aussi j’sois honnête avec toi ?#Bulle:MorganHautGauche
 
@@ -143,10 +143,11 @@ Oui ! #Bulle:EsthelaHautDroite
 
 Un train fait environ 400 tonnes, soit 40 000 000 grammes. <br>La fourmie Acalanthe peut porter 7 grammes. <br>C’est une division assez simple.<br> Il faut 5 714 285 fourmis.#Bulle:MorganHautGauche
 
-Je sais pas quoi <br>répondre à ça Morgan <br>tu me fais juste peur.#Bulle:EsthelaHautDroite 
+Je sais pas quoi <br>répondre à ça Morgan <br>tu me fais juste peur.#Bulle:EsthelaHautDroite #emot:Deception
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
+
 ===Papoter2===
 Hmm. Ce papotage ne devrait pas être accessible. Comment es-tu arrivé là ?#Bulle:Narrateur
 //blabla
