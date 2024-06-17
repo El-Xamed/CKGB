@@ -969,7 +969,16 @@ public class GameManager : MonoBehaviour
                 c.transform.parent = transform;
             }
             Debug.Log("Reload");
-            SceneManager.LoadScene("S_DestinationTest");
+            pauseBackground.SetActive(false);
+        if(pauseMenu.activeSelf)
+        {
+            pauseMenu.SetActive(false);
+        }
+        if (optionsMenu.activeSelf)
+        {
+            optionsMenu.SetActive(false);
+        }
+        SceneManager.LoadScene("S_Challenge");
         
     }
     public void OpenPause(InputAction.CallbackContext context)

@@ -1666,7 +1666,7 @@ public class C_Challenge : MonoBehaviour
         else //Sinon lancer l'animation de déplacement (translation entre les 2 position).
         {
             //Lance alors l'animation de déplacement (Marche).
-            thisPion.GetComponent<Animator>().SetTrigger("Walking");
+            thisPion.GetComponent<Animator>().SetTrigger("walking");
         }
         #endregion
     }
