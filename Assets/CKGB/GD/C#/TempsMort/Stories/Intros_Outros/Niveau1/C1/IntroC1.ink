@@ -6,7 +6,7 @@ EXTERNAL StartChallenge(name)
 
 //Challenge 1 mais sans l’UI
 
-Vrai : Z'étaient là hier soir.#Bulle:MorganHautDroite
+Vrai : z'étaient là hier soir.#Bulle:MorganHautDroite
 
 Peut-être que les autres <br>les ont prises par accident ?#Bulle:NimuHautGauche
 
@@ -14,7 +14,7 @@ H-hm. #Bulle:MorganHautGauche
 J’peux choper la r'change d’Élodie alors ?#Bulle:MorganHautGauche
 
 Elle les a prêtées à Georges,<br> de souvenir.#Bulle:NimuHautDroite
-Mais toi,<br> tu avais pas ton propre jeu de clés de secours ?#Bulle:NimuHautDroite
+Mais toi,<br> tu avais pas ton propre jeu de clefs de secours ?#Bulle:NimuHautDroite
 
 Henry est parti avec. <br>Toi, t'en avais ? #Bulle:MorganHautDroite
 
@@ -31,7 +31,7 @@ Ah. Peste. <br>C’était qui ce gars ?#Bulle:NimuHautDroite
 
 T’sais si P’pa a pris les siennes ?#Bulle:MorganHautGauche
 
-C’est les premières clés que Georges a perdues.#Bulle:NimuHautDroite
+C’est les premières clefs que Georges a perdues.#Bulle:NimuHautDroite
 
 On d’vrait faire un bilan un d’ces jours,<br> ça d’vient vraiment n’imp.#Bulle:MorganHautGauche
 
@@ -42,14 +42,14 @@ Ah ! Tu… T’es sûre ?#Bulle:MorganHautGauche
 
 Pourquoi pas ?”#Bulle:NimuHautDroite
 
-J’me disais que… <br>Enfin... <br>Ah.<br> Et bien... <br>Paskeu... #Bulle:MorganHautGauche
+J’me disais que… <br>Enfin... <br>Ah.<br> Eh bien... <br>Paskeu... #Bulle:MorganHautGauche
 
 Tu t'impressionnes toi-même avec ton éloquence.#Bulle:Narrateur
 Ressaisis-toi.#Bulle:Narrateur
 
 Hm. J'ai encore d'l'avance.#Bulle:MorganHautGauche
 On va faire un dernier tour.
-C'est un coup à s'créer des embrouilles<br> si on continue d'perdre des clés comme ça.#Bulle:MorganHautGauche
+C'est un coup à s'créer des embrouilles<br> si on continue d'perdre des clefs comme ça.#Bulle:MorganHautGauche
 
 //C1 commence pour de vrai, l’UI apparait et tout.
 

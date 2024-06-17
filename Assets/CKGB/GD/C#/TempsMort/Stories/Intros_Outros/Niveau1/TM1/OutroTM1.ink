@@ -44,18 +44,18 @@ Mais, tu vas décamper à la fin ?#Bule:NimuHautDroite #emot:!
 ~ Trigger("name")
 J'mets pas la main d'ssus ! #Bulle:MorganHautGauche
 
-Ta grand mère te considère un instant, les poings sur les hanches, avant de se mettre en mouvement. #Bulle:Narrateur
+Ta grand-mère te considère un instant, les poings sur les hanches, avant de se mettre en mouvement. #Bulle:Narrateur
 
 Je vais t'prêter les miennes, t'inquiète.#Bulle:NimuHautGauche
 
 Fluidement, elle s'approche du petit bol dans lequel elle laisse toujours ses clefs.#Bulle:Narrateur
 ~ Trigger("name")
-Eeet galère.#Bulle:NimuHautDroite
+Eeeh, galère.#Bulle:NimuHautDroite
 
 <bounce>…</bounce> #Bulle:NimuHautDroite
 Je les retrouve pas non plus.#Bulle:NimuHautDroite
 ~ Trigger("name")
-Ah. Cata. P'tetre dans l'canapé ? #Bulle:MorganBasGauche
+Ah. Cata. Pt'être dans l'canapé ? #Bulle:MorganBasGauche
 ~ StartChallenge("S_Challenge")
 //Start challenge
 ->END

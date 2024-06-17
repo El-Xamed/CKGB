@@ -8,7 +8,7 @@ Bon, cessons les bêtises !#Bulle:MorganHautGauche
 
 //[écran du combat sans le Coolkid, problablement après une transition noir et un bruit]
 
-Dans un nuage de couvertures, tu <bounce>bondis</bounce> sur l’échelle qui descend de ton lit, puis te laisse tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:Narrateur
+Dans un nuage de couvertures, tu <bounce>bondis</bounce> sur l’échelle qui descend de ton lit, puis te laisses tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:Narrateur
 
 Tes vêtements sont prêts sur une chaise, soigneusement préparés la veille.#Bulle:NarrateurC
 <i>Enfin, l’avant-veille.</i>#Bulle:Narrateur

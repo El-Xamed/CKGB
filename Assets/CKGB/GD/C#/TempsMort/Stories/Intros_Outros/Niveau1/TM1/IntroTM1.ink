@@ -13,13 +13,13 @@ Yo BG. Bien dormi ?#Bulle:NimuHautDroite
 
 ~ Trigger("name")
 
-’uai. ’va ?#Bulle:MorganHautGauche
+’uais. ’va ?#Bulle:MorganHautGauche
 
 Super. #Bulle:NimuHautGauche
 Juste, d’un POV pratique…#Bulle:NimuHautGauche
-Est-ce que dire des moitiés de mots<br>c’est un plan à long terme pour toi ?#Bulle:NimuHautGauche #emot:question
+Est-ce que dire des moitiés de mot<br>c’est un plan à long terme pour toi ?#Bulle:NimuHautGauche #emot:question
 
-’tetre.#Bulle:MorganHautGauche
+t'être.#Bulle:MorganHautGauche
 
 Ok bah <i>gucchi</i>.#Bulle:NimuBasDroite
 
@@ -44,7 +44,7 @@ dans cette grande maison #Bulle:NimuHautDroite
 toute vide... #Bulle:NimuBasDroite
 et froide. #Bulle:NimuBasGauche
 
-Il fait genre. 22 degrés.#Bulle:Narrateur
+Il fait genre, 22 degrés.#Bulle:Narrateur
 Mais néanmoins, tu te sens doucement basculer... #Bulle:Narrateur
 Puis tu <i>cèdes</i>, incapable de lui résister.#Bulle:Narrateur
 ~ Trigger("name")
@@ -78,7 +78,7 @@ Tu fronces les sourcils et te prépare à répondre qu'un Coolkid est parfaiteme
 
 Après, j’ai assez la dalle<br> pour tout manger si tu préfères.#Bulle:NimuHautGauche
 
-<i>(ARG, LA TRAITRESSE.)</i> #Bulle:MorganHautGauche
+<i>(ARG, LA TRAÎTRESSE.)</i> #Bulle:MorganHautGauche
 
 <bounce>…</bounce> Nah.#Bulle:MorganHautGauche
 

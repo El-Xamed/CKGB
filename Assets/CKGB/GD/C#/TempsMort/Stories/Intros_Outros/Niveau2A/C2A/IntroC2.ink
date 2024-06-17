@@ -46,7 +46,7 @@ AAAAH !#Bulle:EsthelaHautDroite
 
 AAAAH !#Bulle:MorganHautGauche
 
-Ton amie s’essuie les yeux dramatiquement d'un revers de manche, puis relève sa tête vers toi.#Bulle:Narrateur
+Ton amie s’essuie dramatiquement les yeux d'un revers de manche, puis relève sa tête vers toi.#Bulle:Narrateur
 Son regard est rempli de détermination.#Bulle:Narrateur
 
 D’ACCORD. <br>JE VEUX BIEN ESSAYER. <br>POUR LES BÉBÉS LÉZARDS.#Bulle:EsthelaHautDroite
