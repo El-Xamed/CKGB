@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -46,8 +47,9 @@ public class C_TransitionManager : MonoBehaviour
     {
         //GetComponentInParent<GameManager>().EndAnimation(currentEvent);
 
-        if (AudioManager.instanceAM && thisClip != "")
+        if (AudioManager.instanceAM && !string.IsNullOrEmpty(thisClip))
         {
+            Debug.Log(thisClip);
             AudioManager.instanceAM.Stop(thisClip);
         }
 
