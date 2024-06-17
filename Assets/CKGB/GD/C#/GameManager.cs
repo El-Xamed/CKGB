@@ -981,6 +981,36 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("S_Challenge");
         
     }
+    public void BackPauseMenu(InputAction.CallbackContext context)
+    {
+        
+        if (GameManager.instance.optionsMenu.activeSelf == true)
+        {
+            Debug.Log("back from options");
+            GameManager.instance.BackFromPause();
+        }
+        else if (GameManager.instance.pauseMenu.activeSelf == true)
+        {
+            Debug.Log("back from pause");
+            GameManager.instance.BackFromPause();
+        }
+        if(SceneManager.GetActiveScene().name=="S_Challenge")
+        {
+            if(C.GetEventSystem().currentSelectedGameObject!=null)
+            {
+                C.GetEventSystem().SetSelectedGameObject(lastButton);
+            }
+               
+        }
+        else if(SceneManager.GetActiveScene().name=="S_TempsLibre")
+        {
+            if (TM.Es.currentSelectedGameObject != null)
+            {
+                TM.Es.SetSelectedGameObject(lastButton);
+            }
+                
+        }
+    }
     public void OpenPause(InputAction.CallbackContext context)
     {
         if (context.performed)

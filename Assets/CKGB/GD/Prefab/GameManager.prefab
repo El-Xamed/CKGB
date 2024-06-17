@@ -685,6 +685,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 889552c7-0a42-4c83-9bc3-203f23ffdfdf
     m_ActionName: Console/pause/options
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5978931268482471701}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackPauseMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 14059890-fc1a-4202-9480-38fe929f31d7
+    m_ActionName: Console/BackPause[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Console
