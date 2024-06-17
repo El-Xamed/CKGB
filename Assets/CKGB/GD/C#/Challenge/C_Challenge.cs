@@ -238,7 +238,7 @@ public class C_Challenge : MonoBehaviour
                     thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
                     thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
 
-                    thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
+                    thisActor.CheckInDanger();
                 }
             }
         }
@@ -559,11 +559,6 @@ public class C_Challenge : MonoBehaviour
         //Re-active le fond des logs.
 
         #region Initialisation
-
-        if (AudioManager.instance)
-        {
-            //AudioManager.instance.Play("MusiqueTuto");
-        }
 
         #region Instance des data challenge.
         //Instancie le challenge
@@ -1186,11 +1181,6 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("Resolution turn !");
 
-        if (AudioManager.instance)
-        {
-            AudioManager.instance.PlayOnce(resoTurnClip);
-        }
-
         //Supprime toutes les preview de déplacement.
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
@@ -1220,10 +1210,12 @@ public class C_Challenge : MonoBehaviour
                 //Change le sprite de Morgan.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    if (thisActor.GetDataActor().name == "Morgan" && myChallenge.name == "SO_Tuto")
+                    if (thisActor.GetDataActor().name == "Morgan")
                     {
                         thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Chara_Challenge");
                         thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Cata_Chara_Challenge");
+
+                        thisActor.CheckInDanger();
                     }
                 }
             }
@@ -1905,6 +1897,15 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
             thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+
+            //Change le sprite de Morgan.
+            if (thisActor.GetDataActor().name == "Morgan" && myChallenge.name == "SO_Tuto")
+            {
+                thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
+                thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
+
+                thisActor.CheckInDanger();
+            }
         }
 
         //Check si il y a un outro de challenge.
