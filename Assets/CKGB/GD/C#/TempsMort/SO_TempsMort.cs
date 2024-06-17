@@ -9,6 +9,9 @@ using Ink.Runtime;
 
 public class SO_TempsMort : ScriptableObject
 {
+
+    public string LevelMusic; 
+
     #region DATA
 
     [SerializeField] public string TLname;

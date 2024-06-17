@@ -127,6 +127,7 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.textToWriteIn = naratteurText;
         StartIntro();
         GameManager.instance.TS_softblackswipe.SetActive(true);
+        AudioManager.instanceAM.Play(TM.LevelMusic);
     }
 
     private void CharactersDataGet()

@@ -136,7 +136,7 @@ public class C_MainMenu : MonoBehaviour
 
         if (context.performed)
         {
-            AudioManager.instanceAM.Play("Selection"); // se joue plusieurs fois a régler // 
+            AudioManager.instanceAM.Play("Selection"); 
             updateCurrentButton();
             
         }
@@ -151,6 +151,7 @@ public class C_MainMenu : MonoBehaviour
     public void OpenCredits()
     {
         AudioManager.instanceAM.Play("ClickButton");
+        AudioManager.instanceAM.Play("MusicCredits");
     }
 
     public void LeaveGame()
