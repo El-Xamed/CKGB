@@ -52,9 +52,11 @@ public class C_MainMenu : MonoBehaviour
         yield return new WaitForSeconds(1.8f);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
         splashScreen.SetActive(false);
+        
     }
     public void ShowChapterPicture()
     {
+        AudioManager.instanceAM.Play("NewGameButton");
         ChapterImage.SetActive(true);
         eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(ChapterImage.transform.GetChild(0).GetChild(0).gameObject);
 
@@ -74,12 +76,13 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(firthScene);
 
         //Transition.
+        
         GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
-       
+
         //Stop les sons.
-        AudioManager.instanceAM.Stop("MusiqueSplashScreen");
-        AudioManager.instanceAM.Play("SfxSonDeConfirmation");
-        AudioManager.instanceAM.Play("MusiqueTuto");
+        
+        AudioManager.instanceAM.Stop("MenuMusic");
+        
 
     }
 
@@ -116,7 +119,7 @@ public class C_MainMenu : MonoBehaviour
             //optionsParent.SetActive(true);
             Debug.Log("Options");
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(GameManager.instance.baseToggle.gameObject);
-            AudioManager.instanceAM.Play("SfxSonDeConfirmation");
+            AudioManager.instanceAM.Play("ClickButton");
         }
     }
     public void updateCurrentButton()
@@ -133,6 +136,7 @@ public class C_MainMenu : MonoBehaviour
 
         if (context.performed)
         {
+            AudioManager.instanceAM.Play("Selection"); // se joue plusieurs fois a régler // 
             updateCurrentButton();
             
         }
@@ -146,19 +150,19 @@ public class C_MainMenu : MonoBehaviour
 
     public void OpenCredits()
     {
-        AudioManager.instanceAM.Play("SfxSonDeConfirmation");
+        AudioManager.instanceAM.Play("ClickButton");
     }
 
     public void LeaveGame()
     {
         Application.Quit();
-        AudioManager.instanceAM.Play("SfxSonDeConfirmation");
+        AudioManager.instanceAM.Play("ClickButton");
     }
 
     //Focntion à dev plus tard. Sert pour tous les menu.
     public void Back()
     {
-        
+        AudioManager.instanceAM.Play("BackButton");
     }
     /*public void Naviguate(InputAction.CallbackContext context)
     {
