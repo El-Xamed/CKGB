@@ -1919,6 +1919,9 @@ public class C_Challenge : MonoBehaviour
                 thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
                 thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
 
+                Debug.Log(thisActor.GetDataActor().challengeSprite);
+                Debug.Log(thisActor.GetDataActor().challengeSpriteOnCata);
+
                 thisActor.CheckInDanger();
             }
         }

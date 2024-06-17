@@ -17,6 +17,7 @@ public class C_TransitionManager : MonoBehaviour
     //Fonction public qui permet de setup correctement la transition entre les scene.
     public void SetupNextScene(string thisScene, string cutClip)
     {
+        Debug.Log("Setup next scene !");
         nextScene = thisScene;
         thisClip = cutClip;
 
@@ -54,5 +55,7 @@ public class C_TransitionManager : MonoBehaviour
         }
 
         currentEvent.Invoke();
+
+        Debug.Log("Fin de transition !");
     }
 }

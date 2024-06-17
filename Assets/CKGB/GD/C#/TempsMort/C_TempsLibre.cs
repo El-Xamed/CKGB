@@ -1172,6 +1172,8 @@ public class C_TempsLibre : MonoBehaviour
         }
         StartCoroutine(Challenge(named));
     }
+
+    //C'est Pas à jour ici, c'est cette fonction qui fait fait spawn 2 fois les cases.
     IEnumerator Challenge(string scenename)
     {
         GameManager.instance.ExitDialogueMode();
@@ -1181,7 +1183,10 @@ public class C_TempsLibre : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         GameManager.instance.TS_flanel.GetComponent<Animator>().ResetTrigger("Open");
         //GameManager.instance.transform.GetChild(1).gameObject.SetActive(false);
-        SceneManager.LoadScene(scenename);
+        //SceneManager.LoadScene(scenename);
+
+        //Setup dans quelle scene on souhaite aller.
+        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(scenename, "");
     }
     public void BACK(InputAction.CallbackContext context)
     {
