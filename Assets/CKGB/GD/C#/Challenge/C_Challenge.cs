@@ -20,6 +20,7 @@ public class C_Challenge : MonoBehaviour
     #region Tuto
     [Header("Tuto")]
     [SerializeField] Animator tuto;
+    bool canMakeTuto = true;
     #endregion
 
     #region Dialogue
@@ -768,18 +769,23 @@ public class C_Challenge : MonoBehaviour
             canUpdate = false;
         }
 
-        //Check si c'est le premier niveau.
-        if (myChallenge.name == "SO_Tuto(Clone)")
+        if (canMakeTuto)
         {
-            //ETAPE 1.
-            if (currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
+            //Check si c'est le premier niveau.
+            if (myChallenge.name == "SO_Tuto(Clone)")
             {
-                Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
+                //ETAPE 1.
+                if (currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
+                {
+                    Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
 
-                myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+                    myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
 
-                //Lance l'animation.
-                GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+                    //Lance l'animation.
+                    GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+
+                    canMakeTuto = false;
+                }
             }
         }
         
@@ -1826,6 +1832,8 @@ public class C_Challenge : MonoBehaviour
 
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
+
+            canMakeTuto = true;
         }
         else
         {
