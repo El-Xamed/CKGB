@@ -5,19 +5,19 @@ EXTERNAL StartChallenge(name)
 ===Intro===
 //L’écran du combat sans l’UI de combat apparait. 
 
-Vous franchissez un par un, essouflés, le seuil de la terrasse surélevée où se trouve le café.#Bulle:Narrateur
+Vous franchissez un par un, essoufflés, le seuil de la terrasse surélevée où se trouve le café.#Bulle:Narrateur
 
 Woooou...<br> Et bah...<br> C'était...wooow...#Bulle:MorganHautGauche
 Vraiment <shake>beaucoup</shake> de marches.#Bulle:MorganHautGauche
 
 Ouais.. Uff... Ufff...<br> Ils devraient vraiment <br>prévenir les gens à l'avance.#Bulle:NimuHautGauche
-Le mettre dans le nom du quartier<br> ou un truc dans le genre.#Bulle:NimuHautGauche
+Le mettre dans le nom du quartier<br> ou un truc du le genre.#Bulle:NimuHautGauche
 
 Exactement,<br> c'est c'que j'ai toujours dit.#Bulle:MorganHautGauche
 
 C'est ici que tu as <rainb>ton rencard</rainb>.#Bulle:Narrateur
 L'<i>autre</i> est probablement<br> à quelques dizaines de mètres de toi actuellement.#Bulle:Narrateur
-Tu sens quelque chose <shake>t'aggripper le coeur</shake>.#Bulle:Narrateur
+Tu sens quelque chose <shake>t'agripper le coeur</shake>.#Bulle:Narrateur
 
 Bon.<br> J’suppose qu’on t’accompagne pas plus loin ?#Bulle:NimuHautGauche
 
@@ -60,7 +60,7 @@ Est-ce qu'on peut repartir ?#Bulle:MorganHautGauche
 
 S'il vous plaît ?#Bulle:MorganHautGauche
 
-Ta grand-mère fronce profondément ses sourcils.#Bulle:Narrateur
+Ta grand-mère fronce profondément les sourcils.#Bulle:Narrateur
 Elle te regarde. Ce qu'elle voit a l'air de l'inquiéter.#Bulle:Narrateur
 
 On peut attendre un peu avant d'y aller. Est-ce que... ça t'aiderait ?#Bulle:NimuHautGauche

@@ -7,7 +7,7 @@ EXTERNAL StartChallenge(name)
 
 ===Outro===
 
-Ta grand-mère bâille à s'en décrocher la machoire.#Bulle:Narrateur
+Ta grand-mère bâille à s'en décrocher la mâchoire.#Bulle:Narrateur
 ~ Trigger("name")
 Bon !<br> Ça va êt' l'heure d'y aller la team.#Bulle:NimuHautGauche #emot:!
 ~ Trigger("name")
@@ -28,7 +28,7 @@ Esthéla se penche vers toi pour te murmurer quelque chose.#Bulle:Narrateur
 
 Morgan,<br> est-ce que ta grand-mère vient <br>de nous menacer de mort ?#Bulle:EsthelaHautGauche #emot:?
 ~ Trigger("name")
-Yeah,#Bulle:MorganHautGauche
+Yep,#Bulle:MorganHautGauche
 Tu hausses les épaules.#Bulle:Narrateur
 elle fait ça des fois.#Bulle:MorganHautGauche
 ~ StartChallenge("S_Challenge")

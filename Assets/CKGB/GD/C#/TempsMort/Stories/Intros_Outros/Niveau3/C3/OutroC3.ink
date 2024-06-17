@@ -20,11 +20,11 @@ Tu es sûr de ce que tu dis..?#Bulle:NimuHautGauche
 Tu dois suivre ton plan.#Bulle:Narrateur
 Est-ce que tu penses être capable de t'engager dans une joute romantique à cet instant précis ?#Bulle:Narrateur
 Certainement pas.#Bulle:Narrateur
-Mais est-ce que tu te sens capable de dévier de ce que tu t'es mis en tête que tu ferais depuis une semaine ?#Bulle:Narrateur
+Mais est-ce que tu te sens capable de t'écarter de ce que tu t'es mis en tête depuis une semaine ?#Bulle:Narrateur
 Non. Il n'y a aucune chance que tu puisses improviser quoi que ce soit dans cet état.#Bulle:Narrateur
 Ce dont tu as besoin c'est d'un truc à boire, du soutien de quelqu'un de proche, et d'une distraction.#Bulle:Narrateur
 Et, maintenant que tu y penses, toute cette histoire que tu t'es montée dans ta tête était bien plus à propos de toi qu'elle n'était à propos de ton crush.#Bulle:Narrateur
-Donc tu penses qu'aller dans ce café est exactement ce que tu as besoin.#Bulle:Narrateur
+Donc tu penses qu'aller dans ce café est exactement ce dont tu as besoin.#Bulle:Narrateur
 Sinon tu vas probablement entrer en combustion spontanée, ou un truc comme ça ?#Bulle:Narrateur
 Peu importe, tu devrais probablement dire un truc maintenant, ça fait 5 minutes que ta grand-mère et ta meilleure amie te regardent agiter les sourcils pendant que tu penses tout ça.#Bulle:Narrateur
 
@@ -52,7 +52,7 @@ Ouais Morgan ?#Bulle:NimuHautGauche
 
 Tu sens ton estomac se tordre momentanément.#Bulle:Narrateur
 Tu n’es vraiment pas sûr de ce que tu vas dire, malgré les efforts que tu as dépensés à faire tes recherches sur le sujet. #Bulle:Narrateur
-Tu prends une courte respiration, priant de ne pas être en train de dire un bêtise.#Bulle:Narrateur
+Tu prends une courte inspiration, priant de ne pas être en train de dire un bêtise.#Bulle:Narrateur
 
 T’es vraiment based.#Bulle:MorganHautGauche
 
@@ -73,7 +73,7 @@ Essuie-toi avant d’y aller,<br> t’as encore d’la morve sur la bouche.#Bull
 J’essaie d’lancer une mode.#Bulle:MorganHautGauche
 
 Tu sens absolument tout avec une nouvelle vivacité.#Bulle:Narrateur
-Le métal de la barrière de la rampe est presque tendre après avoir été chauffé par le soleil.#Bulle:Narrateur
+Le métal de la rampe est presque tendre après avoir été chauffé par le soleil.#Bulle:Narrateur
 À cette hauteur, le vent frais se glisse entre tes vêtements avec l’élan qu’il a pris dans la vallée.#Bulle:Narrateur
 Le verre de la ville scintille comme un ciel nocturne en reflétant la lumière.#Bulle:Narrateur
 Tu as mal à la gorge à force d’avoir pleuré.#Bulle:Narrateur

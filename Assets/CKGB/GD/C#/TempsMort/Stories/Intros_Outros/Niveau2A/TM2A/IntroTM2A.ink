@@ -13,7 +13,7 @@ C’est juste après ces buttes !<br> On va y être en 5 minutes. #Bulle:MorganH
 
 H-hm.#Bulle:NimuHautGauche
 
-Fais gaffe à la lavande.<br> On a galéré à la faire survivre <br>après la dernière sècheresse.#Bulle:MorganHautGauche
+Fais gaffe à la lavande !<br> On a galéré à la faire survivre <br>après la dernière sècheresse.#Bulle:MorganHautGauche
 
 De fou, de fou.#Bulle:NimuHautGauche
 ~ Trigger("name")
@@ -33,7 +33,7 @@ Mais tu m’écoutes pas du tout en fait ?#Bulle:MorganHautGauche #emot:?
 
 Elle secoue soudainement la tête, donnant l'air de revenir à la réalité. #Bulle:Narrateur
 Quoi ? Euh si, tu, hum...#Bulle:NimuHautGauche
-Parlais de lavande qui joue du trombone ?#Bulle:NimuHautGauche
+...parlais de lavande qui joue du trombone ?#Bulle:NimuHautGauche
 C'était ridicule d'ailleurs.#Bulle:NimuHautGauche
 
 Un clown semble dormir à l'ombre des branches.#Bulle:Narrateur
@@ -48,18 +48,20 @@ Vous la voyez se lever précipitamment pour se jeter à votre rencontre.#Bulle:N
 ~ Trigger("name")
 Omg !!! Morgan !!!#Bulle:EsthelaHautGauche
 
-Tu la reconnais à ton tour avec un mélange de joie et d'amertume...#Bulle:Narrateur
+Tu la reconnais à ton tour, avec un mélange de joie et d'amertume...#Bulle:Narrateur
 
 <i>(...et peste.)</i>#Bulle:MorganHautGauche
 
 Comment ça va ? <br><size=120%>J'ADORE</size=120%> ton nouveau style !!<br> Où tu vas comme ça ?<br> Il fait beau aujourd'hui non ???<br> Je peux essayer tes lunettes de soleil ?<br> Oh c'est ta grand-mère avec toi ?#Bulle:EsthelaHautGauche
 
-Heyyyy, 'a va. Merci.#Bulle:MorganHautGauche
-J’aime également beaucoup <br>ta nouvelle esthétique,<br> très fantaisiste.#Bulle:MorganHautGauche
-Je te dirai pas.<br> C'est vrai.<br> Non. Effectivement.
+Ça va.<br> Merci.<br> Je te dirai pas.<br> C'est vrai.<br> Non.<br> Effectivement.<br>#Bulle:MorganHautGauche
+
 Tu remontes tes lunettes sur l'arête de ton nez.#Bulle:Narrateur
 Dans cet ordre.#Bulle:MorganHautGauche #emot:Sparkles
-Cela t'as pris plusieurs années et beaucoup d'efforts,<br> mais tu as fini par apprendre comment interagir avec Esthéla.#Bulle:Narrateur
+
+Et j’aime également beaucoup <br>ta nouvelle esthétique,<br> très fantaisiste.#Bulle:MorganHautGauche
+ 
+Cela t'a pris plusieurs années et beaucoup d'efforts,<br> mais tu as fini par apprendre comment interagir avec Esthéla.#Bulle:Narrateur
 Une manoeuvre qui s'est revélée plutôt fructueuse, étant donné que tu la considères maintenant comme une de tes meilleures amies.#Bulle:Narrateur
 
 Mon tour maintenant.<br> Depuis quand t’es dans le coin ?#Bulle:MorganHautGauche #emot:?
@@ -68,7 +70,7 @@ Oh, je suis que de passage.#Bulle:EsthelaHautGauche
 J’aide des amis à escorter<br> un convoi le long de la ligne 4 ce matin.#Bulle:EsthelaHautGauche
 
 C'est la ligne que vous prenez aussi. Ne laisse rien paraître.#Bulle:Narrateur
-Avoir ton amie à tes cotés le temps de faire le trajet pourrait t'aider mais...#Bulle:Narrateur
+Avoir ton amie à tes côtés le temps de faire le trajet pourrait t'aider, mais...#Bulle:Narrateur
 Tu n'es pas sûr de pouvoir canaliser sa curiosité très longtemps.#Bulle:Narrateur
 
 Hm.#Bulle:NimuHautGauche
@@ -79,10 +81,10 @@ Je pense bien que c’est la première fois<br> que j’ai envie d’escorter <b
 
 Hehe, t'as vu, t'as vu ?#Bulle:EsthelaHautGauche #emot:JoyRight
 On s'imagine que c'est plutôt physique,<br> mais en fait je passe plus de temps à attendre les trains<br> qu'à porter des caisses.#Bulle:EsthelaHautGauche
-Quand on connaît les meilleurs spots à sieste,<br> c'est un plan plutôt foudroyant ehehe !!#Bulle:EsthelaHautGauche #emot:Sparkles
+Quand on connaît les meilleurs spots à sieste,<br> c'est un plan plutôt foudroyant hehe !!#Bulle:EsthelaHautGauche #emot:Sparkles
 
-Hm. J'vois.<br> Cela semble 'ffectivement être une position <br>relativ'ment aventageuse.#Bulle:MorganBasGauche
-Maint'nant, Mémé ? <br>Ptê'tre devrions-nous procéder ?<br> J'crois qu'nous avons un train à attraper.#Bulle:MorganBasGauche
+Hm. J'vois.<br> Cela semble 'ffectivement être une position <br>relativ'ment avantageuse.#Bulle:MorganBasGauche
+Maint'nant, Mémé ? <br>Pt'être devrions-nous procéder ?<br> J'crois qu'nous avons un train à attraper.#Bulle:MorganBasGauche
 ~ Trigger("name")
 Attends un instant.<br> Elle a raison ta pote. #Bulle:NimuHautDroite #emot:!
 
@@ -100,7 +102,7 @@ Et tu vas tomber à court d'ongles à ronger au bout d'un moment.#Bulle:Narrateu
 J'me débrouille très bien seul.#Bulle:MorganHautDroite
 
 BREF,#Bulle:NimuHautGauche
-avec les trains qui restent<br> toujours bien 15 minutes à quais,#Bulle:NimuHautGauche
+avec les trains qui restent<br> toujours bien 15 minutes à quai,#Bulle:NimuHautGauche
 on peut large se permettre<br> de profiter un peu d'être ici !<br> Ça nous avancera pas plus<br> d'attendre à la gare.#Bulle:NimuBAsGauche
 ~ Trigger("name")
 Tu prends plusieurs inspirations et expirations pour essayer de formuler une réponse raisonnable.#Bulle:Narrateur
