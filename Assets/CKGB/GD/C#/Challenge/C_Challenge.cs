@@ -216,6 +216,11 @@ public class C_Challenge : MonoBehaviour
             Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
         }
 
+        if (myChallenge.name != "SO_Tuto")
+        {
+            black.SetActive(false);
+        }
+
         //Desactive par default les logs timeleine.
         uiLogsTimeline.SetActive(false);
         uiVictoire.SetActive(false);
@@ -558,11 +563,6 @@ public class C_Challenge : MonoBehaviour
         //Re-active le fond des logs.
 
         #region Initialisation
-
-        if (myChallenge.name != "SO_Tuto")
-        {
-            black.SetActive(false);
-        }
 
         #region Instance des data challenge.
         //Instancie le challenge
@@ -1936,18 +1936,6 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
             thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
-
-            //Desactivation du contour blanc.
-            thisActor.IsSelected(false);
-
-            //Change le sprite de Morgan.
-            if (thisActor.GetDataActor().name == "Morgan" && myChallenge.name == "SO_Tuto")
-            {
-                thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
-                thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
-
-                thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
-            }
         }
 
         //Check si il y a un outro de challenge.
@@ -1994,6 +1982,8 @@ public class C_Challenge : MonoBehaviour
             {
                 thisActor.transform.parent = GameManager.instance.transform;
                 thisActor.GetImageActor().enabled = false;
+                //Desactivation du contour blanc.
+                thisActor.IsSelected(false);
             }
 
             yield return new WaitForEndOfFrame();
