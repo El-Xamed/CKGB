@@ -497,10 +497,12 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
         if(GameManager.instance.textToWriteIn==NarrateurParent.transform.GetChild(1))
         {
+            Debug.Log("ca Stop");
             AudioManager.instanceAM.Stop("Narrateur");
         }
         else
         {
+            Debug.Log("ca Marche");
             AudioManager.instanceAM.Stop("Dialogue");
         }
         
