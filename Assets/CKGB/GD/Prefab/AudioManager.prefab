@@ -246,6 +246,14 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: WMSound
+    clip:
+    - {fileID: 8300000, guid: 837f130cea28d664796cc2b713a821e0, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!82 &440091079429689959
 AudioSource:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class C_Worldmap : MonoBehaviour
 
     [SerializeField] EventSystem Es;
     [SerializeField] bool paused = false;
+    public string WorldMapSound;
 
     #endregion
 
@@ -45,6 +46,9 @@ public class C_Worldmap : MonoBehaviour
     }
     void Start()
     {
+        AudioManager.instanceAM.Play("WMSound");
+
+
         if (GameManager.instance != null)
         {
             GameManager.instance.W = this;
@@ -60,6 +64,7 @@ public class C_Worldmap : MonoBehaviour
         if (GameObject.Find("lvl3") != null)
         {
             allMapPoints.Add(GameObject.Find("lvl3").GetComponent<C_destination>());
+
         }
 
 

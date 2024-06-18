@@ -155,8 +155,8 @@ public class C_MainMenu : MonoBehaviour
 
     public void OpenCredits()
     {
-        //AudioManager.instanceAM.Play("ClickButton");
-        //AudioManager.instanceAM.Play("MusicCredits");
+        AudioManager.instanceAM.Play("ClickButton");
+        AudioManager.instanceAM.Play("MusicCredits");
         SceneManager.LoadScene(4);
     }
 
