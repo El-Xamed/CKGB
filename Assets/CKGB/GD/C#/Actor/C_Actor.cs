@@ -431,7 +431,6 @@ public class C_Actor : C_Pion
     {
         return character;
     }
-
     #endregion
 
     #region Pour l'animation

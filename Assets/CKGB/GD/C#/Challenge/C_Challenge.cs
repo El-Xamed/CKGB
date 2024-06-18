@@ -1948,8 +1948,6 @@ public class C_Challenge : MonoBehaviour
         if (myPhaseDeJeu != PhaseDeJeu.EndGame)
         {
             myPhaseDeJeu = PhaseDeJeu.EndGame;
-            
-            
         }
 
         //Redonne leur couleur.
@@ -1957,6 +1955,9 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
             thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
+
+            //Desactivation du contour blanc.
+            thisActor.IsSelected(false);
 
             //Change le sprite de Morgan.
             if (thisActor.GetDataActor().name == "Morgan" && myChallenge.name == "SO_Tuto")
