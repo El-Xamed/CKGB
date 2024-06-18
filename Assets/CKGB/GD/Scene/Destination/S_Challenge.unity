@@ -1097,10 +1097,8 @@ MonoBehaviour:
   vfxStartChallenge: {fileID: 473500140}
   vfxPlayerTurn: {fileID: 823621256}
   vfxResoTurn: {fileID: 1245365849}
-  selectionActionClip: {fileID: 0}
-  apparitionCataClip: {fileID: 0}
-  applicationCataClip: {fileID: 0}
-  resoTurnClip: {fileID: 0}
+  sfxOverButton: ConfirmRPG
+  sfxSelectButton: SelectionRPG
   sceneMenu: S_MainMenu
   sceneTM: S_TempsLibre
   sceneWM: S_Worldmap
@@ -1173,6 +1171,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ce4a3e81-ae84-4c01-8e5b-e1ff2daf3860
     m_ActionName: Challenge/Scroll Wheel[/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2b18917-e76a-4811-a4b0-8b32e3e3383b
+    m_ActionName: Challenge/pause/options[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge
