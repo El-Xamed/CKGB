@@ -144,11 +144,35 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Catastrophe
     clip:
-    - {fileID: 8300000, guid: de395f3b51598b742a9af0fbbefd6c4f, type: 3}
+    - {fileID: 8300000, guid: 598b20f19c35c46429ecbe9309d1d1a3, type: 3}
     group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: "ProblemeR\xE9solu"
+    clip:
+    - {fileID: 8300000, guid: 1e0852f77f0e54b45b1505ea209da2ff, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Narrateur
+    clip:
+    - {fileID: 8300000, guid: 3e5c0fd990b638144873f3f12021aa31, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: DeplacementWP
+    clip:
+    - {fileID: 8300000, guid: 186370f2bed74654a84e6865da5a19bd, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!82 &440091079429689959
 AudioSource:

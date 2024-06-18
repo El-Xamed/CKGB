@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8538920949746634534}
   - component: {fileID: 6808679828384470137}
+  - component: {fileID: 4530900822505718548}
   m_Layer: 5
   m_Name: setup2
   m_TagString: Untagged
@@ -61,6 +62,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4530900822505718548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341679036247117970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c58593e4133ce4187df240965cae29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1642388631173985638
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823561128713628622}
   - component: {fileID: 1582449820780783775}
+  - component: {fileID: 4530900822505718549}
   m_Layer: 5
   m_Name: setup1
   m_TagString: Untagged
@@ -219,6 +233,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4530900822505718549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898884959125837119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c58593e4133ce4187df240965cae29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4530900822922147819
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,9 +273,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4530900822922147819}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.06, y: -4.58, z: 0}
-  m_LocalScale: {x: 0.91, y: 0.94, z: 0.85}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 823561128713628622}
@@ -322,8 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPoint: {fileID: 0}
-  moveSpeed: 4
-  moveSpeed2: 3.1
+  moveSpeed: 1.53
+  moveSpeed2: 1.6
   allMapPoints: []
   currentPoint: {fileID: 0}
   Leftlevel: {fileID: 0}
@@ -340,6 +366,8 @@ MonoBehaviour:
   currentSetup: {fileID: 0}
   Bulle: {fileID: 0}
   text: {fileID: 0}
+  Es: {fileID: 0}
+  paused: 0
 --- !u!114 &4530900822922147823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,13 +494,45 @@ MonoBehaviour:
     m_ActionId: 942d176b-0b8d-4683-a4c1-50ce05785591
     m_ActionName: TempsMort/Back[/Keyboard/b]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4530900822922147818}
+        m_TargetAssemblyTypeName: C_Worldmap, Assembly-CSharp
+        m_MethodName: OpenPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6ae85e28-4fe1-4ba6-9f81-77f18cb4b5bd
     m_ActionName: WorldMap/pause/options
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 703730de-b34c-4b00-8dae-9f37c177e5a5
     m_ActionName: TempsMort/Pause
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4530900822922147818}
+        m_TargetAssemblyTypeName: C_Worldmap, Assembly-CSharp
+        m_MethodName: BACK
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8f9cd448-5236-4a28-8a1e-0894bb2fcf33
+    m_ActionName: WorldMap/Back[/Keyboard/b,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50e6e287-69a4-4a2c-882f-ae7dda209c93
+    m_ActionName: WorldMap/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: WorldMap
