@@ -111,6 +111,8 @@ public class C_Challenge : MonoBehaviour
     [Header("SFX")]
     [SerializeField] string sfxOverButton;
     [SerializeField] string sfxSelectButton;
+    [SerializeField] string sfxGoodAction;
+    [SerializeField] string sfxWriteText;
     #endregion
 
     #region Transition
@@ -240,6 +242,8 @@ public class C_Challenge : MonoBehaviour
             {
                 if (thisActor.GetDataActor().name == "Morgan")
                 {
+                    Debug.Log("INI : Morgan dodo !!!");
+
                     thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
                     thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
 
@@ -1182,8 +1186,13 @@ public class C_Challenge : MonoBehaviour
         //Check si l'element de la liste n'est pas null. Si ce dernier est null il passera à la reso suivante.
         if (!string.IsNullOrEmpty(currentResolution.action.GetListLogs()))
         {
+            //SFX
+            if (AudioManager.instanceAM)
+            {
+                AudioManager.instanceAM.Play(sfxWriteText);
+            }
+
             uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.currentLogs;
-            Debug.Log(currentResolution.action.currentLogs);
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1) //Check si on n'est pas arr au dernier reso.
         {
@@ -1297,6 +1306,12 @@ public class C_Challenge : MonoBehaviour
         //Check si c'est la bonne action.
         if (currentResolution.action.name == currentStep.rightAnswer.name)
         {
+            //SFX
+            if (AudioManager.instanceAM)
+            {
+                AudioManager.instanceAM.Play(sfxGoodAction);
+            }
+
             Debug.Log("Bonne action pour passer à l'étape suivante");
 
             //Vfx de bonne action.
@@ -1948,9 +1963,6 @@ public class C_Challenge : MonoBehaviour
             {
                 thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
                 thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
-
-                Debug.Log(thisActor.GetDataActor().challengeSprite);
-                Debug.Log(thisActor.GetDataActor().challengeSpriteOnCata);
 
                 thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
             }
