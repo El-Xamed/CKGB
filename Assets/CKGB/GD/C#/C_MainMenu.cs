@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 
 public class C_MainMenu : MonoBehaviour
 {
@@ -155,20 +155,22 @@ public class C_MainMenu : MonoBehaviour
 
     public void OpenCredits()
     {
-        AudioManager.instanceAM.Play("ClickButton");
-        AudioManager.instanceAM.Play("MusicCredits");
+        //AudioManager.instanceAM.Play("ClickButton");
+        //AudioManager.instanceAM.Play("MusicCredits");
+        SceneManager.LoadScene(4);
     }
 
     public void LeaveGame()
     {
+        //AudioManager.instanceAM.Play("ClickButton");
         Application.Quit();
-        AudioManager.instanceAM.Play("ClickButton");
+        
     }
 
     //Focntion à dev plus tard. Sert pour tous les menu.
     public void Back()
     {
-        AudioManager.instanceAM.Play("BackButton");
+        //AudioManager.instanceAM.Play("BackButton");
     }
     /*public void Naviguate(InputAction.CallbackContext context)
     {
