@@ -857,14 +857,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 Papote.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                  
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
                 }
-                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == Papote.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
@@ -899,14 +899,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 Papote.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                 
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                }                
-                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                }
+                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == Papote.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
@@ -939,15 +939,15 @@ public class C_TempsLibre : MonoBehaviour
                 actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 Papote.GetComponent<C_Actor>().SetCurrentPointTrait();
-                Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");   
-             if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                   
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                }              
-                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                }
+                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == Papote.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
@@ -980,15 +980,15 @@ public class C_TempsLibre : MonoBehaviour
                 actorActif.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 Papote.GetComponent<C_Actor>().SetCurrentPointTrait();
-                Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");               
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                }               
-                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                }
+                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == Papote.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
@@ -1022,14 +1022,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 Papote.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                }               
-                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                }
+                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == Papote.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
@@ -1065,14 +1065,14 @@ public class C_TempsLibre : MonoBehaviour
                 Debug.Log(actorActif.name + " possède : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
                 Papote.GetComponent<C_Actor>().SetCurrentPointTrait();
                 Debug.Log(Papote.name + " possède : " + Papote.GetComponent<C_Actor>().GetCurrentPointTrait() + " pts de traits");
-                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                if (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() == actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     actorActif.GetComponent<C_Actor>().HasTraited = true;
                     actorActif.GetComponent<C_Actor>().ResetPointTrait();
                     actorActif.GetComponent<C_Actor>().UpdateNextTrait();                    
                     Debug.Log("Trait de " + actorActif.name + " numéro " + actorActif.GetComponent<C_Actor>().GetDataActor().idTraitEnCours);
-                }               
-                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == 1)
+                }
+                if (Papote.GetComponent<C_Actor>().GetCurrentPointTrait() == Papote.GetComponent<C_Actor>().GetDataActor().maxTraitPoint)
                 {
                     Papote.GetComponent<C_Actor>().HasTraited = true;
                     Papote.GetComponent<C_Actor>().ResetPointTrait();
