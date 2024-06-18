@@ -1449,6 +1449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tuto: {fileID: 0}
   onDialogue: 0
+  black: {fileID: 0}
   myInterface: {fileID: 404572936}
   myChallenge: {fileID: 11400000, guid: 3717d10933abcfa47b6cb682f2e40576, type: 2}
   tm1: {fileID: 11400000, guid: 429ef7747213b6d40b366e404684cc22, type: 2}
@@ -1472,10 +1473,10 @@ MonoBehaviour:
   vfxStartChallenge: {fileID: 473500140}
   vfxPlayerTurn: {fileID: 823621256}
   vfxResoTurn: {fileID: 1245365849}
-  selectionActionClip: {fileID: 0}
-  apparitionCataClip: {fileID: 0}
-  applicationCataClip: {fileID: 0}
-  resoTurnClip: {fileID: 0}
+  sfxOverButton: 
+  sfxSelectButton: 
+  sfxGoodAction: 
+  sfxWriteText: 
   sceneMenu: 
   sceneTM: 
   sceneWM: 
@@ -1548,6 +1549,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ce4a3e81-ae84-4c01-8e5b-e1ff2daf3860
     m_ActionName: Challenge/Scroll Wheel[/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2b18917-e76a-4811-a4b0-8b32e3e3383b
+    m_ActionName: Challenge/pause/options
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Challenge
@@ -2131,7 +2136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2960217006114317259, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 0.7058824
       objectReference: {fileID: 0}
     - target: {fileID: 3157574291468129282, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_Color.a
@@ -2155,11 +2160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004065276965769479, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004065276965769479, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004065276965769479, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2191,7 +2196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004065276965769479, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4095028513081056873, guid: 4e76ea943779207a9978bedebf3f8b3c, type: 3}
       propertyPath: m_margin.w
