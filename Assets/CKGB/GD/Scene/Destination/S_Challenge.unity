@@ -844,6 +844,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6719680050729051447, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
   m_PrefabInstance: {fileID: 435388228}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &435388230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454740614366325845, guid: 77050f6f93b65ec499661c0201e5afa7, type: 3}
+  m_PrefabInstance: {fileID: 435388228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &473500139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1074,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tuto: {fileID: 1780696627}
   onDialogue: 0
+  black: {fileID: 435388230}
   myInterface: {fileID: 404572936}
   myChallenge: {fileID: 11400000, guid: e017fc6468b182f4593106daa8049e34, type: 2}
   tm1: {fileID: 11400000, guid: 429ef7747213b6d40b366e404684cc22, type: 2}
