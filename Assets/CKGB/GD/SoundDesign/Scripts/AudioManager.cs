@@ -39,18 +39,17 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
-
-
-
         Sound p = System.Array.Find(sounds, sound => sound.name == name);
-        p.source.clip = p.clip[Random.Range(0, p.clip.Length)];
+        
         if (p == null)
         {
-            Debug.LogWarning("Sound:" + name + "not found!");
-            return;
-
+            Debug.LogWarning("Sound: " + name + " not found!");
         }
-        p.source.Play();
+        else
+        {
+            p.source.clip = p.clip[Random.Range(0, p.clip.Length)];
+            p.source.Play();
+        }
     }
 
 
@@ -58,18 +57,17 @@ public class AudioManager : MonoBehaviour
 
     public void Stop(string name)
     {
-
-
-
         Sound p = System.Array.Find(sounds, sound => sound.name == name);
-        p.source.clip = p.clip[Random.Range(0, p.clip.Length)];
+        
         if (p == null)
         {
-            Debug.LogWarning("Sound:" + name + "not found!");
-            return;
-
+            Debug.LogWarning("Cant strop : " + name + " because is not found!");
         }
-        p.source.Stop();
+        else
+        {
+            p.source.clip = p.clip[Random.Range(0, p.clip.Length)];
+            p.source.Stop();
+        }
     }
 }
 

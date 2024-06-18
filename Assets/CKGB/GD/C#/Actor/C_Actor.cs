@@ -169,12 +169,6 @@ public class C_Actor : C_Pion
 
         mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(GetDataActor().widthChallenge, GetDataActor().heightChallenge);
 
-        //Debug.Log(BulleHautGauche.GetComponent<RectTransform>().rect.position);
-
-        //FIX TEMPO ? Déplace la bulle pour que ça colle bien dans les challenge.
-        //BulleHautGauche.GetComponent<RectTransform>().position = new Vector3(-18, 43, BulleHautGauche.transform.position.z);
-
-
         CheckIsOut();
 
         Debug.Log("Init challenge : " + name);

@@ -237,25 +237,6 @@ public class C_Challenge : MonoBehaviour
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
-        #region Pour setup le sprite de Morgan en pyjama.
-        foreach (C_Actor thisActor in myTeam)
-        {
-            //Check si le challenge en question c'est le tuto.
-            if (myChallenge.name == "SO_Tuto")
-            {
-                if (thisActor.GetDataActor().name == "Morgan")
-                {
-                    Debug.Log("INI : Morgan dodo !!!");
-
-                    thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
-                    thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
-
-                    thisActor.CheckInDanger();
-                }
-            }
-        }
-        #endregion
-
         yield return new WaitForEndOfFrame();
 
         if (GameManager.instance)
@@ -320,35 +301,6 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Début de partie
-    void SpawnElement()
-    {
-        //Set les element en plus.
-        if (myChallenge.element.Count != 0)
-        {
-            foreach (var thisElement in myChallenge.element)
-            {
-
-                GameObject newUI = new GameObject();
-
-                newUI.transform.parent = GameObject.Find("Element").transform;
-
-                newUI.name = thisElement.name;
-
-                newUI.AddComponent<Image>();
-
-                newUI.GetComponent<Image>().sprite = thisElement;
-
-                newUI.GetComponent<Image>().material = Resources.Load<Material>("MatImageLit");
-
-                newUI.GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
-
-                newUI.GetComponent<RectTransform>().position = GameObject.Find("Element").transform.position;
-
-                newUI.GetComponent<RectTransform>().localScale = Vector3.one;
-            }
-        }
-    }
-
     void SpawnCases()
     {
         Debug.Log("Spawn Case");
@@ -419,13 +371,32 @@ public class C_Challenge : MonoBehaviour
                         //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
                         if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
                         {
+                            #region Pour setup le sprite de Morgan en pyjama.
+                            //Check si le challenge en question c'est le tuto.
+                            if (thisActor.GetComponent<C_Actor>().GetDataActor().name == "Morgan")
+                            {
+                                if (myChallenge.name == "SO_Tuto")
+                                {
+                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
+                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
+
+                                    //thisActor.GetComponent<C_Actor>().CheckInDanger();
+                                }
+                                else
+                                {
+                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
+                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
+                                }
+                            }
+                            #endregion
+
                             //Ini data actor.
                             thisActor.GetComponent<C_Actor>().IniChallenge();
 
+                            //Replace l'actor dans un autre Transform.
                             thisActor.transform.parent = GameObject.Find("BackGround").transform;
 
-                            //Placement des perso depuis le GameManager
-                            //Changement de parent
+                            //Placement sur le plateau.
                             PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position, false);
                             thisActor.GetComponent<C_Actor>().CheckInDanger();
                             thisActor.transform.localScale = Vector3.one;
@@ -446,7 +417,7 @@ public class C_Challenge : MonoBehaviour
                             //Mise en place du VFX de bonne action.
                             if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
                             {
-                                GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                                Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
                             }
                             else
                             {
@@ -538,10 +509,10 @@ public class C_Challenge : MonoBehaviour
                 uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
                 uiLogs.GetComponentInChildren<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
 
+                #region Setup les dialogues dans les challenges
                 //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    #region Setup les dialogues dans les challenges
                     thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
                     thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
                     thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
@@ -551,8 +522,8 @@ public class C_Challenge : MonoBehaviour
                     thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
                     thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
                     thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    #endregion
                 }
+                #endregion
 
                 GameManager.instance.EnterDialogueMode(myChallenge.introChallenge);
             }
@@ -588,13 +559,15 @@ public class C_Challenge : MonoBehaviour
 
         #region Initialisation
 
-        #region Instance des data challenge.
-        //Instancie le challenge
-        myChallenge = SO_Challenge.Instantiate(myChallenge);
-        if(myChallenge.name!="SO_Tuto")
+        if (myChallenge.name != "SO_Tuto")
         {
             black.SetActive(false);
         }
+
+        #region Instance des data challenge.
+        //Instancie le challenge
+        myChallenge = SO_Challenge.Instantiate(myChallenge);
+
         for (int i = 0; i < myChallenge.listEtape.Count; i++)
         {
             myChallenge.listEtape[i] = SO_Etape.Instantiate(myChallenge.listEtape[i]);

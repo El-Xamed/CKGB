@@ -45,13 +45,17 @@ public class C_Tuto : MonoBehaviour
         foreach (C_Actor thisActor in GetComponentInParent<C_Challenge>().GetTeam())
         {
             //Joue sur tous les actor l'nim de "t'étanisation" sur l'ui des tats.
-            //thisActor.GetUiStats().
+            thisActor.GetUiStats().GetComponent<Animator>().SetBool("isOut", true);
         }
     }
 
     public void StopAnimDeathUiStats()
     {
-        //Stop sur tous les actor l'nim de "t'étanisation" sur l'ui des tats.
+        foreach (C_Actor thisActor in GetComponentInParent<C_Challenge>().GetTeam())
+        {
+            //Joue sur tous les actor l'nim de "t'étanisation" sur l'ui des tats.
+            thisActor.GetUiStats().GetComponent<Animator>().SetBool("isOut", false);
+        }
     }
     #endregion
 
