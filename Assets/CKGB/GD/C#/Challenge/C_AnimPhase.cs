@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class C_AnimPhase : MonoBehaviour
 {
     C_Challenge challenge;
-    public string PoPupChallenge;
+    public string sfxTransition;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +44,12 @@ public class C_AnimPhase : MonoBehaviour
     public void DisableControl()
     {
         GetComponentInParent<PlayerInput>().enabled = false;
+
+        //SFX
+        if (AudioManager.instanceAM)
+        {
+            AudioManager.instanceAM.Play(sfxTransition);
+        }
     }
     #endregion
 }

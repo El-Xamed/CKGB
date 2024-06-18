@@ -114,6 +114,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] string sfxSelectButton;
     [SerializeField] string sfxGoodAction;
     [SerializeField] string sfxWriteText;
+    [SerializeField] string sfxNewPhase;
     #endregion
 
     #region Transition

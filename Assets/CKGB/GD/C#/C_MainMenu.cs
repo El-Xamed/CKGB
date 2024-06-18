@@ -45,7 +45,12 @@ public class C_MainMenu : MonoBehaviour
        // splashScreen.SetActive(false);
 
         boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
-        
+
+        //SFX
+        if (AudioManager.instanceAM)
+        {
+            AudioManager.instanceAM.Play("NewGameButton");
+        }
     }
     IEnumerator firstButton()
     {
