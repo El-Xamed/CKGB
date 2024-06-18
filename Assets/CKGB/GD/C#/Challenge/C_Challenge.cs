@@ -26,6 +26,7 @@ public class C_Challenge : MonoBehaviour
     #region Dialogue
     [Header("Dialogue")]
     [SerializeField] bool onDialogue = false;
+    [SerializeField] GameObject black;
     #endregion
 
     #region Interface
@@ -198,6 +199,7 @@ public class C_Challenge : MonoBehaviour
         {
             AudioManager.instanceAM.Play(myChallenge.LevelChallenge);
         }
+        
     }
 
     void Start()
@@ -588,7 +590,10 @@ public class C_Challenge : MonoBehaviour
         #region Instance des data challenge.
         //Instancie le challenge
         myChallenge = SO_Challenge.Instantiate(myChallenge);
-
+        if(myChallenge.name!="SO_Tuto")
+        {
+            black.SetActive(false);
+        }
         for (int i = 0; i < myChallenge.listEtape.Count; i++)
         {
             myChallenge.listEtape[i] = SO_Etape.Instantiate(myChallenge.listEtape[i]);
