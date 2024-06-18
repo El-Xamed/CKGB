@@ -1210,6 +1210,8 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Fin de la phase de réso !");
 
+            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+
             //Check si une cata est présente.
             if (GetCurrentEtape().useCata && !canIniCata)
             {
