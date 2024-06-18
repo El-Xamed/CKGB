@@ -17,9 +17,8 @@ MonoBehaviour:
   listTraits:
   - {fileID: 11400000, guid: 9e354cc832dd4534bbe45170b50e936e, type: 2}
   - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
-  - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
-  - {fileID: 11400000, guid: 8194095b32fdee24ab62b78222aa5a74, type: 2}
-  listNewTraits: []
+  listNewTraits:
+  - {fileID: 11400000, guid: 9e354cc832dd4534bbe45170b50e936e, type: 2}
   nextTrait: {fileID: 0}
   traitToWrite: {fileID: 0}
   idTraitEnCours: 0
@@ -47,6 +46,7 @@ MonoBehaviour:
     de la singularit\xE9, elle a aid\xE9e \xE0 construire Brekelantte."
   miniDescription: "Matriarche d\xE9sabus\xE9e ;  \nPunk \xE0 la retraite ;\nDoyenne
     muscl\xE9e ;\n Zoomeuse Imperturbable ;"
+  maxTraitPoint: 0
   Revasser: {fileID: 4900000, guid: ecf9ae9a01b7deb44975aea38fe037da, type: 3}
   Respirer: {fileID: 4900000, guid: c24458fc1d79b224eae08d62a6b42db2, type: 3}
   PapoterAvecEsthela: {fileID: 0}
