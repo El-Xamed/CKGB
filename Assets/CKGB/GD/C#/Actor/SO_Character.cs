@@ -58,6 +58,7 @@ public class SO_Character : ScriptableObject
     public string Description;
     [TextAreaAttribute]
     public string miniDescription;
+    public float maxTraitPoint;
 
     [Header("Histoires")]
     [SerializeField] public TextAsset Revasser;

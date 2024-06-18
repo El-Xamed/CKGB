@@ -495,12 +495,27 @@ public class C_TempsLibre : MonoBehaviour
     {
         canContinue = true;
         GameManager.instance.textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
-        AudioManager.instanceAM.Stop("Dialogue");
+        if(GameManager.instance.textToWriteIn==NarrateurParent.transform.GetChild(1))
+        {
+
+        }
+        else
+        {
+            AudioManager.instanceAM.Stop("Dialogue");
+        }
+        
     }
     public void SetCanContinueToNo()
     {
         canContinue = false;
-        AudioManager.instanceAM.Play("Dialogue");
+        if (GameManager.instance.textToWriteIn == NarrateurParent.transform.GetChild(1))
+        {
+
+        }
+        else
+        {
+            AudioManager.instanceAM.Play("Dialogue");
+        }
     }
     public void AfficherFichereduite()
     {
@@ -1186,7 +1201,7 @@ public class C_TempsLibre : MonoBehaviour
         //SceneManager.LoadScene(scenename);
 
         //Setup dans quelle scene on souhaite aller.
-        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(scenename, "");
+        GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(scenename, TM.LevelMusic);
     }
     public void BACK(InputAction.CallbackContext context)
     {
