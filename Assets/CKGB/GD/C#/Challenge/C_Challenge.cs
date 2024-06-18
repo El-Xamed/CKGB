@@ -109,10 +109,8 @@ public class C_Challenge : MonoBehaviour
 
     #region SFX
     [Header("SFX")]
-    [SerializeField] AudioClip selectionActionClip;
-    [SerializeField] AudioClip apparitionCataClip;
-    [SerializeField] AudioClip applicationCataClip;
-    [SerializeField] AudioClip resoTurnClip;
+    [SerializeField] string sfxOverButton;
+    [SerializeField] string sfxSelectButton;
     #endregion
 
     #region Transition
@@ -630,7 +628,9 @@ public class C_Challenge : MonoBehaviour
     //Fonction pour faire spawn les cata.
     void InitialiseCata()
     {
+        //SFX
         AudioManager.instanceAM.Play("Catastrophe");
+
         //Supprime toutes les catasur le plateau.
         foreach (var thisCase in plateau)
         {
@@ -701,6 +701,12 @@ public class C_Challenge : MonoBehaviour
             {
                 //Affiche la preview.
                 GetComponent<C_PreviewAction>().ShowPreview(eventSystem.currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), currentActor);
+
+                //SFX
+                if (AudioManager.instanceAM)
+                {
+                    AudioManager.instanceAM.Play(sfxOverButton);
+                }
             }
         }
     }
@@ -733,6 +739,12 @@ public class C_Challenge : MonoBehaviour
         #endregion
 
         #region Feedback
+        //SFX
+        if (AudioManager.instanceAM)
+        {
+            AudioManager.instanceAM.Play(sfxSelectButton);
+        }
+
         //FeedBack sur l'actor.
         currentActor.PlayAnimSelectAction();
 
@@ -1940,7 +1952,7 @@ public class C_Challenge : MonoBehaviour
                 Debug.Log(thisActor.GetDataActor().challengeSprite);
                 Debug.Log(thisActor.GetDataActor().challengeSpriteOnCata);
 
-                thisActor.CheckInDanger();
+                thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
             }
         }
 
