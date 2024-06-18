@@ -222,6 +222,30 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: sfxTransition
+    clip:
+    - {fileID: 8300000, guid: e3045ffc1bb34b44bb06ba176e8727e3, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ClickButton
+    clip:
+    - {fileID: 8300000, guid: 6b8bca9c5e90e664c959001216706e62, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusicCredits
+    clip:
+    - {fileID: 8300000, guid: 04ed9d55ffafae0439b043af0c841bf9, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!82 &440091079429689959
 AudioSource:
   m_ObjectHideFlags: 0

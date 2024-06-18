@@ -12948,34 +12948,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.size
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[22].name
-      value: sfxTransition
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[22].group
-      value: 
-      objectReference: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[22].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[22].volume
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[22].clip.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402718835987732175, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
-      propertyPath: sounds.Array.data[22].clip.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: e3045ffc1bb34b44bb06ba176e8727e3, type: 3}
     - target: {fileID: 5311499211411066973, guid: 3e55b49beaa2bbf458c6514c55762699, type: 3}
       propertyPath: m_Name
       value: AudioManager
