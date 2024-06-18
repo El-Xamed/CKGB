@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f4fe36d3d693448159301f610c21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoPupChallenge: PoPupChallenge
+  sfxTransition: 
 --- !u!1 &83058665
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f4fe36d3d693448159301f610c21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoPupChallenge: 
+  sfxTransition: 
 --- !u!1001 &404572935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -856,6 +856,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 977991938}
     m_Modifications:
+    - target: {fileID: 1760302270624410330, guid: 263ef7cd880996e4888c3b01e55bb972, type: 3}
+      propertyPath: sfxTransition
+      value: PoPup
+      objectReference: {fileID: 0}
     - target: {fileID: 4506870810392336834, guid: 263ef7cd880996e4888c3b01e55bb972, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1107,6 +1111,7 @@ MonoBehaviour:
   sfxSelectButton: SelectionRPG
   sfxGoodAction: GoodAction
   sfxWriteText: 
+  sfxNewPhase: 
   sceneMenu: S_MainMenu
   sceneTM: S_TempsLibre
   sceneWM: S_Worldmap
@@ -1280,6 +1285,10 @@ PrefabInstance:
     - target: {fileID: 649993095020015443, guid: e84a61796e32b9343966d6db308d229d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416950585157537489, guid: e84a61796e32b9343966d6db308d229d, type: 3}
+      propertyPath: sfxTransition
+      value: PoPup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e84a61796e32b9343966d6db308d229d, type: 3}
@@ -1612,6 +1621,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 977991938}
     m_Modifications:
+    - target: {fileID: 5858708852480197331, guid: af88b5a3d65d07349a05bb133efbb02b, type: 3}
+      propertyPath: sfxTransition
+      value: PoPup
+      objectReference: {fileID: 0}
     - target: {fileID: 6887569329505989248, guid: af88b5a3d65d07349a05bb133efbb02b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2366,7 +2379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f4fe36d3d693448159301f610c21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoPupChallenge: 
+  sfxTransition: 
 --- !u!1001 &1780696625
 PrefabInstance:
   m_ObjectHideFlags: 0

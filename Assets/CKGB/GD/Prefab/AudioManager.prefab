@@ -114,7 +114,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: 504a2b06437f9f841b3cd5d03b42c93b, type: 3}
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -126,11 +126,11 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: PoPupChallenge
+  - name: PoPup
     clip:
-    - {fileID: 8300000, guid: d2bd2f5470eb91f459144133d02a9343, type: 3}
+    - {fileID: 8300000, guid: 3a87fae97b6c47d42a97283c1cabc379, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -193,6 +193,30 @@ MonoBehaviour:
   - name: GoodAction
     clip:
     - {fileID: 8300000, guid: dd15cb3f0f674ba46a52e4aeea003804, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EcritureText
+    clip:
+    - {fileID: 8300000, guid: b4b973405b6372a45b3aee1404412e6d, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BuffStats
+    clip:
+    - {fileID: 8300000, guid: c494a59633684e142b611f3b4c8f46d9, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DebuffStats
+    clip:
+    - {fileID: 8300000, guid: e3045ffc1bb34b44bb06ba176e8727e3, type: 3}
     group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
