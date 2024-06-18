@@ -544,6 +544,7 @@ public class C_TempsLibre : MonoBehaviour
             f.r_calm.text = "Calme : " + actorActif.GetComponent<C_Actor>().GetDataActor().stressMax;
             f.r_name.text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
             f.r_ptstrait.text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            f.r_maxTraitPoint.text = "/" + actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint;
             f.r_description.text = actorActif.GetComponent<C_Actor>().GetDataActor().miniDescription;
             if(actorActif.GetComponent<C_Actor>().HasObserved)
             {
@@ -603,6 +604,7 @@ public class C_TempsLibre : MonoBehaviour
             f.g2_PP.GetComponent<Image>().sprite = actorActif.GetComponent<C_Actor>().GetDataActor().ProfilPhoto;
             f.g2_name.text = actorActif.GetComponent<C_Actor>().GetDataActor().name;
             f.g2_ptstrait.text = "Pts de trait : " + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait();
+            f.g2_maxTraitPoint.text = "/" + actorActif.GetComponent<C_Actor>().GetDataActor().maxTraitPoint;
             string listtrait = "Liste Traits : ";
             for (int y = 0; y < actorActif.GetComponent<C_Actor>().GetDataActor().listNewTraits.Count; y++)
             {

@@ -19,6 +19,7 @@ public class C_Fiche : MonoBehaviour
     public GameObject r_mcalm;
     public TMP_Text r_mtraits;
     public GameObject r_new;
+    public TMP_Text r_maxTraitPoint;
     #endregion
     #region grand1
     public GameObject Agrandi1;
@@ -39,7 +40,8 @@ public class C_Fiche : MonoBehaviour
     public TMP_Text g2_traitlist;
     public TMP_Text g2_mtraits;
     public GameObject g2_new;
-        #endregion
+    public TMP_Text g2_maxTraitPoint;
+    #endregion
 
-    
+
 }
