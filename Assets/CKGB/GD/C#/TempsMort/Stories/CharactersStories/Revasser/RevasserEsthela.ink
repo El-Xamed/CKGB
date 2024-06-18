@@ -19,7 +19,7 @@ Un papillon capte ton attention.#Bulle:Narrateur
 Tu le suis des yeux.#Bulle:Narrateur
 Il se plie en volant, et comme une feuille de papier, se fait parfois si fin qu’il échappe à ta vue.#Bulle:Narrateur
 Puis, il déploie de nouveau ses ailes et réapparaît entre deux brises.#Bulle:Narrateur
-De ce que tes cours t’ont appris, il y a une centaine d’années, la vaste majorité des espèces animales foulant la Terre s’étaient éteintes. #Bulle:Narrateur
+De ce que tes cours t’ont appris, il y a une centaine d’années, la vaste majorité des espèces animales foulant la Terre s’était éteinte. #Bulle:Narrateur
 Tu essaies de l’imaginer, cette vision que tu poursuis sans cesse, cette humanité folle et lucide dont tout le monde est issu. De vastes rivières de goudron scarifiant le sol jusqu’à l’horizon.#Bulle:Narrateur
 Des colonnes de sable vitrifiées enchâssées dans d’immenses tours d’eau, de ciment et de gravier. #Bulle:Narrateur
 Une sorte de ruche à humains, toute en pierre et en métal. Ses magasins débordant de produits transformés, alimentés depuis l’extérieur par des wagons individuels sans rails transportant plusieurs tonnes de marchandises depuis des campagnes sèches,#Bulle:Narrateur
