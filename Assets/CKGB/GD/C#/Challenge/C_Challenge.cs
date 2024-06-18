@@ -291,10 +291,12 @@ public class C_Challenge : MonoBehaviour
     public void SetCanContinueToYes()
     {
         myInterface.canContinue = true;
+        AudioManager.instanceAM.Stop("Dialogue");
     }
     public void SetCanContinueToNo()
     {
         myInterface.canContinue = false;
+        AudioManager.instanceAM.Play("Dialogue");
     }
     #endregion
 
