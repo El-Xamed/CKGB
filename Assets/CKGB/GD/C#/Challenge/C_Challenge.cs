@@ -1997,7 +1997,11 @@ public class C_Challenge : MonoBehaviour
 
     IEnumerator FinishChallenge()
     {
-        AudioManager.instanceAM.Play("ProblemeRésolu");
+        if (AudioManager.instanceAM)
+        {
+            AudioManager.instanceAM.Play("ProblemeRésolu");
+        }
+        
         Debug.Log("Go au niveau suivant !");
         onDialogue = false;
 

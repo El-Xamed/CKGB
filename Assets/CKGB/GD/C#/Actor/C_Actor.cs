@@ -36,6 +36,11 @@ public class C_Actor : C_Pion
     //Animation Stats
     [SerializeField] Animator vfxStatsAnimator;
 
+    #region SFX
+    [SerializeField] string sfxUpStats;
+    [SerializeField] string sfxDownStats;
+    #endregion
+
     #endregion
 
     #region Temps Mort
@@ -186,10 +191,20 @@ public class C_Actor : C_Pion
             //Lance l'animation du vfx calm.
             if (value > 0)
             {
+                if (AudioManager.instanceAM)
+                {
+                    AudioManager.instanceAM.Play(sfxUpStats);
+                }
+
                 vfxStatsAnimator.SetTrigger("Wave_Red_Up");
             }
             else if (value < 0)
             {
+                if (AudioManager.instanceAM)
+                {
+                    AudioManager.instanceAM.Play(sfxDownStats);
+                }
+
                 vfxStatsAnimator.SetTrigger("Wave_Red_Down");
             }
         }
@@ -201,10 +216,20 @@ public class C_Actor : C_Pion
             //Lance l'animation du vfx d'energie.
             if (value > 0)
             {
+                if (AudioManager.instanceAM)
+                {
+                    AudioManager.instanceAM.Play(sfxUpStats);
+                }
+
                 vfxStatsAnimator.SetTrigger("Wave_Blue_Up");
             }
             else if (value < 0)
             {
+                if (AudioManager.instanceAM)
+                {
+                    AudioManager.instanceAM.Play(sfxDownStats);
+                }
+
                 vfxStatsAnimator.SetTrigger("Wave_Blue_Down");
             }
         }

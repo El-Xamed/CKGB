@@ -46,10 +46,4 @@ public class C_AnimPhase : MonoBehaviour
         GetComponentInParent<PlayerInput>().enabled = false;
     }
     #endregion
- 
-    public void ChallengePopup()
-    {
-       
-    }
-
 }
