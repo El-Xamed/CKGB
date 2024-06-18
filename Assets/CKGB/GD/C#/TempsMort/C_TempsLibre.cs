@@ -630,7 +630,7 @@ public class C_TempsLibre : MonoBehaviour
             }
             else if (currentButton == PapoterButton)
             {
-               f.g2_mtraits.text = "+" + actorActif.GetComponent<C_Actor>().GetCurrentPointTrait()+0.5f;
+                f.g2_mtraits.text = "+" + (actorActif.GetComponent<C_Actor>().GetCurrentPointTrait() + 0.5f);
                f.g2_mtraits.gameObject.SetActive(true);
             }
             else if (actorActif.GetComponent<C_Actor>().HasPapoted && actorActif.GetComponent<C_Actor>().HasTraited || currentButton == PapoterButton)
