@@ -136,7 +136,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Dialogue
     clip:
-    - {fileID: 8300000, guid: 863f13acfc6e3be498573294f257791a, type: 3}
+    - {fileID: 8300000, guid: 62f290be6fe468e46b77906a6aa6e7f2, type: 3}
     group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
@@ -185,6 +185,14 @@ MonoBehaviour:
   - name: ConfirmRPG
     clip:
     - {fileID: 8300000, guid: 6b8bca9c5e90e664c959001216706e62, type: 3}
+    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GoodAction
+    clip:
+    - {fileID: 8300000, guid: dd15cb3f0f674ba46a52e4aeea003804, type: 3}
     group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
