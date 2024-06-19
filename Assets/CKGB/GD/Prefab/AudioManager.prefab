@@ -246,6 +246,22 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: ChallengeNiv2
+    clip:
+    - {fileID: 8300000, guid: bc8a9930265171e4d86e99c705b7201f, type: 3}
+    group: {fileID: 751109128876612513, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ChallengeNiv3
+    clip:
+    - {fileID: 8300000, guid: ea25a06644241ef46af1c01b20493bc8, type: 3}
+    group: {fileID: 751109128876612513, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!82 &440091079429689959
 AudioSource:
   m_ObjectHideFlags: 0
