@@ -601,7 +601,12 @@ public class GameManager : MonoBehaviour
                                 textToWriteIn = TM.naratteurText;
                                 TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
                                 Debug.Log(textToWriteIn.name);
-                                //textToWriteIn.text = text;
+
+                                //SFX
+                                if (AudioManager.instanceAM)
+                                {
+                                    AudioManager.instanceAM.Play("Narrateur");
+                                }
                             }
                             else
                             {
@@ -626,6 +631,12 @@ public class GameManager : MonoBehaviour
                                 C.GetuiLogs().GetComponentInChildren<Image>().enabled = true;
 
                                 Debug.Log(textToWriteIn.name);
+
+                                //SFX
+                                if (AudioManager.instanceAM)
+                                {
+                                    AudioManager.instanceAM.Play("Narrateur");
+                                }
                             }
                             break;
                         default:
@@ -1104,37 +1115,5 @@ public class GameManager : MonoBehaviour
     {
         flanel.SetTrigger("Close");
     }
-
-    //A VOIR SI JE SUPP PAS.
-    /*public void EndAnimation(UnityEvent thisEvent)
-    {
-        //Check si l'event est vide.
-        if (thisEvent != null)
-        {
-            //Pour lancer la fonction.
-            thisEvent.Invoke();
-        }
-
-        //Old Version.
-        /*Check si on est dans un challenge.
-        if (SceneManager.GetActiveScene().name == "S_Challenge")
-        {
-            //Check si c'est le debut du challenge ou non.
-            if (GameObject.Find("Challenge").GetComponent<C_Challenge>().GetPhaseDeJeu() != C_Challenge.PhaseDeJeu.EndGame)
-            {
-                StartCoroutine(GameObject.Find("Challenge").GetComponent<C_Challenge>().StartChallenge());
-            }
-            else
-            {
-                GameObject.Find("Challenge").GetComponent<C_Challenge>().FinishChallenge(null);
-            }
-        }
-
-        //Check si on est dans temps libre (POUR TOI MAX)
-        if (SceneManager.GetActiveScene().name == "S_TempsLibre")
-        {
-            
-        }
-    }*/
     #endregion
 }
