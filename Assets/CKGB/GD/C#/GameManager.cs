@@ -602,11 +602,6 @@ public class GameManager : MonoBehaviour
                                 TM.NarrateurParent.GetComponent<Animator>().SetBool("Active", true);
                                 Debug.Log(textToWriteIn.name);
 
-                                //SFX
-                                if (AudioManager.instanceAM)
-                                {
-                                    AudioManager.instanceAM.Play("Narrateur");
-                                }
                             }
                             else
                             {

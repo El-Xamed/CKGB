@@ -32,6 +32,8 @@ public class SO_Challenge : ScriptableObject
     [Header("SFX")]
     public string LevelChallenge;
 
+    public string AmbianceChallenge;
+
     #endregion
 
     //Création d'une class pour positionner les perso

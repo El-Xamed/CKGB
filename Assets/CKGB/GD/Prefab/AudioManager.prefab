@@ -66,7 +66,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: f39a136d1b555574cb11b4b8acd8cd56, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.25
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: 3ba7791d716ac7249a61583fbdb3ca5e, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: 6b8bca9c5e90e664c959001216706e62, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: 567b0df5db26a3341b1583812fae64cc, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: b3cc70d7afd3d1343b9bfbafb602fd86, type: 3}
     group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    volume: 0.8
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: 504a2b06437f9f841b3cd5d03b42c93b, type: 3}
     group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 1
+    volume: 0.55
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -137,95 +137,87 @@ MonoBehaviour:
   - name: Dialogue
     clip:
     - {fileID: 8300000, guid: 62f290be6fe468e46b77906a6aa6e7f2, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Catastrophe
     clip:
     - {fileID: 8300000, guid: 598b20f19c35c46429ecbe9309d1d1a3, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: "ProblemeR\xE9solu"
     clip:
     - {fileID: 8300000, guid: 1e0852f77f0e54b45b1505ea209da2ff, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
-    source: {fileID: 0}
-  - name: Narrateur
-    clip:
-    - {fileID: 8300000, guid: 3e5c0fd990b638144873f3f12021aa31, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
-    pitch: 1
-    loop: 1
     source: {fileID: 0}
   - name: DeplacementWP
     clip:
     - {fileID: 8300000, guid: 186370f2bed74654a84e6865da5a19bd, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: SelectionRPG
     clip:
     - {fileID: 8300000, guid: 3ba7791d716ac7249a61583fbdb3ca5e, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ConfirmRPG
     clip:
     - {fileID: 8300000, guid: 6b8bca9c5e90e664c959001216706e62, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: GoodAction
     clip:
     - {fileID: 8300000, guid: dd15cb3f0f674ba46a52e4aeea003804, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: EcritureText
     clip:
     - {fileID: 8300000, guid: b4b973405b6372a45b3aee1404412e6d, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: BuffStats
     clip:
     - {fileID: 8300000, guid: c494a59633684e142b611f3b4c8f46d9, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DebuffStats
     clip:
     - {fileID: 8300000, guid: e3045ffc1bb34b44bb06ba176e8727e3, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
-    volume: 0.4
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: sfxTransition
     clip:
-    - {fileID: 8300000, guid: e3045ffc1bb34b44bb06ba176e8727e3, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    - {fileID: 8300000, guid: 9e0c2c00923b3c3458ab7a59853a2bb0, type: 3}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
     loop: 0
@@ -233,7 +225,7 @@ MonoBehaviour:
   - name: ClickButton
     clip:
     - {fileID: 8300000, guid: 6b8bca9c5e90e664c959001216706e62, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    group: {fileID: 798822866534032628, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
     loop: 0
@@ -241,7 +233,7 @@ MonoBehaviour:
   - name: MusicCredits
     clip:
     - {fileID: 8300000, guid: 04ed9d55ffafae0439b043af0c841bf9, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
     loop: 0
@@ -249,7 +241,7 @@ MonoBehaviour:
   - name: WMSound
     clip:
     - {fileID: 8300000, guid: 837f130cea28d664796cc2b713a821e0, type: 3}
-    group: {fileID: 24300002, guid: a235190621d5da049a56600163b7c9bf, type: 2}
+    group: {fileID: 8618404097342421857, guid: a235190621d5da049a56600163b7c9bf, type: 2}
     volume: 0.4
     pitch: 1
     loop: 1

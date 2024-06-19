@@ -132,8 +132,6 @@ public class C_MainMenu : MonoBehaviour
         //currentButton.GetComponent<Animator>().SetTrigger("unselected");
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
         // currentButton.GetComponent<Animator>().SetTrigger("Selected");
-        AudioManager.instanceAM.Play("SfxHover");
-
     }
     public void Naviguate(InputAction.CallbackContext context)
     {
@@ -155,6 +153,7 @@ public class C_MainMenu : MonoBehaviour
 
     public void OpenCredits()
     {
+        AudioManager.instanceAM.Stop("MenuMusic");
         AudioManager.instanceAM.Play("ClickButton");
         AudioManager.instanceAM.Play("MusicCredits");
         SceneManager.LoadScene(4);
@@ -163,6 +162,7 @@ public class C_MainMenu : MonoBehaviour
     public void LeaveGame()
     {
         //AudioManager.instanceAM.Play("ClickButton");
+        AudioManager.instanceAM.Play("ClickButton");
         Application.Quit();
         
     }
