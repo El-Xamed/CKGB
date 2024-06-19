@@ -200,7 +200,11 @@ public class C_Challenge : MonoBehaviour
         {
             AudioManager.instanceAM.Play(myChallenge.LevelChallenge);
         }
-        
+
+        if (AudioManager.instanceAM && myChallenge.AmbianceChallenge != "")
+        {
+            AudioManager.instanceAM.Play(myChallenge.AmbianceChallenge);
+        }
     }
 
     void Start()
@@ -1214,12 +1218,14 @@ public class C_Challenge : MonoBehaviour
 
         //Supprime toutes les preview de déplacement.
 
+        Debug.Log("TEST 1 : " + currentResolution.actor.name);
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
         {
             if (thisActor != currentResolution.actor)
             {
                 thisActor.SetSpriteChallengeBlackAndWhite();
+                Debug.Log("TEST 1 : " + thisActor.name + " est en noir et blanc !");
             }
         }
 
@@ -1270,6 +1276,117 @@ public class C_Challenge : MonoBehaviour
         currentResolution.action.ResetLogs();
         uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
         #endregion
+    }
+
+    //vérifie la condition si l'action fonctionne.
+    bool CanUse(ActorResolution thisReso)
+    {
+        #region Raccourcis
+        AdvancedCondition advancedCondition = thisReso.action.advancedCondition;
+        #endregion
+
+        //Check si l'actor en question possède assez d'energie.
+        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats))
+        {
+            Debug.Log("Possède assez d'energie");
+
+            #region Condition avancé.
+            //Check si les conditions bonus sont activé.
+            if (advancedCondition.advancedCondition)
+            {
+                #region Check si l'action doit etre fait par un actor.
+                if (advancedCondition.canMakeByOneActor)
+                {
+                    //Check si il est pas null.
+                    if (advancedCondition.whatActor)
+                    {
+                        //Check si le bon actor qui utilise l'action.
+                        if (advancedCondition.whatActor != thisReso.actor)
+                        {
+                            Debug.Log("L'action n'est pas fait par la bonne personne");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("whatActor n'est pas setup dans l'action ! Cette condition ne sera pa sdonc prise en charge");
+                    }
+                }
+                #endregion
+
+                #region Check si l'action doit etre fait par un acc.
+                if (advancedCondition.needAcc)
+                {
+                    //Check si il est pas null.
+                    if (advancedCondition.whatAcc)
+                    {
+                        if (advancedCondition.whatAcc.GetPosition() != thisReso.actor.GetPosition())
+                        {
+                            Debug.Log("N'est pas sur la meme case que l'acc");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("whatAcc n'est pas setup dans l'action ! Cette condition ne sera pa sdonc prise en charge");
+                    }
+                }
+                #endregion
+
+                #region Pour les action à 2.
+                //Check si la condition est activé + si la réso est égale au réso actuel (permet de bloquer cette partie pour ne pas lancer en boucle la fonction).
+                if (advancedCondition.needTwoActor && thisReso == currentResolution)
+                {
+                    int nbEchec = 0;
+
+                    //Check si dans toute les réso un autre actor à fait aussi la meme action.
+                    foreach (ActorResolution thisResoInList in listRes)
+                    {
+                        //Pour éviter qu'il se compte lui meme.
+                        if (thisResoInList != thisReso)
+                        {
+                            //Check si dans la reso en cours et égale à une autre reso qui possède la meme action.
+                            if (thisResoInList.action == thisReso.action)
+                            {
+                                Debug.Log(thisResoInList.actor.name + " utilise aussi l'action !");
+
+
+                                //Check si l'autre actor peut aussi faire l'action.
+                                if (CanUse(thisResoInList))
+                                {
+                                    //Applique seulement les stats. A VOIR PLUS TARD COMMENT LE PLACER AVEC UNE AUTRE POSITION.
+                                    thisResoInList.action.SetStatsTarget(Interaction.ETypeTarget.Soi, thisResoInList.actor);
+
+                                    //Retir l'autre actor de la liste de reso qui à fait la meme action pour éviter que l'action se joue 2 fois.
+                                    listRes.Remove(thisResoInList);
+
+                                    return true;
+                                }
+                            }
+                            else
+                            {
+                                nbEchec++;
+
+                                if (nbEchec == listRes.Count - 1)
+                                {
+                                    Debug.Log("Aucun autre actor ne fait l'action");
+
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                #endregion
+            }
+            #endregion
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
     }
 
     //Utilise l'action.
@@ -1456,114 +1573,6 @@ public class C_Challenge : MonoBehaviour
                 }
             }
         }
-    }
-
-    //vérifie la condition si l'action fonctionne.
-    bool CanUse(ActorResolution thisReso)
-    {
-        #region Raccourcis
-        AdvancedCondition advancedCondition = thisReso.action.advancedCondition;
-        #endregion
-
-        //Check si l'actor en question possède assez d'energie.
-        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats))
-        {
-            #region Condition avancé.
-            //Check si les conditions bonus sont activé.
-            if (advancedCondition.advancedCondition)
-            {
-                Debug.Log("Possède assez d'energie");
-
-                #region Check si l'action doit etre fait par un actor.
-                if (advancedCondition.canMakeByOneActor)
-                {
-                    //Check si il est pas null.
-                    if (advancedCondition.whatActor)
-                    {
-                        //Check si le bon actor qui utilise l'action.
-                        if (advancedCondition.whatActor != thisReso.actor)
-                        {
-                            Debug.Log("L'action n'est pas fait par la bonne personne");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("whatActor n'est pas setup dans l'action ! Cette condition ne sera pa sdonc prise en charge");
-                    }
-                }
-                #endregion
-
-                #region Check si l'action doit etre fait par un acc.
-                if (advancedCondition.needAcc)
-                {
-                    //Check si il est pas null.
-                    if (advancedCondition.whatAcc)
-                    {
-                        if (advancedCondition.whatAcc.GetPosition() != thisReso.actor.GetPosition())
-                        {
-                            Debug.Log("N'est pas sur la meme case que l'acc");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("whatAcc n'est pas setup dans l'action ! Cette condition ne sera pa sdonc prise en charge");
-                    }
-                }
-                #endregion
-
-                #region Pour les action à 2.
-                if (advancedCondition.needTwoActor)
-                {
-                    int nbEchec = 0;
-
-                    //Check si dans toute les réso un autre actor à fait aussi la meme action.
-                    foreach (ActorResolution thisResoInList in listRes)
-                    {
-                        //Pour éviter qu'il se compte lui meme.
-                        if (thisResoInList != thisReso)
-                        {
-                            //Check si dans la reso en cours et égale à une autre reso qui possède la meme action.
-                            if (thisResoInList.action == thisReso.action)
-                            {
-                                Debug.Log(thisResoInList.actor.name + " utilise aussi l'action !");
-
-                                //Check si l'autre actor peut aussi faire l'action.
-                                if (CanUse(thisResoInList))
-                                {
-                                    //Applique seulement les stats. A VOIR PLUS TARD COMMENT LE PLACER AVEC UNE AUTRE POSITION.
-
-                                    //Retir l'autre actor de la liste de reso qui à fait la meme action pour éviter que l'action se joue 2 fois.
-                                    listRes.Remove(thisResoInList);
-
-                                    return true;
-                                }
-                            }
-                            else
-                            {
-                                nbEchec++;
-
-                                if (nbEchec == listRes.Count - 1)
-                                {
-                                    Debug.Log("Aucun autre actor ne fait l'action");
-
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-                #endregion
-            }
-            #endregion
-        }
-        else
-        {
-            return false;
-        }
-
-        return true;
     }
 
     #region Deplace les actor
