@@ -764,7 +764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: 85}
+  m_AnchoredPosition: {x: 45, y: 85}
   m_SizeDelta: {x: 50, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6242589331829436620
@@ -822,8 +822,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -950,8 +950,6 @@ MonoBehaviour:
   uiEnergie: {fileID: 5491242293810021376}
   prefabEnergie: {fileID: 4786221913246055371, guid: 4cb18f2a13573904db031cf1b0e3317d, type: 3}
   animatorUiCalmPreview: {fileID: 3059253682186501493}
-  animatorUiEnergyPreview: {fileID: 0}
-  uiCalmPreview: {fileID: 0}
 --- !u!95 &446192256206250917
 Animator:
   serializedVersion: 5

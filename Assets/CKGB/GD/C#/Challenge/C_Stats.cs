@@ -7,6 +7,10 @@ using static UnityEngine.GraphicsBuffer;
 public class C_Stats : MonoBehaviour
 {
     #region data
+    //Etat de la stats
+    EStateStats stateActor;
+    enum EStateStats { Eleve, Moyen, Bas}
+
     [Header("Stats PDP")]
     [SerializeField] Image PDP;
     [SerializeField] Image cadenas;
@@ -41,8 +45,9 @@ public class C_Stats : MonoBehaviour
 
     [Header("Preview")]
     [SerializeField] Animator animatorUiCalmPreview;
-    [SerializeField] Animator animatorUiEnergyPreview;
-    [SerializeField] Image uiCalmPreview;
+
+    //Couleur
+    Color32 colorStatsActor;
 
     //BESOIN DE REFAIRE L'ULM.
     C_Actor myActor;
@@ -90,18 +95,42 @@ public class C_Stats : MonoBehaviour
     }
     #endregion
 
-    float CalculJauge(int currentValue, int maxValue)
+    float CalculJauge(float currentValue, float maxValue)
     {
         float currentWidth = (float)currentValue / maxValue;
 
         return currentWidth;
     }
 
+    void CheckStatsOfActor(float currentPv, float maxPv)
+    {
+        if (currentPv > 2f / 3f * maxPv)
+        {
+            stateActor = EStateStats.Eleve;
+            colorStatsActor = Color.HSVToRGB(0.233f, 1, 1);
+        }
+        else if (currentPv < 2f / 3f * maxPv && currentPv > 1f / 3f * maxPv) //Si c'est pv sont au dessus des 1/3.
+        {
+            stateActor = EStateStats.Moyen;
+            colorStatsActor = Color.HSVToRGB(0.133f, 1, 1);
+        }
+        else if (currentPv < 1f / 3f * maxPv) //Si c'est pv sont inf�rieur des 1/3.
+        {
+            stateActor = EStateStats.Bas;
+            colorStatsActor = Color.HSVToRGB(0, 1, 1);
+        }
+    }
+    [ContextMenu("Check etat des pv")]
+    void UpdateUi()
+    {
+        UpdateUi(myActor);
+    }
     public void UpdateUi(C_Actor myActor)
     {
+        CheckStatsOfActor(myActor.GetCurrentStress(), myActor.GetDataActor().stressMax);
+
         #region Text
-        //Update le text.
-        textCalm.text = myActor.GetComponent<C_Actor>().GetCurrentStress() + "/" + myActor.GetDataActor().stressMax;
+        textCalm.text = TextUtils.GetColorText(myActor.GetComponent<C_Actor>().GetCurrentStress().ToString(), colorStatsActor) + "/" + myActor.GetDataActor().stressMax;
         textEnergie.text = myActor.GetComponent<C_Actor>().GetcurrentEnergy() + "/" + myActor.GetDataActor().energyMax;
         #endregion
 
@@ -112,24 +141,24 @@ public class C_Stats : MonoBehaviour
 
         //Check l'�tat de l'actor
         //Si c'est pv sont au dessus des 2/3.
-        if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() > 2 / (float)myActor.GetDataActor().stressMax)
+        if (stateActor == EStateStats.Eleve)
         {
             uiCalm.sprite = uiPvJaugeGreen;
             uiPvBackground.sprite = uiPvGreenBackground;
-            heart.color = Color.HSVToRGB(0.233f, 1, 1);
         }
-        else if((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 2 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont au dessus des 1/3.
+        else if(stateActor == EStateStats.Moyen) //Si c'est pv sont au dessus des 1/3.
         {
             uiCalm.sprite = uiPvJaugeOrange;
             uiPvBackground.sprite = uiPvOrangeBackground;
-            heart.color = Color.HSVToRGB(0.133f, 1, 1);
         }
-        else if ((float)myActor.GetComponent<C_Actor>().GetCurrentStress() < 1 / (float)myActor.GetDataActor().stressMax) //Si c'est pv sont inf�rieur des 1/3.
+        else if (stateActor == EStateStats.Bas) //Si c'est pv sont inf�rieur des 1/3.
         {
             uiCalm.sprite = uiPvJaugeRed;
             uiPvBackground.sprite = uiPvRedBackground;
-            heart.color = Color.HSVToRGB(0, 1, 1);
         }
+
+        //Set la couleur du coeur.
+        heart.color = colorStatsActor;
 
         if (myActor.GetComponent<C_Actor>().GetCurrentStress() == 0)
         {
@@ -207,6 +236,8 @@ public class C_Stats : MonoBehaviour
 
     public void UiPreviewCalm(SO_ActionClass thisActionClass)
     {
+        Debug.Log("Preview Calm de " + name);
+
         //Lance l'animation de clignotoment.
         animatorUiCalmPreview.SetBool("isPreview", true);
 
@@ -217,6 +248,8 @@ public class C_Stats : MonoBehaviour
     //PAS FINI ! + BUG INCONNUE, SA JOUE L'ANIMATION MAIS RIEN SE PASSE.
     public void UiPreviewEnergy(SO_ActionClass thisActionClass)
     {
+        Debug.Log("Preview Energy de " + name);
+
         //Caclul pour la preview de l'energy actuel + de l'action. 
         //Pour la perte d'energy.
         if (thisActionClass.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) < 0)
