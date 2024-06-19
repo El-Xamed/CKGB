@@ -80,7 +80,7 @@ public class C_Challenge : MonoBehaviour
     SO_Catastrophy currentCata;
     #endregion
 
-    bool canIniCata = false;
+    bool canUseCata = false;
 
     [SerializeField] EventSystem eventSystem;
 
@@ -784,13 +784,7 @@ public class C_Challenge : MonoBehaviour
 
     public void PlayerTurn()
     {
-        //Check si il peut update l'etape pour passer à la suivante.
-        if (canUpdate)
-        {
-            UpdateEtape();
-            canUpdate = false;
-        }
-
+        #region Tuto
         if (canMakeTuto)
         {
             //Check si c'est le premier niveau.
@@ -810,23 +804,16 @@ public class C_Challenge : MonoBehaviour
                 }
             }
         }
-        
-        //Si oui on bloque le dev en dessous.
-        //Passen mode mode tuto.
-        //Check si c'étais la dernière anim.
-        //Relance la fonction.
+        #endregion
 
         Debug.Log("Player turn !");
-
-        //Efface les logs.
-        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
 
         UpdateUi();
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
 
-        //Initialise la prochaine cata.
+        #region Initialise la prochaine cata.
         if (currentStep.useCata)
         {
             //Check si il n'est pas null.
@@ -837,10 +824,15 @@ public class C_Challenge : MonoBehaviour
 
             InitialiseCata();
 
-            canIniCata = false;
+            canUseCata = true;
         }
+        else
+        {
+            canUseCata = false;
+        }
+        #endregion
 
-        //Check si le perso est jouable
+        #region Check si le perso est jouable
         if (!currentActor.GetIsOut())
         {
             //Update le contour blanc
@@ -851,6 +843,7 @@ public class C_Challenge : MonoBehaviour
             NextActor();
             PlayerTurn();
         }
+        #endregion
     }
 
     //Passe à l'acteur suivant.
@@ -1177,20 +1170,38 @@ public class C_Challenge : MonoBehaviour
 
             uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.currentLogs;
         }
+        else if (currentStep == null) //Check si la partie est fini.
+        {
+            //Fin du challenge.
+            //GetEventSystem().SetSelectedGameObject(null);
+            EndChallenge();
+
+            Debug.Log("Fin du niveau");
+        }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1) //Check si on n'est pas arr au dernier reso.
         {
-            currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+            //Check si il reste des étapes.
+            if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count - 1)
+            {
+                currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
 
-            ResolutionTurn();
+                ResolutionTurn();
+            }
+            else
+            {
+                //Fin du challenge.
+                //GetEventSystem().SetSelectedGameObject(null);
+                EndChallenge();
+
+                Debug.Log("Fin du niveau");
+            }
         }
         else //Passe à la phase suivante.
         {
             Debug.Log("Fin de la phase de réso !");
 
-            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
             //Check si une cata est présente.
-            if (GetCurrentEtape().useCata && !canIniCata)
+            if (canUseCata)
             {
                 //Check si après la phase de réso, tous les perso sont vivant.
                 if (!CheckGameOver())
@@ -1206,6 +1217,10 @@ public class C_Challenge : MonoBehaviour
                 //Redéfini le début de la liste.
                 currentActor = myTeam[0];
 
+                //Efface les logs.
+                uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+
+                //transition.
                 myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
                 vfxPlayerTurn.SetTrigger("PlayerTurn");
             }
@@ -1415,11 +1430,7 @@ public class C_Challenge : MonoBehaviour
             //Vfx de bonne action.
             GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
 
-            //bool pour empecher à la cata de l'etape d'apres de ce déclencher.
-            //canIniCata = true;
-
-            //Active l'update pour le prochain tour du joueur (C'est un trigger).
-            canUpdate = true;
+            UpdateEtape();
         }
         else //Check si c'est pas une action secondaire.
         {
@@ -1811,6 +1822,9 @@ public class C_Challenge : MonoBehaviour
 
     public void NextCata()
     {
+        //Efface les logs.
+        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+
         myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
         vfxPlayerTurn.SetTrigger("PlayerTurn");
     }
@@ -1863,26 +1877,19 @@ public class C_Challenge : MonoBehaviour
     //Bool pour check si le challenge est fini.
     void UpdateEtape()
     {
-        Debug.Log("Update etape");
+        Debug.Log("next step");
 
-        //Check si il reste des étapes.
-        if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count - 1)
+        if (myChallenge.listEtape.IndexOf(currentStep) + 1 < myChallenge.listEtape.Count - 1)
         {
-            Debug.Log("next step");
-
-            //Nouvelle étape.
-            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
-
-            canMakeTuto = true;
+            currentStep = null;
         }
         else
         {
-            //Fin du challenge.
-            GetEventSystem().SetSelectedGameObject(null);
-            EndChallenge();
-
-            Debug.Log("Fin du niveau");
+            //Nouvelle étape.
+            currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
         }
+
+        canMakeTuto = true;
     }
 
     bool CheckGameOver()

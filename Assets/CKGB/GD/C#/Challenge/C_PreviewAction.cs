@@ -170,7 +170,7 @@ public class C_PreviewAction : MonoBehaviour
 
                     descriptionPreview = " va se déplacer de ";
 
-                    //onPreview += GetComponent<C_Challenge>().MovementPreview;
+                    onPreview += GetComponent<C_Challenge>().MovementPreview;
 
                     //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
                     switch (thisTargetStats.whatMove)
@@ -189,8 +189,10 @@ public class C_PreviewAction : MonoBehaviour
                             break;
                         case TargetStats.ETypeMove.OnTargetCase:
                             //Setup le bon symbol (téléportation).
+                            descriptionPreview = " va se déplacer sur la case ";
                             whatSigne = "<sprite index=[index] tint=10>";
 
+                            endPreviewText = ".";
                             //Check si il y a un autre actor.
                             //Si oui alors le symbol sera diférrent.
                             //Sinon il ne change pas.
