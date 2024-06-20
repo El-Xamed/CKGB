@@ -87,8 +87,8 @@ public class C_MainMenu : MonoBehaviour
         //Stop les sons.
         
         AudioManager.instanceAM.Stop("MenuMusic");
-        
 
+        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(null);
     }
 
     public void BackOnTrack(InputAction.CallbackContext context)

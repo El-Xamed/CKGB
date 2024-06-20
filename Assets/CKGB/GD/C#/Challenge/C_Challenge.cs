@@ -804,6 +804,15 @@ public class C_Challenge : MonoBehaviour
                     canMakeTuto = false;
                 }
             }
+            else if (myChallenge.name == "SO_lvl2A(Clone)")
+            {
+                myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+
+                //Lance l'animation.
+                GetComponentInChildren<C_Tuto>().NextTuto(4);
+
+                canMakeTuto = false;
+            }
         }
         #endregion
 
@@ -1888,9 +1897,6 @@ public class C_Challenge : MonoBehaviour
         //Re-Check si tous les perso sont "out".
         if (!CheckGameOver())
         {
-            //Update les acc
-            //UpdateAccessories();
-
             //Redéfini le début de la liste.
             currentActor = myTeam[0];
 
