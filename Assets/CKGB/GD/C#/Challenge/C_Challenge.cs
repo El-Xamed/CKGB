@@ -1751,8 +1751,8 @@ public class C_Challenge : MonoBehaviour
     //Fonction pour appliquer la cata.
     public void ApplyCatastrophy()
     {
-        //Pour tous les nombre dans la liste dela cata.
-        foreach (var thisCase in currentCata.targetCase)
+        //Pour tous les nombres dans la liste de la cata.
+        foreach (int thisCase in currentCata.targetCase)
         {
             #region VFX Cata
             //Check si la case possède un vfx.
@@ -1766,30 +1766,56 @@ public class C_Challenge : MonoBehaviour
             //Check si c'est des dégats qui s'applique à tout le monde.
             if (currentCata.applyForAll)
             {
+                bool onCata = false;
+
+                Debug.Log("Applique la cata sur tout le monde");
+
                 //Pour tous les actor.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    //Applique des conséquence grace au finction de actionClass.
-                    currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
+                    if (thisCase == thisActor.GetPosition())
+                    {
+                        onCata = true;
+                    }
+                }
 
-                    //Vfx
-                    thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                if (onCata)
+                {
+                    //Pour tous les actor.
+                    foreach (C_Actor thisActor in myTeam)
+                    {
+                        //Applique des conséquence grace au finction de actionClass.
+                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
-                    thisActor.CheckIsOut();
+                        //Vfx
+                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
+                        thisActor.CheckIsOut();
+                    }
                 }
             }
             else
             {
-                bool accIsHit = false;
+                Debug.Log("Applique la cata sur les cases visée seulement");
+
+                bool isOnAcc = false;
 
                 //Check d'abord dans un premier temps si il a touché un acc.
                 foreach (C_Accessories thisAcc in listAcc)
                 {
-                    //Check si la position est égale à celui du joueur.
+                    foreach (C_Actor thisActor in myTeam)
+                    {
+                        //Check si un joueur à marché sur le lézard.
+                        if (thisActor.GetPosition() == thisAcc.GetPosition())
+                        {
+                            isOnAcc = true;
+                        }
+                    }
+
+
+                    /*Check si l'acc est sur une cata.
                     if (thisCase == thisAcc.GetPosition())
                     {
-                        accIsHit = true;
-
                         //Pour tous les actor.
                         foreach (C_Actor thisActor in myTeam)
                         {
@@ -1801,33 +1827,29 @@ public class C_Challenge : MonoBehaviour
 
                             thisActor.CheckIsOut();
                         }
-                    }
+                    }*/
                 }
 
-                if (accIsHit)
+                if (isOnAcc)
                 {
-                    //Pour tous les actor.
                     foreach (C_Actor thisActor in myTeam)
                     {
-                        //Check si la position est égale à celui du joueur.
-                        if (thisCase == thisActor.GetPosition())
-                        {
-                            Debug.Log(thisActor.name + " est attaqué !");
+                        //Applique des conséquence grace au finction de actionClass.
+                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
-                            //Applique des conséquence grace au fonction de actionClass.
-                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
+                        //Vfx
+                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                            //Vfx
-                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
-                            thisActor.CheckIsOut();
-                        }
+                        thisActor.CheckIsOut();
                     }
                 }
             }
         }
+
+        //Check si un actor à touché un acc.
     }
 
+    //Pour lancer le tour du joueur.
     public void NextCata()
     {
         //Efface les logs.
@@ -1837,7 +1859,7 @@ public class C_Challenge : MonoBehaviour
         vfxPlayerTurn.SetTrigger("PlayerTurn");
     }
 
-    //Pour lancer la cata.
+    //Pour lancer la cata. BESOIN D'AJOUTER UN SYSTEM POUR AFFICHER LEE TEXTE DE LA CAT + DU LEZARD.
     public void CataTurn()
     {
         Debug.Log("CataTurn");
@@ -1887,7 +1909,7 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("next step");
 
-        if (myChallenge.listEtape.IndexOf(currentStep) + 1 < myChallenge.listEtape.Count - 1)
+        if (myChallenge.listEtape.IndexOf(currentStep) + 1 > myChallenge.listEtape.Count - 1)
         {
             currentStep = null;
         }
