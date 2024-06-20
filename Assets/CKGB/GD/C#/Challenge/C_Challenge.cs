@@ -2171,7 +2171,23 @@ public class C_Challenge : MonoBehaviour
     public void NextTuto()
     {
         //Lance l'animation d'après.
-        GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+        //GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+
+        //Check si c'est le premier niveau.
+        if (myChallenge.name == "SO_Tuto(Clone)")
+        {
+            //ETAPE 1.
+            if (currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
+            {
+                //Lance l'animation.
+                GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+            }
+        }
+        else if (myChallenge.name == "SO_lvl2A(Clone)")
+        {
+            //Lance l'animation.
+            GetComponentInChildren<C_Tuto>().NextTuto(4);
+        }
     }
 
     public C_Interface GetInterface()
