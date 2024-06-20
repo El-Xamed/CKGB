@@ -64,7 +64,7 @@ public class C_Interface : MonoBehaviour
     //Racourcis pour récuperer la liste de trait de l'actor sélectionné par le challenge.
     List<SO_ActionClass> GetListTrait()
     {
-        return myChallenge.GetCurrentActor().GetDataActor().listTraits;
+        return myChallenge.GetCurrentActor().GetDataActor().listNewTraits;
     }
 
     List<SO_ActionClass> GetListNewTrait()
