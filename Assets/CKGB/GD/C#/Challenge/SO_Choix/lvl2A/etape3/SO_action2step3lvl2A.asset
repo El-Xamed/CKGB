@@ -36,6 +36,7 @@ MonoBehaviour:
   - "Mais peut-\xEAtre que ce miracle est possible."
   - "Peut-\xEAtre que tout ce dont tu as besoin, c\u2019est de l\u2019\xE9nergie
     psychique DEUX personnes en m\xEAme temps !"
+  - Non. Meme a a marchera pas en vrai.
   listLogsCantMakeAction: []
   listCurrentLogs: []
   currentLogs: 
@@ -60,6 +61,21 @@ MonoBehaviour:
       whatCost: 0
       whatStats: 0
       whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 1
+  - whatTarget: 1
+    selectTarget: 1
+    whatTypeTarget: 2
+    target: {fileID: 1604187264348684230, guid: b9111873b30f5c94ba6873a2b2789bea, type: 3}
+    whatDirectionTarget: 0
+    range: 0
+    listTargetStats:
+    - whatStatsTarget: 1
+      whatCost: 0
+      whatStats: 0
+      whatMove: 2
       isTp: 0
       actorSwitch: {fileID: 0}
       accessoriesSwitch: {fileID: 0}
