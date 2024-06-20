@@ -12,26 +12,4 @@ public class SO_Etape : ScriptableObject
 
     #endregion
 
-    public void CheckIfWeCanWinThisEtape()
-    {
-        //Check si la bonne réponse et dans la list.  CHANGER LE SYST7ME POUR QUE LE DEV DOIT JUSTE RENTRER UNE VALEUR POUR D2F2NIR AUTOMATIQUEMENT QUEL SERA LA BONNE REPONSE ?
-        foreach (var myAction in actions)
-        {
-            int nombreErreurs = 0;
-
-            if (myAction != null && myAction == rightAnswer)
-            {
-                Debug.Log("La réponse fait partis de la liste.");
-                return;
-            }
-            else
-            {
-                nombreErreurs++;
-                if (nombreErreurs == actions.Count - 1)
-                {
-                    Debug.LogError("ERREUR : La bonne réponse n'est pas dans la liste des actions, veuillez rensegner la bonne réponse par un élément de la liste");
-                }
-            }
-        }
-    }
 }
