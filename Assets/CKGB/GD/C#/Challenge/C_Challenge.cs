@@ -1241,6 +1241,10 @@ public class C_Challenge : MonoBehaviour
             {
                 thisActor.SetSpriteChallengeBlackAndWhite();
             }
+            else
+            {
+                thisActor.SetSpriteChallenge();
+            }
         }
 
         //Applique toutes les actions. 1 par 1.
@@ -1727,20 +1731,25 @@ public class C_Challenge : MonoBehaviour
         #region Feedback
         //Feedback
 
-        //Check si c'est une tp ou non
-        if (isTp)
+        //Fonctionne que sur les actor.
+        if (thisPion.GetComponent<C_Actor>())
         {
-            //Setup l'arrivé de la position.
-            thisPion.GetComponent<C_Actor>().SetEndPosition(plateau[thisCase].GetComponentInParent<Transform>());
+            //Check si c'est une tp ou non
+            if (isTp)
+            {
+                //Setup l'arrivé de la position.
+                thisPion.GetComponent<C_Actor>().SetEndPosition(plateau[thisCase].GetComponentInParent<Transform>());
 
-            //Lance alors l'animation de tp (Rotation sur lui meme).
-            thisPion.GetComponent<Animator>().SetTrigger("isTp");
+                //Lance alors l'animation de tp (Rotation sur lui meme).
+                thisPion.GetComponent<Animator>().SetTrigger("isTp");
+            }
+            else //Sinon lancer l'animation de déplacement (translation entre les 2 position).
+            {
+                //Lance alors l'animation de déplacement (Marche).
+                thisPion.GetComponent<Animator>().SetTrigger("walking");
+            }
         }
-        else //Sinon lancer l'animation de déplacement (translation entre les 2 position).
-        {
-            //Lance alors l'animation de déplacement (Marche).
-            thisPion.GetComponent<Animator>().SetTrigger("walking");
-        }
+       
         #endregion
     }
     #endregion
