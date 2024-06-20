@@ -263,6 +263,8 @@ public class SO_ActionClass : ScriptableObject
     }
 
     #region Résolution
+
+    #region Logs
     public string GetListLogs()
     {
         if (listCurrentLogs.Count == 0 && logsCursor == 0)
@@ -315,6 +317,7 @@ public class SO_ActionClass : ScriptableObject
     {
         logsCursor = 0;
     }
+    #endregion
 
     public void SetStatsTarget(Interaction.ETypeTarget target, C_Pion thisActor)
     {
@@ -357,6 +360,7 @@ public class SO_ActionClass : ScriptableObject
             }
         }
     }
+    
     #endregion
 }
 

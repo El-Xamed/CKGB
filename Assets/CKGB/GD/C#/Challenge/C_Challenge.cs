@@ -770,9 +770,10 @@ public class C_Challenge : MonoBehaviour
 
             //Supprime toutes les preview de mouvment.
 
-
+            #region lance la phase de reso
             myPhaseDeJeu = PhaseDeJeu.ResoTurn;
             vfxResoTurn.SetTrigger("PlayerTurn");
+            #endregion
 
             //Deselct le dernier bouton.
             eventSystem.SetSelectedGameObject(null);
@@ -1183,6 +1184,8 @@ public class C_Challenge : MonoBehaviour
             //Check si il reste des étapes.
             if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count - 1)
             {
+                Debug.Log("Next réso !");
+
                 currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
 
                 ResolutionTurn();
@@ -1229,18 +1232,14 @@ public class C_Challenge : MonoBehaviour
 
     public void ResolutionTurn()
     {
-        Debug.Log("Resolution turn !");
-
         //Supprime toutes les preview de déplacement.
 
-        Debug.Log("TEST 1 : " + currentResolution.actor.name);
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
         {
             if (thisActor != currentResolution.actor)
             {
                 thisActor.SetSpriteChallengeBlackAndWhite();
-                Debug.Log("TEST 1 : " + thisActor.name + " est en noir et blanc !");
             }
         }
 
@@ -1773,6 +1772,9 @@ public class C_Challenge : MonoBehaviour
                     //Applique des conséquence grace au finction de actionClass.
                     currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
+                    //Vfx
+                    thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
                     thisActor.CheckIsOut();
                 }
             }
@@ -1794,6 +1796,9 @@ public class C_Challenge : MonoBehaviour
                             //Applique des conséquence grace au fonction de actionClass.
                             currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
+                            //Vfx
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
                             thisActor.CheckIsOut();
                         }
                     }
@@ -1811,6 +1816,9 @@ public class C_Challenge : MonoBehaviour
 
                             //Applique des conséquence grace au fonction de actionClass.
                             currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
+
+                            //Vfx
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
                             thisActor.CheckIsOut();
                         }
