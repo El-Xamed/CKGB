@@ -128,6 +128,7 @@ public class C_TempsLibre : MonoBehaviour
         StartIntro();
         GameManager.instance.TS_softblackswipe.SetActive(true);
         AudioManager.instanceAM.Play(TM.LevelMusic);
+        GameManager.instance.RespirerID = 0;
     }
 
     private void CharactersDataGet()
@@ -670,15 +671,23 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void Revasser()
     {
-        HideUI();       
-        for (int y = 0; y < characters.Count; y++)
-        {
-            if (actorActif == characters[y])
-            {
-                GameManager.instance.RevasserID[y]++;
-            }
+        HideUI();
 
+        switch (actorActif.name)
+        {
+            case "Morgan":
+                GameManager.instance.RevasserID[0]++;
+                break;
+            case "Nimu":
+                GameManager.instance.RevasserID[1]++;
+                break;  
+            case "Esthela":
+                GameManager.instance.RevasserID[2]++;
+                break;
+            default:
+                break;
         }
+          
         actiontoaddID++;
         LastAction.Add(RevasserButton);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
