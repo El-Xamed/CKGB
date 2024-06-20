@@ -18,7 +18,7 @@ public class C_credits : MonoBehaviour
     {
         
     }
-    public void GoToMainMenuALERT()
+    public void GoMainMenuALERT()
     {
         GameManager.instance.GoToMainMenuALERT();
     }
