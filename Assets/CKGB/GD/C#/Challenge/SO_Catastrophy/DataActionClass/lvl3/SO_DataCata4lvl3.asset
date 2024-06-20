@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 085a08048e627e3438a7db21e1507651, type: 3}
-  m_Name: SO_DataCata1lvl1
+  m_Name: SO_DataCata4lvl3
   m_EditorClassIdentifier: 
   buttonText: 
   LogsMakeAction: 
@@ -36,11 +36,19 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 0
+    - whatStatsTarget: 1
       whatCost: 0
-      whatStats: 1
-      whatMove: 0
+      whatStats: 0
+      whatMove: 2
       isTp: 0
       actorSwitch: {fileID: 0}
       accessoriesSwitch: {fileID: 0}
       value: 2
+    - whatStatsTarget: 0
+      whatCost: 0
+      whatStats: 0
+      whatMove: 2
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 3

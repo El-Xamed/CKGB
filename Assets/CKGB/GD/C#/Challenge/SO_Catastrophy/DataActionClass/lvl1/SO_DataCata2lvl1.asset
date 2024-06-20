@@ -14,8 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: 
   LogsMakeAction: 
+  logsCantMakeAction: 
+  listLogsAction: []
+  listLogsCantMakeAction: []
+  listCurrentLogs: []
+  currentLogs: 
+  logsCursor: 0
   advancedCondition:
     advancedCondition: 0
+    needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
     canMakeByOneActor: 0
@@ -29,21 +36,11 @@ MonoBehaviour:
     whatDirectionTarget: 0
     range: 0
     listTargetStats:
-    - whatStatsTarget: 2
-      listStats: []
-      move:
-        whatMove: 3
-        isTp: 0
-        nbMove: 2
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
     - whatStatsTarget: 0
-      listStats:
-      - whatStats: 0
-        value: 1
-      move:
-        whatMove: 3
-        isTp: 0
-        nbMove: 2
-        actor: {fileID: 0}
-        accessories: {fileID: 0}
+      whatCost: 0
+      whatStats: 0
+      whatMove: 0
+      isTp: 0
+      actorSwitch: {fileID: 0}
+      accessoriesSwitch: {fileID: 0}
+      value: 3
