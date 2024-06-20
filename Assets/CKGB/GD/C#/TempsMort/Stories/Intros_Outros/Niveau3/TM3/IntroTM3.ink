@@ -21,17 +21,27 @@ Je suis plus cool que le code des Coolkids.#Bulle:MorganHautGauche #emot:Rainbow
 ~ Trigger("name")
 Tu remontes tes lunettes de soleil sur ton nez avec ton index et ton majeur.#Bulle:Narrateur
 
-Bon, c’est quand qu’on <wave>arriiiiiiiive</wave> ?#Bulle:EsthelaHautGauche 
+Bon, Nimuuuuuuu, c’est quand qu’on <wave>arriiiiiiiive</wave> ?#Bulle:EsthelaHautDroite
+
+C'est qui Nimu ?#Bulle:MorganHautGauche
+
+C'est moi Nimu.#Bulle:NimuHautGauche
+
+QUOI ?! MÉMÉ ? T'AS UN PRÉNOM DEPUIS LE DÉBUT ?!#Bulle:MorganHautDroite
+
+...#Bulle:NimuHautGauche
+On arrive dans un peu plus d'une heure je pense, Esthéla. #Bulle:NimuHautGauche
 
 On vient à peine de partir, Esthé.#Bulle:MorganHautGauche
+...#Bulle:MorganHautGauche
 Mémé ? Est-ce que ça va ?#Bulle:MorganHautGauche
 
 <wave>Hm</wave> ? Oui pardon chouchou. <br>J’étais dans la lune.<br> Tu as besoin de quelque chose ?#Bulle:NimuHautGauche
 Je me demandais juste si tu allais bien.#Bulle:MorganHautGauche
 C’est gentil de ta part.<br> Hm, Esthéla ?#Bulle:NimuBasGauche
-À quel arrêt tu descends, toi ?#Bulle:NimuBasGauche #emot:?
+'fait, à quel arrêt tu descends, toi ?#Bulle:MorganBasGauche #emot:?
 
-Oh, j'en ai encore pour un moment,<br> je m'arrête quasiment à la fin de la ligne.#Bulle:EsthelaHautGauche
+Oh, pas d'sitôt.<br> Je m'arrête quasiment à la fin de la ligne.#Bulle:EsthelaHautGauche
 Mais... Si vous êtes d'accord <br>pour m'aider à décharger <br>les deux trois caisses que j'accompagne,#Bulle:EsthelaHautGauche
 je me disais que je m'arrêterais <br>sûrement aux Marches pour <br>casser la croûte !#Bulle:EsthelaHautGauche 
 
