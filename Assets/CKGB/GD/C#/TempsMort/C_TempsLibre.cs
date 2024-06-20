@@ -512,8 +512,12 @@ public class C_TempsLibre : MonoBehaviour
         canContinue = false;
         if (GameManager.instance.textToWriteIn == NarrateurParent.transform.GetChild(1))
         {
-           /* AudioManager.instanceAM.Play("Narrateur");*/
-            Debug.Log("Fonctionne");
+            if(NarrateurParent.transform.GetChild(1)!=null)
+            {
+                AudioManager.instanceAM.Play("Narrateur");
+                Debug.Log("Fonctionne");
+            }
+          
         }
         else
         {

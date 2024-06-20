@@ -12,8 +12,8 @@ public class AudioManager : MonoBehaviour
 
         if (instanceAM == null)
             instanceAM = this;
-        else
-            Destroy(instanceAM.gameObject);
+       /* else
+            Destroy(instanceAM.gameObject);*/
 
 
         DontDestroyOnLoad(gameObject);
