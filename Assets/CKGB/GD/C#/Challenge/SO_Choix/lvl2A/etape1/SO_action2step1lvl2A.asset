@@ -33,12 +33,12 @@ MonoBehaviour:
   currentLogs: 
   logsCursor: 0
   advancedCondition:
-    advancedCondition: 0
+    advancedCondition: 1
     needTwoActor: 0
     needAcc: 0
     whatAcc: {fileID: 0}
-    canMakeByOneActor: 0
-    whatActor: {fileID: 0}
+    canMakeByOneActor: 1
+    whatActor: {fileID: 11400000, guid: f815fa2680ca4bc4ea731ad99aab2325, type: 2}
   nextAction: {fileID: 11400000, guid: a9b673b4a8cfb394bbd28e1206a2fdff, type: 2}
   listInteraction:
   - whatTarget: 0

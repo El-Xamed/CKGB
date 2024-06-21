@@ -1997,27 +1997,40 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
             thisActor.GetComponent<Animator>().SetBool("isInDanger", false);
-        }
 
-        //Check si il y a un outro de challenge.
-        if (myChallenge.outroChallenge && GameManager.instance)
+        }
+        foreach (GameObject thisActor in GameManager.instance.GetTeam())
         {
-            Debug.Log("Dialogue outro");
-            //Cache l'ui du probleme résolue.
-            uiVictoire.SetActive(false);
+            foreach (InitialActorPosition position in myChallenge.GetInitialPlayersPosition())
+            {
+                //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
+                if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                {
+                    //Placement sur le plateau.
+                    PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position, false);
 
-            //Entre en mode dialogue.
-            GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
-            ShowUiChallenge(false);
-            onDialogue = true;
-        }
-        else
-        {
-            Debug.Log("Pas d'outro de challenge");
-            FinishChallenge(null);
-        }
+                }
+                //Check si il y a un outro de challenge.
+                if (myChallenge.outroChallenge && GameManager.instance)
+                {
+                    Debug.Log("Dialogue outro");
+                    //Cache l'ui du probleme résolue.
+                    uiVictoire.SetActive(false);
 
-        Debug.Log("Fin du challenge");
+                    //Entre en mode dialogue.
+                    GameManager.instance.EnterDialogueMode(myChallenge.outroChallenge);
+                    ShowUiChallenge(false);
+                    onDialogue = true;
+                }
+                else
+                {
+                    Debug.Log("Pas d'outro de challenge");
+                    FinishChallenge(null);
+                }
+
+                Debug.Log("Fin du challenge");
+            }
+        }
     }
 
     public void FinishChallenge(string name)
