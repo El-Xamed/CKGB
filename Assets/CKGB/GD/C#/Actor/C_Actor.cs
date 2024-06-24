@@ -262,6 +262,11 @@ public class C_Actor : C_Pion
         UpdateUiStats();
     }
 
+    public void UiPreviewMovement(SO_ActionClass thisActionClass)
+    {
+
+    }
+
     //Pour lier la stats qui va le suivre dans tous le challenge.
     public void SetUiStats(C_Stats myStats)
     {
@@ -332,6 +337,7 @@ public class C_Actor : C_Pion
         {
             GetImageActor().sprite = GetDataActor().challengeSprite;
             transform.GetChild(3).gameObject.SetActive(false);
+
         }
 
         GetComponent<Animator>().SetBool("isInDanger", GetInDanger());

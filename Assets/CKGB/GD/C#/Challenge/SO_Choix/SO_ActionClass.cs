@@ -336,7 +336,7 @@ public class SO_ActionClass : ScriptableObject
                         //Applique à l'actor SEULEMENT LES STATS les stats.
                         foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                         {
-                            if (thisTargetStats.whatStatsTarget != TargetStats.ETypeStatsTarget.Movement)
+                            if (thisTargetStats.whatStatsTarget != TargetStats.ETypeStatsTarget.Stats)
                             {
                                 int value;
 

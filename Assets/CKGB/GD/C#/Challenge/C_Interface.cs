@@ -167,7 +167,7 @@ public class C_Interface : MonoBehaviour
                         }
                         if (input.y > 0)
                         {
-                            GoLogs();
+                            //GoLogs();
                             return;
                         }
                     }
@@ -424,7 +424,7 @@ public class C_Interface : MonoBehaviour
                 myChallenge.GetEventSystem().SetSelectedGameObject(listCurrentButton[0]);
 
                 //Lance la preview
-                GetComponentInParent<C_PreviewAction>().ShowPreview(myChallenge.GetEventSystem().currentSelectedGameObject.GetComponent<C_ActionButton>().GetActionClass(), myChallenge.GetCurrentActor());
+                GetComponentInParent<C_Challenge>().WriteStatsPreview();
             }
         }
         else

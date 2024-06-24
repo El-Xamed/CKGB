@@ -218,10 +218,6 @@ public class C_Stats : MonoBehaviour
     {
         Debug.Log("Reset");
 
-        //Désinscrit les fonction.
-        C_PreviewAction.onPreview -= UiPreviewCalm;
-        C_PreviewAction.onPreview -= UiPreviewEnergy;
-
         //Par default desactive les anim de jauge.
         animatorUiCalmPreview.SetBool("isPreview", false);
 
@@ -232,12 +228,14 @@ public class C_Stats : MonoBehaviour
             thisEnergy.GetComponent<Animator>().SetBool("isPreview", false);
             //Debug.Log(thisEnergy.name + " is desactivate");
         }
+
+        //Désinscrit les fonction.
+        C_PreviewAction.onPreview -= UiPreviewCalm;
+        C_PreviewAction.onPreview -= UiPreviewEnergy;
     }
 
     public void UiPreviewCalm(SO_ActionClass thisActionClass)
     {
-        Debug.Log("Preview Calm de " + name);
-
         //Lance l'animation de clignotoment.
         animatorUiCalmPreview.SetBool("isPreview", true);
 

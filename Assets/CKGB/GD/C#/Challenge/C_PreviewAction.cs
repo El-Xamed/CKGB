@@ -20,23 +20,66 @@ public class C_PreviewAction : MonoBehaviour
     [SerializeField] List<GameObject> listLogsTextPreview = new List<GameObject>();
     [SerializeField] Image previewBarre;
 
-    //Fonction qui va lancer le setup de preview. CHANGER L'ENTREE CAR ON VEUT RECUP L'ACTOR SELECT PENDANT LA PHASE DU JOUEUR + L'ACTION QUE LE JOUEUR SURVOLE.
-    public void ShowPreview(SO_ActionClass thisActionClass, C_Actor thisActor)
+    #region Fonctions
+    //Fonction qui va lancer le setup de preview.
+    public void ShowPreview(SO_ActionClass thisActionClass, List<C_Actor> myTeam)
     {
         Debug.Log("ShowPreview");
 
+        //Détruit toutes les preview.
+        DestroyAllPreview(myTeam);
+
+        //Lance la preview du text.
+        PreviewText(thisActionClass);
+
+        //Affiche les preview.
+        GetComponent<C_Challenge>().PreviewPlateau(thisActionClass);
+
+        #region Barre
         //Active l'image de la barre.
         if (!previewBarre.IsActive())
         {
             ActivePreviewBarre(true);
         }
+        #endregion
 
-        //Détruit toutes les preview.
-        DestroyAllPreview();
+        //Appelle l'action event pour tous afficher.
+        onPreview?.Invoke(thisActionClass);
+    }
 
-        //Desactive par default les preview de l'actor selectionne.
-        thisActor.GetUiStats().ResetUiPreview();
+    public void DestroyAllPreview(List<C_Actor> myTeam)
+    {
+        Debug.Log("Destruction des preview");
 
+        //Desactive toutes les preview des actor.
+        foreach (C_Actor thisActor in myTeam)
+        {
+            thisActor.GetUiStats().ResetUiPreview();
+        }
+
+        //Detruit toutes les preview de movement.
+        GetComponent<C_Challenge>().DestroyAllMovementPreview();
+
+        if (listLogsTextPreview.Count > -1)
+        {
+            foreach (GameObject thisLogs in listLogsTextPreview)
+            {
+                Destroy(thisLogs);
+            }
+
+            listLogsTextPreview.Clear();
+        }
+
+       //GetComponent<C_Challenge>().DestroyAllMovementPreview();
+    }
+
+    public void ActivePreviewBarre(bool value)
+    {
+        previewBarre.gameObject.SetActive(value);
+    }
+
+    void PreviewText(SO_ActionClass thisActionClass)
+    {
         //Création d'une liste d'info qui va etre affiché dans les logs de preview.
         List<string> listTextPreview = new List<string>();
 
@@ -76,7 +119,7 @@ public class C_PreviewAction : MonoBehaviour
 
                     string other = "";
 
-                    //Check le mode de direction.
+                    #region Check le mode de direction.
                     switch (thisInteraction.whatDirectionTarget)
                     {
                         case Interaction.ETypeDirectionTarget.Right:
@@ -106,6 +149,7 @@ public class C_PreviewAction : MonoBehaviour
                             }
                             break;
                     }
+                    #endregion
 
                     whatTarget = "(" + other + ")";
                 }
@@ -141,20 +185,12 @@ public class C_PreviewAction : MonoBehaviour
                     #region Inscription
                     if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm) //Check si c'est pour le calm.
                     {
-                        //Inscrit la preview de calm.
-                        onPreview += thisActor.GetUiStats().UiPreviewCalm;
-                        Debug.Log("Add UiPreviewCalm");
-
                         whatStats = "<sprite index=[index] tint=16>";
 
                         endPreviewText = " de calme.";
                     }
                     else if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy) //Check si c'est pour l'energie.
                     {
-                        //Inscrit la preview de calm.
-                        onPreview += thisActor.GetUiStats().UiPreviewEnergy;
-                        Debug.Log("Add UiPreviewEnergy");
-
                         whatStats = "<sprite index=[index] tint=15>";
 
                         endPreviewText = " d'énergie.";
@@ -163,14 +199,10 @@ public class C_PreviewAction : MonoBehaviour
                 }
                 else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                 {
-                    Debug.Log("Add Preview Movement");
-
                     #region Setup string Action
                     whatStats = "<sprite index=[index] tint=12>";
 
                     descriptionPreview = " va se déplacer de ";
-
-                    onPreview += GetComponent<C_Challenge>().MovementPreview;
 
                     //Check c'est quoi comme type de mouvement. OPTIMISER LE DEV !!!
                     switch (thisTargetStats.whatMove)
@@ -250,32 +282,6 @@ public class C_PreviewAction : MonoBehaviour
             //Si les info dépasse, ouvrir la feuille qui pourra etre fermé pour un input (BESOIN DE LE SETUP DANS L'INTERFACE !).
         }
         #endregion
-
-        //Appelle l'action event pour tous afficher.
-        onPreview?.Invoke(thisActionClass);
-    }
-
-    #region Fonctions
-    public void DestroyAllPreview()
-    {
-        Debug.Log("Destruction des preview");
-
-        if (listLogsTextPreview.Count > -1)
-        {
-            foreach (GameObject thisLogs in listLogsTextPreview)
-            {
-                Destroy(thisLogs);
-            }
-
-            listLogsTextPreview.Clear();
-        }
-
-        GetComponent<C_Challenge>().DestroyAllMovementPreview();
-    }
-
-    public void ActivePreviewBarre(bool value)
-    {
-        previewBarre.gameObject.SetActive(value);
     }
 
     string GetValue(int value)
