@@ -37,9 +37,9 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Sprite uiPvOrangeBackground;
     [SerializeField] Sprite uiPvRedBackground;
 
-    [Header("Points")]
+    [Header("Points d'énergie")]
     [SerializeField] Image eclair;
-    [SerializeField] RectTransform uiEnergie;
+    [SerializeField] List<RectTransform> uiSpawnEnergie;
     [SerializeField] GameObject prefabEnergie;
     List<GameObject> listEnergie = new List<GameObject>();
 
@@ -69,6 +69,9 @@ public class C_Stats : MonoBehaviour
         //Place les bordures par rapport au nombres de calm que poss�de le personnage.
         SpawnBorderCalm(thisActor.GetComponent<C_Actor>().GetMaxStress());
 
+        //Place les point d'énergies.
+        SpawnEnergy(thisActor.GetComponent<C_Actor>().GetMaxEnergy());
+
         UpdateUi(thisActor);
 
         //Sécu anim.
@@ -91,6 +94,30 @@ public class C_Stats : MonoBehaviour
             GameObject newBorder = Instantiate(borderPrefab, PDP.transform.position, Quaternion.Euler(0, 0, calmWidth * i), uiBorderJauge);
 
             newBorder.name = "Border " + i;
+        }
+    }
+
+    void SpawnEnergy(int nbEnergy)
+    {
+        //Cache toutes les branches.
+        foreach (var thisEnergy in uiSpawnEnergie)
+        {
+            thisEnergy.gameObject.SetActive(false);
+        }
+
+        //Fait spawn les nombre max d'energie de l'actor.
+        for (int i = 0; i < nbEnergy; i++)
+        {
+            //Active le fond.
+            uiSpawnEnergie[i].gameObject.SetActive(true);
+
+            //création d'une nouvelle bille.
+            GameObject newEnergieGameObject = Instantiate(prefabEnergie, uiSpawnEnergie[i]);
+
+            //Nouveau nom.
+            newEnergieGameObject.name = "UI_Stats_" + myActor.name + "_Energie_Pastille_ " + (i + 1);
+
+            listEnergie.Add(newEnergieGameObject);
         }
     }
     #endregion
@@ -120,11 +147,13 @@ public class C_Stats : MonoBehaviour
             colorStatsActor = Color.HSVToRGB(0, 1, 1);
         }
     }
+
     [ContextMenu("Check etat des pv")]
     void UpdateUi()
     {
         UpdateUi(myActor);
     }
+
     public void UpdateUi(C_Actor myActor)
     {
         CheckStatsOfActor(myActor.GetCurrentStress(), myActor.GetDataActor().stressMax);
@@ -139,6 +168,7 @@ public class C_Stats : MonoBehaviour
         //Update le calm.
         uiCalm.fillAmount = CalculJauge(myActor.GetComponent<C_Actor>().GetCurrentStress(), myActor.GetDataActor().stressMax);
 
+        #region Couleur de la jauge et autres
         //Check l'�tat de l'actor
         //Si c'est pv sont au dessus des 2/3.
         if (stateActor == EStateStats.Eleve)
@@ -159,30 +189,11 @@ public class C_Stats : MonoBehaviour
 
         //Set la couleur du coeur.
         heart.color = colorStatsActor;
-
-        if (myActor.GetComponent<C_Actor>().GetCurrentStress() == 0)
-        {
-            IsOut();
-        }
+        #endregion
         #endregion
 
         #region Energie
         //Update l'energie.
-        //Check si la stats possède bien le nombre max d'energie.
-        if (uiEnergie.transform.childCount < myActor.GetMaxEnergy())
-        {
-            //Créer la pool d'energy.
-            for (int i = listEnergie.Count; i < myActor.GetMaxEnergy(); i++)
-            {
-                //Cr�ation d'un nouvel GameObject.
-                GameObject newEnergieGameObject = Instantiate(prefabEnergie, uiEnergie);
-                //Nouveau nom.
-                newEnergieGameObject.name = "UI_Stats_" + myActor.name + "_Energie_Pastille_ " + (i + 1);
-
-                //Ajoute dans la liste.
-                listEnergie.Add(newEnergieGameObject);
-            }
-        }
 
         //Desactive les points d'energies.
         foreach (GameObject thisEnergy in listEnergie)
@@ -190,7 +201,7 @@ public class C_Stats : MonoBehaviour
             thisEnergy.SetActive(false);
         }
 
-        //Active les points necessaire.
+        //Check si il reste encore de l'energie.
         if (myActor.GetcurrentEnergy() == 0)
         {
             eclair.enabled = true;
@@ -200,17 +211,12 @@ public class C_Stats : MonoBehaviour
             eclair.enabled = false;
         }
 
+        //Active les points necessaire.
         for (int i = 0; i < myActor.GetcurrentEnergy(); i++)
         {
             listEnergie[i].SetActive(true);
         }
         #endregion
-    }
-
-    void IsOut()
-    {
-        //Cache l'Ui de mort.
-        cadenas.enabled = true;
     }
 
     #region Preview
@@ -262,5 +268,6 @@ public class C_Stats : MonoBehaviour
         }
     }
     #endregion
+
     #endregion
 }
