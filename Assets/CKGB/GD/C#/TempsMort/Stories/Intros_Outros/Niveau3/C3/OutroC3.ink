@@ -15,7 +15,7 @@ Eurk.#Bulle:MorganHautGauche
 Bon, je vais être en retard.#Bulle:MorganHautGauche
 
 M-Morgan ?#Bulle:NimuHautGauche
-Tu es sûr de ce que tu dis..?#Bulle:NimuHautGauche
+Tu es sûr de ce que tu dis..?#Bulle:NimuHautDroite
 
 Tu dois suivre ton plan.#Bulle:Narrateur
 Est-ce que tu penses être capable de t'engager dans une joute romantique à cet instant précis ?#Bulle:Narrateur
@@ -36,7 +36,7 @@ Tu t’approches de tes amies pour les prendre dans tes bras.
 
 Je suis un abruti <br>qui a monopolisé la matinée<br> de deux personnes parce que j'étais trop anxieux pour sortir voir quelqu'un.#Bulle:MorganHautGauche
 
-Et c'est la meilleure chose<br> que j'aurais pu faire de ma matinée.#Bulle:NimuHautGauche
+Et c'est la meilleure chose<br> que j'aurais pu faire de ma matinée.#Bulle:NimuHautDroite
 
 Je suis SÛRE que tu peux <br>réussir à formuler ça sans te déprécier en passant.#Bulle:EsthelaHautGauche
 
@@ -44,11 +44,11 @@ Je suis SÛRE que tu peux <br>réussir à formuler ça sans te déprécier en pa
 
 Merci.#Bulle:MorganHautGauche
 
-Hahaha, je le savais.#Bulle:EsthelaHautDroite
+Hahaha, je le savais.#Bulle:EsthelaHautGauche
 
 Mémé ?#Bulle:MorganHautGauche
 
-Ouais Morgan ?#Bulle:NimuHautGauche
+Ouais Morgan ?#Bulle:NimuHautDroite
 
 Tu sens ton estomac se tordre momentanément.#Bulle:Narrateur
 Tu n’es vraiment pas sûr de ce que tu vas dire, malgré les efforts que tu as dépensés à faire tes recherches sur le sujet. #Bulle:Narrateur
@@ -60,7 +60,7 @@ Ta grand-mère te regarde un instant comme si elle avait vu le plus beau fantôm
 
 Bon. J’y vais. Vous êtes sages hein.#Bulle:MorganHautGauche
 
-C’est ça, parle pour toi.#Bulle:NimuHautGauche
+C’est ça, parle pour toi.#Bulle:NimuHautDroite
 
 Moi ? Sage ? Hahaha.#Bulle:EsthelaHautGauche
 HahahAHAHA#Bulle:EsthelaHautGauche
@@ -68,7 +68,7 @@ BWAHHAHHAHAHAHAHAHAHAHHA !#Bulle:EsthelaHautGauche
 
 Allez cassez-vous,<br> vous m’foutez la honte.#Bulle:MorganHautGauche
 
-Essuie-toi avant d’y aller,<br> t’as encore d’la morve sur la bouche.#Bulle:NimuHautGauche
+Essuie-toi avant d’y aller,<br> t’as encore d’la morve sur la bouche.#Bulle:NimuHautDroite
 
 J’essaie d’lancer une mode.#Bulle:MorganHautGauche
 

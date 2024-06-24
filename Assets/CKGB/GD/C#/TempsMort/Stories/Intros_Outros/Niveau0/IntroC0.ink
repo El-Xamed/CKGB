@@ -19,7 +19,7 @@ Hm.#Bulle:MorganHautGauche
 Trop tôt. Ça doit faire bientôt <incr> 4 heures</incr> pourtant.#Bulle:MorganHautGauche
 
 L’ombre d’un doute survole ton esprit.#Bulle:Narrateur 
-Et si tu avais largement surestimé le passage du temps ? Et si tu avais encore <incr>plusieurs heures</incr> à poireauter ici ?#Bulle:Narrateur
+Et si tu avais largement surestimé le passage du temps ?<br> Et si tu avais encore <incr>plusieurs heures</incr> à poireauter ici ?#Bulle:Narrateur
 
 Pour te rassurer, tu relances un pari avec toi-même.#Bulle:Narrateur
 Ce satané réveil est condamné à sonner à un moment ou à un autre.#Bulle:Narrateur

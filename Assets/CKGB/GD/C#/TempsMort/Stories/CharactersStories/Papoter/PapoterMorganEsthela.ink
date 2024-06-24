@@ -62,12 +62,12 @@ Mais c'est vrai que ça a éveillé ma curiosité.#Bulle:MorganHautGauche
 
 Pff, <wave>charmeur</wave>. #Bulle:EsthelaHautDroite #emot:JoyLeft
 Sois indiscret !! <br> Immédiatement !! #Bulle:EsthelaHautDroite
-J'ai trop trop trop envie d'en parler depuis tout à l'heure !!!!!#Bulle:EsthelaHautDroite 
+J'ai trop trop trop envie<br> d'en parler depuis tout à l'heure !!!!!#Bulle:EsthelaHautDroite 
 
 Tiens, Esthéla !<br> Quelle surprise ! <br>J’adore ton nouveau style.<br> C’est quoi tes inspis ?#Bulle:MorganHautGauche #emot:Sparkles
 
     <bounce<MORGAN, INCROYABLE, QUELLE COÏNCIDENCE,</bounce> je suis RA-VIE<br> que tu me poses la question <wave>SPONTANÉMENT</wave> !! #Bulle:EsthelaHautGauche
-
+Vous trouvez qu'elle en fait trop ? Pas moi. #Bulle:Narrateur
 <wave>Laisse-moi t’expliquer en détail deux ou trois fois !!!</wave> #Bulle:EsthelaBasDroite #emot:Rainbow
 
 Ainsi soit-il.#Bulle:Morgan
@@ -149,7 +149,7 @@ Je sais pas quoi <br>répondre à ça Morgan <br>tu me fais juste peur.#Bulle:Es
 ->DONE
 
 ===Papoter2===
-Hmm. Ce papotage ne devrait pas être accessible. Comment es-tu arrivé là ?#Bulle:Narrateur
+Hmm. Ce papotage ne devrait pas être accessible. Comment es-tu arrivé là ? Vraiment Paul ta fais n'importe quoi hein (-Maxime)#Bulle:Narrateur
 //blabla
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")

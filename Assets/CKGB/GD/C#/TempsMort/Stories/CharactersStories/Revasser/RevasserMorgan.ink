@@ -60,27 +60,27 @@ Quand, au bout d’un moment, tu te relèves pour rejoindre les autres, tu as un
 ->DONE
 ===Revasser1===
 
-Tes yeux clignent.#Bulle:MorganBasGauche
-Dans cet instant de relâche, tu prends conscience de la tension de tes muscles. #Bulle:MorganBasGauche
-La contraction de ta mâchoire.#Bulle:MorganBasGauche
-La foudre dans tes épaules.#Bulle:MorganBasGauche
-La vitesse de ta respiration. #Bulle:MorganBasGauche
-Tu décroches ton stylo de l'une de tes poches, et commences à le faire tourner entre tes doigts.#Bulle:MorganBasGauche
-Tu cherches quelque chose contre quoi t’adosser. Tes doigts frôlent le papier contenu dans tes poches, à la recherche de ton carnet dans un océan de brouillons, de notes et de pense-bêtes.#Bulle:MorganBasGauche
-Quelque chose t’arrête cependant.#Bulle:MorganHautGauche
-#Bulle:MorganBasGauche
-La pointe de ton stylo-plume touche la fibre végétale. N’es-tu pas en train d’entretenir un cercle vicieux ? #Bulle:MorganBasGauche
-Tu t’es mis dans la tête que l’art-thérapie était une bonne manière de gérer tes sentiments. Mais est-ce que c’est vraiment le cas ?#Bulle:MorganBasGauche
-Est-ce que baigner dans les pensées que ton cerveau a mâchouillé comme des chewing-gums#Bulle:MorganBasGauche
-jusqu’à pouvoir en extraire la saveur sur du papier est vraiment sain ?#Bulle:MorganBasGauche
-Et qu'en est-il de les exposer pour avoir de l’attention ?#Bulle:MorganBasGauche
-Est-ce que c’est le genre de personne que tu veux être ?#Bulle:MorganBasGauche
+Tes yeux clignent.#Bulle:Narrateur
+Dans cet instant de relâche, tu prends conscience de la tension de tes muscles. #Bulle:Narrateur
+La contraction de ta mâchoire.#Bulle:Narrateur
+La foudre dans tes épaules.#Bulle:Narrateur
+La vitesse de ta respiration. #Bulle:Narrateur
+Tu décroches ton stylo d’une de tes poches, et commences à le faire tourner entre tes doigts.#Bulle:Narrateur
+Tu cherches quelque chose contre quoi t’adosser. Tes doigts frôlent le papier contenu dans tes poches, à la recherche de ton carnet dans un océan de brouillons, de notes et de pense-bêtes.#Bulle:Narrateur
+Quelque chose t’arrête cependant.#Bulle:Narrateur
 
-Est-ce que la poésie a sa place dans l’identité que tu veux te constuire ? #Bulle:MorganBasGauche
-Est-ce qu’en fait, ce ne serait pas en vérité… la dernière chose qui te retient d’avancer ?#Bulle:MorganBasGauche
-La dernière chose qui te force à rester cette créature fébrile manipulée par ses émotions ? #Bulle:MorganBasGauche
-Un lac d’encre a imprégné la page.#Bulle:MorganBasGauche
-Tu refermes le stylo-plume. #Bulle:MorganBasGauche
+La pointe de ton stylo-plume touche la fibre végétale. N’es-tu pas en train d’entretenir un cercle vicieux ?#Bulle:Narrateur
+Tu t’es mis dans la tête que l’art-thérapie était une bonne manière de gérer tes sentiments. Mais est-ce que c’est vraiment le cas ?
+Est-ce que baigner dans les pensées que ton cerveau a mâchouillé comme des chewing-gums
+jusqu’à pouvoir en extraire la saveur sur du papier est vraiment sain ?
+Et qu'en est-il de les exposer pour avoir de l’attention ?
+Est-ce que c’est le genre de personne que tu veux être ?
+
+Est-ce que la poésie a sa place dans l’identité que tu veux te constuire ?
+Est-ce qu’en fait, ce ne serait pas en vérité… la dernière chose qui te retient d’avancer ?
+La dernière chose qui te force à rester cette créature fébrile manipulée par ses émotions ?
+Un lac d’encre a imprégné la page.
+Tu refermes le stylo-plume. 
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
@@ -92,7 +92,7 @@ C’est plus comme une démangeaison maintenant. Cela DEMANDE ton attention. Tu 
 Impulsivement, tu débouches ton stylo avec les dents, et commences à griffoner, assis sur ton siège de train. #Bulle:Narrateur
 
 Tu ne sais peut-être pas grand chose sur toi-même.#Bulle:Narrateur
-Ou sur quel genre de personne tu veux devenir. Mais dans cet océan d’incertitude, tu sens une prise à laquelle te raccrocher.#Bulle:Narrateur
+Ou sur quel genre de personne tu veux devenir. Mais dans cet océan d’incertitude, tu sens un prise à laquelle te raccrocher.#Bulle:Narrateur
 Écrire n’est pas une manie.#Bulle:Narrateur
 Ce n’est pas un simple système d’auto-défense.#Bulle:Narrateur
 C’est ta vocation. #Bulle:Narrateur

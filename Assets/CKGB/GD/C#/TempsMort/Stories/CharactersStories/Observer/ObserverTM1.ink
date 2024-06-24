@@ -72,7 +72,7 @@ tu es fier.e d’être dans une maison aussi ingénieuse.#Bulle:Narrateur
 //blabla
 
 On a que deux personnages dans ce temps mort  #Bulle:Narrateur
-Comment est-ce que tu es arrivé là ??? #Bulle:Narrateur
+Comment est-ce que tu es arrivé là ??? Ouste ! C'est la faute de Paul t'façon #Bulle:Narrateur
 ~ IDobserver++
 ~ RetourAuTMAfterRespirer("")
 ->DONE

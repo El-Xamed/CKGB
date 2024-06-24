@@ -49,7 +49,7 @@ Néanmoins.#Bulle:NimuHautDroite
 
 Sache que je ne serais<br> pas moins fière de toi <br>si jamais tu avais besoin d'aide.#Bulle:NimuBasDroite
 Si jamais, <br>à n’importe quel moment,<br> tu sens que tu as besoin de soutien,<br> tu as juste à me demander.#Bulle:NimuBasDroite
-Ça ne demande pas moins de courage que d'avouer qu'on a un problème.<br> J'en sais quelque chose.#Bulle:NimuHautDroite
+Ça ne demande pas moins de courage <br>que d'avouer qu'on a un problème.<br> J'en sais quelque chose.#Bulle:NimuHautDroite
 Elle a un regard pour son bras.#Bulle:Narrateur
 On pourrait dire que peu importe ce que tu fais, je trouverai toujours une excuse pour être fière de toi. #Bulle:NimuHautGauche
 Hm.#Bulle:MorganHautGauche
@@ -64,7 +64,7 @@ Ta grand-mère commence à chantonner au milieu de ses fredonnement.#Bulle:Narra
 
 Hm ?#Bulle:NimuBasDroite emot:?
 
-Peut-être que j’aprécierais bénéficier de quelques conseils.#Bulle:MorganHautGauche
+Peut-être que j’aprécierais <br>bénéficier de quelques conseils.#Bulle:MorganHautGauche
 
 Elle a un petit sourire joueur. Et te montre qu'elle est prête à écouter tes questions. #Bulle:Narrateur 
 //blabla
@@ -86,7 +86,7 @@ Tu sens une boule te monter <br>dans la gorge alors que <br>tu t'assois à coté
 J’ai… plus assez d'énergie pour continuer. 
 J'crois qu'la pression émotionnelle <br>est trop forte pour moi.#Bulle:MorganHautGauche
 J'vais retourner à la maison.
-J'lui ferai passer un message pour m'excuser.#Bulle:MorganHautDroite
+J'lui ferai passer <br>un message pour m'excuser.#Bulle:MorganHautDroite
 
 Ta grand-mère lève sa main dans ta direction, attendant ton signal. Tu lui fais non de la tête, et elle la ramène dans sa poche.#Bulle:Narrateur
 Elle fait toujours attention à ne pas te toucher sans t'avoir demandé avant. Cette attention t’a toujours bien plus réconforté que n’importe quelle caresse.#Bulle:Narrateur
@@ -112,7 +112,7 @@ J’ai confiance en toi.<br> Et puis, t’as fait le plus dur.#Bulle:NimuHautGau
 
 Je suis sorti de mon lit ?#Bulle:MorganHautDroite
 
-Tu l’as invité.e à ce rencard.<br> Et elle a accepté, en plus ! <br>Tu penses que si elle ne t'apréciait pas déjà, elle aurait dit oui ?#Bulle:NimuHautGauche #emot:Sparkles
+Tu l’as invité.e à ce rencard.<br> Et elle a accepté, en plus ! <br>Tu penses que si elle ne t'apréciait pas déjà,<br> elle aurait dit oui ?#Bulle:NimuHautGauche #emot:Sparkles
 
 Mais… Mais… C'est jamais trop tard<br> pour que je ruine tout.<br> Imagine qu’on trouve pas<br> d’quoi parler et qu’y ait juste<br> un gros blanc pendant une heure.#Bulle:MorganHautDroite #emot:Deception
 Imagine que le seul son qu’on entende<br> c’est le bruit bizarre que je fais<br> quand je bois du thé !#Bulle:MorganHautDroite #emot:Drop
@@ -189,12 +189,12 @@ Depuis six mois<br> tu te réveilles deux heures <br>après les autres.<br>Tu le
 
 …#Bulle:NimuHautDroit #emot:Dots
 
-Tu peux nous dire quand t’aimes pas quelque chose.<br> Ou quand t’as besoin de temps.#Bulle:MorganHautGauche
+Tu peux nous dire quand <br>t’aimes pas quelque chose.<br> Ou quand t’as besoin de temps.#Bulle:MorganHautGauche
 T’as le droit de nous dire non.<br> En toute transparence, <br>c'est plus vexant qu’tu prétendes le contraire.#Bulle:MorganHautGauche
 Tu ne nous laisses même pas<br> l’occasion d’écouter ton avis.#Bulle:MorganHautGauche #emot:!
 
 ...#Bulle:NimuHautDroit #emot:Dots
-C'est vrai.<br> Je suis dans une période un peu compliquée en ce moment.#Bulle:NimuHautDroit
+C'est vrai.<br> Je suis dans une période<br> un peu compliquée en ce moment.#Bulle:NimuHautDroit
 Je suis... âgée, Morgan.<br> Je vois tout sous une perspective très différente de la tienne...#Bulle:NimuHautDroit
 Et je crois qu'elle me donne le vertige.#Bulle:NimuHautGauche
 J'ai beaucoup de mal à accorder de l'importance aux choses. <br> Tout a l'air si éphèmere vu d'ici.#Bulle:NimuBasGauche

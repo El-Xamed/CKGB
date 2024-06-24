@@ -24,13 +24,13 @@ Ah, tu as entendu ça ?#Bulle:NimuBasGauche
 ??#Bulle:EsthelaBasDroite #emot:?
 
 C’était le bruit de mon coeur qui s’arrête.<br> Tu viens de me faire faire un infarctus.#Bulle:NimuBasGauche
-Tu t'adresses maintenant à mon fantôme. Je te hanterai toute ta vie. Bon courage pour expliquer ça à Morgan. #Bulle:NimuBasGauche
+Tu t'adresses maintenant à mon fantôme.<br> Je te hanterai toute ta vie.<br> Bon courage pour expliquer ça à Morgan. #Bulle:NimuBasGauche
 
 <incr>Noooooooon</incr> !<br> Pardon !! Je promets que je vais être toooute <br><size=60%>calme et silencieuse</size=60%><br><size=40%>à partir de maintenant !!</size=60%>#Bulle:EsthelaBasDroite
 
-Ptdr. Tu tiendras pas cinq minutes.#Bulle:NimuBasGauche
+Ptdr. <br>Tu tiendras pas cinq minutes.#Bulle:NimuBasGauche
 
-<size=60%>Peut-être que si quelqu'un me  <br> me racontait <br>une petite histoire d’avant la Singularité...</size=60%>#Bulle:EsthelaBasDroite
+<size=60%>Peut-être que si quelqu'un me  <br> me racontais <br>une petite histoire d’avant la Singularité...</size=60%>#Bulle:EsthelaBasDroite
 <size=60%>Ça m'aiderait à rester motivée <br> au travers de cette terrible épreuve ?</size=60%>#Bulle:EsthelaBasDroite
 
 Nimu soupire lourdement.#Bulle:Narrateur
@@ -39,9 +39,10 @@ Roh la forceuse.<br> T’en as pas eu assez à l’école ? <br>Tu m’adresses 
 
 <size=60%>L'école raconte que des trucs barbants. Et je continue de demander parce que<br> tu continues de refuser !!</size=60%>#Bulle:EsthelaBasDroite
 
-Est-ce que tu réalises le problème avec ce que tu viens de dire ou est-ce que je dois te faire une lecture sur la notion de consentement ?#Bulle:NimuBasGauche
+Est-ce que tu réalises<br> le problème avec ce que tu viens<br> de dire ou est-ce que #Bulle:NimuBasGauche
+je dois te faire une lecture sur la notion de consentement ?#Bulle:NimuBasGauche
 
-<size=60%>Rah mais non mais je voulais pas le dire comme ça. C'est pas juste.</size=60%>#Bulle:EsthelaBasDroite
+<size=60%>Rah mais non mais <br>je voulais pas le dire comme ça. <br>C'est pas juste.</size=60%>#Bulle:EsthelaBasDroite
 Si t’as autant le seum,<br> pourquoi ne pas plutôt<br> aller poser tes questions<br> à d’autres zoomers <br>qui ne font rien de leur journée ?#Bulle:NimuBasGauche
 
 <size=60%>Parce que la plupart <br>sont morts. Ou séniles.<br> Ou les deux. Et ceux qui<br> restent, eh bien… <br>Je suis mal à l’aise avec les inconnus.</size=60%>#Bulle:EsthelaBasDroite
@@ -77,9 +78,9 @@ Et, en vrai, j'ai plutôt apprécié discuter avec toi.#Bulle:NimuBasGauche
 
 <incr>RAAH TU VAS VOIR ON VA ÊTRE TELLEMENT AMIES !</incr>#Bulle:EsthelaBasDroite
 
-<incr>ET BIENTÔT, TOUS LES SECRETS DE L’ANCIEN MONDE SERONT MIENS !</incr>#Bulle:EsthelaBasDroite
+<incr>ET BIENTÔT,<br> TOUS LES SECRETS DE L’ANCIEN MONDE SERONT MIENS !</incr>#Bulle:EsthelaBasDroite
 
-GM: …#Bulle:NimuBasGauche #emot:Dots
+ …#Bulle:NimuBasGauche #emot:Dots
 
 
 //blabla
@@ -96,15 +97,15 @@ qu'Esthéla mime le geste de frapper de toute ses forces l'arrière de son crân
 dans une (vaine ?) tentative de rappeller qu'elle se trouve trouve extrêmement drôle. #Bulle:Narrateur
 Pour notre audience à la maison, elle le fait bien évidemment avec un grand sourire. #Bulle:Narrateur
 
-Dis-moi, du coup, on est giga trop potes maintenant ?#Bulle:EsthelaHautDroite
+Dis-moi,<br> du coup,<br> on est giga trop potes maintenant ?#Bulle:EsthelaHautDroite
 
-Ouais on est trop des besties de fou.#Bulle:NimuHautDroite
+Ouais on est trop<br> des besties de fou.#Bulle:NimuHautDroite
 
 <wave>Dooooooonc hmmmmm..?</wave>#Bulle:EsthelaHautGauche
 
 Nimu soupire brièvement, se préparant mentalement à ce qui est sur le point d'arriver.#Bulle:Narrateur
 
-Okay j'ai compris, assieds-toi et on papote.#Bulle:NimuHautDroite
+Okay j'ai compris,<br> assieds-toi et on papote.#Bulle:NimuHautDroite
 
 Le visage d’Esthéla s’illumine de joie.#Bulle:Narrateur
 
@@ -113,55 +114,55 @@ Qu’est-ce que tu connais du FLNJ ?#Bulle:NimuHautDroite
 
 Ton amie secoue la tête négativement.#Bulle:Narrateur
 
-Le FLNJ était l'un des partis politiques les plus populaires de la civilisation précédente.#Bulle:NimuHautGauche
-Son importance historique était telle qu'il y avait<br> des jours de fête nationale en lien avec son idéologie.#Bulle:NimuHautDroit
+Le FLNJ était l'un des partis politiques<br> les plus populaires de la <br>civilisation précédente.#Bulle:NimuHautGauche
+Son importance historique<br> était telle qu'il y avait<br> des jours de fête nationale en lien avec son idéologie.#Bulle:NimuHautDroit
 Je me rappelle les parades, les statues...<br> mais aussi des conflits et des batailles…#Bulle:NimuHautDroite
 
-Attends, attends, mais il veut dire quoi cet acronyme ?#Bulle:EsthelaHautGauche
+Attends, attends,<br> mais il veut dire quoi cet acronyme ?#Bulle:EsthelaHautGauche
 
 Un sillon se creuse entre les sourcils d'Esthela. Il apparait évident qu'elle n'a jamais entendu parler de ce pan de la culture pré-Singularité.#Bulle:Narrateur
 
 T’en as vraiment jamais entendu parler ?<br> Il s’agit du Front de Libération des Nains de Jardins enfin !#Bulle:NimuHautDroite
-Les fiers chevaliers se battant pour libérer les opprimés<br> du joug tyrannique de la race humaine.#Bulle:NimuHautDroite
+Les fiers chevaliers se battant<br> pour libérer les opprimés<br> du joug tyrannique <br>de la race humaine.#Bulle:NimuHautDroite
 
-Je... Je comprends pas. Des... nains de jardin ? Opprimés ??#Bulle:EsthelaHautGauche
+Je... Je comprends pas.<br> Des... nains de jardin ? Opprimés ??#Bulle:EsthelaHautGauche
 
 C’étaient des jours bien sombres.#Bulle:NimuHautDroit
-Les nains de jardin étaient des humanoïdes comme toi et moi, <br> mais ils n’ont jamais pu jouir des mêmes droits que nous dans ce pays.#Bulle:NimuHautDroite
-Il n’y a qu'au Listenbourg qu’ils étaient vraiment libres.#Bulle:NimuHautDroite
-Mais ils sont tous morts pendant la Singularité.#Bulle:NimuHautDroite
+Les nains de jardin étaient<br> des humanoïdes comme toi et moi, <br> mais ils n’ont jamais pu jouir <br>des mêmes droits que nous dans ce pays.#Bulle:NimuHautDroite
+Il n’y a qu'au Listenbourg<br> qu’ils étaient vraiment libres.#Bulle:NimuHautDroite
+Mais ils sont tous<br> morts pendant la Singularité.#Bulle:NimuHautDroite
 
 Esthéla sort un carnet de notes et commence à écrire dedans furieusement#Bulle:Narrateur
 
 Le Listenbourg..? Je crois que j’ai déjà lu le nom quelque part. C’était un pays, c’est ça ?"#Bulle:EsthelaHautGauche
 
-Le plus grand de tous. J'y ai vécu un moment. C'était au sud d’ici. Avec Lurenberg, sa capitale, le joyaux de la Baie Marcella.#Bulle:NimuHautDroite
+Le plus grand de tous. <br>J'y ai vécu un moment. <br>C'était au sud d’ici. <br>Avec Lurenberg, sa capitale,<br> le joyaux de la Baie Marcella.#Bulle:NimuHautDroite
 
 Ooookay.#Bulle:EsthelaHautGauche
 Ces informations l'ont, de toute évidence, désarçonnée.#Bulle:Narrateur
-Hm, est-ce qu'on peut réorienter un peu la discussion ?#Bulle:EsthelaHautGauche
-Je pense que je vais peut-être avoir du mal à trier<br> les informations si je les ai dans n’importe quel ordre.#Bulle:EsthelaHautGauche
-Mes recherches portent avant tout sur la culture internet et les détails de l’ère digitale.#Bulle:EsthelaHautGauche
-Tiens, est-ce que tu pourrais me parler de memes, par exemple ?#Bulle:EsthelaHautGauche
+Hm, est-ce qu'on peut<br> réorienter un peu la discussion ?#Bulle:EsthelaHautGauche
+Je pense que je vais<br> peut-être avoir du mal à trier<br> les informations si je les ai dans<br> n’importe quel ordre.#Bulle:EsthelaHautGauche
+Mes recherches portent <br>avant tout sur la culture internet<br> et les détails de l’ère digitale.#Bulle:EsthelaHautGauche
+Tiens, est-ce que tu pourrais<br> me parler de memes, par exemple ?#Bulle:EsthelaHautGauche
 
-Hm… Pourquoi pas, mais je suis pas sûre de beaucoup m’y connaître.#Bulle:NimuHautDroite
+Hm… Pourquoi pas,<br> mais je suis pas sûre <br>de beaucoup m’y connaître.#Bulle:NimuHautDroite
 
 Nimu affiche un sourire énigmatique et carnassier en prononçant ces paroles.#Bulle:Narrateur
 
 Hmpf, je vais rester simple alors...#Bulle:EsthelaHautGauche
-Est-ce que tu peux me parler de ce qui t’a semblé être le meme le plus culte ?#Bulle:EsthelaHautGauche
-Je le connaîtrai certainement mais je suis curieuse d'avoir ton avis.#Bulle:EsthelaHautGauche
+Est-ce que tu peux me parler<br> de ce qui t’a semblé être<br> le meme le plus culte ?#Bulle:EsthelaHautGauche
+Je le connaîtrai certainement<br> mais je suis curieuse d'avoir ton avis.#Bulle:EsthelaHautGauche
 
 La vieille femme s'arrête un instant, la main sur son menton.#Bulle:Narrateur
 
-Je dirais... Le Père Noël, sûrement ?#Bulle:NimuHautDroite
-Il y avait toute une blague qui consistait à faire semblant que le Père Noël<br> était une invention et qu’il n’avait jamais existé.#Bulle:NimuHautDroite
-Les gens faisaient de longues discussions ironiques en racontant le jour<br> où ils avaient appris que le Père Noël n’existait pas. #Bulle:NimuHautDroite
-Hahaha. C'était le bon vieux temps.#Bulle:NimuHautDroite
+Je dirais... Le Père Noël,<br> sûrement ?#Bulle:NimuHautDroite
+Il y avait toute une blague <br>qui consistait à faire semblant que le Père Noël<br> était une invention et<br> qu’il n’avait jamais existé.#Bulle:NimuHautDroite
+Les gens faisaient de longues <br>discussions ironiques en racontant le jour<br> où ils avaient appris<br> que le Père Noël n’existait pas. #Bulle:NimuHautDroite
+Hahaha.<br> C'était le bon vieux temps.#Bulle:NimuHautDroite
 
 Le stylo d'Esthéla s'arrête. Une de ses cordes vocales vacille alors qu'elle prend la parole.#Bulle:EsthelaHautGauche
 
-Est-ce que... tu te fous de moi depuis tout à l’heure ?#Bulle:EsthelaHautDroite #emot:Deception
+Est-ce que...<br> tu te fous de moi depuis tout à l’heure ?#Bulle:EsthelaHautDroite #emot:Deception
 
 Ta grand-mère émet un petit rire en voyant que le pot aux roses a été découvert.#Bulle:Narrateur
 
@@ -169,9 +170,9 @@ Tu as mis longtemps à t’en rendre compte.#Bulle:NimuHautGauche #emot:Sparkles
 
 Esthéla se voûte visiblement, et pousse un gros soupir avant de retrouver son petit sourire.#Bulle:Narrateur
 
-Est-ce que c’est trop tard pour annuler notre amitié ?#Bulle:EsthelaHautGauche
+Est-ce que c’est trop tard <br>pour annuler notre amitié ?#Bulle:EsthelaHautGauche
 
-Je suis plutôt déçue de ce qu'elle offre finalement <br>et j'aimerais la donner à quelqu'un d'autre.#Bulle:EsthelaHautGauche
+Je suis plutôt déçue<br> de ce qu'elle offre finalement <br>et j'aimerais la donner à quelqu'un d'autre.#Bulle:EsthelaHautGauche
 
 Malheureusement, ma grande,#Bulle:NimuHautDroite
  j’ai bien peur que tu sois coincée avec moi.#Bulle:NimuHautDroite
@@ -180,7 +181,7 @@ Malheureusement, ma grande,#Bulle:NimuHautDroite
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter2===
-Ces personnages ne devraient avoir l'occasion de parler que deux fois, comment est-ce que vous êtes arrivés là ??#Bulle:Narrateur
+Ces personnages ne devraient avoir l'occasion de parler que deux fois, comment est-ce que vous êtes arrivés là ?? Serieux les devs vont s'enterrer avec les nains de jardins la#Bulle:Narrateur
 //blabla
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")

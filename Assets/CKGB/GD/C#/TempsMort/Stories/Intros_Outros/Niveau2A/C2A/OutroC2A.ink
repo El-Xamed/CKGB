@@ -13,18 +13,18 @@ Une sacrée brochette de guignols. Je les adore.#Bulle:Narrateur
 Au loin, la cloche sonnant le départ prochain du train résonne.#Bulle:Narrateur
 
 Oh, tempête !#Bulle:MorganHautGauche
-C’est foutu. <br>On l’aura jamais. <br>Je vais être en retard.<br> Mon rencard va me prendre pour un clown.#Bulle:MorganHautGauche
+C’est foutu. <br>On l’aura jamais. <br>Je vais être en retard.<br> Mon rencard va me prendre pour un clown.#Bulle:MorganHautDroite
 
 À la grande surprise de tous les partis concernés, Esthéla émet un furieux son de klaxon.#Bulle:Narrateur
 
-Oh.<br> Pardon. <br>C'était très insensible de ma part.#Bulle:MorganHautGauche
+Oh.<br> Pardon. <br>C'était très insensible de ma part.#Bulle:MorganHautDroite
 
-Est-ce que tu veux vraiment te faire pardonner ?#Bulle:EsthelaHautDroite
+Est-ce que tu veux vraiment te faire pardonner ?#Bulle:EsthelaHautGauche
 
-À tout prix, très chère.#Bulle:MorganHautGauche
+À tout prix, très chère.#Bulle:MorganHautDroite
 
 Elle prend ton visage entre ses mains, te regarde droit dans les yeux, et avec une gravité que tu ne lui as jamais connue, elle prend la parole.#Bulle:Narrateur
 
-<b>COURS</b>.#Bulle:EsthelaHautDroite
+<b>COURS</b>.#Bulle:EsthelaHautGauche
 ~ FinishChallenge("name")
 ->END

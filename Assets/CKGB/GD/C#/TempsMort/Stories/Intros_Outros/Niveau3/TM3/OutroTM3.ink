@@ -35,7 +35,7 @@ Maintenant, fonce.#Bulle:EsthelaHautGauche #emot:Rainbow
 Enfin, attends que le train s'arrête quand même.#Bulle:EsthelaHautGauche
 Mais après, FONCE.#Bulle:EsthelaHautGauche #emot:JoyRight
 
-Et merci encore de m'avoir laissée venir faire les courses avec toi.#Bulle:NimuHautDroite
+Et merci encore de m'avoir laissée <br>venir faire les courses avec toi.#Bulle:NimuHautDroite
 
 ...#Bulle:MorganHautGauche #emot:Dots
 Tu peux arrêter de faire semblant.#Bulle:MorganHautGauche
@@ -52,7 +52,7 @@ Et c'est genre, au quatrième étage.#Bulle:MorganHautDroite
 
 <wave>Évidemment.</wave>#Bulle:NimuHautDroite
 
-Donc il est temps de faire <br>la seule chose que des gens rationnels<br> peuvent envisager pour se préparer à monter autant d'escaliers.#Bulle:MorganHautDroite
+Donc il est temps de faire <br>la seule chose que des gens rationnels<br> peuvent envisager pour se préparer<br> à monter autant d'escaliers.#Bulle:MorganHautDroite
 ~ Trigger("name")
 Installer un ascenseur ?#Bulle:EsthelaHautGauche
 

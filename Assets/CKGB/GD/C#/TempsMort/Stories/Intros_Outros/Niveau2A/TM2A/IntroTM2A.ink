@@ -89,12 +89,12 @@ Maint'nant, Mémé ? <br>Pt'être devrions-nous procéder ?<br> J'crois qu'nous 
 Attends un instant.<br> Elle a raison ta pote. #Bulle:NimuHautDroite #emot:!
 
 À quel sujet ?#Bulle:MorganHautDroite #emot:?
-<size=120>C'EST un super spot à sieste !</size=120%>#Bulle:NimuHautGauche
-<br>Et on est à quoi,<br> dix-quinze minutes de la gare ?#Bulle:NimuHautGauche
-Tu m'as dit que le prochain train<br>arrivait dans vingt minutes environ.#Bulle:NimuHautGauche
-
+<size=120>C'EST un super spot à sieste !</size=120%>#Bulle:NimuBasDroite
+<br>Et on est à quoi,<br> dix-quinze minutes de la gare ?#Bulle:NimuBasDroite
+Tu m'as dit que le prochain train<br>arrivait dans vingt minutes environ.#Bulle:NimuBasDroite
+Vous avez du mal a lire hein ? Moi aussi... #Bulle:Narrateur
 Ah, donc tu m'écoutes des fois.#Bulle:MorganHautDroite
-Fais pas l'malin<br> sinon j't'abandonne là. #Bulle:NimuHautGauche
+Fais pas l'malin<br> sinon j't'abandonne là. #Bulle:NimuBasDroite
 Pas de soucis.#Bulle:MorganHautDroite
 Si elle te laisse tout seul, tu fais demi-tour.#Bulle:Narrateur
 Tu as besoin d'une distraction pour ne pas commencer à trembler. #Bulle:Narrateur
@@ -102,8 +102,8 @@ Et tu vas tomber à court d'ongles à ronger au bout d'un moment.#Bulle:Narrateu
 J'me débrouille très bien seul.#Bulle:MorganHautDroite
 
 BREF,#Bulle:NimuHautGauche
-avec les trains qui restent<br> toujours bien 15 minutes à quai,#Bulle:NimuHautGauche
-on peut large se permettre<br> de profiter un peu d'être ici !<br> Ça nous avancera pas plus<br> d'attendre à la gare.#Bulle:NimuBAsGauche
+avec les trains qui restent<br> toujours bien 15 minutes à quai,#Bulle:NimuBasDroite
+on peut large se permettre<br> de profiter un peu d'être ici !<br> Ça nous avancera pas plus<br> d'attendre à la gare.#Bulle:NimuBasGauche
 ~ Trigger("name")
 Tu prends plusieurs inspirations et expirations pour essayer de formuler une réponse raisonnable.#Bulle:Narrateur
 À vrai dire, même si ça te stresse un peu de ne pas déjà être à la gare, c'est vrai que tu te sens bien ici.#Bulle:Narrateur
