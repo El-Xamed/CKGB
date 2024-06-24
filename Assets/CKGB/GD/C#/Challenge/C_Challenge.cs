@@ -122,6 +122,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] string sceneMenu = "S_MainMenu";
     [SerializeField] string sceneTM = "S_TempsLibre";
     [SerializeField] string sceneWM = "S_Worldmap";
+    [SerializeField] string sceneCredits = "S_Credits";
 
     #endregion
     #endregion
@@ -2395,7 +2396,7 @@ public class C_Challenge : MonoBehaviour
 
             if (GameManager.instance.currentC.name == "SO_lvl3")
             {
-                nextScene = sceneMenu;
+                nextScene = sceneCredits;
             }
             if (GameManager.instance.currentC.name == "SO_Tuto")
             {
