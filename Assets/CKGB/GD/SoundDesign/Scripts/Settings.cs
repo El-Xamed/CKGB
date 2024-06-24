@@ -71,11 +71,19 @@ public class Settings : MonoBehaviour
     {
         float volume = musicSlider.value;
         myMixer.SetFloat("music",Mathf.Log10(volume) * 20);
+        if(volume<=0)
+        {
+            myMixer.SetFloat("music", 0);
+        }
     }
     public void SetSFXVolume()
     {
         float volume = sfxSlider.value;
         myMixer.SetFloat("sfx",Mathf.Log10(volume) * 20);
+        if (volume <= 0)
+        {
+            myMixer.SetFloat("sfx",0);
+        }
     }
     
     public void SetGeneralVolume()
@@ -84,6 +92,12 @@ public class Settings : MonoBehaviour
         myMixer.SetFloat("general",Mathf.Log10(volume) * 20);
         myMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
         myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        if (volume <= 0)
+        {
+            myMixer.SetFloat("music", 0);
+            myMixer.SetFloat("sfx", 0);
+            myMixer.SetFloat("general", 0);
+        }
 
     }
 
@@ -95,7 +109,7 @@ public class Settings : MonoBehaviour
         if (Generalmute)
         {
             myMixer.SetFloat("general", -80);
-
+            
 
 
 
