@@ -21,7 +21,7 @@ Tu sens quelque chose <shake>t'agripper le coeur</shake>.#Bulle:Narrateur
 
 Bon.<br> J’suppose qu’on t’accompagne pas plus loin ?#Bulle:NimuHautDroite
 
-Ah bon ?#BulleEsthelaHautGauche #emot:Deception
+Ah bon ?#Bulle:EsthelaHautGauche #emot:Deception
 
 Tu recules contre le muret<br> pour t'appuyer dessus.#Bulle:Narrateur
 
