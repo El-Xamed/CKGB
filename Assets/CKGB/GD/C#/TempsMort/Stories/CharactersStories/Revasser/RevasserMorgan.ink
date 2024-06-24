@@ -65,7 +65,7 @@ Dans cet instant de relâche, tu prends conscience de la tension de tes muscles.
 La contraction de ta mâchoire.#Bulle:MorganBasGauche
 La foudre dans tes épaules.#Bulle:MorganBasGauche
 La vitesse de ta respiration. #Bulle:MorganBasGauche
-Tu décroches ton stylo d’une de tes poches, et commences à le faire tourner entre tes doigts.#Bulle:MorganBasGauche
+Tu décroches ton stylo de l'une de tes poches, et commences à le faire tourner entre tes doigts.#Bulle:MorganBasGauche
 Tu cherches quelque chose contre quoi t’adosser. Tes doigts frôlent le papier contenu dans tes poches, à la recherche de ton carnet dans un océan de brouillons, de notes et de pense-bêtes.#Bulle:MorganBasGauche
 Quelque chose t’arrête cependant.#Bulle:MorganHautGauche
 #Bulle:MorganBasGauche
@@ -92,7 +92,7 @@ C’est plus comme une démangeaison maintenant. Cela DEMANDE ton attention. Tu 
 Impulsivement, tu débouches ton stylo avec les dents, et commences à griffoner, assis sur ton siège de train. #Bulle:Narrateur
 
 Tu ne sais peut-être pas grand chose sur toi-même.#Bulle:Narrateur
-Ou sur quel genre de personne tu veux devenir. Mais dans cet océan d’incertitude, tu sens un prise à laquelle te raccrocher.#Bulle:Narrateur
+Ou sur quel genre de personne tu veux devenir. Mais dans cet océan d’incertitude, tu sens une prise à laquelle te raccrocher.#Bulle:Narrateur
 Écrire n’est pas une manie.#Bulle:Narrateur
 Ce n’est pas un simple système d’auto-défense.#Bulle:Narrateur
 C’est ta vocation. #Bulle:Narrateur

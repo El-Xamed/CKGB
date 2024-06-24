@@ -26,7 +26,7 @@ Une sorte de ruche à humains, toute en pierre et en métal. Ses magasins débor
 drainées de leurs nutriments par des champs monochromes et des poisons.#Bulle:Narrateur
 Tu exagères un peu ton ignorance. Tu sais ce qu’est une voiture. #Bulle:Narrateur
 Il y a encore des engins à moteur à explosion dans Brekelantte.#Bulle:Narrateur
-Tu as juste du mal à imaginer comment est-ce qu’il y a pu en avoir tellement, et comment est-ce que cet immense réseau interagissait. #Bulle:Narrateur
+Tu as juste du mal à imaginer comment il a pu y en avoir tellement, et comment est-ce que cet immense réseau interagissait. #Bulle:Narrateur
 Tu sais qu’il y avait une espèce de code des conducteurs, un peu comme les pirates.#Bulle:Narrateur
 C’est bizarre que les gens soient capables de se faire confiance les uns les autres pour conduire côte à côte des machines allant à plusieurs dizaines de kilomètres à l’heure, et pourtant témoignaient d’autant de méfiance envers les inconnus dans la vie de tous les jours.#Bulle:Narrateur
 Qu’est-ce qui crée ce contraste entre l’extérieur et l’intérieur de la voiture ?#Bulle:Narrateur
@@ -53,14 +53,14 @@ Comme quand Morgan tient son stylo en parlant.#Bulle:Narrateur
 Ça confère une contenance, une attitude.#Bulle:Narrateur
 Des gens fument à Brekelantte. Du blémi, du chançoit, et même du tabac. Mais pas comme ils le faisaient à l’époque.#Bulle:Narrateur
 Ça se sent, dans la manière dont les plus vieilles personnes en parlent.#Bulle:Narrateur
-Tu ne comprends pas ce qui peut être si différent. Mais aussi, tu n’as jamais vu de cigarettes comme sur les photos, à Brekelantte. #Bulle:Narrateur
+Tu ne comprends pas ce qui peut être si différent. Mais aussi, tu n’as jamais vu de cigarette comme sur les photos, à Brekelantte. #Bulle:Narrateur
 Tu fais tomber la balle remplie de graines.#Bulle:Narrateur
 Oups.#Bulle:Narrateur
 Tu la ramasses. Ton pouce poursuit la ligne tracée par la couture.#Bulle:Narrateur
 Tu ne diras jamais assez merci à tes amis du cirque pour te l’avoir offerte.#Bulle:Narrateur
 Pour t’avoir initiée à leur monde. Pour t’avoir faite l’une des leurs.#Bulle:Narrateur
 Tu ne t’es jamais sentie différente là-bas. Pourtant, tu ne les connaissais pas il y a un mois.#Bulle:Narrateur
-Ça avait été comme si… Comme si tu avais toujours été un poisson, et qu’on t’avait jeté dans l’eau pour la première fois.#Bulle:Narrateur
+Ça avait été comme si… Comme si tu avais toujours été un poisson, et qu’on t’avait jetée dans l’eau pour la première fois.#Bulle:Narrateur
 Tu n’étais plus seule, et pourtant tu n’as jamais été aussi libre...#Bulle:Narrateur
 Tu sors deux autres balles...#Bulle:Narrateur
 Ce n’est pas vraiment possible de jouer à deux balles. On peut le faire, plus ou moins,#Bulle:Narrateur
@@ -71,7 +71,7 @@ Le destin tient à si peu de choses. Elle retombe...#Bulle:Narrateur
 Tu en lances une autre pour pouvoir l’accueillir. On est tous lancés dans des directions différentes. La deuxieme balle retombe.#Bulle:Narrateur
 Tu dois en lancer une nouvelle pour avoir la place de la ramasser.#Bulle:Narrateur
 Et il suffit d’un rien pour qu’on croise celle d’une autre personne. Elle entame sa cloche, et tu relances celle de l’autre côté.#Bulle:Narrateur
-Elles se carambolent dans les airs.  Et que notre vie entière change de trajectoire.#Bulle:Narrateur
+Elles se carambolent dans les airs. Et que notre vie entière change de trajectoire.#Bulle:Narrateur
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
@@ -80,7 +80,7 @@ Elles se carambolent dans les airs.  Et que notre vie entière change de traject
 
 //blabla
 
-J'ai que deux temps morts à moi, comment vous êtes arrivés là ?? #Bulle:EsthelaBasDroite
+J'ai que deux temps libres à moi, comment vous êtes arrivés là ?? #Bulle:EsthelaBasDroite
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
