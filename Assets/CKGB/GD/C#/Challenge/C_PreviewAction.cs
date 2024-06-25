@@ -104,56 +104,8 @@ public class C_PreviewAction : MonoBehaviour
             //Check dans toute la liste.
             foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
             {
-                #region Target
-                //Setup la target.
-                if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
-                {
-                    actorTarget = "L'utilisateur.ice";
-
-                    //Setup le string de la target "(Soi)".
-                    whatTarget = " (Soi)";
-                }
-                else if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
-                {
-                    actorTarget = "";
-
-                    string other = "";
-
-                    #region Check le mode de direction.
-                    switch (thisInteraction.whatDirectionTarget)
-                    {
-                        case Interaction.ETypeDirectionTarget.Right:
-                            other += "<sprite index=[index] tint=9>";
-                            for (int i = 0; i < thisInteraction.range; i++)
-                            {
-                                other += "<sprite index=[index] tint=12>";
-                            }
-                            break;
-                        case Interaction.ETypeDirectionTarget.Left:
-                            for (int i = 0; i < thisInteraction.range; i++)
-                            {
-                                other += "<sprite index=[index] tint=12>";
-                            }
-                            other += "<sprite index=[index] tint=8>";
-                            break;
-                        case Interaction.ETypeDirectionTarget.RightAndLeft:
-                            for (int i = 0; i < thisInteraction.range; i++)
-                            {
-                                other += "<sprite index=[index] tint=12>";
-                            }
-                            other += "<sprite index=[index] tint=8>";
-                            other += "<sprite index=[index] tint=9>";
-                            for (int i = 0; i < thisInteraction.range; i++)
-                            {
-                                other += "<sprite index=[index] tint=12>";
-                            }
-                            break;
-                    }
-                    #endregion
-
-                    whatTarget = "(" + other + ")";
-                }
-                #endregion
+                //Création d'un int pour setup la bonne couleur de sprite.
+                int color = 0;
 
                 //Setup la valeur du premier texte.
                 whatValue = GetValue(thisActionClass.GetValue(thisInteraction.whatTarget, thisTargetStats.whatStatsTarget));
@@ -164,36 +116,38 @@ public class C_PreviewAction : MonoBehaviour
                 //Check si c'est une stats ou un déplacement.
                 if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats)
                 {
-                    #region Setup string action
-                    switch (thisTargetStats.whatCost)
-                    {
-                        case TargetStats.ETypeCost.Gain:
-                            //Setup le bon symbol (fleche droite).
-                            whatSigne = "<sprite index=[index] tint=4>";
-
-                            descriptionPreview = " va gagner ";
-                            break;
-                        case TargetStats.ETypeCost.Price:
-                            //Setup le bon symbol (fleche gauche).
-                            whatSigne = "<sprite index=[index] tint=5>";
-
-                            descriptionPreview = " va perdre ";
-                            break;
-                    }
-                    #endregion
-
-                    #region Inscription
                     if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm) //Check si c'est pour le calm.
                     {
-                        whatStats = "<sprite index=[index] tint=16>";
+                        whatStats = "<sprite index=[index] tint=46>";
+
+                        color = 31;
 
                         endPreviewText = " de calme.";
                     }
                     else if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy) //Check si c'est pour l'energie.
                     {
-                        whatStats = "<sprite index=[index] tint=15>";
+                        whatStats = "<sprite index=[index] tint=30>";
+
+                        color = 15;
 
                         endPreviewText = " d'énergie.";
+                    }
+
+                    #region Setup symbole
+                    switch (thisTargetStats.whatCost)
+                    {
+                        case TargetStats.ETypeCost.Gain:
+                            //Setup le bon symbol (fleche droite).
+                            whatSigne = "<sprite index=[index] tint= " + (4 + color) + ">";
+
+                            descriptionPreview = " va gagner ";
+                            break;
+                        case TargetStats.ETypeCost.Price:
+                            //Setup le bon symbol (fleche gauche).
+                            whatSigne = "<sprite index=[index] tint= " + (5 + color) + ">";
+
+                            descriptionPreview = " va perdre ";
+                            break;
                     }
                     #endregion
                 }
@@ -240,6 +194,57 @@ public class C_PreviewAction : MonoBehaviour
                     }
                     #endregion
                 }
+
+                #region Target
+                //Setup la target.
+                if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
+                {
+                    actorTarget = "L'utilisateur.ice";
+
+                    //Setup le string de la target "(Soi)".
+                    whatTarget = " (Soi)";
+                }
+                else if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
+                {
+                    actorTarget = "";
+
+                    string other = "";
+
+                    #region Check le mode de direction.
+                    switch (thisInteraction.whatDirectionTarget)
+                    {
+                        case Interaction.ETypeDirectionTarget.Right:
+                            other += "<sprite index=[index] tint= " + (9 + color) + ">";
+                            for (int i = 0; i < thisInteraction.range; i++)
+                            {
+                                other += "<sprite index=[index] tint= " + (12 + color) + ">";
+                            }
+                            break;
+                        case Interaction.ETypeDirectionTarget.Left:
+                            for (int i = 0; i < thisInteraction.range; i++)
+                            {
+                                other += "<sprite index=[index] tint= " + (12 + color) + ">";
+                            }
+                            other += "<sprite index=[index] tint= " + (8 + color) + ">";
+                            break;
+                        case Interaction.ETypeDirectionTarget.RightAndLeft:
+                            for (int i = 0; i < thisInteraction.range; i++)
+                            {
+                                other += "<sprite index=[index] tint= " + (12 + color) + ">";
+                            }
+                            other += "<sprite index=[index] tint= " + (8 + color) + ">";
+                            other += "<sprite index=[index] tint= " + (9 + color) + ">";
+                            for (int i = 0; i < thisInteraction.range; i++)
+                            {
+                                other += "<sprite index=[index] tint= " + (12 + color) + ">";
+                            }
+                            break;
+                    }
+                    #endregion
+
+                    whatTarget = "(" + other + ")";
+                }
+                #endregion
 
                 descriptionPreview += whatValue + endPreviewText;
 
