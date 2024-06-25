@@ -491,6 +491,10 @@ public class C_Challenge : MonoBehaviour
             foreach (InitialAccPosition position in listPosition)
             {
                 C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
+
+                //Replace l'actor dans un autre Transform.
+                myAcc.transform.parent = GameObject.Find("BackGround").transform;
+
                 PlacePionOnBoard(myAcc, position.position, false);
 
                 listAcc.Add(myAcc);

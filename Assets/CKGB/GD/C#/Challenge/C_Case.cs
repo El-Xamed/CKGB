@@ -30,7 +30,6 @@ public class C_Case : MonoBehaviour
     public void PlacePion(C_Pion thisPion)
     {
         //Place l'actor et change sa valeur de position.
-        //thisPion.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         thisPion.GetComponent<RectTransform>().position = new Vector3(transform.position.x, 0, transform.position.z);
 
         //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
