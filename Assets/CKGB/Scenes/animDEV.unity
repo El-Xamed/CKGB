@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canva_Tuto_2_leretour
       objectReference: {fileID: 0}
+    - target: {fileID: 3767633262581511013, guid: a8ac3ae8e38ffec4a96d7fe900ebdb57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8ac3ae8e38ffec4a96d7fe900ebdb57, type: 3}
 --- !u!1001 &189793261
@@ -631,7 +635,7 @@ Animator:
   m_GameObject: {fileID: 198988017}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 20cfddcd320cdfa4989169c9e123d96b, type: 2}
+  m_Controller: {fileID: 9100000, guid: ca9d4b3fe8709c94ea2d1f8b91f392a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

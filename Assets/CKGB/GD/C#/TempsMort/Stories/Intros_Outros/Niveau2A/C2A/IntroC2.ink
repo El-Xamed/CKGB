@@ -9,7 +9,7 @@ Tes yeux descendent jusqu'au ruisseau d'une trentaine de centimètres de large.
 
 Attendez, bougez plus.#Bulle:MorganHautDroite
 
-Quoi ?#bulle:EsthelaHautGauche
+Quoi ?#Bulle:EsthelaHautGauche
 
 Oh peste.<br> Elle a marché sur l'pont.#Bulle:MorganHautDroite
 

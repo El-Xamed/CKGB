@@ -36,8 +36,8 @@ Tu as vraiment fait du bon travail.#Bulle:Narrateur
 Le visage de leur mère et de ses frères quand tu les as vus la première fois.#Bulle:Narrateur
 Tu n’as pas choisi de devenir leur mère.#Bulle:Narrateur
 Il y avait juste des enfants avec des yeux grands comme ceux d’un matou.#Bulle:Narrateur
-Et comme ta détermination,#Bulle:NimuHautDroite
-alors que tu t’es jurée qu’ils ne grandiraient pas orphelins.#Bulle:NimuHautDroite
+Et comme ta détermination,#Bulle:Narrateur
+alors que tu t’es jurée qu’ils ne grandiraient pas orphelins.#Bulle:Narrateur
 
 <i>(Ouais.)</i>#Bulle:NimuHautDroite
 <i>(J'ai vraiment fait<br> du bon travail.)</i> #Bulle:NimuHautDroite
