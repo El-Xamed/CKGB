@@ -84,7 +84,7 @@ public class C_Worldmap : MonoBehaviour
         currentPoint = startPoint;
 
 
-        transform.position = currentPoint.transform.position;
+       
         if (currentPoint.name == "lvl1")
         {
             currentPoint.IsDone = true;
@@ -126,6 +126,8 @@ public class C_Worldmap : MonoBehaviour
                 break;
         }
 
+        initiateTheMapCharacterProtocol();
+        transform.position = currentPoint.transform.position;
 
         RevealLevel();
 
