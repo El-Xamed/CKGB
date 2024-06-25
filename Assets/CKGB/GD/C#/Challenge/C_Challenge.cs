@@ -1,11 +1,8 @@
 using Febucci.UI;
-using Ink;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -1543,6 +1540,9 @@ public class C_Challenge : MonoBehaviour
 
                     //Lance la phase "Cata".
                     CataTurn();
+                    ResetCataLogs();
+                    listCurrentCataLogs.Add(currentCata.catastrophyLog);
+                    uiLogs.GetComponentInChildren<TMP_Text>().text = GetListCataLogs();
                 }
             }
             else //Lance la phase du joueur.
@@ -1584,7 +1584,7 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Peut faire l'action");
 
             //Utilise l'action.
-            UseAction();
+            UseAction(currentResolution.action, currentResolution.actor);
 
             #region Pour le challenge "Tuto" redonne les bon sprite à Morgan.
             if (currentResolution.action.buttonText == "Attraper tes lunettes")
@@ -1601,6 +1601,42 @@ public class C_Challenge : MonoBehaviour
                         thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Cata_Chara_Challenge");
 
                         thisActor.CheckInDanger();
+                    }
+                }
+            }
+            #endregion
+
+            #region Check si c'était la bonne action à faire
+            //Check si c'est la bonne action.
+            if (currentResolution.action.name == currentStep.rightAnswer.name)
+            {
+                //SFX
+                if (AudioManager.instanceAM)
+                {
+                    AudioManager.instanceAM.Play(sfxGoodAction);
+                }
+
+                Debug.Log("Bonne action pour passer à l'étape suivante");
+
+                //Vfx de bonne action.
+                GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
+
+                UpdateEtape();
+            }
+            else //Check si c'est pas une action secondaire.
+            {
+                foreach (ActorResolution thisReso in listRes)
+                {
+                    if (thisReso.action.nextAction != null)
+                    {
+                        for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
+                        {
+                            if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.action)
+                            {
+                                Debug.Log("Update next action");
+                                myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.action.nextAction;
+                            }
+                        }
                     }
                 }
             }
@@ -1738,93 +1774,51 @@ public class C_Challenge : MonoBehaviour
     }
 
     //Utilise l'action.
-    void UseAction()
+    void UseAction(SO_ActionClass thisActionClass, C_Actor thisActor)
     {
-        Debug.Log("Use this actionClass : " + currentResolution.action.buttonText);
-
-        #region Raccourcis
-        //Raccourcis.
-        SO_ActionClass action = currentResolution.action;
-        C_Actor actor = currentResolution.actor;
-        #endregion
-
-        #region Check si c'était la bonne action à faire
-        //Check si c'est la bonne action.
-        if (currentResolution.action.name == currentStep.rightAnswer.name)
-        {
-            //SFX
-            if (AudioManager.instanceAM)
-            {
-                AudioManager.instanceAM.Play(sfxGoodAction);
-            }
-
-            Debug.Log("Bonne action pour passer à l'étape suivante");
-
-            //Vfx de bonne action.
-            GameObject.Find(currentResolution.actor.GetDataActor().vfxUiGoodAction.name + "(Clone)").GetComponent<Animator>().SetTrigger("GoodAction");
-
-            UpdateEtape();
-        }
-        else //Check si c'est pas une action secondaire.
-        {
-            foreach (ActorResolution thisReso in listRes)
-            {
-                if (thisReso.action.nextAction != null)
-                {
-                    for (int i = 0; i < myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions.Count; i++)
-                    {
-                        if (myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] == thisReso.action)
-                        {
-                            Debug.Log("Update next action");
-                            myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep)].actions[i] = thisReso.action.nextAction;
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
+        Debug.Log("Use this actionClass : " + thisActionClass.buttonText);
 
         //Applique les conséquences de stats.
         #region Self
         //Créer la liste pour "self"
-        action.SetStatsTarget(Interaction.ETypeTarget.Soi, actor);
+        thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
         //Check si un mouvement pour "self" existe.
-        CheckIfTargetMove(Interaction.ETypeTarget.Soi, actor);
+        CheckIfTargetMove(Interaction.ETypeTarget.Soi, thisActor);
         #endregion
 
         #region Other
         //Créer la liste pour "other"
-        if (action.CheckOtherInAction())
+        if (thisActionClass.CheckOtherInAction())
         {
             //Boucle avec la range.
-            for (int i = 0; i < action.GetRange(); i++)
+            for (int i = 0; i < thisActionClass.GetRange(); i++)
             {
                 Debug.Log("Je cherche sur la case " + i);
 
-                if (action.GetTypeDirectionRange() != Interaction.ETypeDirectionTarget.None)
+                if (thisActionClass.GetTypeDirectionRange() != Interaction.ETypeDirectionTarget.None)
                 {
                     //Boucle pour check sur tout les actor du challenge.
                     foreach (C_Actor thisOtherActor in myTeam)
                     {
                         //Check quel direction la range va faire effet.
-                        switch (action.GetTypeDirectionRange())
+                        switch (thisActionClass.GetTypeDirectionRange())
                         {
                             //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
                             case Interaction.ETypeDirectionTarget.Right:
                                 //Calcul vers la droite.
-                                CheckPositionOther(actor, i, thisOtherActor);
+                                CheckPositionOther(thisActor, i, thisOtherActor);
                                 Debug.Log("Direction Range = droite.");
                                 break;
                             case Interaction.ETypeDirectionTarget.Left:
                                 //Calcul vers la gauche.
-                                CheckPositionOther(actor, -i, thisOtherActor);
+                                CheckPositionOther(thisActor, -i, thisOtherActor);
                                 Debug.Log("Direction Range = Gauche.");
                                 break;
                             case Interaction.ETypeDirectionTarget.RightAndLeft:
                                 //Calcul vers la droite + gauche.
-                                CheckPositionOther(actor, i, thisOtherActor);
-                                CheckPositionOther(actor, -i, thisOtherActor);
+                                CheckPositionOther(thisActor, i, thisOtherActor);
+                                CheckPositionOther(thisActor, -i, thisOtherActor);
                                 Debug.Log("Direction Range = droite + gauche.");
                                 break;
                         }
@@ -1845,7 +1839,7 @@ public class C_Challenge : MonoBehaviour
                     {
                         Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
 
-                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+                        thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, target);
 
                         //Check si un mouvement pour "other" existe.
                         CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
@@ -1858,7 +1852,7 @@ public class C_Challenge : MonoBehaviour
                     {
                         Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
 
-                        action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+                        thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, target);
 
                         //Check si un mouvement pour "other" existe.
                         CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
@@ -1869,7 +1863,7 @@ public class C_Challenge : MonoBehaviour
                 {
                     Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
 
-                    action.SetStatsTarget(Interaction.ETypeTarget.Other, target);
+                    thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, target);
 
                     //Check si un mouvement pour "other" existe.
                     CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
@@ -1885,18 +1879,18 @@ public class C_Challenge : MonoBehaviour
         void CheckIfTargetMove(Interaction.ETypeTarget target, C_Actor thisActor)
         {
             //Check si il y a un movement.
-            if (action.GetWhatMove(target) != TargetStats.ETypeMove.None)
+            if (thisActionClass.GetWhatMove(target) != TargetStats.ETypeMove.None)
             {
                 //Regarde d'abord c'est quoi comme type de déplacement.
-                if (!action.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
+                if (!thisActionClass.GetIfTargetOrNot()) //Non ciblé par un actor ou acc.
                 {
                     Debug.Log("Pas ciblé par un actor ou acc.");
 
                     //Check si un mouvement existe.
-                    if (action.GetValue(target, TargetStats.ETypeStatsTarget.Movement) != 0)
+                    if (thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Movement) != 0)
                     {
                         //Deplace l'actor avec l'info de déplacement + type de déplacement.
-                        MoveActorInBoard(thisActor, action.GetValue(target, TargetStats.ETypeStatsTarget.Movement), action.GetWhatMove(target), action.GetIsTp(target));
+                        MoveActorInBoard(thisActor, thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Movement), thisActionClass.GetWhatMove(target), thisActionClass.GetIsTp(target));
                     }
                 }
                 else //Ciblé par un actor ou acc.
@@ -1904,15 +1898,15 @@ public class C_Challenge : MonoBehaviour
                     Debug.Log("Ciblé par un actor ou acc.");
 
                     //VOIR SI BESOIN DE SETUP ICI OU DANS L'ACTION DURECTEMENT POUR LES INFO DES ACC OU ACTOR POUR SETUP LES LIENS AVEC LES OBJ DU CHALLANGE.
-                    if (action.GetTarget().GetComponent<C_Actor>())
+                    if (thisActionClass.GetTarget().GetComponent<C_Actor>())
                     {
-                        action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Actor>());
+                        thisActionClass.SetStatsTarget(target, thisActionClass.GetTarget().GetComponent<C_Actor>());
                     }
-                    else if (action.GetTarget().GetComponent<C_Accessories>())
+                    else if (thisActionClass.GetTarget().GetComponent<C_Accessories>())
                     {
-                        action.SetTarget(GameObject.Find(action.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
+                        thisActionClass.SetTarget(GameObject.Find(thisActionClass.GetTarget().GetComponent<C_Accessories>().GetDataAcc().name));
 
-                        action.SetStatsTarget(target, action.GetTarget().GetComponent<C_Accessories>());
+                        thisActionClass.SetStatsTarget(target, thisActionClass.GetTarget().GetComponent<C_Accessories>());
                     }
                 }
             }
@@ -2102,7 +2096,7 @@ public class C_Challenge : MonoBehaviour
             }
             #endregion
 
-            //Check si c'est des dégats qui s'applique à tout le monde.
+            //Check si c'est des dégats qui s'applique à tout le monde.  CETTE PARTIE DU DEV EST INUTILE !
             if (currentCata.applyForAll)
             {
                 bool onCata = false;
@@ -2137,7 +2131,20 @@ public class C_Challenge : MonoBehaviour
             {
                 Debug.Log("Applique la cata sur les cases visée seulement");
 
-                bool isOnAcc = false;
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    //Check si un joueur à marché sur le lézard.
+                    if (thisActor.GetPosition() == thisCase)
+                    {
+                        //Applique des conséquence grace au finction de actionClass.
+                        UseAction(currentCata.actionClass, thisActor);
+
+                        //Vfx
+                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
+                        thisActor.CheckIsOut();
+                    }
+                }
 
                 //Check d'abord dans un premier temps si il a touché un acc.
                 foreach (C_Accessories thisAcc in listAcc)
@@ -2147,39 +2154,39 @@ public class C_Challenge : MonoBehaviour
                         //Check si un joueur à marché sur le lézard.
                         if (thisActor.GetPosition() == thisAcc.GetPosition())
                         {
-                            isOnAcc = true;
-                        }
-                    }
-
-
-                    /*Check si l'acc est sur une cata.
-                    if (thisCase == thisAcc.GetPosition())
-                    {
-                        //Pour tous les actor.
-                        foreach (C_Actor thisActor in myTeam)
-                        {
-                            //Applique des conséquence grace au fonction de actionClass.
-                            currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
+                            //Applique des conséquence grace au finction de actionClass.
+                            thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
                             //Vfx
                             thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
                             thisActor.CheckIsOut();
+
+                            //Ajoute dans la liste un texte.
+                            listCurrentCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
                         }
-                    }*/
-                }
+                    }
 
-                if (isOnAcc)
-                {
-                    foreach (C_Actor thisActor in myTeam)
+
+                    //Check si l'acc est sur une cata.
+                    if (thisCase == thisAcc.GetPosition())
                     {
-                        //Applique des conséquence grace au finction de actionClass.
-                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
+                        if (thisAcc.GetDataAcc().typeAttack == SO_Accessories.ETypeAttack.All)
+                        {
+                            //Check si la position des actor est sur la meme case que l'acc.
+                            foreach (var thisActor in myTeam)
+                            {
+                                thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
-                        //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                                //Vfx
+                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                        thisActor.CheckIsOut();
+                                thisActor.CheckIsOut();
+                            }
+
+                            //Ajoute dans la liste un texte.
+                            listCurrentCataLogs.Add("La cata à frappé le lézard ! Tous le monde perd -2 de calm !");
+                        }
                     }
                 }
             }
@@ -2188,14 +2195,79 @@ public class C_Challenge : MonoBehaviour
         //Check si un actor à touché un acc.
     }
 
+    #region Logs Cata
+    [Header("Text (Logs)")]
+    List<string> listCurrentCataLogs;
+    string currentCataLogs;
+    int logsCataCursor;
+
+    public void ResetCataLogs()
+    {
+        logsCataCursor = 0;
+        listCurrentCataLogs = new List<string>();
+    }
+
+    string GetListCataLogs()
+    {
+        if (listCurrentCataLogs.Count == 0 && logsCataCursor == 0)
+        {
+            //Check si c'est pas null
+            if (listCurrentCataLogs.Count != 0)
+            {
+                logsCataCursor++;
+
+                currentCataLogs = listCurrentCataLogs[0];
+
+                //Retourne le premier element de la liste.
+                return currentCataLogs;
+            }
+            else
+            {
+                Debug.LogWarning("La liste est vide");
+                return null;
+            }
+        }
+        if (logsCataCursor > listCurrentCataLogs.Count - 1)
+        {
+            //Retourne une valeur null.
+            return null;
+        }
+        else
+        {
+            currentCataLogs = listCurrentCataLogs[logsCataCursor];
+
+            logsCataCursor++;
+
+            //Retourne un element ciblé avant d'augmenter le curseur.
+            return currentCataLogs;
+        }
+    }
+    #endregion
+
     //Pour lancer le tour du joueur.
     public void NextCata()
     {
-        //Efface les logs.
-        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+        //Check si l'element de la liste n'est pas null. Si ce dernier est null il passera à la reso suivante.
+        if (!string.IsNullOrEmpty(GetListCataLogs()))
+        {
+            //SFX
+            if (AudioManager.instanceAM)
+            {
+                AudioManager.instanceAM.Play(sfxWriteText);
+            }
 
-        myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
-        vfxPlayerTurn.SetTrigger("PlayerTurn");
+            uiLogs.GetComponentInChildren<TMP_Text>().text = currentCataLogs;
+        }
+        else //Passe à la phase suivante.
+        {
+            Debug.Log("Fin de la phase de cata !");
+
+            myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+            vfxPlayerTurn.SetTrigger("PlayerTurn");
+
+            //Efface les logs.
+            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+        }
     }
 
     //Pour lancer la cata. BESOIN D'AJOUTER UN SYSTEM POUR AFFICHER LEE TEXTE DE LA CAT + DU LEZARD.
@@ -2208,9 +2280,6 @@ public class C_Challenge : MonoBehaviour
         {
             thisActor.SetSpriteChallenge();
         }
-
-        //Ecrit dans les logs le résultat de l'action.
-        uiLogs.GetComponentInChildren<TMP_Text>().text = currentCata.catastrophyLog;
 
         //Applique la catastrophe.
         ApplyCatastrophy();
@@ -2225,12 +2294,10 @@ public class C_Challenge : MonoBehaviour
             //Check si c'étais la dernière Cata.
             if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
             {
-                Debug.Log("Première Cata");
                 currentCata = myChallenge.listCatastrophy[0];
             }
             else
             {
-                Debug.Log("Next Cata");
                 currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
             }
         }
