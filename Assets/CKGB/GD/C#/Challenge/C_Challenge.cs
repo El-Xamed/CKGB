@@ -2298,7 +2298,14 @@ public class C_Challenge : MonoBehaviour
                 }
             }
 
-            SceneManager.LoadScene("S_Challenge");
+            #region Transition
+            //Lance l'animation de transition.
+            GameManager.instance.ClosseTransitionFlannel();
+
+            //Setup dans quelle scene on souhaite aller.
+            GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene("S_Challenge", myChallenge.LevelChallenge);
+            #endregion
+
         }
         else
         {
