@@ -90,6 +90,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiGoodAction;
     [SerializeField] GameObject uiVictoire;
     [SerializeField] GameObject uiGameOver;
+    [SerializeField] Image uiGameOverImage;
 
     #endregion
 
@@ -2351,7 +2352,7 @@ public class C_Challenge : MonoBehaviour
         myPhaseDeJeu = PhaseDeJeu.GameOver;
 
         uiGameOver.SetActive(true);
-        uiGameOver.GetComponent<Image>().sprite = myChallenge.ecranDefaite;
+        uiGameOverImage.sprite = myChallenge.ecranDefaite;
 
         if (canGoNext)
         {
