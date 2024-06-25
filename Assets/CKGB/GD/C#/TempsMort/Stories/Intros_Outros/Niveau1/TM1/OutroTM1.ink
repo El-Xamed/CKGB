@@ -6,9 +6,6 @@ EXTERNAL Trigger(name)
 EXTERNAL StartChallenge(name)
 
 ===Outro===
-
-~ Trigger("name")
-
 Tiens, t’es pas encore parti ?#Bulle:NimuHautDroite
 
 Mes cheveux.#Bulle:MorganHautDroite
