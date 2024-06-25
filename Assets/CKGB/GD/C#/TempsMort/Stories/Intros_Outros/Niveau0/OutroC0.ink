@@ -9,7 +9,7 @@ Bon, cessons les bêtises !#Bulle:MorganHautGauche
 //[écran du combat sans le Coolkid, problablement après une transition noir et un bruit]
 
 Dans un nuage de couvertures, tu <bounce>bondis</bounce> sur l’échelle qui descend de ton lit, puis te laisses tomber jusqu’en bas. Tu veux agir vite, avant que ton élan ne se fâne.#Bulle:Narrateur
-
+#emot:BlackIn
 Tes vêtements sont prêts sur une chaise, soigneusement préparés la veille.#Bulle:NarrateurC
 <i>Enfin, l’avant-veille.</i>#Bulle:Narrateur
 Bon, il y a une <b>semaine</b>, en vérité. Comme dit précédement, tu as <i>un peu</i> perdu les pédales ces derniers jours.#Bulle:Narrateur

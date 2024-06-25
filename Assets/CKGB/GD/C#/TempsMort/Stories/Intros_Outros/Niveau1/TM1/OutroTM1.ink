@@ -38,7 +38,7 @@ Tu fronces les sourcils.#Bulle:Narrateur
 ~ Trigger("name")
 T’aurais pas vu mes <wave>clefs</wave> ?#Bulle:MorganHautauche
 ~ Trigger("name")
-Mais, tu vas décamper à la fin ?#Bule:NimuHautDroite #emot:!
+Mais, tu vas décamper à la fin ?#Bulle:NimuHautDroite #emot:!
 
 -Non, mais sincèrement !#Bulle:MorganHautDroite
 ~ Trigger("name")

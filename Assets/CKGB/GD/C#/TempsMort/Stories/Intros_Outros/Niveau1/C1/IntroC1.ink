@@ -40,15 +40,14 @@ J'demanderai à quelqu’un d’autre<br> de passer prendre les p’tites pousse
 
 Ah ! Tu… T’es sûre ?#Bulle:MorganHautDroite
 
-Pourquoi pas ?”#Bulle:NimuHautGauche
+Pourquoi pas ?#Bulle:NimuHautGauche
 
 J’me disais que… <br>Enfin... <br>Ah.<br> Eh bien... <br>Paskeu... #Bulle:MorganHautDroite
 
 Tu t'impressionnes toi-même avec ton éloquence.#Bulle:Narrateur
-Ressaisis-toi, tes paroles dépassent de la bulle!#Bulle:Narrateur
 
 Hm. J'ai encore d'l'avance.#Bulle:MorganHautDroite
-On va faire un dernier tour.
+On va faire un dernier tour.Bulle:MorganHautDroites
 C'est un coup à s'créer des embrouilles<br> si on continue d'perdre des clefs comme ça.#Bulle:MorganHautDroite
 
 //C1 commence pour de vrai, l’UI apparait et tout.
