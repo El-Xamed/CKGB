@@ -623,7 +623,10 @@ public class C_Challenge : MonoBehaviour
     void InitialiseCata()
     {
         //SFX
-        AudioManager.instanceAM.Play("Catastrophe");
+        if (AudioManager.instanceAM)
+        {
+            AudioManager.instanceAM.Play("Catastrophe");
+        }
 
         //Supprime toutes les catasur le plateau.
         foreach (var thisCase in plateau)
@@ -2232,8 +2235,6 @@ public class C_Challenge : MonoBehaviour
 
     #region Fin de partie
 
-    #region GameOver
-    //Bool pour check si le challenge est fini.
     void UpdateEtape()
     {
         Debug.Log("next step");
@@ -2251,6 +2252,9 @@ public class C_Challenge : MonoBehaviour
         canMakeTuto = true;
     }
 
+    #region GameOver
+    //Bool pour check si le challenge est fini.
+
     bool CheckGameOver()
     {
         int nbActorOut = 0;
@@ -2262,18 +2266,19 @@ public class C_Challenge : MonoBehaviour
 
         if (nbActorOut == myTeam.Count)
         {
-            GameOver();
-            myPhaseDeJeu = PhaseDeJeu.GameOver;
-            return true;
+            GameOver();            return true;
         }
 
         return false;
     }
 
+    [ContextMenu("GameOver")]
     public void GameOver()
     {
         Debug.Log("GameOver");
-        
+
+        myPhaseDeJeu = PhaseDeJeu.GameOver;
+
         uiGameOver.SetActive(true);
         uiGameOver.GetComponent<Image>().sprite = myChallenge.ecranDefaite;
 

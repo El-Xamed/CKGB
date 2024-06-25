@@ -1083,6 +1083,7 @@ MonoBehaviour:
   sceneMenu: S_MainMenu
   sceneTM: S_TempsLibre
   sceneWM: S_Worldmap
+  sceneCredits: S_Credits
 --- !u!114 &599995160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2145,7 +2146,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: -1
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1 &1600277069
 GameObject:
