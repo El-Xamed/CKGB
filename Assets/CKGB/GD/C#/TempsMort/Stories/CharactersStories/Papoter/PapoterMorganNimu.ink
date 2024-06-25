@@ -51,7 +51,7 @@ Sache que je ne serais<br> pas moins fière de toi <br>si jamais tu avais besoin
 Si jamais, <br>à n’importe quel moment,<br> tu sens que tu as besoin de soutien,<br> tu as juste à me demander.#Bulle:NimuBasDroite
 Ça ne demande pas moins de courage <br>que d'avouer qu'on a un problème.<br> J'en sais quelque chose.#Bulle:NimuHautDroite
 Elle a un regard pour son bras.#Bulle:Narrateur
-On pourrait dire que peu importe ce que tu fais, je trouverai toujours une excuse pour être fière de toi. #Bulle:NimuHautGauche
+On pourrait dire que<br> peu importe ce que tu fais,<br> je trouverai toujours une excuse <br>pour être fière de toi. #Bulle:NimuHautGauche
 Hm.#Bulle:MorganHautGauche
 
 Wow. C'était un déclaration sacrément sentimentale et soudaine dans une journée déjà assez riche en rebondissements.#Bulle:Narrateur
