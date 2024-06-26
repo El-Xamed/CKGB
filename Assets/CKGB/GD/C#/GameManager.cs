@@ -620,7 +620,10 @@ public class GameManager : MonoBehaviour
 
                                 //Pour re-préciser l'endroit ou il faut écrire.
                                 textToWriteIn = C.GetuiLogs().GetComponentInChildren<TMP_Text>();
-
+                                if (textToWriteIn.transform.childCount == 1)
+                                {
+                                    textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
+                                }
                                 //Pour faire apparaitre le fond de texte.
                                 C.GetuiLogs().gameObject.SetActive(true);
                                 C.GetuiLogs().GetComponentInChildren<Image>().enabled = true;

@@ -1740,6 +1740,22 @@ PrefabInstance:
       propertyPath: m_Padding.m_Left
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8950667559649865660, guid: e6e5def427e48bb359ad187f6c780705, type: 3}
+      propertyPath: referenceFontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950667559649865660, guid: e6e5def427e48bb359ad187f6c780705, type: 3}
+      propertyPath: useDynamicScaling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950667559649865660, guid: e6e5def427e48bb359ad187f6c780705, type: 3}
+      propertyPath: effectIntensityMultiplier
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950667559649865660, guid: e6e5def427e48bb359ad187f6c780705, type: 3}
+      propertyPath: triggerAnimPlayerOnChange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8950667560181001684, guid: e6e5def427e48bb359ad187f6c780705, type: 3}
       propertyPath: m_Name
       value: UI_Logs
