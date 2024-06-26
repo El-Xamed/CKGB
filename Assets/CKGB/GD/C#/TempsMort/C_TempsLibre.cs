@@ -496,22 +496,22 @@ public class C_TempsLibre : MonoBehaviour
     {
         canContinue = true;
         GameManager.instance.textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
-        if(GameManager.instance.textToWriteIn==NarrateurParent.transform.GetChild(1))
+        /*if(GameManager.instance.textToWriteIn==NarrateurParent.transform.GetChild(1))
         {
             Debug.Log("ca Stop");
-           /* AudioManager.instanceAM.Stop("Narrateur");*/
+            AudioManager.instanceAM.Stop("Narrateur");
         }
         else
         {
             Debug.Log("ca Marche");
             AudioManager.instanceAM.Stop("Dialogue");
-        }
+        }*/
         
     }
     public void SetCanContinueToNo()
     {
         canContinue = false;
-        if (GameManager.instance.textToWriteIn == NarrateurParent.transform.GetChild(1))
+        /*if (GameManager.instance.textToWriteIn == NarrateurParent.transform.GetChild(1))
         {
             if(NarrateurParent.transform.GetChild(1)!=null)
             {
@@ -523,7 +523,7 @@ public class C_TempsLibre : MonoBehaviour
         else
         {
             AudioManager.instanceAM.Play("Dialogue");
-        }
+        }*/
     }
     public void AfficherFichereduite()
     {
@@ -1223,10 +1223,9 @@ public class C_TempsLibre : MonoBehaviour
     }
     public void BACK(InputAction.CallbackContext context)
     {
-        if (!context.performed)
-        { return; }
 
-        if (context.performed )
+
+        if (context.started )
         {
             if(GameManager.instance.isDialoguing == false&& GameManager.instance.pauseBackground.activeSelf==false)
             {
@@ -1239,6 +1238,7 @@ public class C_TempsLibre : MonoBehaviour
                     }
                     if (ActionsParents.activeSelf == true)
                     {
+                        
                         for (int i = 0; i < characters.Count; i++)
                         {
                             TreeParent.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Button>().enabled = true;
@@ -1261,9 +1261,9 @@ public class C_TempsLibre : MonoBehaviour
                     }
                     else if (!ActionsParents.activeSelf && actiontoaddID != -1)
                     {
-                        for (int i = 0; i < characters.Count; i++)
+                        for (int i = 0; i < characters.Count-1; i++)
                         {
-                            if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
+                            /*if (!TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf && actiontoaddID != -1)
                             {
                                 for (int y = 0; y < characters.Count; y++)
                                 {
@@ -1278,8 +1278,9 @@ public class C_TempsLibre : MonoBehaviour
                                 updateButton();
                                 LastAction.RemoveAt(actiontoaddID);
                                 actiontoaddID--;
+                               
                             }
-                            else if (TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
+                            else*/ if (TreeParent.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.activeSelf == true && actiontoaddID != -1)
                             {
                                 for (int y = 0; y < characters.Count; y++)
                                 {
@@ -1294,9 +1295,11 @@ public class C_TempsLibre : MonoBehaviour
                                 updateButton();
                                 LastAction.RemoveAt(actiontoaddID);
                                 actiontoaddID--;
+                                Debug.Log("BackFrom Who will you talk with");
                             }
                             else
                             {
+                                Debug.Log("BackFrom an Action");
                                 if (LastAction[actiontoaddID] == RevasserButton)
                                 {
                                     for (int y = 0; y < characters.Count; y++)

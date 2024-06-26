@@ -44,7 +44,7 @@ public class C_MainMenu : MonoBehaviour
         StartCoroutine("firstButton");
        // splashScreen.SetActive(false);
 
-        boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
+       // boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
 
         //SFX
         if (AudioManager.instanceAM)
@@ -101,7 +101,7 @@ public class C_MainMenu : MonoBehaviour
             boutonsGroupe.SetActive(true);
             logoJeu.SetActive(true);
             logoJeu.GetComponent<Animator>().SetTrigger("trigger");
-            boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
+           // boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
             optionsButton.GetComponent<Animator>().SetTrigger("unselected");
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(optionsButton);
             

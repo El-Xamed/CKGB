@@ -285,26 +285,26 @@ public class C_Challenge : MonoBehaviour
     public void SetCanContinueToYes()
     {
         myInterface.canContinue = true;
-        if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
+        /*if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
         {
 
         }
         else
         {
             AudioManager.instanceAM.Stop("Dialogue");
-        }
+        }*/
     }
     public void SetCanContinueToNo()
     {
         myInterface.canContinue = false;
-        if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
+        /*if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
         {
 
         }
         else
         {
             AudioManager.instanceAM.Play("Dialogue");
-        }
+        }*/
     }
     #endregion
 
