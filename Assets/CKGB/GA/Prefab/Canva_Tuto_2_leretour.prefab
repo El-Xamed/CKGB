@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Je te laisse \xE9xperimenter tout.e seul.e maintenant, on se retrouve
+  m_text: "Je te laisse exp\xE9rimenter tout.e seul.e maintenant, on se retrouve
     \xE0 la prochaine \xE9tape pour la suite."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bienvenue dans ton premier challenge !
+  m_text: 'Bienvenue dans ton premier <b>Challenge</b> !
 
 '
   m_isRightToLeft: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Et les <b>traits</b>, eux, d\xE9pendent du personnage qui les utilise.
+  m_text: "Et les <b>Traits</b>, eux, sont exclusifs au personnage qui les utilise.
     Si tu es en difficult\xE9, ils peuvent apporter un coup de pouce !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dans les Challenges, le terrain est divis\xE9 en case."
+  m_text: "Dans les <b>Challenges</b>, le terrain est divis\xE9 en cases."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_text: 'Coucou, c''est encore moi !
 
     Est-ce que tu vois ce petit bonhome ?
-    C''est un Accessoire !'
+    C''est un <b>Accessoire</b> !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ici, il y a ton \"Calme\". Si il atteint 0, ton personnage sera \"T\xE9tanis\xE9\"."
+  m_text: "Ici, il y a ton \"Calme\". S'il atteint 0, ton personnage sera \"T\xE9tanis\xE9\"."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -2882,7 +2882,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Et l\xE0, c'est ton <b>\xC9nergie</b> ! Tu en auras besoin pour r\xE9aliser
-    certaines <b>Actions</b> (et d'autres t'en feront regagner)."
+    certaines <b>Actions</b> (et d'autres peuvent t'en faire regagner)."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -3385,7 +3385,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Parmis les <b>Actions</b> se trouve la solution \xE0 l'\xE9tape actuelle
-    du Challenge. Elles affectent aussi l'\xE9tat de ton personnage."
+    du Challenge. Les autres actions affectent aussi l'\xE9tat de ton personnage."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -4176,7 +4176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ici, ce sont tes actions ! Parmis elles se cache une action "utile", qui 
+  m_text: Ici, ce sont tes Actions ! Parmis elles se cache une action "utile", qui 
     te fera progresser dans le Challenge !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -4449,7 +4449,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Si tous tes personnages sont T\xE9tanis\xE9s, tu devras recommencer le
-    challenge depuis le d\xE9but, alors garde un oeil dessus !"
+    Challenge depuis le d\xE9but, alors garde un oeil dessus !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -5496,10 +5496,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ici, dans le <b>Menu de Challenge</b> !
+  m_text: '...ici, dans le <b>Menu de Challenge</b> !
 
     Tu y trouveras aussi tes
-    <b>Traits</b> et l''historique du <b>Challenge</b> : les <b>Logs</b>.'
+    <b>Traits</b>.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -6623,7 +6623,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Re-coucou. Bien jou\xE9 ! Tu as trouv\xE9 l'action utile. Pour f\xEAter
-    \xE7a, j'aimerais te pr\xE9senter la <b>fiche de personnage</b>."
+    \xE7a, j'aimerais te pr\xE9senter la <b>Fiche de Personnage</b>."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -7184,8 +7184,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Merci d'avoir prit le temps de m'\xE9couter ! Je te laisse tranquille
-    maintenant. Profites bien du jeu !"
+  m_text: "Merci d'avoir pris le temps de m'\xE9couter ! Je te laisse tranquille
+    maintenant. Profite bien du jeu !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -7320,7 +7320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Laisse moi te pr\xE9senter un peu comment les choses marchent ici."
+  m_text: Laisse-moi te montrer un peu comment les choses marchent ici.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -7455,8 +7455,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Prends bien soin de ce ptit amour, car si une catastrophe tombe sur lui,
-    cel\xE0 impactera le calme de tous tes personnages !"
+  m_text: Prends bien soin de ce p'tit amour, car si une catastrophe tombe sur lui,
+    cela impactera le calme de tous tes personnages !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -7880,7 +7880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "...Il ressortira du c\xF4t\xE9 oppos\xE9 pour le finir !"
+  m_text: "...il ressortira du c\xF4t\xE9 oppos\xE9 pour le finir !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}

@@ -1985,6 +1985,7 @@ MonoBehaviour:
   uiGoodAction: {fileID: 430303196}
   uiVictoire: {fileID: 1758534365}
   uiGameOver: {fileID: 1599342985}
+  uiGameOverImage: {fileID: 0}
   vfxStartChallenge: {fileID: 473500140}
   vfxPlayerTurn: {fileID: 823621256}
   vfxResoTurn: {fileID: 1245365849}
@@ -8748,7 +8749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3767633262581511013, guid: a8ac3ae8e38ffec4a96d7fe900ebdb57, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8ac3ae8e38ffec4a96d7fe900ebdb57, type: 3}
