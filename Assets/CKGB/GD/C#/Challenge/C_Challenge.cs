@@ -67,6 +67,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] GameObject uiLogsTimeline;
     [SerializeField] Transform uiLogsPreview;
     [SerializeField] GameObject uiLogsTextPreviewPrefab;
+    [SerializeField] GameObject uiLogsHead;
     #endregion
 
     List<C_Actor> myTeam = new List<C_Actor>();
@@ -862,6 +863,10 @@ public class C_Challenge : MonoBehaviour
             //Début de la list de la phase de réso.
             currentResolution = listRes[0];
 
+            //Active la petite tete dans les logs.
+            uiInterfaceHead.SetActive(false);
+            uiLogsHead.SetActive(true);
+
             //Cache les boutons + ferme l'interface.
             //Animation.
             myInterface.ResetTargetButton();
@@ -922,9 +927,13 @@ public class C_Challenge : MonoBehaviour
         }
         #endregion
 
-        Debug.Log("Player turn !");
+        uiInterfaceHead.SetActive(true);
+        uiLogsHead.SetActive(false);
 
-        UpdateUi();
+        //Change le sprite sur l'interface.
+        uiInterfaceHead.GetComponentInChildren<Image>().sprite = currentActor.GetDataActor().headButton;
+
+        Debug.Log("Player turn !");
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
@@ -966,6 +975,9 @@ public class C_Challenge : MonoBehaviour
     void NextActor()
     {
         currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
+
+        //Change le sprite sur l'interface.
+        uiInterfaceHead.GetComponentInChildren<Image>().sprite = currentActor.GetDataActor().headButton;
 
         UpdateActorSelected();
 
@@ -1299,6 +1311,8 @@ public class C_Challenge : MonoBehaviour
                 {
                     myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
+                    uiLogsHead.SetActive(false);
+
                     //Lance la phase "Cata".
                     CataTurn();
                     ResetCataLogs();
@@ -1324,6 +1338,9 @@ public class C_Challenge : MonoBehaviour
     public void ResolutionTurn()
     {
         //Supprime toutes les preview de déplacement.
+
+        //Change le sprite sur l'interface.
+        uiLogsHead.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().headButton;
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
