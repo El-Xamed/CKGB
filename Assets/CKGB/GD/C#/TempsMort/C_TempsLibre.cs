@@ -108,6 +108,7 @@ public class C_TempsLibre : MonoBehaviour
         GameManager.instance.TM = this;
         TM = GameManager.instance.currentTM;
         HideUI();
+        GameManager.instance.TS_softblackswipe.SetActive(true);
         initiateTMvariables();
         CharactersDataGet();
         if(GameObject.Find("Morgan")!=null)
@@ -126,7 +127,7 @@ public class C_TempsLibre : MonoBehaviour
         //lance l'intro dialogue
         GameManager.instance.textToWriteIn = naratteurText;
         StartIntro();
-        GameManager.instance.TS_softblackswipe.SetActive(true);
+        
         AudioManager.instanceAM.Play(TM.LevelMusic);
         GameManager.instance.RespirerID = 0;
     }
@@ -396,6 +397,8 @@ public class C_TempsLibre : MonoBehaviour
         {
             if(currentButton.transform.GetChild(0).name == "child")
                 currentButton.transform.GetChild(0).gameObject.SetActive(false);
+
+          
         }
             
         
@@ -416,7 +419,8 @@ public class C_TempsLibre : MonoBehaviour
         {
             currentButton.transform.GetChild(0).gameObject.SetActive(true);
         }
-        for(int i =0;i<characters.Count;i++)
+      
+        for (int i =0;i<characters.Count;i++)
         {    
             if (currentButton.name == characters[i].name + "CharacterChoice")
             {
@@ -720,9 +724,14 @@ public class C_TempsLibre : MonoBehaviour
         expliEner.SetActive(false);
         expliCalme.SetActive(false);
         expliTrait.SetActive(false);
-       
-        GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
 
+        StartCoroutine("StartRevasserDialogue");
+
+    }
+    IEnumerator StartRevasserDialogue()
+    {
+        yield return new WaitForSeconds(0.6f);
+        GameManager.instance.EnterDialogueMode(actorActif.GetComponent<C_Actor>().GetDataActor().Revasser);
     }
     public void RetourAuTMAfterRevasser(string text)
     {
@@ -733,6 +742,7 @@ public class C_TempsLibre : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+        yield return new WaitForSeconds(0.6f);
         GameManager.instance.ExitDialogueMode();
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
@@ -770,25 +780,30 @@ public class C_TempsLibre : MonoBehaviour
         actiontoaddID++;
         LastAction.Add(ObserverButton);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+        StartCoroutine("ObserverDialogue");
+    }
+    IEnumerator ObserverDialogue()
+    {
+        yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().observageAnimPatern;
         SpawnParent.GetComponent<Animator>().SetInteger("chap", GameManager.instance.RespirerID);
-        if (actorActif==Morgan)
+        if (actorActif == Morgan)
         {
             SpawnParent.GetComponent<Animator>().SetTrigger("morgan");
         }
-        else if(actorActif==Esthela)
+        else if (actorActif == Esthela)
         {
             SpawnParent.GetComponent<Animator>().SetTrigger("esthela");
         }
-        else if(actorActif==Nimu)
+        else if (actorActif == Nimu)
         {
             SpawnParent.GetComponent<Animator>().SetTrigger("nimu");
         }
         expliEner.SetActive(false);
         expliCalme.SetActive(false);
         expliTrait.SetActive(false);
-       
+
         GameManager.instance.EnterDialogueMode(Observage);
     }
     public void RetourAuTMAfterRespirer(string text)
@@ -801,6 +816,7 @@ public class C_TempsLibre : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+        yield return new WaitForSeconds(0.6f);
         GameManager.instance.ExitDialogueMode();
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
@@ -1133,6 +1149,7 @@ public class C_TempsLibre : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         Cine.GetComponent<Animator>().SetBool("IsCinema", false);
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
+        yield return new WaitForSeconds(0.6f);
         GameManager.instance.ExitDialogueMode();
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = null;
         for (int i = 0; i < characters.Count; i++)
@@ -1184,8 +1201,13 @@ public class C_TempsLibre : MonoBehaviour
         Cine.GetComponent<Animator>().SetBool("IsCinema", true);
         SpawnParent.GetComponent<Animator>().runtimeAnimatorController = GameManager.instance.GetDataTempsMort().outroAnimPatern;
         GameManager.instance.TS_softblackswipe.GetComponent<Animator>().SetTrigger("In");
-        GameManager.instance.EnterDialogueMode(_outro);
+        StartCoroutine("OutroDialogue");
 
+    }
+    IEnumerator OutroDialogue()
+    {
+        yield return new WaitForSeconds(0.6f);
+        GameManager.instance.EnterDialogueMode(_outro);
     }
     public void GoChallenge(string named)
     {

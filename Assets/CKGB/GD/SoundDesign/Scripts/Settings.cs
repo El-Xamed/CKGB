@@ -4,6 +4,8 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class Settings : MonoBehaviour
 {
@@ -27,11 +29,13 @@ public class Settings : MonoBehaviour
 
     private float currentrefreshRate;
     private int currentResolutionindex = 0;
-    
+    public GameObject currentButton;
+    public EventSystem Es;
+
     // recupere les valeurs de audio mixer
     public void Start()
     {
-
+        Es = FindObjectOfType<EventSystem>();
         SetMusicVolume();
         SetGeneralVolume();
         SetSFXVolume();
@@ -172,5 +176,42 @@ public class Settings : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, true);
 
     }
-   
+    public void Naviguate(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        if (context.performed)
+        {
+            /*
+            AudioManager.instanceAM.Play("Selection"); 
+            updateCurrentButton();
+            */
+        }
+        if (context.started)
+        {
+            if (currentButton.transform.GetChild(0).name == "fleche")
+            {
+                currentButton.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            if (currentButton.transform.GetChild(2).name == "fleche")
+            {
+                currentButton.transform.GetChild(2).gameObject.SetActive(false);
+            }
+            updateCurrentButton();
+            if (currentButton.transform.GetChild(0).name == "fleche")
+            {
+                currentButton.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            if (currentButton.transform.GetChild(2).name == "fleche")
+            {
+                currentButton.transform.GetChild(2).gameObject.SetActive(true);
+            }
+            AudioManager.instanceAM.Play("Selection");
+        }
+
+    }
+    void updateCurrentButton()
+    {
+        currentButton = Es.currentSelectedGameObject;
+    }
 }

@@ -146,8 +146,9 @@ public class C_MainMenu : MonoBehaviour
         }
         if (context.started)
         {
+         
             updateCurrentButton();
-
+         
             AudioManager.instanceAM.Play("Selection");
         }
 
