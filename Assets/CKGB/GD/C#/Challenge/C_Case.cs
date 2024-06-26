@@ -33,7 +33,7 @@ public class C_Case : MonoBehaviour
         thisPion.GetComponent<RectTransform>().position = new Vector3(transform.position.x, 0, transform.position.z);
 
         //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
-        thisPion.SetPosition(number - 1);
+        thisPion.SetPosition(number);
 
         myPion = thisPion;
 

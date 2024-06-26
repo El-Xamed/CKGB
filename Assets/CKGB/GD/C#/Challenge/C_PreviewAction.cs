@@ -108,7 +108,7 @@ public class C_PreviewAction : MonoBehaviour
                 int color = 0;
 
                 //Setup la valeur du premier texte.
-                whatValue = GetValue(thisActionClass.GetValue(thisInteraction.whatTarget, thisTargetStats.whatStatsTarget));
+                whatValue = thisTargetStats.value.ToString();
 
                 //Création d'un string setup la fin de la phrase.
                 string endPreviewText = "";

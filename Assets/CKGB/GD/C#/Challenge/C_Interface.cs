@@ -146,31 +146,35 @@ public class C_Interface : MonoBehaviour
                 //Check si l'interaction avec l'interface et possible => Phase du joueur.
                 if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
                 {
+                    #region Neutre
                     //Pour la navigation dans l'interface "Neutre"
                     if (currentInterface == Interface.Neutre && !myChallenge.GetOnDialogue())
                     {
-                        if (input.x > 0)
-                        {
-                            GoBack();
-                            return;
-                        }
+                        #region Traits
                         if (input.x < 0)
                         {
                             GoTraits();
                             return;
                         }
+                        #endregion
 
+                        #region Actions
                         if (input.y < 0)
                         {
                             GoAction();
                             return;
                         }
+                        #endregion
+
+                        #region Logs (Desactivé)
                         if (input.y > 0)
                         {
                             //GoLogs();
                             return;
                         }
+                        #endregion
                     }
+                    #endregion
 
                     //Pour selectionner ses actions.
                     if (currentInterface == Interface.Actions || currentInterface == Interface.Traits)
@@ -318,9 +322,12 @@ public class C_Interface : MonoBehaviour
             {
                 case Interface.Actions:
                     uiAction.SetActive(false);
+                    //Desactive la preview.
+                    GetComponentInParent<C_PreviewAction>().DestroyAllPreview(GetComponentInParent<C_Challenge>().GetTeam());
                     break;
                 case Interface.Traits:
                     uiAction.SetActive(false);
+                    GetComponentInParent<C_PreviewAction>().DestroyAllPreview(GetComponentInParent<C_Challenge>().GetTeam());
                     break;
                 case Interface.Logs:
                     onLogs = false;

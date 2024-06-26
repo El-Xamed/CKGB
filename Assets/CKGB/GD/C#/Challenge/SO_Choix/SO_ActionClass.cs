@@ -46,7 +46,7 @@ public class SO_ActionClass : ScriptableObject
                 //Pour toutes les list de TargetStats.
                 foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    if (targetStats == TargetStats.ETypeStatsTarget.Stats)
+                    if (targetStats == TargetStats.ETypeStatsTarget.Stats && thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats)
                     {
                         if (thisTargetStats.whatCost == TargetStats.ETypeCost.Price)
                         {
@@ -57,7 +57,7 @@ public class SO_ActionClass : ScriptableObject
                             return thisTargetStats.value;
                         }
                     }
-                    else if (targetStats == TargetStats.ETypeStatsTarget.Movement)
+                    else if (targetStats == TargetStats.ETypeStatsTarget.Movement && thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                     {
                         return thisTargetStats.value;
                     }
@@ -79,12 +79,16 @@ public class SO_ActionClass : ScriptableObject
                 //Pour toutes les list de TargetStats.
                 foreach (TargetStats thisTargetStats in thisInteraction.listTargetStats)
                 {
-                    return thisTargetStats.whatMove;
+                    if (thisTargetStats.whatMove != TargetStats.ETypeMove.None)
+                    {
+                        return thisTargetStats.whatMove;
+                    }
                 }
             }
         }
 
-        return 0;
+        Debug.Log("Rien trouvé dans les types de mouvement !");
+        return TargetStats.ETypeMove.None;
     }
 
     public bool GetIsTp(Interaction.ETypeTarget actorTarget)
