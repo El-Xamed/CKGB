@@ -1214,7 +1214,8 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278190080
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4426946741037680722, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 13d02b0e0d5449944a88f1be13d67e03, type: 3}
 --- !u!224 &391980840 stripped
 RectTransform:
@@ -5520,7 +5521,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1861733662}
         m_TargetAssemblyTypeName: C_credits, Assembly-CSharp
-        m_MethodName: GoToMainMenuALERT
+        m_MethodName: GoMainMenuALERT
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -21,5 +21,6 @@ public class C_credits : MonoBehaviour
     public void GoMainMenuALERT()
     {
         GameManager.instance.GoToMainMenuALERT();
+        AudioManager.instanceAM.Stop("MusicCredits");
     }
 }
