@@ -609,10 +609,10 @@ public class GameManager : MonoBehaviour
                                 textToWriteIn.text = "";
 
                                 //Pour la petite flèche. A VOIR SI IL MARCHE BIEN.
-                                /*if(textToWriteIn.transform.childCount == 1)
+                                if (textToWriteIn.transform.childCount == 1)
                                 {
                                     textToWriteIn.transform.GetChild(0).gameObject.SetActive(false);
-                                }*/
+                                }
                                 if (textToWriteIn.GetComponentInParent<Image>() != null)
                                 {
                                     textToWriteIn.GetComponentInParent<Image>().enabled = false;
