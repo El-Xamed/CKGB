@@ -268,12 +268,16 @@ public class C_Stats : MonoBehaviour
         //Pour la perte d'energy.
         if (thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats) < 0)
         {
-            //Commence par le nombre actuel d'energy.
-            for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
+            //Check si l'actor possède l'energie.
+            if (myActor.GetcurrentEnergy() > 0)
             {
-                //Active la preview.
-                listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);
-                Debug.Log(listEnergie[i].name + " is activate");
+                //Commence par le nombre actuel d'energy.
+                for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
+                {
+                    //Active la preview.
+                    listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);
+                    Debug.Log(listEnergie[i].name + " is activate");
+                }
             }
         }
     }
