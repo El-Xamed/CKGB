@@ -18,7 +18,7 @@ Mais toi,<br> tu avais pas ton propre jeu de clefs de secours ?#Bulle:NimuHautGa
 
 Henry est parti avec. <br>Toi, t'en avais ? #Bulle:MorganHautDroite
 
-Non, j'avais pris celles de Muguet. <br>Ah, p'tet qu'on peut prendre celles de Colin ?#Bulle:NimuHautGauche
+Non, j'avais pris celles de Muguet. <br>Ah, p'tet qu'on peut prendre celles de Colin ? #Bulle:NimuHautGauche
 
 ...#Bulle:MorganHautDroite
 Mais c’est qui Colin ?#Bulle:MorganHautDroite
@@ -47,7 +47,7 @@ J’me disais que… <br>Enfin... <br>Ah.<br> Eh bien... <br>Paskeu... #Bulle:Mo
 Tu t'impressionnes toi-même avec ton éloquence.#Bulle:Narrateur
 
 Hm. J'ai encore d'l'avance.#Bulle:MorganHautDroite
-On va faire un dernier tour.Bulle:MorganHautDroites
+On va faire un dernier tour.#Bulle:MorganHautDroite
 C'est un coup à s'créer des embrouilles<br> si on continue d'perdre des clefs comme ça.#Bulle:MorganHautDroite
 
 //C1 commence pour de vrai, l’UI apparait et tout.
