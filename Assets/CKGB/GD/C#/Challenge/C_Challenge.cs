@@ -211,6 +211,9 @@ public class C_Challenge : MonoBehaviour
 
     void Start()
     {
+        uiInterfaceHead.SetActive(false);
+        uiLogsHead.SetActive(false);
+
         //Set le background
         //Check si le background n'est pas vide.
         if (myChallenge.background)
@@ -263,7 +266,7 @@ public class C_Challenge : MonoBehaviour
     #region Mes fonctions
 
     //Pour récupérer tout les autres actors concernée.
-    public List<C_Actor> GetOtherActor(SO_ActionClass thisActionClass)
+    public List<C_Actor> GetOtherActor(SO_ActionClass thisActionClass, C_Actor firtActor)
     {
         #region Racourci
         int range = thisActionClass.GetRange();
@@ -291,16 +294,16 @@ public class C_Challenge : MonoBehaviour
                             //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
                             case Interaction.ETypeDirectionTarget.Right:
                                 //Calcul vers la droite.
-                                CheckPositionOther(currentActor, i, thisOtherActor);
+                                CheckPositionOther(firtActor, i, thisOtherActor);
                                 break;
                             case Interaction.ETypeDirectionTarget.Left:
                                 //Calcul vers la gauche.
-                                CheckPositionOther(currentActor, -i, thisOtherActor);
+                                CheckPositionOther(firtActor, -i, thisOtherActor);
                                 break;
                             case Interaction.ETypeDirectionTarget.RightAndLeft:
                                 //Calcul vers la droite + gauche.
-                                CheckPositionOther(currentActor, i, thisOtherActor);
-                                CheckPositionOther(currentActor, -i, thisOtherActor);
+                                CheckPositionOther(firtActor, i, thisOtherActor);
+                                CheckPositionOther(firtActor, -i, thisOtherActor);
                                 break;
                         }
                     }
@@ -317,7 +320,7 @@ public class C_Challenge : MonoBehaviour
         {
             Debug.Log("Je check à la position : " + (thisActor.GetPosition() + position));
 
-            if ((thisActor.GetPosition() + position) > plateau.Count) //Check si la valeur est supérieur au nombre de case.
+            if ((thisActor.GetPosition() + position) > plateau.Count -1) //Check si la valeur est supérieur au nombre de case.
             {
                 Debug.Log("Sortie de plateau +");
 
@@ -754,6 +757,7 @@ public class C_Challenge : MonoBehaviour
             }
 
             plateau[thisCase].ShowDangerZone(currentCata.vfxCataPrefab);
+
             Debug.Log("nouvelle Cata sur la case " + thisCase);
         }
 
@@ -866,6 +870,8 @@ public class C_Challenge : MonoBehaviour
             //Active la petite tete dans les logs.
             uiInterfaceHead.SetActive(false);
             uiLogsHead.SetActive(true);
+            //Change le sprite sur l'interface.
+            uiLogsHead.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().headButton;
 
             //Cache les boutons + ferme l'interface.
             //Animation.
@@ -1040,7 +1046,7 @@ public class C_Challenge : MonoBehaviour
                         if (thisActionClass.CheckOtherInAction())
                         {
                             //Récupère la liste des actor touché et affiche leur preview.
-                            foreach (C_Actor thisOtherActor in GetOtherActor(thisActionClass))
+                            foreach (C_Actor thisOtherActor in GetOtherActor(thisActionClass, currentActor))
                             {
                                 AddPreviewActor(Interaction.ETypeTarget.Other, thisInteraction, thisOtherActor);
                             }
@@ -1057,22 +1063,23 @@ public class C_Challenge : MonoBehaviour
             {
                 if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Stats)
                 {
+                    thisActor.GetUiStats().SetTarget(target);
+
                     if (thisTargetStats.whatStats == TargetStats.ETypeStats.Calm) //Check si c'est pour le calm.
                     {
-                        Debug.Log("Add UiPreviewCalm");
+                        Debug.Log("Add UiPreviewCalm de " + thisActor.name);
 
                         C_PreviewAction.onPreview += thisActor.GetUiStats().UiPreviewCalm;
                     }
                     else if (thisTargetStats.whatStats == TargetStats.ETypeStats.Energy) //Check si c'est pour l'energie.
                     {
-                        Debug.Log("Add UiPreviewEnergy");
-
+                        Debug.Log("Add UiPreviewEnergy de " + thisActor.name);
                         C_PreviewAction.onPreview += thisActor.GetUiStats().UiPreviewEnergy;
                     }
                 }
                 else if (thisTargetStats.whatStatsTarget == TargetStats.ETypeStatsTarget.Movement)
                 {
-                    Debug.Log("Add Preview Movement");
+                    Debug.Log("Add Preview Movement de " + thisActor.name);
 
                     //C_PreviewAction.onPreview += thisActor.UiPreviewMovement;
 
@@ -1088,7 +1095,7 @@ public class C_Challenge : MonoBehaviour
         //Création de sa position sur le plateau.
         TargetStats.ETypeMove whatMove = thisActionClass.GetWhatMove(target);
         bool isTp = thisActionClass.GetIsTp(target);
-        int position = thisActor.GetPosition() -1;
+        int position = thisActor.GetPosition();
         int nbMove = thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Movement);
         #endregion
 
@@ -1154,7 +1161,7 @@ public class C_Challenge : MonoBehaviour
                 if (thisActor != thisOtherActor)
                 {
                     //Détection de si il y a un autres actor.
-                    if ((nbMove +1) == thisOtherActor.GetPosition())
+                    if (nbMove == thisOtherActor.GetPosition())
                     {
                         //Check si c'est une Tp ou non.
                         if (isTp)
@@ -1182,7 +1189,7 @@ public class C_Challenge : MonoBehaviour
                             plateauPreview.Add(thisOtherPreview);
                             #endregion
 
-                            thisOtherPreview.transform.position = new Vector3(plateau[currentActor.GetPosition() -1].transform.position.x, 0, plateau[currentActor.GetPosition()].transform.position.z);
+                            thisOtherPreview.transform.position = new Vector3(plateau[currentActor.GetPosition()].transform.position.x, 0, plateau[currentActor.GetPosition()].transform.position.z);
                         }
                         else
                         {
@@ -1190,14 +1197,14 @@ public class C_Challenge : MonoBehaviour
 
                             //Le spawn de la preview sera décalé de 1 dans la direction du déplacement avec l'image de l'actor visé.
 
-                            PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition() - 1, 1, isTp);
+                            PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition(), 1, isTp);
                         }
                     }
                 }
             }
 
             //Nouvelle position de l'actor visé sur une case visée.
-            thisPreview.transform.position = new Vector3(plateau[nbMove].transform.position.x, targetActor.transform.position.y, plateau[nbMove].transform.position.z);
+            thisPreview.transform.position = new Vector3(plateau[nbMove].transform.position.x, targetActor.GetImageActor().transform.position.y, plateau[nbMove].transform.position.z);
 
             //Permet de réduire/augmenter la valeur pour placer l'actor sur le plateau.
             void CheckIfNotExceed()
@@ -1273,8 +1280,9 @@ public class C_Challenge : MonoBehaviour
         }
         else if (currentStep == null) //Check si la partie est fini.
         {
+            uiLogsHead.SetActive(false);
+
             //Fin du challenge.
-            //GetEventSystem().SetSelectedGameObject(null);
             EndChallenge();
 
             Debug.Log("Fin du niveau");
@@ -1289,14 +1297,6 @@ public class C_Challenge : MonoBehaviour
                 currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
 
                 ResolutionTurn();
-            }
-            else
-            {
-                //Fin du challenge.
-                //GetEventSystem().SetSelectedGameObject(null);
-                EndChallenge();
-
-                Debug.Log("Fin du niveau");
             }
         }
         else //Passe à la phase suivante.
@@ -1313,11 +1313,11 @@ public class C_Challenge : MonoBehaviour
 
                     uiLogsHead.SetActive(false);
 
+                    Debug.Log("Cata Turn");
+
                     //Lance la phase "Cata".
                     CataTurn();
                     ResetCataLogs();
-                    listCurrentCataLogs.Add(currentCata.catastrophyLog);
-                    uiLogs.GetComponentInChildren<TMP_Text>().text = GetListCataLogs();
                 }
             }
             else //Lance la phase du joueur.
@@ -1569,95 +1569,13 @@ public class C_Challenge : MonoBehaviour
         //Créer la liste pour "other"
         if (thisActionClass.CheckOtherInAction())
         {
-            foreach (var thisOtherActor in GetOtherActor(thisActionClass))
+            foreach (var thisOtherActor in GetOtherActor(thisActionClass, currentResolution.actor))
             {
                 thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, thisOtherActor);
 
                 //Check si un mouvement pour "other" existe.
                 CheckIfTargetMove(Interaction.ETypeTarget.Other, thisOtherActor);
             }
-
-            /*Boucle avec la range.
-            for (int i = 0; i < thisActionClass.GetRange(); i++)
-            {
-                Debug.Log("Je cherche sur la case " + i);
-
-                if (thisActionClass.GetTypeDirectionRange() != Interaction.ETypeDirectionTarget.None)
-                {
-                    //Boucle pour check sur tout les actor du challenge.
-                    foreach (C_Actor thisOtherActor in myTeam)
-                    {
-                        //Check quel direction la range va faire effet.
-                        switch (thisActionClass.GetTypeDirectionRange())
-                        {
-                            //Si "otherActor" est dans la range alors lui aussi on lui affiche les preview mais avec les info pour "other".
-                            case Interaction.ETypeDirectionTarget.Right:
-                                //Calcul vers la droite.
-                                CheckPositionOther(thisActor, i, thisOtherActor);
-                                Debug.Log("Direction Range = droite.");
-                                break;
-                            case Interaction.ETypeDirectionTarget.Left:
-                                //Calcul vers la gauche.
-                                CheckPositionOther(thisActor, -i, thisOtherActor);
-                                Debug.Log("Direction Range = Gauche.");
-                                break;
-                            case Interaction.ETypeDirectionTarget.RightAndLeft:
-                                //Calcul vers la droite + gauche.
-                                CheckPositionOther(thisActor, i, thisOtherActor);
-                                CheckPositionOther(thisActor, -i, thisOtherActor);
-                                Debug.Log("Direction Range = droite + gauche.");
-                                break;
-                        }
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("AUCUNE DIRECTION DE MOUVEMENT EST ENTRE !");
-                }
-            }
-
-            //Fonction pour check si il y a des acteurs dans la range.
-            bool CheckPositionOther(C_Actor thisActor, int position, C_Actor target)
-            {
-                if (thisActor.GetPosition() + position >= plateau.Count - 1)
-                {
-                    if (0 + position == target.GetPosition() && target != thisActor)
-                    {
-                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-
-                        thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, target);
-
-                        //Check si un mouvement pour "other" existe.
-                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
-                        return true;
-                    }
-                }
-                else if (thisActor.GetPosition() + position <= 0)
-                {
-                    if (0 + position == target.GetPosition() && target != thisActor)
-                    {
-                        Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-
-                        thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, target);
-
-                        //Check si un mouvement pour "other" existe.
-                        CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
-                        return true;
-                    }
-                }
-                else if (thisActor.GetPosition() + position == target.GetPosition() && target != thisActor)
-                {
-                    Debug.Log(target.name + " à été trouvé ! à la position: " + target.GetPosition());
-
-                    thisActionClass.SetStatsTarget(Interaction.ETypeTarget.Other, target);
-
-                    //Check si un mouvement pour "other" existe.
-                    CheckIfTargetMove(Interaction.ETypeTarget.Other, target);
-                    return true;
-                }
-
-                return false;
-            }*/
         }
         #endregion
 
@@ -1772,7 +1690,7 @@ public class C_Challenge : MonoBehaviour
             //Si la valeur ne dépasse pas la plateau alors pas besoin de modification de valeur.
             if (thisPion.GetPosition() + nbMove < plateau.Count && thisPion.GetPosition() + nbMove > -1)
             {
-                nbMove = thisPion.GetPosition() - 1 + nbMove;
+                nbMove = thisPion.GetPosition() + nbMove;
                 return;
             }
 
@@ -1783,7 +1701,7 @@ public class C_Challenge : MonoBehaviour
                 for (int i = 0; i <= nbMove; i++)
                 {
                     //Detection de si le perso est au bord (à droite).
-                    if (thisPion.GetPosition() -1 + i > plateau.Count - 1)
+                    if (thisPion.GetPosition() + i > plateau.Count - 1)
                     {
                         //Replace le pion sur la case 0.
                         PlacePionOnBoard(thisPion, 0, isTp);
@@ -1798,7 +1716,7 @@ public class C_Challenge : MonoBehaviour
                 //Vers la gauche.
                 for (int i = 0; i >= nbMove; i--)
                 {
-                    if (thisPion.GetPosition() - 1 + i < 0)
+                    if (thisPion.GetPosition() + i < 0)
                     {
                         Debug.Log(nbMove);
                         //Replace le pion sur la case sur la case la plus à droite.
@@ -1870,119 +1788,6 @@ public class C_Challenge : MonoBehaviour
 
     #region Tour de la Cata
     //Fonction pour appliquer la cata.
-    public void ApplyCatastrophy()
-    {
-        //Pour tous les nombres dans la liste de la cata.
-        foreach (int thisCase in currentCata.targetCase)
-        {
-            #region VFX Cata
-            //Check si la case possède un vfx.
-            if (plateau[thisCase].GetVfxCata() != null)
-            {
-                //VFX de la cata qui s'applique.
-                plateau[thisCase].GetComponentInChildren<Animator>().SetTrigger("cata_Kaboom");
-            }
-            #endregion
-
-            //Check si c'est des dégats qui s'applique à tout le monde.  CETTE PARTIE DU DEV EST INUTILE !
-            if (currentCata.applyForAll)
-            {
-                bool onCata = false;
-
-                Debug.Log("Applique la cata sur tout le monde");
-
-                //Pour tous les actor.
-                foreach (C_Actor thisActor in myTeam)
-                {
-                    if (thisCase == thisActor.GetPosition())
-                    {
-                        onCata = true;
-                    }
-                }
-
-                if (onCata)
-                {
-                    //Pour tous les actor.
-                    foreach (C_Actor thisActor in myTeam)
-                    {
-                        //Applique des conséquence grace au finction de actionClass.
-                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
-
-                        //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
-                        thisActor.CheckIsOut();
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log("Applique la cata sur les cases visée seulement");
-
-                foreach (C_Actor thisActor in myTeam)
-                {
-                    //Check si un joueur à marché sur le lézard.
-                    if (thisActor.GetPosition() == thisCase)
-                    {
-                        //Applique des conséquence grace au finction de actionClass.
-                        UseAction(currentCata.actionClass, thisActor);
-
-                        //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
-                        thisActor.CheckIsOut();
-                    }
-                }
-
-                //Check d'abord dans un premier temps si il a touché un acc.
-                foreach (C_Accessories thisAcc in listAcc)
-                {
-                    foreach (C_Actor thisActor in myTeam)
-                    {
-                        //Check si un joueur à marché sur le lézard.
-                        if (thisActor.GetPosition() == thisAcc.GetPosition())
-                        {
-                            //Applique des conséquence grace au finction de actionClass.
-                            thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
-
-                            //Vfx
-                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
-                            thisActor.CheckIsOut();
-
-                            //Ajoute dans la liste un texte.
-                            listCurrentCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
-                        }
-                    }
-
-
-                    //Check si l'acc est sur une cata.
-                    if (thisCase == thisAcc.GetPosition())
-                    {
-                        if (thisAcc.GetDataAcc().typeAttack == SO_Accessories.ETypeAttack.All)
-                        {
-                            //Check si la position des actor est sur la meme case que l'acc.
-                            foreach (var thisActor in myTeam)
-                            {
-                                thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
-
-                                //Vfx
-                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
-                                thisActor.CheckIsOut();
-                            }
-
-                            //Ajoute dans la liste un texte.
-                            listCurrentCataLogs.Add("La cata à frappé le lézard ! Tous le monde perd -2 de calm !");
-                        }
-                    }
-                }
-            }
-        }
-
-        //Check si un actor à touché un acc.
-    }
-
     #region Logs Cata
     [Header("Text (Logs)")]
     List<string> listCurrentCataLogs;
@@ -2038,6 +1843,8 @@ public class C_Challenge : MonoBehaviour
         //Check si l'element de la liste n'est pas null. Si ce dernier est null il passera à la reso suivante.
         if (!string.IsNullOrEmpty(GetListCataLogs()))
         {
+            Debug.Log("Next Cata !");
+
             //SFX
             if (AudioManager.instanceAM)
             {
@@ -2063,6 +1870,8 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("CataTurn");
 
+        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+
         //Redonne les couleurs au actor.
         foreach (var thisActor in myTeam)
         {
@@ -2087,6 +1896,134 @@ public class C_Challenge : MonoBehaviour
             else
             {
                 currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
+            }
+
+            //Check si il y a du texte.
+            if (currentCataLogs == "")
+            {
+                myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
+                vfxPlayerTurn.SetTrigger("PlayerTurn");
+            }
+        }
+    }
+
+    public void ApplyCatastrophy()
+    {
+        Debug.Log("Apply cata");
+
+        //Pour tous les nombres dans la liste de la cata.
+        foreach (int thisCase in currentCata.targetCase)
+        {
+            #region VFX Cata
+            //Check si la case possède un vfx.
+            if (plateau[thisCase].GetVfxCata() != null)
+            {
+                //VFX de la cata qui s'applique.
+                plateau[thisCase].GetCata().SetTrigger("cata_Kaboom");
+            }
+            #endregion
+
+            //Check si c'est des dégats qui s'applique à tout le monde.  CETTE PARTIE DU DEV EST INUTILE !
+            if (currentCata.applyForAll)
+            {
+                bool onCata = false;
+
+                Debug.Log("Applique la cata sur tout le monde");
+
+                //Pour tous les actor.
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    if (thisCase == thisActor.GetPosition())
+                    {
+                        onCata = true;
+                    }
+                }
+
+                if (onCata)
+                {
+                    //Pour tous les actor.
+                    foreach (C_Actor thisActor in myTeam)
+                    {
+                        //Applique des conséquence grace au finction de actionClass.
+                        currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
+
+                        //Vfx
+                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
+                        thisActor.CheckIsOut();
+                    }
+
+                    listCurrentCataLogs.Add(currentCata.catastrophyLog);
+                }
+            }
+            else
+            {
+                Debug.Log("Applique la cata sur les cases visée seulement");
+
+                foreach (C_Actor thisActor in myTeam)
+                {
+                    //Check si un joueur à marché sur le lézard.
+                    if (thisActor.GetPosition() == thisCase)
+                    {
+                        Debug.Log(thisActor.name + " est touché !");
+
+                        //Applique des conséquence grace au finction de actionClass.
+                        UseAction(currentCata.actionClass, thisActor);
+
+                        //Vfx
+                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
+                        thisActor.CheckIsOut();
+
+                        Debug.Log(currentCata.PoPUpCatastrophe);
+
+                        listCurrentCataLogs.Add(currentCata.PoPUpCatastrophe);
+                    }
+                }
+
+                //Check d'abord dans un premier temps si il a touché un acc.
+                foreach (C_Accessories thisAcc in listAcc)
+                {
+                    foreach (C_Actor thisActor in myTeam)
+                    {
+                        //Check si un joueur à marché sur le lézard.
+                        if (thisActor.GetPosition() == thisAcc.GetPosition())
+                        {
+                            //Applique des conséquence grace au finction de actionClass.
+                            thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
+
+                            //Vfx
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
+                            thisActor.CheckIsOut();
+
+                            //Ajoute dans la liste un texte.
+                            listCurrentCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
+                        }
+                    }
+
+
+                    //Check si l'acc est sur une cata.
+                    if (thisCase == thisAcc.GetPosition())
+                    {
+                        if (thisAcc.GetDataAcc().typeAttack == SO_Accessories.ETypeAttack.All)
+                        {
+                            //Check si la position des actor est sur la meme case que l'acc.
+                            foreach (var thisActor in myTeam)
+                            {
+                                thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
+
+                                //Vfx
+                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
+                                thisActor.CheckIsOut();
+                            }
+
+                            //Ajoute dans la liste un texte.
+                            listCurrentCataLogs.Add("La cata à frappé le lézard ! Tous le monde perd -2 de calm !");
+                        }
+                    }
+                }
             }
         }
     }

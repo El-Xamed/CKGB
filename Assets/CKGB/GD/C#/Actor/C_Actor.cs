@@ -299,6 +299,8 @@ public class C_Actor : C_Pion
     {
         if (currentStress <= 0)
         {
+            Debug.Log(name + " est mort");
+
             currentStress = 0;
 
             isOut = true;
@@ -313,6 +315,8 @@ public class C_Actor : C_Pion
         }
         else
         {
+            Debug.Log(name + " n'est pas mort");
+
             isOut = false;
 
             //Check si le sprite est déjà possé.

@@ -288,18 +288,5 @@ public class C_PreviewAction : MonoBehaviour
         }
         #endregion
     }
-
-    string GetValue(int value)
-    {
-        //Check si la valeur est négative pour retirer son signe.
-        if (value < 0)
-        {
-            return (-value).ToString();
-        }
-        else
-        {
-            return value.ToString();
-        }
-    }
     #endregion
 }

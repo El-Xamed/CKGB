@@ -20,11 +20,11 @@ public class C_Case : MonoBehaviour
     {
         //Si une cata à deja spaw.
         if (vfxCata != null) { return; }
+
         vfxCata = Instantiate(newVfxCata, transform);
 
         //Place la cata.
         vfxCata.transform.position = positionCata.position;
-
     }
 
     public void PlacePion(C_Pion thisPion)
@@ -33,11 +33,21 @@ public class C_Case : MonoBehaviour
         thisPion.GetComponent<RectTransform>().position = new Vector3(transform.position.x, 0, transform.position.z);
 
         //Change la valeur A VOIR SI IL FAUT RETIRER 1 !!!
-        thisPion.SetPosition(number);
+        thisPion.SetPosition(number -1);
 
         myPion = thisPion;
 
         CheckIsInDanger();
+    }
+
+    public Animator GetCata()
+    {
+        if (vfxCata != null)
+        {
+            return vfxCata.GetComponent<Animator>();
+        }
+
+        return null;
     }
 
     public void ResetPion()

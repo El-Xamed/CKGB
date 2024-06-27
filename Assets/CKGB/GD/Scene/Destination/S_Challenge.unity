@@ -1168,6 +1168,7 @@ MonoBehaviour:
   uiLogsTimeline: {fileID: 1131262691}
   uiLogsPreview: {fileID: 1367586401}
   uiLogsTextPreviewPrefab: {fileID: 8215216427688094389, guid: e0cc74ad6bf8baa419513515d70dfec4, type: 3}
+  uiLogsHead: {fileID: 1747081646}
   eventSystem: {fileID: 83058667}
   background: {fileID: 1515696059}
   uiStatsPrefab: {fileID: 3723161877667537748, guid: 08f6793440b983348bc516311958ccad, type: 3}
@@ -2463,6 +2464,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0
+--- !u!1 &1747081646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9111024432463689822, guid: e6e5def427e48bb359ad187f6c780705, type: 3}
+  m_PrefabInstance: {fileID: 1131262688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1758534365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6146130471628635050, guid: b3f214dc7ddd1494587103d53effe20e, type: 3}
