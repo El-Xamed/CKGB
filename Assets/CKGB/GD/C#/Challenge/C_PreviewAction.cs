@@ -9,12 +9,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class C_PreviewAction : MonoBehaviour
 {
-    //Note personel :
-    //Il faut que le challenge au moment ou le joueur survol les actions, inscrit les preview necessaire dans puis le challenge demande à ce script de lancer la preview.
-    //3 preview sont possible : Preview texte ; Preview stats ui ; Preview déplacement
-    //Il y a aussi des preview pour les autres.
-    //La preview à besoin de récupérer les info de l'action.
-
     public static event Action<SO_ActionClass> onPreview;
 
     [SerializeField] List<GameObject> listLogsTextPreview = new List<GameObject>();
@@ -140,13 +134,13 @@ public class C_PreviewAction : MonoBehaviour
                             //Setup le bon symbol (fleche droite).
                             whatSigne = "<sprite index=[index] tint= " + (4 + color) + ">";
 
-                            descriptionPreview = " va gagner ";
+                            descriptionPreview = " gagner ";
                             break;
                         case TargetStats.ETypeCost.Price:
                             //Setup le bon symbol (fleche gauche).
                             whatSigne = "<sprite index=[index] tint= " + (5 + color) + ">";
 
-                            descriptionPreview = " va perdre ";
+                            descriptionPreview = " perdre ";
                             break;
                     }
                     #endregion
@@ -199,14 +193,14 @@ public class C_PreviewAction : MonoBehaviour
                 //Setup la target.
                 if (thisInteraction.whatTarget == Interaction.ETypeTarget.Soi)
                 {
-                    actorTarget = "L'utilisateur.ice";
+                    actorTarget = "L'utilisateur.ice va";
 
                     //Setup le string de la target "(Soi)".
                     whatTarget = " (Soi)";
                 }
                 else if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
                 {
-                    actorTarget = "";
+                    actorTarget = "Les autres utilisateur.ice impactés vont";
 
                     string other = "";
 
