@@ -1313,8 +1313,6 @@ public class C_Challenge : MonoBehaviour
 
                     uiLogsHead.SetActive(false);
 
-                    Debug.Log("Cata Turn");
-
                     //Lance la phase "Cata".
                     CataTurn();
                     ResetCataLogs();
@@ -1790,26 +1788,28 @@ public class C_Challenge : MonoBehaviour
     //Fonction pour appliquer la cata.
     #region Logs Cata
     [Header("Text (Logs)")]
-    List<string> listCurrentCataLogs;
+    List<string> listCataLogs = new List<string>();
     string currentCataLogs;
     int logsCataCursor;
 
     public void ResetCataLogs()
     {
         logsCataCursor = 0;
-        listCurrentCataLogs = new List<string>();
+        listCataLogs = new List<string>();
     }
 
     string GetListCataLogs()
     {
-        if (listCurrentCataLogs.Count == 0 && logsCataCursor == 0)
+        if (logsCataCursor == 0)
         {
             //Check si c'est pas null
-            if (listCurrentCataLogs.Count != 0)
+            if (listCataLogs.Count != 0)
             {
                 logsCataCursor++;
 
-                currentCataLogs = listCurrentCataLogs[0];
+                currentCataLogs = listCataLogs[0];
+
+                Debug.Log("Premier logs : " + currentCataLogs);
 
                 //Retourne le premier element de la liste.
                 return currentCataLogs;
@@ -1820,16 +1820,18 @@ public class C_Challenge : MonoBehaviour
                 return null;
             }
         }
-        if (logsCataCursor > listCurrentCataLogs.Count - 1)
+        else if (logsCataCursor > listCataLogs.Count - 1)
         {
             //Retourne une valeur null.
             return null;
         }
         else
         {
-            currentCataLogs = listCurrentCataLogs[logsCataCursor];
+            currentCataLogs = listCataLogs[logsCataCursor];
 
             logsCataCursor++;
+
+            Debug.Log("Autre logs : " + currentCataLogs);
 
             //Retourne un element ciblé avant d'augmenter le curseur.
             return currentCataLogs;
@@ -1899,10 +1901,15 @@ public class C_Challenge : MonoBehaviour
             }
 
             //Check si il y a du texte.
-            if (currentCataLogs == "")
+            if (GetListCataLogs() == null)
             {
                 myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
                 vfxPlayerTurn.SetTrigger("PlayerTurn");
+            }
+            else
+            {
+                Debug.Log("Ecrit la cata !");
+                uiLogs.GetComponentInChildren<TMP_Text>().text = currentCataLogs;
             }
         }
     }
@@ -1953,7 +1960,7 @@ public class C_Challenge : MonoBehaviour
                         thisActor.CheckIsOut();
                     }
 
-                    listCurrentCataLogs.Add(currentCata.catastrophyLog);
+                    listCataLogs.Add(currentCata.catastrophyLog);
                 }
             }
             else
@@ -1977,7 +1984,7 @@ public class C_Challenge : MonoBehaviour
 
                         Debug.Log(currentCata.PoPUpCatastrophe);
 
-                        listCurrentCataLogs.Add(currentCata.PoPUpCatastrophe);
+                        listCataLogs.Add(currentCata.PoPUpCatastrophe);
                     }
                 }
 
@@ -1998,7 +2005,7 @@ public class C_Challenge : MonoBehaviour
                             thisActor.CheckIsOut();
 
                             //Ajoute dans la liste un texte.
-                            listCurrentCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
+                            listCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
                         }
                     }
 
@@ -2020,7 +2027,7 @@ public class C_Challenge : MonoBehaviour
                             }
 
                             //Ajoute dans la liste un texte.
-                            listCurrentCataLogs.Add("La cata à frappé le lézard ! Tous le monde perd -2 de calm !");
+                            listCataLogs.Add("La cata à frappé le lézard ! Tous le monde perd -2 de calm !");
                         }
                     }
                 }

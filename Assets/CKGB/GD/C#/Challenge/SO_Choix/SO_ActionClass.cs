@@ -271,7 +271,7 @@ public class SO_ActionClass : ScriptableObject
     #region Logs
     public string GetListLogs()
     {
-        if (listCurrentLogs.Count == 0 && logsCursor == 0)
+        if (logsCursor == 0)
         {
             //Check si c'est pas null
             if (listCurrentLogs.Count != 0)
