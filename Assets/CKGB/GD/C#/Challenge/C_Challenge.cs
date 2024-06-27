@@ -1984,7 +1984,7 @@ public class C_Challenge : MonoBehaviour
 
                         Debug.Log(currentCata.PoPUpCatastrophe);
 
-                        listCataLogs.Add(currentCata.PoPUpCatastrophe);
+                        listCataLogs.Add(currentCata.catastrophyLog);
                     }
                 }
 
