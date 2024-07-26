@@ -209,6 +209,7 @@ public class C_Worldmap : MonoBehaviour
                 AddActorInTeam();
                 Debug.Log("Load Scene...");
                 SceneManager.LoadScene("S_TempsLibre");
+                AudioManager.instanceAM.Stop("WMSound");
             }
 
             //currentPoint.GetComponent<C_destination>().flag.SetActive(true);

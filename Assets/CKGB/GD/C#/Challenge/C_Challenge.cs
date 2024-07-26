@@ -382,26 +382,26 @@ public class C_Challenge : MonoBehaviour
         GameManager.instance.textToWriteIn.transform.GetChild(0).gameObject.SetActive(true);
 
         //SFX
-        if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
+        /*if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
         {
 
         }
         else
         {
             AudioManager.instanceAM.Stop("Dialogue");
-        }
+        }*/
     }
     public void SetCanContinueToNo()
     {
         myInterface.canContinue = false;
-        if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
+       /* if (GameManager.instance.textToWriteIn == GetuiLogs().GetComponentInChildren<TMP_Text>())
         {
 
         }
         else
         {
             AudioManager.instanceAM.Play("Dialogue");
-        }
+        }*/
     }
     #endregion
 

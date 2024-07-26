@@ -946,8 +946,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19, y: -14}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 16, y: -74}
+  m_SizeDelta: {x: 216.04, y: 157.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3767633262245780052
 CanvasRenderer:
@@ -977,8 +977,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Et les <b>Traits</b>, eux, sont exclusifs au personnage qui les utilise.
-    Si tu es en difficult\xE9, ils peuvent apporter un coup de pouce !"
+  m_text: Et les <b>Traits</b>, eux, sont exclusifs au personnage qui les utilise.
+    Si tu as des soucis, ils peuvent apporter un coup de pouce !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 34
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -3353,8 +3353,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: -16}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 32, y: -108}
+  m_SizeDelta: {x: 238.76, y: 240.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3767633263151742531
 CanvasRenderer:
@@ -3385,7 +3385,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Parmis les <b>Actions</b> se trouve la solution \xE0 l'\xE9tape actuelle
-    du Challenge. Les autres actions affectent aussi l'\xE9tat de ton personnage."
+    du Challenge. Elles affectent aussi l'\xE9tat de ton personnage."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
   m_sharedMaterial: {fileID: -5161107684164343259, guid: 796437dae45d9584288ed881e1ffbde8, type: 2}
@@ -4050,7 +4050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3767633263734904581
 RectTransform:
   m_ObjectHideFlags: 0
