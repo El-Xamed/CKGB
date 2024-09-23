@@ -1,48 +1,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 public class Settings : MonoBehaviour
 {
 
     // permets l acess aux differents slider
-    [SerializeField]  AudioMixer myMixer;
-    [SerializeField]  Slider musicSlider;
-    [SerializeField]  Slider sfxSlider;
-    [SerializeField]  Slider generalSlider;
-    [SerializeField] Toggle musicToggle;
-    [SerializeField] Toggle sfxToggle;
-    [SerializeField] Toggle generalToggle;
-    bool Generalmute = true;
-    bool MusiqueMute = true;
-    bool EffetsSonoresMute = true;
+    [SerializeField] AudioMixer myMixer;
 
-    [SerializeField] private TMP_Dropdown resolutionDropDown;
+    [SerializeField] GameObject backGround;
 
-    private Resolution[] resolutions;
-    private List<Resolution> filteredResolutions;
+    //Pour vérifier si le jeu et en pause ou alors dans le menu afin de retirer le fond correctement.
+    bool onPause;
 
-    private float currentrefreshRate;
-    private int currentResolutionindex = 0;
-    public GameObject currentButton;
-    public EventSystem Es;
+    #region Slider
+    [SerializeField] Slider generalSlider;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
+    #endregion
+
+    #region Resolution
+    Resolution[] resolutions;
+    List<Resolution> filteredResolutions;
+
+    float currentrefreshRate;
+    int currentResolutionindex = 0;
+    #endregion
 
     // recupere les valeurs de audio mixer
-    public void Start()
+    void Start()
     {
-        Es = FindObjectOfType<EventSystem>();
-        SetMusicVolume();
-        SetGeneralVolume();
-        SetSFXVolume();
+        backGround.SetActive(false);
+
+        #region Volume
+        //SetMusicVolume();
+        //SetGeneralVolume();
+        //SetSFXVolume();
+        #endregion
+
+        #region Resolution
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
 
-        resolutionDropDown.ClearOptions();
         currentrefreshRate = Screen.currentResolution.refreshRate;
 
         Debug.Log("refresh rate : " + currentrefreshRate);
@@ -64,154 +64,77 @@ public class Settings : MonoBehaviour
                 currentResolutionindex = i;
             }
         }
+        #endregion
+    }
 
-        resolutionDropDown.AddOptions(options);
-        resolutionDropDown.value = currentResolutionindex;
-        resolutionDropDown.RefreshShownValue();
+    #region Mes Fonctions
+    //Pour ouvrir les paramètres
+    public void OpenOptions()
+    {
+        //Active le trigger qui est dans le parent de cet object car le component est mal placé.
+        backGround.GetComponentInParent<Animator>().SetTrigger("trigger");
+        backGround.SetActive(true);
     }
 
     // convertie les valeurs du slider a laudio mixer
+    #region Set Volume Slider
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;
-        myMixer.SetFloat("music",Mathf.Log10(volume) * 20);
-        if(volume<=0)
-        {
-            myMixer.SetFloat("music", 0);
-        }
+        myMixer.SetFloat("music",volume);
     }
     public void SetSFXVolume()
     {
         float volume = sfxSlider.value;
-        myMixer.SetFloat("sfx",Mathf.Log10(volume) * 20);
-        if (volume <= 0)
-        {
-            myMixer.SetFloat("sfx",0);
-        }
+        myMixer.SetFloat("sfx",volume);
     }
     
     public void SetGeneralVolume()
     {
         float volume = generalSlider.value;
-        myMixer.SetFloat("general",Mathf.Log10(volume) * 20);
-        myMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
-        myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
-        if (volume <= 0)
-        {
-            myMixer.SetFloat("music", 0);
-            myMixer.SetFloat("sfx", 0);
-            myMixer.SetFloat("general", 0);
-        }
-
+        myMixer.SetFloat("general", volume);
+        myMixer.SetFloat("sfx", volume);
+        myMixer.SetFloat("music", volume);
     }
+    #endregion
 
-    // fonction des buttons toggle pour mute chacun des sliders
-    public void MuteGeneral(bool NewValue)
-    {
-
-        Generalmute = NewValue;
-        if (Generalmute)
-        {
-            myMixer.SetFloat("general", -80);
-            
-
-
-
-
-            Debug.Log("ça mute general");
-        }
-        else
-        {
-            float volume = generalSlider.value;
-            myMixer.SetFloat("general", Mathf.Log10(volume) * 20);
-
-        }
-
-         generalSlider.enabled = !NewValue;
-
-        
-    }
-    public void MuteMusique()
-    {
-        if (MusiqueMute&&musicToggle.GetComponent<Toggle>().isOn==false&& generalToggle.GetComponent<Toggle>().isOn == false)
-        {
-
-        }
-        else
-        {
-
-           
-        }
-
-        musicSlider.enabled = MusiqueMute;
-
-
-
-    }
-    public void MuteEffetsSonores()
-    {
-        if (EffetsSonoresMute && sfxToggle.GetComponent<Toggle>().isOn == false && generalToggle.GetComponent<Toggle>().isOn == false)
-        {
-
-           
-        }
-        else
-        {
-
-          
-        }
-
-        sfxSlider.enabled = EffetsSonoresMute;
-
-
-    }
     public void TogleFullScreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
         Debug.Log("fullScreenChanged");
     }
-    public void setResolution(int resolutionIndex)
-    {
-        Resolution resolution = filteredResolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, true);
 
-    }
-    public void Naviguate(InputAction.CallbackContext context)
+    public void GoBack()
     {
-        if (!context.performed) { return; }
-
-        if (context.performed)
+        if (onPause)
         {
-            /*
-            AudioManager.instanceAM.Play("Selection"); 
-            updateCurrentButton();
-            */
+            //Ferme seulement les paramètres. (Utilisé in game)
+            gameObject.SetActive(false);
         }
-        if (context.started)
+        else
         {
-            if (currentButton.transform.GetChild(0).name == "fleche")
+            //Si en plus il est dans le menu. (Pour faire fonctionner correctement dans le menu ou juste le fermer si il est ouvert via une commande)
+            if (FindObjectOfType<C_MainMenu>() != null)
             {
-                currentButton.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            if (currentButton.transform.GetChild(2).name == "fleche")
-            {
-                currentButton.transform.GetChild(2).gameObject.SetActive(false);
-            }
-            updateCurrentButton();
-            if (currentButton.transform.GetChild(0).name == "fleche")
-            {
-                currentButton.transform.GetChild(0).gameObject.SetActive(true);
-            }
-            if (currentButton.transform.GetChild(2).name == "fleche")
-            {
-                currentButton.transform.GetChild(2).gameObject.SetActive(true);
-            }
-            AudioManager.instanceAM.Play("Selection");
-        }
+                FindObjectOfType<C_MainMenu>().OpenMenuGroup();
 
+                //Set le premier bouton du Menu.
+                GetComponentInParent<GameManager>().SetFirtButton(FindObjectOfType<C_MainMenu>().GetFirtBoutonMenu());
+            }
+
+            //Ferme les paramètres + le fond. (Utilisé dans le menu principal)
+            gameObject.SetActive(false);
+            backGround.SetActive(false);
+
+            onPause = false;
+        }
     }
-    void updateCurrentButton()
+    #endregion
+
+    #region Partage de données
+    public void SetBoolOnPause(bool value)
     {
-        currentButton = Es.currentSelectedGameObject;
+        onPause = value;
     }
+    #endregion
 }

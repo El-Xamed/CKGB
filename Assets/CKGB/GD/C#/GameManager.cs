@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public enum EActorClass
 {
@@ -84,6 +85,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator maskRond;
     [SerializeField] Animator softBlackSwipe;
 
+    //EventSystem
+    EventSystem eventSystem;
+
     #endregion
 
     #region MenuPauseOptions
@@ -123,9 +127,17 @@ public class GameManager : MonoBehaviour
 
         //Pour créer l'équipe.
         SetUpTeam();
+
+        //Cache les paramètres
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+
+        //Renseigne l'eventSystem.
+        eventSystem = gameObject.GetComponentInChildren<EventSystem>();
     }
 
     #region Mes Fonctions
+
     void SetUpTeam()
     {
         foreach (EActorClass thisActor in myActor)
@@ -162,11 +174,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*//Inutile
-    public void ChangeActionMap(string actionMap)
+    //Pour set le premier bouton selectione.
+    public void SetFirtButton(GameObject thisbutton)
     {
-        GetComponent<PlayerInput>().SwitchCurrentActionMap(actionMap);
-    }*/
+        eventSystem.SetSelectedGameObject(thisbutton);
+    }
     #endregion
 
     #region Pour la WorldMap
@@ -1100,7 +1112,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("S_MainMenu");
     }
 
-
+    public EventSystem GetEventSystem()
+    {
+        return eventSystem;
+    }
 
     #region Transition
 

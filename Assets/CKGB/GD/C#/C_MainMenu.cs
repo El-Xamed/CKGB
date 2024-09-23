@@ -14,7 +14,6 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject logoJeu;
     [SerializeField] GameObject logoEart;
     [SerializeField] GameObject boutonsGroupe;
-    [SerializeField] GameObject optionsParent;
     [SerializeField] GameObject playButton;
     [SerializeField] GameObject optionsButton;
     [SerializeField] GameObject ChapterImage;
@@ -25,15 +24,13 @@ public class C_MainMenu : MonoBehaviour
     private void Start()
     {
         IniSplashScreen();
-        
     }
 
+    #region Mes fonctions
     private void IniSplashScreen()
     {
         AudioManager.instanceAM.Play("MenuMusic");
         splashScreen.SetActive(true);
-        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(bouttonSplashScreen);
-        currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
     }
 
     public void GoToFirthButton()
@@ -55,17 +52,17 @@ public class C_MainMenu : MonoBehaviour
     IEnumerator firstButton()
     {
         yield return new WaitForSeconds(1.8f);
-        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(playButton);
+        GameManager.instance.SetFirtButton(playButton);
         splashScreen.SetActive(false);
-        
     }
     public void ShowChapterPicture()
     {
         AudioManager.instanceAM.Play("NewGameButton");
         ChapterImage.SetActive(true);
-        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(ChapterImage.transform.GetChild(0).GetChild(0).gameObject);
-
+        GameManager.instance.SetFirtButton(ChapterImage.transform.GetChild(0).GetChild(0).gameObject);
     }
+
+    #region Boutons
     public void NewParty(SO_Challenge firthChallenge)
     {
         //Setup le niveau.
@@ -88,7 +85,7 @@ public class C_MainMenu : MonoBehaviour
         
         AudioManager.instanceAM.Stop("MenuMusic");
 
-        eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(null);
+        GameManager.instance.SetFirtButton(null);
     }
 
     public void BackOnTrack(InputAction.CallbackContext context)
@@ -109,21 +106,27 @@ public class C_MainMenu : MonoBehaviour
     }
     public void OpenOptions()
     {
-
-
-        if (optionsParent)
+        //Detection de si le parametre est bien renseigne.
+        if (GameManager.instance.optionsMenu)
         {
             //bouttonSplashScreen.SetActive(false);
             //logoEart.SetActive(false);
             //logoJeu.SetActive(false);
+
+            //Cache le menu.
             boutonsGroupe.SetActive(false);
             logoJeu.SetActive(false);
-            GameManager.instance.pauseBackground.SetActive(true);
-            GameManager.instance.PauseParent.GetComponent<Animator>().SetTrigger("trigger");
+
+            //Active les options
             GameManager.instance.optionsMenu.SetActive(true);
-            //optionsParent.SetActive(true);
-            Debug.Log("Options");
-            eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(GameManager.instance.baseToggle.gameObject);
+
+            //Active le fond
+            GameManager.instance.optionsMenu.GetComponent<Settings>().OpenOptions();
+
+            //Set le premier bouton des options.
+            GameManager.instance.SetFirtButton(GameManager.instance.baseToggle.gameObject);
+
+            //SFX.
             AudioManager.instanceAM.Play("ClickButton");
         }
     }
@@ -169,30 +172,20 @@ public class C_MainMenu : MonoBehaviour
         Application.Quit();
         
     }
+    #endregion
 
-    //Focntion à dev plus tard. Sert pour tous les menu.
-    public void Back()
+    #endregion
+
+    #region Data partagées
+    public void OpenMenuGroup()
     {
-        //AudioManager.instanceAM.Play("BackButton");
+        boutonsGroupe.SetActive(true);
+        logoJeu.SetActive(true);
     }
-    /*public void Naviguate(InputAction.CallbackContext context)
-    {
-        
-        if (!context.performed) { return; }
 
-        if (context.performed )
-        {
-            if (caMarche == true)
-            {
-                AudioManager.instance.PlayOnce(AudioManager.instance.sounds[0].clip[0]);
-                caMarche = false;
-            }
-            
-            
-            
-        }
-        else if (!context.canceled) { caMarche = true; return; }
-        
-        
-    }*/
+    public GameObject GetFirtBoutonMenu()
+    {
+        return playButton;
+    }
+    #endregion
 }
