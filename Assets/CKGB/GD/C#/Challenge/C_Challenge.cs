@@ -173,11 +173,15 @@ public class C_Challenge : MonoBehaviour
 
     //------------------------------------------------------------------------------------------------------------------------
 
+    #region Initialisation du challenge
     private void Awake()
     {
         //Check si il a le GameManager.
         if (GameManager.instance)
         {
+            //Cache toute l'Ui pour les dialogue.
+            ShowUiChallenge(false);
+
             #region EventSystem setup
             //Supprime l'eventSystem qui existe par default dans la scene.
             Destroy(eventSystem.gameObject);
@@ -261,19 +265,14 @@ public class C_Challenge : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        if (GameManager.instance)
-        {
-            //Cache toute l'Ui pour les dialogue.
-            ShowUiChallenge(false);
-        }
-
         //Lance l'intro.
         StartIntroChallenge();
     }
+    #endregion
 
     #region Mes fonctions
 
-    //Pour récupérer tout les autres actors concernée.
+    //Pour récupérer tous les autres actors concernée. UTILISEE POUR LE CALCUL DES STATS CONCERNEE.
     public List<C_Actor> GetOtherActor(SO_ActionClass thisActionClass, C_Actor firtActor)
     {
         #region Racourci
@@ -875,11 +874,8 @@ public class C_Challenge : MonoBehaviour
             //Début de la list de la phase de réso.
             currentResolution = listRes[0];
 
-            //Active la petite tete dans les logs.
+            //Cahce la petite tete dans de 'linterface.
             uiInterfaceHead.SetActive(false);
-            uiLogsHead.SetActive(true);
-            //Change le sprite sur l'interface.
-            uiLogsHead.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().headButton;
 
             //Cache les boutons + ferme l'interface.
             //Animation.
@@ -1297,19 +1293,18 @@ public class C_Challenge : MonoBehaviour
         }
         else if (listRes.IndexOf(currentResolution) < listRes.Count - 1) //Check si on n'est pas arr au dernier reso.
         {
-            //Check si il reste des étapes.
-            if (myChallenge.listEtape.IndexOf(currentStep) != myChallenge.listEtape.Count - 1)
-            {
-                Debug.Log("Next réso !");
+            Debug.Log("Next réso !");
 
-                currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
+            currentResolution = listRes[listRes.IndexOf(currentResolution) + 1];
 
-                ResolutionTurn();
-            }
+            ResolutionTurn();
         }
         else //Passe à la phase suivante.
         {
             Debug.Log("Fin de la phase de réso !");
+
+            //Fait disparaitre la petite tete à coté des logs.
+            uiLogsHead.SetActive(false);
 
             //Check si une cata est présente.
             if (canUseCata)
@@ -1344,6 +1339,11 @@ public class C_Challenge : MonoBehaviour
     public void ResolutionTurn()
     {
         //Supprime toutes les preview de déplacement.
+
+        if (!uiLogsHead.activeSelf)
+        {
+            uiLogsHead.SetActive(true);
+        }
 
         //Change le sprite sur l'interface.
         uiLogsHead.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().headButton;
