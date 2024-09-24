@@ -9,6 +9,8 @@ using static C_Challenge;
 
 public class C_Interface : MonoBehaviour
 {
+    bool onPause;
+
     #region Dialogue
     //Pour passer les dialogue.
     public bool canContinue;
@@ -107,7 +109,7 @@ public class C_Interface : MonoBehaviour
 
         if (context.performed)
         {
-            if(!GameManager.instance.pauseBackground.activeSelf)
+            if(!onPause)
             {
                 Vector2 input = context.ReadValue<Vector2>();
 
@@ -306,12 +308,12 @@ public class C_Interface : MonoBehaviour
         //Animation
         targetbutton = buttonBackBackground;
         GetComponent<Animator>().SetTrigger("Close");
-        if (GameManager.instance.optionsMenu.activeSelf == true)
+        if (GameManager.onPause == true)
         {
             Debug.Log("back from options");
             GameManager.instance.BackFromPause(); 
         }
-        else if (GameManager.instance.pauseMenu.activeSelf == true)
+        else if (GameManager.onPause == true)
         {
             Debug.Log("back from pause");
             GameManager.instance.BackFromPause();

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
@@ -119,7 +120,8 @@ public class Settings : MonoBehaviour
                 FindObjectOfType<C_MainMenu>().OpenMenuGroup();
 
                 //Set le premier bouton du Menu.
-                GetComponentInParent<GameManager>().SetFirtButton(FindObjectOfType<C_MainMenu>().GetFirtBoutonMenu());
+                //GetComponentInParent<GameManager>().SetFirtButton(FindObjectOfType<C_MainMenu>().GetFirtBoutonMenu());
+                FindObjectOfType<EventSystem>().SetSelectedGameObject(FindObjectOfType<C_MainMenu>().GetFirtBoutonMenu());
             }
 
             //Ferme les paramètres + le fond. (Utilisé dans le menu principal)

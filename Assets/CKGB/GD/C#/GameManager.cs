@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public SO_TempsMort TM1;
     public SO_Challenge Tuto;
 
+    [Header("Dialogue")]
     //zone d�di�e aux  dialogues
     [SerializeField] public GameObject blackscreen;
     [SerializeField] public Story currentStory;
@@ -85,20 +86,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator maskRond;
     [SerializeField] Animator softBlackSwipe;
 
-    //EventSystem
+
     EventSystem eventSystem;
 
     #endregion
 
-    #region MenuPauseOptions
-    [SerializeField] public GameObject pauseBackground;
-    [SerializeField] public GameObject optionsMenu;
-    [SerializeField] public GameObject pauseMenu;
-    [SerializeField] public GameObject recommencerButton;
-    [SerializeField] public Toggle baseToggle;
-    [SerializeField] public GameObject reprendre;
+    #region Menu Pause/Options
+    [Header("Pause/Options")]
+    public static bool onPause;
+    [SerializeField] GameObject pauseBackground;
+    [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject recommencerButton;
+    [SerializeField] Toggle baseToggle;
+    [SerializeField] GameObject reprendre;
 
-    [SerializeField] public GameObject PauseParent;
+    [SerializeField] GameObject PauseParent;
 
 
 
@@ -107,8 +110,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         #region Singleton
-        if (instance == null)
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
             instance = this;
+        }
+            
         #endregion
 
         DontDestroyOnLoad(gameObject);
@@ -1076,6 +1086,7 @@ public class GameManager : MonoBehaviour
         pauseBackground.SetActive(true);
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(true);
+
         if (SceneManager.GetActiveScene().name == "S_TempsLibre")
         {
             TM.Es.SetSelectedGameObject(optionsMenu.transform.GetChild(2).gameObject);
@@ -1086,17 +1097,20 @@ public class GameManager : MonoBehaviour
             C.GetEventSystem().SetSelectedGameObject(optionsMenu.transform.GetChild(2).gameObject);
     
         }
-        //optionsParent.SetActive(true);
+
+        //Set le premier bouton des options.
+        SetFirtButton(baseToggle.gameObject);
         Debug.Log("Options");
     }
  
-    
+    /*A SUPP !
     public void GoToMainMenuALERT()
     {
         GameManager.instance.team.Clear();
         GameManager.instance.WorldstartPoint = 0;
         GameManager.instance.currentC = Tuto;
         GameManager.instance.currentTM = TM1;
+
         for(int i =0;i<RevasserID.Length;i++)
         {
             RevasserID[i] = 0;
@@ -1110,7 +1124,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         pauseBackground.SetActive(false);
         SceneManager.LoadScene("S_MainMenu");
-    }
+    }*/
 
     public EventSystem GetEventSystem()
     {

@@ -436,108 +436,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 374e47c3e2f947c3f83ded9329eaf7bc, type: 3}
---- !u!1 &120097862
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 120097864}
-  - component: {fileID: 120097863}
-  m_Layer: 0
-  m_Name: InputMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &120097863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120097862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 3689b610cdd252f4fb32603427c293fd, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 165282498}
-        m_TargetAssemblyTypeName: C_MainMenu, Assembly-CSharp
-        m_MethodName: Naviguate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6cc35362-29b2-40d8-b6c7-435f34fecf64
-    m_ActionName: MenuPrincipale/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8e7c72f6-f590-4985-894e-92b3c6f19460
-    m_ActionName: MenuPrincipale/Submit[/Keyboard/downArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 376e22fc-53c9-48ef-974a-e22ae9cc5d5e
-    m_ActionName: MenuPrincipale/pause/options[/XInputControllerWindows/start]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 165282498}
-        m_TargetAssemblyTypeName: C_MainMenu, Assembly-CSharp
-        m_MethodName: BackOnTrack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5a9daf07-2e42-4670-9d96-183b98957ccb
-    m_ActionName: MenuPrincipale/backOnTrack[/XInputControllerWindows/buttonEast]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: MenuPrincipale
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!4 &120097864
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120097862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 718.5515, y: 463.92648, z: 1.8519735}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133189491
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +662,6 @@ MonoBehaviour:
   optionsButton: {fileID: 1753291951}
   ChapterImage: {fileID: 882322268}
   eventSystem: {fileID: 0}
-  currentButton: {fileID: 0}
 --- !u!1 &185508247
 GameObject:
   m_ObjectHideFlags: 0
@@ -13760,6 +13657,10 @@ PrefabInstance:
     - target: {fileID: 3308454956504084626, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504324122253275961, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3516554347637675873, guid: dd5f4b686484ac6438a45f1dc1feea1d, type: 3}
       propertyPath: m_AnchorMax.x

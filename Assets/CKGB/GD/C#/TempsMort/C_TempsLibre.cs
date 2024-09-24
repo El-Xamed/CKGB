@@ -410,7 +410,7 @@ public class C_TempsLibre : MonoBehaviour
         }
         //check la nouvelle valeur du bouton en hover
         currentButton = Es.currentSelectedGameObject;
-        if(GameManager.instance.pauseBackground.activeSelf==false)
+        if(GameManager.onPause)
         {
             GameManager.instance.lastButton = currentButton;
         }
@@ -1249,7 +1249,7 @@ public class C_TempsLibre : MonoBehaviour
 
         if (context.started )
         {
-            if(GameManager.instance.isDialoguing == false&& GameManager.instance.pauseBackground.activeSelf==false)
+            if(GameManager.instance.isDialoguing == false && !GameManager.onPause)
             {
                 Debug.Log("going backward");
                 if (GameManager.instance.isDialoguing != true)
@@ -1518,6 +1518,7 @@ public class C_TempsLibre : MonoBehaviour
                     }
                 }
             }
+            /*Besoin de faire une modif ce script est temporairement désactivé
             else if(GameManager.instance.optionsMenu.activeSelf==true)
             {
                 Debug.Log("back from options");
@@ -1531,7 +1532,7 @@ public class C_TempsLibre : MonoBehaviour
                 GameManager.instance.BackFromPause();
                 //BACK(context);
                 updateButton();
-            }
+            }*/
 
 
         }

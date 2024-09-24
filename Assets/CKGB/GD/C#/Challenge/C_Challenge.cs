@@ -9,7 +9,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SO_Challenge;
-using static UnityEngine.GraphicsBuffer;
 
 public class C_Challenge : MonoBehaviour
 {
@@ -176,8 +175,17 @@ public class C_Challenge : MonoBehaviour
 
     private void Awake()
     {
+        //Check si il a le GameManager.
         if (GameManager.instance)
         {
+            #region EventSystem setup
+            //Supprime l'eventSystem qui existe par default dans la scene.
+            Destroy(eventSystem.gameObject);
+
+            //Refait le lien vers l'eventSystem qui est dans le GameManager.
+            eventSystem = GameManager.instance.GetEventSystem();
+            #endregion
+
             //Appel la transition.
             GameManager.instance.OpenTransitionFlannel();
             GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupFirthEvent(LaunchIChallenge);
@@ -2363,5 +2371,9 @@ public class C_Challenge : MonoBehaviour
     {
         onDialogue = value;
     }
+    #endregion
+
+    #region Partage de données
+
     #endregion
 }

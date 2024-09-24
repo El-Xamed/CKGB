@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class C_credits : MonoBehaviour
 {
     [SerializeField] GameObject skipButton;
-    // Start is called before the first frame update
+
     void Start()
     {
-        EventSystem Es = FindObjectOfType<EventSystem>();
-        Es.SetSelectedGameObject(skipButton);
+        GameManager.instance.SetFirtButton(skipButton);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void GoMainMenuALERT()
     {
-        GameManager.instance.GoToMainMenuALERT();
+        //A SUPP
+        //GameManager.instance.GoToMainMenuALERT();
+
+        //Pour changer de scenne.
+        SceneManager.LoadScene("S_MainMenu");
+
         AudioManager.instanceAM.Stop("MusicCredits");
     }
 }

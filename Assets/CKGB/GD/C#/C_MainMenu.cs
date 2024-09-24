@@ -18,8 +18,8 @@ public class C_MainMenu : MonoBehaviour
     [SerializeField] GameObject optionsButton;
     [SerializeField] GameObject ChapterImage;
 
-    [SerializeField] GameObject eventSystem;
-    [SerializeField] GameObject currentButton;
+    [SerializeField] EventSystem eventSystem;
+    GameObject currentButton;
 
     private void Start()
     {
@@ -29,6 +29,7 @@ public class C_MainMenu : MonoBehaviour
     #region Mes fonctions
     private void IniSplashScreen()
     {
+        GameManager.instance.SetFirtButton(bouttonSplashScreen);
         AudioManager.instanceAM.Play("MenuMusic");
         splashScreen.SetActive(true);
     }
@@ -59,6 +60,7 @@ public class C_MainMenu : MonoBehaviour
     {
         AudioManager.instanceAM.Play("NewGameButton");
         ChapterImage.SetActive(true);
+
         GameManager.instance.SetFirtButton(ChapterImage.transform.GetChild(0).GetChild(0).gameObject);
     }
 
@@ -88,6 +90,7 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.SetFirtButton(null);
     }
 
+    /*A VOIR POUR LE SUPP
     public void BackOnTrack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -98,44 +101,32 @@ public class C_MainMenu : MonoBehaviour
             boutonsGroupe.SetActive(true);
             logoJeu.SetActive(true);
             logoJeu.GetComponent<Animator>().SetTrigger("trigger");
-           // boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
+            //boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
             optionsButton.GetComponent<Animator>().SetTrigger("unselected");
             eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(optionsButton);
             
         }
-    }
+    }*/
+
     public void OpenOptions()
     {
-        //Detection de si le parametre est bien renseigne.
-        if (GameManager.instance.optionsMenu)
-        {
-            //bouttonSplashScreen.SetActive(false);
-            //logoEart.SetActive(false);
-            //logoJeu.SetActive(false);
+        //Cache le menu.
+        boutonsGroupe.SetActive(false);
+        logoJeu.SetActive(false);
 
-            //Cache le menu.
-            boutonsGroupe.SetActive(false);
-            logoJeu.SetActive(false);
+        GameManager.instance.OpenOptions();
 
-            //Active les options
-            GameManager.instance.optionsMenu.SetActive(true);
-
-            //Active le fond
-            GameManager.instance.optionsMenu.GetComponent<Settings>().OpenOptions();
-
-            //Set le premier bouton des options.
-            GameManager.instance.SetFirtButton(GameManager.instance.baseToggle.gameObject);
-
-            //SFX.
-            AudioManager.instanceAM.Play("ClickButton");
-        }
+        //SFX.
+        AudioManager.instanceAM.Play("ClickButton");
     }
+
     public void updateCurrentButton()
     {
         //currentButton.GetComponent<Animator>().SetTrigger("unselected");
         currentButton = eventSystem.GetComponent<EventSystem>().currentSelectedGameObject;
         // currentButton.GetComponent<Animator>().SetTrigger("Selected");
     }
+
     public void Naviguate(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }

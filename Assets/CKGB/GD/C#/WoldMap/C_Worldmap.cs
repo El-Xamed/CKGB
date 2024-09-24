@@ -416,13 +416,13 @@ public class C_Worldmap : MonoBehaviour
     }
     public void BACK(InputAction.CallbackContext context)
     {
-        if (GameManager.instance.optionsMenu.activeSelf == true)
+        if (GameManager.onPause)
         {
             Debug.Log("back from options");
             GameManager.instance.BackFromPause();
 
         }
-        else if (GameManager.instance.pauseMenu.activeSelf == true)
+        else if (GameManager.onPause)
         {
             Debug.Log("back from pause");
             GameManager.instance.BackFromPause();
@@ -430,21 +430,17 @@ public class C_Worldmap : MonoBehaviour
 
         }
     }
+
+    //BESOIN DE FAIRE UNE MODIF
     public void OpenPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (GameManager.instance.pauseBackground.activeSelf == false)
+            if (GameManager.onPause)
             {
                 canMove = false;
                 paused = true;
-                GameManager.instance.pauseBackground.SetActive(true);
-                GameManager.instance.PauseParent.GetComponent<Animator>().SetTrigger("trigger");
-                GameManager.instance.pauseMenu.SetActive(true);
-                GameManager.instance.recommencerButton.SetActive(false);
-                Es.SetSelectedGameObject(GameManager.instance.pauseMenu.transform.GetChild(1).GetChild(0).gameObject);
-
-                //optionsParent.SetActive(true);
+                
                 Debug.Log("Pause");
             }
             else
