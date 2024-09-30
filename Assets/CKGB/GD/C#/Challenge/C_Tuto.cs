@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class C_Tuto : MonoBehaviour
 {
+    public void LaunchTuto(int tutoIndex)
+    {
+        GetComponent<Animator>().SetTrigger("LaunchTutoEtape" + tutoIndex);
+    }
+
     public void NextTuto(int tutoIndex)
     {
         GetComponent<Animator>().SetTrigger("NextTutoEtape" + tutoIndex);

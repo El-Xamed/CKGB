@@ -734,7 +734,7 @@ public class C_Challenge : MonoBehaviour
             AudioManager.instanceAM.Play("Catastrophe");
         }
 
-        //Supprime toutes les catasur le plateau.
+        //Supprime toutes les cata sur le plateau.
         foreach (var thisCase in plateau)
         {
             thisCase.DestroyVfxCata();
@@ -920,12 +920,12 @@ public class C_Challenge : MonoBehaviour
                     myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
 
                     //Lance l'animation.
-                    GetComponentInChildren<C_Tuto>().NextTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
+                    GetComponentInChildren<C_Tuto>().LaunchTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
 
                     canMakeTuto = false;
                 }
             }
-            else if (myChallenge.name == "SO_lvl2A(Clone)")
+            else if (myChallenge.name == "SO_lvl2A(Clone)") //A VOIR SI BESOIN DE MODIF 
             {
                 myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
 
