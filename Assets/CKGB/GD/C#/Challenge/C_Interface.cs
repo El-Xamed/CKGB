@@ -11,6 +11,9 @@ public class C_Interface : MonoBehaviour
 {
     bool onPause;
 
+    //Variable pour bloquer les interaction dans le dev quand les anim se joue.
+    bool onAnim = false;
+
     #region Dialogue
     //Pour passer les dialogue.
     public bool canContinue;
@@ -25,7 +28,9 @@ public class C_Interface : MonoBehaviour
     #region Interface data
     bool onLogs = false;
     public enum Interface {Tuto, Neutre, Logs, Actions, Traits, Back}
-    [SerializeField]Interface currentInterface = Interface.Neutre;
+    Interface currentInterface = Interface.Neutre;
+    //Variable stocké pour l'appliquer à "currentInterface" pour éviter des bugs dans la nav rapide.
+    Interface nextInterface;
 
     bool dialogueMode;
 
@@ -233,102 +238,156 @@ public class C_Interface : MonoBehaviour
     //Pour accéder au actions.
     public void GoAction()
     {
-        //Spawn actions
-        SpawnActions(GetListActorAction());
-
-        //Setup quelle fonction va etre lancé.
-        //Retire toutes les fonctions stocké dans l'event.
-        currentEvent.RemoveAllListeners();
-
-        //Setup automatiquement l'event de transition.
-        currentEvent.AddListener(ShowButton);
-
-        //Animation.
-        targetbutton = buttonActionsBackground;
-        GetComponent<Animator>().SetTrigger("Open");
-
-        if (currentInterface != Interface.Tuto)
+        if (!onAnim)
         {
-            //Modifie l'état de navigation.
-            currentInterface = Interface.Actions;
+            //Spawn actions
+            SpawnActions(GetListActorAction());
+
+            //Setup quelle fonction va etre lancé.
+            //Retire toutes les fonctions stocké dans l'event.
+            currentEvent.RemoveAllListeners();
+
+            //Setup automatiquement l'event de transition.
+            currentEvent.AddListener(ShowButton);
+
+            //Animation.
+            targetbutton = buttonActionsBackground;
+            GetComponent<Animator>().SetTrigger("Open");
+
+            if (currentInterface != Interface.Tuto)
+            {
+                //Modifie l'état de navigation.
+                nextInterface = Interface.Actions;
+            }
+
+            onAnim = true;
         }
     }
 
     //Pour accéder au logs.
     public void GoLogs()
     {
-        //Setup quelle fonction va etre lancé.
-        //Retire toutes les fonctions stocké dans l'event.
-        currentEvent.RemoveAllListeners();
-
-        //Setup automatiquement l'event de transition.
-        currentEvent.AddListener(OpenLogs);
-
-        //Spawn actions
-        SpawnActions(GetListActorAction());
-
-        //Animation interface.
-        targetbutton = buttonLogsBackground;
-        GetComponent<Animator>().SetTrigger("Open");
-
-        if (currentInterface != Interface.Tuto)
+        if (!onAnim)
         {
-            //Modifie l'état de navigation.
-            currentInterface = Interface.Logs;
+            //Setup quelle fonction va etre lancé.
+            //Retire toutes les fonctions stocké dans l'event.
+            currentEvent.RemoveAllListeners();
+
+            //Setup automatiquement l'event de transition.
+            currentEvent.AddListener(OpenLogs);
+
+            //Spawn actions
+            SpawnActions(GetListActorAction());
+
+            //Animation interface.
+            targetbutton = buttonLogsBackground;
+            GetComponent<Animator>().SetTrigger("Open");
+
+            if (currentInterface != Interface.Tuto)
+            {
+                //Modifie l'état de navigation.
+                currentInterface = Interface.Logs;
+            }
+
+            onAnim = true;
         }
     }
 
     //Pour accéder au traits.
     public void GoTraits()
     {
-        //Spawn actions
-        SpawnActions(GetListTrait());
-
-        //Setup quelle fonction va etre lancé.
-        //Retire toutes les fonctions stocké dans l'event.
-        currentEvent.RemoveAllListeners();
-
-        //Setup automatiquement l'event de transition.
-        currentEvent.AddListener(ShowButton);
-
-        //Animation.
-        targetbutton = buttonTraitsBackground;
-        GetComponent<Animator>().SetTrigger("Open");
-
-        if (currentInterface != Interface.Tuto)
+        if (!onAnim)
         {
-            //Modifie l'état de navigation.
-            currentInterface = Interface.Traits;
+            //Spawn actions
+            SpawnActions(GetListTrait());
+
+            //Setup quelle fonction va etre lancé.
+            //Retire toutes les fonctions stocké dans l'event.
+            currentEvent.RemoveAllListeners();
+
+            //Setup automatiquement l'event de transition.
+            currentEvent.AddListener(ShowButton);
+
+            //Animation.
+            targetbutton = buttonTraitsBackground;
+            GetComponent<Animator>().SetTrigger("Open");
+
+            if (currentInterface != Interface.Tuto)
+            {
+                //Modifie l'état de navigation.
+                nextInterface = Interface.Traits;
+            }
+
+            onAnim |= true;
         }
     }
 
     //Pour revenir au temps mort. Et aussi au autres boutons
     public void GoBack()
     {
-        //Animation
-        targetbutton = buttonBackBackground;
-        GetComponent<Animator>().SetTrigger("Close");
-        if (GameManager.onPause == true)
+        if (!onAnim)
         {
-            Debug.Log("back from options");
-            GameManager.instance.BackFromPause(); 
-        }
-        else if (GameManager.onPause == true)
-        {
-            Debug.Log("back from pause");
-            GameManager.instance.BackFromPause();
-        }
-        else
-        {
+            //Animation
+            targetbutton = buttonBackBackground;
+            GetComponent<Animator>().SetTrigger("Close");
+
+            //Detect si l'objet parent qui sert à contenir les actions/traits est activé.
+            if (uiAction.activeSelf)
+            {
+                uiAction.SetActive(false);
+
+                //Pour retirer le bouton dans l'event system.
+                myChallenge.GetEventSystem().SetSelectedGameObject(null);
+            }
+
+            //A SUP PEUT ETRE
+            /*if (GameManager.onPause == true)
+            {
+                Debug.Log("back from options");
+                GameManager.instance.BackFromPause(); 
+            }
+            else if (GameManager.onPause == true)
+            {
+                Debug.Log("back from pause");
+                GameManager.instance.BackFromPause();
+            }
+            else
+            {
+                switch (currentInterface)
+                {
+                    case Interface.Actions:
+                        uiAction.SetActive(false);
+                        //Desactive la preview.
+                        GetComponentInParent<C_PreviewAction>().DestroyAllPreview(GetComponentInParent<C_Challenge>().GetTeam());
+                        break;
+                    case Interface.Traits:
+                        uiAction.SetActive(false);
+                        GetComponentInParent<C_PreviewAction>().DestroyAllPreview(GetComponentInParent<C_Challenge>().GetTeam());
+                        break;
+                    case Interface.Logs:
+                        onLogs = false;
+                        //Animation Logs.
+                        myChallenge.GetuiLogs().SetTrigger("Close");
+                        break;
+                }
+
+                if (currentInterface != Interface.Tuto)
+                {
+                    currentInterface = Interface.Neutre;
+                }
+                else
+                {
+                    uiAction.SetActive(false);
+                }
+            }*/
+
             switch (currentInterface)
             {
                 case Interface.Actions:
-                    uiAction.SetActive(false);
                     //Desactive la preview.
                     GetComponentInParent<C_PreviewAction>().DestroyAllPreview(GetComponentInParent<C_Challenge>().GetTeam());
                     break;
                 case Interface.Traits:
-                    uiAction.SetActive(false);
                     GetComponentInParent<C_PreviewAction>().DestroyAllPreview(GetComponentInParent<C_Challenge>().GetTeam());
                     break;
                 case Interface.Logs:
@@ -342,24 +401,17 @@ public class C_Interface : MonoBehaviour
             {
                 currentInterface = Interface.Neutre;
             }
-            else
-            {
-                uiAction.SetActive(false);
-            }
+
+            onAnim = true;
         }
-        
     }
     #endregion
 
     #region Actions / Traits
 
     #region Spawn button
-    public void EndInterfaceAnimation()
-    {
-        currentEvent.Invoke();
-    }
-
-    //Affiche l'interface.
+    
+    //Affiche les logs.
     void OpenLogs()
     {
         //Animation Logs.
@@ -372,7 +424,15 @@ public class C_Interface : MonoBehaviour
     //Affiche les boutons d'actions.
     void ShowButton()
     {
+        //Affiche les actions
         uiAction.SetActive(true);
+
+        //Set dans quel interface on est. (Pour éviter un bug dans la navigation rapide)
+        if (currentInterface != Interface.Tuto)
+        {
+            //Modifie l'état de navigation.
+            currentInterface = nextInterface;
+        }
 
         myChallenge.WriteStatsPreview();
     }
@@ -473,16 +533,20 @@ public class C_Interface : MonoBehaviour
     #endregion
 
     #region Animation Event
-    public void SetPositionInHiearchie(GameObject thisButton)
+
+    public void EndInterfaceAnimation()
     {
-        thisButton.transform.parent = transform;
+        currentEvent.Invoke();
+
+        onAnim = false;
     }
 
+    //Pour animer visuellement le bouton. (Partie 1)
     public void SetPressedButton()
     {
         if (targetbutton)
         {
-            targetbutton.color = UnityEngine.Color.HSVToRGB(0, 0, 0.35f);
+            targetbutton.color = Color.HSVToRGB(0, 0, 0.35f);
 
             //Ajouter un parametre pour reconnaitre si c'est un retour en arrière ou non.
             /*if (AudioManager.instance && currentInterface == Interface.Back)
@@ -497,11 +561,12 @@ public class C_Interface : MonoBehaviour
         }
     }
 
+    //Pour animer visuellement le bouton. (Partie 2)
     public void SetUnPressedButton()
     {
         if (targetbutton)
         {
-            targetbutton.color = UnityEngine.Color.HSVToRGB(0, 0, 1);
+            targetbutton.color = Color.HSVToRGB(0, 0, 1);
         }
     }
 
