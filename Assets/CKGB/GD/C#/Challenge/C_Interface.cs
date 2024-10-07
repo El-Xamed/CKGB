@@ -149,7 +149,7 @@ public class C_Interface : MonoBehaviour
                     return;
                 }
                 #endregion
-
+                
                 //Check si l'interaction avec l'interface et possible => Phase du joueur.
                 if (GetPhaseDeJeu() == PhaseDeJeu.PlayerTrun)
                 {
@@ -160,6 +160,7 @@ public class C_Interface : MonoBehaviour
                         #region Traits
                         if (input.x < 0)
                         {
+                            Debug.Log("Go Traits");
                             GoTraits();
                             return;
                         }
@@ -168,6 +169,7 @@ public class C_Interface : MonoBehaviour
                         #region Actions
                         if (input.y < 0)
                         {
+                            Debug.Log("Go Actions");
                             GoAction();
                             return;
                         }
@@ -534,10 +536,15 @@ public class C_Interface : MonoBehaviour
 
     #region Animation Event
 
-    public void EndInterfaceAnimation()
+    public void EndInterfaceAnimationOpen()
     {
         currentEvent.Invoke();
 
+        onAnim = false;
+    }
+
+    public void EndInterfaceAnimationClose()
+    {
         onAnim = false;
     }
 
