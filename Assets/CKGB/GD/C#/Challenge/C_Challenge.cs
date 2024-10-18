@@ -206,6 +206,7 @@ public class C_Challenge : MonoBehaviour
         }
         else
         {
+            eventSystem.gameObject.SetActive(true);
             Debug.LogWarning("AUCUN GAMEMANAGER DETECTE");
             StartCoroutine(StartChallenge());
         }
@@ -369,8 +370,8 @@ public class C_Challenge : MonoBehaviour
         //Pour l'Ui des actor.
         uiStats.SetActive(active);
 
-        //Pour l'interface.
-        myInterface.gameObject.SetActive(active);
+        //Pour l'interface. NE PAS DESACTIVER CAR DANS LA BUILD LES INPUT NE SERONT PAS DETECTE !!!
+        //myInterface.gameObject.SetActive(active);
 
         //Pour le plateau.
         foreach (C_Case thisCase in plateau)

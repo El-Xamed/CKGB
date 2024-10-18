@@ -43,6 +43,7 @@ public class C_Worldmap : MonoBehaviour
     {
         AudioManager.instanceAM.Play("WMSound");
 
+        GameManager.instance.OpenTransitionFlannel();
 
         if (GameManager.instance != null)
         {

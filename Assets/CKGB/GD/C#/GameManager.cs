@@ -122,6 +122,9 @@ public class GameManager : MonoBehaviour
         #endregion
 
         DontDestroyOnLoad(gameObject);
+
+        //Renseigne l'eventSystem.
+        eventSystem = gameObject.GetComponentInChildren<EventSystem>();
     }
 
     private void Start()
@@ -141,9 +144,6 @@ public class GameManager : MonoBehaviour
         //Cache les paramètres
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
-
-        //Renseigne l'eventSystem.
-        eventSystem = gameObject.GetComponentInChildren<EventSystem>();
     }
 
     #region Mes Fonctions
