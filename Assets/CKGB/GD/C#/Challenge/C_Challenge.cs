@@ -2232,6 +2232,7 @@ public class C_Challenge : MonoBehaviour
                 nextScene = sceneWM;
             }
 
+            //Securité.
             if (nextScene != null)
             {
                 Debug.Log("Transition vers la scene " + nextScene);

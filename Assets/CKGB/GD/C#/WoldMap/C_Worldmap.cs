@@ -39,11 +39,6 @@ public class C_Worldmap : MonoBehaviour
     #endregion
 
     #region methodes
-    private void Awake()
-    {
-
-
-    }
     void Start()
     {
         AudioManager.instanceAM.Play("WMSound");
@@ -144,10 +139,7 @@ public class C_Worldmap : MonoBehaviour
 
 
     }
-    private void FixedUpdate()
-    {
 
-    }
     public void SetGameManagerWorldData()
     {
         startPoint = currentPoint;
@@ -162,6 +154,7 @@ public class C_Worldmap : MonoBehaviour
 
     }
     //Fonction qui lance le niveau en question.
+
     public void SelectLevel(InputAction.CallbackContext context)
     {
         if (context.performed && currentPoint.Islocked == false && currentPoint.IsCorner != true)
@@ -206,10 +199,15 @@ public class C_Worldmap : MonoBehaviour
                 currentPoint.GetComponent<C_destination>().IsDone = true;
                 currentPoint.GetComponent<C_destination>().Islocked = true;
                 GameManager.instance.SetDataLevel(currentPoint.GetDataTempsMort(), currentPoint.GetDataChallenge());
-                AddActorInTeam();
+
+                //Transition
                 Debug.Log("Load Scene...");
-                SceneManager.LoadScene("S_TempsLibre");
-                AudioManager.instanceAM.Stop("WMSound");
+
+                //Setup dans quelle scene on souhaite aller.
+                GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene("S_TempsLibre", "WMSound");
+
+                //Transition.
+                GameManager.instance.CloseTransitionFlannel();
             }
 
             //currentPoint.GetComponent<C_destination>().flag.SetActive(true);
@@ -286,10 +284,6 @@ public class C_Worldmap : MonoBehaviour
             Debug.Log("Down");
 
         }
-    }
-    void AddActorInTeam()
-    {
-
     }
     void updateDestinations()
     {
