@@ -80,11 +80,9 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene(firthScene, "NewGameButton");
 
         //Transition.
-        
-        GameManager.instance.TS_flanel.GetComponent<Animator>().SetTrigger("Close");
+        GameManager.instance.CloseTransitionFlannel();
 
         //Stop les sons.
-        
         AudioManager.instanceAM.Stop("MenuMusic");
 
         GameManager.instance.SetFirtButton(null);

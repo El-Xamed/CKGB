@@ -2107,7 +2107,7 @@ public class C_Challenge : MonoBehaviour
 
             #region Transition
             //Lance l'animation de transition.
-            GameManager.instance.ClosseTransitionFlannel();
+            GameManager.instance.CloseTransitionFlannel();
 
             //Setup dans quelle scene on souhaite aller.
             GameManager.instance.TS_flanel.GetComponent<C_TransitionManager>().SetupNextScene("S_Challenge", myChallenge.LevelChallenge);
@@ -2213,7 +2213,7 @@ public class C_Challenge : MonoBehaviour
 
             #region Transition
             //Lance l'animation de transition.
-            GameManager.instance.ClosseTransitionFlannel();
+            GameManager.instance.CloseTransitionFlannel();
 
             string nextScene = null;
 

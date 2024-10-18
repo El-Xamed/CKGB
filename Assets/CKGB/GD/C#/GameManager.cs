@@ -1138,7 +1138,7 @@ public class GameManager : MonoBehaviour
     {
         flanel.SetTrigger("Open");
     }
-    public void ClosseTransitionFlannel()
+    public void CloseTransitionFlannel()
     {
         flanel.SetTrigger("Close");
     }

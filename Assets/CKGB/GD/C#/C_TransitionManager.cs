@@ -47,6 +47,8 @@ public class C_TransitionManager : MonoBehaviour
     //Event d'animation.
     public void EndTransition()
     {
+        Debug.Log("Fin de transition !");
+
         //GetComponentInParent<GameManager>().EndAnimation(currentEvent);
 
         if (AudioManager.instanceAM && !string.IsNullOrEmpty(thisClip))
@@ -56,7 +58,5 @@ public class C_TransitionManager : MonoBehaviour
         }
 
         currentEvent.Invoke();
-
-        Debug.Log("Fin de transition !");
     }
 }
