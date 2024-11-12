@@ -14,7 +14,8 @@ VAR IdPapoter = 0
 - else: ->END
 }
 ===Papoter0===
-<size=120%><incr>NIMUUUUU !!!!!</incr><size=120%>#Bulle:EsthelaBasDroite
+<size=120%><incr>NIMUUUUU !!!!!</incr><size=120%>#Bulle:EsthelaBasDroite #emot:!
+~ Trigger("name")
 
 Le cri d'Esthéla déchire soudainement le silence. Nimu reste stoïque, #Bulle:Narrateur
 comme si elle s'attendait à ce que cette exacte occurrence se produise. #Bulle:Narrateur
@@ -25,7 +26,7 @@ Ah, tu as entendu ça ?#Bulle:NimuBasGauche
 
 C’était le bruit de mon coeur qui s’arrête.<br> Tu viens de me faire faire un infarctus.#Bulle:NimuBasGauche
 Tu t'adresses maintenant à mon fantôme.<br> Je te hanterai toute ta vie.<br> Bon courage pour expliquer ça à Morgan. #Bulle:NimuBasGauche
-
+~ Trigger("name")
 <incr>Noooooooon</incr> !<br> Pardon !! Je promets que je vais être toooute <br><size=60%>calme et silencieuse</size=60%><br><size=40%>à partir de maintenant !!</size=60%>#Bulle:EsthelaBasDroite
 
 Ptdr. <br>Tu tiendras pas cinq minutes.#Bulle:NimuBasGauche
@@ -35,27 +36,29 @@ Ptdr. <br>Tu tiendras pas cinq minutes.#Bulle:NimuBasGauche
 
 Nimu soupire lourdement.#Bulle:Narrateur
 
-Roh la forceuse.<br> T’en as pas eu assez à l’école ? <br>Tu m’adresses jamais la parole <br>pour autre chose.#Bulle:NimuBasGauche #emot:Deception
+Roh la forceuse.<br> T’en as pas eu assez à l’école ? <br>Tu m’adresses jamais la parole <br>pour autre chose.#Bulle:NimuBasGauche #emot:Dots
 
-<size=60%>L'école raconte que des trucs barbants. Et je continue de demander parce que<br> tu continues de refuser !!</size=60%>#Bulle:EsthelaBasDroite
+<size=60%>L'école raconte que des trucs barbants. Et je continue de demander parce que<br> tu continues de refuser !!</size=60%>#Bulle:EsthelaBasDroite #emot:!
 
 Est-ce que tu réalises<br> le problème avec ce que tu viens<br> de dire ou est-ce que #Bulle:NimuBasGauche
-je dois te faire une lecture sur la notion de consentement ?#Bulle:NimuBasGauche
+je dois te faire une lecture sur la notion de consentement ?#Bulle:NimuBasGauche #emot:Deception
 
-<size=60%>Rah mais non mais <br>je voulais pas le dire comme ça. <br>C'est pas juste.</size=60%>#Bulle:EsthelaBasDroite
-Si t’as autant le seum,<br> pourquoi ne pas plutôt<br> aller poser tes questions<br> à d’autres zoomers <br>qui ne font rien de leur journée ?#Bulle:NimuBasGauche
+<size=60%>Rah mais non mais <br>je voulais pas le dire comme ça. <br>C'est pas juste.</size=60%>#Bulle:EsthelaBasDroite #emot:Dots
+Si t’as autant le seum,<br> pourquoi ne pas plutôt<br> aller poser tes questions<br> à d’autres zoomers <br>qui font rien de leur journée ?#Bulle:NimuBasGauche
+
+~ Trigger("name")
 
 <size=60%>Parce que la plupart <br>sont morts. Ou séniles.<br> Ou les deux. Et ceux qui<br> restent, eh bien… <br>Je suis mal à l’aise avec les inconnus.</size=60%>#Bulle:EsthelaBasDroite
 
 Je comprends, Esthéla.<br> Mais j’ai bien peur<br> que ce combat t’appartienne.<br> 
 
-Maintenant, yeet !#Bulle:NimuBasGauche
+Maintenant, yeet !#Bulle:NimuBasGauche #emot:!
 
-Morgan a besoin du soutien de ses amis.#Bulle:NimuBasGauche
+Morgan a besoin du soutien de ses amis.#Bulle:NimuBasGauche 
 
 <size=60%><i>J’ai aussi besoin du soutien<br> d’une amie.</i></size=60%>#Bulle:EsthelaHautGauche
 
-<size=60%>Comment je pourrais<br> <wave>soutenirisationner</wave> Morgan <br>si moi-même tu m’as pas soutenirisationnarisée <br>alors que tu es mon <shake>amie</shake> ?</size=60%>#Bulle:EsthelaBasDroite
+<size=60%>Comment je pourrais<br> <wave>soutenirisationner</wave> Morgan <br>si moi-même tu m’as pas soutenirisationnarisée <br>alors que tu es mon <shake>amie</shake> ?</size=60%>#Bulle:EsthelaBasDroite #emot:?
 
 <i>Esthéla</i>, je suis profondément touchée.<br> Mais je pense que ce n’est pas que<br> à toi de décider du statut de notre relation.#Bulle:NimuBasGauche
 
@@ -63,22 +66,23 @@ Morgan a besoin du soutien de ses amis.#Bulle:NimuBasGauche
 <size=50%>Hrm.</size=50%>#Bulle:EsthelaBasDroite
 <size=40%>D’accord.</size=40%>#Bulle:EsthelaBasDroite
 <size=40%>Bah. Je vais soutenir Morgan alors...#Bulle:EsthelaBasDroite
+#emot:Dots
 <size=80%>Désolée !!</size=80%>#Bulle:EsthelaBasDroite
 <size=60%>Navrée de t’avoir dérangée.</size=60%>#Bulle:EsthelaBasDroite
-
+~ Trigger("name")
 Esthéla ?#Bulle:NimuHautGauche
 L'amitié est quelque chose<br> qui peut évoluer avec le temps.#Bulle:NimuHautGauche
 Et tu sais quoi ?#Bulle:NimuHautGauche
 Je suis plutôt touchée<br> que tu aies essayé<br> de tenir ta parole.#Bulle:NimuHautGauche
 Et, en vrai, j'ai plutôt apprécié discuter avec toi.#Bulle:NimuBasGauche
-
+~ Trigger("name")
 <incr>QUOI ?!</incr>#Bulle:EsthelaBasDroite
 
-<incr>YES TROP BIEN !!<br> HAHA, MERCI MERCI !!</incr>#Bulle:EsthelaBasDroite
+<incr>YES TROP BIEN !!<br> HAHA, MERCI MERCI !!</incr>#Bulle:EsthelaBasDroite #emot:JoyLeft
 
-<incr>RAAH TU VAS VOIR ON VA ÊTRE TELLEMENT AMIES !</incr>#Bulle:EsthelaBasDroite
+<incr>RAAH TU VAS VOIR ON VA ÊTRE TELLEMENT AMIES !</incr>#Bulle:EsthelaBasDroite #emot:JoyRight
 
-<incr>ET BIENTÔT,<br> TOUS LES SECRETS DE L’ANCIEN MONDE SERONT MIENS !</incr>#Bulle:EsthelaBasDroite
+<incr>ET BIENTÔT,<br> TOUS LES SECRETS DE L’ANCIEN MONDE SERONT MIENS !</incr>#Bulle:EsthelaBasDroite #emot:!
 
  …#Bulle:NimuBasGauche #emot:Dots
 

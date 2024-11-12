@@ -72,13 +72,16 @@ Elle a un petit sourire joueur. Et te montre qu'elle est prête à écouter tes 
 ~ RetourAuTMAfterPapotage("name")
 ->DONE
 ===Papoter1===
+~ Trigger("name")
 Mémé ?#Bulle:MorganHautDroite
 
-Hm ?#Bulle:NimuHautGauche
+Hm ?#Bulle:NimuHautGauche #emot:?
 
-J’me… J’me sens fébrile.#Bulle:MorganHautDroite
+J’me… J’me sens fébrile.#Bulle:MorganHautDroite #emot:Deception
 
-Bah viens on se pose.#Bulle:NimuHautGauche #emot:!
+Bah viens on se pose.#Bulle:NimuHautGauche 
+
+~ Trigger("name")
 
 Tu sens une boule te monter <br>dans la gorge alors que <br>tu t'assois à coté de ta grand-mère.#BulleNarrateur
 
@@ -86,7 +89,7 @@ Tu sens une boule te monter <br>dans la gorge alors que <br>tu t'assois à coté
 J’ai… plus assez d'énergie pour continuer. 
 J'crois qu'la pression émotionnelle <br>est trop forte pour moi.#Bulle:MorganHautGauche
 J'vais retourner à la maison.
-J'lui ferai passer <br>un message pour m'excuser.#Bulle:MorganHautDroite
+J'lui ferai passer <br>un message pour m'excuser.#Bulle:MorganHautDroite #emot:Deception
 
 Ta grand-mère lève sa main dans ta direction, attendant ton signal. Tu lui fais non de la tête, et elle la ramène dans sa poche.#Bulle:Narrateur
 Elle fait toujours attention à ne pas te toucher sans t'avoir demandé avant. Cette attention t’a toujours bien plus réconforté que n’importe quelle caresse.#Bulle:Narrateur
@@ -95,26 +98,28 @@ Si c’est vraiment ce que tu veux,<br> c’est ce qu’on fait.#Bulle:NimuHautG
 
 Il n’y a rien de cringe<br> dans le fait de prendre soin de soi.#Bulle:NimuHautGauche
 Pour l’instant, prends ton temps.<br> Tu as l’air de te sentir mal,<br> ce n’est peut-être pas forcément <br>le meilleur moment pour prendre des décisions."#Bulle:NimuHautGauche
-Tu fronces les sourcils.<br> Tu n'es pas d'accord.#Bule:Narrateur
+Tu fronces les sourcils.<br> Tu n'es pas d'accord.#Bulle:Narrateur
 C’est parc’que j’suis<br> dans cet état que j’prends cette décision. <br>On rentre."#Bulle:MorganHautDroite
+
+~ Trigger("name")
 
 Tu te relèves.#Bulle:Narrateur
 
-Tu es sûr ?#Bulle:NimuHautGauche
+Tu es sûr ?#Bulle:NimuHautGauche #emot:?
 
 Est-ce que tu es sûr ?#Bulle:Narrateur
-Tu fronces tes sourcils, la tête baissée vers le sol.<br> Tu observes le cheminement d’une coccinelle.#Bulle:Narrateur
+Tu te sens prendre une grande respiration, la tête baissée vers le sol.<br> Tu observes le cheminement d’une coccinelle.#Bulle:Narrateur
 Ta grand-mère prend appui sur quelque chose pour se relever à son tour. Tous ses os craquent.#Bulle:Narrateur
 
-Tiens, bois un peu d’eau."#Bulle:NimuHautGauche
+Tiens, bois un peu d’eau.#Bulle:NimuHautGauche
 Elle sort une petite gourde de sa poche et te la tend.#Bulle:Narrateur
-J’ai confiance en toi.<br> Et puis, t’as fait le plus dur.#Bulle:NimuHautGauche
+J’ai confiance en toi.<br> Et puis, t’as fait le plus dur.#Bulle:NimuHautGauche #emot:JoyLeft
 
 Je suis sorti de mon lit ?#Bulle:MorganHautDroite
 
-Tu l’as invité.e à ce rencard.<br> Et elle a accepté, en plus ! <br>Tu penses que si elle ne t'apréciait pas déjà,<br> elle aurait dit oui ?#Bulle:NimuHautGauche #emot:Sparkles
+Tu l’as invité.e.<br> Et elle a accepté, en plus ! <br>Tu penses que si elle ne t'apréciait pas déjà,<br> elle aurait dit oui ?#Bulle:NimuHautGauche #emot:Sparkles
 
-Mais… Mais… C'est jamais trop tard<br> pour que je ruine tout.<br> Imagine qu’on trouve pas<br> d’quoi parler et qu’y ait juste<br> un gros blanc pendant une heure.#Bulle:MorganHautDroite #emot:Deception
+Mais… Mais… C'est jamais trop tard<br> pour que je ruine tout.<br> Imagine qu’on trouve pas<br> d’quoi parler et qu’y ait juste<br> un gros blanc pendant une heure.#Bulle:MorganHautDroite #emot:!
 Imagine que le seul son qu’on entende<br> c’est le bruit bizarre que je fais<br> quand je bois du thé !#Bulle:MorganHautDroite #emot:Drop
 
 Hey,#Bulle:NimuHautGauche
@@ -143,13 +148,14 @@ Alors, pourquoi est-ce<br> que tu ne te sens pas comme ça ?#Bulle:NimuHautDroit
 ...#Bulle:MorganHautGauche #emot:Dots
 
 L'amour est une fleur.<br> Son terreau est la confiance.<br> Tu ne pourras sûrement jamais ressentir ce que tu cherches<br> si tu persistes à avoir peur<br> de l'autre.#Bulle:NimuHautDroite
-Maintenant, je veux que tu saches <br>que la peur est un adversaire <br>ancien et féroce.#Bulle:NimuHautDroite
+Maintenant, je veux que tu saches <br>que la peur est également <br>un adversaire ancien et féroce.#Bulle:NimuHautDroite
 Certains d'entre nous partent<br> avant d'avoir réussi<br>à faire la paix avec.#Bulle:NimuHautDroite
 Même si c'est à toi<br> de faire le gros du travail,<br> je ne m'attends pas à<br> ce tu surmontes cette épreuve<br> du jour au lendemain.#Bulle:NimuHautDroite
 Est-ce que tu veux toujours faire demi-tour ? <br>Je suis sûre que l'autre comprendra.#Bulle:NimuHautDroite
 
 ...#Bulle:MorganHautGauche #emot:Dots
 Peut-être plus tard.<br> Je pense que je peux encore <br>continuer un peu.#Bulle:MorganHautGauche
+~ Trigger("name")
 
 ~ IdPapoter++
 ~ RetourAuTMAfterPapotage("name")

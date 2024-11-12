@@ -61,26 +61,28 @@ Quand, au bout d’un moment, tu te relèves pour rejoindre les autres, tu as un
 ===Revasser1===
 
 Tes yeux clignent.#Bulle:Narrateur
+~ Trigger("name")
 Dans cet instant de relâche, tu prends conscience de la tension de tes muscles. #Bulle:Narrateur
 La contraction de ta mâchoire.#Bulle:Narrateur
 La foudre dans tes épaules.#Bulle:Narrateur
 La vitesse de ta respiration. #Bulle:Narrateur
 Tu décroches ton stylo d’une de tes poches, et commences à le faire tourner entre tes doigts.#Bulle:Narrateur
+~ Trigger("name")
 Tu cherches quelque chose contre quoi t’adosser. Tes doigts frôlent le papier contenu dans tes poches, à la recherche de ton carnet dans un océan de brouillons, de notes et de pense-bêtes.#Bulle:Narrateur
-Quelque chose t’arrête cependant.#Bulle:Narrateur
+Quelque chose t’arrête cependant.#Bulle:Narrateur #emot:Dots
 
-La pointe de ton stylo-plume touche la fibre végétale. N’es-tu pas en train d’entretenir un cercle vicieux ?#Bulle:Narrateur
-Tu t’es mis dans la tête que l’art-thérapie était une bonne manière de gérer tes sentiments. Mais est-ce que c’est vraiment le cas ?
-Est-ce que baigner dans les pensées que ton cerveau a mâchouillé comme des chewing-gums
-jusqu’à pouvoir en extraire la saveur sur du papier est vraiment sain ?
-Et qu'en est-il de les exposer pour avoir de l’attention ?
-Est-ce que c’est le genre de personne que tu veux être ?
+La pointe de ton stylo-plume touche la fibre végétale. N’es-tu pas en train d’entretenir un cercle vicieux ?#Bulle:Narrateur #emot:?
+Tu t’es mis dans la tête que l’art-thérapie était une bonne manière de gérer tes sentiments. Mais est-ce que c’est vraiment le cas ? #emot:?
+Est-ce que baigner dans les pensées que ton cerveau a mâchouillé comme des chewing-gums <br> jusqu’à pouvoir en extraire la saveur sur du papier est vraiment sain ? #emot:?
+Et qu'en est-il de les exposer pour avoir de l’attention ? #emot:Deception
+Est-ce que c’est le genre de personne que tu veux être ? #emot:?
 
 Est-ce que la poésie a sa place dans l’identité que tu veux te constuire ?
-Est-ce qu’en fait, ce ne serait pas en vérité… la dernière chose qui te retient d’avancer ?
-La dernière chose qui te force à rester cette créature fébrile manipulée par ses émotions ?
-Un lac d’encre a imprégné la page.
+Est-ce qu’en fait, ce ne serait pas en vérité… la dernière chose qui te retient d’avancer ? #Bulle:Narrateur #emot:Dots
+La dernière chose qui te force à rester cette créature fébrile manipulée par ses émotions ? #Bulle:Narrateur
+Un lac d’encre a imprégné la page. #Bulle:Narrateur
 Tu refermes le stylo-plume. 
+~ Trigger("name")
 ~ IDrevasser++
 ~ RetourAuTMAfterRevasser("")
 ->DONE
