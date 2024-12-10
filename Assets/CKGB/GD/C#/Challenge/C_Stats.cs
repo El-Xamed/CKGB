@@ -15,7 +15,8 @@ public class C_Stats : MonoBehaviour
     [SerializeField] Image PDP;
     [SerializeField] Image cadenas;
     [SerializeField] GameObject borderPrefab;
-    [SerializeField] Image calmJaugePreview;
+    [SerializeField] Image calmJaugePreview1;
+    [SerializeField] Image calmJaugePreview2;
 
     [Header("Stats PDP")]
     [SerializeField] Image heart;
@@ -255,8 +256,19 @@ public class C_Stats : MonoBehaviour
         //Lance l'animation de clignotoment.
         animatorUiCalmPreview.SetBool("isPreview", true);
 
-        //Caclul pour la preview du calm actuel + de l'action.
-        calmJaugePreview.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats), myActor.GetMaxStress());
+        //Calcul si c'est un gain ou une perte.
+        if (thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats) > 0)
+        {
+            //Caclul pour la preview du calm actuel + de l'action (Gain).
+            calmJaugePreview1.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats), myActor.GetMaxStress());
+            calmJaugePreview2.fillAmount = CalculJauge(myActor.GetCurrentStress(), myActor.GetMaxStress());
+        }
+        else if (thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats) < 0)
+        {
+            //Caclul pour la preview du calm actuel + de l'action (Perte).
+            calmJaugePreview1.fillAmount = CalculJauge(myActor.GetCurrentStress(), myActor.GetMaxStress());
+            calmJaugePreview2.fillAmount = CalculJauge(myActor.GetCurrentStress() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats), myActor.GetMaxStress());
+        }
     }
 
     //PAS FINI ! + BUG INCONNUE, SA JOUE L'ANIMATION MAIS RIEN SE PASSE.

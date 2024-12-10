@@ -1,11 +1,8 @@
-using Ink.Runtime;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class C_PreviewAction : MonoBehaviour
 {
@@ -26,7 +23,7 @@ public class C_PreviewAction : MonoBehaviour
         //Lance la preview du text.
         PreviewText(thisActionClass);
 
-        //Affiche les preview.
+        //Affiche les preview (stats + plateau).
         GetComponent<C_Challenge>().PreviewPlateau(thisActionClass);
 
         #region Barre
@@ -63,8 +60,6 @@ public class C_PreviewAction : MonoBehaviour
 
             listLogsTextPreview.Clear();
         }
-
-       //GetComponent<C_Challenge>().DestroyAllMovementPreview();
     }
 
     public void ActivePreviewBarre(bool value)

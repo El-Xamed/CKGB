@@ -700,6 +700,14 @@ public class C_Challenge : MonoBehaviour
                 {
                     myChallenge.listEtape[i].actions[j].nextAction = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j].nextAction);
                 }
+
+                if (myChallenge.listEtape[i].actions[j].advancedCondition.advancedCondition)
+                {
+                    if (myChallenge.listEtape[i].actions[j].advancedCondition.whatActor != null)
+                    {
+                        myChallenge.listEtape[i].actions[j].advancedCondition.whatActor = SO_ActionClass.Instantiate(myChallenge.listEtape[i].actions[j].advancedCondition.whatActor);
+                    }
+                }
             }
 
             //Pour ajouter l'action attendre dans toutes les étapes.
@@ -931,7 +939,7 @@ public class C_Challenge : MonoBehaviour
                 myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
 
                 //Lance l'animation.
-                GetComponentInChildren<C_Tuto>().NextTuto(4);
+                GetComponentInChildren<C_Tuto>().LaunchTuto(4);
 
                 canMakeTuto = false;
             }
@@ -1047,20 +1055,21 @@ public class C_Challenge : MonoBehaviour
                     }
                     else if (thisInteraction.whatTarget == Interaction.ETypeTarget.Other)
                     {
-                        //Créer la liste pour "other"
-                        if (thisActionClass.CheckOtherInAction())
+                        //Récupère la liste des actor touché et affiche leur preview.
+                        foreach (C_Actor thisOtherActor in GetOtherActor(thisActionClass, currentActor))
                         {
-                            //Récupère la liste des actor touché et affiche leur preview.
-                            foreach (C_Actor thisOtherActor in GetOtherActor(thisActionClass, currentActor))
-                            {
-                                AddPreviewActor(Interaction.ETypeTarget.Other, thisInteraction, thisOtherActor);
-                            }
+                            AddPreviewActor(Interaction.ETypeTarget.Other, thisInteraction, thisOtherActor);
                         }
                     }
                 }
             }
+            else
+            {
+                Debug.Log("Cette action est vide");
+            }
         }
 
+        //
         void AddPreviewActor(Interaction.ETypeTarget target, Interaction thisInteraction, C_Actor thisActor)
         {
             //Applique à l'actor SEULEMENT LES STATS les stats.
@@ -1114,7 +1123,7 @@ public class C_Challenge : MonoBehaviour
             //Desactive le mask.
             thisPreview.maskable = false;
             //Set le parent de l'image.
-            thisPreview.transform.parent = targetActor.GetImageActor().transform;
+            thisPreview.transform.SetParent(targetActor.GetImageActor().transform, false);
             //Scale
             thisPreview.gameObject.transform.localScale = Vector3.one;
             //Taille
@@ -1455,7 +1464,7 @@ public class C_Challenge : MonoBehaviour
         #endregion
 
         //Check si l'actor en question possède assez d'energie.
-        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats))
+        if (thisReso.actor.GetcurrentEnergy() >= thisReso.action.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) || thisReso.action.GetValue(Interaction.ETypeTarget.Soi, TargetStats.ETypeStatsTarget.Stats) != 0)
         {
             Debug.Log("Possède assez d'energie");
 
@@ -1470,7 +1479,7 @@ public class C_Challenge : MonoBehaviour
                     if (advancedCondition.whatActor)
                     {
                         //Check si le bon actor qui utilise l'action.
-                        if (advancedCondition.whatActor != thisReso.actor)
+                        if (advancedCondition.whatActor.name != thisReso.actor.GetDataActor().name)
                         {
                             Debug.Log("L'action n'est pas fait par la bonne personne");
                             return false;
@@ -2061,7 +2070,10 @@ public class C_Challenge : MonoBehaviour
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
         }
 
-        canMakeTuto = true;
+        if (myChallenge.name != "SO_lvl2A(Clone)")
+        {
+            canMakeTuto = true;
+        }
     }
 
     #region GameOver
@@ -2318,6 +2330,7 @@ public class C_Challenge : MonoBehaviour
     public void EndTuto()
     {
         myInterface.SetCurrentInterface(C_Interface.Interface.Neutre);
+        Debug.Log("EndTuto");
     }
 
     public void NextTuto()

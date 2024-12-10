@@ -248,7 +248,7 @@ public class SO_ActionClass : ScriptableObject
     }
     #endregion
 
-    //Check si dans la config de cette action, des paramètre "other" existe.
+    //Check si dans la config de cette action, des paramètre "other" existe. INUTILE (EN COURS DE TEST)
     public bool CheckOtherInAction()
     {
         //Pour toutes les liste d'action.
