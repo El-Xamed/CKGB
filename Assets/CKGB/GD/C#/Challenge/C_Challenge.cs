@@ -51,9 +51,9 @@ public class C_Challenge : MonoBehaviour
     #endregion
 
     #region Plateau
+    [Header("Plateau et Cases")]
     [SerializeField] GameObject plateauGameObject;
 
-    [Header("Case")]
     [SerializeField] C_Case myCase;
     List<C_Case> plateau = new List<C_Case>();
     List<Image> plateauPreview = new List<Image>();
@@ -1348,8 +1348,6 @@ public class C_Challenge : MonoBehaviour
 
     public void ResolutionTurn()
     {
-        //Supprime toutes les preview de déplacement.
-
         if (!uiLogsHead.activeSelf)
         {
             uiLogsHead.SetActive(true);

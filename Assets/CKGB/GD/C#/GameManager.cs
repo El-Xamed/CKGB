@@ -24,11 +24,6 @@ public class GameManager : MonoBehaviour
 
     #region Variables
     public static GameManager instance;
-    public GameObject TL_anim;
-    public GameObject TS_flanel;
-    public GameObject TS_maskRond;
-    public GameObject TS_softblackswipe;
-    [Header("Param�tre de dev")]
     //R�cup�ration en variable qui apparait dans l'inspector.
     [SerializeField]
     List<EActorClass> myActor = new List<EActorClass>();
@@ -85,6 +80,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator flanel;
     [SerializeField] Animator maskRond;
     [SerializeField] Animator softBlackSwipe;
+    public GameObject TL_anim;
+    public GameObject TS_flanel;
+    public GameObject TS_maskRond;
+    public GameObject TS_softblackswipe;
 
 
     EventSystem eventSystem;
@@ -93,16 +92,14 @@ public class GameManager : MonoBehaviour
 
     #region Menu Pause/Options
     [Header("Pause/Options")]
-    public static bool onPause;
     [SerializeField] GameObject pauseBackground;
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject recommencerButton;
     [SerializeField] Toggle baseToggle;
     [SerializeField] GameObject reprendre;
-
     [SerializeField] GameObject PauseParent;
-
+    public static bool onPause;
 
 
     #endregion
@@ -205,10 +202,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentTM);
         Debug.Log(currentC);
     }
-    public void GetLevels()
-    {
-    
-    }
+
     public SO_TempsMort GetDataTempsMort()
     {
         return currentTM;
@@ -1102,30 +1096,6 @@ public class GameManager : MonoBehaviour
         SetFirtButton(baseToggle.gameObject);
         Debug.Log("Options");
     }
- 
-    /*A SUPP !
-    public void GoToMainMenuALERT()
-    {
-        GameManager.instance.team.Clear();
-        GameManager.instance.WorldstartPoint = 0;
-        GameManager.instance.currentC = Tuto;
-        GameManager.instance.currentTM = TM1;
-
-        for(int i =0;i<RevasserID.Length;i++)
-        {
-            RevasserID[i] = 0;
-        }
-        RespirerID = 0;
-        for (int i = 0; i < PapoterID.Length; i++)
-        {
-            PapoterID[i] = 0;
-        }
-        SetUpTeam();
-        pauseMenu.SetActive(false);
-        pauseBackground.SetActive(false);
-        SceneManager.LoadScene("S_MainMenu");
-    }*/
-
     public EventSystem GetEventSystem()
     {
         return eventSystem;

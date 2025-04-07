@@ -88,24 +88,6 @@ public class C_MainMenu : MonoBehaviour
         GameManager.instance.SetFirtButton(null);
     }
 
-    /*A VOIR POUR LE SUPP
-    public void BackOnTrack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            GameManager.instance.pauseBackground.SetActive(false);
-            GameManager.instance.pauseMenu.SetActive(false);
-            GameManager.instance.optionsMenu.SetActive(false);
-            boutonsGroupe.SetActive(true);
-            logoJeu.SetActive(true);
-            logoJeu.GetComponent<Animator>().SetTrigger("trigger");
-            //boutonsGroupe.GetComponent<Animator>().SetBool("onMenuScreen", true);
-            optionsButton.GetComponent<Animator>().SetTrigger("unselected");
-            eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(optionsButton);
-            
-        }
-    }*/
-
     public void OpenOptions()
     {
         //Cache le menu.
