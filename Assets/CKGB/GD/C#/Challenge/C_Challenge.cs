@@ -260,12 +260,12 @@ public class C_Challenge : MonoBehaviour
         SpawnCases();
 
         yield return new WaitForEndOfFrame();
-
+        
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
         yield return new WaitForEndOfFrame();
-
+        
         //Lance l'intro.
         StartIntroChallenge();
     }
@@ -437,172 +437,153 @@ public class C_Challenge : MonoBehaviour
         //Force update sur le parent canva. A LE PLACER AVANT LE SPAWN DES PERSO.
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponentInChildren<RectTransform>());
 
-        ActorPosition();
-
-        AccPosition();
-
-        //Fonction de spawn "actor".
-        void ActorPosition()
+        if (myChallenge.listStartPosTeam != null)
         {
-            if (myChallenge.listStartPosTeam != null)
-            {
-                //Fait spawn avec des info random.
-                SpawnActor(myChallenge.GetInitialPlayersPosition());
-            }
-            else //Poss�de l'info.
-            {
-                Debug.LogError("ERROR : Aucune informations de trouv� la liste, aucun acteur n'a pu spawn.");
-            }
+            //Fait spawn avec des info random.
+            SpawnActor(myChallenge.GetInitialPlayersPosition());
+        }
+        else //Possède l'info.
+        {
+            Debug.LogError("ERROR : Aucune informations de trouv� la liste, aucun acteur n'a pu spawn.");
         }
 
-        //Fonction de spawn "Accessories".
-        void AccPosition()
+        if (myChallenge.listStartPosAcc != null)
         {
-            if (myChallenge.listStartPosAcc != null)
-            {
-                //Fait spawn avec des info random.
-                SpawnAcc(myChallenge.GetInitialAccPosition());
-            }
-            else 
-            {
-                Debug.Log("Aucune informations de trouv� la liste des acc.");
-            }
+            //Fait spawn avec des info random.
+            SpawnAcc(myChallenge.GetInitialAccPosition());
         }
-
-        //Fait spawn les acteurs/Acc.
-        void SpawnActor(List<InitialActorPosition> listPosition)
+        else 
         {
-            if (GameManager.instance)
-            {
-                Debug.LogWarning("GameManager détecté ! Spawn des actor en cours...");
+            Debug.Log("Aucune informations de trouv� la liste des acc.");
+        }
+        
+    }
 
-                //Récupère les info du GameManager
-                foreach (GameObject thisActor in GameManager.instance.GetTeam())
+    void SpawnAcc(List<InitialAccPosition> listPosition)
+    {
+        foreach (InitialAccPosition position in listPosition)
+        {
+            C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
+
+            //Replace l'actor dans un autre Transform.
+            myAcc.transform.SetParent(background.transform, false);
+
+            PlacePionOnBoard(myAcc, position.position, false);
+
+            listAcc.Add(myAcc);
+        }
+    }
+
+    void SpawnActor(List<InitialActorPosition> listPosition)
+    {
+        if (GameManager.instance)
+        {
+            Debug.LogWarning("GameManager détecté ! Spawn des actor en cours...");
+
+            //Récupère les info du GameManager
+            foreach (GameObject thisTeamMember in GameManager.instance.GetTeam())
+            {
+                C_Actor thisActor = thisTeamMember.GetComponent<C_Actor>();
+                InitialActorPosition position = listPosition.Find(x => thisActor.GetDataActor().name.Equals(x.perso.GetDataActor().name));
+
+                if (position == null) continue;
+
+                if (myChallenge.isTuto)
                 {
-                    foreach (InitialActorPosition position in listPosition)
+                    Pyjama pyj;
+                    if (thisActor.TryGetComponent<Pyjama>(out pyj))
                     {
-                        //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
-                        if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                        pyj.Activate();
+                    }
+                }
+
+                PrepareActor(thisActor, position);
+
+                /*
+                //foreach (InitialActorPosition position in listPosition)
+                {
+                    //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
+                    //if (thisActor.GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                    {
+                        #region Pour setup le sprite de Morgan en pyjama.
+                        //Check si le challenge en question c'est le tuto.
+                        /*if (thisActor.GetDataActor().name == "Morgan")
                         {
-                            #region Pour setup le sprite de Morgan en pyjama.
-                            //Check si le challenge en question c'est le tuto.
-                            if (thisActor.GetComponent<C_Actor>().GetDataActor().name == "Morgan")
+                            if (myChallenge.name == "SO_Tuto")
                             {
-                                if (myChallenge.name == "SO_Tuto")
-                                {
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
+                                thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
+                                thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
 
-                                    //thisActor.GetComponent<C_Actor>().CheckInDanger();
-                                }
-                                else
-                                {
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
-                                }
-                            }
-                            #endregion
-
-                            //Ini data actor.
-                            thisActor.GetComponent<C_Actor>().IniChallenge();
-
-                            //Replace l'actor dans un autre Transform.
-                            thisActor.transform.parent = GameObject.Find("BackGround").transform;
-
-                            //Placement sur le plateau.
-                            PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position, false);
-                            thisActor.GetComponent<C_Actor>().SetInDanger(false);
-                            thisActor.transform.localScale = Vector3.one;
-
-                            //New Ui stats
-                            C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
-
-                            //Add Ui Stats
-                            thisActor.GetComponent<C_Actor>().SetUiStats(newStats);
-                            thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
-
-                            //Update UI
-                            thisActor.GetComponent<C_Actor>().UpdateUiStats();
-
-                            Debug.Log(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction);
-                            Debug.Log(uiGoodAction.transform);
-
-                            //Mise en place du VFX de bonne action.
-                            if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
-                            {
-                                Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                                //thisActor.GetComponent<C_Actor>().CheckInDanger();
                             }
                             else
                             {
-                                Debug.LogWarning("Pas de vfx good action de détecté !");
+                                thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
+                                thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
                             }
-
-                            myTeam.Add(thisActor.GetComponent<C_Actor>());
-                        }
-                        else
-                        {
-                            //Cache les actor qui ne seront pas présent dans ce challenge.
-                            //thisActor.SetActive(false);
                         }
                     }
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Pas de GameManager détecté ! Spawn de nouvel actor en cours...");
+                    #endregion
 
-                foreach (InitialActorPosition position in listPosition)
+                    //Ini data actor.
+
+                }
+                /*else
                 {
-                    //New actor
-                    C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
-                    thisActor.IniChallenge();
-                    PlacePionOnBoard(thisActor, position.position, false);
-                    thisActor.GetComponent<C_Actor>().CheckInDanger();
-                    thisActor.transform.localScale = Vector3.one;
-
-                    //Centrage sur la case et position sur Y.
-                    thisActor.transform.localPosition = new Vector3();
-
-                    //New Ui stats
-                    C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
-
-                    //Add Ui Stats
-                    thisActor.SetUiStats(newStats);
-                    thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
-
-                    //Update UI
-                    thisActor.UpdateUiStats();
-
-                    //Mise en place du VFX de bonne action.
-                    if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
-                    {
-                        GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
-                        //thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Pas de vfx good action de détecté !");
-                    }
-
-                    myTeam.Add(thisActor);
-                }
+                    //Cache les actor qui ne seront pas présent dans ce challenge.
+                    //thisActor.SetActive(false);
+                }*/
             }
         }
-
-        void SpawnAcc(List<InitialAccPosition> listPosition)
+        else
         {
-            foreach (InitialAccPosition position in listPosition)
+            Debug.LogWarning("Pas de GameManager détecté ! Spawn de nouvel actor en cours...");
+
+            foreach (InitialActorPosition position in listPosition)
             {
-                C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
-
-                //Replace l'actor dans un autre Transform.
-                myAcc.transform.parent = GameObject.Find("BackGround").transform;
-
-                PlacePionOnBoard(myAcc, position.position, false);
-
-                listAcc.Add(myAcc);
+                //New actor
+                C_Actor thisActor = Instantiate(position.perso, background.transform);
+                PrepareActor(thisActor, position);
             }
         }
+    }
+
+    private void PrepareActor(C_Actor thisActor, InitialActorPosition position)
+    {
+        thisActor.IniChallenge();
+
+        //Replace l'actor dans un autre Transform.
+        thisActor.transform.SetParent(background.transform, false);
+
+        //Placement sur le plateau.
+        PlacePionOnBoard(thisActor, position.position, false);
+        thisActor.SetInDanger(false);
+        thisActor.transform.localScale = Vector3.one;
+
+        //New Ui stats
+        C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+
+        //Add Ui Stats
+        thisActor.SetUiStats(newStats);
+        //thisActor.GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
+
+        //Update UI
+        //thisActor.UpdateUiStats();
+
+        Debug.Log(thisActor.GetDataActor().vfxUiGoodAction);
+        Debug.Log(uiGoodAction.transform);
+
+        //Mise en place du VFX de bonne action.
+        if (thisActor.GetDataActor().vfxUiGoodAction != null)
+        {
+            Instantiate(thisActor.GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+        }
+        else
+        {
+            Debug.LogWarning("Pas de vfx good action de détecté !");
+        }
+
+        myTeam.Add(thisActor);
     }
 
     public void StartIntroChallenge()
@@ -1387,11 +1368,14 @@ public class C_Challenge : MonoBehaviour
                 //Change le sprite de Morgan.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    if (thisActor.GetDataActor().name == "Morgan")
+                    Pyjama pyj;
+                    if (thisActor.TryGetComponent(out pyj))
                     {
+                        /*
                         thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Chara_Challenge");
                         thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Cata_Chara_Challenge");
-
+                        */
+                        pyj.Step();
                         thisActor.CheckInDanger();
                     }
                 }
@@ -1764,8 +1748,6 @@ public class C_Challenge : MonoBehaviour
 
     public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase, bool isTp)
     {
-        Debug.Log(thisPion.name + " : " + thisCase);
-
         //Supprime la dernière position.
         plateau[thisPion.GetPosition()].ResetPion();
 

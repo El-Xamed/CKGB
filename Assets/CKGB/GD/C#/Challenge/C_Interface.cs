@@ -131,9 +131,6 @@ public class C_Interface : MonoBehaviour
                 //Pour passer au dialogue suivant.
                 if (input.y < 0 && myChallenge.GetOnDialogue())
                 {
-                    //check si l histoire continue ou pas
-                    Debug.Log("continue");
-
                     //Check si il y a le GameManager.
                     if (GameManager.instance)
                     {

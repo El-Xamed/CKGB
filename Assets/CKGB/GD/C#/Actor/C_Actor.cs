@@ -114,7 +114,6 @@ public class C_Actor : C_Pion
         foreach (var thisBulle in bulles)
         {
             thisBulle.GetComponent<Image>().enabled = false;
-            Debug.Log(thisBulle.name);
         }
     }
 
@@ -271,7 +270,9 @@ public class C_Actor : C_Pion
     public void SetUiStats(C_Stats myStats)
     {
         uiStats = myStats;
-        GetUiStats().SetActor(this);
+        uiStats.SetActor(this);
+        uiStats.InitUiStats(this);
+        uiStats.UpdateUi(this);
     }
 
     public C_Stats GetUiStats() { return uiStats; }
@@ -379,6 +380,12 @@ public class C_Actor : C_Pion
     {
         return dataActor;
     }
+
+    public void Protect()
+    {
+        dataActor = Instantiate(dataActor);
+    }
+
     public void UpdateNextTrait()
     {
         dataActor.listNewTraits.Add(dataActor.nextTrait);

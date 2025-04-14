@@ -327,7 +327,6 @@ public class GameManager : MonoBehaviour
         {
             
             string Contenue = currentStory.Continue();
-            Debug.Log(Contenue);
             Debug.Log(currentStory.currentTags);
             HandleTags(currentStory.currentTags,Contenue);
         }
@@ -355,7 +354,7 @@ public class GameManager : MonoBehaviour
 
                
                 case Bulle_Tag:
-                    Debug.Log("Bulle : " + tagValue);
+                    //Debug.Log("Bulle : " + tagValue);
                     switch (tagValue)
                     {
                         case "MorganHautGauche":
@@ -375,7 +374,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter =TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganHautDroite":
@@ -395,7 +394,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganBasGauche":
@@ -415,7 +414,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
                             break;
                         case "MorganBasDroite":
@@ -435,7 +434,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
 
