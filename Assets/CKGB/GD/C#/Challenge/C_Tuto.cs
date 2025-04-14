@@ -4,43 +4,52 @@ using UnityEngine;
 
 public class C_Tuto : MonoBehaviour
 {
+    C_Challenge challenge;
+    Animator anim;
+
+    private void Start()
+    {
+        challenge = GetComponentInParent<C_Challenge>();
+        anim = GetComponent<Animator>();
+    }
     public void LaunchTuto(int tutoIndex)
     {
-        GetComponent<Animator>().SetTrigger("LaunchTutoEtape" + tutoIndex);
+        anim.SetTrigger("LaunchTutoEtape" + tutoIndex);
     }
 
     public void NextTuto(int tutoIndex)
     {
-        GetComponent<Animator>().SetTrigger("NextTutoEtape" + tutoIndex);
+        anim.SetTrigger("NextTutoEtape" + tutoIndex);
     }
 
     public void EndTuto()
     {
-        GetComponentInParent<C_Challenge>().GetInterface().SetCurrentInterface(C_Interface.Interface.Neutre);
+        challenge.GetInterface().EndInterfaceAnimationClose();
+        challenge.GetInterface().SetCurrentInterface(C_Interface.Interface.Neutre);
     }
 
     #region anim interface
     //J'aimerais que cette fonction fasse l'animation du menu de trait qui s'ouvre.
     public void OpenTraits()
     {
-        GetComponentInParent<C_Challenge>().GetInterface().GoTraits();
+        challenge.GetInterface().GoTraits();
 
         //Sup le premier bouton.
-        GetComponentInParent<C_Challenge>().GetEventSystem().SetSelectedGameObject(null);
+        challenge.GetEventSystem().SetSelectedGameObject(null);
     }
 
     //J'aimerais que cette fonction fasse l'animation du menu d'action qui s'ouvre.
     public void OpenActions()
     {
-        GetComponentInParent<C_Challenge>().GetInterface().GoAction();
+        challenge.GetInterface().GoAction();
         //Sup le premier bouton.
-        GetComponentInParent<C_Challenge>().GetEventSystem().SetSelectedGameObject(null);
+        challenge.GetEventSystem().SetSelectedGameObject(null);
     }
 
     //J'aimerais que cette fonction fasse l'animation du menu de trait qui se ferme.
     public void CloseInterface()
     {
-        GetComponentInParent<C_Challenge>().GetInterface().GoBack();
+        challenge.GetInterface().GoBack();
     }
     #endregion
 

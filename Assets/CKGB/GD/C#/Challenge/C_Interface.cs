@@ -124,6 +124,7 @@ public class C_Interface : MonoBehaviour
                 {
                     Debug.Log("Next tuto");
                     myChallenge.NextTuto();
+                    return;
                 }
                 #endregion
 

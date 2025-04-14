@@ -536,7 +536,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuHautDroite":
@@ -556,7 +556,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuBasGauche":
@@ -576,7 +576,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "NimuBasDroite":
@@ -596,7 +596,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "Narrateur":

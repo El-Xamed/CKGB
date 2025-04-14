@@ -378,7 +378,6 @@ public class C_TempsLibre : MonoBehaviour
     public void continueStory(InputAction.CallbackContext context)
     {
         //check si l histoire continue ou pas
-        Debug.Log("continue");
         if (context.performed && GameManager.instance.isDialoguing == true && canContinue == true)
         {
             GameManager.instance.ContinueStory();
