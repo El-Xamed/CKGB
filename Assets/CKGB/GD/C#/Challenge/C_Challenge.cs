@@ -2258,7 +2258,7 @@ public class C_Challenge : MonoBehaviour
 
     public List<SO_ActionClass> GetListActionOfCurrentStep()
     {
-        return currentStep.actions;
+        return currentStep?.actions;
     }
 
     public SO_Etape GetCurrentEtape()

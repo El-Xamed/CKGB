@@ -238,6 +238,8 @@ public class C_Interface : MonoBehaviour
     //Pour accéder au actions.
     public void GoAction()
     {
+        if (myChallenge == null || myChallenge.GetListActionOfCurrentStep() == null) return;
+
         if (!onAnim)
         {
             //Spawn actions
