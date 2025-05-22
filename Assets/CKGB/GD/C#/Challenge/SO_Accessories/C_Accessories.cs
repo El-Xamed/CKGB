@@ -8,6 +8,8 @@ public class C_Accessories : C_Pion
     [SerializeField] SO_Accessories dataAcc;
 
     [SerializeField] bool canTakeDamage;
+
+    Image img;
     private void Awake()
     {
         gameObject.name = dataAcc.name;
@@ -18,10 +20,11 @@ public class C_Accessories : C_Pion
     #region Fonction
     public void IniChallenge()
     {
+        img = GetComponentInChildren<Image>();
         //Sprite
-        GetComponent<Image>().sprite = dataAcc.spriteAcc;
-        GetComponent<Image>().preserveAspect = true;
-        GetComponent<Image>().useSpriteMesh = true;
+        img.sprite = dataAcc.spriteAcc;
+        img.preserveAspect = true;
+        img.useSpriteMesh = true;
     }
     #endregion
 

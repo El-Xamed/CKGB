@@ -30,6 +30,7 @@ public class C_Challenge : MonoBehaviour
     [Header("Interface")]
     [SerializeField] C_Interface myInterface;
     [SerializeField] GameObject uiInterfaceHead;
+    Image uiInterfaceHeadImg;
     #endregion
 
     #region Data Challenge
@@ -224,6 +225,7 @@ public class C_Challenge : MonoBehaviour
 
     void Start()
     {
+        uiInterfaceHeadImg = uiInterfaceHead.GetComponentInChildren<Image>();
         uiInterfaceHead.SetActive(false);
         uiLogsHead.SetActive(false);
 
@@ -611,15 +613,7 @@ public class C_Challenge : MonoBehaviour
                 //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-
-                    thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    thisActor.SetupTempsMort(SetCanContinueToNo, SetCanContinueToYes);
                 }
                 #endregion
 
@@ -850,7 +844,7 @@ public class C_Challenge : MonoBehaviour
         //Remplace tout les sprite des preview de déplacement par une autre image (petite tete des perso)
 
         //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
-        if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
+        if (HasNextActor())
         {
             //Passe à l'acteur suivant.
             NextActor();
@@ -930,9 +924,6 @@ public class C_Challenge : MonoBehaviour
         uiInterfaceHead.SetActive(true);
         uiLogsHead.SetActive(false);
 
-        //Change le sprite sur l'interface.
-        uiInterfaceHead.GetComponentInChildren<Image>().sprite = currentActor.GetDataActor().headButton;
-
         Debug.Log("Player turn !");
 
         //Vide la listeReso
@@ -957,35 +948,37 @@ public class C_Challenge : MonoBehaviour
         }
         #endregion
 
-        #region Check si le perso est jouable
-        if (!currentActor.GetIsOut())
+        UpdateActorSelected();
+    }
+
+    bool HasNextActor()
+    {
+        for (int idx = myTeam.IndexOf(currentActor)+1; idx < myTeam.Count; idx++)
         {
-            //Update le contour blanc
-            UpdateActorSelected();
+            if (!myTeam[idx].GetIsOut())
+                return true;
         }
-        else
+
+        return false;
+    }
+
+    C_Actor GetNextActor()
+    {
+        for (int idx = myTeam.IndexOf(currentActor) + 1; idx < myTeam.Count; idx++)
         {
-            NextActor();
-            PlayerTurn();
+            if (!myTeam[idx].GetIsOut())
+                return myTeam[idx];
         }
-        #endregion
+
+        return null;
     }
 
     //Passe à l'acteur suivant.
     void NextActor()
     {
-        currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
-
-        //Change le sprite sur l'interface.
-        uiInterfaceHead.GetComponentInChildren<Image>().sprite = currentActor.GetDataActor().headButton;
+        currentActor = GetNextActor();
 
         UpdateActorSelected();
-
-        //Check si l'actor en question est ko.
-        if (currentActor.GetIsOut())
-        {
-            NextActor();
-        }
     }
 
     void UpdateActorSelected()
@@ -998,6 +991,8 @@ public class C_Challenge : MonoBehaviour
 
         if (currentActor != null)
         {
+            //Change le sprite sur l'interface.
+            uiInterfaceHeadImg.sprite = currentActor.GetDataActor().headButton;
             //Fait apparaitre le contour blanc de l'actor selectionne.
             currentActor.IsSelected(true);
         }

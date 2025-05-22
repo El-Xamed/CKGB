@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-
+using System;
+using Febucci.UI;
 
 public class C_Actor : C_Pion
 {
@@ -369,6 +369,20 @@ public class C_Actor : C_Pion
         mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 700);
 
         Debug.Log(mainchild.GetComponent<Image>().sprite.rect.size);
+    }
+
+    public void SetupTempsMort(Action toNo, Action toYes)
+    {
+        // link action to text
+        txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(toNo.Invoke);
+        txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(toNo.Invoke);
+        txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(toNo.Invoke);
+        txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(toNo.Invoke);
+
+        txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(toYes.Invoke);
+        txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(toYes.Invoke);
+        txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(toYes.Invoke);
+        txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(toYes.Invoke);
     }
 
     #endregion
