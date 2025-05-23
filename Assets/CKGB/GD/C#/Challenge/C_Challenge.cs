@@ -1335,6 +1335,9 @@ public class C_Challenge : MonoBehaviour
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
         {
+            if (thisActor.GetIsOut())
+                continue;
+
             if (thisActor != currentResolution.actor)
             {
                 thisActor.SetSpriteChallengeBlackAndWhite();
@@ -1870,6 +1873,9 @@ public class C_Challenge : MonoBehaviour
         //Redonne les couleurs au actor.
         foreach (var thisActor in myTeam)
         {
+            if (thisActor.GetIsOut())
+                continue;
+
             thisActor.SetSpriteChallenge();
         }
 
@@ -1944,13 +1950,17 @@ public class C_Challenge : MonoBehaviour
                     //Pour tous les actor.
                     foreach (C_Actor thisActor in myTeam)
                     {
+                        if (thisActor.GetIsOut()) continue;
+
                         //Applique des conséquence grace au finction de actionClass.
                         currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
-                        //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
                         thisActor.CheckIsOut();
+
+                        //Vfx
+                        if (!thisActor.GetIsOut())
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
                     }
 
                     listCataLogs.Add(currentCata.catastrophyLog);
@@ -1962,18 +1972,23 @@ public class C_Challenge : MonoBehaviour
 
                 foreach (C_Actor thisActor in myTeam)
                 {
+                    if (thisActor.GetIsOut()) continue;
+
                     //Check si un joueur à marché sur le lézard.
                     if (thisActor.GetPosition() == thisCase)
                     {
+
                         Debug.Log(thisActor.name + " est touché !");
 
                         //Applique des conséquence grace au finction de actionClass.
                         UseAction(currentCata.actionClass, thisActor);
+                        
+                        thisActor.CheckIsOut();
 
                         //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                        if (!thisActor.GetIsOut())
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                        thisActor.CheckIsOut();
 
                         Debug.Log(currentCata.PoPUpCatastrophe);
 
@@ -1986,16 +2001,20 @@ public class C_Challenge : MonoBehaviour
                 {
                     foreach (C_Actor thisActor in myTeam)
                     {
+                        if (thisActor.GetIsOut()) continue;
+
                         //Check si un joueur à marché sur le lézard.
                         if (thisActor.GetPosition() == thisAcc.GetPosition())
                         {
                             //Applique des conséquence grace au finction de actionClass.
                             thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
-                            //Vfx
-                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
                             thisActor.CheckIsOut();
+
+                            //Vfx
+                            if (!thisActor.GetIsOut())
+                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
 
                             //Ajoute dans la liste un texte.
                             listCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
@@ -2011,12 +2030,16 @@ public class C_Challenge : MonoBehaviour
                             //Check si la position des actor est sur la meme case que l'acc.
                             foreach (var thisActor in myTeam)
                             {
+                                if (thisActor.GetIsOut()) continue;
+
                                 thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
-                                //Vfx
-                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
-
                                 thisActor.CheckIsOut();
+
+                                //Vfx
+                                if (!thisActor.GetIsOut())
+                                    thisActor.GetComponent<Animator>().SetTrigger("isHit");
+
                             }
 
                             //Ajoute dans la liste un texte.
