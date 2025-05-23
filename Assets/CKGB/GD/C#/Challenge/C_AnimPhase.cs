@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 public class C_AnimPhase : MonoBehaviour
 {
     C_Challenge challenge;
+    PlayerInput inputs;
     public string sfxTransition;
 
     // Start is called before the first frame update
     void Start()
     {
         challenge = GetComponentInParent<C_Challenge>();
+        inputs = GetComponentInParent<PlayerInput>();
     }
 
     
@@ -24,7 +26,7 @@ public class C_AnimPhase : MonoBehaviour
 
     public void EnableControl()
     {
-        GetComponentInParent<PlayerInput>().enabled = true;
+        inputs.enabled = true;
 
         //Relance la phase de jeu.
         switch (challenge.GetPhaseDeJeu())
@@ -43,7 +45,7 @@ public class C_AnimPhase : MonoBehaviour
 
     public void DisableControl()
     {
-        GetComponentInParent<PlayerInput>().enabled = false;
+        inputs.enabled = false;
 
         //SFX
         if (AudioManager.instanceAM)

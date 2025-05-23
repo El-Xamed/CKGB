@@ -63,10 +63,7 @@ public class C_Case : MonoBehaviour
             C_Actor thisActor;
             if (myPion.TryGetComponent(out thisActor))
             {
-                if (thisActor.GetIsOut())
-                    return;
-
-                if (vfxCata != null)
+                if (vfxCata != null && !thisActor.GetIsOut())
                 {
                     myPion.SetInDanger(true);
                 }

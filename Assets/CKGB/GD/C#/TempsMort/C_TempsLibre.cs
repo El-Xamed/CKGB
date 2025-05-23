@@ -292,11 +292,6 @@ public class C_TempsLibre : MonoBehaviour
                         thisActor.GetComponent<RectTransform>().parent= SpawnParent.GetComponent<RectTransform>();
                         thisActor.GetComponent<RectTransform>().anchoredPosition = SpawnParent.transform.GetChild(characterNB).GetComponent<RectTransform>().anchoredPosition;
                         thisActor.transform.localScale = new Vector3(0.50f, 0.50f, 0f);
-                        thisActor.GetComponent<C_Actor>().BulleHautGauche.SetActive(true);
-                        thisActor.GetComponent<C_Actor>().BulleHautDroite.SetActive(true);
-                        thisActor.GetComponent<C_Actor>().BulleBasGauche.SetActive(true);
-                        thisActor.GetComponent<C_Actor>().BulleBasDroite.SetActive(true);
-                        thisActor.GetComponent<C_Actor>().sweats.SetActive(false);
                     }
                     else
                     {
@@ -310,15 +305,8 @@ public class C_TempsLibre : MonoBehaviour
         for (int i = 0; i < characters.Count; i++)
         {
             //ajoute des fonctions pour le bouton A pour passer ou non un dialogue
-            characters[i].GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            characters[i].GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            characters[i].GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-            characters[i].GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
+            characters[i].GetComponent<C_Actor>().SetupTempsMort(SetCanContinueToNo, SetCanContinueToYes);
 
-            characters[i].GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            characters[i].GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            characters[i].GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-            characters[i].GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
             characters[i].GetComponent<C_Actor>().GetDataActor().characterTree.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => GoToActions());
         }
         naratteurText.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());

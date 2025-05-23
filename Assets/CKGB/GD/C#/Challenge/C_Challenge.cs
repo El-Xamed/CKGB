@@ -68,6 +68,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] Transform uiLogsPreview;
     [SerializeField] GameObject uiLogsTextPreviewPrefab;
     [SerializeField] GameObject uiLogsHead;
+    TMP_Text uiLogsText;
     #endregion
 
     List<C_Actor> myTeam = new List<C_Actor>();
@@ -228,6 +229,7 @@ public class C_Challenge : MonoBehaviour
         uiInterfaceHeadImg = uiInterfaceHead.GetComponentInChildren<Image>();
         uiInterfaceHead.SetActive(false);
         uiLogsHead.SetActive(false);
+        uiLogsText = uiLogs.GetComponentInChildren<TMP_Text>();
 
         //Set le background
         //Check si le background n'est pas vide.
@@ -383,7 +385,7 @@ public class C_Challenge : MonoBehaviour
 
         //Pour activer l'Ui des logs.
         uiLogsAnimator.gameObject.SetActive(active);
-        uiLogsAnimator.gameObject.GetComponentInChildren<Image>().enabled = active;
+        //uiLogsAnimator.gameObject.GetComponentInChildren<Image>().enabled = active;
     }
 
     public void SetCanContinueToYes()
@@ -693,13 +695,6 @@ public class C_Challenge : MonoBehaviour
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
 
-        if (currentStep.useCata)
-        {
-            currentCata = myChallenge.listCatastrophy[0];
-        }
-
-        currentActor = myTeam[0];
-
         UpdateUi();
 
         //Lance directement le tour du joueur
@@ -869,6 +864,8 @@ public class C_Challenge : MonoBehaviour
             //Rend les couleurs sur tous les actor.
             foreach (C_Actor thisActor in myTeam)
             {
+                if (thisActor.GetIsOut()) continue;
+
                 thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
                 thisActor.CheckInDanger();
             }
@@ -891,23 +888,25 @@ public class C_Challenge : MonoBehaviour
     public void PlayerTurn()
     {
         #region Tuto
-        if (canMakeTuto)
+        if (canMakeTuto && myChallenge.isTuto)
         {
+            if (currentStep.useTuto) //currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
+            {
+                Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
+
+                myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+
+                //Lance l'animation.
+                GetComponentInChildren<C_Tuto>().LaunchTuto(myChallenge.listEtape.IndexOf(currentStep) + 1 + myChallenge.tutoOffset);
+
+                canMakeTuto = false;
+            }
+            /*
             //Check si c'est le premier niveau.
             if (myChallenge.name == "SO_Tuto(Clone)")
             {
                 //ETAPE 1.
-                if (currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
-                {
-                    Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
-
-                    myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
-
-                    //Lance l'animation.
-                    GetComponentInChildren<C_Tuto>().LaunchTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
-
-                    canMakeTuto = false;
-                }
+                
             }
             else if (myChallenge.name == "SO_lvl2A(Clone)") //A VOIR SI BESOIN DE MODIF 
             {
@@ -918,6 +917,7 @@ public class C_Challenge : MonoBehaviour
 
                 canMakeTuto = false;
             }
+            */
         }
         #endregion
 
@@ -925,9 +925,15 @@ public class C_Challenge : MonoBehaviour
         uiLogsHead.SetActive(false);
 
         Debug.Log("Player turn !");
+        //Redéfini le début de la liste.
+        currentActor = myTeam[0];
+
+        //Efface les logs.
+        uiLogsText.text = "";
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
+        ResetCataLogs();
 
         #region Initialise la prochaine cata.
         if (currentStep.useCata)
@@ -1266,7 +1272,8 @@ public class C_Challenge : MonoBehaviour
                 AudioManager.instanceAM.Play(sfxWriteText);
             }
 
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.currentLogs;
+            uiLogsText.text = currentResolution.action.currentLogs;
+            currentResolution.action.LoadNextLog();
         }
         else if (currentStep == null) //Check si la partie est fini.
         {
@@ -1300,21 +1307,16 @@ public class C_Challenge : MonoBehaviour
                 {
                     myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
-                    uiLogsHead.SetActive(false);
-
                     //Lance la phase "Cata".
                     CataTurn();
-                    ResetCataLogs();
+                }
+                else
+                {
+                    GameOver();
                 }
             }
             else //Lance la phase du joueur.
             {
-                //Redéfini le début de la liste.
-                currentActor = myTeam[0];
-
-                //Efface les logs.
-                uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
                 //transition.
                 myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
                 vfxPlayerTurn.SetTrigger("PlayerTurn");
@@ -1331,6 +1333,7 @@ public class C_Challenge : MonoBehaviour
 
         //Change le sprite sur l'interface.
         uiLogsHead.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().headButton;
+        uiLogsText.text = "";
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
@@ -1417,7 +1420,6 @@ public class C_Challenge : MonoBehaviour
             #endregion
 
             //Set les logs de la bonne action.
-            currentResolution.action.ResetLogs();
             currentResolution.action.SetListLogs(true);
         }
         else
@@ -1425,14 +1427,14 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Peut pas faire l'action");
 
             //Set les logs de la mauvaise action.
-            currentResolution.action.ResetLogs();
             currentResolution.action.SetListLogs(false);
         }
 
         #region Logs
         //Ecrit dans les logs le résultat de l'action.
         currentResolution.action.ResetLogs();
-        uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
+        uiLogsText.text = currentResolution.action.GetListLogs();
+        currentResolution.action.LoadNextLog();
         #endregion
     }
 
@@ -1849,7 +1851,7 @@ public class C_Challenge : MonoBehaviour
                 AudioManager.instanceAM.Play(sfxWriteText);
             }
 
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentCataLogs;
+            uiLogsText.text = currentCataLogs;
         }
         else //Passe à la phase suivante.
         {
@@ -1859,7 +1861,7 @@ public class C_Challenge : MonoBehaviour
             vfxPlayerTurn.SetTrigger("PlayerTurn");
 
             //Efface les logs.
-            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+            uiLogsText.text = "";
         }
     }
 
@@ -1868,7 +1870,7 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("CataTurn");
 
-        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+        uiLogsText.text = "";
 
         //Redonne les couleurs au actor.
         foreach (var thisActor in myTeam)
@@ -1885,19 +1887,8 @@ public class C_Challenge : MonoBehaviour
         //Re-Check si tous les perso sont "out".
         if (!CheckGameOver())
         {
-            //Redéfini le début de la liste.
-            currentActor = myTeam[0];
-
             //Update la prochaine Cata.
-            //Check si c'étais la dernière Cata.
-            if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
-            {
-                currentCata = myChallenge.listCatastrophy[0];
-            }
-            else
-            {
-                currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
-            }
+            currentCata = myChallenge.listCatastrophy[(myChallenge.listCatastrophy.IndexOf(currentCata) + 1) % myChallenge.listCatastrophy.Count];
 
             //Check si il y a du texte.
             if (GetListCataLogs() == null)
@@ -1908,8 +1899,12 @@ public class C_Challenge : MonoBehaviour
             else
             {
                 Debug.Log("Ecrit la cata !");
-                uiLogs.GetComponentInChildren<TMP_Text>().text = currentCataLogs;
+                uiLogsText.text = currentCataLogs;
             }
+        }
+        else
+        {
+            GameOver();
         }
     }
 
@@ -1955,8 +1950,6 @@ public class C_Challenge : MonoBehaviour
                         //Applique des conséquence grace au finction de actionClass.
                         currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
-                        thisActor.CheckIsOut();
-
                         //Vfx
                         if (!thisActor.GetIsOut())
                             thisActor.GetComponent<Animator>().SetTrigger("isHit");
@@ -1982,8 +1975,6 @@ public class C_Challenge : MonoBehaviour
 
                         //Applique des conséquence grace au finction de actionClass.
                         UseAction(currentCata.actionClass, thisActor);
-                        
-                        thisActor.CheckIsOut();
 
                         //Vfx
                         if (!thisActor.GetIsOut())
@@ -2009,8 +2000,6 @@ public class C_Challenge : MonoBehaviour
                             //Applique des conséquence grace au finction de actionClass.
                             thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
-                            thisActor.CheckIsOut();
-
                             //Vfx
                             if (!thisActor.GetIsOut())
                                 thisActor.GetComponent<Animator>().SetTrigger("isHit");
@@ -2034,8 +2023,6 @@ public class C_Challenge : MonoBehaviour
 
                                 thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
-                                thisActor.CheckIsOut();
-
                                 //Vfx
                                 if (!thisActor.GetIsOut())
                                     thisActor.GetComponent<Animator>().SetTrigger("isHit");
@@ -2058,7 +2045,7 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("next step");
 
-        if (myChallenge.listEtape.IndexOf(currentStep) + 1 > myChallenge.listEtape.Count - 1)
+        if (myChallenge.listEtape.IndexOf(currentStep) + 1 >= myChallenge.listEtape.Count)
         {
             currentStep = null;
         }
@@ -2066,11 +2053,11 @@ public class C_Challenge : MonoBehaviour
         {
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
-        }
 
-        if (myChallenge.name != "SO_lvl2A(Clone)")
-        {
-            canMakeTuto = true;
+            if (myChallenge.isTuto)
+            {
+                canMakeTuto = currentStep.useTuto;
+            }
         }
     }
 
@@ -2088,7 +2075,7 @@ public class C_Challenge : MonoBehaviour
 
         if (nbActorOut == myTeam.Count)
         {
-            GameOver();            return true;
+            return true;
         }
 
         return false;

@@ -8,6 +8,8 @@ using Febucci.UI;
 
 public class C_Actor : C_Pion
 {
+    public enum ActorState { ALIVE, DANGER, OUT }
+
     #region data
     #region Challenge
     //Pour les feedback
@@ -22,6 +24,7 @@ public class C_Actor : C_Pion
 
     //Ui Challenge
     C_Stats uiStats;
+    ActorState currentState;
 
     //Si l'actor peut encore jouer.
     [SerializeField] bool isOut = false;
@@ -85,6 +88,7 @@ public class C_Actor : C_Pion
         gameObject.name = dataActor.name;
 
         character.enabled = false;
+        currentState = ActorState.ALIVE;
 
         dataActor = ScriptableObject.Instantiate(dataActor);
 
@@ -305,17 +309,16 @@ public class C_Actor : C_Pion
             currentStress = 0;
 
             isOut = true;
-
-            character.sprite = dataActor.challengeSpriteIsOut;
+            inDanger = false;
 
             //Lance ls vfx.
             GetComponent<Animator>().SetBool("isDead", true);
-            
-            //Desactive le tremblement.
-            GetComponent<Animator>().SetBool("isInDanger", false);
+            CheckInDanger();
         }
         else
         {
+            currentState = ActorState.ALIVE;
+
             Debug.Log(name + " n'est pas mort");
 
             isOut = false;
@@ -333,19 +336,25 @@ public class C_Actor : C_Pion
 
     public void CheckInDanger()
     {
-        if (inDanger)
+        if (isOut)
         {
-            GetImageActor().sprite = GetDataActor().challengeSpriteOnCata;
-            transform.GetChild(3).gameObject.SetActive(true);
+            SetSpriteChallengeBlackAndWhite();
+            sweats.SetActive(false);
+        }
+        else if (inDanger)
+        {
+            character.sprite = dataActor.challengeSpriteOnCata;
+            sweats.SetActive(true);
         }
         else
         {
-            GetImageActor().sprite = GetDataActor().challengeSprite;
-            transform.GetChild(3).gameObject.SetActive(false);
+            character.sprite = dataActor.challengeSprite;
+            sweats.SetActive(false);
 
         }
 
         GetComponent<Animator>().SetBool("isInDanger", GetInDanger());
+        Debug.Log(name + " is in danger " + inDanger);
     }
     #endregion
 
@@ -365,6 +374,13 @@ public class C_Actor : C_Pion
         //Active l'ombre du challenge.
         ombre.gameObject.SetActive(false);
 
+
+        BulleHautGauche.SetActive(true);
+        BulleHautDroite.SetActive(true);
+        BulleBasGauche.SetActive(true);
+        BulleBasDroite.SetActive(true);
+        sweats.SetActive(false);
+
         //Bricolage pour max. Permet d'avoir la bonne taille pour les temps mort.
         mainchild.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 700);
 
@@ -373,6 +389,7 @@ public class C_Actor : C_Pion
 
     public void SetupTempsMort(Action toNo, Action toYes)
     {
+
         // link action to text
         txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(toNo.Invoke);
         txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(toNo.Invoke);
@@ -485,27 +502,35 @@ public class C_Actor : C_Pion
     #region Pour l'animation
     public void SetSpriteChallenge()
     {
-        //Check si l'actor est sur une cata pour sauvegarder la bonne image.
-        if (!inDanger)
+        if (isOut)
         {
-            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSprite;
+            character.sprite = dataActor.challengeSpriteIsOut;
+        }
+        //Check si l'actor est sur une cata pour sauvegarder la bonne image.
+        else if (!inDanger)
+        {
+            character.sprite = dataActor.challengeSprite;
         }
         else
         {
-            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCata;
+            character.sprite = dataActor.challengeSpriteOnCata;
         }
     }
 
     public void SetSpriteChallengeBlackAndWhite()
     {
-        //Check si l'actor est sur une cata pour sauvegarder la bonne image.
-        if (!inDanger)
+        if (isOut)
         {
-            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSpriteBlackAndWhite;
+            character.sprite = dataActor.challengeSpriteIsOut;
+        }
+        //Check si l'actor est sur une cata pour sauvegarder la bonne image.
+        else if (!inDanger)
+        {
+            character.sprite = dataActor.challengeSpriteBlackAndWhite;
         }
         else
         {
-            mainchild.GetComponent<Image>().sprite = GetDataActor().challengeSpriteOnCataBlackAndWhite;
+            character.sprite = dataActor.challengeSpriteOnCataBlackAndWhite;
         }
     }
     #endregion

@@ -17,6 +17,7 @@ public class SO_Challenge : ScriptableObject
     public Sprite ecranDefaite;
     public int mapPointID;
     public bool isTuto;
+    public int tutoOffset;
 
     public string objectif;
     [Tooltip("Information pour faire spawn un nombre de case prédéfinis.")]
