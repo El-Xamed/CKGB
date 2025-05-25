@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     //zone d�di�e aux  dialogues
     [SerializeField] public GameObject blackscreen;
     [SerializeField] public Story currentStory;
-    [SerializeField] public GameObject currentTalkingCharacter;
+    [SerializeField] public C_Actor currentTalkingCharacter;
     [SerializeField] public int[] RevasserID;
     [SerializeField] public int RespirerID;
     [SerializeField] public int[] PapoterID;
@@ -276,6 +276,8 @@ public class GameManager : MonoBehaviour
             }
             if (InkJSON.name == TM.Observage.name)
             {
+                Debug.Log("Observer ID " + RespirerID);
+
                 currentStory.variablesState["IDobserver"] = RespirerID;
                 currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
             }
@@ -339,6 +341,8 @@ public class GameManager : MonoBehaviour
     //LES TAGS A ECRIRE DANS INK ET LEUR UTILITE SONT DEFINIS ICI
     private void HandleTags(List<string> currentTags,string text)
     {
+        Debug.Log("Story " + text);
+
         foreach (string tag in currentTags)
         {
             string[] splitTag = tag.Split(':');
@@ -939,6 +943,9 @@ public class GameManager : MonoBehaviour
    
     public void BackFromPause()
     {
+        if (!onPause)
+            return;
+
         if(optionsMenu.activeSelf)
         {
             optionsMenu.SetActive(false);
@@ -1007,16 +1014,17 @@ public class GameManager : MonoBehaviour
     }
     public void BackPauseMenu(InputAction.CallbackContext context)
     {
-        
-        if (GameManager.instance.optionsMenu.activeSelf == true)
+        if (!onPause) return;
+
+        if (optionsMenu.activeSelf == true)
         {
             Debug.Log("back from options");
-            GameManager.instance.BackFromPause();
+            BackFromPause();
         }
-        else if (GameManager.instance.pauseMenu.activeSelf == true)
+        else if (pauseMenu.activeSelf == true)
         {
             Debug.Log("back from pause");
-            GameManager.instance.BackFromPause();
+            BackFromPause();
         }
         if(SceneManager.GetActiveScene().name=="S_Challenge")
         {
@@ -1028,6 +1036,8 @@ public class GameManager : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name=="S_TempsLibre")
         {
+            Debug.Log("back from tm");
+
             if (TM.Es.currentSelectedGameObject != null)
             {
                 TM.Es.SetSelectedGameObject(lastButton);
@@ -1041,6 +1051,8 @@ public class GameManager : MonoBehaviour
         {
             if (pauseBackground.activeSelf == false)
             {
+                onPause = true;
+
                 if(!isDialoguing)
                 {
                     pauseBackground.SetActive(true);

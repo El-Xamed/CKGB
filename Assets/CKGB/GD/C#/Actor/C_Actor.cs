@@ -8,7 +8,6 @@ using Febucci.UI;
 
 public class C_Actor : C_Pion
 {
-    public enum ActorState { ALIVE, DANGER, OUT }
 
     #region data
     #region Challenge
@@ -24,7 +23,6 @@ public class C_Actor : C_Pion
 
     //Ui Challenge
     C_Stats uiStats;
-    ActorState currentState;
 
     //Si l'actor peut encore jouer.
     [SerializeField] bool isOut = false;
@@ -88,7 +86,6 @@ public class C_Actor : C_Pion
         gameObject.name = dataActor.name;
 
         character.enabled = false;
-        currentState = ActorState.ALIVE;
 
         dataActor = ScriptableObject.Instantiate(dataActor);
 
@@ -317,7 +314,6 @@ public class C_Actor : C_Pion
         }
         else
         {
-            currentState = ActorState.ALIVE;
 
             Debug.Log(name + " n'est pas mort");
 

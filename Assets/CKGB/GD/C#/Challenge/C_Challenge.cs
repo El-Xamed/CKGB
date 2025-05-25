@@ -242,7 +242,7 @@ public class C_Challenge : MonoBehaviour
             Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
         }
 
-        if (myChallenge.name != "SO_Tuto")
+        if (!myChallenge.firstLevel || GameManager.instance == null)
         {
             black.SetActive(false);
         }
@@ -385,7 +385,7 @@ public class C_Challenge : MonoBehaviour
 
         //Pour activer l'Ui des logs.
         uiLogsAnimator.gameObject.SetActive(active);
-        //uiLogsAnimator.gameObject.GetComponentInChildren<Image>().enabled = active;
+        uiLogsAnimator.gameObject.GetComponentInChildren<Image>().enabled = active;
     }
 
     public void SetCanContinueToYes()
@@ -2126,6 +2126,8 @@ public class C_Challenge : MonoBehaviour
         {
             myPhaseDeJeu = PhaseDeJeu.EndGame;
         }
+        else
+            return;
 
         //Redonne leur couleur.
         foreach (C_Actor thisActor in myTeam)
@@ -2215,15 +2217,15 @@ public class C_Challenge : MonoBehaviour
 
             string nextScene = null;
 
-            if (GameManager.instance.currentC.name == "SO_lvl3")
-            {
-                nextScene = sceneCredits;
-            }
-            if (GameManager.instance.currentC.name == "SO_Tuto")
+            if (GameManager.instance.currentC.firstLevel)
             {
                 GameManager.instance.SetDataLevel(tm1, c1);
 
                 nextScene = sceneTM;
+            }
+            else if (!string.IsNullOrEmpty(GameManager.instance.currentC.nextScene))
+            {
+                nextScene = GameManager.instance.currentC.nextScene;
             }
             else
             {
