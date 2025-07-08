@@ -1097,7 +1097,7 @@ public class C_Challenge : MonoBehaviour
 
         PlacePreviewMovement(whatMove, currentActor, position, nbMove, isTp);
 
-        void PlacePreviewMovement(TargetStats.ETypeMove whatMove, C_Actor targetActor, int position, int nbMove, bool isTp)
+        void PlacePreviewMovement(TargetStats.ETypeMove whatMove, C_Actor targetActor, int position, int nbMove, bool isTp, int moveTimes = 0)
         {
             #region création d'une Preview.
             //Ajout d'un component d'image dans l'objet.
@@ -1192,8 +1192,8 @@ public class C_Challenge : MonoBehaviour
                             Debug.Log("Pousse toi !");
 
                             //Le spawn de la preview sera décalé de 1 dans la direction du déplacement avec l'image de l'actor visé.
-
-                            PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition(), 1, isTp);
+                            if (moveTimes <= myTeam.Count)
+                                PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition(), 1, isTp, moveTimes+1);
                         }
                     }
                 }

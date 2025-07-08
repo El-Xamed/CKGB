@@ -10,7 +10,8 @@ public class C_credits : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.SetFirtButton(skipButton);
+        GameManager.instance?.SetFirtButton(skipButton);
+        GameManager.instance?.OpenTransitionFlannel();
     }
 
     public void GoMainMenuALERT()

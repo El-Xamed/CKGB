@@ -453,7 +453,7 @@ public class GameManager : MonoBehaviour
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             CleanEmot();
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautGauche;
+                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>()?.txtHautGauche ?? TM.Esthela.GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             if (SceneManager.GetActiveScene().name == "S_TempsLibre")
                             {
