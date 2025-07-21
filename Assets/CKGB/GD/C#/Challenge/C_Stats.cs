@@ -284,8 +284,9 @@ public class C_Stats : MonoBehaviour
             if (myActor.GetcurrentEnergy() > 0)
             {
                 //Commence par le nombre actuel d'energy.
-                for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy(); i++)
+                for (int i = myActor.GetcurrentEnergy() + thisActionClass.GetValue(target, TargetStats.ETypeStatsTarget.Stats); i < myActor.GetcurrentEnergy() && i < listEnergie.Count; i++)
                 {
+                    if (i < 0) continue;
                     //Active la preview.
                     listEnergie[i].GetComponent<Animator>().SetBool("isPreview", true);
                     Debug.Log(listEnergie[i].name + " is activate");

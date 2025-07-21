@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class C_MainMenu : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class C_MainMenu : MonoBehaviour
     }
     IEnumerator firstButton()
     {
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(0.8f);
         GameManager.instance.SetFirtButton(playButton);
         splashScreen.SetActive(false);
     }
@@ -61,16 +62,16 @@ public class C_MainMenu : MonoBehaviour
         AudioManager.instanceAM.Play("NewGameButton");
         ChapterImage.SetActive(true);
 
-        GameManager.instance.SetFirtButton(ChapterImage.transform.GetChild(0).GetChild(0).gameObject);
+        GameManager.instance.SetFirtButton(ChapterImage.GetComponentInChildren<Button>().gameObject);
     }
 
     #region Boutons
-    public void NewParty(SO_Challenge firthChallenge)
+    public void NewParty()
     {
         //Setup le niveau.
         if (GameManager.instance)
         {
-            GameManager.instance.SetDataLevel(null, firthChallenge);
+            GameManager.instance.SetDataLevel(null, GameManager.instance.Tuto);
         }
 
         //???

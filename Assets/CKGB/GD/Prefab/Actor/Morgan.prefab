@@ -11517,6 +11517,7 @@ GameObject:
   - component: {fileID: 5199208835674813160}
   - component: {fileID: 31738878363605539}
   - component: {fileID: 7007678296909039342}
+  - component: {fileID: -8906037638676967912}
   m_Layer: 0
   m_Name: Morgan
   m_TagString: Untagged
@@ -11635,6 +11636,22 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8906037638676967912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199208835674813161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e959c6ddcf39a8846b8ceb156adf1dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 21300000, guid: 7d1e2817cea6fa640b3bbd332ff31c01, type: 3}
+  cataSprite: {fileID: 21300000, guid: a707ec64d3c9c204bab7fa886869856d, type: 3}
+  stepDefaultSprite: {fileID: 21300000, guid: 38f8cc13c5591da428940a6682eff85f, type: 3}
+  stepCataSprite: {fileID: 21300000, guid: 2fe376db3667c4a4aa0b551b8565aa01, type: 3}
 --- !u!1 &6106091988627348034
 GameObject:
   m_ObjectHideFlags: 0

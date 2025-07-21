@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     //zone d�di�e aux  dialogues
     [SerializeField] public GameObject blackscreen;
     [SerializeField] public Story currentStory;
-    [SerializeField] public GameObject currentTalkingCharacter;
+    [SerializeField] public C_Actor currentTalkingCharacter;
     [SerializeField] public int[] RevasserID;
     [SerializeField] public int RespirerID;
     [SerializeField] public int[] PapoterID;
@@ -276,6 +276,8 @@ public class GameManager : MonoBehaviour
             }
             if (InkJSON.name == TM.Observage.name)
             {
+                Debug.Log("Observer ID " + RespirerID);
+
                 currentStory.variablesState["IDobserver"] = RespirerID;
                 currentStory.BindExternalFunction("RetourAuTMAfterRespirer", (string name) => { TM.RetourAuTMAfterRespirer(name); });
             }
@@ -327,7 +329,6 @@ public class GameManager : MonoBehaviour
         {
             
             string Contenue = currentStory.Continue();
-            Debug.Log(Contenue);
             Debug.Log(currentStory.currentTags);
             HandleTags(currentStory.currentTags,Contenue);
         }
@@ -340,6 +341,8 @@ public class GameManager : MonoBehaviour
     //LES TAGS A ECRIRE DANS INK ET LEUR UTILITE SONT DEFINIS ICI
     private void HandleTags(List<string> currentTags,string text)
     {
+        Debug.Log("Story " + text);
+
         foreach (string tag in currentTags)
         {
             string[] splitTag = tag.Split(':');
@@ -355,7 +358,7 @@ public class GameManager : MonoBehaviour
 
                
                 case Bulle_Tag:
-                    Debug.Log("Bulle : " + tagValue);
+                    //Debug.Log("Bulle : " + tagValue);
                     switch (tagValue)
                     {
                         case "MorganHautGauche":
@@ -375,7 +378,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter =TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganHautDroite":
@@ -395,7 +398,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
                         case "MorganBasGauche":
@@ -415,7 +418,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                          //   textToWriteIn.text = text;
                             break;
                         case "MorganBasDroite":
@@ -435,7 +438,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Morgan;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                           //  textToWriteIn.text = text;
                             break;
 
@@ -450,7 +453,7 @@ public class GameManager : MonoBehaviour
                                 textToWriteIn.GetComponentInParent<Image>().enabled = false;
                             }
                             CleanEmot();
-                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>().txtHautGauche;
+                            textToWriteIn = TM.Esthela.GetComponent<C_Actor>()?.txtHautGauche ?? TM.Esthela.GetComponent<C_Actor>().txtBasGauche;
                             GameObject.Find("Esthela").GetComponent<C_Actor>().BulleHautGauche.GetComponent<Image>().enabled = true;
                             if (SceneManager.GetActiveScene().name == "S_TempsLibre")
                             {
@@ -537,7 +540,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuHautDroite":
@@ -557,7 +560,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                            // textToWriteIn.text = text;
                             break;
                         case "NimuBasGauche":
@@ -577,7 +580,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "NimuBasDroite":
@@ -597,7 +600,7 @@ public class GameManager : MonoBehaviour
                             {
                                 currentTalkingCharacter = TM.Nimu;
                             }
-                            Debug.Log(textToWriteIn.name);
+                            //Debug.Log(textToWriteIn.name);
                             //textToWriteIn.text = text;
                             break;
                         case "Narrateur":
@@ -940,6 +943,9 @@ public class GameManager : MonoBehaviour
    
     public void BackFromPause()
     {
+        if (!onPause)
+            return;
+
         if(optionsMenu.activeSelf)
         {
             optionsMenu.SetActive(false);
@@ -1008,16 +1014,17 @@ public class GameManager : MonoBehaviour
     }
     public void BackPauseMenu(InputAction.CallbackContext context)
     {
-        
-        if (GameManager.instance.optionsMenu.activeSelf == true)
+        if (!onPause) return;
+
+        if (optionsMenu.activeSelf == true)
         {
             Debug.Log("back from options");
-            GameManager.instance.BackFromPause();
+            BackFromPause();
         }
-        else if (GameManager.instance.pauseMenu.activeSelf == true)
+        else if (pauseMenu.activeSelf == true)
         {
             Debug.Log("back from pause");
-            GameManager.instance.BackFromPause();
+            BackFromPause();
         }
         if(SceneManager.GetActiveScene().name=="S_Challenge")
         {
@@ -1029,6 +1036,8 @@ public class GameManager : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name=="S_TempsLibre")
         {
+            Debug.Log("back from tm");
+
             if (TM.Es.currentSelectedGameObject != null)
             {
                 TM.Es.SetSelectedGameObject(lastButton);
@@ -1042,6 +1051,8 @@ public class GameManager : MonoBehaviour
         {
             if (pauseBackground.activeSelf == false)
             {
+                onPause = true;
+
                 if(!isDialoguing)
                 {
                     pauseBackground.SetActive(true);

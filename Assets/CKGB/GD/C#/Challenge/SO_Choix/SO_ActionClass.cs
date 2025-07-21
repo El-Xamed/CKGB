@@ -271,7 +271,7 @@ public class SO_ActionClass : ScriptableObject
     #region Logs
     public string GetListLogs()
     {
-        if (logsCursor == 0)
+        /*if (logsCursor == 0)
         {
             //Check si c'est pas null
             if (listCurrentLogs.Count != 0)
@@ -289,7 +289,8 @@ public class SO_ActionClass : ScriptableObject
                 return null;
             }
         }
-        if (logsCursor > listCurrentLogs.Count - 1)
+        */
+        if (logsCursor >= listCurrentLogs.Count)
         {
             //Retourne une valeur null.
             return null;
@@ -298,11 +299,14 @@ public class SO_ActionClass : ScriptableObject
         {
             currentLogs = listCurrentLogs[logsCursor];
 
-            logsCursor++;
-
             //Retourne un element ciblé avant d'augmenter le curseur.
             return currentLogs;
         }
+    }
+
+    public void LoadNextLog()
+    {
+        logsCursor++;
     }
 
     public void SetListLogs(bool canMakeAction)

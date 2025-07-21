@@ -30,6 +30,7 @@ public class C_Challenge : MonoBehaviour
     [Header("Interface")]
     [SerializeField] C_Interface myInterface;
     [SerializeField] GameObject uiInterfaceHead;
+    Image uiInterfaceHeadImg;
     #endregion
 
     #region Data Challenge
@@ -67,6 +68,7 @@ public class C_Challenge : MonoBehaviour
     [SerializeField] Transform uiLogsPreview;
     [SerializeField] GameObject uiLogsTextPreviewPrefab;
     [SerializeField] GameObject uiLogsHead;
+    TMP_Text uiLogsText;
     #endregion
 
     List<C_Actor> myTeam = new List<C_Actor>();
@@ -224,8 +226,10 @@ public class C_Challenge : MonoBehaviour
 
     void Start()
     {
+        uiInterfaceHeadImg = uiInterfaceHead.GetComponentInChildren<Image>();
         uiInterfaceHead.SetActive(false);
         uiLogsHead.SetActive(false);
+        uiLogsText = uiLogs.GetComponentInChildren<TMP_Text>();
 
         //Set le background
         //Check si le background n'est pas vide.
@@ -238,7 +242,7 @@ public class C_Challenge : MonoBehaviour
             Debug.LogError("AUCUN BACKGROUND DETECTE !!!");
         }
 
-        if (myChallenge.name != "SO_Tuto")
+        if (!myChallenge.firstLevel || GameManager.instance == null)
         {
             black.SetActive(false);
         }
@@ -260,12 +264,12 @@ public class C_Challenge : MonoBehaviour
         SpawnCases();
 
         yield return new WaitForEndOfFrame();
-
+        
         //Place les acteurs sur les cases.
         InitialiseAllPosition();
 
         yield return new WaitForEndOfFrame();
-
+        
         //Lance l'intro.
         StartIntroChallenge();
     }
@@ -437,172 +441,153 @@ public class C_Challenge : MonoBehaviour
         //Force update sur le parent canva. A LE PLACER AVANT LE SPAWN DES PERSO.
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponentInChildren<RectTransform>());
 
-        ActorPosition();
-
-        AccPosition();
-
-        //Fonction de spawn "actor".
-        void ActorPosition()
+        if (myChallenge.listStartPosTeam != null)
         {
-            if (myChallenge.listStartPosTeam != null)
-            {
-                //Fait spawn avec des info random.
-                SpawnActor(myChallenge.GetInitialPlayersPosition());
-            }
-            else //Poss�de l'info.
-            {
-                Debug.LogError("ERROR : Aucune informations de trouv� la liste, aucun acteur n'a pu spawn.");
-            }
+            //Fait spawn avec des info random.
+            SpawnActor(myChallenge.GetInitialPlayersPosition());
+        }
+        else //Possède l'info.
+        {
+            Debug.LogError("ERROR : Aucune informations de trouv� la liste, aucun acteur n'a pu spawn.");
         }
 
-        //Fonction de spawn "Accessories".
-        void AccPosition()
+        if (myChallenge.listStartPosAcc != null)
         {
-            if (myChallenge.listStartPosAcc != null)
-            {
-                //Fait spawn avec des info random.
-                SpawnAcc(myChallenge.GetInitialAccPosition());
-            }
-            else 
-            {
-                Debug.Log("Aucune informations de trouv� la liste des acc.");
-            }
+            //Fait spawn avec des info random.
+            SpawnAcc(myChallenge.GetInitialAccPosition());
         }
-
-        //Fait spawn les acteurs/Acc.
-        void SpawnActor(List<InitialActorPosition> listPosition)
+        else 
         {
-            if (GameManager.instance)
-            {
-                Debug.LogWarning("GameManager détecté ! Spawn des actor en cours...");
+            Debug.Log("Aucune informations de trouv� la liste des acc.");
+        }
+        
+    }
 
-                //Récupère les info du GameManager
-                foreach (GameObject thisActor in GameManager.instance.GetTeam())
+    void SpawnAcc(List<InitialAccPosition> listPosition)
+    {
+        foreach (InitialAccPosition position in listPosition)
+        {
+            C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
+
+            //Replace l'actor dans un autre Transform.
+            myAcc.transform.SetParent(background.transform, false);
+
+            PlacePionOnBoard(myAcc, position.position, false);
+
+            listAcc.Add(myAcc);
+        }
+    }
+
+    void SpawnActor(List<InitialActorPosition> listPosition)
+    {
+        if (GameManager.instance)
+        {
+            Debug.LogWarning("GameManager détecté ! Spawn des actor en cours...");
+
+            //Récupère les info du GameManager
+            foreach (GameObject thisTeamMember in GameManager.instance.GetTeam())
+            {
+                C_Actor thisActor = thisTeamMember.GetComponent<C_Actor>();
+                InitialActorPosition position = listPosition.Find(x => thisActor.GetDataActor().name.Equals(x.perso.GetDataActor().name));
+
+                if (position == null) continue;
+
+                if (myChallenge.isTuto)
                 {
-                    foreach (InitialActorPosition position in listPosition)
+                    Pyjama pyj;
+                    if (thisActor.TryGetComponent<Pyjama>(out pyj))
                     {
-                        //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
-                        if (thisActor.GetComponent<C_Actor>().GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                        pyj.Activate();
+                    }
+                }
+
+                PrepareActor(thisActor, position);
+
+                /*
+                //foreach (InitialActorPosition position in listPosition)
+                {
+                    //Check si dans les info du challenge est dans l'équipe stocké dans le GameManager.
+                    //if (thisActor.GetDataActor().name == position.perso.GetComponent<C_Actor>().GetDataActor().name)
+                    {
+                        #region Pour setup le sprite de Morgan en pyjama.
+                        //Check si le challenge en question c'est le tuto.
+                        /*if (thisActor.GetDataActor().name == "Morgan")
                         {
-                            #region Pour setup le sprite de Morgan en pyjama.
-                            //Check si le challenge en question c'est le tuto.
-                            if (thisActor.GetComponent<C_Actor>().GetDataActor().name == "Morgan")
+                            if (myChallenge.name == "SO_Tuto")
                             {
-                                if (myChallenge.name == "SO_Tuto")
-                                {
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
+                                thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Chara_Challenge");
+                                thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Dodo_Cata_Chara_Challenge");
 
-                                    //thisActor.GetComponent<C_Actor>().CheckInDanger();
-                                }
-                                else
-                                {
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
-                                    thisActor.GetComponent<C_Actor>().GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
-                                }
-                            }
-                            #endregion
-
-                            //Ini data actor.
-                            thisActor.GetComponent<C_Actor>().IniChallenge();
-
-                            //Replace l'actor dans un autre Transform.
-                            thisActor.transform.parent = GameObject.Find("BackGround").transform;
-
-                            //Placement sur le plateau.
-                            PlacePionOnBoard(thisActor.GetComponent<C_Actor>(), position.position, false);
-                            thisActor.GetComponent<C_Actor>().SetInDanger(false);
-                            thisActor.transform.localScale = Vector3.one;
-
-                            //New Ui stats
-                            C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
-
-                            //Add Ui Stats
-                            thisActor.GetComponent<C_Actor>().SetUiStats(newStats);
-                            thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
-
-                            //Update UI
-                            thisActor.GetComponent<C_Actor>().UpdateUiStats();
-
-                            Debug.Log(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction);
-                            Debug.Log(uiGoodAction.transform);
-
-                            //Mise en place du VFX de bonne action.
-                            if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
-                            {
-                                Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+                                //thisActor.GetComponent<C_Actor>().CheckInDanger();
                             }
                             else
                             {
-                                Debug.LogWarning("Pas de vfx good action de détecté !");
+                                thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Chara_Challenge");
+                                thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_Cata_Chara_Challenge");
                             }
-
-                            myTeam.Add(thisActor.GetComponent<C_Actor>());
-                        }
-                        else
-                        {
-                            //Cache les actor qui ne seront pas présent dans ce challenge.
-                            //thisActor.SetActive(false);
                         }
                     }
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Pas de GameManager détecté ! Spawn de nouvel actor en cours...");
+                    #endregion
 
-                foreach (InitialActorPosition position in listPosition)
+                    //Ini data actor.
+
+                }
+                /*else
                 {
-                    //New actor
-                    C_Actor thisActor = Instantiate(position.perso, GameObject.Find("BackGround").transform);
-                    thisActor.IniChallenge();
-                    PlacePionOnBoard(thisActor, position.position, false);
-                    thisActor.GetComponent<C_Actor>().CheckInDanger();
-                    thisActor.transform.localScale = Vector3.one;
-
-                    //Centrage sur la case et position sur Y.
-                    thisActor.transform.localPosition = new Vector3();
-
-                    //New Ui stats
-                    C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
-
-                    //Add Ui Stats
-                    thisActor.SetUiStats(newStats);
-                    thisActor.GetComponent<C_Actor>().GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
-
-                    //Update UI
-                    thisActor.UpdateUiStats();
-
-                    //Mise en place du VFX de bonne action.
-                    if (thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction != null)
-                    {
-                        GameObject newVfxGoodAction = Instantiate(thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
-                        //thisActor.GetComponent<C_Actor>().GetDataActor().vfxUiGoodAction = newVfxGoodAction.GetComponent<Animator>();
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Pas de vfx good action de détecté !");
-                    }
-
-                    myTeam.Add(thisActor);
-                }
+                    //Cache les actor qui ne seront pas présent dans ce challenge.
+                    //thisActor.SetActive(false);
+                }*/
             }
         }
-
-        void SpawnAcc(List<InitialAccPosition> listPosition)
+        else
         {
-            foreach (InitialAccPosition position in listPosition)
+            Debug.LogWarning("Pas de GameManager détecté ! Spawn de nouvel actor en cours...");
+
+            foreach (InitialActorPosition position in listPosition)
             {
-                C_Accessories myAcc = Instantiate(position.acc, plateau[position.position].transform);
-
-                //Replace l'actor dans un autre Transform.
-                myAcc.transform.parent = GameObject.Find("BackGround").transform;
-
-                PlacePionOnBoard(myAcc, position.position, false);
-
-                listAcc.Add(myAcc);
+                //New actor
+                C_Actor thisActor = Instantiate(position.perso, background.transform);
+                PrepareActor(thisActor, position);
             }
         }
+    }
+
+    private void PrepareActor(C_Actor thisActor, InitialActorPosition position)
+    {
+        thisActor.IniChallenge();
+
+        //Replace l'actor dans un autre Transform.
+        thisActor.transform.SetParent(background.transform, false);
+
+        //Placement sur le plateau.
+        PlacePionOnBoard(thisActor, position.position, false);
+        thisActor.SetInDanger(false);
+        thisActor.transform.localScale = Vector3.one;
+
+        //New Ui stats
+        C_Stats newStats = Instantiate(uiStatsPrefab, uiStats.transform);
+
+        //Add Ui Stats
+        thisActor.SetUiStats(newStats);
+        //thisActor.GetUiStats().InitUiStats(thisActor.GetComponent<C_Actor>());
+
+        //Update UI
+        //thisActor.UpdateUiStats();
+
+        Debug.Log(thisActor.GetDataActor().vfxUiGoodAction);
+        Debug.Log(uiGoodAction.transform);
+
+        //Mise en place du VFX de bonne action.
+        if (thisActor.GetDataActor().vfxUiGoodAction != null)
+        {
+            Instantiate(thisActor.GetDataActor().vfxUiGoodAction.gameObject, uiGoodAction.transform);
+        }
+        else
+        {
+            Debug.LogWarning("Pas de vfx good action de détecté !");
+        }
+
+        myTeam.Add(thisActor);
     }
 
     public void StartIntroChallenge()
@@ -630,15 +615,7 @@ public class C_Challenge : MonoBehaviour
                 //Pour attacher les fonction à tous les actor de ce challenge pour les dialogues.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-                    thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTypewriterStart.AddListener(() => SetCanContinueToNo());
-
-                    thisActor.GetComponent<C_Actor>().txtHautGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    thisActor.GetComponent<C_Actor>().txtHautDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    thisActor.GetComponent<C_Actor>().txtBasGauche.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
-                    thisActor.GetComponent<C_Actor>().txtBasDroite.GetComponent<TextAnimatorPlayer>().onTextShowed.AddListener(() => SetCanContinueToYes());
+                    thisActor.SetupTempsMort(SetCanContinueToNo, SetCanContinueToYes);
                 }
                 #endregion
 
@@ -717,13 +694,6 @@ public class C_Challenge : MonoBehaviour
 
         //Set l'étape en question.
         currentStep = myChallenge.listEtape[0];
-
-        if (currentStep.useCata)
-        {
-            currentCata = myChallenge.listCatastrophy[0];
-        }
-
-        currentActor = myTeam[0];
 
         UpdateUi();
 
@@ -869,7 +839,7 @@ public class C_Challenge : MonoBehaviour
         //Remplace tout les sprite des preview de déplacement par une autre image (petite tete des perso)
 
         //Si il reste des acteurs à jouer, alors tu passe à l'acteur suivant, sinon tu passe à la phase de "résolution".
-        if (myTeam.IndexOf(currentActor) != myTeam.Count - 1)
+        if (HasNextActor())
         {
             //Passe à l'acteur suivant.
             NextActor();
@@ -894,6 +864,8 @@ public class C_Challenge : MonoBehaviour
             //Rend les couleurs sur tous les actor.
             foreach (C_Actor thisActor in myTeam)
             {
+                if (thisActor.GetIsOut()) continue;
+
                 thisActor.GetImageActor().sprite = thisActor.GetDataActor().challengeSprite;
                 thisActor.CheckInDanger();
             }
@@ -916,23 +888,25 @@ public class C_Challenge : MonoBehaviour
     public void PlayerTurn()
     {
         #region Tuto
-        if (canMakeTuto)
+        if (canMakeTuto && myChallenge.isTuto)
         {
+            if (currentStep.useTuto) //currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
+            {
+                Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
+
+                myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
+
+                //Lance l'animation.
+                GetComponentInChildren<C_Tuto>().LaunchTuto(myChallenge.listEtape.IndexOf(currentStep) + 1 + myChallenge.tutoOffset);
+
+                canMakeTuto = false;
+            }
+            /*
             //Check si c'est le premier niveau.
             if (myChallenge.name == "SO_Tuto(Clone)")
             {
                 //ETAPE 1.
-                if (currentStep.name == "SO_step1tuto(Clone)" || currentStep.name == "SO_step2tuto(Clone)" || currentStep.name == "SO_step3tuto(Clone)")
-                {
-                    Debug.Log("Lancement du tuto " + myChallenge.listEtape.IndexOf(currentStep) + 1);
-
-                    myInterface.SetCurrentInterface(C_Interface.Interface.Tuto);
-
-                    //Lance l'animation.
-                    GetComponentInChildren<C_Tuto>().LaunchTuto(myChallenge.listEtape.IndexOf(currentStep) + 1);
-
-                    canMakeTuto = false;
-                }
+                
             }
             else if (myChallenge.name == "SO_lvl2A(Clone)") //A VOIR SI BESOIN DE MODIF 
             {
@@ -943,19 +917,23 @@ public class C_Challenge : MonoBehaviour
 
                 canMakeTuto = false;
             }
+            */
         }
         #endregion
 
         uiInterfaceHead.SetActive(true);
         uiLogsHead.SetActive(false);
 
-        //Change le sprite sur l'interface.
-        uiInterfaceHead.GetComponentInChildren<Image>().sprite = currentActor.GetDataActor().headButton;
-
         Debug.Log("Player turn !");
+        //Redéfini le début de la liste.
+        currentActor = myTeam[0];
+
+        //Efface les logs.
+        uiLogsText.text = "";
 
         //Vide la listeReso
         listRes = new List<ActorResolution>();
+        ResetCataLogs();
 
         #region Initialise la prochaine cata.
         if (currentStep.useCata)
@@ -976,35 +954,37 @@ public class C_Challenge : MonoBehaviour
         }
         #endregion
 
-        #region Check si le perso est jouable
-        if (!currentActor.GetIsOut())
+        UpdateActorSelected();
+    }
+
+    bool HasNextActor()
+    {
+        for (int idx = myTeam.IndexOf(currentActor)+1; idx < myTeam.Count; idx++)
         {
-            //Update le contour blanc
-            UpdateActorSelected();
+            if (!myTeam[idx].GetIsOut())
+                return true;
         }
-        else
+
+        return false;
+    }
+
+    C_Actor GetNextActor()
+    {
+        for (int idx = myTeam.IndexOf(currentActor) + 1; idx < myTeam.Count; idx++)
         {
-            NextActor();
-            PlayerTurn();
+            if (!myTeam[idx].GetIsOut())
+                return myTeam[idx];
         }
-        #endregion
+
+        return null;
     }
 
     //Passe à l'acteur suivant.
     void NextActor()
     {
-        currentActor = myTeam[myTeam.IndexOf(currentActor) + 1];
-
-        //Change le sprite sur l'interface.
-        uiInterfaceHead.GetComponentInChildren<Image>().sprite = currentActor.GetDataActor().headButton;
+        currentActor = GetNextActor();
 
         UpdateActorSelected();
-
-        //Check si l'actor en question est ko.
-        if (currentActor.GetIsOut())
-        {
-            NextActor();
-        }
     }
 
     void UpdateActorSelected()
@@ -1017,6 +997,8 @@ public class C_Challenge : MonoBehaviour
 
         if (currentActor != null)
         {
+            //Change le sprite sur l'interface.
+            uiInterfaceHeadImg.sprite = currentActor.GetDataActor().headButton;
             //Fait apparaitre le contour blanc de l'actor selectionne.
             currentActor.IsSelected(true);
         }
@@ -1115,7 +1097,7 @@ public class C_Challenge : MonoBehaviour
 
         PlacePreviewMovement(whatMove, currentActor, position, nbMove, isTp);
 
-        void PlacePreviewMovement(TargetStats.ETypeMove whatMove, C_Actor targetActor, int position, int nbMove, bool isTp)
+        void PlacePreviewMovement(TargetStats.ETypeMove whatMove, C_Actor targetActor, int position, int nbMove, bool isTp, int moveTimes = 0)
         {
             #region création d'une Preview.
             //Ajout d'un component d'image dans l'objet.
@@ -1210,8 +1192,8 @@ public class C_Challenge : MonoBehaviour
                             Debug.Log("Pousse toi !");
 
                             //Le spawn de la preview sera décalé de 1 dans la direction du déplacement avec l'image de l'actor visé.
-
-                            PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition(), 1, isTp);
+                            if (moveTimes <= myTeam.Count)
+                                PlacePreviewMovement(whatMove, thisOtherActor, thisOtherActor.GetPosition(), 1, isTp, moveTimes+1);
                         }
                     }
                 }
@@ -1290,7 +1272,8 @@ public class C_Challenge : MonoBehaviour
                 AudioManager.instanceAM.Play(sfxWriteText);
             }
 
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.currentLogs;
+            uiLogsText.text = currentResolution.action.currentLogs;
+            currentResolution.action.LoadNextLog();
         }
         else if (currentStep == null) //Check si la partie est fini.
         {
@@ -1324,21 +1307,16 @@ public class C_Challenge : MonoBehaviour
                 {
                     myPhaseDeJeu = PhaseDeJeu.CataTurn;
 
-                    uiLogsHead.SetActive(false);
-
                     //Lance la phase "Cata".
                     CataTurn();
-                    ResetCataLogs();
+                }
+                else
+                {
+                    GameOver();
                 }
             }
             else //Lance la phase du joueur.
             {
-                //Redéfini le début de la liste.
-                currentActor = myTeam[0];
-
-                //Efface les logs.
-                uiLogs.GetComponentInChildren<TMP_Text>().text = "";
-
                 //transition.
                 myPhaseDeJeu = PhaseDeJeu.PlayerTrun;
                 vfxPlayerTurn.SetTrigger("PlayerTurn");
@@ -1355,10 +1333,14 @@ public class C_Challenge : MonoBehaviour
 
         //Change le sprite sur l'interface.
         uiLogsHead.GetComponentInChildren<Image>().sprite = currentResolution.actor.GetDataActor().headButton;
+        uiLogsText.text = "";
 
         //Met en noir et blanc tous les actor sauf l'actor qui joue la reso.
         foreach (C_Actor thisActor in myTeam)
         {
+            if (thisActor.GetIsOut())
+                continue;
+
             if (thisActor != currentResolution.actor)
             {
                 thisActor.SetSpriteChallengeBlackAndWhite();
@@ -1387,11 +1369,14 @@ public class C_Challenge : MonoBehaviour
                 //Change le sprite de Morgan.
                 foreach (C_Actor thisActor in myTeam)
                 {
-                    if (thisActor.GetDataActor().name == "Morgan")
+                    Pyjama pyj;
+                    if (thisActor.TryGetComponent(out pyj))
                     {
+                        /*
                         thisActor.GetDataActor().challengeSprite = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Chara_Challenge");
                         thisActor.GetDataActor().challengeSpriteOnCata = Resources.Load<Sprite>("Sprite/Character/Morgan/Morgan_DodoLunettes_Cata_Chara_Challenge");
-
+                        */
+                        pyj.Step();
                         thisActor.CheckInDanger();
                     }
                 }
@@ -1435,7 +1420,6 @@ public class C_Challenge : MonoBehaviour
             #endregion
 
             //Set les logs de la bonne action.
-            currentResolution.action.ResetLogs();
             currentResolution.action.SetListLogs(true);
         }
         else
@@ -1443,14 +1427,14 @@ public class C_Challenge : MonoBehaviour
             Debug.Log("Peut pas faire l'action");
 
             //Set les logs de la mauvaise action.
-            currentResolution.action.ResetLogs();
             currentResolution.action.SetListLogs(false);
         }
 
         #region Logs
         //Ecrit dans les logs le résultat de l'action.
         currentResolution.action.ResetLogs();
-        uiLogs.GetComponentInChildren<TMP_Text>().text = currentResolution.action.GetListLogs();
+        uiLogsText.text = currentResolution.action.GetListLogs();
+        currentResolution.action.LoadNextLog();
         #endregion
     }
 
@@ -1764,8 +1748,6 @@ public class C_Challenge : MonoBehaviour
 
     public virtual void PlacePionOnBoard(C_Pion thisPion, int thisCase, bool isTp)
     {
-        Debug.Log(thisPion.name + " : " + thisCase);
-
         //Supprime la dernière position.
         plateau[thisPion.GetPosition()].ResetPion();
 
@@ -1869,7 +1851,7 @@ public class C_Challenge : MonoBehaviour
                 AudioManager.instanceAM.Play(sfxWriteText);
             }
 
-            uiLogs.GetComponentInChildren<TMP_Text>().text = currentCataLogs;
+            uiLogsText.text = currentCataLogs;
         }
         else //Passe à la phase suivante.
         {
@@ -1879,7 +1861,7 @@ public class C_Challenge : MonoBehaviour
             vfxPlayerTurn.SetTrigger("PlayerTurn");
 
             //Efface les logs.
-            uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+            uiLogsText.text = "";
         }
     }
 
@@ -1888,11 +1870,14 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("CataTurn");
 
-        uiLogs.GetComponentInChildren<TMP_Text>().text = "";
+        uiLogsText.text = "";
 
         //Redonne les couleurs au actor.
         foreach (var thisActor in myTeam)
         {
+            if (thisActor.GetIsOut())
+                continue;
+
             thisActor.SetSpriteChallenge();
         }
 
@@ -1902,19 +1887,8 @@ public class C_Challenge : MonoBehaviour
         //Re-Check si tous les perso sont "out".
         if (!CheckGameOver())
         {
-            //Redéfini le début de la liste.
-            currentActor = myTeam[0];
-
             //Update la prochaine Cata.
-            //Check si c'étais la dernière Cata.
-            if (myChallenge.listCatastrophy.IndexOf(currentCata) + 1 > myChallenge.listCatastrophy.Count - 1)
-            {
-                currentCata = myChallenge.listCatastrophy[0];
-            }
-            else
-            {
-                currentCata = myChallenge.listCatastrophy[myChallenge.listCatastrophy.IndexOf(currentCata) + 1];
-            }
+            currentCata = myChallenge.listCatastrophy[(myChallenge.listCatastrophy.IndexOf(currentCata) + 1) % myChallenge.listCatastrophy.Count];
 
             //Check si il y a du texte.
             if (GetListCataLogs() == null)
@@ -1925,8 +1899,12 @@ public class C_Challenge : MonoBehaviour
             else
             {
                 Debug.Log("Ecrit la cata !");
-                uiLogs.GetComponentInChildren<TMP_Text>().text = currentCataLogs;
+                uiLogsText.text = currentCataLogs;
             }
+        }
+        else
+        {
+            GameOver();
         }
     }
 
@@ -1967,13 +1945,15 @@ public class C_Challenge : MonoBehaviour
                     //Pour tous les actor.
                     foreach (C_Actor thisActor in myTeam)
                     {
+                        if (thisActor.GetIsOut()) continue;
+
                         //Applique des conséquence grace au finction de actionClass.
                         currentCata.actionClass.SetStatsTarget(Interaction.ETypeTarget.Soi, thisActor);
 
                         //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                        if (!thisActor.GetIsOut())
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                        thisActor.CheckIsOut();
                     }
 
                     listCataLogs.Add(currentCata.catastrophyLog);
@@ -1985,18 +1965,21 @@ public class C_Challenge : MonoBehaviour
 
                 foreach (C_Actor thisActor in myTeam)
                 {
+                    if (thisActor.GetIsOut()) continue;
+
                     //Check si un joueur à marché sur le lézard.
                     if (thisActor.GetPosition() == thisCase)
                     {
+
                         Debug.Log(thisActor.name + " est touché !");
 
                         //Applique des conséquence grace au finction de actionClass.
                         UseAction(currentCata.actionClass, thisActor);
 
                         //Vfx
-                        thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                        if (!thisActor.GetIsOut())
+                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                        thisActor.CheckIsOut();
 
                         Debug.Log(currentCata.PoPUpCatastrophe);
 
@@ -2009,6 +1992,8 @@ public class C_Challenge : MonoBehaviour
                 {
                     foreach (C_Actor thisActor in myTeam)
                     {
+                        if (thisActor.GetIsOut()) continue;
+
                         //Check si un joueur à marché sur le lézard.
                         if (thisActor.GetPosition() == thisAcc.GetPosition())
                         {
@@ -2016,9 +2001,9 @@ public class C_Challenge : MonoBehaviour
                             thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
                             //Vfx
-                            thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                            if (!thisActor.GetIsOut())
+                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                            thisActor.CheckIsOut();
 
                             //Ajoute dans la liste un texte.
                             listCataLogs.Add(thisActor.name + " à marché sur le lézard ! Ce dernier perd 2 de calme.");
@@ -2034,12 +2019,14 @@ public class C_Challenge : MonoBehaviour
                             //Check si la position des actor est sur la meme case que l'acc.
                             foreach (var thisActor in myTeam)
                             {
+                                if (thisActor.GetIsOut()) continue;
+
                                 thisActor.SetCurrentStats(-2, TargetStats.ETypeStats.Calm);
 
                                 //Vfx
-                                thisActor.GetComponent<Animator>().SetTrigger("isHit");
+                                if (!thisActor.GetIsOut())
+                                    thisActor.GetComponent<Animator>().SetTrigger("isHit");
 
-                                thisActor.CheckIsOut();
                             }
 
                             //Ajoute dans la liste un texte.
@@ -2058,7 +2045,7 @@ public class C_Challenge : MonoBehaviour
     {
         Debug.Log("next step");
 
-        if (myChallenge.listEtape.IndexOf(currentStep) + 1 > myChallenge.listEtape.Count - 1)
+        if (myChallenge.listEtape.IndexOf(currentStep) + 1 >= myChallenge.listEtape.Count)
         {
             currentStep = null;
         }
@@ -2066,11 +2053,11 @@ public class C_Challenge : MonoBehaviour
         {
             //Nouvelle étape.
             currentStep = myChallenge.listEtape[myChallenge.listEtape.IndexOf(currentStep) + 1];
-        }
 
-        if (myChallenge.name != "SO_lvl2A(Clone)")
-        {
-            canMakeTuto = true;
+            if (myChallenge.isTuto)
+            {
+                canMakeTuto = currentStep.useTuto;
+            }
         }
     }
 
@@ -2088,7 +2075,7 @@ public class C_Challenge : MonoBehaviour
 
         if (nbActorOut == myTeam.Count)
         {
-            GameOver();            return true;
+            return true;
         }
 
         return false;
@@ -2139,6 +2126,8 @@ public class C_Challenge : MonoBehaviour
         {
             myPhaseDeJeu = PhaseDeJeu.EndGame;
         }
+        else
+            return;
 
         //Redonne leur couleur.
         foreach (C_Actor thisActor in myTeam)
@@ -2228,15 +2217,15 @@ public class C_Challenge : MonoBehaviour
 
             string nextScene = null;
 
-            if (GameManager.instance.currentC.name == "SO_lvl3")
-            {
-                nextScene = sceneCredits;
-            }
-            if (GameManager.instance.currentC.name == "SO_Tuto")
+            if (GameManager.instance.currentC.firstLevel)
             {
                 GameManager.instance.SetDataLevel(tm1, c1);
 
                 nextScene = sceneTM;
+            }
+            else if (!string.IsNullOrEmpty(GameManager.instance.currentC.nextScene))
+            {
+                nextScene = GameManager.instance.currentC.nextScene;
             }
             else
             {
@@ -2276,7 +2265,7 @@ public class C_Challenge : MonoBehaviour
 
     public List<SO_ActionClass> GetListActionOfCurrentStep()
     {
-        return currentStep.actions;
+        return currentStep?.actions;
     }
 
     public SO_Etape GetCurrentEtape()

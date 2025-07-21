@@ -60,9 +60,10 @@ public class C_Case : MonoBehaviour
     {
         if (myPion != null)
         {
-            if (myPion.GetComponent<C_Actor>())
+            C_Actor thisActor;
+            if (myPion.TryGetComponent(out thisActor))
             {
-                if (vfxCata != null)
+                if (vfxCata != null && !thisActor.GetIsOut())
                 {
                     myPion.SetInDanger(true);
                 }
@@ -71,7 +72,7 @@ public class C_Case : MonoBehaviour
                     myPion.SetInDanger(false);
                 }
 
-                myPion.GetComponent<C_Actor>().CheckInDanger();
+                thisActor.CheckInDanger();
             }
         }
     }
