@@ -68,7 +68,8 @@ La foudre dans tes épaules.#Bulle:Narrateur
 La vitesse de ta respiration. #Bulle:Narrateur
 Tu décroches ton stylo d’une de tes poches, et commences à le faire tourner entre tes doigts.#Bulle:Narrateur
 ~ Trigger("name")
-Tu cherches quelque chose contre quoi t’adosser. Tes doigts frôlent le papier contenu dans tes poches, à la recherche de ton carnet dans un océan de brouillons, de notes et de pense-bêtes.#Bulle:Narrateur
+Tu cherches quelque chose contre quoi t’adosser. Tes doigts frôlent le papier contenu dans tes poches,#Bulle:Narrateur
+ à la recherche de ton carnet dans un océan de brouillons, de notes et de pense-bêtes.#Bulle:Narrateur
 Quelque chose t’arrête cependant.#Bulle:Narrateur #emot:Dots
 
 La pointe de ton stylo-plume touche la fibre végétale. N’es-tu pas en train d’entretenir un cercle vicieux ?#Bulle:Narrateur #emot:?

@@ -20,15 +20,18 @@ Tu le suis des yeux.#Bulle:Narrateur
 Il se plie en volant, et comme une feuille de papier, se fait parfois si fin qu’il échappe à ta vue.#Bulle:Narrateur
 Puis, il déploie de nouveau ses ailes et réapparaît entre deux brises.#Bulle:Narrateur
 De ce que tes cours t’ont appris, il y a une centaine d’années, la vaste majorité des espèces animales foulant la Terre s’était éteinte. #Bulle:Narrateur
-Tu essaies de l’imaginer, cette vision que tu poursuis sans cesse, cette humanité folle et lucide dont tout le monde est issu. De vastes rivières de goudron scarifiant le sol jusqu’à l’horizon.#Bulle:Narrateur
+Tu essaies de l’imaginer, cette vision que tu poursuis sans cesse, cette humanité folle et lucide dont tout le monde est issu.#Bulle:Narrateur
+De vastes rivières de goudron scarifiant le sol jusqu’à l’horizon.#Bulle:Narrateur
 Des colonnes de sable vitrifiées enchâssées dans d’immenses tours d’eau, de ciment et de gravier. #Bulle:Narrateur
-Une sorte de ruche à humains, toute en pierre et en métal. Ses magasins débordant de produits transformés, alimentés depuis l’extérieur par des wagons individuels sans rails transportant plusieurs tonnes de marchandises depuis des campagnes sèches,#Bulle:Narrateur
+Une sorte de ruche à humains, toute en pierre et en métal. Ses magasins débordant de produits transformés,#Bulle:Narrateur
+ alimentés depuis l’extérieur par des wagons individuels sans rails transportant plusieurs tonnes de marchandises depuis des campagnes sèches,#Bulle:Narrateur
 drainées de leurs nutriments par des champs monochromes et des poisons.#Bulle:Narrateur
 Tu exagères un peu ton ignorance. Tu sais ce qu’est une voiture. #Bulle:Narrateur
 Il y a encore des engins à moteur à explosion dans Brekelantte.#Bulle:Narrateur
 Tu as juste du mal à imaginer comment il a pu y en avoir tellement, et comment est-ce que cet immense réseau interagissait. #Bulle:Narrateur
 Tu sais qu’il y avait une espèce de code des conducteurs, un peu comme les pirates.#Bulle:Narrateur
-C’est bizarre que les gens soient capables de se faire confiance les uns les autres pour conduire côte à côte des machines allant à plusieurs dizaines de kilomètres à l’heure, et pourtant témoignaient d’autant de méfiance envers les inconnus dans la vie de tous les jours.#Bulle:Narrateur
+C’est bizarre que les gens soient capables de se faire confiance les uns les autres pour conduire côte à côte des machines allant à plusieurs dizaines de kilomètres à l’heure,#Bulle:Narrateur
+ et pourtant témoignaient d’autant de méfiance envers les inconnus dans la vie de tous les jours.#Bulle:Narrateur
 Qu’est-ce qui crée ce contraste entre l’extérieur et l’intérieur de la voiture ?#Bulle:Narrateur
 Est-ce que les voitures rendaient magiquement les gens responsables et courtois ? #Bulle:Narrateur
 

@@ -44,7 +44,7 @@ Moi ?<br> Faire semblant ?<br> Mais <bounce>ja-mais</bounce> de la vie en fait.#
 
 Sa voix déborde d’un ironie malicieuse, mais j'avais probablement pas besoin de le préciser.#Bulle:Narrateur
 
-Bon,<br> je suis déjà allé<br> une fois au café où j'ai <rainb>mon rencard</raib>.#Bulle:MorganHautGauche
+Bon,<br> je suis déjà allé<br> une fois au café où j'ai <rainb>mon rencard</rainb>.#Bulle:MorganHautGauche
 
 Et bien sûr,<br> c'est au rez-de-chaussée <br>et on aura aucun mal à le trouver ?#Bulle:NimuHautDroite
 

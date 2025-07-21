@@ -49,7 +49,8 @@ Ses serres s’agrippent à une branche. Ta nuque conteste le mouvement que tu l
 Tu ne l’écoutes pas, absorbé par le bruissement des plumes. #Bulle:Narrateur
 La Singularité a redistribué beaucoup de cartes. #Bulle:Narrateur
 De ce que tu as entendu, la pie des sables était presque éteinte il y a un peu moins d’un siècle.#Bulle:Narrateur
-Malgré un climat théoriquement de plus en plus favorable à sa prospérité, les brusques changements climatiques et l’urbanisation intense avaient contribué à désorienter et affamer l’espèce entière.#Bulle:Narrateur
+Malgré un climat théoriquement de plus en plus favorable à sa prospérité,#Bulle:Narrateur
+ les brusques changements climatiques et l’urbanisation intense avaient contribué à désorienter et affamer l’espèce entière.#Bulle:Narrateur
 Ces problèmes ont été réglés par la soudaine pénurie d’humains, #Bulle:Narrateur
 et par l'abondance de nature provoquée par la Singularité. #Bulle:Narrateur
 

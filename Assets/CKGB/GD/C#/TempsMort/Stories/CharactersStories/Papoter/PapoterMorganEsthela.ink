@@ -66,7 +66,7 @@ J'ai trop trop trop envie<br> d'en parler depuis tout à l'heure !!!!!#Bulle:Est
 
 Tiens, Esthéla !<br> Quelle surprise ! <br>J’adore ton nouveau style.<br> C’est quoi tes inspis ?#Bulle:MorganHautGauche #emot:Sparkles
 
-    <bounce<MORGAN, INCROYABLE, QUELLE COÏNCIDENCE,</bounce> je suis RA-VIE<br> que tu me poses la question <wave>SPONTANÉMENT</wave> !! #Bulle:EsthelaHautGauche
+    <bounce>MORGAN, INCROYABLE, QUELLE COÏNCIDENCE,</bounce> je suis RA-VIE<br> que tu me poses la question <wave>SPONTANÉMENT</wave> !! #Bulle:EsthelaHautGauche
 Vous trouvez qu'elle en fait trop ? Pas moi. #Bulle:Narrateur
 <wave>Laisse-moi t’expliquer en détail deux ou trois fois !!!</wave> #Bulle:EsthelaBasDroite #emot:Rainbow
 
